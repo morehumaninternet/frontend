@@ -1,9 +1,8 @@
 {
-  "name": "gatsby-starter-default",
-  "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "name": "more-human-internet-frontend",
+  "description": "Frontend for morehumaninternet.org",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Will Weiss <will.weiss1230@gmail.com>",
   "dependencies": {
     "gatsby": "^2.23.3",
     "gatsby-image": "^2.4.7",
@@ -22,7 +21,8 @@
     "prettier": "2.0.5"
   },
   "keywords": [
-    "gatsby"
+    "human",
+    "internet"
   ],
   "license": "MIT",
   "scripts": {
@@ -36,9 +36,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/morehumaninternet/frontend"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/morehumaninternet/frontend/issues"
   }
 }
