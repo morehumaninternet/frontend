@@ -1,0 +1,63 @@
+.hero {
+  background-image: linear-gradient(to bottom right, #164176, #164176, #FA759E);
+  width: 100%;
+  min-height: 768px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero > h1 {
+  max-width: 500px;
+  text-align: center;
+}
+
+.manifesto {
+  padding-top: 132px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.manifesto-contents {
+  max-width: 500px;
+}
+
+.join-card {
+  width: 460px;
+  padding-top: 16px;
+}
+
+.join-card > h2 {
+  width: 100%;
+  text-align: center;
+}
+
+.join-card-content > form {
+  width: 100%;
+}
+
+.join-card-content > form .thing {
+  width: 100%;
+  margin-bottom: 10;
+}
+
+footer {
+  height: 548px;
+  padding-top: 88px;
+  padding-bottom: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer-links > .footer-link {
+  margin-left: 20px;
+  margin-right: 20px;
+}
