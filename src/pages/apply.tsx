@@ -1,39 +1,10 @@
 import React from 'react'
-import { Button, Card, CardContent, FormGroup, InputAdornment, InputBase, TextField, FormControl } from '@material-ui/core'
+import { Button, Card, CardContent, FormGroup, InputAdornment, TextField } from '@material-ui/core'
 import { Email, LinkedIn, Person } from '@material-ui/icons'
 import Layout from '../components/layout'
+import FileUploadButton from '../components/file-upload-button'
 import SEO from '../components/seo'
 import '../styles/index.css'
-
-
-class FileUploadButton extends React.Component<{}, { fileUploadState: string }> {
-  inputReference: React.RefObject<any>
-
-  constructor(props) {
-    super(props)
-    this.state = { fileUploadState: '' }
-    this.inputReference = React.createRef()
-  }
-
-  fileUploadInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e)
-    this.setState({ fileUploadState: e.target.value })
-  }
-
-  fileUploadAction = () => this.inputReference.current.click()
-
-  render(): JSX.Element {
-    return (
-      <div>
-        <input type="file" hidden ref={this.inputReference} onChange={this.fileUploadInputChange} />
-        <button type="button" className="ui button" onClick={this.fileUploadAction}>
-          Resume
-        </button>
-        {this.state.fileUploadState}
-        </div>
-    )
-  }
-}
 
 
 
@@ -45,7 +16,8 @@ const ApplyPage = () => (
       <Card className="join-card">
         <h2>Join</h2>
         <CardContent className="join-card-content">
-          <form method="POST" action="/submit-application">
+          <form name="submit-application" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="submit-application" />
             <FormGroup>
               <TextField
                 placeholder="Full Name"
@@ -69,7 +41,7 @@ const ApplyPage = () => (
             </FormGroup>
             <FormGroup>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <FileUploadButton />
+                <FileUploadButton name="resume" />
                 or
                 <TextField
                   placeholder="LinkedIn"
