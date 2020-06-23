@@ -1,6 +1,6 @@
-import { Link } from 'gatsby'
 import React from 'react'
-import Logo from '../images/logo.svg'
+import { Link } from 'gatsby'
+import HeaderLogo from './logo'
 
 
 type HeaderProps = {
@@ -23,7 +23,7 @@ const Header = ({ children }: HeaderProps) => (
     }}
   >
     <Link to="/">
-      <img src={Logo} />
+      <HeaderLogo />
     </Link>
     {children}
   </header>
