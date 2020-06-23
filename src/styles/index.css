@@ -77,3 +77,11 @@ footer {
   margin-left: 20px;
   margin-right: 20px;
 }
+
+.file-upload-button-container {
+  min-height: 100%;
+}
+
+.file-upload-button-container > button {
+  height: 100%;
+}

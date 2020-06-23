@@ -45,7 +45,7 @@ const ApplyPage = () => (
             <FormGroup>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'stretch' }}>
                 <FileUploadButton name="resume">
-                  <CloudUpload/> &nbsp; Resume
+                  <CloudUpload/> &nbsp;&nbsp; Resume
                 </FileUploadButton>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>or</div>
                 <TextField
