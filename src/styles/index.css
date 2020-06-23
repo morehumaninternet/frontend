@@ -40,24 +40,6 @@
   max-width: 500px;
 }
 
-.join-card {
-  width: 460px;
-  padding-top: 16px;
-}
-
-.join-card > h2 {
-  width: 100%;
-  text-align: center;
-}
-
-.join-card-content .MuiFormGroup-root {
-  margin-bottom: 10px;
-}
-
-.join-card-content .MuiFormGroup-root:last-child {
-  margin-bottom: 0;
-}
-
 footer {
   height: 548px;
   padding-top: 88px;
@@ -84,4 +66,35 @@ footer {
 
 .file-upload-button-container > button {
   height: 100%;
+}
+
+.MuiCard-root {
+  width: 460px;
+  padding-top: 16px;
+}
+
+.MuiCard-root > h2 {
+  font-weight: 300;
+  color: #164176;
+  font-size: 2.55556rem;
+  margin-top: 32px;
+  width: 100%;
+  text-align: center;
+}
+
+form[name="submit-application"] {
+  margin-bottom: 0;
+}
+
+form[name="submit-application"] button[type="submit"] {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+form[name="submit-application"] .MuiFormGroup-root {
+  margin-bottom: 20px;
+}
+
+form[name="submit-application"] .MuiFormGroup-root:last-child {
+  margin-bottom: 0;
 }

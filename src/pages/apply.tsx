@@ -16,18 +16,18 @@ const SubmitApplicationForm = () => (
     </p>
     <FormGroup>
       <TextField
-        placeholder="Full Name"
+        label="Full Name"
         name="name"
         variant="outlined"
         InputProps={{
-          startAdornment: <InputAdornment position="start"><Person /></InputAdornment>,
+          startAdornment: <InputAdornment disablePointerEvents position="start"><Person /></InputAdornment>,
         }}
       />
     </FormGroup>
     <FormGroup>
       <TextField
         type="email"
-        placeholder="Email"
+        label="Email"
         name="email"
         variant="outlined"
         InputProps={{
@@ -42,7 +42,7 @@ const SubmitApplicationForm = () => (
         </FileUploadButton>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>or</div>
         <TextField
-          placeholder="LinkedIn"
+          label="LinkedIn"
           name="linkedin"
           variant="outlined"
           InputProps={{
@@ -53,7 +53,7 @@ const SubmitApplicationForm = () => (
     </FormGroup>
     <FormGroup>
       <TextField
-        placeholder="Your thoughts..."
+        placeholder=""
         label="Why do you want to join?"
         name="whyjoin"
         variant="outlined"
