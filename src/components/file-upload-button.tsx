@@ -1,19 +1,25 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
+import { last } from 'lodash'
+import { CloudUpload } from '@material-ui/icons'
+import { Button, InputLabel } from '@material-ui/core'
 
 
 type FileUploadButtonProps = {
   name: string
+  label: React.ReactNode
   style?: React.CSSProperties
 }
 
-export default class FileUploadButton extends React.Component<FileUploadButtonProps, { fileUploadState: string }> {
+const fileName = (filePath: null | string) =>
+  filePath && last(filePath.split(/(\/|\\)/))
 
-  state = { fileUploadState: '' }
+export default class FileUploadButton extends React.Component<FileUploadButtonProps, { fileName: null | string }> {
+
+  state = { fileName: null }
   inputReference: React.RefObject<HTMLInputElement> = React.createRef()
 
   fileUploadInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ fileUploadState: e.target.value })
+    this.setState({ fileName: fileName(e.target.value) })
   }
 
   fileUploadAction = () => this.inputReference.current.click()
@@ -21,11 +27,10 @@ export default class FileUploadButton extends React.Component<FileUploadButtonPr
   render(): JSX.Element {
     return (
       <div className="file-upload-button-container">
-        <input name="resume" type="file" hidden ref={this.inputReference} onChange={this.fileUploadInputChange} />
+        <input name={this.props.name} type="file" hidden ref={this.inputReference} onChange={this.fileUploadInputChange} />
         <Button type="button" onClick={this.fileUploadAction}>
-          {this.props.children}
+          <CloudUpload/> &nbsp;&nbsp; {this.state.fileName || this.props.label}
         </Button>
-        {this.state.fileUploadState}
       </div>
     )
   }

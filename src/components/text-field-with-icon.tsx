@@ -5,9 +5,16 @@ import { withStyles } from "@material-ui/core/styles"
 import InputAdornment from '@material-ui/core/InputAdornment'
 
 const styles = theme => ({
+  root: {
+    transition: '0.2s',
+  },
   formControl: {
-      left: 30, // this moves our label to the left, so it doesn't overlap when shrunk.
-      top: 0,
+    left: 32, // this moves our label to the left, so it doesn't overlap when shrunk.
+    top: 1,
+  },
+  shrink: {
+    left: 0, // this moves our label to the left, so it doesn't overlap when shrunk.
+    top: 0,
   },
   disabled: {},
 })
@@ -15,6 +22,7 @@ const styles = theme => ({
 type TextFieldWithIconProps = TextFieldProps & {
   endIcon?: React.ReactNode
   startIcon?: React.ReactNode
+  classes?: any
 }
 
 class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink: boolean }> {
@@ -38,22 +46,24 @@ class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink
   render() {
     // make sure to check endIcon and startIcon, we don't need errors in our console
     const { classes, endIcon, autoComplete, startIcon, ...other } = this.props
+
     return <TextField {...other}
       onFocus={this.shrinkLabel}
       onBlur={this.unShrinkLabel}
-      InputLabelProps={{shrink: this.state.shrink, classes: classes }}
+      InputLabelProps={{ shrink: this.state.shrink, classes }}
       InputProps={{
         autoComplete,
+        startAdornment: startIcon && (
+          <InputAdornment position="start">
+            {startIcon}
+          </InputAdornment>
+        ),
         endAdornment: endIcon && (
-          <InputAdornment position={"end"}>
+          <InputAdornment position="end">
             {endIcon}
           </InputAdornment>
         ),
-        startAdornment: startIcon && (
-          <InputAdornment position={"start"}>
-            {startIcon}
-          </InputAdornment>
-        )}}
+      }}
     />
   }
 }

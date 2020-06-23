@@ -69,7 +69,7 @@ footer {
 }
 
 .MuiCard-root {
-  width: 460px;
+  min-width: 460px;
   padding-top: 16px;
 }
 
@@ -97,4 +97,24 @@ form[name="submit-application"] .MuiFormGroup-root {
 
 form[name="submit-application"] .MuiFormGroup-root:last-child {
   margin-bottom: 0;
+}
+
+.MuiFormGroup-root.stretch-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.spaced-vertically-centered-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.MuiCardContent-root:last-child {
+  padding-bottom: auto;
 }

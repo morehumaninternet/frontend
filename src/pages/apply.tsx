@@ -1,62 +1,59 @@
 import React from 'react'
-import { Button, Card, CardContent, FormGroup, InputAdornment, TextField } from '@material-ui/core'
-import { Email, LinkedIn, Person, CloudUpload } from '@material-ui/icons'
+import { Button, Card, CardContent, FormGroup, TextField } from '@material-ui/core'
+import { Email, LinkedIn, Person } from '@material-ui/icons'
 import Hero from '../components/hero'
 import Layout from '../components/layout'
 import FileUploadButton from '../components/file-upload-button'
+import TextFieldWithIcon from '../components/text-field-with-icon'
 import SEO from '../components/seo'
 import '../styles/index.css'
 
 
 const SubmitApplicationForm = () => (
-  <form name="submit-application" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field">
+  <form name="submit-application" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" autoComplete="off">
     <input type="hidden" name="form-name" value="submit-application" />
     <p style={{ display: 'none' }}>
       <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
     </p>
     <FormGroup>
-      <TextField
+      <TextFieldWithIcon
         label="Full Name"
         name="name"
         variant="outlined"
-        InputProps={{
-          startAdornment: <InputAdornment disablePointerEvents position="start"><Person /></InputAdornment>,
-        }}
+        required
+        startIcon={<Person />}
       />
     </FormGroup>
     <FormGroup>
-      <TextField
+      <TextFieldWithIcon
         type="email"
         label="Email"
         name="email"
         variant="outlined"
-        InputProps={{
-          startAdornment: <InputAdornment position="start"><Email /></InputAdornment>,
-        }}
+        required
+        startIcon={<Email />}
+      />
+    </FormGroup>
+    <FormGroup className="stretch-row">
+      <FileUploadButton
+        name="resume"
+        label="Resume"
+      />
+      <div className="spaced-vertically-centered-text">and/or</div>
+      <TextFieldWithIcon
+        type="url"
+        label="LinkedIn"
+        name="linkedinUrl"
+        variant="outlined"
+        startIcon={<LinkedIn />}
       />
     </FormGroup>
     <FormGroup>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'stretch' }}>
-        <FileUploadButton name="resume">
-          <CloudUpload/> &nbsp;&nbsp; Resume
-        </FileUploadButton>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>or</div>
-        <TextField
-          label="LinkedIn"
-          name="linkedin"
-          variant="outlined"
-          InputProps={{
-            startAdornment: <InputAdornment position="start"><LinkedIn /></InputAdornment>,
-          }}
-        />
-      </div>
-    </FormGroup>
-    <FormGroup>
       <TextField
-        placeholder=""
         label="Why do you want to join?"
         name="whyjoin"
         variant="outlined"
+        required
         multiline
         rows={3}
       />
