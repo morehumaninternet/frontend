@@ -13,8 +13,8 @@ const ThankYouPage = () => (
       <Card className="join-card">
         <h2>Thank You</h2>
         <CardContent className="join-card-content">
-          <p>
-
+          <p style={{ textAlign: 'center' }}>
+            We appreciate your submission!<br />Someone from our team will get in touch with you shortly.
           </p>
         </CardContent>
       </Card>

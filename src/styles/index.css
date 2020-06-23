@@ -43,7 +43,7 @@
 footer {
   height: 548px;
   padding-top: 88px;
-  padding-bottom: 88px;
+  /* padding-bottom: 40px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +53,7 @@ footer {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .footer-links > .footer-link {
@@ -118,3 +119,7 @@ form[name="submit-application"] .MuiFormGroup-root:last-child {
 .MuiCardContent-root:last-child {
   padding-bottom: auto;
 }
+
+/* svg.twitter-icon:hover #twitter-background {
+  fill:  #13ACF7
+} */
