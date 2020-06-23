@@ -3,19 +3,24 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { ArrowForward } from '@material-ui/icons'
-import { Button } from '@material-ui/core'
+import { ButtonBase } from '@material-ui/core'
 import '../styles/index.css'
 
 
 const IndexPage = () => (
   <Layout
     headerLinks={
-      <Link to="/apply"><Button>Apply to join <ArrowForward/></Button></Link>
+      <ButtonBase
+        component={Link}
+        to="/apply"
+      >
+        Apply to join &nbsp;&nbsp;<ArrowForward/>
+      </ButtonBase>
     }
   >
     <SEO title="Home" />
     <div className="hero">
-      <h1>Take part in shaping a movement that aims to make internet better for all</h1>
+      <h1 className="white">Take part in shaping a movement that aims to make internet better for all</h1>
     </div>
     <div className="manifesto">
       <div className="manifesto-contents">

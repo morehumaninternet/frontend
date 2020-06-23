@@ -1,5 +1,17 @@
+.MuiButtonBase-root {
+  background-color: #164176;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 4px;
+}
+
+.white {
+  color: white;
+}
+
 .hero {
-  background-image: linear-gradient(to bottom right, #164176, #164176, #FA759E);
+  background-image: linear-gradient(to bottom right, #164176, #4A81BC, #FA759E);
   width: 100%;
   min-height: 768px;
   display: flex;
@@ -33,13 +45,12 @@
   text-align: center;
 }
 
-.join-card-content > form {
-  width: 100%;
+.join-card-content .MuiFormGroup-root {
+  margin-bottom: 10px;
 }
 
-.join-card-content > form .thing {
-  width: 100%;
-  margin-bottom: 10;
+.join-card-content .MuiFormGroup-root:last-child {
+  margin-bottom: 0;
 }
 
 footer {
