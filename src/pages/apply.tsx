@@ -16,8 +16,11 @@ const ApplyPage = () => (
       <Card className="join-card">
         <h2>Join</h2>
         <CardContent className="join-card-content">
-          <form name="submit-application" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="submit-application" />
+          <form name="submit-application" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="submit-application" />
+            <p className="hidden">
+              <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+            </p>
             <FormGroup>
               <TextField
                 placeholder="Full Name"
