@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Card, CardContent, FormGroup, InputAdornment, TextField } from '@material-ui/core'
-import { Email, LinkedIn, Person } from '@material-ui/icons'
+import { Email, LinkedIn, Person, CloudUpload } from '@material-ui/icons'
 import Layout from '../components/layout'
 import FileUploadButton from '../components/file-upload-button'
 import SEO from '../components/seo'
@@ -18,7 +18,7 @@ const ApplyPage = () => (
         <CardContent className="join-card-content">
           <form name="submit-application" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="submit-application" />
-            <p className="hidden">
+            <p style={{ display: 'none' }}>
               <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
             </p>
             <FormGroup>
@@ -43,9 +43,11 @@ const ApplyPage = () => (
               />
             </FormGroup>
             <FormGroup>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <FileUploadButton name="resume" />
-                or
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'stretch' }}>
+                <FileUploadButton name="resume">
+                  <CloudUpload/> &nbsp; Resume
+                </FileUploadButton>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>or</div>
                 <TextField
                   placeholder="LinkedIn"
                   name="linkedin"

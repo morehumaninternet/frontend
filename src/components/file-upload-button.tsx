@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core'
 
 type FileUploadButtonProps = {
   name: string
+  style?: React.CSSProperties
 }
 
 export default class FileUploadButton extends React.Component<FileUploadButtonProps, { fileUploadState: string }> {
@@ -19,13 +20,13 @@ export default class FileUploadButton extends React.Component<FileUploadButtonPr
 
   render(): JSX.Element {
     return (
-      <div>
+      <div className="file-upload-button-container">
         <input name="resume" type="file" hidden ref={this.inputReference} onChange={this.fileUploadInputChange} />
         <Button type="button" onClick={this.fileUploadAction}>
-          Resume
+          {this.props.children}
         </Button>
         {this.state.fileUploadState}
-        </div>
+      </div>
     )
   }
 }
