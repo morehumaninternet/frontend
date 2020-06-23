@@ -1,13 +1,14 @@
 import React from 'react'
 import { last } from 'lodash'
 import { CloudUpload } from '@material-ui/icons'
-import { Button, InputLabel } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 
 
 type FileUploadButtonProps = {
   name: string
   label: React.ReactNode
   style?: React.CSSProperties
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const fileName = (filePath: null | string) =>
@@ -18,8 +19,9 @@ export default class FileUploadButton extends React.Component<FileUploadButtonPr
   state = { fileName: null }
   inputReference: React.RefObject<HTMLInputElement> = React.createRef()
 
-  fileUploadInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ fileName: fileName(e.target.value) })
+  fileUploadInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ fileName: fileName(event.target.value) })
+    if (this.props.onChange) this.props.onChange(event)
   }
 
   fileUploadAction = () => this.inputReference.current.click()
