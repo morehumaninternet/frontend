@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
+import Hero from '../components/hero'
 import SEO from '../components/seo'
 import { ArrowForward } from '@material-ui/icons'
 import { ButtonBase } from '@material-ui/core'
@@ -19,9 +20,9 @@ const IndexPage = () => (
     }
   >
     <SEO title="Home" />
-    <div className="hero">
+    <Hero>
       <h1 className="white">Take part in shaping a movement that aims to make internet better for all</h1>
-    </div>
+    </Hero>
     <div className="manifesto">
       <div className="manifesto-contents">
         <p>
