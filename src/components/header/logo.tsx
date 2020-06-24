@@ -1,7 +1,7 @@
 import * as React from "react";
 
 
-export default function HeaderLogo(props) {
+export default function HeaderLogo(props: any) {
   return (
     <svg width="138px" height="49px" viewBox="0 0 138 49" {...props}>
       <g fillRule="nonzero" stroke="none" strokeWidth={1} fill="none">

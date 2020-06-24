@@ -14,7 +14,7 @@ class SubmitApplicationForm extends React.Component {
   formReference: React.RefObject<HTMLFormElement> = React.createRef()
 
   inputElement = (name: string): HTMLInputElement => {
-    return this.formReference.current.elements.namedItem(name) as any
+    return this.formReference.current!.elements.namedItem(name) as any
   }
 
   linkedInUrl = (): HTMLInputElement => {

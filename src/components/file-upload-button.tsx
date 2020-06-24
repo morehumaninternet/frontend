@@ -8,20 +8,20 @@ type FileUploadButtonProps = {
   name: string
   label: React.ReactNode
   style?: React.CSSProperties
-  onNewFileName?: (fileName: null | string) => void
+  onNewFileName?: (fileName: Maybe<string>) => void
 }
 
-const fileNameOf = (filePath: null | string) =>
+const fileNameOf = (filePath: Maybe<string>) =>
   filePath && last(filePath.split(/(\/|\\)/))
 
-export default class FileUploadButton extends React.Component<FileUploadButtonProps, { fileName: null | string }> {
+export default class FileUploadButton extends React.Component<FileUploadButtonProps, { fileName: Maybe<string> }> {
 
   state = { fileName: null }
   inputReference: React.RefObject<HTMLInputElement> = React.createRef()
 
-  setFileName = (fileName: null | string) => {
+  setFileName = (fileName: Maybe<string>) => {
     this.setState({ fileName })
-    if (this.props.onNewFileName) this.props.onNewFileName(fileName)
+    this.props.onNewFileName?.(fileName)
   }
 
   fileUploadInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,10 +30,10 @@ export default class FileUploadButton extends React.Component<FileUploadButtonPr
 
   onClick = () => {
     if (this.state.fileName) {
-      this.inputReference.current.value = ''
+      this.inputReference.current!.value = ''
       this.setFileName(null)
     } else {
-      this.inputReference.current.click()
+      this.inputReference.current!.click()
     }
   }
 

@@ -4,7 +4,7 @@ import { TextField, TextFieldProps } from "@material-ui/core"
 import { withStyles } from "@material-ui/core/styles"
 import InputAdornment from '@material-ui/core/InputAdornment'
 
-const styles = theme => ({
+const styles = {
   root: {
     transition: '0.2s',
   },
@@ -17,7 +17,7 @@ const styles = theme => ({
     top: 0,
   },
   disabled: {},
-})
+}
 
 type TextFieldWithIconProps = TextFieldProps & {
   endIcon?: React.ReactNode
@@ -29,18 +29,16 @@ class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink
 
   state = { shrink: false }
 
-  shrinkLabel = (event) => {
-    const { onFocus } = this.props
+  shrinkLabel = (event: any) => {
     this.setState({ shrink: true })
-    onFocus && onFocus(event) // let the child do it's thing
+    this.props.onFocus?.(event)
   }
 
-  unShrinkLabel = (event) => {
-    const { onBlur } = this.props
+  unShrinkLabel = (event: any) => {
     if (event.target.value.length === 0) {
       this.setState({ shrink: false }) //gotta make sure the input is empty before shrinking the label
     }
-    onBlur && onBlur(event) // let the child do it's thing
+    this.props.onBlur?.(event)
   }
 
   render() {
@@ -68,4 +66,4 @@ class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink
   }
 }
 
-export default withStyles(styles)(TextFieldWithIcon as any) as typeof TextFieldWithIcon
+export default withStyles(styles)(TextFieldWithIcon)
