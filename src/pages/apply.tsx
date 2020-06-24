@@ -25,21 +25,14 @@ class SubmitApplicationForm extends React.Component {
     return this.inputElement('resume')
   }
 
-  needsLinkedInUrlOrResume = () => {
-    this.linkedInUrl().setCustomValidity('Please upload a resume or provide the url to your LinkedIn page.')
-  }
-
-  hasLinkedInUrlOrResume = () => {
-    this.linkedInUrl().setCustomValidity('')
-  }
-
   setLinkedInUrlOrResume = () => {
     const hasLinkedInUrlOrResume = !!this.linkedInUrl().value || !!this.resume().value
-    hasLinkedInUrlOrResume ? this.hasLinkedInUrlOrResume() : this.needsLinkedInUrlOrResume()
+    const customValidity = hasLinkedInUrlOrResume ? '' : 'Please upload a resume or provide the url to your LinkedIn page.'
+    this.linkedInUrl().setCustomValidity(customValidity)
   }
 
   componentDidMount() {
-    this.needsLinkedInUrlOrResume()
+    this.setLinkedInUrlOrResume()
   }
 
   render(): JSX.Element {
@@ -80,7 +73,7 @@ class SubmitApplicationForm extends React.Component {
           <FileUploadButton
             name="resume"
             label="Resume"
-            onChange={event => this.setLinkedInUrlOrResume()}
+            onNewFileName={() => this.setLinkedInUrlOrResume()}
           />
           <div className="spaced-vertically-centered-text">and/or</div>
           <TextFieldWithIcon
