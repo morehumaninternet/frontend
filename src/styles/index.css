@@ -118,8 +118,12 @@ form[name="submit-application"] .MuiFormGroup-root:last-child {
   margin-right: 10px;
 }
 
+.MuiCardContent-root {
+  padding: 30px;
+}
+
 .MuiCardContent-root:last-child {
-  padding-bottom: auto;
+  padding-bottom: 30px;
 }
 
 /* svg.twitter-icon:hover #twitter-background {
