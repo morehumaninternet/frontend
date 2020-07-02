@@ -88,7 +88,7 @@ class SubmitApplicationForm extends React.Component {
         <FormGroup>
           <TextField
             label="Why do you want to join?"
-            name="whyjoin"
+            name="whyJoin"
             variant="outlined"
             required
             multiline

@@ -21,15 +21,21 @@ const IndexPage = () => (
   >
     <SEO title="Home" />
     <Hero>
-      <h1 className="white">Take part in shaping a movement that aims to make internet better for all</h1>
+      <h1 className="white">Help build a public platform and collaborative community for users and maintainers of the web</h1>
     </Hero>
     <div className="manifesto">
       <div className="manifesto-contents">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum at eros vitae consequat. Proin aliquam ultrices pharetra. Sed placerat, elit pretium dictum luctus, tortor orci blandit lectus, quis malesuada sapien dui mattis augue. Vestibulum porttitor turpis eget dolor imperdiet aliquam.
+          The internet sucks. Links are broken, images don’t load, navigation is difficult, translations are nonexistent, requests go slowly, and pages are inaccessible. But its problems go deeper than that. Large corporations have taken control of a once open system. While they have brought efficiency, the platforms they have built are for their benefit, not ours. Big Tech firms make money off ads by using crypto-surveillance coupled with neural network models built by machine learning and not human design. These systems pander to our basest impulses to get us to click, contributing to a polarized political climate where even basic facts cannot be agreed upon. We quite literally have a cyborg superorganism that no one knows how to turn off.
         </p>
         <p>
-          Quisque consequat pharetra felis at efficitur. Praesent lectus risus, imperdiet vel ante vel, rutrum semper nibh. Aenean tempus turpis ac aliquam fringilla. Aliquam laoreet interdum lorem vitae eleifend. Nullam fringilla, metus in tempus lacinia, dui lacus volutpat quam, nec vulputate nibh dolor a ante. Sed commodo odio in tortor fermentum, non aliquet odio cursus.
+          We need a more human internet, where its users and maintainers work together to fix its issues. I believe that people who maintain the web desperately want to build fulfilling websites for those who use them. What if there were a public platform and collaborative community allowing users and maintainers of the web to have constructive conversations to make it better? Would such an experiment in openness and civility have positive effects beyond those participating in it?
+        </p>
+        <p>
+          We are founding a More Human Internet, a nonprofit, to find out. If you are a developer who is optimistic that the internet can be better and are motivated to help, we would love to work with you. People from historically marginalized or underrepresented groups are encouraged to apply so that our team better reflects the diversity of the human experience.
+        </p>
+        <p>
+          Let’s create a More Human Internet.
         </p>
       </div>
     </div>
