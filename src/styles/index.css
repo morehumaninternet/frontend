@@ -25,11 +25,11 @@
 }
 
 .hero > h1 {
-  max-width: 600px;
+  max-width: 660px;
   text-align: center;
   font-weight: 300;
   color: #164176;
-  font-size: 2.77778rem;
+  font-size: 2.5rem;
 }
 
 .manifesto {
