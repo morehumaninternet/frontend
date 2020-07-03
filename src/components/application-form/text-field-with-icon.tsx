@@ -9,7 +9,7 @@ const styles = {
     transition: '0.2s',
   },
   formControl: {
-    left: 32, // this moves our label to the left, so it doesn't overlap when shrunk.
+    left: 40, // this moves our label to the left, so it doesn't overlap when shrunk.
     top: 1,
   },
   shrink: {

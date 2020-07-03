@@ -125,3 +125,8 @@ form[name="submit-application"] .MuiFormGroup-root:last-child {
 .MuiCardContent-root:last-child {
   padding-bottom: 30px;
 }
+
+.MuiSvgIcon-root {
+  width: 35px;
+  height: 35px;
+}

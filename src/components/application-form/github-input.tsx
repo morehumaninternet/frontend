@@ -10,13 +10,7 @@ import debounceDefer from '../../utils/debounceDefer'
 
 const debouncedGetUserByUserName = debounceDefer(getUserByUsername, 500)
 
-const githubIcon = <GitHub />
-
-function GithubAvatar({ username }: { username: string }) {
-  return (
-    <Avatar src={`https://github.com/${username}.png?size=55`} />
-  )
-}
+const githubIcon = <GitHub style={{ width: 35, height: 35 }} />
 
 type GithubInputProps = {
   checking: boolean
@@ -27,12 +21,16 @@ export default function GithubInput({ checking, setChecking }: GithubInputProps)
 
   const [testingUsername, setTestingUsername] = React.useState<string>('')
   const [confirmedUsername, setConfirmedUsername] = React.useState<null | string>(null)
+  const [avatar, setAvatar] = React.useState<null | React.ReactNode>(null)
+  const [avatarLoaded, setAvatarLoaded] = React.useState(false)
   const [blur, setBlur] = React.useState(false)
   const [error, setError] = React.useState(false)
   const [helperText, setHelperText] = React.useState<null | string>(null)
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const username = last(event.target.value.split('/'))!
+    setAvatar(null)
+    setAvatarLoaded(false)
     setTestingUsername(username)
     setError(false)
     setHelperText(null)
@@ -43,7 +41,18 @@ export default function GithubInput({ checking, setChecking }: GithubInputProps)
     debouncedGetUserByUserName(testingUsername)
       .then(user => {
         if (user && user.avatar_url) {
+          console.log('in here')
           setConfirmedUsername(testingUsername)
+          setAvatar(<Avatar
+            style={{ width: 35, height: 35 }}
+            src={`https://github.com/${testingUsername}.png?size=71&_=${new Date().getTime()}`}
+            imgProps={{
+              onLoad: () => {
+                console.log('YES')
+                setAvatarLoaded(true)
+              }
+            }}
+          />)
           setError(false)
           setHelperText(null)
           setChecking(false)
@@ -52,6 +61,7 @@ export default function GithubInput({ checking, setChecking }: GithubInputProps)
         throw new Error(`User ${testingUsername} not found`)
       })
       .catch(err => {
+        console.error(err)
         setConfirmedUsername(null)
         setChecking(false)
       })
@@ -68,16 +78,25 @@ export default function GithubInput({ checking, setChecking }: GithubInputProps)
   }, [blur, testingUsername, confirmedUsername, checking])
 
   return (
-    <TextFieldWithIcon
-      label="Github Username"
-      name="githubUsername"
-      variant="outlined"
-      onChange={onChange}
-      onFocus={() => setBlur(false)}
-      onBlur={() => setBlur(true)}
-      error={error}
-      helperText={helperText}
-      startIcon={confirmedUsername ? <GithubAvatar username={confirmedUsername} /> : githubIcon}
-    />
+    <>
+      {
+        avatar && !avatarLoaded && (
+          <div style={{ display: 'none' }}>
+            {avatar}
+          </div>
+        )
+      }
+      <TextFieldWithIcon
+        label="Github Username"
+        name="githubUsername"
+        variant="outlined"
+        onChange={onChange}
+        onFocus={() => setBlur(false)}
+        onBlur={() => setBlur(true)}
+        error={error}
+        helperText={helperText}
+        startIcon={(avatarLoaded && avatar) ? avatar : githubIcon}
+      />
+    </>
   )
 }

@@ -2,6 +2,7 @@ import axios from 'axios'
 
 
 export async function getUserByUsername(username: string): Promise<any> {
-  const { data } = await axios(`https://api.github.com/users/${username}`)
-  return data
+  const result = await axios(`https://api.github.com/users/${username}`)
+  console.log('result', result)
+  return result.data
 }
