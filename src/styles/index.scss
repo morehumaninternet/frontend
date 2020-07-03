@@ -11,11 +11,34 @@ header {
   padding-right: 100px;
   padding-top: 25px;
   padding-bottom: 25px;
+
+  @media (max-width: $breakpoint-mobile) {
+    position: absolute;
+  }
+
+  @media (max-width: 800px) {
+    padding-left: calc(20vw + -60px);
+    padding-right: calc(20vw + -60px);
+  }
 }
 
 @media (min-width: $breakpoint-mobile + 1px) {
-  main.index > .MuiCard-root.join {
+  .layout.index > main > .MuiCard-root.join {
     display: none;
+  }
+}
+
+.layout.index > header {
+  @media (min-width: $breakpoint-mobile + 1px) {
+    a[href="#apply"] {
+      display: none;
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    a[href="/apply"] {
+      display: none;
+    }
   }
 }
 
@@ -26,10 +49,6 @@ header {
   justify-content: center;
   align-items: center;
   min-height: 768px;
-
-  // @media (min-width: $breakpoint-mobile + 1px) {
-
-  // }
 }
 
 .hero > h1 {
@@ -103,8 +122,10 @@ footer {
 }
 
 .MuiCard-root {
-  min-width: 460px;
-  padding-top: 16px;
+  @media (min-width: $breakpoint-mobile + 1px) {
+    min-width: 460px;
+    padding-top: 16px;
+  }
 }
 
 .MuiCard-root > h2 {
@@ -138,6 +159,16 @@ form[name="submit-application"] .MuiFormGroup-root:last-child {
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .file-upload-button-container > button {
+    min-width: 100%;
+  }
 }
 
 .spaced-vertically-centered-text {
@@ -147,6 +178,12 @@ form[name="submit-application"] .MuiFormGroup-root:last-child {
   align-items: center;
   margin-left: 10px;
   margin-right: 10px;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 .MuiCardContent-root {

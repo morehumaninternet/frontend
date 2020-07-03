@@ -12,13 +12,13 @@ type LayoutProps = {
 
 const Layout = ({ headerLinks, mainClassName, children }: LayoutProps) => {
   return (
-    <>
+    <div className={`layout ${mainClassName}`}>
       <Header>
         {headerLinks}
       </Header>
-      <main className={mainClassName}>{children}</main>
+      <main>{children}</main>
       <Footer />
-    </>
+    </div>
   )
 }
 

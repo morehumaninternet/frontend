@@ -8,7 +8,7 @@ import GithubInput from './github-input'
 
 export default function ApplicationForm(): JSX.Element {
 
-  const formReference = React.createRef<HTMLFormElement>()
+  const formReference = React.useRef<HTMLFormElement>()
 
   const [checking, setChecking] = React.useState(false)
   const [awaitingSubmit, setAwaitingSubmit] = React.useState(false)
