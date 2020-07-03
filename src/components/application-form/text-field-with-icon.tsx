@@ -9,11 +9,11 @@ const styles = {
     transition: '0.2s',
   },
   formControl: {
-    left: 40, // this moves our label to the left, so it doesn't overlap when shrunk.
+    left: 42,
     top: 1,
   },
   shrink: {
-    left: 0, // this moves our label to the left, so it doesn't overlap when shrunk.
+    left: 0,
     top: 0,
   },
   disabled: {},
@@ -37,13 +37,12 @@ class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink
 
   unShrinkLabel = (event: any) => {
     if (event.target.value.length === 0) {
-      this.setState({ shrink: false }) //gotta make sure the input is empty before shrinking the label
+      this.setState({ shrink: false })
     }
     this.props.onBlur?.(event)
   }
 
   render() {
-    // make sure to check endIcon and startIcon, we don't need errors in our console
     const { classes, endIcon, autoComplete, startIcon, inputRef, ...other } = this.props
 
     return <TextField {...other}

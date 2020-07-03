@@ -14,7 +14,7 @@ async function getUserByUsername(username: string): Promise<any> {
 
 const debouncedGetUserByUserName = debounceDefer(getUserByUsername, 200)
 
-const githubIcon = <GitHub style={{ width: 35, height: 35 }} />
+const githubIcon = <GitHub />
 
 // Loads the avatar of a given username, if present.
 // Until an avatar has loaded, display the default github icon.
@@ -26,7 +26,6 @@ function GithubAvatar({ username }: { username: null | string }): JSX.Element {
   React.useEffect(() => {
     if (username) {
       setAvatar(<Avatar
-        style={{ width: 35, height: 35 }}
         src={`https://github.com/${username}.png?size=71`}
         imgProps={{
           onLoad: () => setAvatarLoaded(true)

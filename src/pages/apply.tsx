@@ -11,7 +11,7 @@ const ApplyPage = () => (
   <Layout>
     <SEO title="Apply" />
     <Hero>
-      <Card className="join-card">
+      <Card className="join">
         <h2>Join</h2>
         <CardContent className="join-card-content">
           <ApplicationForm />

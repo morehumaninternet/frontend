@@ -10,10 +10,10 @@ const ThankYouPage = () => (
   <Layout>
     <SEO title="Thank You" />
     <Hero>
-      <Card className="join-card">
+      <Card>
         <h2>Thank You</h2>
-        <CardContent className="join-card-content">
-          <p style={{ textAlign: 'center' }}>
+        <CardContent className="thank-you">
+          <p>
             We appreciate your submission!<br />Someone from our team will get in touch with you shortly.
           </p>
         </CardContent>

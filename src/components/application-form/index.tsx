@@ -31,19 +31,20 @@ export default function ApplicationForm(): JSX.Element {
     return formReference.current!.elements.namedItem(name) as any
   }
 
-  const setGithubAccountOrResume = () => {
+  const ensureGithubUsernameOrResumePresent = () => {
     const githubUsername = inputElement('githubUsername')
     const resume = inputElement('resume')
-    const hasGitHubUrlOrResume = !!githubUsername.value || !!resume.value
-    if (!hasGitHubUrlOrResume) {
-      githubUsername.setCustomValidity('Please upload a resume or provide the url to your GitHub page.')
-    } else if (resume.value && !githubUsername.value) {
-      githubUsername.setCustomValidity('')
-    }
+
+    // If a githubUsername has been entered, defer to it to keep track of its custom validity
+    if (githubUsername.value) return
+
+    // Otherwise, set the custom validity based on the existence of a resume
+    const customValidity = resume.value ? '' : 'Please upload a resume or provide the url to your GitHub page.'
+    githubUsername.setCustomValidity(customValidity)
   }
 
   useEffect(() => {
-    setGithubAccountOrResume()
+    ensureGithubUsernameOrResumePresent()
   })
 
   return (
@@ -77,16 +78,16 @@ export default function ApplicationForm(): JSX.Element {
           name="email"
           variant="outlined"
           required
-          startIcon={<Email />}
+          startIcon={<Email className="email" />}
         />
       </FormGroup>
       <FormGroup className="stretch-row">
-        <GithubInput checking={checking} setChecking={setChecking} onChange={setGithubAccountOrResume} />
+        <GithubInput checking={checking} setChecking={setChecking} onChange={ensureGithubUsernameOrResumePresent} />
         <div className="spaced-vertically-centered-text">and/or</div>
         <FileUploadButton
           name="resume"
           label="Resume"
-          onNewFileName={() => setGithubAccountOrResume()}
+          onNewFileName={() => ensureGithubUsernameOrResumePresent()}
         />
       </FormGroup>
       <FormGroup>

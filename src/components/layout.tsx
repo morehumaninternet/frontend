@@ -15,10 +15,8 @@ const Layout = ({ headerLinks, children }: LayoutProps) => {
       <Header>
         {headerLinks}
       </Header>
-      <div>
-        <main>{children}</main>
-        <Footer />
-      </div>
+      <main>{children}</main>
+      <Footer />
     </>
   )
 }
