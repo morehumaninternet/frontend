@@ -85,7 +85,7 @@ export default function ApplicationForm(): JSX.Element {
         />
       </FormGroup>
       <FormGroup className="stretch-row">
-        <GithubInput setChecking={doSetChecking} />
+        <GithubInput checking={checking} setChecking={doSetChecking} />
         <div className="spaced-vertically-centered-text">and/or</div>
         <FileUploadButton
           name="resume"

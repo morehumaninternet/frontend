@@ -1,104 +1,83 @@
 import React from 'react'
 import { last } from 'lodash'
 import { Avatar } from '@material-ui/core'
-import { GitHub, Person } from '@material-ui/icons'
+import { GitHub, Person, FilterFrames } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
 import { getUserByUsername } from '../../clients/github'
 import debounceDefer from '../../utils/debounceDefer'
 
 
-type GithubInputProps = {
-  setChecking(checking: boolean): void
-}
 
 const debouncedGetUserByUserName = debounceDefer(getUserByUsername, 500)
 
 const githubIcon = <GitHub />
 
-// class GithubInput extends React.Component<GithubInputProps, { icon: React.ReactNode }> {
+function GithubAvatar({ username }: { username: string }) {
+  return (
+    <Avatar src={`https://github.com/${username}.png?size=55`} />
+  )
+}
 
-//   ref = React.createRef<HTMLInputElement>()
+type GithubInputProps = {
+  checking: boolean
+  setChecking(checking: boolean): void
+}
 
-//   state = {
-//     icon: githubIcon
-//   }
+export default function GithubInput({ checking, setChecking }: GithubInputProps) {
 
-//   onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     this.setState({ icon: githubIcon })
-//     this.props.setChecking(true)
-//     const username = last(event.target.value.split('/'))!
-
-//     getUserByUsername(username)
-//       .then(user => {
-//         console.log('user', user)
-//         if (ref.current) { console.log(ref.current) }
-//         // ref.current?.setCustomValidity('')
-//         setIcon(<img src={user.avatar_url} />)
-//         setChecking(false)
-//       })
-//       .catch(err => {
-//         console.error(err)
-//         if (ref.current) { console.log(ref.current) }
-//         // ref.current?.setCustomValidity(`Could not find github user ${username}`)
-//         setChecking(false)
-//       })
-//   }
-
-
-//   render() {
-//     return (
-//       <TextFieldWithIcon
-//         ref={this.ref}
-//         label="Github Account"
-//         name="githubAccount"
-//         variant="outlined"
-//         onChange={onChange}
-//         onBlur={() => this.doesGithubAccountExist()}
-//         startIcon={icon}
-//       />
-//     )
-//   }
-// }
-
-
-export default function GithubInput({ setChecking }: GithubInputProps) {
-  const ref = React.createRef<HTMLInputElement>()
-
-  const [icon, setIcon] = React.useState(githubIcon)
+  const [testingUsername, setTestingUsername] = React.useState<string>('')
+  const [confirmedUsername, setConfirmedUsername] = React.useState<null | string>(null)
+  const [blur, setBlur] = React.useState(false)
   const [error, setError] = React.useState(false)
   const [helperText, setHelperText] = React.useState<null | string>(null)
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setIcon(githubIcon)
-    setChecking(true)
-
     const username = last(event.target.value.split('/'))!
+    setTestingUsername(username)
+    setError(false)
+    setHelperText(null)
+    setChecking(true)
+  }
 
-    debouncedGetUserByUserName(username)
+  React.useEffect(() => {
+    debouncedGetUserByUserName(testingUsername)
       .then(user => {
-        console.log('user', user)
-        if (ref.current) { console.log(ref.current) }
-        // ref.current?.setCustomValidity('')
-        setIcon(<Avatar src={`https://github.com/${username}.png?size=55`} />)
-        setChecking(false)
+        if (user && user.avatar_url) {
+          setConfirmedUsername(testingUsername)
+          setError(false)
+          setHelperText(null)
+          setChecking(false)
+          return
+        }
+        throw new Error(`User ${testingUsername} not found`)
       })
       .catch(err => {
-        console.error(err)
-        if (ref.current) { console.log(ref.current) }
-        // ref.current?.setCustomValidity(`Could not find github user ${username}`)
+        setConfirmedUsername(null)
         setChecking(false)
       })
-  }
+  }, [testingUsername])
+
+  React.useEffect(() => {
+    if (!blur) {
+      setError(false)
+      setHelperText(null)
+    } else if (testingUsername && !confirmedUsername && !checking) {
+      setError(true)
+      setHelperText(`No user found by that name`)
+    }
+  }, [blur, testingUsername, confirmedUsername, checking])
 
   return (
     <TextFieldWithIcon
-      ref={ref}
-      label="Github Account"
-      name="githubAccount"
+      label="Github Username"
+      name="githubUsername"
       variant="outlined"
       onChange={onChange}
-      // onBlur={() => this.doesGithubAccountExist()}
-      startIcon={icon}
+      onFocus={() => setBlur(false)}
+      onBlur={() => setBlur(true)}
+      error={error}
+      helperText={helperText}
+      startIcon={confirmedUsername ? <GithubAvatar username={confirmedUsername} /> : githubIcon}
     />
   )
 }
