@@ -1,22 +1,16 @@
 import React from 'react'
-import { Card, CardContent } from '@material-ui/core'
 import Hero from '../components/hero'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import ApplicationForm from '../components/application-form'
-import '../styles/index.css'
+import JoinCard from '../components/join-card'
+import '../styles/index.scss'
 
 
 const ApplyPage = () => (
   <Layout>
     <SEO title="Apply" />
     <Hero>
-      <Card className="join">
-        <h2>Join</h2>
-        <CardContent className="join-card-content">
-          <ApplicationForm />
-        </CardContent>
-      </Card>
+      <JoinCard />
     </Hero>
   </Layout>
 )

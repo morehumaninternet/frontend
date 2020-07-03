@@ -1,3 +1,5 @@
+$breakpoint-mobile: 600px;
+
 header {
   height: 100px;
   position: fixed;
@@ -9,6 +11,33 @@ header {
   padding-right: 100px;
   padding-top: 25px;
   padding-bottom: 25px;
+}
+
+@media (min-width: $breakpoint-mobile + 1px) {
+  main.index > .MuiCard-root.join {
+    display: none;
+  }
+}
+
+.hero {
+  background-image: linear-gradient(to bottom right, #164176, #4A81BC, #FA759E);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 768px;
+
+  // @media (min-width: $breakpoint-mobile + 1px) {
+
+  // }
+}
+
+.hero > h1 {
+  max-width: 660px;
+  text-align: center;
+  font-weight: 300;
+  color: #164176;
+  font-size: 2.5rem;
 }
 
 .MuiButtonBase-root {
@@ -28,23 +57,6 @@ header {
   color: white !important;
 }
 
-.hero {
-  background-image: linear-gradient(to bottom right, #164176, #4A81BC, #FA759E);
-  width: 100%;
-  min-height: 768px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero > h1 {
-  max-width: 660px;
-  text-align: center;
-  font-weight: 300;
-  color: #164176;
-  font-size: 2.5rem;
-}
-
 .manifesto {
   padding-top: 132px;
   display: flex;
@@ -56,8 +68,10 @@ header {
   max-width: 500px;
 }
 
-.MuiCard-root.join {
-  margin-top: 30px;
+@media (min-width: $breakpoint-mobile + 1px) {
+  .MuiCard-root.join {
+    margin-top: 30px;
+  }
 }
 
 footer {
@@ -159,3 +173,20 @@ form[name="submit-application"] .MuiFormGroup-root:last-child {
 .MuiCardContent-root.thank-you p {
   text-align: center;
 }
+
+
+// @media (max-width: $breakpoint-mobile) {
+//   header {
+//     position: static;
+//     background-image: linear-gradient(to bottom right, #164176, #4A81BC, #FA759E);
+//   }
+
+//   .hero,
+//   .MuiCard-root {
+//     min-width: 100%;
+//   }
+
+//   .MuiCard-root {
+//     margin: 0 !important;
+//   }
+// }

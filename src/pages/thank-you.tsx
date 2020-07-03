@@ -3,7 +3,7 @@ import { Card, CardContent } from '@material-ui/core'
 import Hero from '../components/hero'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import '../styles/index.css'
+import '../styles/index.scss'
 
 
 const ThankYouPage = () => (

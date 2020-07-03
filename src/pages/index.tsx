@@ -3,18 +3,17 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import SEO from '../components/seo'
+import JoinCard from '../components/join-card'
 import { ArrowForward } from '@material-ui/icons'
 import { ButtonBase } from '@material-ui/core'
-import '../styles/index.css'
+import '../styles/index.scss'
 
 
 const IndexPage = () => (
   <Layout
+    mainClassName="index"
     headerLinks={
-      <ButtonBase
-        component={Link}
-        to="/apply"
-      >
+      <ButtonBase component={Link} to="/apply" onClick={event => { event.preventDefault(); console.log(event) }}>
         Apply to join &nbsp;&nbsp;<ArrowForward/>
       </ButtonBase>
     }
@@ -39,6 +38,7 @@ const IndexPage = () => (
         </p>
       </div>
     </div>
+    <JoinCard />
   </Layout>
 )
 

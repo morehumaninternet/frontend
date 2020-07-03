@@ -1,21 +1,22 @@
 import React from 'react'
 import Footer from './footer'
 import Header from './header'
-import '../styles/layout.css'
+import '../styles/layout.scss'
 
 
 type LayoutProps = {
   headerLinks?: React.ReactNode
+  mainClassName?: string
   children: React.ReactNode
 }
 
-const Layout = ({ headerLinks, children }: LayoutProps) => {
+const Layout = ({ headerLinks, mainClassName, children }: LayoutProps) => {
   return (
     <>
       <Header>
         {headerLinks}
       </Header>
-      <main>{children}</main>
+      <main className={mainClassName}>{children}</main>
       <Footer />
     </>
   )
