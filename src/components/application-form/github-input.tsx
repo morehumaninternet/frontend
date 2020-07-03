@@ -7,17 +7,17 @@ import TextFieldWithIcon from './text-field-with-icon'
 import debounceDefer from '../../utils/debounceDefer'
 
 
-
 async function getUserByUsername(username: string): Promise<any> {
   const result = await axios(`https://api.github.com/users/${username}`)
   return result.data
 }
 
-const debouncedGetUserByUserName = debounceDefer(getUserByUsername, 500)
+const debouncedGetUserByUserName = debounceDefer(getUserByUsername, 200)
 
 const githubIcon = <GitHub style={{ width: 35, height: 35 }} />
 
-// Loads the avatar of a given username, if present. Until an avatar has loaded, display the default github icon.
+// Loads the avatar of a given username, if present.
+// Until an avatar has loaded, display the default github icon.
 function GithubAvatar({ username }: { username: null | string }): JSX.Element {
 
   const [avatar, setAvatar] = React.useState<null | React.ReactNode>(null)
@@ -38,7 +38,7 @@ function GithubAvatar({ username }: { username: null | string }): JSX.Element {
     }
   }, [username])
 
-  // The display: 'none' thing is to put the underlying <img> on the page, forcing it to load
+  // The display: 'none' trick is to put the underlying <img> on the page, forcing it to load
   return (
     <>
       {!avatarLoaded && avatar && <div style={{ display: 'none' }}>{avatar}</div>}
@@ -50,11 +50,13 @@ function GithubAvatar({ username }: { username: null | string }): JSX.Element {
 type GithubInputProps = {
   checking: boolean
   setChecking(checking: boolean): void
+  onChange(): void
 }
 
 
-export default function GithubInput({ checking, setChecking }: GithubInputProps): JSX.Element {
+export default function GithubInput({ checking, setChecking, onChange: formOnChange }: GithubInputProps): JSX.Element {
 
+  const inputRef: React.MutableRefObject<HTMLInputElement> = React.useRef() as any
   const [testingUsername, setTestingUsername] = React.useState<string>('')
   const [confirmedUsername, setConfirmedUsername] = React.useState<null | string>(null)
 
@@ -68,6 +70,8 @@ export default function GithubInput({ checking, setChecking }: GithubInputProps)
     setConfirmedUsername(null)
     setError(false)
     setHelperText(null)
+    inputRef.current?.setCustomValidity('')
+    formOnChange()
     setChecking(true)
   }
 
@@ -78,6 +82,7 @@ export default function GithubInput({ checking, setChecking }: GithubInputProps)
           setConfirmedUsername(testingUsername)
           setError(false)
           setHelperText(null)
+          inputRef.current?.setCustomValidity('')
           setChecking(false)
           return
         }
@@ -97,14 +102,17 @@ export default function GithubInput({ checking, setChecking }: GithubInputProps)
     if (!blur) {
       setError(false)
       setHelperText(null)
+
     } else if (testingUsername && !confirmedUsername && !checking) {
       setError(true)
-      setHelperText(`No user found by that name`)
+      setHelperText(`Could not find github account ${testingUsername}`)
+      inputRef.current?.setCustomValidity(`Could not find github account ${testingUsername}, please correct it`)
     }
   }, [blur, testingUsername, confirmedUsername, checking])
 
   return (
     <TextFieldWithIcon
+      inputRef={inputRef}
       label="Github Username"
       name="githubUsername"
       variant="outlined"

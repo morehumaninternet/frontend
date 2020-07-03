@@ -22,6 +22,7 @@ const styles = {
 type TextFieldWithIconProps = TextFieldProps & {
   endIcon?: React.ReactNode
   startIcon?: React.ReactNode
+  inputRef?: React.MutableRefObject<HTMLInputElement>
   classes?: any
 }
 
@@ -43,7 +44,7 @@ class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink
 
   render() {
     // make sure to check endIcon and startIcon, we don't need errors in our console
-    const { classes, endIcon, autoComplete, startIcon, ...other } = this.props
+    const { classes, endIcon, autoComplete, startIcon, inputRef, ...other } = this.props
 
     return <TextField {...other}
       onFocus={this.shrinkLabel}
@@ -51,6 +52,7 @@ class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink
       InputLabelProps={{ shrink: this.state.shrink, classes }}
       InputProps={{
         autoComplete,
+        inputRef,
         startAdornment: startIcon && (
           <InputAdornment position="start">
             {startIcon}

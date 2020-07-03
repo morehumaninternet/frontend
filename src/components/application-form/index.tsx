@@ -1,33 +1,9 @@
 import React, { useEffect } from 'react'
-import { debounce, last } from 'lodash'
-import { Button, Card, CardContent, FormGroup, TextField } from '@material-ui/core'
+import { Button, FormGroup, TextField } from '@material-ui/core'
 import { Email, Person } from '@material-ui/icons'
 import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
-
-
-// const inputElement = (name: string): HTMLInputElement => {
-//   return formReference.current!.elements.namedItem(name) as any
-// }
-
-// githubAccount = (): HTMLInputElement => {
-//   return this.inputElement('githubAccount')
-// }
-
-// resume = (): HTMLInputElement => {
-//   return this.inputElement('resume')
-// }
-
-// setGithubAccountOrResume = () => {
-//   const hasGitHubUrlOrResume = !!this.githubAccount().value || !!this.resume().value
-//   const customValidity = hasGitHubUrlOrResume ? '' : 'Please upload a resume or provide the url to your GitHub page.'
-//   this.githubAccount().setCustomValidity(customValidity)
-// }
-
-// componentDidMount() {
-//   this.setGithubAccountOrResume()
-// }
 
 
 export default function ApplicationForm(): JSX.Element {
@@ -42,13 +18,33 @@ export default function ApplicationForm(): JSX.Element {
       setAwaitingSubmit(true)
       return event.preventDefault()
     }
-    console.log('here', 'event')
   }
 
-  function doSetChecking(checking: boolean) {
-    setChecking(checking)
-    if (awaitingSubmit && !checking) formReference.current!.submit()
+  useEffect(() => {
+    if (awaitingSubmit && !checking) {
+      const submitButton: HTMLButtonElement = formReference.current!.querySelector('button[type="submit"]')! as any
+      submitButton.click()
+    }
+  }, [awaitingSubmit, checking])
+
+  const inputElement = (name: string): HTMLInputElement => {
+    return formReference.current!.elements.namedItem(name) as any
   }
+
+  const setGithubAccountOrResume = () => {
+    const githubUsername = inputElement('githubUsername')
+    const resume = inputElement('resume')
+    const hasGitHubUrlOrResume = !!githubUsername.value || !!resume.value
+    if (!hasGitHubUrlOrResume) {
+      githubUsername.setCustomValidity('Please upload a resume or provide the url to your GitHub page.')
+    } else if (resume.value && !githubUsername.value) {
+      githubUsername.setCustomValidity('')
+    }
+  }
+
+  useEffect(() => {
+    setGithubAccountOrResume()
+  })
 
   return (
     <form
@@ -85,13 +81,12 @@ export default function ApplicationForm(): JSX.Element {
         />
       </FormGroup>
       <FormGroup className="stretch-row">
-        <GithubInput checking={checking} setChecking={doSetChecking} />
+        <GithubInput checking={checking} setChecking={setChecking} onChange={setGithubAccountOrResume} />
         <div className="spaced-vertically-centered-text">and/or</div>
         <FileUploadButton
           name="resume"
           label="Resume"
-          // onNewFileName={() => this.setGithubAccountOrResume()}
-          onNewFileName={() => { return }}
+          onNewFileName={() => setGithubAccountOrResume()}
         />
       </FormGroup>
       <FormGroup>
