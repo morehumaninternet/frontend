@@ -129,3 +129,8 @@ form[name="submit-application"] .MuiFormGroup-root:last-child {
 /* svg.twitter-icon:hover #twitter-background {
   fill:  #13ACF7
 } */
+
+img.avatar {
+  height: 27px;
+  width: 27px;
+}
