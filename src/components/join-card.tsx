@@ -3,20 +3,17 @@ import { Card, CardContent } from '@material-ui/core'
 import ApplicationForm from '../components/application-form'
 
 
-export function JoinCardContents(): JSX.Element {
-  return (
-    <>
-      <h2>Join</h2>
-      <CardContent className="join-card-content">
-        <ApplicationForm />
-      </CardContent>
-    </>
-  )
-}
+export const JoinCardContents = React.forwardRef<HTMLDivElement>((_, ref) => (
+  <div className="join-card-contents" ref={ref}>
+    <h2>Join</h2>
+    <CardContent className="join-card-content">
+      <ApplicationForm />
+    </CardContent>
+  </div>
+))
 
-export default React.forwardRef((_, ref) => (
-  console.log('rendering join card'),
-  <Card className="join" ref={ref}>
+export default () => (
+  <Card className="join">
     <JoinCardContents />
   </Card>
-))
+)

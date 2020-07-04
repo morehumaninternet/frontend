@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import SEO from '../components/seo'
-import JoinCard from '../components/join-card'
+import { JoinCardContents } from '../components/join-card'
 import { ArrowForward } from '@material-ui/icons'
 import { ButtonBase } from '@material-ui/core'
 import '../styles/index.scss'
@@ -11,19 +11,19 @@ import '../styles/index.scss'
 
 export default function IndexPage({ location }: { location: { hash: string } }): JSX.Element {
 
-  const joinCardRef = React.useRef<HTMLDivElement>()
+  const joinCardContentsRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
 
   React.useEffect(() => {
     if (location.hash === '#apply') {
       // I have no clue why this setTimeout is necessary, but immediately trying to scroll doesn't work
-      // I've confirmed that the joinCardRef.current has not changed after the timer has run, so it must be something else
+      // I've confirmed that the joinCardContentsRef.current has not changed after the timer has run, so it must be something else
       setTimeout(() => {
-        window.scrollTo(0, joinCardRef.current!.offsetTop)
+        window.scrollTo(0, joinCardContentsRef.current!.offsetTop)
       })
     }
   }, [location.hash])
 
-  console.log('joinCardRef', joinCardRef)
+  console.log('joinCardContentsRef', joinCardContentsRef)
 
   console.log('about to return')
   return (
@@ -61,9 +61,7 @@ export default function IndexPage({ location }: { location: { hash: string } }):
           </p>
         </div>
       </div>
-      <JoinCard ref={joinCardRef} />
+      <JoinCardContents ref={joinCardContentsRef} />
     </Layout>
   )
-
-
 }

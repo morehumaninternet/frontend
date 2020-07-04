@@ -23,7 +23,7 @@ header {
 }
 
 @media (min-width: $breakpoint-mobile + 1px) {
-  .layout.index > main > .MuiCard-root.join {
+  .layout.index > main > .join-card-contents {
     display: none;
   }
 }
@@ -45,18 +45,32 @@ header {
 .hero {
   background-image: linear-gradient(to bottom right, #164176, #4A81BC, #FA759E);
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 768px;
-}
 
-.hero > h1 {
-  max-width: 660px;
-  text-align: center;
-  font-weight: 300;
-  color: #164176;
-  font-size: 2.5rem;
+  @media (min-width: $breakpoint-mobile + 1px) {
+    min-height: 768px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding-top: 180px;
+    padding-bottom: 40px;
+  }
+
+  > h1 {
+    max-width: 660px;
+    font-weight: 300;
+    color: #164176;
+    font-size: 2.5rem;
+    text-align: center;
+
+    @media (max-width: $breakpoint-mobile) {
+      text-align: left;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
 }
 
 .MuiButtonBase-root {
@@ -81,10 +95,19 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
 
 .manifesto-contents {
   max-width: 500px;
+
+  > p {
+    text-indent: 2em;
+  }
 }
 
 @media (min-width: $breakpoint-mobile + 1px) {
@@ -115,10 +138,20 @@ footer {
 
 .file-upload-button-container {
   min-height: 100%;
-}
 
-.file-upload-button-container > button {
-  height: 100%;
+  > button {
+    height: 100%;
+    padding-left: 15px;
+
+    > .MuiButton-label {
+      justify-content: flex-start;
+      font-size: 16px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      min-width: 100%;
+    }
+  }
 }
 
 .MuiCard-root {
@@ -128,7 +161,8 @@ footer {
   }
 }
 
-.MuiCard-root > h2 {
+.MuiCard-root > h2,
+.join-card-contents > h2 {
   font-weight: 300;
   color: #164176;
   font-size: 2.55556rem;
@@ -137,21 +171,25 @@ footer {
   text-align: center;
 }
 
+.footer-rings {
+  max-width: 372px;
+}
+
 form[name="submit-application"] {
   margin-bottom: 0;
-}
 
-form[name="submit-application"] button[type="submit"] {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
+  button[type="submit"] {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
-form[name="submit-application"] .MuiFormGroup-root {
-  margin-bottom: 20px;
-}
+  .MuiFormGroup-root {
+    margin-bottom: 20px;
 
-form[name="submit-application"] .MuiFormGroup-root:last-child {
-  margin-bottom: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .MuiFormGroup-root.stretch-row {
@@ -162,12 +200,6 @@ form[name="submit-application"] .MuiFormGroup-root:last-child {
 
   @media (max-width: $breakpoint-mobile) {
     flex-direction: column;
-  }
-}
-
-@media (max-width: $breakpoint-mobile) {
-  .file-upload-button-container > button {
-    min-width: 100%;
   }
 }
 
@@ -203,6 +235,15 @@ form[name="submit-application"] .MuiFormGroup-root:last-child {
 .MuiSvgIcon-root.email {
   margin-top: 1px;
   margin-left: 3px;
+  height: 29px;
+  width: 29px;
+}
+
+.MuiSvgIcon-root.close {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 2px;
+  margin-right: 2px;
   height: 29px;
   width: 29px;
 }
