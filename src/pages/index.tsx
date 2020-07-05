@@ -9,8 +9,6 @@ import { Button, ButtonBase } from '@material-ui/core'
 import '../styles/index.scss'
 
 
-const ApplyButtonContents = () => (<>Apply to join &nbsp;&nbsp;<ArrowForward/></>)
-
 export default function IndexPage(): JSX.Element {
 
   const joinCardContentsRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
@@ -42,11 +40,11 @@ export default function IndexPage(): JSX.Element {
       // Use CSS to show one on mobile and the other on desktop
       headerLinks={
         <>
-          <ButtonBase component={Link} to="/apply">
-            <ApplyButtonContents />
+          <ButtonBase className="apply-link" component={Link} to="/apply">
+            Apply to join &nbsp;&nbsp;<ArrowForward/>
           </ButtonBase>
-          <Button className="apply" onClick={() => window.scrollTo(0, joinCardContentsRef.current!.offsetTop - 28)}>
-            <ApplyButtonContents />
+          <Button className="apply-link" onClick={() => window.scrollTo(0, joinCardContentsRef.current!.offsetTop - 28)}>
+            Apply&nbsp;&nbsp;<ArrowForward/>
           </Button>
         </>
       }
@@ -70,6 +68,11 @@ export default function IndexPage(): JSX.Element {
             Let’s create a More Human Internet.
           </p>
         </div>
+      </div>
+      <div className="extra-apply-link-container">
+        <ButtonBase className="apply-link" component={Link} to="/apply">
+          Apply to join &nbsp;&nbsp;<ArrowForward/>
+        </ButtonBase>
       </div>
       <JoinCardContents ref={joinCardContentsRef} />
     </Layout>

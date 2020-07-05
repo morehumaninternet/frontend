@@ -1,4 +1,6 @@
 $breakpoint-mobile: 600px;
+$breakpoint-header-scrolls: 1300px;
+
 $human-blue: #164176;
 $human-light-blue: #4A81BC;
 $human-pink: #FA759E;
@@ -23,13 +25,32 @@ header {
   padding-top: 25px;
   padding-bottom: 25px;
 
-  @media (max-width: 1300px) {
+  @media (max-width: $breakpoint-header-scrolls) {
     position: absolute;
   }
 
   @media (max-width: 800px) {
     padding-left: calc(20vw + -60px);
     padding-right: calc(20vw + -60px);
+  }
+}
+
+.apply-link {
+  padding-right: 14px !important;
+}
+
+.extra-apply-link-container {
+  display: none;
+
+  @media (max-width: $breakpoint-header-scrolls) and (min-width: $breakpoint-mobile + 1px) {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > .apply-link {
+      height: 50px;
+    }
   }
 }
 
@@ -41,7 +62,7 @@ header {
 
 .layout.index > header {
   @media (min-width: $breakpoint-mobile + 1px) {
-    button.apply {
+    button.apply-link {
       display: none;
     }
   }
