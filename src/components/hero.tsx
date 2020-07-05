@@ -1,12 +1,14 @@
 import React from 'react'
 
 
-export default class Hero extends React.Component<{ additionalClassNames?: string }> {
-  render(): JSX.Element {
-    return (
-      <div className={`hero ${this.props.additionalClassNames || ''}`}>
-        {this.props.children}
-      </div>
-    )
-  }
+type HeroProps = {
+  additionalClassNames?: string
+  heroRef?: React.MutableRefObject<HTMLDivElement>
+  children: React.ReactNode
 }
+
+export default ({ additionalClassNames, heroRef, children }: HeroProps) => (
+  <div className={`hero ${additionalClassNames || ''}`} ref={heroRef}>
+    {children}
+  </div>
+)

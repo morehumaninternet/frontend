@@ -5,44 +5,54 @@ import Hero from '../components/hero'
 import SEO from '../components/seo'
 import { JoinCardContents } from '../components/join-card'
 import { ArrowForward } from '@material-ui/icons'
-import { ButtonBase } from '@material-ui/core'
+import { Button, ButtonBase } from '@material-ui/core'
 import '../styles/index.scss'
 
 
-export default function IndexPage({ location }: { location: { hash: string } }): JSX.Element {
+const ApplyButtonContents = () => (<>Apply to join &nbsp;&nbsp;<ArrowForward/></>)
+
+export default function IndexPage(): JSX.Element {
 
   const joinCardContentsRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
+  const headerRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
+  const heroRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
+  const logoRef: React.MutableRefObject<SVGSVGElement> = React.useRef() as any
+
+  const [logoDistanceFromHeroBottom, setLogoDistanceFromHeroBottom] = React.useState(Infinity)
 
   React.useEffect(() => {
-    if (location.hash === '#apply') {
-      // I have no clue why this setTimeout is necessary, but immediately trying to scroll doesn't work
-      // I've confirmed that the joinCardContentsRef.current has not changed after the timer has run, so it must be something else
-      setTimeout(() => {
-        window.scrollTo(0, joinCardContentsRef.current!.offsetTop - 28)
-      })
+    function onScroll() {
+      setLogoDistanceFromHeroBottom(
+        heroRef.current.getBoundingClientRect().bottom -
+        logoRef.current.getBoundingClientRect().bottom
+      )
     }
-  }, [location.hash])
 
-  console.log('joinCardContentsRef', joinCardContentsRef)
+    window.addEventListener('scroll', onScroll)
 
-  console.log('about to return')
+    return () => window.removeEventListener('scroll', onScroll)
+  })
+
   return (
     <Layout
       mainClassName="index"
+      headerRef={headerRef}
+      logoRef={logoRef}
+      logoDistanceFromHeroBottom={logoDistanceFromHeroBottom}
       // Use CSS to show one on mobile and the other on desktop
       headerLinks={
         <>
           <ButtonBase component={Link} to="/apply">
-            Apply to join &nbsp;&nbsp;<ArrowForward/>
+            <ApplyButtonContents />
           </ButtonBase>
-          <ButtonBase component={'a'} href="#apply">
-            Apply to join &nbsp;&nbsp;<ArrowForward/>
-          </ButtonBase>
+          <Button className="apply" onClick={() => window.scrollTo(0, joinCardContentsRef.current!.offsetTop - 28)}>
+            <ApplyButtonContents />
+          </Button>
         </>
       }
     >
       <SEO title="Home" />
-      <Hero>
+      <Hero heroRef={heroRef}>
         <h1 className="white">Help build a public platform and collaborative community for users and maintainers of the web</h1>
       </Hero>
       <div className="manifesto">

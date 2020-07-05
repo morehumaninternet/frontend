@@ -3,6 +3,14 @@ $human-blue: #164176;
 $human-light-blue: #4A81BC;
 $human-pink: #FA759E;
 
+.MuiButtonBase-root {
+  background-color: $human-blue;
+
+  &:hover {
+    background-color: $human-pink !important; // TODO: look into why this doesn't work w/out important
+  }
+}
+
 header {
   height: 100px;
   position: fixed;
@@ -15,7 +23,7 @@ header {
   padding-top: 25px;
   padding-bottom: 25px;
 
-  @media (max-width: $breakpoint-mobile) {
+  @media (max-width: 1300px) {
     position: absolute;
   }
 
@@ -33,7 +41,7 @@ header {
 
 .layout.index > header {
   @media (min-width: $breakpoint-mobile + 1px) {
-    a[href="#apply"] {
+    button.apply {
       display: none;
     }
   }
@@ -114,12 +122,14 @@ header {
 
   > p {
     text-indent: 1em;
+    text-align: justify;
+    text-justify: inter-word;
   }
 }
 
 @media (min-width: $breakpoint-mobile + 1px) {
   .MuiCard-root.join {
-    margin-top: 54px;
+    margin-top: 60px;
   }
 }
 
@@ -151,11 +161,14 @@ footer {
 
   > button {
     height: 100%;
-    padding-left: 15px;
+    padding: 0;
+    position: relative;
+    // padding-left: 15px;
 
     > .MuiButton-label {
       justify-content: flex-start;
       font-size: 16px;
+      padding: 11.6916656494140625px 15px; // Makes this the same size as a TextInput
     }
 
     @media (max-width: $breakpoint-mobile) {
@@ -216,21 +229,26 @@ form[name="submit-application"] {
 
   @media (max-width: $breakpoint-mobile) {
     flex-direction: column;
+
+    .MuiFormControl-root {
+      margin-bottom: 20px;
+    }
   }
-}
 
-.spaced-vertically-centered-text {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: 10px;
-  margin-right: 10px;
+  > .spaced-vertically-centered-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
 
-  @media (max-width: $breakpoint-mobile) {
-    flex-direction: column;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    @media (max-width: $breakpoint-mobile) {
+      // flex-direction: column;
+      // margin-top: 14px;
+      // margin-bottom: 14px;
+      display: none;
+    }
   }
 }
 

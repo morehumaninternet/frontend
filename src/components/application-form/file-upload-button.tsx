@@ -42,7 +42,8 @@ export default class FileUploadButton extends React.Component<FileUploadButtonPr
       <div className="file-upload-button-container">
         <input name={this.props.name} type="file" hidden ref={this.inputReference} onChange={this.fileUploadInputChange} />
         <Button type="button" onClick={this.onClick}>
-          {this.state.fileName ? <Close className="close" /> : <CloudUpload/>}&nbsp;&nbsp;{this.state.fileName || this.props.label}
+          {this.state.fileName ? <Close className="close" /> : <CloudUpload/>}
+          <span style={{ marginLeft: 8 }}>{this.state.fileName || this.props.label}</span>
         </Button>
       </div>
     )
