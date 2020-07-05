@@ -18,7 +18,7 @@ export default function IndexPage({ location }: { location: { hash: string } }):
       // I have no clue why this setTimeout is necessary, but immediately trying to scroll doesn't work
       // I've confirmed that the joinCardContentsRef.current has not changed after the timer has run, so it must be something else
       setTimeout(() => {
-        window.scrollTo(0, joinCardContentsRef.current!.offsetTop)
+        window.scrollTo(0, joinCardContentsRef.current!.offsetTop - 28)
       })
     }
   }, [location.hash])

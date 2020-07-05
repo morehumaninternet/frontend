@@ -55,7 +55,7 @@ export default function ApplicationForm(): JSX.Element {
       data-netlify="true"
       netlify-honeypot="bot-field"
       autoComplete="off"
-      ref={formReference}
+      ref={formReference as any}
       onSubmit={onSubmit}
     >
       <input type="hidden" name="form-name" value="submit-application" />
@@ -97,7 +97,7 @@ export default function ApplicationForm(): JSX.Element {
           variant="outlined"
           required
           multiline
-          rows={3}
+          rows={5}
         />
       </FormGroup>
       <FormGroup>
