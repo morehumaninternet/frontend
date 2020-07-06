@@ -1,3 +1,5 @@
+@import './link';
+
 $breakpoint-mobile: 600px;
 $breakpoint-header-scrolls: 1300px;
 
@@ -173,7 +175,7 @@ footer {
   }
 
   .footer-rings {
-    max-width: 276px;
+    max-width: 276px !important;
   }
 }
 
@@ -305,4 +307,8 @@ form[name="submit-application"] {
 
 .MuiCardContent-root.thank-you p {
   text-align: center;
+}
+
+a {
+
 }

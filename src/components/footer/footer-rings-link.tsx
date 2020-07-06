@@ -6,7 +6,7 @@ type FooterRingsLinkState = { hover: boolean }
 
 function FooterRingsIcon({ hover }: FooterRingsLinkState) {
   return (
-    <svg className="footer-rings" viewBox="0 0 302 302">
+    <svg className="footer-rings" height="302px" width="302px" viewBox="0 0 302 302" >
       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
         <g fillRule="nonzero">
           <path
