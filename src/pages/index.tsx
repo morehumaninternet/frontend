@@ -51,7 +51,8 @@ export default function IndexPage(): JSX.Element {
     >
       <SEO title="Home" />
       <Hero heroRef={heroRef}>
-        <h1 className="white">Help build a public platform and collaborative community for users and maintainers of the web</h1>
+        <h1 className="white">Be part of a more human internet</h1>
+        <h2 className="white">Join a collaborative community creating a public platform for users and maintainers of the web</h2>
       </Hero>
       <div className="manifesto">
         <div className="manifesto-contents">
@@ -65,16 +66,17 @@ export default function IndexPage(): JSX.Element {
             We are founding a More Human Internet, a nonprofit, to find out. If you are a developer who is optimistic that the internet can be better and are motivated to help, we would love to work with you. People from historically marginalized or underrepresented groups are encouraged to apply so that our team better reflects the diversity of the human experience.
           </p>
           <p className="no-justify">
-            Let’s create a More Human Internet.
+            <Link to="/apply" className="human-blue"><strong>Let’s create a More Human Internet.</strong></Link>
+            <strong>Let’s create a More Human Internet.</strong>
           </p>
           <p className="signature">- Will Weiss</p>
         </div>
       </div>
-      <div className="extra-apply-link-container">
+      {/* <div className="extra-apply-link-container">
         <ButtonBase className="apply-link" component={Link} to="/apply">
           Apply to join &nbsp;&nbsp;<ArrowForward/>
         </ButtonBase>
-      </div>
+      </div> */}
       <JoinCardContents ref={joinCardContentsRef} />
     </Layout>
   )

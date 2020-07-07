@@ -91,11 +91,8 @@ header {
     padding-bottom: 30px;
   }
 
-  > h1 {
-    max-width: 660px;
-    font-weight: 300;
+  > h1, h2 {
     color: $human-blue;
-    font-size: 2.5rem;
     text-align: center;
 
     @media (max-width: $breakpoint-mobile) {
@@ -103,6 +100,19 @@ header {
       padding-left: 30px;
       padding-right: 30px;
     }
+  }
+
+  > h1 {
+    max-width: 730px;
+    font-size: 2.7777777777777777rem;
+    font-weight: 300;
+  }
+
+  > h2 {
+    margin-top: 30px;
+    max-width: 700px;
+    font-size: 1.44444444444444rem;
+    font-weight: 500;
   }
 }
 
@@ -121,6 +131,10 @@ header {
 
 .white {
   color: white !important;
+}
+
+.human-blue {
+  color: $human-blue !important;
 }
 
 .manifesto {
