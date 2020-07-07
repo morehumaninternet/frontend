@@ -1,3 +1,4 @@
+@import './trix';
 @import './link';
 
 $breakpoint-mobile: 600px;
@@ -148,7 +149,19 @@ header {
     text-align: justify;
     text-justify: inter-word;
   }
+
+  > p.no-justify {
+    text-indent: 0;
+    text-align: auto;
+    text-justify: auto;
+  }
+
+  > p.signature {
+    text-align: right;
+  }
 }
+
+
 
 @media (min-width: $breakpoint-mobile + 1px) {
   .MuiCard-root.join {
@@ -161,6 +174,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: .77777em;
 }
 
 .footer-links {
@@ -181,12 +195,13 @@ footer {
 
 .file-upload-button-container {
   min-height: 100%;
+  min-width: 30%;
 
   > button {
     height: 100%;
+    width: 100%;
     padding: 0;
     position: relative;
-    // padding-left: 15px;
 
     > .MuiButton-label {
       justify-content: flex-start;
@@ -258,7 +273,12 @@ form[name="submit-application"] {
     }
   }
 
+  .MuiFormControl-root:first-child {
+    flex-grow: 1;
+  }
+
   > .spaced-vertically-centered-text {
+    flex-grow: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -267,9 +287,6 @@ form[name="submit-application"] {
     margin-right: 10px;
 
     @media (max-width: $breakpoint-mobile) {
-      // flex-direction: column;
-      // margin-top: 14px;
-      // margin-bottom: 14px;
       display: none;
     }
   }
@@ -309,6 +326,6 @@ form[name="submit-application"] {
   text-align: center;
 }
 
-a {
-
+trix-editor[input="input-whyJoin"] {
+  min-height: 10em;
 }
