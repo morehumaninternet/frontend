@@ -9,7 +9,7 @@ import '../styles/index.scss'
 const ApplyPage = () => (
   <Layout>
     <SEO title="Apply" />
-    <Hero>
+    <Hero additionalClassNames="join">
       <JoinCard />
     </Hero>
   </Layout>

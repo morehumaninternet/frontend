@@ -1,0 +1,7 @@
+trix-editor[input="input-whyJoin"] {
+  min-height: 10em;
+
+  &:hover, &:focus-within {
+    border-color: $human-blue;
+  }
+}

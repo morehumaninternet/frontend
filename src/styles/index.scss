@@ -1,12 +1,7 @@
+@import './variables';
 @import './trix';
+@import './trix-overrides.scss';
 @import './link';
-
-$breakpoint-mobile: 600px;
-$breakpoint-header-scrolls: 1300px;
-
-$human-blue: #164176;
-$human-light-blue: #4A81BC;
-$human-pink: #FA759E;
 
 .MuiButtonBase-root {
   background-color: $human-blue;
@@ -326,6 +321,17 @@ form[name="submit-application"] {
   text-align: center;
 }
 
-trix-editor[input="input-whyJoin"] {
-  min-height: 10em;
+.hero.join {
+  min-height: 832px;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: $human-blue;
+}
+
+.MuiOutlinedInput-root.Mui-focused,
+.MuiOutlinedInput-root:hover {
+  > .MuiOutlinedInput-notchedOutline {
+    border-color: $human-blue;
+  }
 }
