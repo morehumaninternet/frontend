@@ -66,7 +66,7 @@ export default function IndexPage(): JSX.Element {
             We are founding a More Human Internet, a nonprofit, to find out. If you are a developer who is optimistic that the internet can be better and are motivated to help, we would love to work with you. People from historically marginalized or underrepresented groups are encouraged to apply so that our team better reflects the diversity of the human experience.
           </p>
           <p className="no-justify">
-            <Link to="/apply" className="human-blue"><strong>Let’s create a More Human Internet.</strong></Link>
+            {/* <Link to="/apply" className="human-blue"><strong>Let’s create a More Human Internet.</strong></Link> */}
             <strong>Let’s create a More Human Internet.</strong>
           </p>
           <p className="signature">- Will Weiss</p>
