@@ -155,8 +155,6 @@ header {
 
   > p {
     text-indent: 1em;
-    text-align: justify;
-    text-justify: inter-word;
   }
 
   > p.lets-create {
@@ -223,7 +221,6 @@ footer {
 
   .footer-rings {
     max-width: 276px !important;
-    max-height: 276px !important;
 
     @media (max-width: $breakpoint-mobile) {
       width: 100%;

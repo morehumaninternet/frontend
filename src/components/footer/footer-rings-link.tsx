@@ -5,8 +5,21 @@ import { Link } from 'gatsby'
 type FooterRingsLinkState = { hover: boolean }
 
 function FooterRingsIcon({ hover }: FooterRingsLinkState) {
+  const ref: React.MutableRefObject<SVGSVGElement> = React.useRef() as any
+
+  React.useEffect(() => {
+    function onResize() {
+      const nextHeight = getComputedStyle(ref.current!).width
+      ref.current.style.height = nextHeight
+    }
+
+    window.addEventListener('resize', onResize)
+
+    return () => window.removeEventListener('resize', onResize)
+  })
+
   return (
-    <svg className="footer-rings" height="302px" width="302px" viewBox="0 0 302 302" >
+    <svg ref={ref} className="footer-rings" height="302px" width="302px" viewBox="0 0 302 302" >
       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
         <g fillRule="nonzero">
           <path
@@ -45,21 +58,17 @@ function FooterRingsIcon({ hover }: FooterRingsLinkState) {
   );
 }
 
-class FooterRingsLink extends React.Component<{}, FooterRingsLinkState> {
-  state: FooterRingsLinkState = { hover: false }
+export default () => {
+  const [hover, setHover] = React.useState(false)
 
-  render(): JSX.Element {
-    return (
-      <Link
-        className="footer-link footer-rings-container"
-        to="/"
-        onMouseEnter={() => this.setState({ hover: true })}
-        onMouseLeave={() => this.setState({ hover: false })}
-      >
-        <FooterRingsIcon hover={this.state.hover} />
-      </Link>
-    )
-  }
+  return (
+    <Link
+      className="footer-link footer-rings-container"
+      to="/"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <FooterRingsIcon hover={hover} />
+    </Link>
+  )
 }
-
-export default FooterRingsLink

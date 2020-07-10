@@ -69,7 +69,7 @@ export default function IndexPage(): JSX.Element {
             We are assembling a team of motivated and talented volunteers to build this open platform and  collaborative community. If you value teamwork and believe in this mission, we would love to work with you. People from historically marginalized or underrepresented groups are encouraged to apply so that our team better reflects the diversity of the human experience.
           </p>
           <p>
-            The internet is a mirror, giving back at us what we feed into it. Creating a space for its users and maintainers to help one another could radically shift what we see in our online reflection.
+            The internet is a mirror, giving back to us what we give to it. Creating a space for its users and maintainers to help one another could radically shift what we see in our online reflection.
           </p>
           <p className="lets-create">
             <Link to="/apply" className="human-blue"><strong>Let’s create a More Human Internet.</strong></Link>
