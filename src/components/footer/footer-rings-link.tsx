@@ -51,7 +51,7 @@ class FooterRingsLink extends React.Component<{}, FooterRingsLinkState> {
   render(): JSX.Element {
     return (
       <Link
-        className="footer-link"
+        className="footer-link footer-rings-container"
         to="/"
         onMouseEnter={() => this.setState({ hover: true })}
         onMouseLeave={() => this.setState({ hover: false })}

@@ -57,26 +57,27 @@ export default function IndexPage(): JSX.Element {
       <div className="manifesto">
         <div className="manifesto-contents">
           <p>
-            The internet sucks. Links are broken, images don’t load, navigation is difficult, translations are nonexistent, requests go slowly, and pages are inaccessible. But its problems go deeper than that. Large corporations have taken control of a once open system. While they have brought efficiency, the platforms they have built are for their benefit, not ours. Big Tech firms make money off ads by using crypto-surveillance coupled with neural network models built by machine learning and not human design. These systems pander to our basest impulses to get us to click, contributing to a polarized political climate where even basic facts cannot be agreed upon. We quite literally have a cyborg superorganism that no one knows how to turn off.
+            The internet sucks. Links are broken, images don’t load, navigation is difficult, translations are nonexistent, requests go slowly, and pages are inaccessible. But its problems go deeper than that. Large corporations have taken control of a once open system. While they have brought efficiency, the platforms they have built are for their benefit, not ours. Big Tech firms make money from ads by using crypto-surveillance coupled with neural network models built by machine learning and not human design. These systems pander to and amplify our basest impulses and fears to get us to click, contributing to a polarized political climate where even basic facts cannot be agreed upon. We have quite literally created a cyborg superorganism that no one knows how to turn off.
           </p>
           <p>
-            We need a more human internet, where its users and maintainers work together to fix its issues. I believe that people who maintain the web desperately want to build fulfilling websites for those who use them. What if there were a public platform and collaborative community allowing users and maintainers of the web to have constructive conversations to make it better? Would such an experiment in openness and civility have positive effects beyond those participating in it?
+            We need a more human internet, where its users and maintainers work together to fix its issues. The people who maintain the web desperately want to build fulfilling websites for those who use them. What if there were a public platform and collaborative community allowing users and maintainers of the web to have constructive conversations to make it better? Would such an experiment in openness and civility have positive effects beyond those participating in it?
           </p>
           <p>
-            We are founding a More Human Internet, a nonprofit, to find out. If you are a developer who is optimistic that the internet can be better and are motivated to help, we would love to work with you. People from historically marginalized or underrepresented groups are encouraged to apply so that our team better reflects the diversity of the human experience.
+            We are founding a More Human Internet, a nonprofit, to find out. Our plan is to grant all maintainers of the web free access to use morehumaninternet.org to triage issues reported by, solicit feedback from, announce planned improvements to, and have constructive conversations with their users to improve the design, accessibility, and experience of their websites. In turn, all users of the web would have free access to use morehumaninternet.org to report issues for, give feedback to, request improvements from, and have constructive conversations with maintainers to create more fulfilling online spaces.
           </p>
-          <p className="no-justify">
-            {/* <Link to="/apply" className="human-blue"><strong>Let’s create a More Human Internet.</strong></Link> */}
-            <strong>Let’s create a More Human Internet.</strong>
+          <p>
+            We are assembling a team of motivated and talented volunteers to build this open platform and  collaborative community. If you value teamwork and believe in this mission, we would love to work with you. People from historically marginalized or underrepresented groups are encouraged to apply so that our team better reflects the diversity of the human experience.
           </p>
-          <p className="signature">- Will Weiss</p>
+          <p>
+            The internet is a mirror, giving back at us what we feed into it. Creating a space for its users and maintainers to help one another could radically shift what we see in our online reflection.
+          </p>
+          <p className="lets-create">
+            <Link to="/apply" className="human-blue"><strong>Let’s create a More Human Internet.</strong></Link>
+            <span><strong>Let’s create a More Human Internet.</strong></span>
+          </p>
+          {/* <p className="signature">- Will Weiss</p> */}
         </div>
       </div>
-      {/* <div className="extra-apply-link-container">
-        <ButtonBase className="apply-link" component={Link} to="/apply">
-          Apply to join &nbsp;&nbsp;<ArrowForward/>
-        </ButtonBase>
-      </div> */}
       <JoinCardContents ref={joinCardContentsRef} />
     </Layout>
   )

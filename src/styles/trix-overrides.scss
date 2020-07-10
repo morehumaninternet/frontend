@@ -1,3 +1,7 @@
+#trix-editor-container-whyJoin {
+  max-width: calc(100vw - (2 * #{$nonhero-margin}));
+}
+
 trix-editor[input="input-whyJoin"] {
   min-height: 10em;
 

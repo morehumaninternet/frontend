@@ -145,13 +145,13 @@ header {
 
   @media (max-width: $breakpoint-mobile) {
     padding-top: 60px;
-    padding-left: 30px;
-    padding-right: 30px;
   }
 }
 
 .manifesto-contents {
-  max-width: 500px;
+  max-width: 600px;
+  margin-left: $nonhero-margin;
+  margin-right: $nonhero-margin;
 
   > p {
     text-indent: 1em;
@@ -159,18 +159,29 @@ header {
     text-justify: inter-word;
   }
 
-  > p.no-justify {
+  > p.lets-create {
     text-indent: 0;
     text-align: auto;
     text-justify: auto;
+
+    @media (max-width: $breakpoint-mobile) {
+      > a[href="/apply"] {
+        display: none;
+      }
+    }
+
+    @media (min-width: $breakpoint-mobile + 1px) {
+      > span {
+        display: none;
+      }
+    }
   }
+
 
   > p.signature {
     text-align: right;
   }
 }
-
-
 
 @media (min-width: $breakpoint-mobile + 1px) {
   .MuiCard-root.join {
@@ -179,18 +190,31 @@ header {
 }
 
 footer {
-  padding-top: 88px;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: .77777em;
+  max-width: calc(100vw - (2 * #{$nonhero-margin}));
+  margin-left: $nonhero-margin;
+  margin-right: $nonhero-margin;
+
+  padding-top: 88px;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding-top: 40px;
+  }
 }
 
 .footer-links {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
+
+  @media (max-width: $breakpoint-mobile) {
+    min-width: 100%;
+  }
 
   > .footer-link {
     margin-left: 20px;
@@ -199,6 +223,11 @@ footer {
 
   .footer-rings {
     max-width: 276px !important;
+    max-height: 276px !important;
+
+    @media (max-width: $breakpoint-mobile) {
+      width: 100%;
+    }
   }
 }
 
