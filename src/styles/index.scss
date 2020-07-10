@@ -37,21 +37,6 @@ header {
   padding-right: 14px !important;
 }
 
-.extra-apply-link-container {
-  display: none;
-
-  @media (min-width: $breakpoint-mobile + 1px) {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    > .apply-link {
-      height: 50px;
-    }
-  }
-}
-
 @media (min-width: $breakpoint-mobile + 1px) {
   .layout.index > main > .join-card-contents {
     display: none;
@@ -88,7 +73,7 @@ header {
 
   @media (max-width: $breakpoint-mobile) {
     padding-top: 190px;
-    padding-bottom: 30px;
+    padding-bottom: $nonhero-margin;
   }
 
   > h1, h2 {
@@ -97,8 +82,8 @@ header {
 
     @media (max-width: $breakpoint-mobile) {
       text-align: left;
-      padding-left: 30px;
-      padding-right: 30px;
+      padding-left: $nonhero-margin;
+      padding-right: $nonhero-margin;
     }
   }
 
@@ -109,7 +94,7 @@ header {
   }
 
   > h2 {
-    margin-top: 30px;
+    margin-top: $nonhero-margin;
     max-width: 700px;
     font-size: 1.44444444444444rem;
     font-weight: 500;
@@ -328,11 +313,11 @@ form[name="submit-application"] {
 }
 
 .MuiCardContent-root {
-  padding: 30px;
+  padding: $nonhero-margin;
 }
 
 .MuiCardContent-root:last-child {
-  padding-bottom: 30px;
+  padding-bottom: $nonhero-margin;
 }
 
 .MuiSvgIcon-root,
