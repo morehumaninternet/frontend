@@ -77,7 +77,7 @@ export default function HeaderLink({ logoRef, logoFade }: HeaderLinkProps): JSX.
   const onMouseLeave = () => setHover(false)
 
   return (
-    <Link to="/" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <Link to="/" aria-label="More Human Internet Home" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <HeaderLogo logoRef={logoRef} logoFade={logoFade} hover={hover} />
     </Link>
   )

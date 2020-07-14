@@ -63,6 +63,7 @@ export default () => {
 
   return (
     <Link
+      aria-label="More Human Internet Home"
       className="footer-link footer-rings-container"
       to="/"
       onMouseEnter={() => setHover(true)}

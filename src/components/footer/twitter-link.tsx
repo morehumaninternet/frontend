@@ -31,6 +31,7 @@ class TwitterLink extends React.Component<{}, TwitterLinkState> {
       <a
         className="footer-link"
         href="https://twitter.com/morehumaninter1"
+        aria-label="Twitter"
         onMouseEnter={() => this.setState({ hover: true })}
         onMouseLeave={() => this.setState({ hover: false })}
       >

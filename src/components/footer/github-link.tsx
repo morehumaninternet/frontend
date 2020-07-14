@@ -25,6 +25,7 @@ class GithubLink extends React.Component<{}, GithubLinkState> {
       <a
         className="footer-link"
         href="https://github.com/morehumaninternet"
+        aria-label="Github"
         onMouseEnter={() => this.setState({ hover: true })}
         onMouseLeave={() => this.setState({ hover: false })}
       >
