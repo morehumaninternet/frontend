@@ -1,7 +1,7 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://morehumaninternet.org">
-    <img alt="More Human Internet" src="https://morehumaninternet.org/logo.svg" width="60" />
+    <img alt="More Human Internet" src="https://morehumaninternet.org/logo.svg" width="180" />
   </a>
 </p>
 <h1 align="center">
