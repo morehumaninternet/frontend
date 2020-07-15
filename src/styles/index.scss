@@ -63,6 +63,8 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  padding-left: $nonhero-margin;
+  padding-right: $nonhero-margin;
 
   @media (min-width: $breakpoint-mobile + 1px) {
     min-height: 768px;
@@ -82,8 +84,6 @@ header {
 
     @media (max-width: $breakpoint-mobile) {
       text-align: left;
-      padding-left: $nonhero-margin;
-      padding-right: $nonhero-margin;
     }
   }
 
