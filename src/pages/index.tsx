@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { ArrowForward } from '@material-ui/icons'
+import { Avatar, Button, ButtonBase } from '@material-ui/core'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import SEO from '../components/seo'
 import { JoinCardContents } from '../components/join-card'
-import { ArrowForward } from '@material-ui/icons'
-import { Button, ButtonBase } from '@material-ui/core'
 import Manifesto from '../components/manifesto'
 import '../styles/index.scss'
 
@@ -58,8 +58,11 @@ export default function IndexPage(): JSX.Element {
       <div className="manifesto">
         <div className="manifesto-contents">
           <Manifesto />
+          <p className="signature">- Will Weiss</p>
+          <Avatar src="/images/will-weiss.jpg" />
         </div>
       </div>
+      {/* The join card is only shown on mobile */}
       <JoinCardContents ref={joinCardContentsRef} />
     </Layout>
   )

@@ -17,6 +17,5 @@ export default () => (
       <Link to="/apply" className="human-blue"><strong>Let’s create a More Human Internet.</strong></Link>
       <span><strong>Let’s create a More Human Internet.</strong></span>
     </p>
-    {/* <p className="signature">- Will Weiss</p> */}
   </>
 )

@@ -1,10 +1,15 @@
+const path = require('path')
+
+
 module.exports = {
   siteMetadata: {
+    siteUrl: 'https://morehumaninternet.org',
     title: 'More Human Internet',
     description: 'A collaborative community creating a public platform for users and maintainers of the web',
     author: '@morehumaninter1',
   },
   plugins: [
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-material-ui',
       options: {
@@ -15,6 +20,13 @@ module.exports = {
     },
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `images`),
+      },
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-axe',
