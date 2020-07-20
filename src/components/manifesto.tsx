@@ -9,7 +9,7 @@ export default () => (
     </p>
     <p>
       We need a more human internet, where its users and maintainers work together to fix its issues and rebuild trust. We are founding a More Human Internet, a nonprofit and free public platform, as an online space for this open and civil dialogue. Website maintainers will be able to triage issues reported by, solicit feedback from, announce planned improvements to, and have constructive conversations with their users. In turn, users will be able to report issues for, give feedback to, request improvements from, and have constructive conversations with maintainers of websites.
-      Read our <a className="human-blue" href="/strategic-plan-2020.pdf" target="_blank">2020 Strategic Plan</a> for more information.
+      Read our <a className="human-blue" href="/strategic-plan-2020.pdf" download>2020 Strategic Plan</a> for more information.
     </p>
     <p>
       We are assembling an inclusive team of motivated and talented volunteers to build this public platform and collaborative community. If you value teamwork and believe in this mission, we would love to work with you.
