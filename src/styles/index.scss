@@ -1,6 +1,4 @@
 @import './variables';
-@import './trix';
-@import './trix-overrides.scss';
 @import './link';
 
 .MuiButtonBase-root {
@@ -293,8 +291,14 @@ form[name="submit-application"] {
     }
   }
 
-  .MuiFormControl-root:first-child {
+
+
+  > .MuiFormControl-root:first-child {
     flex-grow: 1;
+
+    @media (min-width: $breakpoint-mobile + 1px) {
+      max-width: 54%;
+    }
   }
 
   > .spaced-vertically-centered-text {
@@ -303,8 +307,8 @@ form[name="submit-application"] {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     @media (max-width: $breakpoint-mobile) {
       display: none;

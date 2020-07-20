@@ -4,7 +4,6 @@ import { Email, Person } from '@material-ui/icons'
 import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
-import WYSIWYG from './wysiwyg'
 
 
 export default function ApplicationForm(): JSX.Element {
@@ -13,7 +12,6 @@ export default function ApplicationForm(): JSX.Element {
 
   const [checking, setChecking] = React.useState(false)
   const [awaitingSubmit, setAwaitingSubmit] = React.useState(false)
-  const [attachments, setAttachments] = React.useState([])
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     if (checking) {
@@ -93,20 +91,13 @@ export default function ApplicationForm(): JSX.Element {
         />
       </FormGroup>
       <FormGroup>
-        {/* <TextField
+        <TextField
           label="Why do you want to join?"
           name="whyJoin"
           variant="outlined"
           required
           multiline
           rows={5}
-        /> */}
-        <WYSIWYG
-          name="whyJoin"
-          placeholder="Why do you want to join?"
-          onAttachment={event => {
-            setAttachments(attachments.concat(event.attachment.file))
-          }}
         />
       </FormGroup>
       <FormGroup>
