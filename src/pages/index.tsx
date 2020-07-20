@@ -7,7 +7,6 @@ import Hero from '../components/hero'
 import SEO from '../components/seo'
 import { JoinCardContents } from '../components/join-card'
 import Manifesto from '../components/manifesto'
-import '../styles/index.scss'
 
 
 export default function IndexPage(): JSX.Element {

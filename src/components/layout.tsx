@@ -1,7 +1,6 @@
 import React from 'react'
 import Footer from './footer'
 import Header from './header'
-import '../styles/layout.scss'
 
 
 type LayoutProps = {
