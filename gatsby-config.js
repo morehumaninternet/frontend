@@ -20,15 +20,6 @@ module.exports = {
     },
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: path.join(__dirname, `src`, `images`),
-      },
-    },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
     'gatsby-plugin-react-axe',
     {
       resolve: 'gatsby-plugin-manifest',
