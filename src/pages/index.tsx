@@ -50,18 +50,18 @@ export default function IndexPage(): JSX.Element {
         <h2 className="white">Join a collaborative community creating a public platform for users and maintainers of the web</h2>
       </Hero>
       <div className="manifesto">
-        <div className="manifesto-contents">
+        <div className="manifesto-item manifesto-contents">
           <Manifesto />
-          <div className="manifesto-signature">
-            <div className="signature-texts">
-              <img className="signature" src="signature.png"/>
-              <p>Will Weiss</p>
-            </div>
-            <div className="spacer"></div>
-            <a href="https://github.com/will-weiss">
-              <Avatar className="avatar" src="will-weiss.jpg" />
-            </a>
+        </div>
+        <div className="manifesto-item manifesto-signature">
+          <div className="signature-texts">
+            <img className="signature" src="signature.png"/>
+            <p>Will Weiss</p>
           </div>
+          <div className="spacer"></div>
+          <a href="https://github.com/will-weiss">
+            <Avatar className="avatar" src="will-weiss.jpg" />
+          </a>
         </div>
       </div>
       {/* The join card is only shown on mobile */}

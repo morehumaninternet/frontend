@@ -5,7 +5,7 @@
   "author": "Will Weiss <will.weiss1230@gmail.com>",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop --host=0.0.0.0",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "netlify dev",
     "serve": "gatsby serve",

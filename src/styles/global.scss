@@ -117,6 +117,7 @@ header {
 
 .manifesto {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 132px;
@@ -124,13 +125,17 @@ header {
   @include onmobile {
     padding-top: 50px;
   }
+
+  > .manifesto-item {
+    max-width: 600px;
+    margin-left: $nonhero-margin !important;
+    margin-right: $nonhero-margin !important;
+  }
 }
 
-.manifesto-contents {
-  max-width: 600px;
-  margin-left: $nonhero-margin;
-  margin-right: $nonhero-margin;
+$signature-avatar-size: 55px;
 
+.manifesto-contents {
   > p {
     text-indent: 1em;
   }
@@ -155,7 +160,6 @@ header {
 }
 
 .manifesto-signature {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -164,23 +168,27 @@ header {
     margin-left: -13px;
   }
 
-  .signature-texts {
-    width: 300px;
+  @include ondesktop {
+    width: 100%;
+
+    .signature-texts {
+      width: 300px;
+    }
   }
 
   .spacer {
     flex-grow: 1;
     width: 100%;
   }
+
   p {
     margin-top: 8px;
   }
 
   .MuiAvatar-root.MuiAvatar-circle {
-    width: 55px;
-    height: 55px;
+    width: $signature-avatar-size;
+    height: $signature-avatar-size;
     margin-bottom: 16px;
-    margin-right: 8px;
   }
 }
 
