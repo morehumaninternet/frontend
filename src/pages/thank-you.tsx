@@ -8,7 +8,7 @@ import SEO from '../components/seo'
 export default function ThankYouPage() {
   return (
     <Layout>
-      <SEO title="Thank You" />
+      <SEO pageTitle="Thank You" />
       <Hero additionalClassNames="thank-you">
         <Card>
           <h2>Thank You</h2>

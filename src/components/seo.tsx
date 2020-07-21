@@ -9,14 +9,15 @@ type SEOProps = {
   description?: string
   lang?: string
   meta?: any[]
-  title: string
+  pageTitle?: string
 }
 
 export default function SEO(props: SEOProps) {
   const description = props.description || ''
   const lang = props.lang || 'en'
   const meta = props.meta || []
-  const title = props.title
+  const pageTitle = props.pageTitle
+
 
   const { site } = useStaticQuery(
     graphql`
@@ -32,6 +33,8 @@ export default function SEO(props: SEOProps) {
     `
   )
 
+  const title = pageTitle ? `${pageTitle} | ${site.siteMetadata.title}` : site.siteMetadata.title
+
   const metaDescription = description || site.siteMetadata.description
 
   return (
@@ -40,7 +43,6 @@ export default function SEO(props: SEOProps) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
           name: `description`,

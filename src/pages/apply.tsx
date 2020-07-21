@@ -7,7 +7,7 @@ import JoinCard from '../components/join-card'
 
 const ApplyPage = () => (
   <Layout>
-    <SEO title="Apply" />
+    <SEO pageTitle="Apply" />
     <Hero additionalClassNames="join">
       <JoinCard />
     </Hero>
