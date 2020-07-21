@@ -1,0 +1,40 @@
+.hero {
+  background-image: linear-gradient(to bottom right, $human-blue, $human-light-blue, $human-pink) !important;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: $nonhero-margin;
+  padding-right: $nonhero-margin;
+  padding-top: $header-height;
+  padding-bottom: $nonhero-margin + 5px;
+
+  @include ondesktop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  > h1, h2 {
+    color: $human-blue;
+    text-align: center;
+
+    @include onmobile {
+      text-align: left;
+    }
+  }
+
+  > h1 {
+    max-width: 730px;
+    font-size: 2.7777777777777777rem;
+    font-weight: 300;
+  }
+
+  > h2 {
+    margin-top: $nonhero-margin;
+    max-width: 700px;
+    font-size: 1.44444444444444rem;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+}

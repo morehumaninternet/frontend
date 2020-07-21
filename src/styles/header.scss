@@ -1,0 +1,23 @@
+$header-height: 100px;
+
+header {
+  height: $header-height;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: $nonhero-margin;
+  padding-bottom: $nonhero-margin;
+
+  @media (max-width: $breakpoint-header-scrolls) {
+    position: absolute;
+  }
+
+  @media (max-width: 800px) {
+    padding-left: $nonhero-margin;
+    padding-right: $nonhero-margin;
+  }
+}

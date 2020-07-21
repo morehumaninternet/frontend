@@ -1,0 +1,68 @@
+form[name="submit-application"] {
+  margin-bottom: 0;
+
+  button[type="submit"] {
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    > .MuiButton-label {
+      font-size: 20px;
+    }
+  }
+
+  .MuiFormGroup-root {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.MuiFormGroup-root.stretch-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+
+  @include onmobile {
+    flex-direction: column;
+
+    .MuiFormControl-root {
+      margin-bottom: 20px;
+    }
+  }
+
+  > .MuiFormControl-root:first-child {
+    flex-grow: 1;
+
+    @include ondesktop {
+      max-width: 54%;
+    }
+  }
+
+  > .spaced-vertically-centered-text {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    @include onmobile {
+      display: none;
+    }
+  }
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: $human-blue;
+}
+
+.MuiOutlinedInput-root.Mui-focused,
+.MuiOutlinedInput-root:hover {
+  > .MuiOutlinedInput-notchedOutline {
+    border-color: $human-blue;
+  }
+}

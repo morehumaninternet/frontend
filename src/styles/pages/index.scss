@@ -1,0 +1,101 @@
+.apply-link {
+  padding-right: 14px !important;
+}
+
+@include ondesktop {
+  .layout.index > main > .join-card-contents {
+    display: none;
+  }
+}
+
+.layout.index > header {
+  @include onmobile {
+    a[href="/apply"] {
+      display: none;
+    }
+  }
+}
+
+.hero.index {
+  @include ondesktop {
+    min-height: 768px;
+  }
+
+  @include onmobile {
+    padding-top: 190px;
+  }
+}
+
+.manifesto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 132px;
+
+  @include onmobile {
+    padding-top: 50px;
+  }
+
+  > .manifesto-item {
+    max-width: 600px;
+    margin-left: $nonhero-margin !important;
+    margin-right: $nonhero-margin !important;
+  }
+}
+
+.manifesto-contents {
+  > p {
+    text-indent: 1em;
+  }
+
+  > p.lets-create {
+    text-indent: 0;
+    text-align: auto;
+    text-justify: auto;
+
+    @include onmobile {
+      > a[href="/apply"] {
+        display: none;
+      }
+    }
+
+    @include ondesktop {
+      > span {
+        display: none;
+      }
+    }
+  }
+}
+
+.manifesto-signature {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img.signature {
+    margin-left: -13px;
+  }
+
+  @include ondesktop {
+    width: 100%;
+
+    .signature-texts {
+      width: 300px;
+    }
+  }
+
+  .spacer {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  p {
+    margin-top: 8px;
+  }
+
+  .avatar {
+    border-radius: 50%;
+    margin-bottom: 28px;
+  }
+}

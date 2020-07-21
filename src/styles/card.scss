@@ -1,0 +1,36 @@
+@include ondesktop {
+  .MuiCard-root.join {
+    margin-top: 60px;
+  }
+}
+
+.MuiCard-root {
+  @include ondesktop {
+    min-width: 460px;
+    padding-top: 16px;
+  }
+}
+
+.MuiCard-root > h2,
+.join-card-contents > h2 {
+  font-weight: 300;
+  color: $human-blue;
+  font-size: 2.55556rem;
+
+  margin-top: 28px;
+  margin-bottom: 12px;
+  width: 100%;
+  text-align: center;
+
+  @include onmobile {
+    margin-top: 50px;
+  }
+}
+
+.MuiCardContent-root {
+  padding: $nonhero-margin;
+}
+
+.MuiCardContent-root:last-child {
+  padding-bottom: $nonhero-margin;
+}
