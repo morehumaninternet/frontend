@@ -6,3 +6,15 @@ $human-light-blue: #4A81BC;
 $human-pink: #FA759E;
 
 $nonhero-margin: 25px;
+
+@mixin onmobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin ondesktop {
+  @media (min-width: $breakpoint-mobile + 1px) {
+    @content;
+  }
+}

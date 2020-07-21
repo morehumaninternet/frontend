@@ -2,7 +2,6 @@
 @import './layout.scss';
 @import './link';
 
-
 .MuiButtonBase-root {
   background-color: $human-blue;
 
@@ -37,20 +36,20 @@ header {
   padding-right: 14px !important;
 }
 
-@media (min-width: $breakpoint-mobile + 1px) {
+@include ondesktop {
   .layout.index > main > .join-card-contents {
     display: none;
   }
 }
 
 .layout.index > header {
-  @media (min-width: $breakpoint-mobile + 1px) {
+  @include ondesktop {
     button.apply-link {
       display: none;
     }
   }
 
-  @media (max-width: $breakpoint-mobile) {
+  @include onmobile {
     a[href="/apply"] {
       display: none;
     }
@@ -66,14 +65,14 @@ header {
   padding-left: $nonhero-margin;
   padding-right: $nonhero-margin;
 
-  @media (min-width: $breakpoint-mobile + 1px) {
+  @include ondesktop {
     min-height: 768px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  @media (max-width: $breakpoint-mobile) {
+  @include onmobile {
     padding-top: 190px;
     padding-bottom: $nonhero-margin;
   }
@@ -82,7 +81,7 @@ header {
     color: $human-blue;
     text-align: center;
 
-    @media (max-width: $breakpoint-mobile) {
+    @include onmobile {
       text-align: left;
     }
   }
@@ -128,7 +127,7 @@ header {
   align-items: center;
   padding-top: 132px;
 
-  @media (max-width: $breakpoint-mobile) {
+  @include onmobile {
     padding-top: 60px;
   }
 }
@@ -147,26 +146,51 @@ header {
     text-align: auto;
     text-justify: auto;
 
-    @media (max-width: $breakpoint-mobile) {
+    @include onmobile {
       > a[href="/apply"] {
         display: none;
       }
     }
 
-    @media (min-width: $breakpoint-mobile + 1px) {
+    @include ondesktop {
       > span {
         display: none;
       }
     }
   }
+}
 
+.manifesto-signature {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  > p.signature {
-    text-align: right;
+  img.signature {
+    margin-left: -13px;
+  }
+
+  .signature-texts {
+    width: 300px;
+  }
+
+  .spacer {
+    flex-grow: 1;
+    width: 100%;
+  }
+  p {
+    margin-top: 8px;
+  }
+
+  .MuiAvatar-root.MuiAvatar-circle {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 16px;
+    margin-right: 8px;
   }
 }
 
-@media (min-width: $breakpoint-mobile + 1px) {
+@include ondesktop {
   .MuiCard-root.join {
     margin-top: 60px;
   }
@@ -183,7 +207,7 @@ footer {
 
   padding-top: 88px;
 
-  @media (max-width: $breakpoint-mobile) {
+  @include onmobile {
     padding-top: 40px;
   }
 }
@@ -195,7 +219,7 @@ footer {
   justify-content: center;
   margin-bottom: 20px;
 
-  @media (max-width: $breakpoint-mobile) {
+  @include onmobile {
     min-width: 100%;
   }
 
@@ -207,7 +231,7 @@ footer {
   .footer-rings {
     max-width: 276px !important;
 
-    @media (max-width: $breakpoint-mobile) {
+    @include onmobile {
       width: 100%;
     }
   }
@@ -229,14 +253,14 @@ footer {
       padding: 11.6916656494140625px 15px; // Makes this the same size as a TextInput
     }
 
-    @media (max-width: $breakpoint-mobile) {
+    @include onmobile {
       min-width: 100%;
     }
   }
 }
 
 .MuiCard-root {
-  @media (min-width: $breakpoint-mobile + 1px) {
+  @include ondesktop {
     min-width: 460px;
     padding-top: 16px;
   }
@@ -253,7 +277,7 @@ footer {
   width: 100%;
   text-align: center;
 
-  @media (max-width: $breakpoint-mobile) {
+  @include onmobile {
     margin-top: 50px;
   }
 }
@@ -285,7 +309,7 @@ form[name="submit-application"] {
   justify-content: space-between;
   align-items: stretch;
 
-  @media (max-width: $breakpoint-mobile) {
+  @include onmobile {
     flex-direction: column;
 
     .MuiFormControl-root {
@@ -298,7 +322,7 @@ form[name="submit-application"] {
   > .MuiFormControl-root:first-child {
     flex-grow: 1;
 
-    @media (min-width: $breakpoint-mobile + 1px) {
+    @include ondesktop {
       max-width: 54%;
     }
   }
@@ -312,7 +336,7 @@ form[name="submit-application"] {
     padding-left: 10px;
     padding-right: 10px;
 
-    @media (max-width: $breakpoint-mobile) {
+    @include onmobile {
       display: none;
     }
   }

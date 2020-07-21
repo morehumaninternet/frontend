@@ -57,10 +57,15 @@ export default function IndexPage(): JSX.Element {
       <div className="manifesto">
         <div className="manifesto-contents">
           <Manifesto />
-          <div className="signature">
-            <p className="signature">- Will Weiss</p>
-            <Avatar src="will-weiss.jpg" />
-            <img src="signature.png" />
+          <div className="manifesto-signature">
+            <div className="signature-texts">
+              <img className="signature" src="signature.png"/>
+              <p>Will Weiss</p>
+            </div>
+            <div className="spacer"></div>
+            <a href="https://github.com/will-weiss">
+              <Avatar className="avatar" src="will-weiss.jpg" />
+            </a>
           </div>
         </div>
       </div>
