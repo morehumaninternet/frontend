@@ -37,16 +37,11 @@ export default function IndexPage(): JSX.Element {
       headerRef={headerRef}
       logoRef={logoRef}
       logoDistanceFromHeroBottom={logoDistanceFromHeroBottom}
-      // Use CSS to show one on mobile and the other on desktop
+      // Use CSS to hide apply-link on mobile
       headerLinks={
-        <>
-          <ButtonBase className="apply-link" component={Link} to="/apply">
-            Apply to join &nbsp;&nbsp;<ArrowForward/>
-          </ButtonBase>
-          <Button className="apply-link" onClick={() => window.scrollTo(0, joinCardContentsRef.current!.offsetTop - 28)}>
-            Apply&nbsp;&nbsp;<ArrowForward/>
-          </Button>
-        </>
+        <ButtonBase className="apply-link" component={Link} to="/apply">
+          Apply to join &nbsp;&nbsp;<ArrowForward/>
+        </ButtonBase>
       }
     >
       <SEO title="Home" />
