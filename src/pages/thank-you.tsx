@@ -14,7 +14,7 @@ export default function ThankYouPage() {
           <h2>Thank You</h2>
           <CardContent className="thank-you">
             <p>
-              We appreciate your submission!<br />Someone from our team will get in touch with you shortly.
+              We appreciate your interest!<br />Someone from our team will get in touch with you shortly.
             </p>
           </CardContent>
         </Card>
