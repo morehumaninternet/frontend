@@ -1,7 +1,7 @@
 @import './colors';
 @import './sizes';
-@import './layout';
 @import './fonts';
+@import './layout';
 @import './link';
 @import './header';
 @import './button';
@@ -14,3 +14,8 @@
 @import './pages/index';
 @import './pages/join';
 @import './pages/thank-you';
+
+.hero.foo > h2 {
+  font-family: 'xyz';
+  color: white;
+}

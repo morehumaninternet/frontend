@@ -1,20 +1,40 @@
-@font-face {
-  font-family: 'Helvetica Neue';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Helvetica Neue'), url("../fonts/HelveticaNeue-01.ttf");
-}
 
 @font-face {
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 300;
-  src: local('Helvetica Neue light'), url("../fonts/HelveticaNeue-Light-08.ttf");
+  src:
+  local('Helvetica Neue Light'),
+  local('HelveticaNeue-Light'),
+  url("../fonts/HelveticaNeue-Light-08.ttf");
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  src:
+  local('Helvetica Neue'),
+  local('HelveticaNeue'),
+  url("../fonts/HelveticaNeue-01.ttf");
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 500;
+  src:
+    local('Helvetica Neue Medium'),
+    local('HelveticaNeue-Medium'),
+    url("../fonts/HelveticaNeue-Medium-11.ttf");
 }
 
 @font-face {
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
-  src: local('Helvetica Neue bold'), url("../fonts/HelveticaNeue-Bold-02.ttf");
+  src:
+    local('Helvetica Neue Bold'),
+    local('HelveticaNeue-Bold'),
+    url("../fonts/HelveticaNeue-Bold-02.ttf");
 }
