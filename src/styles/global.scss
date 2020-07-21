@@ -10,8 +10,10 @@
   }
 }
 
+$header-height: 100px;
+
 header {
-  height: 100px;
+  height: $header-height;
   position: fixed;
   top: 0;
   width: 100%;
@@ -19,16 +21,16 @@ header {
   justify-content: space-between;
   padding-left: 100px;
   padding-right: 100px;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: $nonhero-margin;
+  padding-bottom: $nonhero-margin;
 
   @media (max-width: $breakpoint-header-scrolls) {
     position: absolute;
   }
 
   @media (max-width: 800px) {
-    padding-left: calc(20vw + -60px);
-    padding-right: calc(20vw + -60px);
+    padding-left: $nonhero-margin;
+    padding-right: $nonhero-margin;
   }
 }
 
@@ -52,6 +54,16 @@ header {
 
 @mixin backgroun {}
 
+.hero.index {
+  @include ondesktop {
+    min-height: 768px;
+  }
+
+  @include onmobile {
+    padding-top: 190px;
+  }
+}
+
 .hero {
   background-image: linear-gradient(to bottom right, $human-blue, $human-light-blue, $human-pink) !important;
   width: 100%;
@@ -60,17 +72,16 @@ header {
   justify-content: flex-end;
   padding-left: $nonhero-margin;
   padding-right: $nonhero-margin;
+  padding-top: $header-height;
 
   @include ondesktop {
-    min-height: 768px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   @include onmobile {
-    padding-top: 190px;
-    padding-bottom: $nonhero-margin;
+    padding-bottom: $nonhero-margin + 5px;
   }
 
   > h1, h2 {

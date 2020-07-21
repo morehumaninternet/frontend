@@ -9,7 +9,7 @@ export default function ThankYouPage() {
   return (
     <Layout>
       <SEO title="Thank You" />
-      <Hero>
+      <Hero additionalClassNames="thank-you">
         <Card>
           <h2>Thank You</h2>
           <CardContent className="thank-you">

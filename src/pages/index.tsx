@@ -46,7 +46,7 @@ export default function IndexPage({ data }: { data: any }): JSX.Element {
       }
     >
       <SEO title="Home" />
-      <Hero heroRef={heroRef}>
+      <Hero additionalClassNames="index" heroRef={heroRef}>
         <h1 className="white">Be part of a more human internet</h1>
         <h2 className="white">Join a collaborative community creating a public platform for users and maintainers of the web</h2>
       </Hero>
