@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import { ArrowForward } from '@material-ui/icons'
 import { Avatar, Button, ButtonBase } from '@material-ui/core'
 import Layout from '../components/layout'
@@ -9,7 +10,7 @@ import { JoinCardContents } from '../components/join-card'
 import Manifesto from '../components/manifesto'
 
 
-export default function IndexPage(): JSX.Element {
+export default function IndexPage({ data }: { data: any }): JSX.Element {
 
   const joinCardContentsRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
   const headerRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
@@ -60,7 +61,8 @@ export default function IndexPage(): JSX.Element {
           </div>
           <div className="spacer"></div>
           <a href="https://github.com/will-weiss">
-            <Avatar className="avatar" src="will-weiss.jpg" />
+            <Img className="avatar" fixed={data.willAvatar.childImageSharp.fixed} style={{ borderRadius: '50%' }} />
+            {/* <Avatar className="avatar" src="will-weiss.jpg" /> */}
           </a>
         </div>
       </div>
@@ -69,3 +71,17 @@ export default function IndexPage(): JSX.Element {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query {
+    willAvatar: file(relativePath: { eq: "will-weiss.jpg" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        # Makes it trivial to update as your page's design changes.
+        fixed(width: 55, height: 55, quality: 100) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+  }
+`

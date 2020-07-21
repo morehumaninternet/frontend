@@ -135,8 +135,6 @@ header {
   }
 }
 
-$signature-avatar-size: 55px;
-
 .manifesto-contents {
   > p {
     text-indent: 1em;
@@ -187,9 +185,8 @@ $signature-avatar-size: 55px;
     margin-top: 8px;
   }
 
-  .MuiAvatar-root.MuiAvatar-circle {
-    width: $signature-avatar-size;
-    height: $signature-avatar-size;
+  .avatar {
+    border-radius: 50%;
     margin-bottom: 16px;
   }
 }
