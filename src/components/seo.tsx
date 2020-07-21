@@ -75,6 +75,12 @@ export default function SEO(props: SEOProps) {
           content: metaDescription,
         },
       ].concat(meta)}
+
+      link={[
+        { rel: "icon", type: "image/png", sizes: "16x16", href: 'favicon16x16.png' },
+        { rel: "icon", type: "image/png", sizes: "32x32", href: 'favicon32x32.png' },
+        { rel: "shortcut icon", type: "image/png", href: 'favicon64x64.png' },
+      ]}
     />
   )
 }
