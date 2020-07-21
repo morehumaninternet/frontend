@@ -57,8 +57,11 @@ export default function IndexPage(): JSX.Element {
       <div className="manifesto">
         <div className="manifesto-contents">
           <Manifesto />
-          <p className="signature">- Will Weiss</p>
-          <Avatar src="/images/will-weiss.jpg" />
+          <div className="signature">
+            <p className="signature">- Will Weiss</p>
+            <Avatar src="will-weiss.jpg" />
+            <img src="signature.png" />
+          </div>
         </div>
       </div>
       {/* The join card is only shown on mobile */}
