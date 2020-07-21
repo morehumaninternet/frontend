@@ -50,8 +50,10 @@ header {
   }
 }
 
+@mixin backgroun {}
+
 .hero {
-  background-image: linear-gradient(to bottom right, $human-blue, $human-light-blue, $human-pink);
+  background-image: linear-gradient(to bottom right, $human-blue, $human-light-blue, $human-pink) !important;
   width: 100%;
   display: flex;
   flex-direction: column;
