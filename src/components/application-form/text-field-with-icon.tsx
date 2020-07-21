@@ -24,6 +24,7 @@ type TextFieldWithIconProps = TextFieldProps & {
   startIcon?: React.ReactNode
   inputRef?: React.MutableRefObject<HTMLInputElement>
   classes?: any
+  label?: string
 }
 
 class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink: boolean }> {
@@ -43,9 +44,10 @@ class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink
   }
 
   render() {
-    const { classes, endIcon, autoComplete, startIcon, inputRef, ...other } = this.props
+    const { classes, endIcon, autoComplete, startIcon, inputRef, label, ...other } = this.props
 
     return <TextField {...other}
+      label={label}
       onFocus={this.shrinkLabel}
       onBlur={this.unShrinkLabel}
       InputLabelProps={{ shrink: this.state.shrink, classes }}
@@ -62,6 +64,9 @@ class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink
             {endIcon}
           </InputAdornment>
         ),
+        inputProps: {
+          'aria-label': label
+        },
       }}
     />
   }

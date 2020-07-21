@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { ArrowForward } from '@material-ui/icons'
-import { Avatar, Button, ButtonBase } from '@material-ui/core'
+import { ButtonBase } from '@material-ui/core'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import SEO from '../components/seo'
@@ -56,13 +56,12 @@ export default function IndexPage({ data }: { data: any }): JSX.Element {
         </div>
         <div className="manifesto-item manifesto-signature">
           <div className="signature-texts">
-            <img className="signature" src="signature.png"/>
+            <img alt="Will Weiss signature" className="signature" src="signature.png"/>
             <p>Will Weiss</p>
           </div>
           <div className="spacer"></div>
           <a href="https://github.com/will-weiss">
-            <Img className="avatar" fixed={data.willAvatar.childImageSharp.fixed} style={{ borderRadius: '50%' }} />
-            {/* <Avatar className="avatar" src="will-weiss.jpg" /> */}
+            <Img alt="Will Weiss portrait" className="avatar" fixed={data.willAvatar.childImageSharp.fixed} />
           </a>
         </div>
       </div>

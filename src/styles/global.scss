@@ -1,5 +1,5 @@
 @import './variables';
-@import './layout.scss';
+@import './layout';
 @import './link';
 
 .MuiButtonBase-root {
@@ -51,8 +51,6 @@ header {
     }
   }
 }
-
-@mixin backgroun {}
 
 .hero.index {
   @include ondesktop {
@@ -198,7 +196,7 @@ header {
 
   .avatar {
     border-radius: 50%;
-    margin-bottom: 16px;
+    margin-bottom: 28px;
   }
 }
 

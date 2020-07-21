@@ -98,6 +98,11 @@ export default function ApplicationForm(): JSX.Element {
           required
           multiline
           rows={5}
+          InputProps={{
+            inputProps: {
+              'aria-label': "Why do you want to join?"
+            },
+          }}
         />
       </FormGroup>
       <FormGroup>
