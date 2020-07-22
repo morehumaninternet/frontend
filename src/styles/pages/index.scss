@@ -68,6 +68,8 @@
   }
 }
 
+$max-signature-width: 300px;
+
 .manifesto-signature {
   display: flex;
   justify-content: space-between;
@@ -81,7 +83,13 @@
     width: 100%;
 
     .signature-texts {
-      width: 300px;
+      width: $max-signature-width;
+    }
+  }
+
+  @include onmobile {
+    .signature-texts {
+      max-width: $max-signature-width;
     }
   }
 

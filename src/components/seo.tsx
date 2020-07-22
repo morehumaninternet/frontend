@@ -44,44 +44,23 @@ export default function SEO(props: SEOProps) {
       }}
       title={title}
       meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
+        { name: 'description', content: metaDescription },
+        { property: 'og:title', content: title },
+        { property: 'og:description', content: metaDescription },
+        { property: 'og:type', content: 'website' },
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:creator', content: site.siteMetadata.author },
+        { name: 'twitter:title', content: title },
+        { name: 'twitter:description', content: metaDescription },
+        { name: 'msapplication-TileColor', content: '#164176' },
+        { name: 'theme-color', content: '#ffffff' },
       ].concat(meta)}
 
       link={[
-        { rel: "icon", type: "image/png", sizes: "16x16", href: 'favicon16x16.png' },
-        { rel: "icon", type: "image/png", sizes: "32x32", href: 'favicon32x32.png' },
-        { rel: "shortcut icon", type: "image/png", href: 'favicon64x64.png' },
+        { rel: "apple-touch-icon", sizes: "180x180", href: '/apple-touch-icon.png' },
+        { rel: "icon", type: "image/png", sizes: "16x16", href: '/favicon-16x16.png' },
+        { rel: "manifest", href: '/site.webmanifest' },
+        { rel: "mask-icon", color: "#5bbad5", href: '/safari-pinned-tab.svg' },
       ]}
     />
   )
