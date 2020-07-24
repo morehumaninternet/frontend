@@ -10,13 +10,14 @@ type WidgetIssueProps = {
 
 function WidgetIssue({ issueTitle, setIssueTitle }: WidgetIssueProps): JSX.Element {
   return (
-    <p
+    <div
       style={{
         backgroundColor: 'inherit',
+        // height: '100%',
       }}
     >
       Expanded
-    </p>
+    </div>
   )
 }
 
@@ -55,6 +56,9 @@ export default () => {
         position: 'fixed',
         bottom: 0,
         right: 0,
+        // height: open ? '100vh' : 'auto',
+        // width: open ? 500 : 'auto',
+        transition: 'height 0.2s ease',
       }}
     >
       <div
@@ -63,8 +67,13 @@ export default () => {
           borderTopLeftRadius: 30,
           padding: 14,
           paddingBottom: 8,
-          paddingRight: 8,
+          paddingRight: 10,
           backgroundColor: 'white',
+          boxShadow: '2px 2px 5px',
+          // height: open ? '100%' : 'auto',
+          height: open ? '100vh' : 'auto',
+          width: open ? 500 : 'auto',
+          transition: 'height 0.2s ease',
         }}
       >
         <button
