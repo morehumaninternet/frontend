@@ -12,13 +12,9 @@ function AttachIcon() {
 
 export default function ButtonGroup(): JSX.Element {
   return (
-    <div style={{ display: 'flex', width: '100%' }}>
-      <Button style={{ backgroundColor: '#FA759E', color: 'white', height: 60, width: 60 }}>
-        <AttachIcon />
-      </Button>
-      <Button style={{ color: 'white', height: 60, width: '100%', marginLeft: 20, fontWeight: 700 }}>
-        Post
-      </Button>
+    <div className="more-human-internet-widget-editor-button-group">
+      <Button><AttachIcon /></Button>
+      <Button>Post</Button>
     </div>
   )
 }

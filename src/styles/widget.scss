@@ -1,3 +1,6 @@
+$more-human-internet-widget-editor-button-height: 60px;
+$more-human-internet-widget-open-padding: 50px;
+
 .more-human-internet-widget-boundary {
   position: fixed;
   bottom: 0;
@@ -8,18 +11,57 @@
     background-color: white;
     box-shadow: 2px 2px 5px;
     position: relative;
+    display: flex;
+    flex-direction: column;
     transition: all 0.3s;
 
-    &.open {
-      padding: 50px;
+    &.more-human-internet-widget-container-open {
+      padding: $more-human-internet-widget-open-padding;
       height: 100vh;
       width: 500px;
+
+      > .more-human-internet-widget-editor-container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
     }
 
-    &.closed {
-      padding: 14px;
+    &.more-human-internet-widget-container-closed {
+      padding: 15px;
       height: 60px;
       width: 60px;
+      cursor: pointer;
+
+      > .more-human-internet-widget-editor-container {
+        display: none;
+      }
+    }
+
+    > .more-human-internet-widget-editor-container {
+      > .more-human-internet-widget-editor {
+        flex-grow: 1;
+      }
+
+      > .more-human-internet-widget-editor-button-group {
+        display: flex;
+        width: 100%;
+
+        > button {
+          height: $more-human-internet-widget-editor-button-height;
+
+          &:first-child {
+            background-color: $human-pink;
+            width: $more-human-internet-widget-editor-button-height;
+            margin-right: 20px;
+          }
+
+          &:nth-child(2) {
+            width: 100%;
+            font-weight: 700;
+          }
+        }
+      }
     }
   }
 }

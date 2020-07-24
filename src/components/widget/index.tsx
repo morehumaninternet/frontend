@@ -23,7 +23,9 @@ export default () => {
 
   React.useEffect(() => {
     function listener(event: MouseEvent) {
-      if (!hasParent(event.target as any, widgetRef.current!)) setOpen(false)
+      if (!hasParent(event.target as any, widgetRef.current!)) {
+        setOpen(false)
+      }
     }
 
     document.addEventListener('click', listener)
@@ -37,28 +39,18 @@ export default () => {
       ref={widgetRef as any}
     >
       <div
-        className={`more-human-internet-widget-container ${open ? 'open' : 'closed'}`}
+        className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
+        onClick={() => !open && setOpen(true)}
+        // aria-role ?
       >
-        <button
-          onClick={() => setOpen(!open)}
-          style={{
-            borderWidth: 0,
-            padding: 0,
-            backgroundColor: 'inherit',
-            cursor: 'pointer',
-          }}
-        >
-          <WidgetIcon open={open} />
-        </button>
-        {open && (
-          <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
-            <Editor
-              issueTitle={issueTitle}
-              setIssueTitle={setIssueTitle}
-            />
-            <ButtonGroup />
-          </div>
-        )}
+        <WidgetIcon open={open} />
+        <div className="more-human-internet-widget-editor-container">
+          <Editor
+            issueTitle={issueTitle}
+            setIssueTitle={setIssueTitle}
+          />
+          <ButtonGroup />
+        </div>
       </div>
     </div>
   )
