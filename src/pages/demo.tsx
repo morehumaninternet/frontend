@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from '@material-ui/core'
 import Widget from '../components/widget'
 import SEO from '../components/seo'
+import * as mockApi from '../clients/mockApi'
 
 function GoalCo() {
   return (
@@ -30,7 +31,17 @@ function GoalCo() {
   );
 }
 
-export default function DemoPage(): JSX.Element {
+export default function DemoPage(props: any): JSX.Element {
+
+  const postIssue = async (widgetFormValues: { title: string }) => {
+    const issue = await mockApi.postIssue({
+      site: 'goalco.com',
+      title: widgetFormValues.title
+    })
+
+    props.navigate(`/issue?site=${issue.site}&id=${issue.id}`)
+  }
+
   return (
     <div className="demo-page">
       <SEO
@@ -62,7 +73,7 @@ export default function DemoPage(): JSX.Element {
         </div>
         <img src="/goalco-hero.png"></img>
       </div>
-      <Widget />
+      <Widget postIssue={postIssue}/>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import WidgetIcon from './icon'
 import Editor from './editor'
 import ButtonGroup from './button-group'
-import * as mockApi from '../../clients/mockApi'
+
 
 
 function hasParent(possibleChild: HTMLElement, possibleParent: HTMLElement) {
@@ -16,7 +16,12 @@ function hasParent(possibleChild: HTMLElement, possibleParent: HTMLElement) {
   return false
 }
 
-export default () => {
+type WidgetProps = {
+  postIssue(widgetFormValues: { title: string }): Promise<void>
+}
+
+
+export default ({ postIssue }: WidgetProps) => {
   const widgetRef = React.useRef<HTMLDivElement>()
 
   const [open, setOpen] = React.useState(false)
@@ -47,9 +52,9 @@ export default () => {
         <WidgetIcon open={open} />
         <form
           className="more-human-internet-widget-editor-container"
-          onSubmit={event => {
+          onSubmit={async event => {
             event.preventDefault()
-
+            await postIssue({ title: issueTitle })
           }}
         >
           <Editor
@@ -62,4 +67,3 @@ export default () => {
     </div>
   )
 }
-

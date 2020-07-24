@@ -49,13 +49,25 @@ $more-human-internet-widget-open-padding: 50px;
           > trix-toolbar {
             display: none;
           }
+
           > trix-editor {
             border: 0;
-            font-size: 24px;
             padding: 0;
+            font-size: 24px;
           }
         }
 
+        > .more-human-internet-widget-editor-issue-body-input {
+          > trix-toolbar {
+            display: none;
+          }
+
+          > trix-editor {
+            border: 0;
+            padding: 0;
+            font-size: 16px;
+          }
+        }
       }
 
       > .more-human-internet-widget-editor-button-group {
