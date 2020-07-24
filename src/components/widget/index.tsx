@@ -1,25 +1,8 @@
 import React from 'react'
 import WidgetIcon from './icon'
+import Editor from './editor'
+import ButtonGroup from './button-group'
 
-
-
-type WidgetIssueProps = {
-  issueTitle: string
-  setIssueTitle(issueTitle: string): void
-}
-
-function WidgetIssue({ issueTitle, setIssueTitle }: WidgetIssueProps): JSX.Element {
-  return (
-    <div
-      style={{
-        backgroundColor: 'inherit',
-        // height: '100%',
-      }}
-    >
-      Expanded
-    </div>
-  )
-}
 
 function hasParent(possibleChild: HTMLElement, possibleParent: HTMLElement) {
   let test: null | HTMLElement = possibleChild
@@ -56,24 +39,20 @@ export default () => {
         position: 'fixed',
         bottom: 0,
         right: 0,
-        // height: open ? '100vh' : 'auto',
-        // width: open ? 500 : 'auto',
-        transition: 'height 0.2s ease',
       }}
     >
       <div
         className="widget-container"
         style={{
           borderTopLeftRadius: 30,
-          padding: 14,
-          paddingBottom: 8,
-          paddingRight: 10,
+          padding: open ? 50 : 14,
+          paddingBottom: open ? 50 : 8,
+          paddingRight: open ? 50 : 10,
           backgroundColor: 'white',
           boxShadow: '2px 2px 5px',
-          // height: open ? '100%' : 'auto',
           height: open ? '100vh' : 'auto',
           width: open ? 500 : 'auto',
-          transition: 'height 0.2s ease',
+          position: 'relative',
         }}
       >
         <button
@@ -88,10 +67,13 @@ export default () => {
           <WidgetIcon open={open} />
         </button>
         {open && (
-          <WidgetIssue
-            issueTitle={issueTitle}
-            setIssueTitle={setIssueTitle}
-          />
+          <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
+            <Editor
+              issueTitle={issueTitle}
+              setIssueTitle={setIssueTitle}
+            />
+            <ButtonGroup />
+          </div>
         )}
       </div>
     </div>
