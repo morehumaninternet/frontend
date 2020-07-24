@@ -1,39 +1,90 @@
 import React from 'react'
+import WidgetIcon from './icon'
 
 
-const styles: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> = {
 
+type WidgetIssueProps = {
+  issueTitle: string
+  setIssueTitle(issueTitle: string): void
 }
 
-function WidgetIcon({ open }: { open: boolean }) {
+function WidgetIssue({ issueTitle, setIssueTitle }: WidgetIssueProps): JSX.Element {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      fill="none"
-      viewBox="0 0 32 32"
+    <p
+      style={{
+        backgroundColor: 'inherit',
+      }}
     >
-      <circle cx="7.5" cy="24.5" r="7.5" fill="#FA759E"></circle>
-      <circle cx="24.5" cy="7.5" r="7.5" fill="#164176"></circle>
-    </svg>
+      Expanded
+    </p>
   )
 }
 
+function hasParent(possibleChild: HTMLElement, possibleParent: HTMLElement) {
+  let test: null | HTMLElement = possibleChild
+
+  while (test) {
+    if (test === possibleParent) return true
+    test = test.parentElement
+  }
+
+  return false
+}
 
 export default () => {
+  const widgetRef = React.useRef<HTMLDivElement>()
+
   const [open, setOpen] = React.useState(false)
+  const [issueTitle, setIssueTitle] = React.useState('')
+
+  React.useEffect(() => {
+    function listener(event: MouseEvent) {
+      if (!hasParent(event.target as any, widgetRef.current!)) setOpen(false)
+    }
+
+    document.addEventListener('click', listener)
+
+    return () => document.removeEventListener('click', listener)
+  })
 
   return (
     <div
-      className="widget-container"
+      className="widget-boundary"
+      ref={widgetRef as any}
       style={{
         position: 'fixed',
         bottom: 0,
         right: 0,
       }}
     >
-      <WidgetIcon open={open} />
+      <div
+        className="widget-container"
+        style={{
+          borderTopLeftRadius: 30,
+          padding: 14,
+          paddingBottom: 8,
+          paddingRight: 8,
+          backgroundColor: 'white',
+        }}
+      >
+        <button
+          onClick={() => setOpen(!open)}
+          style={{
+            borderWidth: 0,
+            padding: 0,
+            backgroundColor: 'inherit',
+            cursor: 'pointer',
+          }}
+        >
+          <WidgetIcon open={open} />
+        </button>
+        {open && (
+          <WidgetIssue
+            issueTitle={issueTitle}
+            setIssueTitle={setIssueTitle}
+          />
+        )}
+      </div>
     </div>
   )
 }
