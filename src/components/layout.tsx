@@ -8,14 +8,14 @@ type LayoutProps = {
   mainClassName?: string
   headerRef?: React.MutableRefObject<HTMLElement>
   logoRef?: React.MutableRefObject<SVGSVGElement>
-  logoDistanceFromHeroBottom?: number
+  logoFade?: number
   children: React.ReactNode
 }
 
-const Layout = ({ headerLinks, mainClassName, headerRef, logoRef, logoDistanceFromHeroBottom, children }: LayoutProps) => {
+const Layout = ({ headerLinks, mainClassName, headerRef, logoRef, logoFade, children }: LayoutProps) => {
   return (
     <div className={`layout ${mainClassName}`}>
-      <Header headerRef={headerRef} logoRef={logoRef} logoDistanceFromHeroBottom={logoDistanceFromHeroBottom}>
+      <Header headerRef={headerRef} logoRef={logoRef} logoFade={logoFade}>
         {headerLinks}
       </Header>
       <main>{children}</main>

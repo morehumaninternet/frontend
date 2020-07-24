@@ -18,6 +18,7 @@ export default function IndexPage({ data }: { data: any }): JSX.Element {
   const logoRef: React.MutableRefObject<SVGSVGElement> = React.useRef() as any
 
   const [logoDistanceFromHeroBottom, setLogoDistanceFromHeroBottom] = React.useState(Infinity)
+  const [logoFade, setLogoFade] = React.useState(0)
 
   React.useEffect(() => {
     function onScroll() {
@@ -32,12 +33,21 @@ export default function IndexPage({ data }: { data: any }): JSX.Element {
     return () => window.removeEventListener('scroll', onScroll)
   })
 
+  React.useEffect(() => {
+    if (!headerRef) return setLogoFade(0)
+    const headerIsFixed = window.getComputedStyle(headerRef.current!).position === 'fixed'
+    if (!headerIsFixed) return setLogoFade(0)
+    if (logoDistanceFromHeroBottom > 100) return setLogoFade(0)
+    const nextLogoFade = (100 - Math.max(0, logoDistanceFromHeroBottom)) / 100
+    setLogoFade(nextLogoFade)
+  }, [headerRef, logoDistanceFromHeroBottom])
+
   return (
     <Layout
       mainClassName="index"
       headerRef={headerRef}
       logoRef={logoRef}
-      logoDistanceFromHeroBottom={logoDistanceFromHeroBottom}
+      logoFade={logoFade}
       // Use CSS to hide apply-link on mobile
       headerLinks={
         <ButtonBase className="apply-link" component={Link} to="/apply">
