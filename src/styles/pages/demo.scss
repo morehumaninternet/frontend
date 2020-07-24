@@ -1,0 +1,38 @@
+.demo-page {
+  background-color: #F7F7F7;
+  min-height: 100vh;
+
+  > header {
+    > .links {
+      margin-top: 14px;
+      display: flex;
+
+      > a {
+        margin: 16px;
+      }
+    }
+  }
+
+  button.learn-more {
+    background-color: #FADE60;
+    color: #000000;
+    font-weight: 500;
+    width: 144px;
+  }
+
+  > .demo-content {
+    padding-top: 250px;
+    padding-left: 200px;
+    display: flex;
+
+    > .text {
+      > h1 {
+        font-weight: 300;
+        font-size: 2em;
+        max-width: 275px;
+      }
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
