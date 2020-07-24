@@ -25,7 +25,7 @@ export default function IssuePage(props: any): JSX.Element {
   const [issueState, setIssueState] = React.useState<IssueState>({ loading: true })
 
   React.useEffect(() => {
-    console.log('in here', props)
+
     const params = new URLSearchParams(props.location.search)
 
     const site = params.get('site')
@@ -45,7 +45,7 @@ export default function IssuePage(props: any): JSX.Element {
         }
       })
     })
-  })
+  }, [props.location.search])
 
   return (
     <Layout
