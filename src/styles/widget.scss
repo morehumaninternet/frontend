@@ -1,0 +1,25 @@
+.more-human-internet-widget-boundary {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  > .more-human-internet-widget-container {
+    border-top-left-radius: 30px;
+    background-color: white;
+    box-shadow: 2px 2px 5px;
+    position: relative;
+    transition: all 0.3s;
+
+    &.open {
+      padding: 50px;
+      height: 100vh;
+      width: 500px;
+    }
+
+    &.closed {
+      padding: 14px;
+      height: 60px;
+      width: 60px;
+    }
+  }
+}

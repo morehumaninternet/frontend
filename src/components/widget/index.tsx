@@ -33,27 +33,11 @@ export default () => {
 
   return (
     <div
-      className="widget-boundary"
+      className="more-human-internet-widget-boundary"
       ref={widgetRef as any}
-      style={{
-        position: 'fixed',
-        bottom: 0,
-        right: 0,
-      }}
     >
       <div
-        className="widget-container"
-        style={{
-          borderTopLeftRadius: 30,
-          padding: open ? 50 : 14,
-          paddingBottom: open ? 50 : 8,
-          paddingRight: open ? 50 : 10,
-          backgroundColor: 'white',
-          boxShadow: '2px 2px 5px',
-          height: open ? '100vh' : 'auto',
-          width: open ? 500 : 'auto',
-          position: 'relative',
-        }}
+        className={`more-human-internet-widget-container ${open ? 'open' : 'closed'}`}
       >
         <button
           onClick={() => setOpen(!open)}
