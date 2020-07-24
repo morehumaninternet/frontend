@@ -13,8 +13,8 @@ function AttachIcon() {
 export default function ButtonGroup(): JSX.Element {
   return (
     <div className="more-human-internet-widget-editor-button-group">
-      <Button><AttachIcon /></Button>
-      <Button>Post</Button>
+      <Button type="button"><AttachIcon /></Button>
+      <Button type="submit">Post</Button>
     </div>
   )
 }

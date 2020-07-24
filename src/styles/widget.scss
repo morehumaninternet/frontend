@@ -39,8 +39,23 @@ $more-human-internet-widget-open-padding: 50px;
     }
 
     > .more-human-internet-widget-editor-container {
+      margin-bottom: 0;
+      margin-top: 60px;
+
       > .more-human-internet-widget-editor {
         flex-grow: 1;
+
+        > .more-human-internet-widget-editor-issue-title-input {
+          > trix-toolbar {
+            display: none;
+          }
+          > trix-editor {
+            border: 0;
+            font-size: 24px;
+            padding: 0;
+          }
+        }
+
       }
 
       > .more-human-internet-widget-editor-button-group {

@@ -11,6 +11,7 @@ type SEOProps = {
   meta?: any[]
   pageTitle?: string
   links?: object[]
+  scripts?: object[]
 }
 
 export default function SEO(props: SEOProps) {
@@ -18,6 +19,7 @@ export default function SEO(props: SEOProps) {
   const lang = props.lang || 'en'
   const meta = props.meta || []
   const pageTitle = props.pageTitle
+
   const links = props.links || [
     { rel: "apple-touch-icon", sizes: "180x180", href: '/apple-touch-icon.png' },
     { rel: "icon", type: "image/png", sizes: "16x16", href: '/favicon-16x16.png' },
@@ -25,6 +27,8 @@ export default function SEO(props: SEOProps) {
     { rel: "manifest", href: '/site.webmanifest' },
     { rel: "mask-icon", color: "#5bbad5", href: '/safari-pinned-tab.svg' },
   ]
+
+  const scripts = props.scripts || []
 
   const { site } = useStaticQuery(
     graphql`
@@ -64,6 +68,8 @@ export default function SEO(props: SEOProps) {
       ].concat(meta)}
 
       link={links}
+
+      script={scripts}
     />
   )
 }

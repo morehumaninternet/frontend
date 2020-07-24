@@ -2,6 +2,7 @@ import React from 'react'
 import WidgetIcon from './icon'
 import Editor from './editor'
 import ButtonGroup from './button-group'
+import * as mockApi from '../../clients/mockApi'
 
 
 function hasParent(possibleChild: HTMLElement, possibleParent: HTMLElement) {
@@ -44,13 +45,19 @@ export default () => {
         // aria-role ?
       >
         <WidgetIcon open={open} />
-        <div className="more-human-internet-widget-editor-container">
+        <form
+          className="more-human-internet-widget-editor-container"
+          onSubmit={event => {
+            event.preventDefault()
+
+          }}
+        >
           <Editor
             issueTitle={issueTitle}
             setIssueTitle={setIssueTitle}
           />
           <ButtonGroup />
-        </div>
+        </form>
       </div>
     </div>
   )
