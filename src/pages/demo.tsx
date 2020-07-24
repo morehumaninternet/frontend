@@ -48,10 +48,10 @@ export default function DemoPage(props: any): JSX.Element {
         pageTitle="Demo"
         links={[
           { rel: "shortcut icon", type: "image/png", sizes: "32x32", href: '/goalco.ico' },
-          { rel: "stylesheet", type: "text/css", href: "trix.css" },
+          { rel: "stylesheet", type: "text/css", href: "/trix.css" },
         ]}
         scripts={[
-          { type: "text/javascript", src: "trix.js" },
+          { type: "text/javascript", src: "/trix.js" },
         ]}
       />
       <header>
