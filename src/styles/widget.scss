@@ -59,8 +59,20 @@ $more-human-internet-widget-open-padding: 50px;
         }
 
         > .more-human-internet-widget-editor-issue-body-input {
+          position: relative;
+
           > trix-toolbar {
+            position: absolute;
             display: none;
+
+            .trix-button {
+              // display: none;
+              background-color: white;
+
+              &.trix-button--icon-bold {
+                display: auto;
+              }
+            }
           }
 
           > trix-editor {

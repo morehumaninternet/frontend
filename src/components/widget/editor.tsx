@@ -6,7 +6,7 @@ type EditorProps = {
   setIssueTitle(issueTitle: string): void
 }
 
-const defaultValue = `
+const defaultIssueBody = `
 <strong>Steps</strong>
 
 <ol>
@@ -21,6 +21,8 @@ const defaultValue = `
 `
 
 
+
+
 export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.Element {
   const issueTitleRef = React.useRef<HTMLDivElement>()
   const issueBodyRef = React.useRef<HTMLDivElement>()
@@ -28,9 +30,11 @@ export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.
   React.useEffect(() => {
     const editorElement = issueTitleRef.current!.querySelector('trix-editor') as any
     editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
+      const { value } = event.target
       const match = event.target.value.match(/^<div>(.*)<\/div>$/)
 
       if (!match) {
+        console.error(value)
         throw new Error('trix should always wrap its contents in a div and the toolbar is exposed')
       }
 
@@ -41,7 +45,9 @@ export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.
   React.useEffect(() => {
     const editorElement = issueBodyRef.current!.querySelector('trix-editor') as any
 
-    editorElement.editor.loadHTML(defaultValue)
+    editorElement.addEventListener('trix-initialize', () => {
+      editorElement.editor.loadHTML(defaultIssueBody)
+    })
 
     // editorElement.editor
     editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
@@ -52,11 +58,30 @@ export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.
       const [selectionStart, selectionEnd] = editorElement.editor.getSelectedRange()
       const toolbarElement = issueBodyRef.current!.querySelector('trix-toolbar') as any
 
-      if (selectionStart === selectionEnd) {
-        toolbarElement.style.display = 'none'
-      } else {
-        toolbarElement.style.display = 'block'
+      if (selectionStart === selectionEnd) return toolbarElement.style.display = 'none'
+
+      const startingRect = editorElement.editor.getClientRectAtPosition(selectionStart)
+
+      console.log(selectionStart, selectionEnd, startingRect)
+
+      let testCharacter = selectionStart
+      let lastRectSameRow
+
+      while (testCharacter < selectionEnd) {
+        const testRect = editorElement.editor.getClientRectAtPosition(testCharacter)
+        console.log(testCharacter, testRect)
+        testCharacter++
+
+
+        if (!testRect) continue
+        if (testRect.top > startingRect.top) break
+
+        lastRectSameRow = testRect
       }
+
+      console.log('zzz', startingRect, lastRectSameRow)
+
+      toolbarElement.style.display = 'absolute'
     })
   }, [])
 
@@ -70,13 +95,7 @@ export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.
       <div
         ref={issueBodyRef as any}
         className="more-human-internet-widget-editor-issue-body-input"
-        dangerouslySetInnerHTML={{
-          __html: `
-            <trix-editor>
-              ${defaultValue}
-            </trix-editor>
-          `
-        }}
+        dangerouslySetInnerHTML={{ __html: `<trix-editor></trix-editor>` }}
       />
     </div>
   )
