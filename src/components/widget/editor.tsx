@@ -20,7 +20,59 @@ const defaultIssueBody = `
 <strong>Expectations</strong>
 `
 
+function getTopSelectedRow(editorElement: any): null | { top: number, left: number, right: number } {
+  const [selectionStart, selectionEnd] = editorElement.editor.getSelectedRange()
 
+  if (selectionStart === selectionEnd) return null
+
+  let testCharacter = selectionStart
+  let startingRect
+  let lastRectSameRow
+
+  while (testCharacter < selectionEnd) {
+    const testRect = editorElement.editor.getClientRectAtPosition(testCharacter)
+    console.log('m', testCharacter, testRect)
+    testCharacter++
+
+    if (!testRect) continue
+
+    if (!startingRect) {
+      startingRect = testRect
+      lastRectSameRow = testRect
+      continue
+    }
+    if (testRect.top > startingRect.top) {
+      break
+    }
+
+    lastRectSameRow = testRect
+  }
+
+  if (!startingRect) throw new Error('startingRect not found')
+  if (!lastRectSameRow) throw new Error('lastRectSameRow not found')
+  if (startingRect.top !== lastRectSameRow.top) throw new Error('found rectangles on different rows')
+
+  return {
+    top: startingRect.top,
+    left: startingRect.left,
+    right: lastRectSameRow.right,
+  }
+}
+
+function numPixels(style: string): number {
+  const match = style.match(/^(.+)px$/)
+
+  if (!match) {
+    throw new Error(`style must end in px, got ${style}`)
+  }
+
+  const pixels = Number(match[1])
+  if (Number.isNaN(pixels)) {
+    throw new Error(`${style} does not have numeric pixels`)
+  }
+
+  return pixels
+}
 
 
 export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.Element {
@@ -55,43 +107,19 @@ export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.
     })
 
     editorElement.addEventListener('trix-selection-change', () => {
-      const [selectionStart, selectionEnd] = editorElement.editor.getSelectedRange()
       const toolbarElement = issueBodyRef.current!.querySelector('trix-toolbar') as any
+      const topSelectedRow = getTopSelectedRow(editorElement)
 
-      if (selectionStart === selectionEnd) {
+      if (!topSelectedRow) {
         toolbarElement.style.display = 'none'
-        return
-      }
-
-      let testCharacter = selectionStart
-      let startingRect
-      let lastRectSameRow
-
-      while (testCharacter < selectionEnd) {
-        const testRect = editorElement.editor.getClientRectAtPosition(testCharacter)
-        console.log('m', testCharacter, testRect)
-        testCharacter++
-
-        if (!testRect) continue
-
-        if (!startingRect) {
-          startingRect = testRect
-          lastRectSameRow = testRect
-          continue
-        }
-        if (testRect.top > startingRect.top) {
-          break
-        }
-
-        lastRectSameRow = testRect
-      }
-
-      console.log('zzz', startingRect, lastRectSameRow)
-
-      if (lastRectSameRow) {
+      } else {
         toolbarElement.style.display = 'block'
-        toolbarElement.style.top = `${startingRect.top}px`
-        toolbarElement.style.left = `${(startingRect.left + lastRectSameRow.right) / 2}px`
+        const buttonGroupStyle = getComputedStyle(toolbarElement.querySelector('.trix-button-row > .trix-button-group'))
+        const heightPixels = numPixels(buttonGroupStyle.height)
+        const widthPixels = numPixels(buttonGroupStyle.width)
+        const midpoint = (topSelectedRow.left + topSelectedRow.right) / 2
+        toolbarElement.style.top = `${topSelectedRow.top - heightPixels}px`
+        toolbarElement.style.left = `${midpoint - (widthPixels / 2)}px`
       }
     })
   }, [])

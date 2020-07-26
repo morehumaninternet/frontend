@@ -65,12 +65,19 @@ $more-human-internet-widget-open-padding: 50px;
             position: fixed;
             display: none;
 
+            .trix-button-group {
+              margin-bottom: 0;
+              border: none;
+            }
+
             .trix-button {
-              // display: none;
+              display: none;
               background-color: white;
 
-              &.trix-button--icon-bold {
-                display: auto;
+              &.trix-button--icon-bold,
+              &.trix-button--icon-italic,
+              &.trix-button--icon-link {
+                display: block;
               }
             }
           }
