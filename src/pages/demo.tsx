@@ -4,6 +4,7 @@ import Widget from '../components/widget'
 import SEO from '../components/seo'
 import * as mockApi from '../clients/mockApi'
 
+
 function GoalCo() {
   return (
     <svg

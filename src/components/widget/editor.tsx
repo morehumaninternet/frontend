@@ -25,6 +25,8 @@ function getTopSelectedRow(editorElement: any): null | { top: number, left: numb
 
   if (selectionStart === selectionEnd) return null
 
+  console.log('selection', selectionStart, selectionEnd)
+
   let testCharacter = selectionStart
   let startingRect
   let lastRectSameRow
@@ -76,6 +78,7 @@ function numPixels(style: string): number {
 
 
 export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.Element {
+  console.log('here')
   const issueTitleRef = React.useRef<HTMLDivElement>()
   const issueBodyRef = React.useRef<HTMLDivElement>()
 
@@ -118,7 +121,7 @@ export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.
         const heightPixels = numPixels(buttonGroupStyle.height)
         const widthPixels = numPixels(buttonGroupStyle.width)
         const midpoint = (topSelectedRow.left + topSelectedRow.right) / 2
-        toolbarElement.style.top = `${topSelectedRow.top - heightPixels}px`
+        toolbarElement.style.top = `${topSelectedRow.top - heightPixels - 10}px`
         toolbarElement.style.left = `${midpoint - (widthPixels / 2)}px`
       }
     })
