@@ -58,30 +58,41 @@ export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.
       const [selectionStart, selectionEnd] = editorElement.editor.getSelectedRange()
       const toolbarElement = issueBodyRef.current!.querySelector('trix-toolbar') as any
 
-      if (selectionStart === selectionEnd) return toolbarElement.style.display = 'none'
-
-      const startingRect = editorElement.editor.getClientRectAtPosition(selectionStart)
-
-      console.log(selectionStart, selectionEnd, startingRect)
+      if (selectionStart === selectionEnd) {
+        toolbarElement.style.display = 'none'
+        return
+      }
 
       let testCharacter = selectionStart
+      let startingRect
       let lastRectSameRow
 
       while (testCharacter < selectionEnd) {
         const testRect = editorElement.editor.getClientRectAtPosition(testCharacter)
-        console.log(testCharacter, testRect)
+        console.log('m', testCharacter, testRect)
         testCharacter++
 
-
         if (!testRect) continue
-        if (testRect.top > startingRect.top) break
+
+        if (!startingRect) {
+          startingRect = testRect
+          lastRectSameRow = testRect
+          continue
+        }
+        if (testRect.top > startingRect.top) {
+          break
+        }
 
         lastRectSameRow = testRect
       }
 
       console.log('zzz', startingRect, lastRectSameRow)
 
-      toolbarElement.style.display = 'absolute'
+      if (lastRectSameRow) {
+        toolbarElement.style.display = 'block'
+        toolbarElement.style.top = `${startingRect.top}px`
+        toolbarElement.style.left = `${(startingRect.left + lastRectSameRow.right) / 2}px`
+      }
     })
   }, [])
 

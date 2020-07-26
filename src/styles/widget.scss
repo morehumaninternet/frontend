@@ -62,7 +62,7 @@ $more-human-internet-widget-open-padding: 50px;
           position: relative;
 
           > trix-toolbar {
-            position: absolute;
+            position: fixed;
             display: none;
 
             .trix-button {
