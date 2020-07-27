@@ -1,6 +1,7 @@
 export type IssuePostBody = {
   site: string
   title: string
+  initialCommentBody: string
 }
 
 export type Issue = IssuePostBody & {

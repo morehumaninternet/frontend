@@ -34,10 +34,11 @@ function GoalCo() {
 
 export default function DemoPage(props: any): JSX.Element {
 
-  const postIssue = async (widgetFormValues: { title: string }) => {
+  const postIssue = async (widgetFormValues: { title: string, initialCommentBody: string }) => {
     const issue = await mockApi.postIssue({
       site: 'goalco.com',
-      title: widgetFormValues.title
+      title: widgetFormValues.title,
+      initialCommentBody: widgetFormValues.initialCommentBody,
     })
 
     props.navigate(`/issue?site=${issue.site}&id=${issue.id}`)

@@ -17,7 +17,10 @@ function IssueBreadcrumbs({ site, issueId }: { site: string, issueId: number }) 
 
 type IssueState =
   | { loading: true }
-  | { loading: false, issue: { id: number, site: string, title: string } }
+  | {
+      loading: false,
+      issue: { id: number, site: string, title: string, initialCommentBody: string }
+    }
 
 
 export default function IssuePage(props: any): JSX.Element {
@@ -41,7 +44,8 @@ export default function IssuePage(props: any): JSX.Element {
         issue: {
           id: issueId,
           site: site,
-          title: issue!.title
+          title: issue!.title,
+          initialCommentBody: issue!.initialCommentBody,
         }
       })
     })
@@ -62,8 +66,11 @@ export default function IssuePage(props: any): JSX.Element {
           <p>Loading...</p>
         ) : (
           <>
-          <IssueBreadcrumbs site={issueState.issue.site} issueId={issueState.issue.id} />
-          <h1>{issueState.issue.title}</h1>
+            <IssueBreadcrumbs site={issueState.issue.site} issueId={issueState.issue.id} />
+            <h1>{issueState.issue.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: issueState.issue.initialCommentBody }}>
+
+            </div>
           </>
         )}
       </Hero>

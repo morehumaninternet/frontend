@@ -3,7 +3,7 @@ import React from 'react'
 
 type EditorProps = {
   setIssueTitle(issueTitle: string): void
-  setIssueBody(issueBody: string): void
+  setIssueInitialCommentBody(issueInitialCommentBody: string): void
 }
 
 const defaultIssueBody = `
@@ -87,7 +87,7 @@ function insideDiv(html: string): string {
   return match[1]
 }
 
-export default function Editor({ setIssueTitle, setIssueBody }: EditorProps): JSX.Element {
+export default function Editor({ setIssueTitle, setIssueInitialCommentBody }: EditorProps): JSX.Element {
   const issueTitleRef = React.useRef<HTMLDivElement>()
   const issueBodyRef = React.useRef<HTMLDivElement>()
 
@@ -98,10 +98,12 @@ export default function Editor({ setIssueTitle, setIssueBody }: EditorProps): JS
       toolbarElement.style.display = 'none'
     } else {
       toolbarElement.style.display = 'block'
+
       const buttonGroupStyle = getComputedStyle(toolbarElement.querySelector('.trix-button-row > .trix-button-group'))
       const heightPixels = numPixels(buttonGroupStyle.height)
       const widthPixels = numPixels(buttonGroupStyle.width)
       const midpoint = (topSelectedRow.left + topSelectedRow.right) / 2
+
       toolbarElement.style.top = `${topSelectedRow.top - heightPixels - 10}px`
       toolbarElement.style.left = `${midpoint - (widthPixels / 2)}px`
     }
@@ -127,6 +129,10 @@ export default function Editor({ setIssueTitle, setIssueBody }: EditorProps): JS
 
     editorElement.addEventListener('trix-blur', () => {
       updateTopSelectedRow(null)
+    })
+
+    editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
+      setIssueInitialCommentBody(event.target.value)
     })
   }, [])
 
