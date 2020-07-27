@@ -58,7 +58,7 @@ export default function IndexPage({ data }: { data: any }): JSX.Element {
       <SEO />
       <Hero additionalClassNames="index" heroRef={heroRef}>
         <h1 className="white">The internet's helpdesk</h1>
-        <h2 className="white">Be part of a more human internet</h2>
+        <h2 className="white">Join us in our quest to make the web more transparent and better aligned with the interests of all people.</h2>
       </Hero>
       <div className="manifesto">
         <div className="manifesto-item manifesto-contents">
