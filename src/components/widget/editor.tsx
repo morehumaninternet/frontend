@@ -97,7 +97,7 @@ export default function Editor({ setIssueTitle, setIssueInitialCommentBody }: Ed
     if (!topSelectedRow) {
       toolbarElement.style.display = 'none'
     } else {
-      toolbarElement.style.display = 'block'
+      toolbarElement.style.display = 'block' // this has to go first so that the .trix-button-group is on the page so that its height & width can be measured
 
       const buttonGroupStyle = getComputedStyle(toolbarElement.querySelector('.trix-button-row > .trix-button-group'))
       const heightPixels = numPixels(buttonGroupStyle.height)
