@@ -2,8 +2,8 @@ import React from 'react'
 
 
 type EditorProps = {
-  issueTitle: string
   setIssueTitle(issueTitle: string): void
+  setIssueBody(issueBody: string): void
 }
 
 const defaultIssueBody = `
@@ -20,24 +20,24 @@ const defaultIssueBody = `
 <strong>Expectations</strong>
 `
 
-function getTopSelectedRow(editorElement: any): null | { top: number, left: number, right: number } {
+function * getSelectionClientRects(editorElement: any): IterableIterator<{ top: number, bottom: number, left: number, right: number }> {
   const [selectionStart, selectionEnd] = editorElement.editor.getSelectedRange()
+  if (selectionStart === selectionEnd) return
 
-  if (selectionStart === selectionEnd) return null
+  let selectionCharacter = selectionStart
 
-  console.log('selection', selectionStart, selectionEnd)
+  while (selectionCharacter < selectionEnd) {
+    const rect = editorElement.editor.getClientRectAtPosition(selectionCharacter)
+    selectionCharacter++
+    if (rect) yield rect
+  }
+}
 
-  let testCharacter = selectionStart
+function getTopSelectedRow(editorElement: any): null | { top: number, left: number, right: number } {
   let startingRect
   let lastRectSameRow
 
-  while (testCharacter < selectionEnd) {
-    const testRect = editorElement.editor.getClientRectAtPosition(testCharacter)
-    console.log('m', testCharacter, testRect)
-    testCharacter++
-
-    if (!testRect) continue
-
+  for (const testRect of getSelectionClientRects(editorElement)) {
     if (!startingRect) {
       startingRect = testRect
       lastRectSameRow = testRect
@@ -50,7 +50,7 @@ function getTopSelectedRow(editorElement: any): null | { top: number, left: numb
     lastRectSameRow = testRect
   }
 
-  if (!startingRect) throw new Error('startingRect not found')
+  if (!startingRect) return null
   if (!lastRectSameRow) throw new Error('lastRectSameRow not found')
   if (startingRect.top !== lastRectSameRow.top) throw new Error('found rectangles on different rows')
 
@@ -76,24 +76,41 @@ function numPixels(style: string): number {
   return pixels
 }
 
+function insideDiv(html: string): string {
+  const match = html.match(/^<div>(.*)<\/div>$/)
 
-export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.Element {
-  console.log('here')
+  if (!match) {
+    console.error(html)
+    throw new Error('trix should always wrap its contents in a div and the toolbar is exposed')
+  }
+
+  return match[1]
+}
+
+export default function Editor({ setIssueTitle, setIssueBody }: EditorProps): JSX.Element {
   const issueTitleRef = React.useRef<HTMLDivElement>()
   const issueBodyRef = React.useRef<HTMLDivElement>()
+
+  function updateTopSelectedRow(topSelectedRow: null | { top: number, left: number, right: number }) {
+    const toolbarElement = issueBodyRef.current!.querySelector('trix-toolbar') as any
+
+    if (!topSelectedRow) {
+      toolbarElement.style.display = 'none'
+    } else {
+      toolbarElement.style.display = 'block'
+      const buttonGroupStyle = getComputedStyle(toolbarElement.querySelector('.trix-button-row > .trix-button-group'))
+      const heightPixels = numPixels(buttonGroupStyle.height)
+      const widthPixels = numPixels(buttonGroupStyle.width)
+      const midpoint = (topSelectedRow.left + topSelectedRow.right) / 2
+      toolbarElement.style.top = `${topSelectedRow.top - heightPixels - 10}px`
+      toolbarElement.style.left = `${midpoint - (widthPixels / 2)}px`
+    }
+  }
 
   React.useEffect(() => {
     const editorElement = issueTitleRef.current!.querySelector('trix-editor') as any
     editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
-      const { value } = event.target
-      const match = event.target.value.match(/^<div>(.*)<\/div>$/)
-
-      if (!match) {
-        console.error(value)
-        throw new Error('trix should always wrap its contents in a div and the toolbar is exposed')
-      }
-
-      setIssueTitle(match[1])
+      setIssueTitle(insideDiv(event.target.value))
     })
   }, [])
 
@@ -104,26 +121,12 @@ export default function Editor({ issueTitle, setIssueTitle }: EditorProps): JSX.
       editorElement.editor.loadHTML(defaultIssueBody)
     })
 
-    // editorElement.editor
-    editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
-
+    editorElement.addEventListener('trix-selection-change', () => {
+      updateTopSelectedRow(getTopSelectedRow(editorElement))
     })
 
-    editorElement.addEventListener('trix-selection-change', () => {
-      const toolbarElement = issueBodyRef.current!.querySelector('trix-toolbar') as any
-      const topSelectedRow = getTopSelectedRow(editorElement)
-
-      if (!topSelectedRow) {
-        toolbarElement.style.display = 'none'
-      } else {
-        toolbarElement.style.display = 'block'
-        const buttonGroupStyle = getComputedStyle(toolbarElement.querySelector('.trix-button-row > .trix-button-group'))
-        const heightPixels = numPixels(buttonGroupStyle.height)
-        const widthPixels = numPixels(buttonGroupStyle.width)
-        const midpoint = (topSelectedRow.left + topSelectedRow.right) / 2
-        toolbarElement.style.top = `${topSelectedRow.top - heightPixels - 10}px`
-        toolbarElement.style.left = `${midpoint - (widthPixels / 2)}px`
-      }
+    editorElement.addEventListener('trix-blur', () => {
+      updateTopSelectedRow(null)
     })
   }, [])
 
