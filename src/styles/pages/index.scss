@@ -1,109 +1,137 @@
-.apply-link {
-  padding-right: 14px !important;
-}
+$max-signature-width: 300px;
 
-@include ondesktop {
-  .layout.index > main > .join-card-contents {
-    display: none;
+.layout.index {
+  .apply-link {
+    padding-right: 14px !important;
   }
-}
 
-.layout.index > header {
-  @include onmobile {
-    a[href="/apply"] {
+  @include ondesktop {
+    > main > .join-card-contents {
       display: none;
     }
   }
-}
 
-.hero.index {
-  @include ondesktop {
-    min-height: 768px;
-  }
-
-  @include onmobile {
-    padding-top: 190px;
-  }
-}
-
-.manifesto {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 132px;
-
-  @include onmobile {
-    padding-top: 50px;
-  }
-
-  > .manifesto-item {
-    max-width: 603px;
-    margin-left: $nonhero-margin !important;
-    margin-right: $nonhero-margin !important;
-  }
-}
-
-.manifesto-contents {
-  > p {
-    text-indent: 1em;
-  }
-
-  > p.lets-create {
-    text-indent: 0;
-    text-align: auto;
-    text-justify: auto;
-
+  > header {
     @include onmobile {
-      > a[href="/apply"] {
+      a[href="/apply"] {
         display: none;
       }
     }
+  }
 
-    @include ondesktop {
-      > span {
-        display: none;
+  > main {
+
+    > .hero.index {
+      @include ondesktop {
+        min-height: 768px;
+      }
+
+      @include onmobile {
+        padding-top: 190px;
+      }
+    }
+
+    > .posthero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 132px;
+
+      @include onmobile {
+        padding-top: 50px;
+      }
+
+      > .designs {
+        margin-left: 100px;
+        margin-right: 100px;
+
+        > .design {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          > .explanation {
+            max-width: 249px;
+          }
+
+          > img {
+            margin-left: 80px;
+            max-width: 1000px;
+          }
+        }
+      }
+
+      > .manifesto {
+        > .manifesto-item {
+          max-width: 603px;
+          margin-left: $nonhero-margin !important;
+          margin-right: $nonhero-margin !important;
+
+          &.manifesto-contents {
+            > p {
+              text-indent: 1em;
+            }
+
+            > p.lets-create {
+              text-indent: 0;
+              text-align: auto;
+              text-justify: auto;
+
+              @include onmobile {
+                > a[href="/apply"] {
+                  display: none;
+                }
+              }
+
+              @include ondesktop {
+                > span {
+                  display: none;
+                }
+              }
+            }
+          }
+
+          &.manifesto-signature {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            img.signature {
+              margin-left: -13px;
+            }
+
+            @include ondesktop {
+              width: 100%;
+
+              .signature-texts {
+                width: $max-signature-width;
+              }
+            }
+
+            @include onmobile {
+              .signature-texts {
+                max-width: $max-signature-width;
+              }
+            }
+
+            .spacer {
+              flex-grow: 1;
+              width: 100%;
+            }
+
+            p {
+              margin-top: 8px;
+            }
+
+            .avatar {
+              border-radius: 50%;
+              margin-bottom: 28px;
+            }
+          }
+        }
       }
     }
   }
 }
 
-$max-signature-width: 300px;
-
-.manifesto-signature {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  img.signature {
-    margin-left: -13px;
-  }
-
-  @include ondesktop {
-    width: 100%;
-
-    .signature-texts {
-      width: $max-signature-width;
-    }
-  }
-
-  @include onmobile {
-    .signature-texts {
-      max-width: $max-signature-width;
-    }
-  }
-
-  .spacer {
-    flex-grow: 1;
-    width: 100%;
-  }
-
-  p {
-    margin-top: 8px;
-  }
-
-  .avatar {
-    border-radius: 50%;
-    margin-bottom: 28px;
-  }
-}

@@ -60,23 +60,51 @@ export default function IndexPage({ data }: { data: any }): JSX.Element {
         <h1 className="white">The internet's helpdesk</h1>
         <h2 className="white">Join us in our quest to make the web more transparent and better aligned with the interests of all people.</h2>
       </Hero>
-      <div className="manifesto">
-        <div className="manifesto-item manifesto-contents">
-          <Manifesto />
-        </div>
-        <div className="manifesto-item manifesto-signature">
-          <div className="signature-texts">
-            <img alt="Will Weiss signature" className="signature" src="signature.png"/>
-            <p>Will Weiss</p>
+      <div className="posthero">
+        <h1>What we're building</h1>
+        <div className="designs">
+          <div className="design">
+            <div className="explanation">
+              <h2>A widget to <br/>post issues</h2>
+              People can report issues they encounter online
+            </div>
+            <img src="/widget-open.png" />
           </div>
-          <div className="spacer"></div>
-          <a href="https://github.com/will-weiss">
-            <Img alt="Will Weiss portrait" className="avatar" fixed={data.willAvatar.childImageSharp.fixed} />
-          </a>
+          <div className="design">
+            <div className="explanation">
+              <h2>A timeline to <br/>discuss issues</h2>
+              People can have conversations with maintainers
+            </div>
+            <img src="/issue-detail.png" />
+          </div>
+          <div className="design">
+            <div className="explanation">
+              <h2>A taskboard to <br/>track issues</h2>
+              Maintainers may track progress and sort issues by how many people are experiencing them
+            </div>
+            <img src="/taskboard.png" />
+          </div>
         </div>
+        <h1>Why we're building this</h1>
+        <div className="manifesto">
+          <div className="manifesto-item manifesto-contents">
+            <Manifesto />
+          </div>
+          <div className="manifesto-item manifesto-signature">
+            <div className="signature-texts">
+              <img alt="Will Weiss signature" className="signature" src="signature.png"/>
+              <p>Will Weiss</p>
+            </div>
+            <div className="spacer"></div>
+            <a href="https://github.com/will-weiss">
+              <Img alt="Will Weiss portrait" className="avatar" fixed={data.willAvatar.childImageSharp.fixed} />
+            </a>
+          </div>
+        </div>
+        {/* The join card is only shown on mobile */}
+        <JoinCardContents ref={joinCardContentsRef} />
       </div>
-      {/* The join card is only shown on mobile */}
-      <JoinCardContents ref={joinCardContentsRef} />
+
     </Layout>
   )
 }
