@@ -5,14 +5,14 @@ import Header from './header'
 
 type LayoutProps = {
   headerLinks?: React.ReactNode
-  mainClassName?: string
+  mainClassName: string
   headerRef?: React.MutableRefObject<HTMLElement>
   logoRef?: React.MutableRefObject<SVGSVGElement>
   logoFade?: number
   children: React.ReactNode
 }
 
-const Layout = ({ headerLinks, mainClassName, headerRef, logoRef, logoFade, children }: LayoutProps) => {
+const Layout = ({ mainClassName, headerLinks,headerRef, logoRef, logoFade, children }: LayoutProps) => {
   return (
     <div className={`layout ${mainClassName}`}>
       <Header headerRef={headerRef} logoRef={logoRef} logoFade={logoFade}>

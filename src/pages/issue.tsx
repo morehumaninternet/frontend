@@ -23,6 +23,13 @@ type IssueState =
     }
 
 
+function IssueBody(): JSX.Element {
+
+
+}
+
+
+
 export default function IssuePage(props: any): JSX.Element {
 
   const [issueState, setIssueState] = React.useState<IssueState>({ loading: true })
@@ -53,6 +60,7 @@ export default function IssuePage(props: any): JSX.Element {
 
   return (
     <Layout
+      mainClassName="issue"
       logoFade={1}
       headerLinks={
         <Avatar
