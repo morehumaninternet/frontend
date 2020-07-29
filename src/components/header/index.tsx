@@ -4,13 +4,14 @@ import HeaderLink from './link'
 
 type HeaderProps = {
   children?: React.ReactNode
+  logoAgainstHero: boolean
   headerRef?: React.RefObject<HTMLElement>
 }
 
-const Header = ({ children, headerRef }: HeaderProps) => {
+const Header = ({ children, logoAgainstHero, headerRef }: HeaderProps) => {
   return (
     <header ref={headerRef}>
-      <HeaderLink />
+      <HeaderLink logoAgainstHero={logoAgainstHero} />
       {children}
     </header>
   )

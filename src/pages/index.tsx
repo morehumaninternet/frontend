@@ -1,16 +1,15 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { ArrowForward } from '@material-ui/icons'
 import { ButtonBase } from '@material-ui/core'
-import Color from 'color'
-import { zip } from 'lodash'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import SEO from '../components/seo'
 import Designs from '../components/designs'
-import { JoinCardContents } from '../components/join-card'
+import Join from '../components/join'
 import Manifesto from '../components/manifesto'
+import setLogoFade from '../utils/setLogoFade'
 
 
 export default class IndexPage extends React.Component<{ data: any }> {
@@ -18,26 +17,10 @@ export default class IndexPage extends React.Component<{ data: any }> {
   headerRef = React.createRef<HTMLDivElement>()
   heroRef = React.createRef<HTMLDivElement>()
 
+  //
   componentDidMount() {
     const hero = this.heroRef.current!
     let heroEndsAt = hero.offsetTop + hero.offsetHeight
-    let logoFade = 0
-
-    const setLogoFade = (nextLogoFade: number) => {
-      if (nextLogoFade === logoFade) return
-      logoFade = nextLogoFade
-
-      const whiteRbg = [255, 255, 255]
-      const humanBlueRbg = [22, 65, 118]
-
-      const blueWhiteRbg = zip(whiteRbg, humanBlueRbg).map(([whiteCoordinate, humanBlueCoordinate]) => (
-        whiteCoordinate! + logoFade * (humanBlueCoordinate! - whiteCoordinate!)
-      ))
-
-      const blueWhiteHex = Color.rgb(blueWhiteRbg).hex()
-
-      document.documentElement.style.setProperty('--logo-color-blue-white', blueWhiteHex)
-    }
 
     const runUpdate = () => {
       const headerIsFixed = window.getComputedStyle(this.headerRef.current!).position === 'fixed'
@@ -66,11 +49,12 @@ export default class IndexPage extends React.Component<{ data: any }> {
     return (
       <Layout
         mainClassName="index"
+        logoAgainstHero={true}
         headerRef={this.headerRef}
         // Use CSS to hide apply-link on mobile
         headerLinks={
-          <ButtonBase className="apply-link" component={Link} to="/apply">
-            Apply to join &nbsp;&nbsp;<ArrowForward/>
+          <ButtonBase className="apply-link">
+            Apply &nbsp;&nbsp;<ArrowForward/>
           </ButtonBase>
         }
       >
@@ -97,10 +81,8 @@ export default class IndexPage extends React.Component<{ data: any }> {
               </a>
             </div>
           </div>
-          {/* The join card is only shown on mobile */}
-          <JoinCardContents />
+          <Join />
         </div>
-
       </Layout>
     )
   }

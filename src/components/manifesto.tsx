@@ -17,7 +17,6 @@ export default () => (
       We are assembling an inclusive team of motivated and talented volunteers to build this public platform and collaborative community. If you value teamwork and believe in this mission, we would love to work with you.
     </p>
     <p className="lets-create">
-      <Link to="/apply" className="human-blue"><strong>Let’s create a More Human Internet.</strong></Link>
       <span><strong>Let’s create a More Human Internet.</strong></span>
     </p>
   </>

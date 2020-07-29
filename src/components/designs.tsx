@@ -1,10 +1,7 @@
 import React from 'react'
 
 
-
-export default class Designs extends React.Component<
-  { designsContentClass: string }
-> {
+export default class Designs extends React.Component {
   state = { designsContentClass: 'prescroll' }
   designsRef = React.createRef<HTMLDivElement>()
   designsContentRef = React.createRef<HTMLDivElement>()

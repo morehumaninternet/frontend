@@ -5,21 +5,9 @@ $max-signature-width: 300px;
     color: $human-blue;
   }
 
-  .apply-link {
-    padding-right: 14px !important;
-  }
-
-  @include ondesktop {
-    > main > .join-card-contents {
-      display: none;
-    }
-  }
-
   > header {
-    @include onmobile {
-      a[href="/apply"] {
-        display: none;
-      }
+    > .apply-link {
+      padding-right: 14px !important;
     }
   }
 
@@ -123,18 +111,6 @@ $max-signature-width: 300px;
               text-indent: 0;
               text-align: auto;
               text-justify: auto;
-
-              @include onmobile {
-                > a[href="/apply"] {
-                  display: none;
-                }
-              }
-
-              @include ondesktop {
-                > span {
-                  display: none;
-                }
-              }
             }
           }
 
@@ -180,4 +156,3 @@ $max-signature-width: 300px;
     }
   }
 }
-

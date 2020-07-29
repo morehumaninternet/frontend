@@ -4,6 +4,7 @@ import SEO from '../components/seo'
 import Hero from '../components/hero'
 import { Avatar } from '@material-ui/core'
 import * as mockApi from '../clients/mockApi'
+import setLogoFade from '../utils/setLogoFade'
 
 
 
@@ -33,6 +34,8 @@ export default function IssuePage(props: any): JSX.Element {
 
   const [issueState, setIssueState] = React.useState<IssueState>({ loading: true })
 
+  React.useEffect(() => setLogoFade(1), [])
+
   React.useEffect(() => {
 
     const params = new URLSearchParams(props.location.search)
@@ -60,7 +63,7 @@ export default function IssuePage(props: any): JSX.Element {
   return (
     <Layout
       mainClassName="issue"
-      logoFade={1}
+      logoAgainstHero={false}
       headerLinks={
         <Avatar
           src="github.com/will-weiss.png"

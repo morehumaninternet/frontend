@@ -1,5 +1,9 @@
 $header-height: 100px;
 
+:root {
+  --logo-color-blue-white: white;
+}
+
 header {
   height: $header-height;
   position: fixed;
@@ -21,38 +25,33 @@ header {
     padding-right: $nonhero-margin;
   }
 
+  // When against a hero, we use the --logo-color-blue-white to fade from white to blue as the user scrolls past the hero
+  // Otherwise, against a white background, we just use blue as the non-pink color
   > a.home-link {
     > svg.header-logo {
-      .pink-fill {
-        fill: $human-pink;
-      }
-      .blue-white-fill {
-        fill: var(--logo-color-blue-white);
-      }
-      .blue-white-stroke {
-        stroke: var(--logo-color-blue-white);
+      .more, .internet, .left-head { fill: $human-pink; }
+
+      &.against-hero {
+        .human, .right-head, .bodies { fill: var(--logo-color-blue-white); }
+        .bodies { stroke: var(--logo-color-blue-white); }
       }
 
-      .primary-fill {
-        fill: var(--logo-color-blue-white)
-      }
-      .secondary-fill {
-        fill: $human-pink;
+      &.against-white-bg {
+        .human, .right-head, .bodies { fill: $human-blue; }
+        .bodies { stroke: $human-blue; }
       }
 
       &:hover {
-        .primary-fill {
-          fill: $human-pink;
+        .human { fill: $human-pink; }
 
+        &.against-hero {
+          .more, .internet { fill: var(--logo-color-blue-white); }
         }
-        .secondary-fill {
-          fill: var(--logo-color-blue-white)
+
+        &.against-white-bg {
+          .more, .internet { fill: $human-blue; }
         }
       }
     }
   }
-}
-
-:root {
-  --logo-color-blue-white: white;
 }
