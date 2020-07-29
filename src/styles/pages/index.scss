@@ -1,6 +1,10 @@
 $max-signature-width: 300px;
 
 .layout.index {
+  h1 {
+    color: $human-blue;
+  }
+
   .apply-link {
     padding-right: 14px !important;
   }
@@ -93,10 +97,6 @@ $max-signature-width: 300px;
                 z-index: -1;
                 opacity: 0;
                 transition: opacity 0.2s;
-
-                &:first-child {
-                  opacity: 1;
-                }
               }
             }
           }
@@ -104,6 +104,7 @@ $max-signature-width: 300px;
       }
 
       > .manifesto {
+        margin-top: 50px;
         display: flex;
         flex-direction: column;
         align-items: center;

@@ -6,7 +6,7 @@ import Header from './header'
 type LayoutProps = {
   headerLinks?: React.ReactNode
   mainClassName: string
-  headerRef?: React.MutableRefObject<HTMLElement>
+  headerRef?: React.RefObject<HTMLElement>
   children: React.ReactNode
 }
 

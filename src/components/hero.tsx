@@ -3,7 +3,7 @@ import React from 'react'
 
 type HeroProps = {
   additionalClassNames?: string
-  heroRef?: React.MutableRefObject<HTMLDivElement>
+  heroRef?: React.RefObject<HTMLDivElement>
   children: React.ReactNode
 }
 

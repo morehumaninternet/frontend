@@ -66,7 +66,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
     return (
       <Layout
         mainClassName="index"
-        headerRef={this.headerRef as any}
+        headerRef={this.headerRef}
         // Use CSS to hide apply-link on mobile
         headerLinks={
           <ButtonBase className="apply-link" component={Link} to="/apply">
@@ -75,7 +75,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
         }
       >
         <SEO />
-        <Hero additionalClassNames="index" heroRef={this.heroRef as any}>
+        <Hero additionalClassNames="index" heroRef={this.heroRef}>
           <h1 className="white">The internet's helpdesk</h1>
           <h2 className="white">Join us in our quest to make the web more transparent and better aligned with the interests of all people.</h2>
         </Hero>

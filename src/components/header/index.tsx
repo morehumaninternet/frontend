@@ -4,7 +4,7 @@ import HeaderLink from './link'
 
 type HeaderProps = {
   children?: React.ReactNode
-  headerRef?: React.MutableRefObject<HTMLElement>
+  headerRef?: React.RefObject<HTMLElement>
 }
 
 const Header = ({ children, headerRef }: HeaderProps) => {
