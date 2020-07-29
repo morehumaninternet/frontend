@@ -20,4 +20,39 @@ header {
     padding-left: $nonhero-margin;
     padding-right: $nonhero-margin;
   }
+
+  > a.home-link {
+    > svg.header-logo {
+      .pink-fill {
+        fill: $human-pink;
+      }
+      .blue-white-fill {
+        fill: var(--logo-color-blue-white);
+      }
+      .blue-white-stroke {
+        stroke: var(--logo-color-blue-white);
+      }
+
+      .primary-fill {
+        fill: var(--logo-color-blue-white)
+      }
+      .secondary-fill {
+        fill: $human-pink;
+      }
+
+      &:hover {
+        .primary-fill {
+          fill: $human-pink;
+
+        }
+        .secondary-fill {
+          fill: var(--logo-color-blue-white)
+        }
+      }
+    }
+  }
+}
+
+:root {
+  --logo-color-blue-white: white;
 }

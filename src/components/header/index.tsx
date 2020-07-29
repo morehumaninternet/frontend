@@ -6,13 +6,12 @@ type HeaderProps = {
   children?: React.ReactNode
   headerRef?: React.MutableRefObject<HTMLElement>
   logoRef?: React.MutableRefObject<SVGSVGElement>
-  logoFade?: number
 }
 
-const Header = ({ children, headerRef, logoRef, logoFade = 0 }: HeaderProps) => {
+const Header = ({ children, headerRef, logoRef }: HeaderProps) => {
   return (
     <header ref={headerRef}>
-      <HeaderLink logoRef={logoRef} logoFade={logoFade}/>
+      <HeaderLink logoRef={logoRef}/>
       {children}
     </header>
   )

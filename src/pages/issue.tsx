@@ -23,11 +23,10 @@ type IssueState =
     }
 
 
-function IssueBody(): JSX.Element {
+// function IssueBody(): JSX.Element {
 
 
-}
-
+// }
 
 
 export default function IssuePage(props: any): JSX.Element {
