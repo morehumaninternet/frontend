@@ -1,0 +1,52 @@
+.designs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 300vh !important;
+  width: 100%;
+
+  @include header-width(margin);
+
+  position: relative;
+
+  > .designs-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    // height: 100vh;
+    width: 100%;
+
+    > .explanations {
+      width: 30%;
+      align-self: center;
+
+      > .explanation {
+        display: none;
+        text-align: center;
+        transition: display 0.2s;
+        > h1, h2 {
+          color: $human-blue
+        }
+      }
+    }
+
+    > .mac-screen-container {
+      position: relative;
+      max-width: 1600px;
+
+      > .screens {
+        > img.screen {
+          position: absolute;
+          top: 109px;
+          left: 181px;
+          width: 613px;
+          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.2s;
+        }
+      }
+    }
+  }
+}
