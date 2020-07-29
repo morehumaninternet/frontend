@@ -2,31 +2,35 @@ import React from 'react'
 import onDistanceChange from '../effects/onDistanceChange'
 
 
-type DesignsProps = {
-  designsRef: React.MutableRefObject<HTMLDivElement>
-  manifestoRef: React.MutableRefObject<HTMLDivElement>
-}
 
+export default function Designs(): JSX.Element {
+  const ref = React.useRef<HTMLDivElement>()
+  const [designsContentClass, setDesignsContentClass] = React.useState('prescroll')
 
-export default function Designs({ designsRef, manifestoRef }: DesignsProps): JSX.Element {
-  const [designsContentClass, setDesignsContentClass] = React.useState('')
+  // React.useEffect(() => {
+  //   const foo = ref.current!.querySelector('.designs-content')
 
-  Object.assign(window, { foo: designsRef.current })
+  //   function again() {
+
+  //   }
+  // }, [])
+
 
   onDistanceChange(() => {
-    const designsRect = designsRef.current!.getBoundingClientRect()
+    const designsRect = ref.current!.getBoundingClientRect()
+    console.log('designsRect', designsRect)
 
     if (designsRect.top > 0) {
-      setDesignsContentClass('')
-    } else if (designsRect.bottom > window.screen.height) {
+      setDesignsContentClass('prescroll')
+    } else if (designsRect.bottom > window.screen.availHeight) {
       setDesignsContentClass('midscroll')
     } else {
       setDesignsContentClass('postscroll')
     }
-  })
+  }, [5])
 
   return (
-    <div className="designs" ref={designsRef}>
+    <div className="designs" ref={ref as any}>
       <div className={`designs-content ${designsContentClass}`}>
         <h1>What we're building</h1>
         <div className="mac-screen-container">

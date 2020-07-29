@@ -49,8 +49,11 @@ $max-signature-width: 300px;
           display: flex;
           flex-direction: column;
           align-items: center;
-          position: static;
           height: 100vh;
+
+          &.prescroll {
+            position: static;
+          }
 
           &.midscroll {
             position: fixed;
@@ -85,11 +88,12 @@ $max-signature-width: 300px;
                 top: 109px;
                 left: 181px;
                 width: 613px;
-                display: none;
                 z-index: -1;
+                opacity: 0;
+                transition: opacity 0.2s;
 
                 &:first-child {
-                  display: block;
+                  opacity: 1;
                 }
               }
             }

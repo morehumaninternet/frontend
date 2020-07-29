@@ -18,8 +18,6 @@ export default function IndexPage({ data }: { data: any }): JSX.Element {
   const headerRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
   const heroRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
   const logoRef: React.MutableRefObject<SVGSVGElement> = React.useRef() as any
-  const designsRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
-  const manifestoRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
 
   const [logoDistanceFromHeroBottom, setLogoDistanceFromHeroBottom] = React.useState(Infinity)
   const [logoFade, setLogoFade] = React.useState(0)
@@ -59,8 +57,8 @@ export default function IndexPage({ data }: { data: any }): JSX.Element {
         <h2 className="white">Join us in our quest to make the web more transparent and better aligned with the interests of all people.</h2>
       </Hero>
       <div className="posthero">
-        <Designs designsRef={designsRef} manifestoRef={manifestoRef} />
-        <div className="manifesto" ref={manifestoRef}>
+        <Designs />
+        <div className="manifesto">
           <h1>Why we're building this</h1>
           <div className="manifesto-item manifesto-contents">
             <Manifesto />
