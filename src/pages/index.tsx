@@ -14,10 +14,9 @@ import Manifesto from '../components/manifesto'
 
 
 export default class IndexPage extends React.Component<{ data: any }> {
+
   headerRef = React.createRef<HTMLDivElement>()
   heroRef = React.createRef<HTMLDivElement>()
-  logoRef = React.createRef<SVGSVGElement>()
-
 
   componentDidMount() {
     const hero = this.heroRef.current!
@@ -68,7 +67,6 @@ export default class IndexPage extends React.Component<{ data: any }> {
       <Layout
         mainClassName="index"
         headerRef={this.headerRef as any}
-        logoRef={this.logoRef as any}
         // Use CSS to hide apply-link on mobile
         headerLinks={
           <ButtonBase className="apply-link" component={Link} to="/apply">
