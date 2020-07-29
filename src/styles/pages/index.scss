@@ -20,7 +20,6 @@ $max-signature-width: 300px;
   }
 
   > main {
-
     > .hero.index {
       @include ondesktop {
         min-height: 768px;
@@ -34,35 +33,75 @@ $max-signature-width: 300px;
     > .posthero {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding-top: 132px;
-
-      @include onmobile {
-        padding-top: 50px;
-      }
 
       > .designs {
-        margin-left: 100px;
-        margin-right: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-        > .design {
+        min-height: 300vh;
+        max-width: 1000px;
+
+        position: relative;
+
+        > .designs-content {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           align-items: center;
+          position: static;
+          height: 100vh;
 
-          > .explanation {
-            max-width: 249px;
+          &.midscroll {
+            position: fixed;
+            top: 0
           }
 
-          > img {
-            margin-left: 80px;
-            max-width: 1000px;
+          &.postscroll {
+            position: absolute;
+            bottom: 0;
+          }
+
+          > h1 {
+            padding-top: 132px;
+            @include onmobile {
+              padding-top: 50px;
+            }
+          }
+
+          > .mac-screen-container {
+            position: relative;
+            width: 1000px;
+            height: 100%;
+
+            > img.mac {
+              position: absolute;
+              width: 1000px;
+            }
+
+            > .screens {
+              > img.screen {
+                position: absolute;
+                top: 109px;
+                left: 181px;
+                width: 613px;
+                display: none;
+                z-index: -1;
+
+                &:first-child {
+                  display: block;
+                }
+              }
+            }
           }
         }
       }
 
       > .manifesto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         > .manifesto-item {
           max-width: 603px;
           margin-left: $nonhero-margin !important;

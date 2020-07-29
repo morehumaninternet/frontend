@@ -6,8 +6,10 @@ import { ButtonBase } from '@material-ui/core'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import SEO from '../components/seo'
+import Designs from '../components/designs'
 import { JoinCardContents } from '../components/join-card'
 import Manifesto from '../components/manifesto'
+import onDistanceChange from '../effects/onDistanceChange'
 
 
 export default function IndexPage({ data }: { data: any }): JSX.Element {
@@ -16,21 +18,17 @@ export default function IndexPage({ data }: { data: any }): JSX.Element {
   const headerRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
   const heroRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
   const logoRef: React.MutableRefObject<SVGSVGElement> = React.useRef() as any
+  const designsRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
+  const manifestoRef: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
 
   const [logoDistanceFromHeroBottom, setLogoDistanceFromHeroBottom] = React.useState(Infinity)
   const [logoFade, setLogoFade] = React.useState(0)
 
-  React.useEffect(() => {
-    function onScroll() {
-      setLogoDistanceFromHeroBottom(
-        heroRef.current.getBoundingClientRect().bottom -
-        logoRef.current.getBoundingClientRect().bottom
-      )
-    }
-
-    window.addEventListener('scroll', onScroll)
-
-    return () => window.removeEventListener('scroll', onScroll)
+  onDistanceChange(() => {
+    setLogoDistanceFromHeroBottom(
+      heroRef.current.getBoundingClientRect().bottom -
+      logoRef.current.getBoundingClientRect().bottom
+    )
   })
 
   React.useEffect(() => {
@@ -61,32 +59,9 @@ export default function IndexPage({ data }: { data: any }): JSX.Element {
         <h2 className="white">Join us in our quest to make the web more transparent and better aligned with the interests of all people.</h2>
       </Hero>
       <div className="posthero">
-        <h1>What we're building</h1>
-        <div className="designs">
-          <div className="design">
-            <div className="explanation">
-              <h2>A widget to <br/>post issues</h2>
-              People can report issues they encounter online
-            </div>
-            <img src="/widget-open.png" />
-          </div>
-          <div className="design">
-            <div className="explanation">
-              <h2>A timeline to <br/>discuss issues</h2>
-              People can have conversations with maintainers
-            </div>
-            <img src="/issue-detail.png" />
-          </div>
-          <div className="design">
-            <div className="explanation">
-              <h2>A taskboard to <br/>track issues</h2>
-              Maintainers may track progress and sort issues by how many people are experiencing them
-            </div>
-            <img src="/taskboard.png" />
-          </div>
-        </div>
-        <h1>Why we're building this</h1>
-        <div className="manifesto">
+        <Designs designsRef={designsRef} manifestoRef={manifestoRef} />
+        <div className="manifesto" ref={manifestoRef}>
+          <h1>Why we're building this</h1>
           <div className="manifesto-item manifesto-contents">
             <Manifesto />
           </div>
