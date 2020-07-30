@@ -28,12 +28,6 @@ export default class Designs extends React.Component {
       const designs = this.designsRef.current!
       designsTop = designs.offsetTop
       designsBottom = designsTop + designs.offsetHeight
-      const tallestExplanationHeight = max(Array.from(explanations, explanation => {
-        const height = numPixels(explanation, 'height')
-        console.log(explanation, height)
-        return height
-      }))
-      explanationsContainer.style.height = `calc(3vh + ${tallestExplanationHeight}px)`
     }
 
     const nextStyle = () => {
@@ -84,13 +78,20 @@ export default class Designs extends React.Component {
           } else {
             explanation.classList.remove('card')
             explanation.classList.add('text')
-            explanation.style.top = 'auto'
-            explanation.style.left = 'auto'
+            explanation.style.top = ''
+            explanation.style.left = ''
           }
 
           explanation.style.opacity = show ? '1' : '0'
         }
       })
+
+      const tallestExplanationHeight = max(Array.from(explanations, explanation => {
+        const height = numPixels(explanation, 'height')
+        return height
+      }))
+
+      explanationsContainer.style.height = `${tallestExplanationHeight}px`
     }
 
     const setDesignPositionCacheAndRunUpdate = () => {
@@ -100,7 +101,6 @@ export default class Designs extends React.Component {
 
     setDesignPositionCacheAndRunUpdate()
     mac.addEventListener('load', setDesignPositionCacheAndRunUpdate)
-    setTimeout(setDesignPositionCacheAndRunUpdate, 1000)
 
     window.addEventListener('resize', setDesignPositionCacheAndRunUpdate)
     window.addEventListener('scroll', runUpdate)
@@ -109,32 +109,33 @@ export default class Designs extends React.Component {
   render() {
     return (
       <div className="designs" ref={this.designsRef}>
-        <div className="designs-content" ref={this.designsContentRef}>
-
-          <div className="header-container">
-            <h1>What we're building</h1>
-          </div>
-          <div className="mac-container">
-            <img className="mac" src="/imac.svg" />
-            <div className="screens">
-              <img className="screen" src="/widget-closed.png" />
-              <img className="screen" src="/widget-open.png" />
-              <img className="screen" src="/issue-detail.png" />
-              <img className="screen" src="/taskboard.png" />
+        <div className="designs-content-container" ref={this.designsContentRef}>
+          <div className="designs-content">
+            <div className="header-container">
+              <h1>What we're building</h1>
             </div>
-          </div>
-          <div className="explanations-container">
-            <div className="explanation">
-              <h2>A widget to post issues</h2>
-              <p>People can report issues they encounter online</p>
+            <div className="mac-container">
+              <img className="mac" src="/imac.svg" />
+              <div className="screens">
+                <img className="screen" src="/widget-closed.png" />
+                <img className="screen" src="/widget-open.png" />
+                <img className="screen" src="/issue-detail.png" />
+                <img className="screen" src="/taskboard.png" />
+              </div>
             </div>
-            <div className="explanation">
-              <h2>A timeline to discuss issues</h2>
-              <p>People can have conversations with website maintainers</p>
-            </div>
-            <div className="explanation">
-              <h2>A taskboard to track issues</h2>
-              <p>Maintainers may track progress and sort issues by how many people are experiencing them</p>
+            <div className="explanations-container">
+              <div className="explanation">
+                <h2>A widget to post issues</h2>
+                <p>People can report issues they encounter online</p>
+              </div>
+              <div className="explanation">
+                <h2>A timeline to discuss issues</h2>
+                <p>People can have conversations with website maintainers</p>
+              </div>
+              <div className="explanation">
+                <h2>A taskboard to track issues</h2>
+                <p>Maintainers may track progress and sort issues by how many people are experiencing them</p>
+              </div>
             </div>
           </div>
         </div>

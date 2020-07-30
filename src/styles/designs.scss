@@ -1,4 +1,4 @@
-$margin-around-mac: 5vh;
+$margin-around-mac: 2em;
 
 .designs {
   height: 200vh !important;
@@ -6,83 +6,96 @@ $margin-around-mac: 5vh;
 
   position: relative;
 
-  > .designs-content {
+  > .designs-content-container {
     @include header-width(padding);
 
     width: 100%;
     height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    > .header-container {
-      margin-bottom: $margin-around-mac;
-      display: flex;
-
-      > h1 {
-        margin-bottom: 0;
-      }
-    }
-
-    > .mac-container {
-      position: relative;
-
-      max-height: 65%;
+    > .designs-content {
+      margin-top: 5%;
+      margin-bottom: 5%;
+      height: 90%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
 
-      > .mac {
-        max-width: 100%;
-        max-height: 100%;
+      > .header-container {
+        margin-bottom: $margin-around-mac;
+        display: flex;
+
+        > h1 {
+          margin-bottom: 0;
+        }
       }
 
-      > .screens {
-        > img.screen {
-          position: absolute;
+      > .mac-container {
+        position: relative;
 
-          opacity: 0;
-          transition: opacity 0.2s;
 
-          &:first-child {
-            opacity: 1
+        height: 65%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1600px;
+
+        > .mac {
+          max-width: 100%;
+          max-height: 100%;
+        }
+
+        > .screens {
+          > img.screen {
+            position: absolute;
+
+            opacity: 0;
+            transition: opacity 0.2s;
+
+            &:first-child {
+              opacity: 1
+            }
           }
         }
       }
-    }
 
-    > .explanations-container {
-      width: 100%;
-      margin-top: $margin-around-mac;
-      // height: 180px;
+      > .explanations-container {
+        position: relative;
+        width: 100%;
+        margin-top: $margin-around-mac;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-      > .explanation {
-        position: absolute;
-        opacity: 0;
-        transition: opacity 0.2s;
+        > .explanation {
+          opacity: 0;
+          transition: opacity 0.2s;
 
-        &.card {
-          position: fixed;
-          padding: 25px;
-          max-width: 280px;
-          border: 2px $border-grey solid;
-          border-radius: 10px;
-          background-color: white;
-        }
+          &.card {
+            position: fixed;
+            padding: 25px;
+            max-width: 280px;
+            border: 2px $border-grey solid;
+            border-radius: 10px;
+            background-color: white;
+          }
 
-        &.text {
-          max-width: 100%;
-          margin-right: 25px;
-        }
+          &.text {
+            position: absolute;
+            max-width: 100%;
+            margin-right: 25px;
+            top: 0;
+          }
 
-        > h2 {
-          color: $human-pink;
-        }
-        > p {
-          color: $human-blue;
-          margin-bottom: 0;
+          > h2 {
+            color: $human-pink;
+          }
+          > p {
+            color: $human-blue;
+            margin-bottom: 0;
+          }
         }
       }
     }
