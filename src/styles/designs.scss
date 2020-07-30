@@ -13,11 +13,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
-    > h1 {
-      height: 25%;
-      padding-top: 120px;
-      // padding-bottom: 50px;
+    > .header-container {
+      margin-bottom: 50px;
+      display: flex;
+
+      > h1 {
+        margin-bottom: 0;
+      }
     }
 
     > .mac-container {
@@ -44,27 +48,42 @@
           }
         }
       }
+    }
 
-      > .explanations {
-        > .explanation {
-          display: none;
-          position: absolute;
+    > .explanations {
+      > .explanation {
+        display: none;
+        transition: display 0.2s;
 
-          max-width: 280px;
+        &.card {
+          display: block;
+          position: fixed;
           padding: 25px;
+          max-width: 280px;
           border: 2px $border-grey solid;
           border-radius: 10px;
           background-color: white;
+        }
 
-          transition: display 0.2s;
+        &.text {
+          margin-top: 25px;
+          display: block;
+        }
 
-          > h2 {
-            color: $human-pink;
-          }
-          > p {
-            color: $human-blue;
-            margin-bottom: 0;
-          }
+        @include ondesktop {
+
+        }
+
+
+
+
+
+        > h2 {
+          color: $human-pink;
+        }
+        > p {
+          color: $human-blue;
+          margin-bottom: 0;
         }
       }
     }

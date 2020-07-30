@@ -70,11 +70,17 @@ export default class Designs extends React.Component {
           screen.style.left = `${padding}px`
 
           if (explanation) {
-            explanation.style.display = 'block'
+
             if (macRect.left > 240) {
-              explanation.style.position = 'absolute'
-              explanation.style.top = `${.35 * macRect.height}px`
-              explanation.style.left = '-200px'
+              explanation.classList.remove('text')
+              explanation.classList.add('card')
+              explanation.style.top = `${macRect.top + .35 * macRect.height}px`
+              explanation.style.left = `${macRect.left - 200}px`
+            } else if (true) {
+              explanation.classList.remove('card')
+              explanation.classList.add('text')
+              explanation.style.top = 'auto'
+              explanation.style.left = 'auto'
             } else {
               explanation.style.position = 'fixed'
               explanation.style.top = `${macRect.bottom - numPixels(getComputedStyle(explanation).height) - 10}px`
@@ -84,7 +90,8 @@ export default class Designs extends React.Component {
         } else {
           screen.style.opacity = '0'
           if (explanation) {
-            explanation.style.display = 'none'
+            explanation.classList.remove('text')
+            explanation.classList.remove('card')
           }
         }
       })
@@ -106,7 +113,9 @@ export default class Designs extends React.Component {
     return (
       <div className="designs" ref={this.designsRef}>
         <div className="designs-content" ref={this.designsContentRef}>
-          <h1>What we're building</h1>
+          <div className="header-container">
+            <h1>What we're building</h1>
+          </div>
           <div className="mac-container">
             <img className="mac" src="/imac.svg" />
             <div className="screens">
@@ -115,19 +124,19 @@ export default class Designs extends React.Component {
               <img className="screen" src="/issue-detail.png" />
               <img className="screen" src="/taskboard.png" />
             </div>
-            <div className="explanations">
-              <div className="explanation">
-                <h2>A widget to post issues</h2>
-                <p>People can report issues they encounter online</p>
-              </div>
-              <div className="explanation">
-                <h2>A timeline to discuss issues</h2>
-                <p>People can have conversations with website maintainers</p>
-              </div>
-              <div className="explanation">
-                <h2>A taskboard to track issues</h2>
-                <p>Maintainers may track progress and sort issues by how many people are experiencing them</p>
-              </div>
+          </div>
+          <div className="explanations">
+            <div className="explanation">
+              <h2>A widget to post issues</h2>
+              <p>People can report issues they encounter online</p>
+            </div>
+            <div className="explanation">
+              <h2>A timeline to discuss issues</h2>
+              <p>People can have conversations with website maintainers</p>
+            </div>
+            <div className="explanation">
+              <h2>A taskboard to track issues</h2>
+              <p>Maintainers may track progress and sort issues by how many people are experiencing them</p>
             </div>
           </div>
         </div>
