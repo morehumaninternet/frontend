@@ -33,6 +33,14 @@ $max-signature-width: 300px;
         flex-direction: column;
         align-items: center;
 
+        @include onmobile {
+          margin-top: 0;
+
+          > h1.manifesto-item {
+            font-size: 1.8em;
+          }
+        }
+
         > .manifesto-item {
           max-width: 603px;
           margin-left: $nonhero-margin !important;

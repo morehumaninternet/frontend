@@ -1,5 +1,5 @@
 import React from 'react'
-import { range } from 'lodash'
+import { max, range } from 'lodash'
 import numPixels from '../utils/numPixels'
 
 
@@ -14,7 +14,8 @@ export default class Designs extends React.Component {
     const mac = macContainer.querySelector('img.mac')!
 
     const screens = macContainer.querySelectorAll<HTMLImageElement>('.mac-container > .screens > .screen')
-    const explanations = designsContent.querySelectorAll<HTMLDivElement>('.explanations > .explanation')
+    const explanationsContainer = designsContent.querySelector<HTMLDivElement>('.explanations-container')!
+    const explanations = explanationsContainer.querySelectorAll<HTMLDivElement>('.explanation')
 
     if (screens.length !== 1 + explanations.length) {
       throw new Error(`Must have 1 more screen than explanation`)
@@ -27,6 +28,12 @@ export default class Designs extends React.Component {
       const designs = this.designsRef.current!
       designsTop = designs.offsetTop
       designsBottom = designsTop + designs.offsetHeight
+      const tallestExplanationHeight = max(Array.from(explanations, explanation => {
+        const height = numPixels(explanation, 'height')
+        console.log(explanation, height)
+        return height
+      }))
+      explanationsContainer.style.height = `calc(3vh + ${tallestExplanationHeight}px)`
     }
 
     const nextStyle = () => {
@@ -66,34 +73,22 @@ export default class Designs extends React.Component {
         screen.style.width = `${macRect.width - (2 * padding)}px`
         screen.style.top = `${padding}px`
         screen.style.left = `${macRect.left - macContainer.getBoundingClientRect().left + padding}px`
+        screen.style.opacity = show ? '1' : '0'
 
-        if (show) {
-          screen.style.opacity = '1'
-
-          if (explanation) {
-
-            if (macRect.left > 240) {
-              explanation.classList.remove('text')
-              explanation.classList.add('card')
-              explanation.style.top = `${macRect.top + .35 * macRect.height}px`
-              explanation.style.left = `${macRect.left - 200}px`
-            } else if (true) {
-              explanation.classList.remove('card')
-              explanation.classList.add('text')
-              explanation.style.top = 'auto'
-              explanation.style.left = 'auto'
-            } else {
-              explanation.style.position = 'fixed'
-              explanation.style.top = `${macRect.bottom - numPixels(explanation, 'height') - 10}px`
-              explanation.style.left = `${macRect.left + 10}px`
-            }
-          }
-        } else {
-          screen.style.opacity = '0'
-          if (explanation) {
+        if (explanation) {
+          if (macRect.left > 240) {
             explanation.classList.remove('text')
+            explanation.classList.add('card')
+            explanation.style.top = `${macRect.top + .35 * macRect.height}px`
+            explanation.style.left = `${macRect.left - 200}px`
+          } else {
             explanation.classList.remove('card')
+            explanation.classList.add('text')
+            explanation.style.top = 'auto'
+            explanation.style.left = 'auto'
           }
+
+          explanation.style.opacity = show ? '1' : '0'
         }
       })
     }
@@ -105,6 +100,7 @@ export default class Designs extends React.Component {
 
     setDesignPositionCacheAndRunUpdate()
     mac.addEventListener('load', setDesignPositionCacheAndRunUpdate)
+    setTimeout(setDesignPositionCacheAndRunUpdate, 1000)
 
     window.addEventListener('resize', setDesignPositionCacheAndRunUpdate)
     window.addEventListener('scroll', runUpdate)
@@ -127,7 +123,7 @@ export default class Designs extends React.Component {
               <img className="screen" src="/taskboard.png" />
             </div>
           </div>
-          <div className="explanations">
+          <div className="explanations-container">
             <div className="explanation">
               <h2>A widget to post issues</h2>
               <p>People can report issues they encounter online</p>

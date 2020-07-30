@@ -52,11 +52,11 @@ export default class IndexPage extends React.Component<{ data: any }> {
         logoAgainstHero={true}
         headerRef={this.headerRef}
         // Use CSS to hide apply-link on mobile
-        headerLinks={
-          <ButtonBase className="apply-link">
-            Apply &nbsp;&nbsp;<ArrowForward/>
-          </ButtonBase>
-        }
+        // headerLinks={
+        //   <ButtonBase className="apply-link">
+        //     Apply &nbsp;&nbsp;<ArrowForward/>
+        //   </ButtonBase>
+        // }
       >
         <SEO />
         <Hero additionalClassNames="index" heroRef={this.heroRef}>
