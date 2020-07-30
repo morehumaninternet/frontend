@@ -1,6 +1,8 @@
 import React from 'react'
 import { range } from 'lodash'
 
+
+
 export default class Designs extends React.Component {
 
   designsRef = React.createRef<HTMLDivElement>()
@@ -37,24 +39,25 @@ export default class Designs extends React.Component {
         style: nextStyle()
       })
 
-      const scrolledPastDistance = scrollY - designsTop
-      const totalDistanceToGo = designsBottom - designsTop - innerHeight
+      // const scrolledPastDistance = scrollY - designsTop
+      // const totalDistanceToGo = designsBottom - designsTop - innerHeight
 
-      const screens = designsContent.querySelectorAll<HTMLImageElement>('.mac-screen-container > .screens > .screen')
-      const explanations = designsContent.querySelectorAll<HTMLDivElement>('.explanations > .explanation')
+      // const screens = designsContent.querySelectorAll<HTMLImageElement>('.mac-screen-container > .screens > .screen')
+      // const explanations = designsContent.querySelectorAll<HTMLDivElement>('.explanations > .explanation')
 
-      if (screens.length !== explanations.length) {
-        throw new Error(`Must have equal screens & explanations`)
-      }
+      // if (screens.length !== 1 + explanations.length) {
+      //   throw new Error(`Must have 1 more screen than explanation`)
+      // }
 
-      const changeAtDistance = totalDistanceToGo / screens.length
-      const visibleScreenIndex = Math.min(screens.length - 1, Math.max(0, Math.floor(scrolledPastDistance / changeAtDistance)))
+      // const changeAtDistance = totalDistanceToGo / screens.length
+      // const visibleScreenIndex = Math.min(screens.length - 1, Math.max(0, Math.floor(scrolledPastDistance / changeAtDistance)))
 
-      range(screens.length).forEach(i => {
-        const show = i === visibleScreenIndex
-        screens[i].style.opacity = show ? '1' : '0'
-        explanations[i].style.display = show ? 'block' : 'none'
-      })
+      // range(screens.length).forEach(i => {
+      //   const show = i === visibleScreenIndex
+      //   screens[i].style.opacity = show ? '1' : '0'
+      //   const explanation = explanations[i + 1]
+      //   if (explanation) explanation.style.display = show ? 'block' : 'none'
+      // })
     }
 
     const setDesignPositionCacheAndRunUpdate = () => {
@@ -71,34 +74,35 @@ export default class Designs extends React.Component {
     return (
       <div className="designs" ref={this.designsRef}>
         <div className="designs-content" ref={this.designsContentRef}>
-          <div className="explanations">
-            <div className="explanation">
-              <h1>What we're building</h1>
-            </div>
-            <div className="explanation">
-              <h2>A widget to post issues</h2>
-              People can report issues they encounter online
-            </div>
-            <div className="explanation">
-              <h2>A timeline to discuss issues</h2>
-              People can have conversations with website maintainers
-            </div>
-            <div className="explanation">
-              <h2>A taskboard to track issues</h2>
-              Maintainers may track progress and sort issues by how many people are experiencing them
-            </div>
+          <h1>What we're building</h1>
+          <div className="mac-container">
+            <img className="mac" src="/imac.svg" />
           </div>
-          <div className="mac-screen-container">
-            <img className="mac" src="/mhi_imac_mockup.png" />
-            <div className="screens">
-              <img className="screen" src="/widget-closed.png" />
-              <img className="screen" src="/widget-open.png" />
-              <img className="screen" src="/issue-detail.png" />
-              <img className="screen" src="/taskboard.png" />
-            </div>
-          </div>
+
         </div>
       </div>
     )
   }
 }
+
+{/* <div className="screens">
+  <img className="screen" src="/widget-closed.png" />
+  <img className="screen" src="/widget-open.png" />
+  <img className="screen" src="/issue-detail.png" />
+  <img className="screen" src="/taskboard.png" />
+</div> */}
+
+/* <div className="explanations">
+  <div className="explanation">
+    <h2>A widget to post issues</h2>
+    People can report issues they encounter online
+  </div>
+  <div className="explanation">
+    <h2>A timeline to discuss issues</h2>
+    People can have conversations with website maintainers
+  </div>
+  <div className="explanation">
+    <h2>A taskboard to track issues</h2>
+    Maintainers may track progress and sort issues by how many people are experiencing them
+  </div>
+</div> */
