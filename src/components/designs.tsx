@@ -1,5 +1,5 @@
 import React from 'react'
-import { max, range } from 'lodash'
+import { forEach, max, range } from 'lodash'
 import numPixels from '../utils/numPixels'
 
 
@@ -59,39 +59,45 @@ export default class Designs extends React.Component {
 
       const padding = .03 * macRect.width
 
-      range(screens.length).forEach(i => {
+      const useCard = macRect.left > 240
+
+      forEach(screens, (screen, i) => {
         const show = i === visibleScreenIndex
-        const screen = screens[i]
-        const explanation = explanations[i - 1]
+        screen.style.opacity = show ? '1' : '0'
 
         screen.style.width = `${macRect.width - (2 * padding)}px`
         screen.style.top = `${padding}px`
         screen.style.left = `${macRect.left - macContainer.getBoundingClientRect().left + padding}px`
-        screen.style.opacity = show ? '1' : '0'
+      })
 
-        if (explanation) {
-          if (macRect.left > 240) {
-            explanation.classList.remove('text')
-            explanation.classList.add('card')
-            explanation.style.top = `${macRect.top + .35 * macRect.height}px`
-            explanation.style.left = `${macRect.left - 200}px`
-          } else {
-            explanation.classList.remove('card')
-            explanation.classList.add('text')
-            explanation.style.top = ''
-            explanation.style.left = ''
-          }
+      forEach(explanations, (explanation, i) => {
+        const show = i === visibleScreenIndex - 1
+        explanation.style.opacity = show ? '1' : '0'
 
-          explanation.style.opacity = show ? '1' : '0'
+        if (useCard) {
+          explanation.classList.remove('text')
+          explanation.classList.add('card')
+          explanation.style.top = `${macRect.top + .35 * macRect.height}px`
+          explanation.style.left = `${macRect.left - 200}px`
+        } else {
+          explanation.classList.remove('card')
+          explanation.classList.add('text')
+          explanation.style.top = ''
+          explanation.style.left = ''
         }
       })
 
-      const tallestExplanationHeight = max(Array.from(explanations, explanation => {
-        const height = numPixels(explanation, 'height')
-        return height
-      }))
+      const tallestExplanationHeight = max(
+        Array.from(explanations).map(explanation =>
+          numPixels(explanation, 'height')
+        )
+      )
 
-      explanationsContainer.style.height = `${tallestExplanationHeight}px`
+      explanationsContainer.style.height = (
+        useCard
+          ? '0'
+          : `${tallestExplanationHeight}px`
+      )
     }
 
     const setDesignPositionCacheAndRunUpdate = () => {
