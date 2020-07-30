@@ -12,29 +12,34 @@ footer {
   @include onmobile {
     padding-top: 40px;
   }
-}
 
-.footer-links {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-
-  @include onmobile {
-    min-width: 100%;
-  }
-
-  > .footer-link {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  .footer-rings {
-    max-width: 276px !important;
+  > .footer-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 
     @include onmobile {
-      width: 100%;
+      min-width: 100%;
+    }
+
+    > .footer-link {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .footer-rings {
+      max-width: 276px !important;
+
+      @include onmobile {
+        width: 100%;
+      }
     }
   }
+
+  > span, p {
+    text-align: center;
+  }
 }
+

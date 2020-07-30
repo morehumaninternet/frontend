@@ -66,7 +66,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
         <div className="posthero">
           <Designs />
           <div className="manifesto">
-            <h1>Why we're building this</h1>
+            <h1 className="manifesto-item">Why we're building this</h1>
             <div className="manifesto-item manifesto-contents">
               <Manifesto />
             </div>

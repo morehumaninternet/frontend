@@ -27,7 +27,7 @@
     > .mac-container {
       position: relative;
 
-      height: 65%;
+      max-height: 65%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -40,6 +40,7 @@
       > .screens {
         > img.screen {
           position: absolute;
+
           opacity: 0;
           transition: opacity 0.2s;
 
@@ -51,7 +52,12 @@
     }
 
     > .explanations {
+      width: 100%;
+      height: 180px;
+
       > .explanation {
+        position: absolute;
+        margin-top: 25px;
         display: none;
         transition: display 0.2s;
 
@@ -66,17 +72,10 @@
         }
 
         &.text {
-          margin-top: 25px;
           display: block;
+          max-width: 100%;
+          margin-right: 25px;
         }
-
-        @include ondesktop {
-
-        }
-
-
-
-
 
         > h2 {
           color: $human-pink;

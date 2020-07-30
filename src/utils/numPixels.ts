@@ -1,4 +1,5 @@
-export default function numPixels(style: string): number {
+export default function numPixels(element: Element, property: keyof CSSStyleDeclaration): number {
+  const style = getComputedStyle(element)[property] as string
   const match = style.match(/^(.+)px$/)
 
   if (!match) {

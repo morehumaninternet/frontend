@@ -63,11 +63,12 @@ export default class Designs extends React.Component {
         const screen = screens[i]
         const explanation = explanations[i - 1]
 
+        screen.style.width = `${macRect.width - (2 * padding)}px`
+        screen.style.top = `${padding}px`
+        screen.style.left = `${macRect.left - macContainer.getBoundingClientRect().left + padding}px`
+
         if (show) {
           screen.style.opacity = '1'
-          screen.style.width = `${macRect.width - (2 * padding)}px`
-          screen.style.top = `${padding}px`
-          screen.style.left = `${padding}px`
 
           if (explanation) {
 
@@ -83,7 +84,7 @@ export default class Designs extends React.Component {
               explanation.style.left = 'auto'
             } else {
               explanation.style.position = 'fixed'
-              explanation.style.top = `${macRect.bottom - numPixels(getComputedStyle(explanation).height) - 10}px`
+              explanation.style.top = `${macRect.bottom - numPixels(explanation, 'height') - 10}px`
               explanation.style.left = `${macRect.left + 10}px`
             }
           }
@@ -113,6 +114,7 @@ export default class Designs extends React.Component {
     return (
       <div className="designs" ref={this.designsRef}>
         <div className="designs-content" ref={this.designsContentRef}>
+
           <div className="header-container">
             <h1>What we're building</h1>
           </div>

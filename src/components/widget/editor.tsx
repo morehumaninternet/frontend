@@ -85,9 +85,9 @@ export default function Editor({ setIssueTitle, setIssueInitialCommentBody }: Ed
     } else {
       toolbarElement.style.display = 'block' // this has to go first so that the .trix-button-group is on the page so that its height & width can be measured
 
-      const buttonGroupStyle = getComputedStyle(toolbarElement.querySelector('.trix-button-row > .trix-button-group'))
-      const heightPixels = numPixels(buttonGroupStyle.height)
-      const widthPixels = numPixels(buttonGroupStyle.width)
+      const toolbarButtonGroup = toolbarElement.querySelector('.trix-button-row > .trix-button-group')!
+      const heightPixels = numPixels(toolbarButtonGroup, 'height')
+      const widthPixels = numPixels(toolbarButtonGroup, 'width')
       const midpoint = (topSelectedRow.left + topSelectedRow.right) / 2
 
       toolbarElement.style.top = `${topSelectedRow.top - heightPixels - 10}px`

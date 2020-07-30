@@ -1,6 +1,6 @@
-@include ondesktop {
-  .MuiCard-root.join {
-    margin-top: 60px;
+@include onmobile {
+  .join {
+    width: 100%;
   }
 }
 

@@ -12,6 +12,6 @@ export default () => (
       <TwitterLink />
     </div>
     <span>Get in touch with us: <a className="text-link" href="mailto:info@morehumaninternet.org">info@morehumaninternet.org</a></span>
-    <p>© More Human Internet Foundation 2020, All rights reserved.</p>
+    <p>© More Human Internet Foundation 2020, All rights reserved</p>
   </footer>
 )
