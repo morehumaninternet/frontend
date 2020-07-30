@@ -2,8 +2,6 @@
   height: 300vh !important;
   width: 100%;
 
-  position: relative;
-
   > .designs-content {
     @include header-width(padding);
     padding-bottom: 180px;
@@ -15,14 +13,14 @@
     flex-direction: column;
     align-items: center;
 
-    position: relative;
-
     > h1 {
       padding-top: 80px;
+      padding-bottom: 50px;
     }
 
     > .mac-container {
-      padding-top: 40px;
+      position: relative;
+
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -32,21 +30,19 @@
         max-width: 100%;
         max-height: 100%;
       }
+
+      > .screens {
+        > img.screen {
+          position: absolute;
+          opacity: 0;
+          transition: opacity 0.2s;
+        }
+      }
     }
   }
 }
 
-// > .screens {
-//   > img.screen {
-//     position: absolute;
-//     top: 109px;
-//     left: 181px;
-//     width: 613px;
-//     z-index: -1;
-//     opacity: 0;
-//     transition: opacity 0.2s;
-//   }
-// }
+
 
 // align-items: center;
 // justify-content: center;

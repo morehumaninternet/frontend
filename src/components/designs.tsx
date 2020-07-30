@@ -39,25 +39,42 @@ export default class Designs extends React.Component {
         style: nextStyle()
       })
 
-      // const scrolledPastDistance = scrollY - designsTop
-      // const totalDistanceToGo = designsBottom - designsTop - innerHeight
+      const scrolledPastDistance = scrollY - designsTop
+      const totalDistanceToGo = designsBottom - designsTop - innerHeight
 
-      // const screens = designsContent.querySelectorAll<HTMLImageElement>('.mac-screen-container > .screens > .screen')
+      const macContainer = designsContent.querySelector('.mac-container')!
+      const mac = macContainer.querySelector('img.mac')!
+
+      const screens = macContainer.querySelectorAll<HTMLImageElement>('.mac-container > .screens > .screen')
+
+      const macRect = mac.getBoundingClientRect()
+
       // const explanations = designsContent.querySelectorAll<HTMLDivElement>('.explanations > .explanation')
 
       // if (screens.length !== 1 + explanations.length) {
       //   throw new Error(`Must have 1 more screen than explanation`)
       // }
 
-      // const changeAtDistance = totalDistanceToGo / screens.length
-      // const visibleScreenIndex = Math.min(screens.length - 1, Math.max(0, Math.floor(scrolledPastDistance / changeAtDistance)))
+      const changeAtDistance = totalDistanceToGo / screens.length
+      const visibleScreenIndex = Math.min(screens.length - 1, Math.max(0, Math.floor(scrolledPastDistance / changeAtDistance)))
 
-      // range(screens.length).forEach(i => {
-      //   const show = i === visibleScreenIndex
-      //   screens[i].style.opacity = show ? '1' : '0'
-      //   const explanation = explanations[i + 1]
-      //   if (explanation) explanation.style.display = show ? 'block' : 'none'
-      // })
+      const padding = 15
+
+      range(screens.length).forEach(i => {
+        const show = i === visibleScreenIndex
+        const screen = screens[i]
+        if (show) {
+          screen.style.opacity = '1'
+          screen.style.width = `${macRect.width - (2 * padding)}px`
+          screen.style.top = `${padding}px`
+          screen.style.left = `${padding}px`
+        } else {
+          screen.style.opacity = '0'
+        }
+
+        // const explanation = explanations[i + 1]
+        // if (explanation) explanation.style.display = show ? 'block' : 'none'
+      })
     }
 
     const setDesignPositionCacheAndRunUpdate = () => {
@@ -77,20 +94,20 @@ export default class Designs extends React.Component {
           <h1>What we're building</h1>
           <div className="mac-container">
             <img className="mac" src="/imac.svg" />
+            <div className="screens">
+              <img className="screen" src="/widget-closed.png" />
+              <img className="screen" src="/widget-open.png" />
+              <img className="screen" src="/issue-detail.png" />
+              <img className="screen" src="/taskboard.png" />
+            </div>
           </div>
-
         </div>
       </div>
     )
   }
 }
 
-{/* <div className="screens">
-  <img className="screen" src="/widget-closed.png" />
-  <img className="screen" src="/widget-open.png" />
-  <img className="screen" src="/issue-detail.png" />
-  <img className="screen" src="/taskboard.png" />
-</div> */}
+{}
 
 /* <div className="explanations">
   <div className="explanation">
