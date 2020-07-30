@@ -32,7 +32,7 @@ $margin-around-mac: 2em;
 
       > .mac-container {
         position: relative;
-        height: 65%;
+        max-height: 65%;
 
         display: flex;
         flex-direction: column;
@@ -98,4 +98,38 @@ $margin-around-mac: 2em;
       }
     }
   }
+
+  @include onmobile {
+    @media (orientation: landscape) {
+      margin-bottom: 4em;
+
+      > .designs-content-container {
+        padding-left: 0;
+        padding-right: 0;
+
+        > .designs-content {
+          flex-direction: row;
+
+          > .header-container {
+            margin-right: 25px;
+            flex-grow: 1;
+
+            > h1 {
+              width: 100%;
+              text-align: center;
+            }
+          }
+
+          > .mac-container {
+            max-height: 95%;
+            margin-right: 25px;
+          }
+
+          > .explanations-container {
+            display: none !important;
+          }
+        }
+      }
+    }
+    }
 }

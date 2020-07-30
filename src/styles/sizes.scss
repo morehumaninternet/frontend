@@ -7,6 +7,10 @@ $nonhero-margin: 25px;
   @media (max-width: $breakpoint-mobile) {
     @content;
   }
+
+  @media (max-height: 400px) {
+    @content;
+  }
 }
 
 @mixin ondesktop {

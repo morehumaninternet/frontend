@@ -10,7 +10,7 @@ export default class Designs extends React.Component {
 
   componentDidMount() {
     const designsContent = this.designsContentRef.current!
-    const macContainer = designsContent.querySelector('.mac-container')!
+    const macContainer = designsContent.querySelector<HTMLDivElement>('.mac-container')!
     const mac = macContainer.querySelector('img.mac')!
 
     const screens = macContainer.querySelectorAll<HTMLImageElement>('.mac-container > .screens > .screen')
@@ -21,6 +21,9 @@ export default class Designs extends React.Component {
       throw new Error(`Must have 1 more screen than explanation`)
     }
 
+    // Workaround for bug described here https://stackoverflow.com/questions/19119910/safari-height-100-element-inside-a-max-height-element
+    const isSafari = navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0
+
     let designsTop: number
     let designsBottom: number
 
@@ -28,6 +31,10 @@ export default class Designs extends React.Component {
       const designs = this.designsRef.current!
       designsTop = designs.offsetTop
       designsBottom = designsTop + designs.offsetHeight
+
+      if (isSafari) {
+        macContainer.style.height = getComputedStyle(macContainer).maxHeight
+      }
     }
 
     const nextStyle = () => {
@@ -87,17 +94,19 @@ export default class Designs extends React.Component {
         }
       })
 
-      const tallestExplanationHeight = max(
-        Array.from(explanations).map(explanation =>
-          numPixels(explanation, 'height')
+      if (getComputedStyle(explanationsContainer).display !== 'none') {
+        const tallestExplanationHeight = max(
+          Array.from(explanations).map(explanation =>
+            numPixels(explanation, 'height')
+          )
         )
-      )
 
-      explanationsContainer.style.height = (
-        useCard
-          ? '0'
-          : `${tallestExplanationHeight}px`
-      )
+        explanationsContainer.style.height = (
+          useCard
+            ? '0'
+            : `${tallestExplanationHeight}px`
+        )
+      }
     }
 
     const setDesignPositionCacheAndRunUpdate = () => {
