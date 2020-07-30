@@ -58,7 +58,7 @@ export default class Designs extends React.Component {
       const changeAtDistance = totalDistanceToGo / screens.length
       const visibleScreenIndex = Math.min(screens.length - 1, Math.max(0, Math.floor(scrolledPastDistance / changeAtDistance)))
 
-      const padding = 15
+      const padding = .03 * macRect.width
 
       range(screens.length).forEach(i => {
         const show = i === visibleScreenIndex
