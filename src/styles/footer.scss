@@ -3,11 +3,11 @@ footer {
   flex-direction: column;
   align-items: center;
   font-size: .77777em;
-  max-width: calc(100vw - (2 * #{$nonhero-margin}));
-  margin-left: $nonhero-margin;
-  margin-right: $nonhero-margin;
+  padding-left: $nonhero-margin;
+  padding-right: $nonhero-margin;
+  background-color: #f9f9f9;
 
-  padding-top: 88px;
+  padding-top: 68px;
 
   @include onmobile {
     padding-top: 40px;

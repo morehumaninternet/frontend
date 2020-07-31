@@ -78,6 +78,14 @@ $margin-around-mac: 2em;
             border: 2px $border-grey solid;
             border-radius: 10px;
             background-color: white;
+
+            > h2 {
+              text-align: left;
+              font-size: 1.3rem;
+              &.post-issues {
+                max-width: 160px;
+              }
+            }
           }
 
           &.text {
@@ -131,5 +139,5 @@ $margin-around-mac: 2em;
         }
       }
     }
-    }
+  }
 }

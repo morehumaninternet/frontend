@@ -3,6 +3,10 @@ import { forEach, max, range } from 'lodash'
 import numPixels from '../utils/numPixels'
 
 
+/*
+  Showcases the designs we're planning to build.
+
+*/
 export default class Designs extends React.Component {
 
   designsRef = React.createRef<HTMLDivElement>()
@@ -163,7 +167,7 @@ export default class Designs extends React.Component {
   }
 
   componentDidUpdate() {
-    throw new Error('This component should never be updated by a parent')
+    // throw new Error('This component should never be updated by a parent')
   }
 
   render() {
@@ -185,7 +189,7 @@ export default class Designs extends React.Component {
             </div>
             <div className="explanations-container">
               <div className="explanation">
-                <h2>A widget to post issues</h2>
+                <h2 className="post-issues">A widget to post issues</h2>
                 <p>People can report issues they encounter online</p>
               </div>
               <div className="explanation">

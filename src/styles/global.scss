@@ -19,6 +19,13 @@
 @import './pages/demo';
 @import './pages/issue';
 
+h1 {
+  color: $human-blue;
+}
+
+p.indent {
+  text-indent: 1em;
+}
 
 h1, h2 {
   text-align: center;

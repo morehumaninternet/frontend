@@ -1,17 +1,10 @@
 $max-signature-width: 300px;
+$max-item-width: 603px;
 
 .layout.index {
-  h1 {
-    color: $human-blue;
-  }
-
-  > header {
-    > .apply-link {
-      padding-right: 14px !important;
-    }
-  }
-
   > main {
+    margin-bottom: 50px;
+
     > .hero.index {
       @include ondesktop {
         min-height: 768px;
@@ -26,9 +19,9 @@ $max-signature-width: 300px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-bottom: 25px;
 
       > .manifesto {
-        margin-top: 50px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -41,18 +34,22 @@ $max-signature-width: 300px;
           }
         }
 
+        > h1.manifesto-item {
+          margin-top: 50px;
+        }
+
+        > .manifesto-item.form {
+          margin-top: 25px;
+        }
+
         > .manifesto-item {
-          max-width: 603px;
+          width: 100%;
+          max-width: $max-item-width;
           margin-left: $nonhero-margin !important;
           margin-right: $nonhero-margin !important;
 
           &.manifesto-contents {
-            > p {
-              text-indent: 1em;
-            }
-
             > p.lets-create {
-              text-indent: 0;
               text-align: auto;
               text-justify: auto;
             }
