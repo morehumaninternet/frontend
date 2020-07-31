@@ -3,6 +3,10 @@ import { forEach, max, range } from 'lodash'
 import numPixels from '../utils/numPixels'
 
 
+const isSafari = navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0
+const isIPhone = navigator.userAgent.search("iPhone") >= 0
+
+
 export default class Designs extends React.Component {
 
   designsRef = React.createRef<HTMLDivElement>()
@@ -23,10 +27,6 @@ export default class Designs extends React.Component {
       throw new Error(`Must have 1 more screen than explanation`)
     }
 
-    // Workaround for bug described here https://stackoverflow.com/questions/19119910/safari-height-100-element-inside-a-max-height-element
-    const isSafari = navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0
-    const isIPhone = navigator.userAgent.search("iPhone") >= 0
-
     let designsTop: number
     let designsBottom: number
     let isDesignsContentFlexRow: boolean
@@ -36,18 +36,16 @@ export default class Designs extends React.Component {
       designsTop = designs.offsetTop
       designsBottom = designsTop + designs.offsetHeight
       isDesignsContentFlexRow = getComputedStyle(designsContent).flexDirection === 'row'
+      let setHeightExplicitly = false
 
+      // Workaround for bug described here https://stackoverflow.com/questions/19119910/safari-height-100-element-inside-a-max-height-element
       if (isSafari) {
-        if (!isIPhone) {
-          macContainer.style.height = getComputedStyle(macContainer).maxHeight
-        } else if (isDesignsContentFlexRow) {
-          macContainer.style.height = getComputedStyle(macContainer).maxHeight
-        } else {
-          macContainer.style.height = ''
+        if (!isIPhone || isDesignsContentFlexRow) {
+          setHeightExplicitly = true
         }
-      } else {
-        macContainer.style.height = ''
       }
+
+      macContainer.style.height = setHeightExplicitly ? getComputedStyle(macContainer).maxHeight : ''
     }
 
     const nextStyle = () => {
