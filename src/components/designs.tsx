@@ -6,10 +6,12 @@ import numPixels from '../utils/numPixels'
 export default class Designs extends React.Component {
 
   designsRef = React.createRef<HTMLDivElement>()
-  designsContentRef = React.createRef<HTMLDivElement>()
+  designsContentContainerRef = React.createRef<HTMLDivElement>()
 
   componentDidMount() {
-    const designsContent = this.designsContentRef.current!
+    const designsContentContainer = this.designsContentContainerRef.current!
+    const designsContent = designsContentContainer.querySelector<HTMLDivElement>('.designs-content')!
+
     const macContainer = designsContent.querySelector<HTMLDivElement>('.mac-container')!
     const mac = macContainer.querySelector('img.mac')!
 
@@ -23,17 +25,28 @@ export default class Designs extends React.Component {
 
     // Workaround for bug described here https://stackoverflow.com/questions/19119910/safari-height-100-element-inside-a-max-height-element
     const isSafari = navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0
+    const isIPhone = navigator.userAgent.search("iPhone") >= 0
 
     let designsTop: number
     let designsBottom: number
+    let isDesignsContentFlexRow: boolean
 
     const setDesignPositionCache = () => {
       const designs = this.designsRef.current!
       designsTop = designs.offsetTop
       designsBottom = designsTop + designs.offsetHeight
+      isDesignsContentFlexRow = getComputedStyle(designsContent).flexDirection === 'row'
 
       if (isSafari) {
-        macContainer.style.height = getComputedStyle(macContainer).maxHeight
+        if (!isIPhone) {
+          macContainer.style.height = getComputedStyle(macContainer).maxHeight
+        } else if (isDesignsContentFlexRow) {
+          macContainer.style.height = getComputedStyle(macContainer).maxHeight
+        } else {
+          macContainer.style.height = ''
+        }
+      } else {
+        macContainer.style.height = ''
       }
     }
 
@@ -52,21 +65,20 @@ export default class Designs extends React.Component {
     }
 
     const runUpdate = () => {
-      Object.assign(designsContent, {
+      Object.assign(designsContentContainer, {
         style: nextStyle()
       })
 
       const scrolledPastDistance = scrollY - designsTop
       const totalDistanceToGo = designsBottom - designsTop - innerHeight
 
-      const macRect = mac.getBoundingClientRect()
-
       const changeAtDistance = totalDistanceToGo / screens.length
       const visibleScreenIndex = Math.min(screens.length - 1, Math.max(0, 1 + Math.floor(scrolledPastDistance / changeAtDistance)))
 
+      const macRect = mac.getBoundingClientRect()
       const padding = .03 * macRect.width
 
-      const useCard = macRect.left > 240
+      const useCard = !isDesignsContentFlexRow && (macRect.left > 240)
 
       forEach(screens, (screen, i) => {
         const show = i === visibleScreenIndex
@@ -89,12 +101,12 @@ export default class Designs extends React.Component {
         } else {
           explanation.classList.remove('card')
           explanation.classList.add('text')
-          explanation.style.top = ''
+          explanation.style.top = '0'
           explanation.style.left = ''
         }
       })
 
-      if (getComputedStyle(explanationsContainer).display !== 'none') {
+      if (!isDesignsContentFlexRow) {
         const tallestExplanationHeight = max(
           Array.from(explanations).map(explanation =>
             numPixels(explanation, 'height')
@@ -124,7 +136,7 @@ export default class Designs extends React.Component {
   render() {
     return (
       <div className="designs" ref={this.designsRef}>
-        <div className="designs-content-container" ref={this.designsContentRef}>
+        <div className="designs-content-container" ref={this.designsContentContainerRef}>
           <div className="designs-content">
             <div className="header-container">
               <h1>What we're building</h1>
