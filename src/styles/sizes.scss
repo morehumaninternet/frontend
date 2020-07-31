@@ -2,6 +2,7 @@ $breakpoint-mobile: 600px;
 $breakpoint-header-scrolls: 1300px;
 
 $nonhero-margin: 25px;
+$max-main-page-item-width: 603px;
 
 @mixin onmobile {
   @media (max-width: $breakpoint-mobile) {

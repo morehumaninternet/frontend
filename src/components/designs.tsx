@@ -189,15 +189,15 @@ export default class Designs extends React.Component {
             </div>
             <div className="explanations-container">
               <div className="explanation">
-                <h2 className="post-issues">A widget to post issues</h2>
-                <p>People can report issues they encounter online</p>
+                <h2>A widget to report issues</h2>
+                <p>People can post issues they encounter online</p>
               </div>
               <div className="explanation">
                 <h2>A timeline to discuss issues</h2>
                 <p>People can have conversations with website maintainers</p>
               </div>
               <div className="explanation">
-                <h2>A taskboard to track issues</h2>
+                <h2>A taskboard to manage issues</h2>
                 <p>Maintainers may track progress and sort issues by how many people are experiencing them</p>
               </div>
             </div>

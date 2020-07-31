@@ -1,5 +1,4 @@
 $max-signature-width: 300px;
-$max-item-width: 603px;
 
 .layout.index {
   > main {
@@ -44,9 +43,9 @@ $max-item-width: 603px;
 
         > .manifesto-item {
           width: 100%;
-          max-width: $max-item-width;
-          margin-left: $nonhero-margin !important;
-          margin-right: $nonhero-margin !important;
+          max-width: $max-main-page-item-width + (2 * $nonhero-margin);
+          padding-left: $nonhero-margin !important;
+          padding-right: $nonhero-margin !important;
 
           &.manifesto-contents {
             > p.lets-create {

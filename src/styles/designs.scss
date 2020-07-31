@@ -90,9 +90,12 @@ $margin-around-mac: 2em;
 
           &.text {
             position: absolute;
-            max-width: 100%;
+            max-width: $max-main-page-item-width;
             margin-right: 25px;
             top: 0;
+            > p {
+              text-align: center;
+            }
           }
 
           > h2 {
