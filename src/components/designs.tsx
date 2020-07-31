@@ -189,7 +189,7 @@ export default class Designs extends React.Component {
             </div>
             <div className="explanations-container">
               <div className="explanation">
-                <h2>A widget to report issues</h2>
+                <h2 className="report-issues">A widget to report issues</h2>
                 <p>People can post issues they encounter online</p>
               </div>
               <div className="explanation">
