@@ -182,22 +182,22 @@ export default class DesignsShowcase extends React.Component {
   }
 
   styleExplanations() {
-    if (this.useCard) {
+    if (this.isDesignsContentFlexRow) {
+      this.explanationsCards.forEach(card => card.style.display = 'none')
+      this.explanationsTexts.forEach(text => text.style.display = 'none')
+      this.explanationsContainerTexts.style.height = '0'
+    } else if (this.useCard) {
       this.explanationsCards.forEach(card => card.style.display = 'block')
       this.explanationsTexts.forEach(text => text.style.display = 'none')
+      this.explanationsContainerTexts.style.height = '0'
       forEach(this.explanationsCards, (explanation) => {
         explanation.style.left = `${this.explanationCardLeftOffset}px`
       })
     } else {
       this.explanationsCards.forEach(card => card.style.display = 'none')
       this.explanationsTexts.forEach(text => text.style.display = 'block')
+      this.explanationsContainerTexts.style.height = `${this.tallestExplanationHeight()}px`
     }
-
-    if (this.isDesignsContentFlexRow) return
-
-    this.explanationsContainerTexts.style.height = this.useCard
-      ? '0'
-      : `${this.tallestExplanationHeight()}px`
   }
 
   onScroll() {
