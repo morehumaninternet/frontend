@@ -4,9 +4,10 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import SEO from '../components/seo'
-import Designs from '../components/designs'
+import Designs from '../components/designs-showcase'
 import ApplicationForm from '../components/application-form'
 import setLogoFade from '../utils/setLogoFade'
+import MacIcon from '../components/designs-showcase/mac-icon'
 
 
 export default class IndexPage extends React.Component<{ data: any }> {

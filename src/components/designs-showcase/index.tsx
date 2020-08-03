@@ -1,12 +1,9 @@
 import React from 'react'
 import { forEach, max, range } from 'lodash'
-import numPixels from '../utils/numPixels'
+import numPixels from '../../utils/numPixels'
+import MacIcon from './mac-icon'
 
 
-/*
-  Showcases the designs we're planning to build.
-
-*/
 export default class Designs extends React.Component {
 
   designsRef = React.createRef<HTMLDivElement>()
@@ -65,7 +62,7 @@ export default class Designs extends React.Component {
     this.designsContent = this.designsContentContainer.querySelector<HTMLDivElement>('.designs-content')!
 
     this.macContainer = this.designsContent.querySelector<HTMLDivElement>('.mac-container')!
-    this.mac = this.macContainer.querySelector<HTMLImageElement>('img.mac')!
+    this.mac = this.macContainer.querySelector<HTMLImageElement>('.mac')!
 
     this.screens = this.macContainer.querySelectorAll<HTMLImageElement>('.mac-container > .screens > .screen')
     this.explanationsContainer = this.designsContent.querySelector<HTMLDivElement>('.explanations-container')!
@@ -214,12 +211,12 @@ export default class Designs extends React.Component {
               <h1>What we're building</h1>
             </div>
             <div className="mac-container">
-              <img className="mac" src="/imac.svg" />
+              <MacIcon />
               <div className="screens">
-                <img className="screen" src="/widget-closed.png" />
-                <img className="screen" src="/widget-open.png" />
-                <img className="screen" src="/issue-detail.png" />
-                <img className="screen" src="/taskboard.png" />
+                <img className="screen" src="/designs-showcase/0-widget-closed.png" />
+                <img className="screen" src="/designs-showcase/1-widget-open.png" />
+                <img className="screen" src="/designs-showcase/2-issue-detail.png" />
+                <img className="screen" src="/designs-showcase/3-taskboard.png" />
               </div>
             </div>
             <div className="explanations-container">
