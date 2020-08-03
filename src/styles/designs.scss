@@ -1,6 +1,4 @@
 $margin-around-mac: 2em;
-$breakpoint-show-texts: 1548px;
-
 
 .designs {
   height: 275vh !important;
@@ -37,13 +35,8 @@ $breakpoint-show-texts: 1548px;
       align-items: center;
       justify-content: center;
 
-      > .header-container {
-        margin-bottom: $margin-around-mac;
-        display: flex;
-
-        > h1 {
-          margin-bottom: 0;
-        }
+      > h1 {
+        margin-bottom: 1em;
       }
 
       .explanation {
@@ -67,6 +60,7 @@ $breakpoint-show-texts: 1548px;
         align-items: center;
         max-width: 1600px;
         width: 100%;
+        margin-bottom: $margin-around-mac;
 
         > .mac-with-screens > svg {
           max-width: 100%;
@@ -108,7 +102,6 @@ $breakpoint-show-texts: 1548px;
       > .explanations-container.texts {
         position: relative;
         width: 100%;
-        margin-top: $margin-around-mac;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -116,10 +109,9 @@ $breakpoint-show-texts: 1548px;
 
         > .explanation {
           display: none;
-
           position: absolute;
           max-width: $max-main-page-item-width;
-          margin-right: 25px;
+
           top: 0;
           @include onmobile {
             > h2 {
@@ -145,22 +137,23 @@ $breakpoint-show-texts: 1548px;
         > .designs-content {
           flex-direction: row;
 
-          > .header-container {
-            margin-right: 25px;
-            flex-grow: 1;
-
-            > h1 {
-              width: 100%;
-              text-align: center;
-            }
+          > h1 {
+            width: 100%;
+            text-align: center;
           }
 
           > .mac-container {
-            max-height: 95%;
-            margin-right: 25px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            > svg {
+              height: 90vh;
+              max-width: 100%;
+            }
           }
 
-          > .explanations-container > .explanaion {
+          > .explanations-container {
             display: none !important;
           }
         }

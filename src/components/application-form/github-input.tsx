@@ -8,6 +8,7 @@ import debounceDefer from '../../utils/debounceDefer'
 
 
 async function getUserByUsername(username: string): Promise<any> {
+  if (!username) return null
   const result = await axios(`https://api.github.com/users/${username}`)
   return result.data
 }

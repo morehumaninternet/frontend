@@ -33,6 +33,7 @@ export default class DesignsShowcase extends React.Component {
   designs: HTMLDivElement
   designsContentContainer: HTMLDivElement
   designsContent: HTMLDivElement
+  header: HTMLHeadElement
   macContainer: HTMLDivElement
   mac: HTMLImageElement
   macImage: HTMLElement
@@ -82,6 +83,7 @@ export default class DesignsShowcase extends React.Component {
     this.designsContentContainer = this.designsContentContainerRef.current!
     this.designsContent = this.designsContentContainer.querySelector<HTMLDivElement>('.designs-content')!
 
+    this.header = this.designsContent.querySelector<HTMLHeadElement>('h1')!
     this.macContainer = this.designsContent.querySelector<HTMLDivElement>('.mac-container')!
     this.mac = this.macContainer.querySelector<HTMLImageElement>('.mac-with-screens')!
     this.macImage = this.mac.querySelector<HTMLElement>('g#mac-with-screens')!
@@ -107,9 +109,9 @@ export default class DesignsShowcase extends React.Component {
     this.designsTop = this.designs.offsetTop
     this.designsBottom = this.designsTop + this.designs.offsetHeight
     this.isDesignsContentFlexRow = getComputedStyle(this.designsContent).flexDirection === 'row'
-    const macRect = this.mac.getBoundingClientRect()
+    const macContainerRect = this.macContainer.getBoundingClientRect()
     const macImageRect = this.macImage.getBoundingClientRect()
-    const macImageLeftOffset = macImageRect.left - macRect.left
+    const macImageLeftOffset = macImageRect.left - macContainerRect.left
     this.explanationCardLeftOffset = macImageLeftOffset - 180
     this.useCard = this.explanationCardLeftOffset >= 0
     this.styleExplanations()
@@ -196,7 +198,7 @@ export default class DesignsShowcase extends React.Component {
     } else {
       this.explanationsCards.forEach(card => card.style.display = 'none')
       this.explanationsTexts.forEach(text => text.style.display = 'block')
-      this.explanationsContainerTexts.style.height = `${this.tallestExplanationHeight()}px`
+      this.explanationsContainerTexts.style.minHeight = `${this.tallestExplanationHeight()}px`
     }
   }
 
@@ -207,6 +209,15 @@ export default class DesignsShowcase extends React.Component {
     if (this.visibleScreenIndex !== lastVisibleScreenIndex) {
       this.showVisibleScreen()
       this.showVisibleExplanation()
+      if (this.isDesignsContentFlexRow) {
+        if (this.visibleScreenIndex === 0) {
+          this.header.style.display = ''
+          this.macContainer.style.display = 'none'
+        } else {
+          this.header.style.display = 'none'
+          this.macContainer.style.display = ''
+        }
+      }
     }
   }
 
@@ -233,9 +244,7 @@ export default class DesignsShowcase extends React.Component {
       <div className="designs" ref={this.designsRef}>
         <div className="designs-content-container static" ref={this.designsContentContainerRef}>
           <div className="designs-content">
-            <div className="header-container">
-              <h1>What we're building</h1>
-            </div>
+            <h1>What we're building</h1>
             <div className="mac-container">
               <MacWithScreens className="mac-with-screens" />
               <div className="explanations-container cards">
