@@ -140,7 +140,7 @@ export default class DesignsShowcase extends React.Component {
         explanation.classList.remove('text')
         explanation.classList.add('card')
         explanation.style.top = `${macRect.top + .35 * macRect.height}px`
-        explanation.style.left = `${macRect.left - 200}px`
+        explanation.style.left = `${macRect.left + 20}px`
       } else {
         explanation.classList.remove('card')
         explanation.classList.add('text')
@@ -172,7 +172,7 @@ export default class DesignsShowcase extends React.Component {
     this.setContainerPosition()
     this.setVisibleScreenIndex()
     const macRect = this.mac.getBoundingClientRect()
-    const useCard = !this.isDesignsContentFlexRow && (macRect.left > 240)
+    const useCard = !this.isDesignsContentFlexRow && (macRect.left > 100)
     this.styleScreens()
     this.styleExplanations(macRect, useCard)
     this.setExplanationsContainerHeight(useCard)
