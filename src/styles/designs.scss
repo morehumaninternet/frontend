@@ -1,13 +1,27 @@
 $margin-around-mac: 2em;
 
 .designs {
-  height: 200vh !important;
+  height: 275vh !important;
   width: 100%;
 
   position: relative;
 
   > .designs-content-container {
     @include header-width(padding);
+
+    &.static {
+      position: static;
+    }
+
+    &.fixed {
+      position: fixed;
+      top: 0;
+    }
+
+    &.absolute {
+      position: absolute;
+      bottom: 0;
+    }
 
     width: 100%;
     height: 100vh;

@@ -12,6 +12,9 @@ export default class Designs extends React.Component {
   designsRef = React.createRef<HTMLDivElement>()
   designsContentContainerRef = React.createRef<HTMLDivElement>()
 
+  containerPosition: 'static' | 'fixed' | 'absolute' = 'static'
+  visibleScreenIndex: number = 0
+
   // elements & settings, should not change once component has mounted
   designs: HTMLDivElement
   designsContentContainer: HTMLDivElement
@@ -28,6 +31,33 @@ export default class Designs extends React.Component {
   designsTop: number
   designsBottom: number
   isDesignsContentFlexRow: boolean
+
+  listenForArrowPress() {
+    addEventListener('keydown', event => {
+      const up = event.keyCode === 38
+      const down = event.keyCode === 40
+      if (!up && !down) return
+      if (this.containerPosition !== 'fixed') return
+
+      event.preventDefault()
+
+      const direction = down ? 1 : -1
+      const nextVisibleScreenIndex = this.visibleScreenIndex + direction
+
+
+      if (nextVisibleScreenIndex === 0) {
+        return window.scroll(0, this.designsTop - 150)
+      } else if (nextVisibleScreenIndex >= this.screens.length) {
+        return window.scroll(0, this.designsBottom - innerHeight + 150)
+      }
+
+      const totalDistanceToGo = this.designsBottom - this.designsTop - innerHeight
+      const changeAtDistance = totalDistanceToGo / (this.screens.length - 1)
+      const x = changeAtDistance * (nextVisibleScreenIndex - 1)
+      const nextScrollDistance = 1 + x + this.designsTop
+      window.scroll(0, nextScrollDistance)
+    })
+  }
 
   cacheElementsAndSettings() {
     this.designs = this.designsRef.current!
@@ -68,33 +98,37 @@ export default class Designs extends React.Component {
     this.macContainer.style.height = setHeightExplicitly ? getComputedStyle(this.macContainer).maxHeight : ''
   }
 
-  nextContentContainerStyle() {
-    const { scrollY, innerHeight } = window
-
-    if (scrollY < this.designsTop) {
-      return 'position: static;'
-    }
-
-    if ((scrollY + innerHeight) >= this.designsBottom) {
-      return 'position: absolute; bottom: 0;'
-    }
-
-    return 'position: fixed; top: 0;'
+  nextContainerPosition(): this['containerPosition'] {
+    if (scrollY < this.designsTop) return 'static'
+    if ((scrollY + innerHeight) >= this.designsBottom) return 'absolute'
+    return 'fixed'
   }
 
-  visibleScreenIndex(): number {
+  setContainerPosition() {
+    this.containerPosition = this.nextContainerPosition()
+    const classes = ['static', 'fixed', 'absolute']
+    classes.forEach(className => {
+      if (className === this.containerPosition) {
+        this.designsContentContainer.classList.add(className)
+      } else {
+        this.designsContentContainer.classList.remove(className)
+      }
+    })
+  }
+
+  setVisibleScreenIndex() {
     const scrolledPastDistance = scrollY - this.designsTop
     const totalDistanceToGo = this.designsBottom - this.designsTop - innerHeight
 
-    const changeAtDistance = totalDistanceToGo / this.screens.length
-    return Math.min(this.screens.length - 1, Math.max(0, 1 + Math.floor(scrolledPastDistance / changeAtDistance)))
+    const changeAtDistance = totalDistanceToGo / (this.screens.length - 1)
+    this.visibleScreenIndex = Math.min(this.screens.length - 1, Math.max(0, 1 + Math.floor(scrolledPastDistance / changeAtDistance)))
   }
 
-  styleScreens(macRect: DOMRect, visibleScreenIndex: number) {
+  styleScreens(macRect: DOMRect) {
     const padding = .03 * macRect.width
 
     forEach(this.screens, (screen, i) => {
-      const show = i === visibleScreenIndex
+      const show = i === this.visibleScreenIndex
       screen.style.opacity = show ? '1' : '0'
 
       screen.style.width = `${macRect.width - (2 * padding)}px`
@@ -103,8 +137,8 @@ export default class Designs extends React.Component {
     })
   }
 
-  styleExplanations(macRect: DOMRect, visibleScreenIndex: number, useCard: boolean) {
-    const visibleExplanationIndex = visibleScreenIndex - 1
+  styleExplanations(macRect: DOMRect, useCard: boolean) {
+    const visibleExplanationIndex = this.visibleScreenIndex - 1
 
     forEach(this.explanations, (explanation, i) => {
       const show = i === visibleExplanationIndex
@@ -143,12 +177,12 @@ export default class Designs extends React.Component {
   }
 
   onScroll() {
-    Object.assign(this.designsContentContainer, { style: this.nextContentContainerStyle() })
-    const visibleScreenIndex = this.visibleScreenIndex()
+    this.setContainerPosition()
+    this.setVisibleScreenIndex()
     const macRect = this.mac.getBoundingClientRect()
     const useCard = !this.isDesignsContentFlexRow && (macRect.left > 240)
-    this.styleScreens(macRect, visibleScreenIndex)
-    this.styleExplanations(macRect, visibleScreenIndex, useCard)
+    this.styleScreens(macRect)
+    this.styleExplanations(macRect, useCard)
     this.setExplanationsContainerHeight(useCard)
   }
 
@@ -164,6 +198,7 @@ export default class Designs extends React.Component {
     this.mac.addEventListener('load', () => this.onResize())
     window.addEventListener('resize', () => this.onResize())
     window.addEventListener('scroll', () => this.onScroll())
+    this.listenForArrowPress()
   }
 
   componentDidUpdate() {
@@ -173,7 +208,7 @@ export default class Designs extends React.Component {
   render() {
     return (
       <div className="designs" ref={this.designsRef}>
-        <div className="designs-content-container" ref={this.designsContentContainerRef}>
+        <div className="designs-content-container static" ref={this.designsContentContainerRef}>
           <div className="designs-content">
             <div className="header-container">
               <h1>What we're building</h1>
