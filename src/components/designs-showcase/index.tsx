@@ -4,13 +4,30 @@ import numPixels from '../../utils/numPixels'
 import MacWithScreens from './mac-with-screens'
 
 
+const Explanations = () => (
+  <>
+    <div className="explanation">
+      <h2 className="report-issues">A widget to report issues</h2>
+      <p>People can post issues they encounter online</p>
+    </div>
+    <div className="explanation">
+      <h2>A timeline to discuss issues</h2>
+      <p>People can have conversations with website maintainers</p>
+    </div>
+    <div className="explanation">
+      <h2>A taskboard to manage issues</h2>
+      <p>Maintainers may track progress and sort issues by how many people are experiencing them</p>
+    </div>
+  </>
+)
+
 export default class DesignsShowcase extends React.Component {
 
   designsRef = React.createRef<HTMLDivElement>()
   designsContentContainerRef = React.createRef<HTMLDivElement>()
 
   containerPosition: 'static' | 'fixed' | 'absolute' = 'static'
-  visibleScreenIndex: number = 0
+  visibleScreenIndex: number
 
   // elements & settings, should not change once component has mounted
   designs: HTMLDivElement
@@ -18,9 +35,12 @@ export default class DesignsShowcase extends React.Component {
   designsContent: HTMLDivElement
   macContainer: HTMLDivElement
   mac: HTMLImageElement
+  macImage: HTMLElement
   screens: NodeListOf<HTMLElement>
-  explanationsContainer: HTMLDivElement
-  explanations: NodeListOf<HTMLDivElement>
+  explanationsContainerCards: HTMLDivElement
+  explanationsContainerTexts: HTMLDivElement
+  explanationsCards: NodeListOf<HTMLDivElement>
+  explanationsTexts: NodeListOf<HTMLDivElement>
   isSafari: boolean
   isIPhone: boolean
 
@@ -28,6 +48,8 @@ export default class DesignsShowcase extends React.Component {
   designsTop: number
   designsBottom: number
   isDesignsContentFlexRow: boolean
+  explanationCardLeftOffset: number
+  useCard: boolean
 
   listenForArrowPress() {
     addEventListener('keydown', event => {
@@ -63,13 +85,19 @@ export default class DesignsShowcase extends React.Component {
 
     this.macContainer = this.designsContent.querySelector<HTMLDivElement>('.mac-container')!
     this.mac = this.macContainer.querySelector<HTMLImageElement>('.mac-with-screens')!
+    this.macImage = this.mac.querySelector<HTMLElement>('g#mac-with-screens')!
 
     this.screens = this.mac.querySelectorAll<HTMLElement>('.screen')
-    this.explanationsContainer = this.designsContent.querySelector<HTMLDivElement>('.explanations-container')!
-    this.explanations = this.explanationsContainer.querySelectorAll<HTMLDivElement>('.explanation')
+    this.explanationsContainerCards = this.designsContent.querySelector<HTMLDivElement>('.explanations-container.cards')!
+    this.explanationsContainerTexts = this.designsContent.querySelector<HTMLDivElement>('.explanations-container.texts')!
+    this.explanationsCards = this.explanationsContainerCards.querySelectorAll<HTMLDivElement>('.explanation')
+    this.explanationsTexts = this.explanationsContainerTexts.querySelectorAll<HTMLDivElement>('.explanation')
 
-    if (this.screens.length !== 1 + this.explanations.length) {
+    if (this.screens.length !== 1 + this.explanationsCards.length) {
       throw new Error(`Must have 1 more screen than explanation`)
+    }
+    if (this.explanationsCards.length !== this.explanationsTexts.length) {
+      throw new Error(`Must have equal explanations of both types`)
     }
 
     this.isSafari = navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0
@@ -80,6 +108,22 @@ export default class DesignsShowcase extends React.Component {
     this.designsTop = this.designs.offsetTop
     this.designsBottom = this.designsTop + this.designs.offsetHeight
     this.isDesignsContentFlexRow = getComputedStyle(this.designsContent).flexDirection === 'row'
+    const macRect = this.mac.getBoundingClientRect()
+    const macImageRect = this.macImage.getBoundingClientRect()
+    const macImageLeftOffset = macImageRect.left - macRect.left
+    this.explanationCardLeftOffset = macImageLeftOffset - 180
+    this.useCard = this.explanationCardLeftOffset >= 0
+    if (this.useCard) {
+      this.explanationsCards.forEach(card => card.style.display = 'block')
+      this.explanationsTexts.forEach(text => text.style.display = 'none')
+      forEach(this.explanationsCards, (explanation) => {
+        explanation.style.left = `${this.explanationCardLeftOffset}px`
+      })
+    } else {
+      this.explanationsCards.forEach(card => card.style.display = 'none')
+      this.explanationsTexts.forEach(text => text.style.display = 'block')
+    }
+    this.setExplanationsContainerHeight()
   }
 
   // Workaround for bug described here https://stackoverflow.com/questions/19119910/safari-height-100-element-inside-a-max-height-element
@@ -129,30 +173,20 @@ export default class DesignsShowcase extends React.Component {
     })
   }
 
-  styleExplanations(macRect: DOMRect, useCard: boolean) {
+  styleExplanations() {
     const visibleExplanationIndex = this.visibleScreenIndex - 1
 
-    forEach(this.explanations, (explanation, i) => {
-      const show = i === visibleExplanationIndex
-      explanation.style.opacity = show ? '1' : '0'
-
-      if (useCard) {
-        explanation.classList.remove('text')
-        explanation.classList.add('card')
-        explanation.style.top = `${macRect.top + .35 * macRect.height}px`
-        explanation.style.left = `${macRect.left + 20}px`
-      } else {
-        explanation.classList.remove('card')
-        explanation.classList.add('text')
-        explanation.style.top = '0'
-        explanation.style.left = ''
-      }
+    forEach([this.explanationsCards, this.explanationsTexts], explanations => {
+      forEach(explanations, (explanation, i) => {
+        const show = i === visibleExplanationIndex
+        explanation.style.opacity = show ? '1' : '0'
+      })
     })
   }
 
   tallestExplanationHeight(): number {
     return max(
-      Array.from(this.explanations).map(explanation =>
+      Array.from(this.explanationsTexts).map(explanation =>
         numPixels(explanation, 'height')
       )
     )!
@@ -160,22 +194,22 @@ export default class DesignsShowcase extends React.Component {
 
   // The text explanations are positioned absolutely so they appear in the same place, so we explicitly set the height
   // of the container so that it is included in the cascade and everything appears vertically centered
-  setExplanationsContainerHeight(useCard: boolean) {
+  setExplanationsContainerHeight() {
     if (this.isDesignsContentFlexRow) return
 
-    this.explanationsContainer.style.height = useCard
+    this.explanationsContainerTexts.style.height = this.useCard
       ? '0'
       : `${this.tallestExplanationHeight()}px`
   }
 
   onScroll() {
     this.setContainerPosition()
+    const lastVisibleScreenIndex = this.visibleScreenIndex
     this.setVisibleScreenIndex()
-    const macRect = this.mac.getBoundingClientRect()
-    const useCard = !this.isDesignsContentFlexRow && (macRect.left > 100)
-    this.styleScreens()
-    this.styleExplanations(macRect, useCard)
-    this.setExplanationsContainerHeight(useCard)
+    if (this.visibleScreenIndex !== lastVisibleScreenIndex) {
+      this.styleScreens()
+      this.styleExplanations()
+    }
   }
 
   onResize() {
@@ -206,20 +240,12 @@ export default class DesignsShowcase extends React.Component {
             </div>
             <div className="mac-container">
               <MacWithScreens className="mac-with-screens" />
+              <div className="explanations-container cards">
+                <Explanations />
+              </div>
             </div>
-            <div className="explanations-container">
-              <div className="explanation">
-                <h2 className="report-issues">A widget to report issues</h2>
-                <p>People can post issues they encounter online</p>
-              </div>
-              <div className="explanation">
-                <h2>A timeline to discuss issues</h2>
-                <p>People can have conversations with website maintainers</p>
-              </div>
-              <div className="explanation">
-                <h2>A taskboard to manage issues</h2>
-                <p>Maintainers may track progress and sort issues by how many people are experiencing them</p>
-              </div>
+            <div className="explanations-container texts">
+              <Explanations />
             </div>
           </div>
         </div>
