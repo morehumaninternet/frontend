@@ -4,10 +4,9 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import SEO from '../components/seo'
-import Designs from '../components/designs-showcase'
+import DesignsShowcase from '../components/designs-showcase'
 import ApplicationForm from '../components/application-form'
 import setLogoFade from '../utils/setLogoFade'
-import MacIcon from '../components/designs-showcase/mac-icon'
 
 
 export default class IndexPage extends React.Component<{ data: any }> {
@@ -55,7 +54,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
           <h2 className="white">Join us in our quest to make the web more transparent and better aligned with the interests of all people</h2>
         </Hero>
         <div className="posthero">
-          <Designs />
+          <DesignsShowcase />
           <div className="manifesto">
             <h1 className="manifesto-item">Why we're building this</h1>
             <div className="manifesto-item manifesto-contents">

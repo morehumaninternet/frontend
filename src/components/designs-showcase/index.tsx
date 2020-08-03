@@ -1,10 +1,10 @@
 import React from 'react'
-import { forEach, max, range } from 'lodash'
+import { forEach, max } from 'lodash'
 import numPixels from '../../utils/numPixels'
-import MacIcon from './mac-icon'
+import MacWithScreens from './mac-with-screens'
 
 
-export default class Designs extends React.Component {
+export default class DesignsShowcase extends React.Component {
 
   designsRef = React.createRef<HTMLDivElement>()
   designsContentContainerRef = React.createRef<HTMLDivElement>()
@@ -18,7 +18,7 @@ export default class Designs extends React.Component {
   designsContent: HTMLDivElement
   macContainer: HTMLDivElement
   mac: HTMLImageElement
-  screens: NodeListOf<HTMLImageElement>
+  screens: NodeListOf<HTMLElement>
   explanationsContainer: HTMLDivElement
   explanations: NodeListOf<HTMLDivElement>
   isSafari: boolean
@@ -62,9 +62,9 @@ export default class Designs extends React.Component {
     this.designsContent = this.designsContentContainer.querySelector<HTMLDivElement>('.designs-content')!
 
     this.macContainer = this.designsContent.querySelector<HTMLDivElement>('.mac-container')!
-    this.mac = this.macContainer.querySelector<HTMLImageElement>('.mac')!
+    this.mac = this.macContainer.querySelector<HTMLImageElement>('.mac-with-screens')!
 
-    this.screens = this.macContainer.querySelectorAll<HTMLImageElement>('.mac-container > .screens > .screen')
+    this.screens = this.mac.querySelectorAll<HTMLElement>('.screen')
     this.explanationsContainer = this.designsContent.querySelector<HTMLDivElement>('.explanations-container')!
     this.explanations = this.explanationsContainer.querySelectorAll<HTMLDivElement>('.explanation')
 
@@ -121,16 +121,11 @@ export default class Designs extends React.Component {
     this.visibleScreenIndex = Math.min(this.screens.length - 1, Math.max(0, 1 + Math.floor(scrolledPastDistance / changeAtDistance)))
   }
 
-  styleScreens(macRect: DOMRect) {
-    const padding = .03 * macRect.width
-
+  styleScreens() {
+    const stringIndex = String(this.visibleScreenIndex)
     forEach(this.screens, (screen, i) => {
-      const show = i === this.visibleScreenIndex
+      const show = screen.id[0] === stringIndex
       screen.style.opacity = show ? '1' : '0'
-
-      screen.style.width = `${macRect.width - (2 * padding)}px`
-      screen.style.top = `${padding}px`
-      screen.style.left = `${macRect.left - this.macContainer.getBoundingClientRect().left + padding}px`
     })
   }
 
@@ -178,7 +173,7 @@ export default class Designs extends React.Component {
     this.setVisibleScreenIndex()
     const macRect = this.mac.getBoundingClientRect()
     const useCard = !this.isDesignsContentFlexRow && (macRect.left > 240)
-    this.styleScreens(macRect)
+    this.styleScreens()
     this.styleExplanations(macRect, useCard)
     this.setExplanationsContainerHeight(useCard)
   }
@@ -192,7 +187,6 @@ export default class Designs extends React.Component {
   componentDidMount() {
     this.cacheElementsAndSettings()
     this.onResize()
-    this.mac.addEventListener('load', () => this.onResize())
     window.addEventListener('resize', () => this.onResize())
     window.addEventListener('scroll', () => this.onScroll())
     this.listenForArrowPress()
@@ -211,13 +205,7 @@ export default class Designs extends React.Component {
               <h1>What we're building</h1>
             </div>
             <div className="mac-container">
-              <MacIcon />
-              <div className="screens">
-                <img className="screen" src="/designs-showcase/0-widget-closed.png" />
-                <img className="screen" src="/designs-showcase/1-widget-open.png" />
-                <img className="screen" src="/designs-showcase/2-issue-detail.png" />
-                <img className="screen" src="/designs-showcase/3-taskboard.png" />
-              </div>
+              <MacWithScreens className="mac-with-screens" />
             </div>
             <div className="explanations-container">
               <div className="explanation">

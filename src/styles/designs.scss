@@ -53,20 +53,16 @@ $margin-around-mac: 2em;
         align-items: center;
         max-width: 1600px;
 
-        > .mac {
+        > .mac-with-screens {
           max-width: 100%;
           max-height: 100%;
-        }
 
-        > .screens {
-          > img.screen {
-            position: absolute;
-
+          .screen {
             opacity: 0;
             transition: opacity 0.2s;
 
-            &:first-child {
-              opacity: 1
+            &#0_widget-closed {
+              opacity: 1;
             }
           }
         }
