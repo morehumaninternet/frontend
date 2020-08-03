@@ -4,8 +4,8 @@ import * as React from "react";
 export default function MacIcon(props?: any) {
   return (
     <svg
-      width={1572}
-      height={1300}
+      // width={1572}
+      // height={1300}
       viewBox="0 0 1572 1300"
       fill="none"
       {...props}

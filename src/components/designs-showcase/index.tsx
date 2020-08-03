@@ -63,7 +63,6 @@ export default class DesignsShowcase extends React.Component {
       const direction = down ? 1 : -1
       const nextVisibleScreenIndex = this.visibleScreenIndex + direction
 
-
       if (nextVisibleScreenIndex === 0) {
         return window.scroll(0, this.designsTop - 150)
       } else if (nextVisibleScreenIndex >= this.screens.length) {
@@ -113,17 +112,7 @@ export default class DesignsShowcase extends React.Component {
     const macImageLeftOffset = macImageRect.left - macRect.left
     this.explanationCardLeftOffset = macImageLeftOffset - 180
     this.useCard = this.explanationCardLeftOffset >= 0
-    if (this.useCard) {
-      this.explanationsCards.forEach(card => card.style.display = 'block')
-      this.explanationsTexts.forEach(text => text.style.display = 'none')
-      forEach(this.explanationsCards, (explanation) => {
-        explanation.style.left = `${this.explanationCardLeftOffset}px`
-      })
-    } else {
-      this.explanationsCards.forEach(card => card.style.display = 'none')
-      this.explanationsTexts.forEach(text => text.style.display = 'block')
-    }
-    this.setExplanationsContainerHeight()
+    this.styleExplanations()
   }
 
   // Workaround for bug described here https://stackoverflow.com/questions/19119910/safari-height-100-element-inside-a-max-height-element
@@ -165,7 +154,7 @@ export default class DesignsShowcase extends React.Component {
     this.visibleScreenIndex = Math.min(this.screens.length - 1, Math.max(0, 1 + Math.floor(scrolledPastDistance / changeAtDistance)))
   }
 
-  styleScreens() {
+  showVisibleScreen() {
     const stringIndex = String(this.visibleScreenIndex)
     forEach(this.screens, (screen, i) => {
       const show = screen.id[0] === stringIndex
@@ -173,7 +162,7 @@ export default class DesignsShowcase extends React.Component {
     })
   }
 
-  styleExplanations() {
+  showVisibleExplanation() {
     const visibleExplanationIndex = this.visibleScreenIndex - 1
 
     forEach([this.explanationsCards, this.explanationsTexts], explanations => {
@@ -192,9 +181,18 @@ export default class DesignsShowcase extends React.Component {
     )!
   }
 
-  // The text explanations are positioned absolutely so they appear in the same place, so we explicitly set the height
-  // of the container so that it is included in the cascade and everything appears vertically centered
-  setExplanationsContainerHeight() {
+  styleExplanations() {
+    if (this.useCard) {
+      this.explanationsCards.forEach(card => card.style.display = 'block')
+      this.explanationsTexts.forEach(text => text.style.display = 'none')
+      forEach(this.explanationsCards, (explanation) => {
+        explanation.style.left = `${this.explanationCardLeftOffset}px`
+      })
+    } else {
+      this.explanationsCards.forEach(card => card.style.display = 'none')
+      this.explanationsTexts.forEach(text => text.style.display = 'block')
+    }
+
     if (this.isDesignsContentFlexRow) return
 
     this.explanationsContainerTexts.style.height = this.useCard
@@ -207,8 +205,8 @@ export default class DesignsShowcase extends React.Component {
     const lastVisibleScreenIndex = this.visibleScreenIndex
     this.setVisibleScreenIndex()
     if (this.visibleScreenIndex !== lastVisibleScreenIndex) {
-      this.styleScreens()
-      this.styleExplanations()
+      this.showVisibleScreen()
+      this.showVisibleExplanation()
     }
   }
 
