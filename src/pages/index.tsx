@@ -62,7 +62,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
               The internet has lost our trust. We’re frustrated with its many issues — links are broken, images don’t load, navigation is difficult, requests go slowly, pages are inaccessible — but its problems go deeper than that. Large corporations have taken control of a once open system. While they have brought efficiency, the platforms they have built are for their benefit, not ours. Online crypto-surveillance feeds petabytes of data into neural networks to serve personalized ads. These systems, dictated more by machine learning than human design, pander to and amplify our basest impulses and fears to get us to click, contributing to a polarized political climate where even basic facts cannot be agreed upon. We have quite literally created a cyborg superorganism that no one knows how to turn off.
             </p>
             <p className="indent">
-            We need an online culture guided by a spirit of transparency and civility. More Human Internet is a nonprofit dedicated to building a free public platform to facilitate dialog between the users and maintainers of the web. We believe that creating such an online space will change how websites are built and how we act within them.
+              We need an online culture guided by a spirit of transparency and civility. More Human Internet is a nonprofit dedicated to building a free public platform to facilitate dialog between the users and maintainers of the web. We believe the existence of this online space will change how websites are built and how we act within them.
             </p>
             <p><strong>Let's create a More Human Internet.</strong></p>
             </div>
