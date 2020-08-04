@@ -18,7 +18,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
     const hero = this.heroRef.current!
     let heroEndsAt = hero.offsetTop + hero.offsetHeight
 
-    const runUpdate = () => {
+    const onScroll = () => {
       const headerIsFixed = window.getComputedStyle(this.headerRef.current!).position === 'fixed'
       if (!headerIsFixed) {
         return setLogoFade(0)
@@ -33,12 +33,14 @@ export default class IndexPage extends React.Component<{ data: any }> {
       return setLogoFade(nextLogoFade)
     }
 
-    window.addEventListener('resize', () => {
+    function onResize() {
       heroEndsAt = hero.offsetTop + hero.offsetHeight
-      runUpdate()
-    })
+      onScroll()
+    }
 
-    window.addEventListener('scroll', runUpdate)
+    onResize()
+    window.addEventListener('resize', onResize)
+    window.addEventListener('scroll', onScroll)
   }
 
   render(): JSX.Element {
