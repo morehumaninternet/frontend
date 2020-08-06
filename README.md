@@ -10,13 +10,7 @@
 
 ##  Overview
 
-This repository houses the frontend code for morehumaninternet.org, a nonprofit.
-
-Explanation of project
-
-Apply here: https://morehumaninternet.org/apply
-
-Built using gatsby: https://github.com/gatsbyjs/gatsby
+This repository houses the frontend code for [morehumaninternet.org](morehumaninternet.org), check us out to see what we're about!
 
 ## Development
 
