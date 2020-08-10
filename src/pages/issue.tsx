@@ -5,6 +5,7 @@ import Hero from '../components/hero'
 import { Avatar } from '@material-ui/core'
 import * as mockApi from '../clients/mockApi'
 import setLogoFade from '../utils/setLogoFade'
+import useIssue, { IssueState } from '../effects/useIssue'
 
 
 
@@ -16,13 +17,6 @@ function IssueBreadcrumbs({ site, issueId }: { site: string, issueId: number }) 
   )
 }
 
-type IssueState =
-  | { loading: true }
-  | {
-      loading: false,
-      issue: { id: number, site: string, title: string, initialCommentBody: string }
-    }
-
 
 // function IssueBody(): JSX.Element {
 
@@ -30,35 +24,11 @@ type IssueState =
 // }
 
 
-export default function IssuePage(props: any): JSX.Element {
-
-  const [issueState, setIssueState] = React.useState<IssueState>({ loading: true })
+export default function IssuePage(props: { location: { search: string } }): JSX.Element {
 
   React.useEffect(() => setLogoFade(1), [])
 
-  React.useEffect(() => {
-
-    const params = new URLSearchParams(props.location.search)
-
-    const site = params.get('site')
-
-    if (!site) throw new Error('site required in query params')
-    const issueId = parseInt(params.get('id')!)
-
-    if (!issueId) throw new Error('issueId integer required in query params')
-
-    mockApi.getIssueBySiteAndId(site, issueId).then(issue => {
-      setIssueState({
-        loading: false,
-        issue: {
-          id: issueId,
-          site: site,
-          title: issue!.title,
-          initialCommentBody: issue!.initialCommentBody,
-        }
-      })
-    })
-  }, [props.location.search])
+  const { issueState } = useIssue(props, mockApi)
 
   return (
     <Layout
