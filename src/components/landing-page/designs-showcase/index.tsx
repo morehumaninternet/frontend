@@ -1,6 +1,6 @@
 import React from 'react'
 import { forEach, max } from 'lodash'
-import numPixels from '../../utils/numPixels'
+import numPixels from '../../../utils/numPixels'
 import MacWithScreens from './mac-with-screens'
 
 
