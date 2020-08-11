@@ -12,7 +12,7 @@
 
       > .issue-metadata {
         > .issue-breadcrumbs {
-
+          // TODO: styles here
         }
 
         > .issue-title-row {
@@ -34,12 +34,58 @@
       }
 
       > .issue-action-buttons {
-
+        // TODO: styles here
       }
     }
 
     .issue-timeline {
+      margin: 25px 50px;
 
+      > .issue-activity {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 26px;
+
+        &:last-child {
+          padding-bottom: 0;
+        }
+
+        &.change-status {
+          .issue-status-badge {
+            margin-right: 16px;
+          }
+        }
+
+        &.comment {
+          > .MuiAvatar-root.MuiAvatar-circle {
+            margin-top: 10px;
+            flex-grow: 0;
+          }
+          > .comment-bubble {
+            flex-grow: 1;
+            margin-left: 10px;
+
+            > .comment-by,
+            > .comment-body {
+              padding: 20px;
+              border: 1px solid $human-grey;
+            }
+
+
+            > .comment-by {
+              padding-top: 10px;
+              padding-bottom: 10px;
+              background-color: #F7FBFC;
+              border-top-left-radius: 22px;
+              border-bottom: none;
+            }
+
+            > .comment-body {
+              // TODO: styles here
+            }
+          }
+        }
+      }
     }
   }
 }

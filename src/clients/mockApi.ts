@@ -44,6 +44,12 @@ export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
     },
     timeline: [
       {
+        verb: 'change status',
+        by: mockUser,
+        timestamp: now,
+        status: 'Opened',
+      },
+      {
         verb: 'comment',
         by: mockUser,
         timestamp: now,
