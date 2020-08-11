@@ -1,3 +1,45 @@
 .layout.issue {
+  > main  {
+    color: $human-blue;
+    margin: 0 150px;
 
+    .issue-overview {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      border-bottom: 1px solid $human-grey;
+
+      > .issue-metadata {
+        > .issue-breadcrumbs {
+
+        }
+
+        > .issue-title-row {
+          margin-top: 25px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          > .issue-status-badge {
+            margin-right: 10px;
+          }
+
+          > h2 {
+            font-size: 26em / 18;
+            font-weight: 300;
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      > .issue-action-buttons {
+
+      }
+    }
+
+    .issue-timeline {
+
+    }
+  }
 }

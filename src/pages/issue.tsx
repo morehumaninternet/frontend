@@ -18,8 +18,6 @@ function useIssue(
   api: typeof mockApi
 ): { issueState: IssueState } {
 
-  console.log('props', props)
-
   const [issueState, setIssueState] = React.useState<IssueState>({ loading: true })
 
   React.useEffect(() => {
@@ -28,6 +26,7 @@ function useIssue(
 
     const site = params.get('site')
 
+    // TODO: redirect and show a toaster in this case instead of throwing an
     if (!site) throw new Error('site required in query params')
     const issueId = parseInt(params.get('id')!)
 

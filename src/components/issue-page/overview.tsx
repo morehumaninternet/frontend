@@ -10,20 +10,27 @@ function IssueBreadcrumbs({ site, issueId }: { site: string, issueId: number }):
   )
 }
 
+function IssueActionButtons(): JSX.Element {
+  return (
+    <div className="issue-action-buttons">
+      <button>Share</button>
+      <button>Feel</button>
+      <button>Talk</button>
+    </div>
+  )
+}
 
 export default function IssueMetadata({ issue }: { issue: Issue }): JSX.Element {
   return (
-    <div className="issue-metadata">
-      <div>
+    <div className="issue-overview">
+      <div className="issue-metadata">
         <IssueBreadcrumbs site={issue.site} issueId={issue.id} />
-        <h1>{issue.title}</h1>
-        <IssueStatusBadge status={issue.status} />
+        <div className="issue-title-row">
+          <IssueStatusBadge status={issue.status} />
+          <h2>{issue.title}</h2>
+        </div>
       </div>
-      <div className="issue-action-buttons">
-        <button>Share</button>
-        <button>Feel</button>
-        <button>Talk</button>
-      </div>
+      <IssueActionButtons />
     </div>
   )
 }
