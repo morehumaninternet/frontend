@@ -1,28 +1,47 @@
 import React from 'react'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
-import Hero from '../components/hero'
+import Layout from '../components/shared/layout'
+import SEO from '../components/shared/seo'
+import Hero from '../components/shared/hero'
 import { Avatar } from '@material-ui/core'
 import * as mockApi from '../clients/mockApi'
 import setLogoFade from '../utils/setLogoFade'
-import useIssue, { IssueState } from '../effects/useIssue'
+import LoadedIssue from '../components/issue-page'
 
 
 
-function IssueBreadcrumbs({ site, issueId }: { site: string, issueId: number }) {
-  return (
-    <div className="issue-breadcrumbs">
-      <img src="/goalco.ico" /> {site} / Issues / {issueId}
-    </div>
-  )
+type IssueStateLoading = { loading: true }
+type IssueStateLoaded = { loading: false, issue: Maybe<Issue> }
+type IssueState =  IssueStateLoading | IssueStateLoaded
+
+function useIssue(
+  props: { location: { search: string } },
+  api: typeof mockApi
+): { issueState: IssueState } {
+
+  console.log('props', props)
+
+  const [issueState, setIssueState] = React.useState<IssueState>({ loading: true })
+
+  React.useEffect(() => {
+
+    const params = new URLSearchParams(props.location.search)
+
+    const site = params.get('site')
+
+    if (!site) throw new Error('site required in query params')
+    const issueId = parseInt(params.get('id')!)
+
+    if (!issueId) throw new Error('issueId integer required in query params')
+
+    api.getIssueBySiteAndId(site, issueId).then(issue => {
+      setIssueState({ loading: false, issue })
+    })
+  }, [props.location.search])
+
+  return {
+    issueState
+  }
 }
-
-
-// function IssueBody(): JSX.Element {
-
-
-// }
-
 
 export default function IssuePage(props: { location: { search: string } }): JSX.Element {
 
@@ -42,17 +61,9 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
     >
       <SEO pageTitle="Issue" />
       <Hero additionalClassNames="issue">
-        {issueState.loading ? (
-          <p>Loading...</p>
-        ) : (
-          <>
-            <IssueBreadcrumbs site={issueState.issue.site} issueId={issueState.issue.id} />
-            <h1>{issueState.issue.title}</h1>
-            <div dangerouslySetInnerHTML={{ __html: issueState.issue.initialCommentBody }}>
-
-            </div>
-          </>
-        )}
+        {issueState.loading
+          ? <p>Loading...</p>
+          : <LoadedIssue issue={issueState.issue! /* TODO: handle issues not present */} />}
       </Hero>
     </Layout>
   )

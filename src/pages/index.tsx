@@ -1,11 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import Layout from '../components/layout'
-import Hero from '../components/hero'
-import SEO from '../components/seo'
-import DesignsShowcase from '../components/designs-showcase'
-import ApplicationForm from '../components/application-form'
+import Layout from '../components/shared/layout'
+import Hero from '../components/shared/hero'
+import SEO from '../components/shared/seo'
+import DesignsShowcase from '../components/landing-page/designs-showcase'
+import ApplicationForm from '../components/landing-page/application-form'
 import setLogoFade from '../utils/setLogoFade'
 
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Card, CardContent } from '@material-ui/core'
-import Hero from '../components/hero'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Hero from '../components/shared/hero'
+import Layout from '../components/shared/layout'
+import SEO from '../components/shared/seo'
 
 
 export default function ThankYouPage() {

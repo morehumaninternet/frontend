@@ -4,7 +4,7 @@ import { last } from 'lodash'
 import { Avatar } from '@material-ui/core'
 import { GitHub } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
-import debounceDefer from '../../utils/debounceDefer'
+import debounceDefer from '../../../utils/debounceDefer'
 
 
 async function getUserByUsername(username: string): Promise<any> {
