@@ -3,9 +3,9 @@ import { Card, CardContent } from '@material-ui/core'
 import Hero from '../components/hero'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-
-
+import { useIntl } from "gatsby-plugin-react-intl"
 export default function ThankYouPage() {
+  const intl = useIntl()
   return (
     <Layout
       mainClassName="thank-you"
@@ -14,10 +14,11 @@ export default function ThankYouPage() {
       <SEO pageTitle="Thank You" />
       <Hero additionalClassNames="thank-you">
         <Card>
-          <h2>Thank You</h2>
+          <h2>{intl.formatMessage({ id: "ThankYou-Title" })}</h2>
           <CardContent className="thank-you">
             <p>
-              We appreciate your interest!<br />Someone from our team will get in touch with you shortly.
+            {intl.formatMessage({ id: "ThankYou-BodyLine1" })}
+             <br />{intl.formatMessage({ id: "ThankYou-BodyLine2" })}
             </p>
           </CardContent>
         </Card>
