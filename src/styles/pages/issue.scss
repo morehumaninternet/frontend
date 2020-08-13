@@ -1,3 +1,22 @@
+.issue-status-badge {
+  border-radius: 26px;
+  padding: 5px 17px;
+  text-align: center; 
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.7px;
+  color: #FFFFFF;
+  &.opened {
+    background-color: $human-pink;    
+  }
+  &.acknowledged {
+    background-color: $human-green;    
+  }
+  &.closed {
+    background-color: $human-blue;    
+  }
+}
+
 .layout.issue {
   > main  {
     color: $human-blue;
