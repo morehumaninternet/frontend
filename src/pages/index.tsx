@@ -7,8 +7,7 @@ import SEO from '../components/shared/seo'
 import DesignsShowcase from '../components/landing-page/designs-showcase'
 import ApplicationForm from '../components/landing-page/application-form'
 import setLogoFade from '../utils/setLogoFade'
-import { LocalizedLink, LocalesList } from "gatsby-theme-i18n"
-import { useIntl } from "react-intl"
+import { useIntl } from 'react-intl'
 
 
 export default function IndexPage({ data }: { data: any }) {
