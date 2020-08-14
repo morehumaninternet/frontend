@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../components/shared/layout'
-import SEO from '../components/shared/seo'
+import SEO, { defaultLinks } from '../components/shared/seo'
 import Hero from '../components/shared/hero'
 import { Avatar } from '@material-ui/core'
 import * as mockApi from '../clients/mockApi'
@@ -58,7 +58,15 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
         />
       }
     >
-      <SEO pageTitle="Issue" />
+      <SEO
+        pageTitle="Issue"
+        links={defaultLinks.concat([
+          { rel: "stylesheet", type: "text/css", href: "/trix.css" },
+        ])}
+        scripts={[
+          { type: "text/javascript", src: "/trix.js" },
+        ]}
+      />
       <Hero additionalClassNames="issue">
         {issueState.loading
           ? <p>Loading...</p>

@@ -3,16 +3,24 @@ import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
 
-const H: any = Helmet
+type Links = React.DetailedHTMLProps<React.LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>[]
 
 type SEOProps = {
   description?: string
   lang?: string
   meta?: any[]
   pageTitle?: string
-  links?: object[]
+  links?: Links
   scripts?: object[]
 }
+
+export const defaultLinks: Links = [
+  { rel: "apple-touch-icon", sizes: "180x180", href: '/apple-touch-icon.png' },
+  { rel: "icon", type: "image/png", sizes: "16x16", href: '/favicon-16x16.png' },
+  { rel: "icon", type: "image/png", sizes: "32x32", href: '/favicon-32x32.png' },
+  { rel: "manifest", href: '/site.webmanifest' },
+  { rel: "mask-icon", color: "#5bbad5", href: '/safari-pinned-tab.svg' },
+]
 
 export default function SEO(props: SEOProps) {
   const description = props.description || ''
@@ -20,13 +28,7 @@ export default function SEO(props: SEOProps) {
   const meta = props.meta || []
   const pageTitle = props.pageTitle
 
-  const links = props.links || [
-    { rel: "apple-touch-icon", sizes: "180x180", href: '/apple-touch-icon.png' },
-    { rel: "icon", type: "image/png", sizes: "16x16", href: '/favicon-16x16.png' },
-    { rel: "icon", type: "image/png", sizes: "32x32", href: '/favicon-32x32.png' },
-    { rel: "manifest", href: '/site.webmanifest' },
-    { rel: "mask-icon", color: "#5bbad5", href: '/safari-pinned-tab.svg' },
-  ]
+  const links = props.links || defaultLinks
 
   const scripts = props.scripts || []
 
@@ -49,7 +51,7 @@ export default function SEO(props: SEOProps) {
   const metaDescription = description || site.siteMetadata.description
 
   return (
-    <H
+    <Helmet
       htmlAttributes={{
         lang,
       }}

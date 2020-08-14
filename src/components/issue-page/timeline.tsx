@@ -44,12 +44,28 @@ function IssueActivityView({ activity }: { activity: IssueActivity }): JSX.Eleme
   }
 }
 
+function IssueAddComment(): JSX.Element {
+  const ref: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
+
+  return (
+    <div className="issue-add-comment">
+      <Avatar src="https://github.com/will-weiss.png?size=71"/>
+      <div
+        className="issue-add-comment-editor"
+        ref={ref}
+        dangerouslySetInnerHTML={{ __html: `<trix-editor></trix-editor>` }}
+      />
+    </div>
+  )
+}
+
 export default function IssueTimelineView({ timeline }: { timeline: IssueTimeline }): JSX.Element {
   return (
     <div className="issue-timeline">
       {timeline.map((activity, i) => (
         <IssueActivityView key={i} activity={activity} />
       ))}
+      <IssueAddComment />
     </div>
   )
 }

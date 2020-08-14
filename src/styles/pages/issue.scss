@@ -60,15 +60,23 @@
     .issue-timeline {
       margin: 25px 50px;
 
-      > .issue-activity {
+      > .issue-activity, .issue-add-comment {
         display: flex;
         flex-direction: row;
         padding-bottom: 26px;
 
-        &:last-child {
-          padding-bottom: 0;
+        > .MuiAvatar-root.MuiAvatar-circle {
+          margin-top: 10px;
+          margin-right: 10px;
+          flex-grow: 0;
         }
 
+        > :nth-child(2) {
+          flex-grow: 1
+        }
+      }
+
+      > .issue-activity {
         &.change-status {
           .issue-status-badge {
             margin-right: 16px;
@@ -76,20 +84,12 @@
         }
 
         &.comment {
-          > .MuiAvatar-root.MuiAvatar-circle {
-            margin-top: 10px;
-            flex-grow: 0;
-          }
           > .comment-bubble {
-            flex-grow: 1;
-            margin-left: 10px;
-
             > .comment-by,
             > .comment-body {
               padding: 20px;
               border: 1px solid $human-grey;
             }
-
 
             > .comment-by {
               padding-top: 10px;
@@ -97,10 +97,6 @@
               background-color: #F7FBFC;
               border-top-left-radius: 22px;
               border-bottom: none;
-            }
-
-            > .comment-body {
-              // TODO: styles here
             }
           }
         }
