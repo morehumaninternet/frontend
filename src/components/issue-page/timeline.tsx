@@ -3,7 +3,7 @@ import IssueStatusBadge from './status-badge'
 import { Avatar } from '@material-ui/core'
 
 
-function IssueTimestampText({ className, activity }: { className?: string, activity: IssueActivity }): JSX.Element {
+function IssueTimestampText({ className, activity }: { className: string, activity: IssueActivity }): JSX.Element {
   const verb = activity.verb === 'comment' ? 'commented ' : ''
 
   return (
@@ -17,7 +17,7 @@ function IssueActivityChangeStatusView({ activity }: { activity: IssueActivityCh
   return (
     <div className="issue-activity change-status">
       <IssueStatusBadge status={activity.status} />
-      <IssueTimestampText activity={activity} />
+      <IssueTimestampText className="timestamp-text" activity={activity} />
     </div>
   )
 }

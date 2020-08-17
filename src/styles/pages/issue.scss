@@ -1,19 +1,19 @@
 .issue-status-badge {
   border-radius: 26px;
   padding: 5px 17px;
-  text-align: center; 
+  text-align: center;
   font-weight: bold;
   font-size: 14px;
   letter-spacing: 0.7px;
   color: #FFFFFF;
   &.opened {
-    background-color: $human-pink;    
+    background-color: $human-pink;
   }
   &.acknowledged {
-    background-color: $human-green;    
+    background-color: $human-green;
   }
   &.closed {
-    background-color: $human-blue;    
+    background-color: $human-blue;
   }
 }
 
@@ -64,19 +64,21 @@
         position: relative;
         display: flex;
         flex-direction: row;
+        align-items: center;
         padding-bottom: 26px;
 
         > .MuiAvatar-root.MuiAvatar-circle {
           position: absolute;
-          left: -72px;
+          top: 0;
+          left: -46px;
           margin-top: 10px;
           margin-right: 10px;
-          flex-grow: 0;
         }
+      }
 
-        > :nth-child(2) {
-          flex-grow: 1
-        }
+      > .issue-add-comment > .issue-add-comment-editor {
+        flex-grow: 1;
+        max-width: 100%;
       }
 
       > .issue-activity {
@@ -84,7 +86,7 @@
           position: absolute;
           top: 0;
           bottom: 0;
-          left: 0;
+          left: 20px;
           display: block;
           width: 2px;
           content: "";
@@ -94,16 +96,25 @@
 
         &.change-status {
           .issue-status-badge {
-            margin-right: 16px;
+            margin-left: -2px;
+            margin-right: 12px;
+            flex-grow: 0;
+          }
+
+          .timestamp-text {
+            flex-grow: 1;
           }
         }
 
         &.comment {
           > .comment-bubble {
+            flex-grow: 1;
+
             > .comment-by,
             > .comment-body {
               padding: 20px;
               border: 1px solid $human-grey;
+              background-color: $default-background-color;
             }
 
             > .comment-by {
