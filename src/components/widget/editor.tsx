@@ -4,7 +4,7 @@ import numPixels from '../../utils/numPixels'
 
 type EditorProps = {
   setIssueTitle(issueTitle: string): void
-  setIssueInitialCommentBody(issueInitialCommentBody: string): void
+  setIssueInitialCommentHtml(issueInitialCommentBody: string): void
 }
 
 const defaultIssueBody = `
@@ -73,7 +73,7 @@ function insideDiv(html: string): string {
   return match[1]
 }
 
-export default function Editor({ setIssueTitle, setIssueInitialCommentBody }: EditorProps): JSX.Element {
+export default function Editor({ setIssueTitle, setIssueInitialCommentHtml }: EditorProps): JSX.Element {
   const issueTitleRef = React.useRef<HTMLDivElement>()
   const issueBodyRef = React.useRef<HTMLDivElement>()
 
@@ -118,7 +118,7 @@ export default function Editor({ setIssueTitle, setIssueInitialCommentBody }: Ed
     })
 
     editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
-      setIssueInitialCommentBody(event.target.value)
+      setIssueInitialCommentHtml(event.target.value)
     })
   }, [])
 

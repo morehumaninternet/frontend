@@ -6,7 +6,7 @@ import hasParent from '../../utils/hasParent'
 
 
 type WidgetProps = {
-  postIssue(widgetFormValues: { title: string, initialCommentBody: string }): Promise<void>
+  postIssue(widgetFormValues: { title: string, initialCommentHtml: string }): Promise<void>
 }
 
 
@@ -15,7 +15,7 @@ export default ({ postIssue }: WidgetProps) => {
 
   const [open, setOpen] = React.useState(false)
   const [issueTitle, setIssueTitle] = React.useState('')
-  const [issueInitialCommentBody, setIssueInitialCommentBody] = React.useState('')
+  const [issueInitialCommentHtml, setIssueInitialCommentHtml] = React.useState('')
 
   React.useEffect(() => {
     function listener(event: MouseEvent) {
@@ -44,12 +44,12 @@ export default ({ postIssue }: WidgetProps) => {
           className="more-human-internet-widget-editor-container"
           onSubmit={async event => {
             event.preventDefault()
-            await postIssue({ title: issueTitle, initialCommentBody: issueInitialCommentBody })
+            await postIssue({ title: issueTitle, initialCommentHtml: issueInitialCommentHtml })
           }}
         >
           <Editor
             setIssueTitle={setIssueTitle}
-            setIssueInitialCommentBody={setIssueInitialCommentBody}
+            setIssueInitialCommentHtml={setIssueInitialCommentHtml}
           />
           <ButtonGroup />
         </form>
