@@ -3,42 +3,35 @@ import Layout from '../components/shared/layout'
 import SEO, { defaultLinks } from '../components/shared/seo'
 import Hero from '../components/shared/hero'
 import { Avatar } from '@material-ui/core'
-import * as mockApi from '../clients/mockApi'
+import * as api from '../clients/mockApi'
+import useIssue from '../effects/useIssue'
 import setLogoFade from '../utils/setLogoFade'
+import useIssueParams, { IssueParams } from '../effects/useIssueParams'
 import LoadedIssue from '../components/issue-page'
 
 
 
-type IssueStateLoading = { loading: true }
-type IssueStateLoaded = { loading: false, issue: Maybe<Issue> }
-type IssueState =  IssueStateLoading | IssueStateLoaded
+function Loading(): JSX.Element {
+  return (
+    <p>Loading...</p>
+  )
+}
 
-function useIssue(
-  props: { location: { search: string } },
-  api: typeof mockApi
-): { issueState: IssueState } {
-
-  const [issueState, setIssueState] = React.useState<IssueState>({ loading: true })
-
-  React.useEffect(() => {
-
-    const params = new URLSearchParams(props.location.search)
-
-    const site = params.get('site')
-
-    // TODO: redirect and show a toaster in this case instead of throwing an
-    if (!site) throw new Error('site required in query params')
-    const issueId = parseInt(params.get('id')!)
-
-    if (!issueId) throw new Error('issueId integer required in query params')
-
-    api.getIssueBySiteAndId(site, issueId).then(issue => {
-      setIssueState({ loading: false, issue })
-    })
-  }, [props.location.search])
-
-  return {
-    issueState
+function IssueContent({ issueParams }: { issueParams: IssueParams }): JSX.Element {
+  switch (issueParams.state) {
+    case 'checking': return <Loading />
+    case 'not ok': throw new Error('Handle this case better!')
+    case 'ok': {
+      const { issueState, postComment } = useIssue({ api, params: issueParams.params })
+      return (
+        issueState.loading
+          ? <p>Loading...</p>
+          : <LoadedIssue
+              issue={issueState.issue! /* TODO: handle issues not present */}
+              postComment={postComment}
+            />
+      )
+    }
   }
 }
 
@@ -46,7 +39,7 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
 
   React.useEffect(() => setLogoFade(1), [])
 
-  const { issueState } = useIssue(props, mockApi)
+  const issueParams = useIssueParams(props)
 
   return (
     <Layout
@@ -68,9 +61,7 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
         ]}
       />
       <Hero additionalClassNames="issue">
-        {issueState.loading
-          ? <p>Loading...</p>
-          : <LoadedIssue issue={issueState.issue! /* TODO: handle issues not present */} />}
+        <IssueContent issueParams={issueParams} />
       </Hero>
     </Layout>
   )

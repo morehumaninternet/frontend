@@ -1,13 +1,18 @@
 import React from 'react'
 import IssueMetadata from './overview'
-import IssueTimelineView from './timeline'
+import IssueTimelineView, { IssueTimelineViewProps } from './timeline'
 
 
-export default function LoadedIssueContent({ issue }: { issue: Issue }): JSX.Element {
+export type LoadedIssueContentProps = {
+  issue: Issue
+  postComment: IssueTimelineViewProps['postComment']
+}
+
+export default function LoadedIssueContent({ issue, postComment }: LoadedIssueContentProps): JSX.Element {
   return (
     <div className="issue-body">
       <IssueMetadata issue={issue} />
-      <IssueTimelineView timeline={issue.timeline} />
+      <IssueTimelineView timeline={issue.timeline} postComment={postComment} />
     </div>
   )
 }

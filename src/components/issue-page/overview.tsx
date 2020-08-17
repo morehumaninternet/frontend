@@ -1,5 +1,6 @@
 import React from 'react'
 import IssueStatusBadge from './status-badge'
+import { Avatar } from '@material-ui/core'
 
 
 function IssueBreadcrumbs({ site, issueId }: { site: string, issueId: number }): JSX.Element {
