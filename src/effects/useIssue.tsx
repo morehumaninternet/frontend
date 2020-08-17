@@ -13,7 +13,7 @@ export type UseIssueDependencies = {
 
 export type UseIssueReturn = {
   issueState: IssueState
-  postComment(comment: { html: string }): Promise<void>
+  postComment(user: User, comment: { html: string }): Promise<void>
 }
 
 export default function useIssue({ params, api }: UseIssueDependencies): UseIssueReturn {
@@ -25,9 +25,31 @@ export default function useIssue({ params, api }: UseIssueDependencies): UseIssu
     })
   }, [params.site, params.issueId])
 
-  async function postComment(comment: { html: string }) {
-    console.log('ZZZ', comment)
-    alert(`comment to be posted: ${comment.html}`)
+  function postComment(user: User, comment: { html: string }) {
+    if (issueState.loading) {
+      throw new Error('Posting comments while the issue is loading should not be possible')
+    }
+    const { issue } = issueState
+
+    if (!issue) {
+      throw new Error('Posting comments for a nonexistent issue should not be possible')
+    }
+
+    const nextTimeline = issue.timeline.concat([{
+      verb: 'comment',
+      by: user, // TODO: store user state somewhere?
+      timestamp: new Date(),
+      comment
+    }])
+
+    const nextIssue = {
+      ...issue,
+      timeline: nextTimeline
+    }
+
+    setIssueState({ loading: false, issue: nextIssue })
+
+    return api.postComment(issue.site, issue.id, user, comment)
   }
 
   return {

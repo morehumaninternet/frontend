@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core'
 import Widget from '../components/widget'
 import SEO from '../components/shared/seo'
 import * as mockApi from '../clients/mockApi'
+import useCurrentUser from '../effects/useCurrentUser'
 
 
 function GoalCo() {
@@ -33,11 +34,17 @@ function GoalCo() {
 }
 
 export default function DemoPage(props: any): JSX.Element {
+  const currentUser = useCurrentUser()
 
   const postIssue = async (widgetFormValues: { title: string, initialCommentHtml: string }) => {
+    if (!currentUser.loaded) {
+      throw new Error(`Cannot post an issue for a nonexistent user`)
+    }
+
     const issue = await mockApi.postIssue({
       site: 'goalco.com',
       title: widgetFormValues.title,
+      user: currentUser.user,
       initialCommentHtml: widgetFormValues.initialCommentHtml,
     })
 

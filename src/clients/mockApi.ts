@@ -100,3 +100,29 @@ export async function getIssueBySiteAndId(site: string, id: number): Promise<nul
     return null
   }
 }
+
+export async function postComment(
+  site: string,
+  id: number,
+  user: User,
+  comment: { html: string }
+): Promise<void> {
+  const issue = (await getIssueBySiteAndId(site, id))!
+
+  const nextTimeline = issue.timeline.concat([{
+    verb: 'comment',
+    by: user, // TODO: store user state somewhere?
+    timestamp: new Date(),
+    comment
+  }])
+
+  const nextIssue = {
+    ...issue,
+    timeline: nextTimeline
+  }
+
+  localStorage.setItem(
+    demoIssuesLocalStorageKey(site, id),
+    JSON.stringify(nextIssue)
+  )
+}
