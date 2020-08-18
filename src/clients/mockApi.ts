@@ -111,7 +111,7 @@ export async function postComment(
 
   const nextTimeline: IssueTimeline = issue.timeline.concat([{
     verb: 'comment',
-    by: user, // TODO: store user state somewhere?
+    by: user,
     timestamp: new Date(),
     comment
   }])

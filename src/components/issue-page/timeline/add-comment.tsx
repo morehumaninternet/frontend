@@ -1,22 +1,22 @@
 import React from 'react'
-import { Avatar } from '@material-ui/core'
+import { Avatar, Button } from '@material-ui/core'
 
 
 export type IssueAddCommentProps = {
+  avatarUrl?: string
   postComment(comment: { html: string }): Promise<void>
 }
 
-export default function IssueAddComment({ postComment }: IssueAddCommentProps): JSX.Element {
+export default function IssueAddComment({ avatarUrl, postComment }: IssueAddCommentProps): JSX.Element {
   const ref: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
   const [submitting, setSubmitting] = React.useState(false)
 
-  return (
-    <form className="issue-add-comment" onSubmit={(event: any) => {
-      event.preventDefault()
-      const commentHtml: string = event.target.elements.namedItem('comment').value
-      console.log('commentHtml', commentHtml)
-      setSubmitting(true)
-      postComment({ html: commentHtml }).then(result => {
+  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const commentHtml: string = (event.target as any).elements.namedItem('comment').value
+    setSubmitting(true)
+    postComment({ html: commentHtml })
+      .then(() => {
         const trixElement: any = ref.current!.querySelector('trix-editor')!
         trixElement.editor.loadHTML('')
         setSubmitting(false)
@@ -25,8 +25,11 @@ export default function IssueAddComment({ postComment }: IssueAddCommentProps): 
         // TODO: something else
         alert(err)
       })
-    }}>
-      <Avatar src="https://github.com/will-weiss.png?size=71"/>
+  }
+
+  return (
+    <form className="issue-add-comment" onSubmit={onSubmit}>
+      <Avatar src={avatarUrl} />
       <div
         className="issue-add-comment-editor"
         ref={ref}
@@ -37,9 +40,9 @@ export default function IssueAddComment({ postComment }: IssueAddCommentProps): 
           `
         }}
       />
-      <button disabled={submitting}>
-        Comment
-      </button>
+      <Button type="submit" disabled={submitting}>
+        Add Comment
+      </Button>
     </form>
   )
 }

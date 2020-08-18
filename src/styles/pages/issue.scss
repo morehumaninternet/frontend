@@ -76,9 +76,18 @@
         }
       }
 
-      > .issue-add-comment > .issue-add-comment-editor {
-        flex-grow: 1;
-        max-width: 100%;
+      > .issue-add-comment {
+        flex-direction: column;
+
+        > .issue-add-comment-editor {
+          align-self: stretch;
+        }
+
+        > button[type="submit"] {
+          margin-top: 10px;
+          font-size: 1em;
+          align-self: flex-end;
+        }
       }
 
       > .issue-activity {

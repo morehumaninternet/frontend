@@ -28,6 +28,7 @@ function IssueContent({ issueParams, currentUser }: { issueParams: IssueParams, 
         issueState.loading
           ? <p>Loading...</p>
           : <LoadedIssue
+              avatarUrl={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
               issue={issueState.issue! /* TODO: handle issues not present */}
               postComment={async comment => {
                 if (!currentUser.loaded) {
