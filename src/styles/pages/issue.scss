@@ -63,8 +63,6 @@
       > .issue-activity, .issue-add-comment {
         position: relative;
         display: flex;
-        flex-direction: row;
-        align-items: center;
         padding-bottom: 26px;
 
         > .MuiAvatar-root.MuiAvatar-circle {
@@ -91,6 +89,9 @@
       }
 
       > .issue-activity {
+        flex-direction: row;
+        align-items: center;
+
         :before {
           position: absolute;
           top: 0;
