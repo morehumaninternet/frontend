@@ -127,6 +127,32 @@ export async function postComment(
     timeline: nextTimeline
   }
 
+  localStorage.setItem(
+    demoIssuesLocalStorageKey(site, id),
+    JSON.stringify(nextIssue)
+  )
+}
+
+export async function changeStatus(
+  site: string,
+  id: number,
+  user: User,
+  status: IssueStatus
+): Promise<void> {
+  const issue = (await getIssueBySiteAndId(site, id))!
+
+  const nextTimeline: IssueTimeline = issue.timeline.concat([{
+    verb: 'change status',
+    by: user, // TODO: store user state somewhere?
+    timestamp: new Date(),
+    status
+  }])
+
+  const nextIssue: Issue = {
+    ...issue,
+    status,
+    timeline: nextTimeline
+  }
 
   localStorage.setItem(
     demoIssuesLocalStorageKey(site, id),
