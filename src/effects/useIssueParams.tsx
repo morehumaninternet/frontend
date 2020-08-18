@@ -1,11 +1,10 @@
 /* Can probably be made generic if/when this is a good idea */
 import React from 'react'
 
-
-export type IssueParams =
- | { state: 'checking' }
- | { state: 'not ok', error: string }
- | { state: 'ok', params: { site: string, issueId: number } }
+export type IssueParamsChecking = { state: 'checking' }
+export type IssueParamsNotOk = { state: 'not ok', error: string }
+export type IssueParamsOk = { state: 'ok', params: { site: string, issueId: number } }
+export type IssueParams = IssueParamsChecking | IssueParamsNotOk | IssueParamsOk
 
 export default function useIssueParams(props: { location: { search: string } }): IssueParams {
 

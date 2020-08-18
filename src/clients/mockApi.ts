@@ -102,10 +102,12 @@ export async function getIssueBySiteAndId(site: string, id: number): Promise<nul
 }
 
 export async function postComment(
-  site: string,
-  id: number,
-  user: User,
-  comment: { html: string }
+  { site, id, user, comment }: {
+    site: string
+    id: number
+    user: User
+    comment: { html: string }
+  }
 ): Promise<void> {
   const issue = (await getIssueBySiteAndId(site, id))!
 
@@ -134,10 +136,13 @@ export async function postComment(
 }
 
 export async function changeStatus(
-  site: string,
-  id: number,
-  user: User,
-  status: IssueStatus
+  { site, id, user, status, comment }: {
+    site: string
+    id: number
+    user: User
+    status: IssueStatus
+    comment: { html: string }
+  }
 ): Promise<void> {
   const issue = (await getIssueBySiteAndId(site, id))!
 
