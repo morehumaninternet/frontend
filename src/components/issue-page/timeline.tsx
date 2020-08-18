@@ -3,7 +3,7 @@ import IssueStatusBadge from './status-badge'
 import { Avatar } from '@material-ui/core'
 
 
-function IssueTimestampText({ className, activity }: { className?: string, activity: IssueActivity }): JSX.Element {
+function IssueTimestampText({ className, activity }: { className: string, activity: IssueActivity }): JSX.Element {
   const verb = activity.verb === 'comment' ? 'commented ' : ''
 
   return (
@@ -17,7 +17,7 @@ function IssueActivityChangeStatusView({ activity }: { activity: IssueActivityCh
   return (
     <div className="issue-activity change-status">
       <IssueStatusBadge status={activity.status} />
-      <IssueTimestampText activity={activity} />
+      <IssueTimestampText className="timestamp-text" activity={activity} />
     </div>
   )
 }
@@ -44,12 +44,28 @@ function IssueActivityView({ activity }: { activity: IssueActivity }): JSX.Eleme
   }
 }
 
+function IssueAddComment(): JSX.Element {
+  const ref: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
+
+  return (
+    <div className="issue-add-comment">
+      <Avatar src="https://github.com/will-weiss.png?size=71"/>
+      <div
+        className="issue-add-comment-editor"
+        ref={ref}
+        dangerouslySetInnerHTML={{ __html: `<trix-editor></trix-editor>` }}
+      />
+    </div>
+  )
+}
+
 export default function IssueTimelineView({ timeline }: { timeline: IssueTimeline }): JSX.Element {
   return (
     <div className="issue-timeline">
       {timeline.map((activity, i) => (
         <IssueActivityView key={i} activity={activity} />
       ))}
+      <IssueAddComment />
     </div>
   )
 }

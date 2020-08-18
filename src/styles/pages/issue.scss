@@ -1,19 +1,19 @@
 .issue-status-badge {
   border-radius: 26px;
   padding: 5px 17px;
-  text-align: center; 
+  text-align: center;
   font-weight: bold;
   font-size: 14px;
   letter-spacing: 0.7px;
   color: #FFFFFF;
   &.opened {
-    background-color: $human-pink;    
+    background-color: $human-pink;
   }
   &.acknowledged {
-    background-color: $human-green;    
+    background-color: $human-green;
   }
   &.closed {
-    background-color: $human-blue;    
+    background-color: $human-blue;
   }
 }
 
@@ -60,36 +60,62 @@
     .issue-timeline {
       margin: 25px 50px;
 
-      > .issue-activity {
+      > .issue-activity, .issue-add-comment {
+        position: relative;
         display: flex;
         flex-direction: row;
+        align-items: center;
         padding-bottom: 26px;
 
-        &:last-child {
-          padding-bottom: 0;
+        > .MuiAvatar-root.MuiAvatar-circle {
+          position: absolute;
+          top: 0;
+          left: -46px;
+          margin-top: 10px;
+          margin-right: 10px;
         }
+      }
+
+      > .issue-add-comment > .issue-add-comment-editor {
+        flex-grow: 1;
+        max-width: 100%;
+      }
+
+      > .issue-activity {
+        :before {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 20px;
+          display: block;
+          width: 2px;
+          content: "";
+          background-color: #e1e4e8;
+          z-index: -1;
+      }
 
         &.change-status {
           .issue-status-badge {
-            margin-right: 16px;
+            margin-left: -2px;
+            margin-right: 12px;
+            flex-grow: 0;
+          }
+
+          .timestamp-text {
+            flex-grow: 1;
           }
         }
 
         &.comment {
-          > .MuiAvatar-root.MuiAvatar-circle {
-            margin-top: 10px;
-            flex-grow: 0;
-          }
           > .comment-bubble {
             flex-grow: 1;
-            margin-left: 10px;
 
             > .comment-by,
             > .comment-body {
               padding: 20px;
               border: 1px solid $human-grey;
+              background-color: $default-background-color;
             }
-
 
             > .comment-by {
               padding-top: 10px;
@@ -97,10 +123,6 @@
               background-color: #F7FBFC;
               border-top-left-radius: 22px;
               border-bottom: none;
-            }
-
-            > .comment-body {
-              // TODO: styles here
             }
           }
         }

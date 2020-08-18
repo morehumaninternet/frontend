@@ -1,7 +1,9 @@
 export type IssuePostBody = {
+  id?: number
+  user?: User
   site: string
   title: string
-  initialCommentBody: string
+  initialCommentHtml: string
 }
 
 function demoIssuesLocalStorageKey(site: string, id: number) {
@@ -19,49 +21,68 @@ function issueFromJson(issueJson: string): Issue {
   return issue
 }
 
-export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
-  const mockGeneratedIssueNumber = 323
-  const mockUser: User = { username: 'sillywalks' }
+export const defaultCommentHtml = `
+  <strong>Steps</strong>
+  <br>
+  <ol>
+    <li>I added the Goalco supersuit to my cart</li>
+    <li>I entered in the credit card details for my American Express card</li>
+    <li>I clicked the checkout button</li>
+  </ol>
+
+  <strong>Observations</strong>
+  <br>
+  <p>The spinner kept spinning endlessly</p>
+
+  <strong>Expectations</strong>
+  <br>
+  <p>The order should have went through and I should have received a confirmation email</p>
+`
+
+function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
+  const id = opts.id || 323
+  const user = opts.user || { username: 'sillywalks' }
+  const title = opts.title || "Checkout isn't working"
+
+  const commentHtml = opts.initialCommentHtml || defaultCommentHtml
 
   const now = new Date()
 
-  const issue: Issue = {
-    id: mockGeneratedIssueNumber,
-    title: issuePostBody.title,
-    site: issuePostBody.site,
+  return {
+    id,
+    title,
+    site: opts.site || 'goalco.com',
     status: 'Opened',
     initialReport: {
-      by: mockUser,
+      by: user,
       timestamp: now,
     },
     aggregates: {
-      upvotes: {
-        count: 1
-      },
-      comments: {
-        count: 1
-      },
+      upvotes: { count: 1 },
+      comments: { count: 1 },
     },
     timeline: [
       {
         verb: 'change status',
-        by: mockUser,
+        by: user,
         timestamp: now,
         status: 'Opened',
       },
       {
         verb: 'comment',
-        by: mockUser,
+        by: user,
         timestamp: now,
-        comment: {
-          html: issuePostBody.initialCommentBody,
-        }
+        comment: { html: commentHtml }
       }
     ]
   }
+}
+
+export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
+  const issue = createIssue(issuePostBody)
 
   localStorage.setItem(
-    demoIssuesLocalStorageKey(issuePostBody.site, mockGeneratedIssueNumber),
+    demoIssuesLocalStorageKey(issuePostBody.site, issue.id),
     JSON.stringify(issue)
   )
   return issue
@@ -70,7 +91,10 @@ export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
 export async function getIssueBySiteAndId(site: string, id: number): Promise<null | Issue> {
   try {
     const issueJson = localStorage.getItem(demoIssuesLocalStorageKey(site, id))
-    if (!issueJson) return null
+    // If no issue is returned, just make one for the demo
+    if (!issueJson) {
+      return createIssue({ id, site })
+    }
     return issueFromJson(issueJson)
   } catch (err) {
     return null
