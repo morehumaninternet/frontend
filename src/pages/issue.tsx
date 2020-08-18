@@ -3,59 +3,60 @@ import Layout from '../components/shared/layout'
 import SEO, { defaultLinks } from '../components/shared/seo'
 import Hero from '../components/shared/hero'
 import { Avatar } from '@material-ui/core'
-import * as mockApi from '../clients/mockApi'
+import * as api from '../clients/mockApi'
+import useIssue from '../effects/useIssue'
 import setLogoFade from '../utils/setLogoFade'
 import LoadedIssue from '../components/issue-page'
+import useIssueParams, { IssueParams } from '../effects/useIssueParams'
+import useCurrentUser, { CurrentUser } from '../effects/useCurrentUser'
 
 
 
-type IssueStateLoading = { loading: true }
-type IssueStateLoaded = { loading: false, issue: Maybe<Issue> }
-type IssueState =  IssueStateLoading | IssueStateLoaded
+function Loading(): JSX.Element {
+  return (
+    <p>Loading...</p>
+  )
+}
 
-function useIssue(
-  props: { location: { search: string } },
-  api: typeof mockApi
-): { issueState: IssueState } {
-
-  const [issueState, setIssueState] = React.useState<IssueState>({ loading: true })
-
-  React.useEffect(() => {
-
-    const params = new URLSearchParams(props.location.search)
-
-    const site = params.get('site')
-
-    // TODO: redirect and show a toaster in this case instead of throwing an
-    if (!site) throw new Error('site required in query params')
-    const issueId = parseInt(params.get('id')!)
-
-    if (!issueId) throw new Error('issueId integer required in query params')
-
-    api.getIssueBySiteAndId(site, issueId).then(issue => {
-      setIssueState({ loading: false, issue })
-    })
-  }, [props.location.search])
-
-  return {
-    issueState
+function IssueContent({ issueParams, currentUser }: { issueParams: IssueParams, currentUser: CurrentUser }): JSX.Element {
+  switch (issueParams.state) {
+    case 'checking': return <Loading />
+    case 'not ok': throw new Error('Handle this case better!')
+    case 'ok': {
+      const { issueState, postComment } = useIssue({ api, params: issueParams.params })
+      return (
+        issueState.loading
+          ? <p>Loading...</p>
+          : <LoadedIssue
+              avatarUrl={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
+              issue={issueState.issue! /* TODO: handle issues not present */}
+              postComment={async comment => {
+                if (!currentUser.loaded) {
+                  throw new Error('Cannot post comment when currentUser not loaded')
+                }
+                return postComment(currentUser.user, comment)
+              }}
+            />
+      )
+    }
   }
 }
 
 export default function IssuePage(props: { location: { search: string } }): JSX.Element {
 
+  // TODO: use CSS to have a different variable on different pages
   React.useEffect(() => setLogoFade(1), [])
 
-  const { issueState } = useIssue(props, mockApi)
+  const issueParams = useIssueParams(props)
+  const currentUser = useCurrentUser()
+  const avatarUrl = currentUser.loaded ? currentUser.user.avatarUrl : undefined
 
   return (
     <Layout
       mainClassName="issue"
       logoAgainstHero={false}
       headerLinks={
-        <Avatar
-          src="github.com/will-weiss.png"
-        />
+        <Avatar src={avatarUrl} />
       }
     >
       <SEO
@@ -68,9 +69,7 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
         ]}
       />
       <Hero additionalClassNames="issue">
-        {issueState.loading
-          ? <p>Loading...</p>
-          : <LoadedIssue issue={issueState.issue! /* TODO: handle issues not present */} />}
+        <IssueContent issueParams={issueParams} currentUser={currentUser} />
       </Hero>
     </Layout>
   )

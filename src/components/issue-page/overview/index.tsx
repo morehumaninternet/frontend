@@ -1,5 +1,6 @@
 import React from 'react'
-import IssueStatusBadge from './status-badge'
+import IssueStatusBadge from '../status-badge'
+import IssueActionButtons from './action-buttons'
 
 
 function IssueBreadcrumbs({ site, issueId }: { site: string, issueId: number }): JSX.Element {
@@ -10,17 +11,7 @@ function IssueBreadcrumbs({ site, issueId }: { site: string, issueId: number }):
   )
 }
 
-function IssueActionButtons(): JSX.Element {
-  return (
-    <div className="issue-action-buttons">
-      <button>Share</button>
-      <button>Feel</button>
-      <button>Talk</button>
-    </div>
-  )
-}
-
-export default function IssueMetadata({ issue }: { issue: Issue }): JSX.Element {
+export default function IssueOverview({ issue }: { issue: Issue }): JSX.Element {
   return (
     <div className="issue-overview">
       <div className="issue-metadata">
@@ -30,7 +21,7 @@ export default function IssueMetadata({ issue }: { issue: Issue }): JSX.Element 
           <h2>{issue.title}</h2>
         </div>
       </div>
-      <IssueActionButtons />
+      <IssueActionButtons aggregates={issue.aggregates} />
     </div>
   )
 }
