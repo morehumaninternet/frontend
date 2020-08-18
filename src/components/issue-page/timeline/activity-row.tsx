@@ -16,7 +16,7 @@ function IssueActivityChangeStatusRow({ activity }: { activity: IssueActivityCha
 function IssueActivityCommentRow({ activity }: { activity: IssueActivityComment }): JSX.Element {
   return (
     <div className="issue-activity comment">
-      <Avatar src="https://github.com/will-weiss.png?size=71"/>
+      <Avatar src={activity.by.avatarUrl}/>
       <div className="comment-bubble">
         <IssueTimestampText className="comment-by" activity={activity} />
         <div className="comment-body">

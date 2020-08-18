@@ -41,7 +41,7 @@ export const defaultCommentHtml = `
 
 function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
   const id = opts.id || 323
-  const user = opts.user || { username: 'sillywalks' }
+  const user = opts.user || { username: 'sillywalks', avatarUrl: 'https://github.com/will-weiss.png?size=71' }
   const title = opts.title || "Checkout isn't working"
 
   const commentHtml = opts.initialCommentHtml || defaultCommentHtml

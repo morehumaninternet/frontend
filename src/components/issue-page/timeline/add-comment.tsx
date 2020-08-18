@@ -10,6 +10,7 @@ export type IssueAddCommentProps = {
 export default function IssueAddComment({ avatarUrl, postComment }: IssueAddCommentProps): JSX.Element {
   const ref: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
   const [submitting, setSubmitting] = React.useState(false)
+  const [hasText, setHasText] = React.useState(false)
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -27,6 +28,14 @@ export default function IssueAddComment({ avatarUrl, postComment }: IssueAddComm
       })
   }
 
+  React.useEffect(() => {
+    ref.current!.querySelector('input')
+    const editorElement = ref.current!.querySelector('trix-editor') as any
+    editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
+      setHasText(!!event.target.value)
+    })
+  }, [])
+
   return (
     <form className="issue-add-comment" onSubmit={onSubmit}>
       <Avatar src={avatarUrl} />
@@ -40,7 +49,7 @@ export default function IssueAddComment({ avatarUrl, postComment }: IssueAddComm
           `
         }}
       />
-      <Button type="submit" disabled={submitting}>
+      <Button type="submit" disabled={submitting || !hasText}>
         Add Comment
       </Button>
     </form>
