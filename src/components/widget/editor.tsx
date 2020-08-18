@@ -44,7 +44,7 @@ function getTopSelectedRow(editorElement: any): null | { top: number, left: numb
       lastRectSameRow = testRect
       continue
     }
-    if (testRect.top > startingRect.top) {
+    if (testRect.top !== startingRect.top) {
       break
     }
 
