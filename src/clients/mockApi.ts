@@ -109,17 +109,24 @@ export async function postComment(
 ): Promise<void> {
   const issue = (await getIssueBySiteAndId(site, id))!
 
-  const nextTimeline = issue.timeline.concat([{
+  const nextTimeline: IssueTimeline = issue.timeline.concat([{
     verb: 'comment',
     by: user, // TODO: store user state somewhere?
     timestamp: new Date(),
     comment
   }])
 
-  const nextIssue = {
+  const nextIssue: Issue = {
     ...issue,
+    aggregates: {
+      ...issue.aggregates,
+      comments: {
+        count: issue.aggregates.comments.count + 1,
+      }
+    },
     timeline: nextTimeline
   }
+
 
   localStorage.setItem(
     demoIssuesLocalStorageKey(site, id),

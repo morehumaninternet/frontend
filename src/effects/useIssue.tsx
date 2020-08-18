@@ -35,15 +35,21 @@ export default function useIssue({ params, api }: UseIssueDependencies): UseIssu
       throw new Error('Posting comments for a nonexistent issue should not be possible')
     }
 
-    const nextTimeline = issue.timeline.concat([{
+    const nextTimeline: IssueTimeline = issue.timeline.concat([{
       verb: 'comment',
       by: user, // TODO: store user state somewhere?
       timestamp: new Date(),
       comment
     }])
 
-    const nextIssue = {
+    const nextIssue: Issue = {
       ...issue,
+      aggregates: {
+        ...issue.aggregates,
+        comments: {
+          count: issue.aggregates.comments.count + 1,
+        }
+      },
       timeline: nextTimeline
     }
 
