@@ -10,7 +10,7 @@ export default function useCurrentUser(): CurrentUser {
   const [currentUser, setCurrentUser] = React.useState<CurrentUser>({ loaded: false })
 
   // TODO: authentication
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && !currentUser.loaded) {
     setTimeout(() => {
       setCurrentUser({
         loaded: true,
