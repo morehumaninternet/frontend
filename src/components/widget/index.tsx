@@ -1,21 +1,31 @@
 import React from 'react'
 import WidgetIcon from './icon'
 import Editor from './editor'
-import ButtonGroup from './button-group'
+
+import debounceDefer from '../../utils/debounceDefer'
 import hasParent from '../../utils/hasParent'
+import * as mockApi from '../../clients/mockApi'
 
 
 type WidgetProps = {
   postIssue(widgetFormValues: { title: string, initialCommentHtml: string }): Promise<void>
 }
 
+const searchIssues = debounceDefer(mockApi.searchIssues, 200)
 
 export default ({ postIssue }: WidgetProps) => {
   const widgetRef = React.useRef<HTMLDivElement>()
 
   const [open, setOpen] = React.useState(false)
+  const [noSimilarIssues, setNoSimilarIssues] = React.useState(false)
+  const [similarIssues, setSimilarIssues] = React.useState([])
   const [issueTitle, setIssueTitle] = React.useState('')
   const [issueInitialCommentHtml, setIssueInitialCommentHtml] = React.useState('')
+
+  function onIssueTitleUpdate(nextIssueTitle: string) {
+    setIssueTitle(nextIssueTitle)
+    searchIssues(nextIssueTitle).then(setSimilarIssues)
+  }
 
   React.useEffect(() => {
     function listener(event: MouseEvent) {
@@ -48,10 +58,12 @@ export default ({ postIssue }: WidgetProps) => {
           }}
         >
           <Editor
-            setIssueTitle={setIssueTitle}
+            setIssueTitle={onIssueTitleUpdate}
             setIssueInitialCommentHtml={setIssueInitialCommentHtml}
+            similarIssues={similarIssues}
+            noSimilarIssues={noSimilarIssues}
+            confirmNoSimilarIssues={() => setNoSimilarIssues(true)}
           />
-          <ButtonGroup />
         </form>
       </div>
     </div>

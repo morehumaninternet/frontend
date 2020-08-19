@@ -164,3 +164,14 @@ export async function changeStatus(
     JSON.stringify(nextIssue)
   )
 }
+
+export async function searchIssues(title: string) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve([
+        { title: 'Your checkout is having major problems' },
+        { title: "I can't put my credit card on checkout" },
+      ])
+    }, 50)
+  })
+}
