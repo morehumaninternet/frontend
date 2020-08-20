@@ -15,7 +15,7 @@ import onClickaway from '../../effects/onClickaway'
 const searchIssues = debounceDefer(mockApi.searchIssues, 200)
 
 
-type SimilarIssueSelection =
+type MatchingIssue =
   | { selection: null }
   | { selection: true, issue: Issue }
   | { selection: false }
@@ -24,8 +24,8 @@ export default ({ navigate }: { navigate: (href: string) => void }) => {
   const ref = React.useRef<HTMLDivElement>()
 
   const [open, setOpen] = React.useState(false)
-  const [matchingIssue, setMatchingIssue] = React.useState<SimilarIssueSelection>({ selection: null })
-  const [similarIssues, setSimilarIssues] = React.useState([])
+  const [matchingIssue, setMatchingIssue] = React.useState<MatchingIssue>({ selection: null })
+  const [similarIssues, setSimilarIssues] = React.useState<Issue[]>([])
   const [issueTitle, setIssueTitle] = React.useState('')
   const [issueInitialCommentHtml, setIssueInitialCommentHtml] = React.useState('')
 
@@ -71,11 +71,13 @@ export default ({ navigate }: { navigate: (href: string) => void }) => {
           <div className="more-human-internet-widget-editor-container">
             <div className="more-human-internet-widget-editor">
               <TitleInput onIssueTitleUpdate={onIssueTitleUpdate} />
-              {matchingIssue.selection == null ? (
+              {matchingIssue.selection === false ? (
                 <CommentInput setIssueInitialCommentHtml={setIssueInitialCommentHtml} />
               ) : (similarIssues.length ? (
                 <SimilarIssues
                   similarIssues={similarIssues}
+                  noMatchingIssue={() => setMatchingIssue({ selection: false })}
+                  yesMatchingIssue={issue => setMatchingIssue({ selection: true, issue })}
                 />
               ) : null)}
             </div>

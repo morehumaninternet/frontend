@@ -8,8 +8,10 @@ export type IssuePostBody = {
 
 export const defaultSite = 'goalco.com'
 
+const localStorageKeyPrefix = 'demo-issues'
+
 function demoIssuesLocalStorageKey(site: string, id: number) {
-  return `demo-issues:${site}:${id}`
+  return `${localStorageKeyPrefix}:${site}:${id}`
 }
 
 // TODO: typecheck, perhaps rely on a library
@@ -173,15 +175,19 @@ export async function changeStatus(
   return setInLocalStorage(nextIssue)
 }
 
-export async function searchIssues(title: string) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve([
-        { title: 'Your checkout is having major problems' },
-        { title: "I can't put my credit card on checkout" },
-      ])
-    }, 50)
+export async function searchIssues(title: string): Promise<Issue[]> {
+  const search = new RegExp(title, 'i')
+  const matches: Issue[] = []
+  Object.keys(localStorage).forEach(key => {
+    if (key.startsWith(localStorageKeyPrefix)) {
+      const issue = issueFromJson(localStorage.getItem(key)!)
+      if (search.test(issue.title)) {
+        matches.push(issue)
+      }
+    }
   })
+  console.log('matches', matches)
+  return matches
 }
 
 function setDefaultIssues() {
@@ -198,14 +204,12 @@ function setDefaultIssues() {
 
   if (!getInLocalStorage(defaultSite, 505)) {
     setInLocalStorage(createIssue({
-      id: 505,
+      id: 510,
       title: "I can't put my credit card on checkout",
       user: { username: 'mickjagger' },
       initialCommentHtml: '<div>What gives?</div>'
     }))
   }
-
-
 }
 
 setDefaultIssues()

@@ -9,7 +9,15 @@ type SimilarIssuesProps = {
 
 
 export default function SimilarIssues({ similarIssues, noMatchingIssue, yesMatchingIssue }: SimilarIssuesProps): JSX.Element {
+  console.log('similarssues', similarIssues)
   return (
-    <p>Similar Issues</p>
+    <div className="similar-issues">
+      <p>Similar Issues</p>
+      {similarIssues.map(similarIssue => (
+        <div key={similarIssue.id} className="similar-issue">
+          {similarIssue.title}
+        </div>
+      ))}
+    </div>
   )
 }
