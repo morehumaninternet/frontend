@@ -5,7 +5,6 @@ import SEO from '../components/shared/seo'
 import * as mockApi from '../clients/mockApi'
 import useCurrentUser from '../effects/useCurrentUser'
 
-
 function GoalCo() {
   return (
     <svg
@@ -30,19 +29,81 @@ function GoalCo() {
         d="M41.166 37.517a1 1 0 011.668 0l9.82 14.859a1 1 0 01-.055 1.176l-1.661 2.074a1 1 0 01-.78.374H33.842a1 1 0 01-.78-.374L31.4 53.552a1 1 0 01-.055-1.176l9.82-14.859z"
       ></path>
     </svg>
-  );
+  )
+}
+
+function CartIcon() {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5.88559 20.4698C6.2839 20.0647 6.76271 19.8621 7.32203 19.8621C7.88136 19.8621 8.36017 20.0647 8.75847 20.4698C9.15678 20.875 9.35593 21.3621 9.35593 21.931C9.35593 22.5 9.15678 22.9871 8.75847 23.3922C8.36017 23.7974 7.88136 24 7.32203 24C6.76271 24 6.2839 23.7974 5.88559 23.3922C5.48729 22.9871 5.28814 22.5 5.28814 21.931C5.28814 21.3621 5.48729 20.875 5.88559 20.4698ZM18.9025 20.4698C19.3008 20.0647 19.7797 19.8621 20.339 19.8621C20.8983 19.8621 21.3771 20.0647 21.7754 20.4698C22.1737 20.875 22.3729 21.3621 22.3729 21.931C22.3729 22.5 22.1737 22.9871 21.7754 23.3922C21.3771 23.7974 20.8983 24 20.339 24C19.7797 24 19.3008 23.7974 18.9025 23.3922C18.5042 22.9871 18.3051 22.5 18.3051 21.931C18.3051 21.3621 18.5042 20.875 18.9025 20.4698ZM7.15678 2.48276H24L23.911 3.59483C23.8941 3.9569 23.8093 5.07759 23.6568 6.9569C23.5042 8.82759 23.3898 10.0086 23.3136 10.5C23.1949 11.3362 22.8136 12.0431 22.1695 12.6207C21.5254 13.1897 20.7246 13.5431 19.7669 13.681C19.75 13.681 16.4153 14.0862 9.76271 14.8966V12.8147C10.4576 12.7284 11.5678 12.5948 13.0932 12.4138C14.6186 12.2328 15.9831 12.069 17.1864 11.9224C18.3983 11.7759 19.1695 11.6767 19.5 11.625C20 11.5647 20.411 11.4052 20.7331 11.1466C21.0551 10.8879 21.2458 10.569 21.3051 10.1897C21.3983 9.57759 21.5636 7.69828 21.8008 4.55172H7.32203V15.2974C7.32203 15.6767 7.44068 15.9828 7.67797 16.2155C7.92373 16.4397 8.25424 16.5517 8.66949 16.5517H22.3729V18.6207H8.66949C7.70339 18.6207 6.8983 18.306 6.25424 17.6767C5.61017 17.0388 5.28814 16.2457 5.28814 15.2974V3.49138C5.28814 3.11207 5.13559 2.78017 4.83051 2.49569C4.5339 2.21121 4.18644 2.06897 3.78814 2.06897H0V0H3.78814C4.55932 0 5.25424 0.232759 5.87288 0.698276C6.5 1.16379 6.92797 1.75862 7.15678 2.48276Z"
+        fill="black"
+      />
+    </svg>
+  )
+}
+
+function Rating({ stars, reviews }: { stars: number; reviews: number }) {
+  return (
+    <div className="reviews">
+      {[...Array(stars)].map((n) => (
+        <span>
+          <Star />
+        </span>
+      ))}
+      <span>{reviews} Reviews</span>
+    </div>
+  )
+}
+
+function Star() {
+  return (
+    <svg
+      width="18"
+      height="17"
+      viewBox="0 0 18 17"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
+        fill="#FADE60"
+      />
+    </svg>
+  )
+}
+
+function PriceAndBuy({ price }: { price: number }) {
+  return (
+    <>
+      <div className="price">
+        <h2>${price}</h2>
+        <Button className="add-to-cart">Add to Cart</Button>
+      </div>
+      <div className="guarantee">Try risk-free, 100% happiness guaranteed</div>
+    </>
+  )
 }
 
 export default function DemoPage(props: any): JSX.Element {
   const currentUser = useCurrentUser()
 
-  const postIssue = async (widgetFormValues: { title: string, initialCommentHtml: string }) => {
+  const postIssue = async (widgetFormValues: {
+    title: string
+    initialCommentHtml: string
+  }) => {
     if (!currentUser.loaded) {
       throw new Error(`Cannot post an issue for a nonexistent user`)
     }
 
     const issue = await mockApi.postIssue({
-      site: 'goalco.com',
+      site: "goalco.com",
       title: widgetFormValues.title,
       user: currentUser.user,
       initialCommentHtml: widgetFormValues.initialCommentHtml,
@@ -56,33 +117,44 @@ export default function DemoPage(props: any): JSX.Element {
       <SEO
         pageTitle="Demo"
         links={[
-          { rel: "shortcut icon", type: "image/png", sizes: "32x32", href: '/goalco.ico' },
+          {
+            rel: "shortcut icon",
+            type: "image/png",
+            sizes: "32x32",
+            href: "/goalco.ico",
+          },
           { rel: "stylesheet", type: "text/css", href: "/trix.css" },
         ]}
-        scripts={[
-          { type: "text/javascript", src: "/trix.js" },
-        ]}
+        scripts={[{ type: "text/javascript", src: "/trix.js" }]}
       />
       <header>
         <GoalCo />
         <div className="links">
+          <a>Products</a>
           <a>About Us</a>
-          <a>Blog</a>
-          <a>Contact Us</a>
+          <a>Contact</a>
+          <a>
+            <CartIcon />
+          </a>
         </div>
       </header>
       <div className="demo-content">
         <div className="text">
-          <h1>
-            We're here to help you achieve your goals
-          </h1>
-          <Button className="learn-more">
-            Learn More
-          </Button>
+          <h1>The GoalCo 10X superpower suit</h1>
+          <Rating stars={5} reviews={9494} />
+          <p>
+            Take your goal achieving capabilities to the next level with our
+            state of the art superpower suit.
+          </p>
+          <p>
+            Made from the finest bio materials known to man and ethically
+            sourced from planet Goalgon.
+          </p>
+          <PriceAndBuy price={365} />
         </div>
-        <img src="/goalco-hero.png"></img>
+        <img src="/goalco-hero.png" ></img>
       </div>
-      <Widget postIssue={postIssue}/>
+      <Widget postIssue={postIssue} />
     </div>
   )
 }
