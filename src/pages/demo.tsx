@@ -2,8 +2,6 @@ import React from 'react'
 import { Button } from '@material-ui/core'
 import Widget from '../components/widget'
 import SEO from '../components/shared/seo'
-import * as mockApi from '../clients/mockApi'
-import useCurrentUser from '../effects/useCurrentUser'
 
 
 function GoalCo() {

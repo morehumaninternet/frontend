@@ -14,20 +14,15 @@ function insideDiv(html: string): string {
   return match[1]
 }
 
-export default function TitleInput({ onIssueTitleUpdate }: { onIssueTitleUpdate(issueTitle: string): void }): JSX.Element {
+export default function TitleInput({ setIssueTitle }: { setIssueTitle(issueTitle: string): void }): JSX.Element {
   const ref = React.useRef<HTMLDivElement>()
-
-  console.log('how is this happening')
 
   React.useEffect(() => {
     const editorElement = ref.current!.querySelector('trix-editor') as any
     editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
-      console.log('event', event)
-      onIssueTitleUpdate(insideDiv(event.target.value))
+      setIssueTitle(insideDiv(event.target.value))
     })
   }, [])
-
-  console.log('herekkkk')
 
   return (
     <div

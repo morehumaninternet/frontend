@@ -3,28 +3,30 @@ import updateTopSelectedRow, { getTopSelectedRow } from './updateTopSelectedRow'
 
 
 const defaultIssueBody = `
-<strong>Steps</strong>
+<strong>Steps I followed</strong>
 
 <ol>
-<li>Looking for services</li>
-<li>Something else</li>
+<li>...</li>
 </ol>
 
-<strong>Observations</strong>
+<strong>What I Observed</strong>
+...
 <br>
 <br>
-<strong>Expectations</strong>
+<strong>What I Expected</strong>
+...
 `
 
-export default function CommentInput({ setIssueInitialCommentHtml }: { setIssueInitialCommentHtml(initialCommentHTML: string): void }): JSX.Element {
+type CommentInputProps = {
+  setIssueInitialCommentHtml(initialCommentHTML: string): void
+}
+
+export default function CommentInput({ setIssueInitialCommentHtml }: CommentInputProps): JSX.Element {
   const ref: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
 
   React.useEffect(() => {
     const editorElement = ref.current!.querySelector('trix-editor') as any
-
-    editorElement.addEventListener('trix-initialize', () => {
-      editorElement.editor.loadHTML(defaultIssueBody)
-    })
+    editorElement.editor.loadHTML(defaultIssueBody)
 
     editorElement.addEventListener('trix-selection-change', () => {
       updateTopSelectedRow(ref, getTopSelectedRow(editorElement))

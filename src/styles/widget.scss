@@ -75,6 +75,30 @@ $trix-button--icon-size: 1.6em;
           }
         }
 
+        > .more-human-internet-similar-issues {
+          > p {
+            font-weight: 300;
+            font-size: 1em;
+            color: $human-grey;
+          }
+
+          > .more-human-internet-similar-issue-links {
+            display: flex;
+            flex-direction: column;
+
+            > .more-human-internet-similar-issue-link {
+              width: 100%;
+              border-radius: 12px;
+              border: 1px solid;
+              padding: 10px;
+              text-decoration: none;
+              color: $human-blue;
+              margin-bottom: 16px;
+              &:last-child { margin-bottom: 0; }
+            }
+          }
+        }
+
         > .more-human-internet-widget-editor-issue-body-input {
           position: relative;
 
@@ -151,7 +175,7 @@ $trix-button--icon-size: 1.6em;
         > button {
           height: $more-human-internet-widget-editor-button-height;
 
-          &:first-child {
+          &.attach {
             background-color: $human-pink;
             width: $more-human-internet-widget-editor-button-height;
             margin-right: 20px;
@@ -161,7 +185,7 @@ $trix-button--icon-size: 1.6em;
             }
           }
 
-          &:nth-child(2) {
+          &.post {
             width: 100%;
             font-weight: 700;
 

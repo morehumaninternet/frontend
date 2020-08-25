@@ -43,8 +43,21 @@ export const defaultCommentHtml = `
   <p>The order should have went through and I should have received a confirmation email</p>
 `
 
+function randomId(site: string) {
+  const keys = Object.keys(localStorage)
+  const idSpace = Math.max(1000, keys.length * 2)
+  while (true) {
+    const id = 1 + Math.floor(idSpace * Math.random())
+    const key = demoIssuesLocalStorageKey(site, id)
+    if (!localStorage.getItem(key)) {
+      return id
+    }
+  }
+}
+
 function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
-  const id = opts.id || 323
+  const site = opts.site || defaultSite
+  const id = opts.id || randomId(site)
   const user = opts.user || { username: 'sillywalks', avatarUrl: 'https://github.com/will-weiss.png?size=71' }
   const title = opts.title || "Checkout isn't working"
 
@@ -55,7 +68,7 @@ function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
   return {
     id,
     title,
-    site: opts.site || defaultSite,
+    site,
     status: 'Opened',
     initialReport: {
       by: user,
@@ -186,7 +199,6 @@ export async function searchIssues(title: string): Promise<Issue[]> {
       }
     }
   })
-  console.log('matches', matches)
   return matches
 }
 
