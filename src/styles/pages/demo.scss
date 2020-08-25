@@ -1,38 +1,84 @@
 .demo-page {
   background-color: #F7F7F7;
   min-height: 100vh;
+  font-family: 'Roboto';
 
   > header {
     > .links {
       margin-top: 14px;
       display: flex;
+      align-items: center;
 
       > a {
-        margin: 16px;
+        font-size: 14px;
+        line-height: 16px;
+        margin: 18px;
       }
     }
   }
 
-  button.learn-more {
-    background-color: #FADE60;
-    color: #000000;
-    font-weight: 500;
+  button.add-to-cart {
+    background-color: #fade60;
+    color: hsl(0, 0%, 0%);
     width: 144px;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
   }
 
   > .demo-content {
-    padding-top: 250px;
+    padding-top: 175px;
     padding-left: 200px;
     display: flex;
 
     > .text {
-      > h1 {
-        font-weight: 300;
-        font-size: 2em;
-        max-width: 275px;
-      }
+      width: 275px;
+      margin-top: 75px;
+      max-width: 275px;
       display: flex;
       flex-direction: column;
+
+      > h1 {
+        font-weight: 300;
+        font-size: 36px;
+        line-height: 42px;
+        text-align: left;
+        color: #000000;
+      }
+
+      > .reviews {
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+        > span {
+          margin-right: 10px;
+          line-height: 18px;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 16px;
+        }
+      }
+      > p {
+        font-size: 16px;
+        line-height: 19px;
+      }
+      > .price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        > h2 {
+          font-weight: normal;
+          font-size: 36px;
+          margin-bottom: 0px;
+        }
+      }
+      > .guarantee {
+        width: 40%;
+        font-size: 14px;
+        line-height: 16px;
+      }
     }
   }
 }
