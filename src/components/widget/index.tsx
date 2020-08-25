@@ -1,70 +1,87 @@
 import React from 'react'
 import WidgetIcon from './icon'
-import Editor from './editor'
+import TitleInput from './title-input'
+import CommentInput from './comment-input'
+import SimilarIssues from './similar-issues'
 
 import debounceDefer from '../../utils/debounceDefer'
-import hasParent from '../../utils/hasParent'
+
 import * as mockApi from '../../clients/mockApi'
+import useCurrentUser from '../../effects/useCurrentUser'
+import onClickaway from '../../effects/onClickaway'
 
 
-type WidgetProps = {
-  postIssue(widgetFormValues: { title: string, initialCommentHtml: string }): Promise<void>
-}
 
 const searchIssues = debounceDefer(mockApi.searchIssues, 200)
 
-export default ({ postIssue }: WidgetProps) => {
-  const widgetRef = React.useRef<HTMLDivElement>()
+
+type SimilarIssueSelection =
+  | { selection: null }
+  | { selection: true, issue: Issue }
+  | { selection: false }
+
+export default ({ navigate }: { navigate: (href: string) => void }) => {
+  const ref = React.useRef<HTMLDivElement>()
 
   const [open, setOpen] = React.useState(false)
-  const [noSimilarIssues, setNoSimilarIssues] = React.useState(false)
+  const [matchingIssue, setMatchingIssue] = React.useState<SimilarIssueSelection>({ selection: null })
   const [similarIssues, setSimilarIssues] = React.useState([])
   const [issueTitle, setIssueTitle] = React.useState('')
   const [issueInitialCommentHtml, setIssueInitialCommentHtml] = React.useState('')
 
-  function onIssueTitleUpdate(nextIssueTitle: string) {
-    setIssueTitle(nextIssueTitle)
-    searchIssues(nextIssueTitle).then(setSimilarIssues)
-  }
+  const currentUser = useCurrentUser()
 
-  React.useEffect(() => {
-    function listener(event: MouseEvent) {
-      if (!hasParent(event.target as any, widgetRef.current!)) {
-        setOpen(false)
-      }
+  const postIssue = async () => {
+    if (!currentUser.loaded) {
+      throw new Error(`Cannot post an issue for a nonexistent user`)
     }
 
-    document.addEventListener('click', listener)
+    const issue = await mockApi.postIssue({
+      site: 'goalco.com',
+      title: issueTitle,
+      user: currentUser.user,
+      initialCommentHtml: issueInitialCommentHtml,
+    })
 
-    return () => document.removeEventListener('click', listener)
-  })
+    navigate(`/issue?site=${issue.site}&id=${issue.id}`)
+  }
+
+  function onIssueTitleUpdate(nextIssueTitle: string) {
+    setIssueTitle(nextIssueTitle)
+    if (nextIssueTitle.length > 5) {
+      searchIssues(nextIssueTitle).then(setSimilarIssues)
+    } else {
+      setSimilarIssues([])
+    }
+  }
+
+  onClickaway(ref, () => setOpen(false))
 
   return (
     <div
       className="more-human-internet-widget-boundary"
-      ref={widgetRef as any}
+      ref={ref as any}
     >
       <div
         className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
         onClick={() => !open && setOpen(true)}
-        // aria-role ?
       >
         <WidgetIcon open={open} />
-        <form
-          className="more-human-internet-widget-editor-container"
-          onSubmit={async event => {
-            event.preventDefault()
-            await postIssue({ title: issueTitle, initialCommentHtml: issueInitialCommentHtml })
-          }}
-        >
-          <Editor
-            setIssueTitle={onIssueTitleUpdate}
-            setIssueInitialCommentHtml={setIssueInitialCommentHtml}
-            similarIssues={similarIssues}
-            noSimilarIssues={noSimilarIssues}
-            confirmNoSimilarIssues={() => setNoSimilarIssues(true)}
-          />
-        </form>
+        {open && (
+          <div className="more-human-internet-widget-editor-container">
+            <div className="more-human-internet-widget-editor">
+              <TitleInput onIssueTitleUpdate={onIssueTitleUpdate} />
+              {matchingIssue.selection == null ? (
+                <CommentInput setIssueInitialCommentHtml={setIssueInitialCommentHtml} />
+              ) : (similarIssues.length ? (
+                <SimilarIssues
+                  similarIssues={similarIssues}
+                />
+              ) : null)}
+            </div>
+
+          </div>
+        )}
       </div>
     </div>
   )

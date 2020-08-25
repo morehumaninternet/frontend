@@ -6,6 +6,8 @@ export type IssuePostBody = {
   initialCommentHtml: string
 }
 
+export const defaultSite = 'goalco.com'
+
 function demoIssuesLocalStorageKey(site: string, id: number) {
   return `demo-issues:${site}:${id}`
 }
@@ -51,7 +53,7 @@ function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
   return {
     id,
     title,
-    site: opts.site || 'goalco.com',
+    site: opts.site || defaultSite,
     status: 'Opened',
     initialReport: {
       by: user,
@@ -78,24 +80,26 @@ function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
   }
 }
 
-export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
-  const issue = createIssue(issuePostBody)
+function getInLocalStorage(site: string, id: number): null | Issue {
+  const issueJson = localStorage.getItem(demoIssuesLocalStorageKey(site, id))
+  return issueJson ? issueFromJson(issueJson) : null
+}
 
+function setInLocalStorage(issue: Issue): Issue {
   localStorage.setItem(
-    demoIssuesLocalStorageKey(issuePostBody.site, issue.id),
+    demoIssuesLocalStorageKey(issue.site, issue.id),
     JSON.stringify(issue)
   )
   return issue
 }
 
+export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
+  return setInLocalStorage(createIssue(issuePostBody))
+}
+
 export async function getIssueBySiteAndId(site: string, id: number): Promise<null | Issue> {
   try {
-    const issueJson = localStorage.getItem(demoIssuesLocalStorageKey(site, id))
-    // If no issue is returned, just make one for the demo
-    if (!issueJson) {
-      return createIssue({ id, site })
-    }
-    return issueFromJson(issueJson)
+    return getInLocalStorage(site, id) || createIssue({ id, site })
   } catch (err) {
     return null
   }
@@ -108,7 +112,7 @@ export async function postComment(
     user: User
     comment: { html: string }
   }
-): Promise<void> {
+): Promise<any> {
   const issue = (await getIssueBySiteAndId(site, id))!
 
   const nextTimeline: IssueTimeline = issue.timeline.concat([{
@@ -129,10 +133,7 @@ export async function postComment(
     timeline: nextTimeline
   }
 
-  localStorage.setItem(
-    demoIssuesLocalStorageKey(site, id),
-    JSON.stringify(nextIssue)
-  )
+  return setInLocalStorage(nextIssue)
 }
 
 export async function changeStatus(
@@ -143,15 +144,25 @@ export async function changeStatus(
     status: IssueStatus
     comment: { html: string }
   }
-): Promise<void> {
+): Promise<any> {
   const issue = (await getIssueBySiteAndId(site, id))!
 
-  const nextTimeline: IssueTimeline = issue.timeline.concat([{
-    verb: 'change status',
-    by: user, // TODO: store user state somewhere?
-    timestamp: new Date(),
-    status
-  }])
+  const now = new Date()
+
+  const nextTimeline: IssueTimeline = issue.timeline.concat([
+    {
+      verb: 'comment',
+      by: user,
+      timestamp: now,
+      comment
+    },
+    {
+      verb: 'change status',
+      by: user, // TODO: store user state somewhere?
+      timestamp: now,
+      status
+    },
+  ])
 
   const nextIssue: Issue = {
     ...issue,
@@ -159,10 +170,7 @@ export async function changeStatus(
     timeline: nextTimeline
   }
 
-  localStorage.setItem(
-    demoIssuesLocalStorageKey(site, id),
-    JSON.stringify(nextIssue)
-  )
+  return setInLocalStorage(nextIssue)
 }
 
 export async function searchIssues(title: string) {
@@ -175,3 +183,29 @@ export async function searchIssues(title: string) {
     }, 50)
   })
 }
+
+function setDefaultIssues() {
+  if (typeof window === 'undefined') return
+
+  if (!getInLocalStorage(defaultSite, 505)) {
+    setInLocalStorage(createIssue({
+      id: 505,
+      title: 'Your checkout is having major problems',
+      user: { username: 'dadbod22' },
+      initialCommentHtml: '<div>What gives?</div>'
+    }))
+  }
+
+  if (!getInLocalStorage(defaultSite, 505)) {
+    setInLocalStorage(createIssue({
+      id: 505,
+      title: "I can't put my credit card on checkout",
+      user: { username: 'mickjagger' },
+      initialCommentHtml: '<div>What gives?</div>'
+    }))
+  }
+
+
+}
+
+setDefaultIssues()

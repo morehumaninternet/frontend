@@ -1,4 +1,4 @@
-import numPixels from '../../../utils/numPixels'
+import numPixels from '../../utils/numPixels'
 
 
 function * getSelectionClientRects(editorElement: any): IterableIterator<{ top: number, bottom: number, left: number, right: number }> {
