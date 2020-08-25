@@ -10,10 +10,12 @@ const defaultIssueBody = `
 </ol>
 
 <strong>What I Observed</strong>
+<br>
 ...
 <br>
 <br>
 <strong>What I Expected</strong>
+<br>
 ...
 `
 
