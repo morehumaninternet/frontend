@@ -214,7 +214,7 @@ function setDefaultIssues() {
     }))
   }
 
-  if (!getInLocalStorage(defaultSite, 505)) {
+  if (!getInLocalStorage(defaultSite, 510)) {
     setInLocalStorage(createIssue({
       id: 510,
       title: "I can't put my credit card on checkout",
