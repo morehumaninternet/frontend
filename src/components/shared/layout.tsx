@@ -4,10 +4,10 @@ import Header from './header'
 
 
 type LayoutProps = {
-  headerLinks?: React.ReactNode
   mainClassName: string
   logoAgainstHero: boolean
   headerRef?: React.RefObject<HTMLElement>
+  headerLinks?: React.ReactNode
   children: React.ReactNode
 }
 
