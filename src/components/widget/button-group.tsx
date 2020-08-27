@@ -1,6 +1,9 @@
 import React from 'react'
 import { Button } from '@material-ui/core'
+import { WidgetState } from './useWidgetState'
 
+
+type ButtonGroupProps = Pick<WidgetState, 'postAsNewIssue' | 'postIssue' | 'reasonCantPostAsNewIssue' | 'setPostAsNewIssue'>
 
 function AttachIcon() {
   return (
@@ -10,11 +13,18 @@ function AttachIcon() {
   )
 }
 
-export default function ButtonGroup(): JSX.Element {
+export default function ButtonGroup({ postAsNewIssue, postIssue, reasonCantPostAsNewIssue, setPostAsNewIssue }: ButtonGroupProps): JSX.Element {
   return (
     <div className="more-human-internet-widget-editor-button-group">
-      <Button type="button"><AttachIcon /></Button>
-      <Button type="submit">Post</Button>
+      {postAsNewIssue && <Button className="attach" type="button"><AttachIcon /></Button>}
+      {postAsNewIssue ? (
+        <Button className="post" onClick={() => postIssue()}>Post</Button>
+      ) : (
+        <Button
+          className="post"
+          disabled={!!reasonCantPostAsNewIssue}
+          onClick={() => setPostAsNewIssue(true)}>Post as new Issue</Button>
+      )}
     </div>
   )
 }

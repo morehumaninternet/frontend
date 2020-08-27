@@ -2,8 +2,7 @@ import React from 'react'
 import { Button } from '@material-ui/core'
 import Widget from '../components/widget'
 import SEO from '../components/shared/seo'
-import * as mockApi from '../clients/mockApi'
-import useCurrentUser from '../effects/useCurrentUser'
+
 
 function GoalCo() {
   return (
@@ -52,10 +51,8 @@ function CartIcon() {
 function Rating({ stars, reviews }: { stars: number; reviews: number }) {
   return (
     <div className="reviews">
-      {[...Array(stars)].map((n) => (
-        <span>
-          <Star />
-        </span>
+      {Array(stars).map((n) => (
+        <span><Star /></span>
       ))}
       <span>{reviews} Reviews</span>
     </div>
@@ -92,26 +89,6 @@ function PriceAndBuy({ price }: { price: number }) {
 }
 
 export default function DemoPage(props: any): JSX.Element {
-  const currentUser = useCurrentUser()
-
-  const postIssue = async (widgetFormValues: {
-    title: string
-    initialCommentHtml: string
-  }) => {
-    if (!currentUser.loaded) {
-      throw new Error(`Cannot post an issue for a nonexistent user`)
-    }
-
-    const issue = await mockApi.postIssue({
-      site: "goalco.com",
-      title: widgetFormValues.title,
-      user: currentUser.user,
-      initialCommentHtml: widgetFormValues.initialCommentHtml,
-    })
-
-    props.navigate(`/issue?site=${issue.site}&id=${issue.id}`)
-  }
-
   return (
     <div className="demo-page">
       <SEO
@@ -133,9 +110,7 @@ export default function DemoPage(props: any): JSX.Element {
           <a>Products</a>
           <a>About Us</a>
           <a>Contact</a>
-          <a>
-            <CartIcon />
-          </a>
+          <a><CartIcon /></a>
         </div>
       </header>
       <div className="demo-content">
@@ -154,7 +129,7 @@ export default function DemoPage(props: any): JSX.Element {
         </div>
         <img src="/goalco-hero.png" ></img>
       </div>
-      <Widget postIssue={postIssue} />
+      <Widget navigate={props.navigate} />
     </div>
   )
 }
