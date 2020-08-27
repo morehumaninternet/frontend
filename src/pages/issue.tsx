@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '../components/shared/layout'
+import { LayoutWithSidebar } from '../components/shared/layout'
 import SEO, { defaultLinks } from '../components/shared/seo'
 import Hero from '../components/shared/hero'
 import { Avatar } from '@material-ui/core'
@@ -58,12 +58,8 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
   const avatarUrl = currentUser.loaded ? currentUser.user.avatarUrl : undefined
 
   return (
-    <Layout
+    <LayoutWithSidebar
       mainClassName="issue"
-      logoAgainstHero={false}
-      headerLinks={
-        <Avatar src={avatarUrl} />
-      }
     >
       <SEO
         pageTitle="Issue"
@@ -77,6 +73,6 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
       <Hero additionalClassNames="issue">
         <IssueContent issueParams={issueParams} currentUser={currentUser} />
       </Hero>
-    </Layout>
+    </LayoutWithSidebar>
   )
 }

@@ -1,0 +1,20 @@
+$sidebar-width: 100px;
+
+
+.layout.has-sidebar {
+  > .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $sidebar-width;
+    background-color: $human-blue;
+    min-height: 100vh;
+    border-top-right-radius: 40px;
+  }
+
+  > main {
+    position: relative;
+    left: $sidebar-width;
+  }
+}
+
