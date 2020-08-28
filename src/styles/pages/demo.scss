@@ -1,9 +1,21 @@
 .demo-page {
   background-color: #F7F7F7;
+  color: #000000;
   min-height: 100vh;
   font-family: 'Roboto';
 
+  .bold {
+    font-weight: bold;
+  }
+
+  .flex {
+    display: flex;
+  }
+
   > header {
+    display: flex;
+    justify-content: space-between;
+
     > .links {
       margin-top: 14px;
       display: flex;
@@ -14,6 +26,23 @@
         line-height: 16px;
         margin: 18px;
       }
+    }
+    .cart-count {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-left: 4px;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-count.text {
+      color: #fff;
+      font-weight: 900;
+      font-size: 14px;
+      line-height: 16px;
     }
   }
 
@@ -28,10 +57,22 @@
     font-size: 18px;
   }
 
+  button.checkout {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    background: #FADE60;
+    color: hsl(0, 0%, 0%);
+    width: 298px;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
   > .demo-content {
     padding-top: 175px;
     padding-left: 200px;
-    display: flex;
 
     > .text {
       width: 275px;
@@ -80,5 +121,76 @@
         line-height: 16px;
       }
     }
+    > .shopping-cart {
+      /* description section */
+      >h1 {
+        font-weight: 300;
+        font-size: 36px;
+        line-height: 42px;
+        text-align: left;
+      }
+      .cart-item-container {
+        width: 600px; 
+        margin-right: 20px;
+      }
+      .cart-item {
+        display: flex; 
+        background: #fff;
+        padding: 10px;
+        .close {
+          text-align: right;
+        }
+        .price {
+          font-size: 36px;
+          line-height: 42px;
+        } 
+        .description {
+          padding-left: 25px;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 19px;
+        }
+      }  
+      .extra {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        padding: 15px;
+      }
+
+      /* total section */
+      .checkout-container {
+        width: 300px;
+        display: flex; 
+        flex-direction: column;
+      }
+      .total-container {
+        display: flex;
+        flex-direction: column;
+        background: #FFF;
+        padding: 24px;
+      }
+      .line-item {
+        display: flex;
+        justify-content: space-between;
+      }
+      .cart-total {
+        font-size: 36px;
+        line-height: 42px;
+      }
+      .text {
+        font-size: 16px;
+        line-height: 19px;
+        margin-top: 18px;
+      }
+
+      .creditcards {
+        width: 220px;
+        height: 21px;
+        background: url("/creditcards.png");
+      }
+    }
   }
+
 }

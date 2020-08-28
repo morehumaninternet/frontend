@@ -31,7 +31,7 @@ function GoalCo() {
   )
 }
 
-function CartIcon() {
+function CartIcon({ numberItems }: { numberItems: number }) {
   return (
     <svg
       width="24"
@@ -59,35 +59,6 @@ function Rating({ stars, reviews }: { stars: number; reviews: number }) {
   )
 }
 
-function Star() {
-  return (
-    <svg
-      width="18"
-      height="17"
-      viewBox="0 0 18 17"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-        fill="#FADE60"
-      />
-    </svg>
-  )
-}
-
-function PriceAndBuy({ price }: { price: number }) {
-  return (
-    <>
-      <div className="price">
-        <h2>${price}</h2>
-        <Button className="add-to-cart">Add to Cart</Button>
-      </div>
-      <div className="guarantee">Try risk-free, 100% happiness guaranteed</div>
-    </>
-  )
-}
-
 export default function DemoPage(props: any): JSX.Element {
   return (
     <div className="demo-page">
@@ -104,7 +75,7 @@ export default function DemoPage(props: any): JSX.Element {
         ]}
         scripts={[{ type: "text/javascript", src: "/trix.js" }]}
       />
-      <header>
+      <header >
         <GoalCo />
         <div className="links">
           <a>Products</a>
@@ -113,21 +84,12 @@ export default function DemoPage(props: any): JSX.Element {
           <a><CartIcon /></a>
         </div>
       </header>
-      <div className="demo-content">
-        <div className="text">
-          <h1>The GoalCo 10X superpower suit</h1>
-          <Rating stars={5} reviews={9494} />
-          <p>
-            Take your goal achieving capabilities to the next level with our
-            state of the art superpower suit.
-          </p>
-          <p>
-            Made from the finest bio materials known to man and ethically
-            sourced from planet Goalgon.
-          </p>
-          <PriceAndBuy price={365} />
-        </div>
-        <img src="/goalco-hero.png" ></img>
+      <div className="demo-content flex">
+        {checkout ? (
+          <ShoppingCart />
+        ) : (
+          <ProductPage onAddToCart={handleAddToCart} />
+        )}
       </div>
       <Widget navigate={props.navigate} />
     </div>
