@@ -1,10 +1,9 @@
-import React from 'react'
-import { Button } from '@material-ui/core'
+import React from "react"
 
 function Rating({ stars, reviews }: { stars: number; reviews: number }) {
   return (
     <div className="reviews">
-      {[...Array(stars)].map((n) => (
+      {[...Array(stars)].map(n => (
         <span>
           <Star />
         </span>
@@ -31,27 +30,41 @@ function Star() {
   )
 }
 
-export const ProductPage = ({ onAddToCart }: { onAddToCart: () => void; }) => (
+export const ProductPage = ({
+  allowAddToCart,
+  onAddToCart,
+}: {
+  allowAddToCart: boolean
+  onAddToCart: () => void
+}) => (
   <>
     <div className="text">
       <h1>The GoalCo 10X superpower suit</h1>
       <Rating stars={5} reviews={9494} />
       <p>
-        Take your goal achieving capabilities to the next level with our
-        state of the art superpower suit.
+        Take your goal achieving capabilities to the next level with our state
+        of the art superpower suit.
       </p>
       <p>
-        Made from the finest bio materials known to man and ethically
-        sourced from planet Goalgon.
+        Made from the finest bio materials known to man and ethically sourced
+        from planet Goalgon.
       </p>
       <div className="price">
         <h2>$365</h2>
-        <Button className="add-to-cart" onClick={()=>onAddToCart()}>Add to Cart</Button>
+        {allowAddToCart ? (
+          <button className="add-to-cart" onClick={() => onAddToCart()}>
+            Add to Cart
+          </button>
+        ) : (
+          <button className="added-to-cart" disabled={true}>
+            Added &#x1f44d;
+          </button>
+        )}
       </div>
       <div className="guarantee">Try risk-free, 100% happiness guaranteed</div>
     </div>
-    <img src="/goalco-hero.png" ></img>
+    <img src="/goalco-hero.png"></img>
   </>
 )
 
-export default ProductPage;
+export default ProductPage

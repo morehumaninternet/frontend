@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import { Button } from "@material-ui/core"
+import React from "react"
 
 export const ShoppingCart = () => (
   <div className="shopping-cart">
@@ -33,7 +32,7 @@ export const ShoppingCart = () => (
             <div className="text bold">FREE</div>
           </div>
         </div>
-        <Button className="checkout">Checkout</Button>
+        <button className="checkout">Checkout</button>
         <div className="creditcards"></div>
       </div>
     </div>
