@@ -7,13 +7,15 @@ export default function CartIcon({
   numberItems: number
   onCheckout: () => void
 }) {
+  const countVisibility = numberItems > 0 ? "visible" : "hidden";
+
   return (
     <button
       onClick={onCheckout}
       disabled={numberItems === 0}
       className="cart-button"
     >
-      <div className="flex">
+      <div className="cart-icon">
         <svg
           width="24"
           height="24"
@@ -27,10 +29,8 @@ export default function CartIcon({
           />
         </svg>
 
-        {numberItems > 0 && (
-          <span className="cart-count text">{numberItems}</span>
-        )}
-      </div>{" "}
+        <span className={`cart-count text ${countVisibility}`}>{numberItems}</span>
+      </div>
     </button>
   )
 }

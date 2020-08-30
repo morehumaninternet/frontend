@@ -61,7 +61,7 @@ export default function DemoPage(props: any): JSX.Element {
           <CartButton numberItems={numberItems} onCheckout={()=>setCheckout(true)}/>
         </div>
       </header>
-      <div className="demo-content flex">
+      <div className="demo-content">
         {checkout ? (
           <ShoppingCart />
         ) : (

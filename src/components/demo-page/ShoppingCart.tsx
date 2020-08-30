@@ -3,21 +3,22 @@ import React from "react"
 export const ShoppingCart = () => (
   <div className="shopping-cart">
     <h1>Shopping Cart</h1>
-    <div style={{ display: "flex", justifyContent: "space-around" }}>
+
+    <div>
       <div className="cart-item-container">
         <div className="cart-item">
           <img src="/goalco-hero-sm.png" />
-          <div style={{ flex: 1 }}>
+          <div>
             <div className="close">X</div>
             <div className="description">
-              <p className="price">$365</p>
+              <h3>$365</h3>
               <p>The GoalCo 10X superpower suit</p>
             </div>
           </div>
         </div>
-        <div className="extra">
+        <p>
           FREE 24 hour delivery anywhere on planet earth!
-        </div>
+        </p>
       </div>
 
       <div className="checkout-container">

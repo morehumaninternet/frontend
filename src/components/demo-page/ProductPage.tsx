@@ -37,7 +37,8 @@ export const ProductPage = ({
   allowAddToCart: boolean
   onAddToCart: () => void
 }) => (
-  <>
+  <div className="product-page-container" >
+
     <div className="text">
       <h1>The GoalCo 10X superpower suit</h1>
       <Rating stars={5} reviews={9494} />
@@ -63,8 +64,25 @@ export const ProductPage = ({
       </div>
       <div className="guarantee">Try risk-free, 100% happiness guaranteed</div>
     </div>
+
     <img src="/goalco-hero.png"></img>
-  </>
+  </div>
 )
 
 export default ProductPage
+
+/*
+      <div className="price">
+        <h2>$365</h2>
+        {allowAddToCart ? (
+          <button className="add-to-cart" onClick={() => onAddToCart()}>
+            Add to Cart
+          </button>
+        ) : (
+          <button className="added-to-cart" disabled={true}>
+            Added &#x1f44d;
+          </button>
+        )}
+      </div>
+      <div className="guarantee">Try risk-free, 100% happiness guaranteed</div>
+*/
