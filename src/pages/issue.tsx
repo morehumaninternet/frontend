@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '../components/shared/layout'
+import { LayoutWithSidebar } from '../components/shared/layout'
 import SEO, { defaultLinks } from '../components/shared/seo'
 import Hero from '../components/shared/hero'
 import { Avatar } from '@material-ui/core'
@@ -48,7 +48,9 @@ function IssueContent({ issueParams, currentUser }: { issueParams: IssueParams, 
   }
 }
 
-export default function IssuePage(props: { location: { search: string } }): JSX.Element {
+export default function IssuePage(
+  props: { location: Location }
+): JSX.Element {
 
   // TODO: use CSS to have a different variable on different pages
   React.useEffect(() => setLogoFade(1), [])
@@ -58,12 +60,10 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
   const avatarUrl = currentUser.loaded ? currentUser.user.avatarUrl : undefined
 
   return (
-    <Layout
+    <LayoutWithSidebar
       mainClassName="issue"
-      logoAgainstHero={false}
-      headerLinks={
-        <Avatar src={avatarUrl} />
-      }
+      currentUser={currentUser}
+      location={props.location}
     >
       <SEO
         pageTitle="Issue"
@@ -74,9 +74,10 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
           { type: "text/javascript", src: "/trix.js" },
         ]}
       />
-      <Hero additionalClassNames="issue">
-        <IssueContent issueParams={issueParams} currentUser={currentUser} />
-      </Hero>
-    </Layout>
+      <IssueContent
+        issueParams={issueParams}
+        currentUser={currentUser}
+      />
+    </LayoutWithSidebar>
   )
 }

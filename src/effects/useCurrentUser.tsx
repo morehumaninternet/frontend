@@ -1,9 +1,6 @@
 import React from 'react'
 
 
-export type CurrentUser =
-  | { loaded: false }
-  | { loaded: true, user: User }
 
 
 export default function useCurrentUser(): CurrentUser {

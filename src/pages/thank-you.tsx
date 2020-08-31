@@ -1,13 +1,13 @@
 import React from 'react'
 import { Card, CardContent } from '@material-ui/core'
 import Hero from '../components/shared/hero'
-import Layout from '../components/shared/layout'
+import { LayoutWithHeader } from '../components/shared/layout'
 import SEO from '../components/shared/seo'
 
 
 export default function ThankYouPage() {
   return (
-    <Layout
+    <LayoutWithHeader
       mainClassName="thank-you"
       logoAgainstHero={true}
     >
@@ -22,6 +22,6 @@ export default function ThankYouPage() {
           </CardContent>
         </Card>
       </Hero>
-    </Layout>
+    </LayoutWithHeader>
   )
 }

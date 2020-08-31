@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import Layout from '../components/shared/layout'
+import { LayoutWithHeader } from '../components/shared/layout'
 import Hero from '../components/shared/hero'
 import SEO from '../components/shared/seo'
 import DesignsShowcase from '../components/landing-page/designs-showcase'
@@ -45,7 +45,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
 
   render(): JSX.Element {
     return (
-      <Layout
+      <LayoutWithHeader
         mainClassName="index"
         logoAgainstHero={true}
         headerRef={this.headerRef}
@@ -89,7 +89,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
             </div>
           </div>
         </div>
-      </Layout>
+      </LayoutWithHeader>
     )
   }
 }

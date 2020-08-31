@@ -1,0 +1,45 @@
+$sidebar-width: 100px;
+$sidebar-margin: 50px;
+
+
+.layout.has-sidebar {
+  > .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $sidebar-width;
+    background-color: $human-blue;
+    min-height: 100vh;
+    border-top-right-radius: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: $sidebar-margin;
+    padding-bottom: $sidebar-margin;
+
+    > a {
+      flex-grow: 0;
+    }
+
+    > .other-links {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      padding-bottom: 70px;
+
+      > a {
+        margin-top: $sidebar-margin;
+      }
+    }
+  }
+
+  > main {
+    position: relative;
+    left: $sidebar-width;
+  }
+}
+

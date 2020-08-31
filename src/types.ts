@@ -5,6 +5,10 @@ type User = {
   avatarUrl?: string
 }
 
+type CurrentUser =
+  | { loaded: false }
+  | { loaded: true, user: User }
+
 type IssueStatus = 'Opened' | 'Acknowledged' | 'Closed'
 
 type IssueComment = {

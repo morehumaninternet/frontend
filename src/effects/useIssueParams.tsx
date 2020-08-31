@@ -6,7 +6,7 @@ export type IssueParamsNotOk = { state: 'not ok', error: string }
 export type IssueParamsOk = { state: 'ok', params: { site: string, issueId: number } }
 export type IssueParams = IssueParamsChecking | IssueParamsNotOk | IssueParamsOk
 
-export default function useIssueParams(props: { location: { search: string } }): IssueParams {
+export default function useIssueParams(props: { location: Location }): IssueParams {
 
   const [issueParams, setIssueParams] = React.useState<IssueParams>({ state: 'checking' })
 
