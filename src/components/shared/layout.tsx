@@ -21,6 +21,8 @@ type LayoutWithHeaderProps = {
 
 type LayoutWithSidebarProps = {
   mainClassName: string
+  location: Location
+  currentUser: CurrentUser
   children: React.ReactNode
 }
 
@@ -48,10 +50,10 @@ export const LayoutWithHeader = ({ mainClassName, children, headerLinks, headerR
   </Layout>
 )
 
-export const LayoutWithSidebar = ({ mainClassName, children }: LayoutWithSidebarProps) => (
+export const LayoutWithSidebar = ({ mainClassName, location, currentUser, children }: LayoutWithSidebarProps) => (
   <Layout
     additionalClassNames={mainClassName + ' has-sidebar'}
-    sidebar={<Sidebar />}
+    sidebar={<Sidebar location={location} currentUser={currentUser} />}
   >
     {children}
   </Layout>

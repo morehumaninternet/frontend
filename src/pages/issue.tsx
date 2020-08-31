@@ -48,7 +48,9 @@ function IssueContent({ issueParams, currentUser }: { issueParams: IssueParams, 
   }
 }
 
-export default function IssuePage(props: { location: { search: string } }): JSX.Element {
+export default function IssuePage(
+  props: { location: Location }
+): JSX.Element {
 
   // TODO: use CSS to have a different variable on different pages
   React.useEffect(() => setLogoFade(1), [])
@@ -60,6 +62,8 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
   return (
     <LayoutWithSidebar
       mainClassName="issue"
+      currentUser={currentUser}
+      location={props.location}
     >
       <SEO
         pageTitle="Issue"
@@ -70,9 +74,10 @@ export default function IssuePage(props: { location: { search: string } }): JSX.
           { type: "text/javascript", src: "/trix.js" },
         ]}
       />
-      <Hero additionalClassNames="issue">
-        <IssueContent issueParams={issueParams} currentUser={currentUser} />
-      </Hero>
+      <IssueContent
+        issueParams={issueParams}
+        currentUser={currentUser}
+      />
     </LayoutWithSidebar>
   )
 }
