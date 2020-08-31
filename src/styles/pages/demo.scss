@@ -15,7 +15,7 @@
   .hidden {
     visibility: hidden;
   }
-  
+
   > header {
     display: flex;
     justify-content: space-between;
@@ -31,6 +31,7 @@
         margin: 18px;
       }
     }
+
     .cart-count {
       width: 18px;
       height: 18px;
@@ -40,13 +41,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
 
-    .cart-count.text {
-      color: #fff;
-      font-weight: 900;
-      font-size: 14px;
-      line-height: 16px;
+      &.text {
+        color: #fff;
+        font-weight: 900;
+        font-size: 14px;
+        line-height: 16px;
+      }
     }
   }
 
@@ -70,27 +71,6 @@
     &:focus {
       background-color: #000;
       color: #fff;
-      outline: none;
-    }
-  }
-
-  button.added-to-cart {
-    background-color: #000000;
-    color: #fff;
-    width: 144px;
-    height: 50px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-  }
-
-  button.cart-button {
-    border: none;
-    background: inherit;
-    &:hover,
-    &:focus,
-    &:active {
       outline: none;
     }
   }
@@ -170,7 +150,7 @@
       }
     }
 
-    > .shopping-cart {
+    > .shopping-cart-container {
       margin-top: 75px;
 
       > h1 {

@@ -31,10 +31,8 @@ function Star() {
 }
 
 export const ProductPage = ({
-  allowAddToCart,
   onAddToCart,
 }: {
-  allowAddToCart: boolean
   onAddToCart: () => void
 }) => (
   <div className="product-page-container" >
@@ -52,15 +50,9 @@ export const ProductPage = ({
       </p>
       <div className="price">
         <h2>$365</h2>
-        {allowAddToCart ? (
-          <button className="add-to-cart" onClick={() => onAddToCart()}>
-            Add to Cart
-          </button>
-        ) : (
-          <button className="added-to-cart" disabled={true}>
-            Added &#x1f44d;
-          </button>
-        )}
+        <button className="add-to-cart" onClick={() => onAddToCart()}>
+          Add to Cart
+        </button>
       </div>
       <div className="guarantee">Try risk-free, 100% happiness guaranteed</div>
     </div>
@@ -70,19 +62,3 @@ export const ProductPage = ({
 )
 
 export default ProductPage
-
-/*
-      <div className="price">
-        <h2>$365</h2>
-        {allowAddToCart ? (
-          <button className="add-to-cart" onClick={() => onAddToCart()}>
-            Add to Cart
-          </button>
-        ) : (
-          <button className="added-to-cart" disabled={true}>
-            Added &#x1f44d;
-          </button>
-        )}
-      </div>
-      <div className="guarantee">Try risk-free, 100% happiness guaranteed</div>
-*/

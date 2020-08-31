@@ -1,7 +1,7 @@
 import React from "react"
 
 export const ShoppingCart = () => (
-  <div className="shopping-cart">
+  <div className="shopping-cart-container">
     <h1>Shopping Cart</h1>
 
     <div>
@@ -16,9 +16,7 @@ export const ShoppingCart = () => (
             </div>
           </div>
         </div>
-        <p>
-          FREE 24 hour delivery anywhere on planet earth!
-        </p>
+        <p>FREE 24 hour delivery anywhere on planet earth!</p>
       </div>
 
       <div className="checkout-container">
