@@ -15,9 +15,25 @@ $sidebar-margin: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    padding-top: $sidebar-margin;
+    padding-bottom: $sidebar-margin;
 
-    > a.homelink {
-      margin-top: $sidebar-margin;
+    > a {
+      flex-grow: 0;
+    }
+
+    > .other-links {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      padding-bottom: 70px;
+
+      > a {
+        margin-top: $sidebar-margin;
+      }
     }
   }
 
