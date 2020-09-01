@@ -31,7 +31,7 @@ type IssueActivityComment = IssueActivityOf<
 
 type IssueActivity = IssueActivityChangeStatus | IssueActivityComment
 
-type IssueTimeline = IssueActivity[]
+type IssueTimeline = ReadonlyArray<IssueActivity>
 
 type Issue = {
   id: number

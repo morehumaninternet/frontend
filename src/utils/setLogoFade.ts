@@ -1,7 +1,7 @@
 import Color from 'color'
 import { zip } from 'lodash'
 
-let logoFade = 0
+let logoFade = 0 // tslint:disable-line:no-let
 
 export default (nextLogoFade: number) => {
   if (nextLogoFade === logoFade) return
@@ -11,10 +11,10 @@ export default (nextLogoFade: number) => {
     )
   }
 
-  logoFade = nextLogoFade
+  logoFade = nextLogoFade // tslint:disable-line:no-expression-statement
 
-  const whiteRbg = [255, 255, 255]
-  const humanBlueRbg = [22, 65, 118]
+  const whiteRbg: ReadonlyArray<number> = [255, 255, 255]
+  const humanBlueRbg: ReadonlyArray<number> = [22, 65, 118]
 
   const blueWhiteRbg = zip(whiteRbg, humanBlueRbg).map(
     ([whiteCoordinate, humanBlueCoordinate]) =>
@@ -26,5 +26,5 @@ export default (nextLogoFade: number) => {
   document.documentElement.style.setProperty(
     '--logo-color-blue-white',
     blueWhiteHex
-  )
+  ) // tslint:disable-line:no-expression-statement
 }

@@ -4,11 +4,9 @@
     "no-var-keyword": true,
     "typedef": [true, "call-signature"],
 
-    // Immutability rules
     "readonly-array": true,
     "no-let": true,
 
-    // Functional style rules
     "no-this": true,
     "no-class": true,
     "no-mixed-interface": true,
@@ -26,8 +24,6 @@
     "no-invalid-this":true,
     "no-trailing-whitespace":true,
     "no-unused-expression":true,
-    "no-unused-variable": [true, { "ignore-pattern": "React" }],
-    "no-use-before-declare":true,
     "one-line": [true, "check-open-brace", "check-whitespace"],
     "quotemark": [true, "single", "jsx-double", "avoid-escape"],
     "radix":true,

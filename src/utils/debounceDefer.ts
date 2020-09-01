@@ -1,3 +1,6 @@
+// tslint:disable:no-expression-statement
+// tslint:disable:readonly-array
+// tslint:disable:no-let
 // Like debounce from lodash, https://lodash.com/docs/4.17.15#debounce
 // but always returns a promise that resolves with the result of a call that gets made after no further calls have been made for waitMillis.
 export default function debounceDefer<Args extends Array<any>, Resolves>(
@@ -9,7 +12,7 @@ export default function debounceDefer<Args extends Array<any>, Resolves>(
   let resolve: any
   let reject: any
 
-  return function (...args) {
+  return function (...args): any {
     if (timer) {
       clearTimeout(timer)
     }
@@ -21,7 +24,7 @@ export default function debounceDefer<Args extends Array<any>, Resolves>(
       })
     }
 
-    timer = setTimeout(function () {
+    timer = setTimeout(function(): any {
       const resolveNow = resolve
       const rejectNow = reject
 

@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement
 export type IssuePostBody = {
   id?: number
   user?: User
@@ -10,7 +11,7 @@ export const defaultSite = 'goalco.com'
 
 const localStorageKeyPrefix = 'demo-issues'
 
-function demoIssuesLocalStorageKey(site: string, id: number) {
+function demoIssuesLocalStorageKey(site: string, id: number): string {
   return `${localStorageKeyPrefix}:${site}:${id}`
 }
 
@@ -43,7 +44,7 @@ export const defaultCommentHtml = `
   <p>The order should have went through and I should have received a confirmation email</p>
 `
 
-function randomId(site: string) {
+function randomId(site: string): number {
   const keys = Object.keys(localStorage)
   const idSpace = Math.max(1000, keys.length * 2)
   while (true) {
@@ -203,9 +204,9 @@ export async function changeStatus({
   return setInLocalStorage(nextIssue)
 }
 
-export async function searchIssues(title: string): Promise<Issue[]> {
+export async function searchIssues(title: string): Promise<ReadonlyArray<Issue>> {
   const search = new RegExp(title, 'i')
-  const matches: Issue[] = []
+  const matches: Issue[] = [] // tslint:disable-line:readonly-array
   Object.keys(localStorage).forEach(key => {
     if (key.startsWith(localStorageKeyPrefix)) {
       const issue = issueFromJson(localStorage.getItem(key)!)
@@ -217,7 +218,7 @@ export async function searchIssues(title: string): Promise<Issue[]> {
   return matches
 }
 
-function setDefaultIssues() {
+function setDefaultIssues(): void {
   if (typeof window === 'undefined') return
 
   if (!getInLocalStorage(defaultSite, 505)) {
