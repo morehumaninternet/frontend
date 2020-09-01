@@ -6,7 +6,8 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop --host=0.0.0.0",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "lint": "{ find src -name '*.ts' | xargs tslint --project tsconfig.json --config tslint.json ; }",
     "start": "netlify dev",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
