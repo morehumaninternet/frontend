@@ -5,7 +5,7 @@
   font-weight: bold;
   font-size: 14px;
   letter-spacing: 0.7px;
-  color: #FFFFFF;
+  color: #ffffff;
   &.opened {
     background-color: $human-pink;
   }
@@ -18,7 +18,7 @@
 }
 
 .layout.issue {
-  > main  {
+  > main {
     color: $human-blue;
     margin: 0 150px;
 
@@ -49,18 +49,28 @@
             font-weight: 300;
             margin-bottom: 0;
           }
-        }
-      }
 
-      > .issue-action-buttons {
-        // TODO: styles here
+          > .issue-action-buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            position: absolute;
+            right: 0px;
+
+            > .issue-action-buttons__item {
+              padding-left: 1.5rem;
+            }
+          }
+        }
       }
     }
 
     .issue-timeline {
       margin: 25px 50px;
 
-      > .issue-activity, .issue-add-comment {
+      > .issue-activity,
+      .issue-add-comment {
         position: relative;
         display: flex;
         padding-bottom: 26px;
@@ -102,7 +112,7 @@
           content: "";
           background-color: #e1e4e8;
           z-index: -1;
-      }
+        }
 
         &.change-status {
           .issue-status-badge {
@@ -130,7 +140,7 @@
             > .comment-by {
               padding-top: 10px;
               padding-bottom: 10px;
-              background-color: #F7FBFC;
+              background-color: #f7fbfc;
               border-top-left-radius: 22px;
               border-bottom: none;
             }
