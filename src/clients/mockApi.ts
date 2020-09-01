@@ -58,7 +58,10 @@ function randomId(site: string) {
 function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
   const site = opts.site || defaultSite
   const id = opts.id || randomId(site)
-  const user = opts.user || { username: 'sillywalks', avatarUrl: 'https://github.com/will-weiss.png?size=71' }
+  const user = opts.user || {
+    username: 'sillywalks',
+    avatarUrl: 'https://github.com/will-weiss.png?size=71',
+  }
   const title = opts.title || "Checkout isn't working"
 
   const commentHtml = opts.initialCommentHtml || defaultCommentHtml
@@ -89,9 +92,9 @@ function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
         verb: 'comment',
         by: user,
         timestamp: now,
-        comment: { html: commentHtml }
-      }
-    ]
+        comment: { html: commentHtml },
+      },
+    ],
   }
 }
 
@@ -112,7 +115,10 @@ export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
   return setInLocalStorage(createIssue(issuePostBody))
 }
 
-export async function getIssueBySiteAndId(site: string, id: number): Promise<null | Issue> {
+export async function getIssueBySiteAndId(
+  site: string,
+  id: number
+): Promise<null | Issue> {
   try {
     return getInLocalStorage(site, id) || createIssue({ id, site })
   } catch (err) {
@@ -120,22 +126,27 @@ export async function getIssueBySiteAndId(site: string, id: number): Promise<nul
   }
 }
 
-export async function postComment(
-  { site, id, user, comment }: {
-    site: string
-    id: number
-    user: User
-    comment: { html: string }
-  }
-): Promise<any> {
+export async function postComment({
+  site,
+  id,
+  user,
+  comment,
+}: {
+  site: string
+  id: number
+  user: User
+  comment: { html: string }
+}): Promise<any> {
   const issue = (await getIssueBySiteAndId(site, id))!
 
-  const nextTimeline: IssueTimeline = issue.timeline.concat([{
-    verb: 'comment',
-    by: user,
-    timestamp: new Date(),
-    comment
-  }])
+  const nextTimeline: IssueTimeline = issue.timeline.concat([
+    {
+      verb: 'comment',
+      by: user,
+      timestamp: new Date(),
+      comment,
+    },
+  ])
 
   const nextIssue: Issue = {
     ...issue,
@@ -143,23 +154,27 @@ export async function postComment(
       ...issue.aggregates,
       comments: {
         count: issue.aggregates.comments.count + 1,
-      }
+      },
     },
-    timeline: nextTimeline
+    timeline: nextTimeline,
   }
 
   return setInLocalStorage(nextIssue)
 }
 
-export async function changeStatus(
-  { site, id, user, status, comment }: {
-    site: string
-    id: number
-    user: User
-    status: IssueStatus
-    comment: { html: string }
-  }
-): Promise<any> {
+export async function changeStatus({
+  site,
+  id,
+  user,
+  status,
+  comment,
+}: {
+  site: string
+  id: number
+  user: User
+  status: IssueStatus
+  comment: { html: string }
+}): Promise<any> {
   const issue = (await getIssueBySiteAndId(site, id))!
 
   const now = new Date()
@@ -169,20 +184,20 @@ export async function changeStatus(
       verb: 'comment',
       by: user,
       timestamp: now,
-      comment
+      comment,
     },
     {
       verb: 'change status',
       by: user, // TODO: store user state somewhere?
       timestamp: now,
-      status
+      status,
     },
   ])
 
   const nextIssue: Issue = {
     ...issue,
     status,
-    timeline: nextTimeline
+    timeline: nextTimeline,
   }
 
   return setInLocalStorage(nextIssue)
@@ -206,21 +221,25 @@ function setDefaultIssues() {
   if (typeof window === 'undefined') return
 
   if (!getInLocalStorage(defaultSite, 505)) {
-    setInLocalStorage(createIssue({
-      id: 505,
-      title: 'Your checkout is having major problems',
-      user: { username: 'dadbod22' },
-      initialCommentHtml: '<div>What gives?</div>'
-    }))
+    setInLocalStorage(
+      createIssue({
+        id: 505,
+        title: 'Your checkout is having major problems',
+        user: { username: 'dadbod22' },
+        initialCommentHtml: '<div>What gives?</div>',
+      })
+    )
   }
 
   if (!getInLocalStorage(defaultSite, 510)) {
-    setInLocalStorage(createIssue({
-      id: 510,
-      title: "I can't put my credit card on checkout",
-      user: { username: 'mickjagger' },
-      initialCommentHtml: '<div>What gives?</div>'
-    }))
+    setInLocalStorage(
+      createIssue({
+        id: 510,
+        title: "I can't put my credit card on checkout",
+        user: { username: 'mickjagger' },
+        initialCommentHtml: '<div>What gives?</div>',
+      })
+    )
   }
 }
 

@@ -3,7 +3,6 @@ import Footer from './footer'
 import Header from './header'
 import Sidebar from './sidebar'
 
-
 type LayoutProps = {
   additionalClassNames: string
   header?: React.ReactNode
@@ -26,7 +25,12 @@ type LayoutWithSidebarProps = {
   children: React.ReactNode
 }
 
-export const Layout = ({ header, sidebar, additionalClassNames, children }: LayoutProps) => {
+export const Layout = ({
+  header,
+  sidebar,
+  additionalClassNames,
+  children,
+}: LayoutProps) => {
   return (
     <div className={`layout ${additionalClassNames}`}>
       {header}
@@ -37,7 +41,13 @@ export const Layout = ({ header, sidebar, additionalClassNames, children }: Layo
   )
 }
 
-export const LayoutWithHeader = ({ mainClassName, children, headerLinks, headerRef, logoAgainstHero }: LayoutWithHeaderProps) => (
+export const LayoutWithHeader = ({
+  mainClassName,
+  children,
+  headerLinks,
+  headerRef,
+  logoAgainstHero,
+}: LayoutWithHeaderProps) => (
   <Layout
     additionalClassNames={mainClassName + ' has-header'}
     header={
@@ -50,7 +60,12 @@ export const LayoutWithHeader = ({ mainClassName, children, headerLinks, headerR
   </Layout>
 )
 
-export const LayoutWithSidebar = ({ mainClassName, location, currentUser, children }: LayoutWithSidebarProps) => (
+export const LayoutWithSidebar = ({
+  mainClassName,
+  location,
+  currentUser,
+  children,
+}: LayoutWithSidebarProps) => (
   <Layout
     additionalClassNames={mainClassName + ' has-sidebar'}
     sidebar={<Sidebar location={location} currentUser={currentUser} />}

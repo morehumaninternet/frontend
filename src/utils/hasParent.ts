@@ -1,4 +1,7 @@
-export default function hasParent(possibleChild: HTMLElement, possibleParent: HTMLElement) {
+export default function hasParent(
+  possibleChild: HTMLElement,
+  possibleParent: HTMLElement
+) {
   let test: null | HTMLElement = possibleChild
 
   while (test) {

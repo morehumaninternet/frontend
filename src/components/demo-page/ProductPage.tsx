@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 function Rating({ stars, reviews }: { stars: number; reviews: number }) {
   return (
@@ -30,13 +30,8 @@ function Star() {
   )
 }
 
-export const ProductPage = ({
-  onAddToCart,
-}: {
-  onAddToCart: () => void
-}) => (
-  <div className="product-page-container" >
-
+export const ProductPage = ({ onAddToCart }: { onAddToCart: () => void }) => (
+  <div className="product-page-container">
     <div className="text">
       <h1>The GoalCo 10X superpower suit</h1>
       <Rating stars={5} reviews={9494} />

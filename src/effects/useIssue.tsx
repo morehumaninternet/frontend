@@ -1,24 +1,32 @@
 import React from 'react'
 import * as mockApi from '../clients/mockApi'
 
-
 export type IssueStateLoading = { loading: true }
-export type IssueStateLoaded = { loading: false, issue: Maybe<Issue> }
+export type IssueStateLoaded = { loading: false; issue: Maybe<Issue> }
 export type IssueState = IssueStateLoading | IssueStateLoaded
 
 export type UseIssueDependencies = {
-  params: { site: string, issueId: number },
+  params: { site: string; issueId: number }
   api: typeof mockApi
 }
 
 export type UseIssueReturn = {
   issueState: IssueState
   postComment(user: User, comment: { html: string }): Promise<void>
-  changeStatus(user: User, status: IssueStatus, comment: { html: string }): Promise<void>
+  changeStatus(
+    user: User,
+    status: IssueStatus,
+    comment: { html: string }
+  ): Promise<void>
 }
 
-export default function useIssue({ params, api }: UseIssueDependencies): UseIssueReturn {
-  const [issueState, setIssueState] = React.useState<IssueState>({ loading: true })
+export default function useIssue({
+  params,
+  api,
+}: UseIssueDependencies): UseIssueReturn {
+  const [issueState, setIssueState] = React.useState<IssueState>({
+    loading: true,
+  })
 
   React.useEffect(() => {
     api.getIssueBySiteAndId(params.site, params.issueId).then(issue => {
@@ -28,20 +36,26 @@ export default function useIssue({ params, api }: UseIssueDependencies): UseIssu
 
   function postComment(user: User, comment: { html: string }) {
     if (issueState.loading) {
-      throw new Error('Posting comments while the issue is loading should not be possible')
+      throw new Error(
+        'Posting comments while the issue is loading should not be possible'
+      )
     }
     const { issue } = issueState
 
     if (!issue) {
-      throw new Error('Posting comments for a nonexistent issue should not be possible')
+      throw new Error(
+        'Posting comments for a nonexistent issue should not be possible'
+      )
     }
 
-    const nextTimeline: IssueTimeline = issue.timeline.concat([{
-      verb: 'comment',
-      by: user,
-      timestamp: new Date(),
-      comment
-    }])
+    const nextTimeline: IssueTimeline = issue.timeline.concat([
+      {
+        verb: 'comment',
+        by: user,
+        timestamp: new Date(),
+        comment,
+      },
+    ])
 
     const nextIssue: Issue = {
       ...issue,
@@ -49,9 +63,9 @@ export default function useIssue({ params, api }: UseIssueDependencies): UseIssu
         ...issue.aggregates,
         comments: {
           count: issue.aggregates.comments.count + 1,
-        }
+        },
       },
-      timeline: nextTimeline
+      timeline: nextTimeline,
     }
 
     setIssueState({ loading: false, issue: nextIssue })
@@ -64,14 +78,22 @@ export default function useIssue({ params, api }: UseIssueDependencies): UseIssu
     })
   }
 
-  function changeStatus(user: User, status: IssueStatus, comment: { html: string }) {
+  function changeStatus(
+    user: User,
+    status: IssueStatus,
+    comment: { html: string }
+  ) {
     if (issueState.loading) {
-      throw new Error('Posting comments while the issue is loading should not be possible')
+      throw new Error(
+        'Posting comments while the issue is loading should not be possible'
+      )
     }
     const { issue } = issueState
 
     if (!issue) {
-      throw new Error('Posting comments for a nonexistent issue should not be possible')
+      throw new Error(
+        'Posting comments for a nonexistent issue should not be possible'
+      )
     }
 
     const now = new Date()
@@ -81,20 +103,20 @@ export default function useIssue({ params, api }: UseIssueDependencies): UseIssu
         verb: 'comment',
         by: user,
         timestamp: now,
-        comment
+        comment,
       },
       {
         verb: 'change status',
         by: user,
         timestamp: now,
-        status
+        status,
       },
     ])
 
     const nextIssue: Issue = {
       ...issue,
       status,
-      timeline: nextTimeline
+      timeline: nextTimeline,
     }
 
     setIssueState({ loading: false, issue: nextIssue })

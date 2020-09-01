@@ -5,9 +5,7 @@ import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
 
-
 export default function ApplicationForm(): JSX.Element {
-
   const formReference = React.useRef<HTMLFormElement>()
 
   const [checking, setChecking] = React.useState(false)
@@ -22,7 +20,9 @@ export default function ApplicationForm(): JSX.Element {
 
   useEffect(() => {
     if (awaitingSubmit && !checking) {
-      const submitButton: HTMLButtonElement = formReference.current!.querySelector('button[type="submit"]')! as any
+      const submitButton: HTMLButtonElement = formReference.current!.querySelector(
+        'button[type="submit"]'
+      )! as any
       submitButton.click()
     }
   }, [awaitingSubmit, checking])
@@ -39,7 +39,9 @@ export default function ApplicationForm(): JSX.Element {
     if (githubUsername.value) return
 
     // Otherwise, set the custom validity based on the existence of a resume
-    const customValidity = resume.value ? '' : 'Please add your github username or upload a resume'
+    const customValidity = resume.value
+      ? ''
+      : 'Please add your github username or upload a resume'
     githubUsername.setCustomValidity(customValidity)
   }
 
@@ -60,7 +62,9 @@ export default function ApplicationForm(): JSX.Element {
     >
       <input type="hidden" name="form-name" value="submit-application" />
       <p style={{ display: 'none' }}>
-        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+        <label>
+          Don’t fill this out if you're human: <input name="bot-field" />
+        </label>
       </p>
       <FormGroup>
         <TextFieldWithIcon
@@ -82,7 +86,11 @@ export default function ApplicationForm(): JSX.Element {
         />
       </FormGroup>
       <FormGroup className="stretch-row">
-        <GithubInput checking={checking} setChecking={setChecking} onChange={ensureGithubUsernameOrResumePresent} />
+        <GithubInput
+          checking={checking}
+          setChecking={setChecking}
+          onChange={ensureGithubUsernameOrResumePresent}
+        />
         <div className="spaced-vertically-centered-text">and/or</div>
         <FileUploadButton
           name="resume"
@@ -100,15 +108,13 @@ export default function ApplicationForm(): JSX.Element {
           rows={5}
           InputProps={{
             inputProps: {
-              'aria-label': "Why do you want to join?"
+              'aria-label': 'Why do you want to join?',
             },
           }}
         />
       </FormGroup>
       <FormGroup>
-        <Button type="submit">
-          Apply
-        </Button>
+        <Button type="submit">Apply</Button>
       </FormGroup>
     </form>
   )

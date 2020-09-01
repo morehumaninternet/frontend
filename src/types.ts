@@ -5,9 +5,7 @@ type User = {
   avatarUrl?: string
 }
 
-type CurrentUser =
-  | { loaded: false }
-  | { loaded: true, user: User }
+type CurrentUser = { loaded: false } | { loaded: true; user: User }
 
 type IssueStatus = 'Opened' | 'Acknowledged' | 'Closed'
 
@@ -21,13 +19,17 @@ type IssueActivityOf<Verb, AdditionalData = {}> = AdditionalData & {
   timestamp: Date
 }
 
-type IssueActivityChangeStatus = IssueActivityOf<'change status', { status: IssueStatus }>
+type IssueActivityChangeStatus = IssueActivityOf<
+  'change status',
+  { status: IssueStatus }
+>
 
-type IssueActivityComment = IssueActivityOf<'comment', { comment: IssueComment }>
+type IssueActivityComment = IssueActivityOf<
+  'comment',
+  { comment: IssueComment }
+>
 
-type IssueActivity =
-  | IssueActivityChangeStatus
-  | IssueActivityComment
+type IssueActivity = IssueActivityChangeStatus | IssueActivityComment
 
 type IssueTimeline = IssueActivity[]
 

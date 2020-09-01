@@ -1,7 +1,6 @@
 import React from 'react'
 import updateTopSelectedRow, { getTopSelectedRow } from './updateTopSelectedRow'
 
-
 const defaultIssueBody = `
 <strong>Steps I followed</strong>
 
@@ -23,7 +22,9 @@ type CommentInputProps = {
   setIssueInitialCommentHtml(initialCommentHTML: string): void
 }
 
-export default function CommentInput({ setIssueInitialCommentHtml }: CommentInputProps): JSX.Element {
+export default function CommentInput({
+  setIssueInitialCommentHtml,
+}: CommentInputProps): JSX.Element {
   const ref: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
 
   React.useEffect(() => {
@@ -38,9 +39,12 @@ export default function CommentInput({ setIssueInitialCommentHtml }: CommentInpu
       updateTopSelectedRow(ref, null)
     })
 
-    editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
-      setIssueInitialCommentHtml(event.target.value)
-    })
+    editorElement.addEventListener(
+      'trix-change',
+      (event: { target: { value: string } }) => {
+        setIssueInitialCommentHtml(event.target.value)
+      }
+    )
   }, [])
 
   return (

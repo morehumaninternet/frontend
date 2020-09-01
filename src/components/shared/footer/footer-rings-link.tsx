@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
 
-
 type FooterRingsLinkState = { hover: boolean }
 
 function FooterRingsIcon({ hover }: FooterRingsLinkState) {
@@ -19,7 +18,13 @@ function FooterRingsIcon({ hover }: FooterRingsLinkState) {
   })
 
   return (
-    <svg ref={ref} className="footer-rings" height="302px" width="302px" viewBox="0 0 302 302" >
+    <svg
+      ref={ref}
+      className="footer-rings"
+      height="302px"
+      width="302px"
+      viewBox="0 0 302 302"
+    >
       <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
         <g fillRule="nonzero">
           <path
@@ -41,21 +46,21 @@ function FooterRingsIcon({ hover }: FooterRingsLinkState) {
         </g>
         <path
           d="M137.5 219c45.011 0 81.5-36.489 81.5-81.5S182.511 56 137.5 56c-18.634 0-35.807 6.253-49.535 16.776C68.53 87.672 56 111.122 56 137.5c0 45.011 36.489 81.5 81.5 81.5z"
-          stroke={hover ? "#164176" : "#E2E2E2"}
+          stroke={hover ? '#164176' : '#E2E2E2'}
           strokeWidth={5}
           opacity={hover ? 1 : 0.598400298}
           transform="translate(13 13)"
         />
         <path
           d="M138 276c76.215 0 138-61.785 138-138S214.215 0 138 0c-31.551 0-60.63 10.588-83.875 28.406C21.218 53.628 0 93.336 0 138c0 76.215 61.785 138 138 138z"
-          stroke={hover ? "#FA759E" : "#E2E2E2"}
+          stroke={hover ? '#FA759E' : '#E2E2E2'}
           strokeWidth={26}
           opacity={hover ? 1 : 0.774158296}
           transform="translate(13 13)"
         />
       </g>
     </svg>
-  );
+  )
 }
 
 export default () => {
