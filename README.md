@@ -49,7 +49,7 @@ This project uses the [Gatsby](https://github.com/gatsbyjs/gatsby) framework usi
 
 ## 🧐 What's inside?
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+A quick look at the top-level files and directories in this project.
 
     .
     ├── src
