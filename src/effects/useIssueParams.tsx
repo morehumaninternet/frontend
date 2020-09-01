@@ -2,30 +2,40 @@
 import React from 'react'
 
 export type IssueParamsChecking = { state: 'checking' }
-export type IssueParamsNotOk = { state: 'not ok', error: string }
-export type IssueParamsOk = { state: 'ok', params: { site: string, issueId: number } }
+export type IssueParamsNotOk = { state: 'not ok'; error: string }
+export type IssueParamsOk = {
+  state: 'ok'
+  params: { site: string; issueId: number }
+}
 export type IssueParams = IssueParamsChecking | IssueParamsNotOk | IssueParamsOk
 
-export default function useIssueParams(props: { location: Location }): IssueParams {
-
-  const [issueParams, setIssueParams] = React.useState<IssueParams>({ state: 'checking' })
+export default function useIssueParams(props: {
+  location: Location
+}): IssueParams {
+  const [issueParams, setIssueParams] = React.useState<IssueParams>({
+    state: 'checking',
+  })
 
   React.useEffect(() => {
-
     const params = new URLSearchParams(props.location.search)
 
     const site = params.get('site')
     if (!site) {
-      return setIssueParams({ state: 'not ok', error: 'query param `site` is required' })
+      return setIssueParams({
+        state: 'not ok',
+        error: 'query param `site` is required',
+      })
     }
 
     const issueId = parseInt(params.get('id')!)
     if (!issueId) {
-      return setIssueParams({ state: 'not ok', error: 'query param `issueId`, an integer, is required' })
+      return setIssueParams({
+        state: 'not ok',
+        error: 'query param `issueId`, an integer, is required',
+      })
     }
 
     return setIssueParams({ state: 'ok', params: { site, issueId } })
-
   }, [props.location.search])
 
   return issueParams

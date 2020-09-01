@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 type HeroProps = {
   additionalClassNames?: string
   heroRef?: React.RefObject<HTMLDivElement>

@@ -8,50 +8,65 @@ import * as api from '../clients/mockApi'
 import setLogoFade from '../utils/setLogoFade'
 import LoadedIssue from '../components/issue-page'
 import useIssue, { IssueState, UseIssueReturn } from '../effects/useIssue'
-import useIssueParams, { IssueParams, IssueParamsOk } from '../effects/useIssueParams'
+import useIssueParams, {
+  IssueParams,
+  IssueParamsOk,
+} from '../effects/useIssueParams'
 import useCurrentUser, { CurrentUser } from '../effects/useCurrentUser'
 
-
-
 function Loading(): JSX.Element {
-  return (
-    <p>Loading...</p>
-  )
+  return <p>Loading...</p>
 }
 
-function WithIssueParams({ currentUser, params }: { currentUser: CurrentUser, params: IssueParamsOk['params'] }): JSX.Element {
+function WithIssueParams({
+  currentUser,
+  params,
+}: {
+  currentUser: CurrentUser
+  params: IssueParamsOk['params']
+}): JSX.Element {
   const { issueState, postComment, changeStatus } = useIssue({ api, params })
 
-  return (
-    issueState.loading
-      ? <p>Loading...</p>
-      : <LoadedIssue
-          avatarUrl={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
-          issue={issueState.issue! /* TODO: handle issues not present */}
-          changeStatus={changeStatus}
-          postComment={async comment => {
-            if (!currentUser.loaded) {
-              throw new Error('Cannot post comment when currentUser not loaded')
-            }
-            return postComment(currentUser.user, comment)
-          }}
-        />
+  return issueState.loading ? (
+    <p>Loading...</p>
+  ) : (
+    <LoadedIssue
+      avatarUrl={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
+      issue={issueState.issue! /* TODO: handle issues not present */}
+      changeStatus={changeStatus}
+      postComment={async comment => {
+        if (!currentUser.loaded) {
+          throw new Error('Cannot post comment when currentUser not loaded')
+        }
+        return postComment(currentUser.user, comment)
+      }}
+    />
   )
-
 }
 
-function IssueContent({ issueParams, currentUser }: { issueParams: IssueParams, currentUser: CurrentUser }): JSX.Element {
+function IssueContent({
+  issueParams,
+  currentUser,
+}: {
+  issueParams: IssueParams
+  currentUser: CurrentUser
+}): JSX.Element {
   switch (issueParams.state) {
-    case 'checking': return <Loading />
-    case 'not ok': throw new Error('Handle this case better!')
-    case 'ok': return <WithIssueParams currentUser={currentUser} params={issueParams.params} />
+    case 'checking':
+      return <Loading />
+    case 'not ok':
+      throw new Error('Handle this case better!')
+    case 'ok':
+      return (
+        <WithIssueParams
+          currentUser={currentUser}
+          params={issueParams.params}
+        />
+      )
   }
 }
 
-export default function IssuePage(
-  props: { location: Location }
-): JSX.Element {
-
+export default function IssuePage(props: { location: Location }): JSX.Element {
   // TODO: use CSS to have a different variable on different pages
   React.useEffect(() => setLogoFade(1), [])
 
@@ -68,16 +83,11 @@ export default function IssuePage(
       <SEO
         pageTitle="Issue"
         links={defaultLinks.concat([
-          { rel: "stylesheet", type: "text/css", href: "/trix.css" },
+          { rel: 'stylesheet', type: 'text/css', href: '/trix.css' },
         ])}
-        scripts={[
-          { type: "text/javascript", src: "/trix.js" },
-        ]}
+        scripts={[{ type: 'text/javascript', src: '/trix.js' }]}
       />
-      <IssueContent
-        issueParams={issueParams}
-        currentUser={currentUser}
-      />
+      <IssueContent issueParams={issueParams} currentUser={currentUser} />
     </LayoutWithSidebar>
   )
 }

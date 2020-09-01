@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react'
 
 export default function CartIcon({ numberItems }: { numberItems: number }) {
-  const countVisibility = numberItems > 0 ? "visible" : "hidden"
+  const countVisibility = numberItems > 0 ? 'visible' : 'hidden'
 
   return (
     <div className="cart-icon">

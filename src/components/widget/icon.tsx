@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 export default function WidgetIcon({ open }: { open: boolean }) {
   if (!open) {
     return (

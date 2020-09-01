@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 export const ShoppingCart = () => (
   <div className="shopping-cart-container">

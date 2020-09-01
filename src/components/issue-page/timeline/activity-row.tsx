@@ -3,8 +3,11 @@ import IssueStatusBadge from '../status-badge'
 import IssueTimestampText from './timestamp-text'
 import { Avatar } from '@material-ui/core'
 
-
-function IssueActivityChangeStatusRow({ activity }: { activity: IssueActivityChangeStatus }): JSX.Element {
+function IssueActivityChangeStatusRow({
+  activity,
+}: {
+  activity: IssueActivityChangeStatus
+}): JSX.Element {
   return (
     <div className="issue-activity change-status">
       <IssueStatusBadge status={activity.status} />
@@ -13,10 +16,14 @@ function IssueActivityChangeStatusRow({ activity }: { activity: IssueActivityCha
   )
 }
 
-function IssueActivityCommentRow({ activity }: { activity: IssueActivityComment }): JSX.Element {
+function IssueActivityCommentRow({
+  activity,
+}: {
+  activity: IssueActivityComment
+}): JSX.Element {
   return (
     <div className="issue-activity comment">
-      <Avatar src={activity.by.avatarUrl}/>
+      <Avatar src={activity.by.avatarUrl} />
       <div className="comment-bubble">
         <IssueTimestampText className="comment-by" activity={activity} />
         <div className="comment-body">
@@ -27,10 +34,17 @@ function IssueActivityCommentRow({ activity }: { activity: IssueActivityComment 
   )
 }
 
-export default function IssueActivityRow({ activity }: { activity: IssueActivity }): JSX.Element {
+export default function IssueActivityRow({
+  activity,
+}: {
+  activity: IssueActivity
+}): JSX.Element {
   switch (activity.verb) {
-    case 'change status': return <IssueActivityChangeStatusRow activity={activity} />
-    case 'comment': return <IssueActivityCommentRow activity={activity} />
-    default: throw new Error(`Unknown activity verb: ${(activity as any).verb}`)
+    case 'change status':
+      return <IssueActivityChangeStatusRow activity={activity} />
+    case 'comment':
+      return <IssueActivityCommentRow activity={activity} />
+    default:
+      throw new Error(`Unknown activity verb: ${(activity as any).verb}`)
   }
 }

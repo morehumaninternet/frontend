@@ -3,7 +3,6 @@ import { forEach, max } from 'lodash'
 import numPixels from '../../../utils/numPixels'
 import MacWithScreens from './mac-with-screens'
 
-
 const Explanations = () => (
   <>
     <div className="explanation">
@@ -16,13 +15,15 @@ const Explanations = () => (
     </div>
     <div className="explanation">
       <h2>A taskboard to manage issues</h2>
-      <p>Maintainers may track progress and sort issues by how many people are experiencing them</p>
+      <p>
+        Maintainers may track progress and sort issues by how many people are
+        experiencing them
+      </p>
     </div>
   </>
 )
 
 export default class DesignsShowcase extends React.Component {
-
   designsRef = React.createRef<HTMLDivElement>()
   designsContentContainerRef = React.createRef<HTMLDivElement>()
 
@@ -70,7 +71,8 @@ export default class DesignsShowcase extends React.Component {
         return window.scroll(0, this.designsBottom - innerHeight + 150)
       }
 
-      const totalDistanceToGo = this.designsBottom - this.designsTop - innerHeight
+      const totalDistanceToGo =
+        this.designsBottom - this.designsTop - innerHeight
       const changeAtDistance = totalDistanceToGo / (this.screens.length - 1)
       const x = changeAtDistance * (nextVisibleScreenIndex - 1)
       const nextScrollDistance = 1 + x + this.designsTop
@@ -81,18 +83,32 @@ export default class DesignsShowcase extends React.Component {
   cacheElementsAndSettings() {
     this.designs = this.designsRef.current!
     this.designsContentContainer = this.designsContentContainerRef.current!
-    this.designsContent = this.designsContentContainer.querySelector<HTMLDivElement>('.designs-content')!
+    this.designsContent = this.designsContentContainer.querySelector<
+      HTMLDivElement
+    >('.designs-content')!
 
     this.header = this.designsContent.querySelector<HTMLHeadElement>('h1')!
-    this.macContainer = this.designsContent.querySelector<HTMLDivElement>('.mac-container')!
-    this.mac = this.macContainer.querySelector<HTMLImageElement>('.mac-with-screens')!
+    this.macContainer = this.designsContent.querySelector<HTMLDivElement>(
+      '.mac-container'
+    )!
+    this.mac = this.macContainer.querySelector<HTMLImageElement>(
+      '.mac-with-screens'
+    )!
     this.macImage = this.mac.querySelector<HTMLElement>('g#mac-with-screens')!
 
     this.screens = this.mac.querySelectorAll<HTMLElement>('.screen')
-    this.explanationsContainerCards = this.designsContent.querySelector<HTMLDivElement>('.explanations-container.cards')!
-    this.explanationsContainerTexts = this.designsContent.querySelector<HTMLDivElement>('.explanations-container.texts')!
-    this.explanationsCards = this.explanationsContainerCards.querySelectorAll<HTMLDivElement>('.explanation')
-    this.explanationsTexts = this.explanationsContainerTexts.querySelectorAll<HTMLDivElement>('.explanation')
+    this.explanationsContainerCards = this.designsContent.querySelector<
+      HTMLDivElement
+    >('.explanations-container.cards')!
+    this.explanationsContainerTexts = this.designsContent.querySelector<
+      HTMLDivElement
+    >('.explanations-container.texts')!
+    this.explanationsCards = this.explanationsContainerCards.querySelectorAll<
+      HTMLDivElement
+    >('.explanation')
+    this.explanationsTexts = this.explanationsContainerTexts.querySelectorAll<
+      HTMLDivElement
+    >('.explanation')
 
     if (this.screens.length !== 1 + this.explanationsCards.length) {
       throw new Error(`Must have 1 more screen than explanation`)
@@ -101,14 +117,17 @@ export default class DesignsShowcase extends React.Component {
       throw new Error(`Must have equal explanations of both types`)
     }
 
-    this.isSafari = navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0
-    this.isIPhone = navigator.userAgent.search("iPhone") >= 0
+    this.isSafari =
+      navigator.userAgent.search('Safari') >= 0 &&
+      navigator.userAgent.search('Chrome') < 0
+    this.isIPhone = navigator.userAgent.search('iPhone') >= 0
   }
 
   cacheStyles() {
     this.designsTop = this.designs.offsetTop
     this.designsBottom = this.designsTop + this.designs.offsetHeight
-    this.isDesignsContentFlexRow = getComputedStyle(this.designsContent).flexDirection === 'row'
+    this.isDesignsContentFlexRow =
+      getComputedStyle(this.designsContent).flexDirection === 'row'
     const macContainerRect = this.macContainer.getBoundingClientRect()
     const macImageRect = this.macImage.getBoundingClientRect()
     const macImageLeftOffset = macImageRect.left - macContainerRect.left
@@ -127,12 +146,14 @@ export default class DesignsShowcase extends React.Component {
       }
     }
 
-    this.macContainer.style.height = setHeightExplicitly ? getComputedStyle(this.macContainer).maxHeight : ''
+    this.macContainer.style.height = setHeightExplicitly
+      ? getComputedStyle(this.macContainer).maxHeight
+      : ''
   }
 
   nextContainerPosition(): this['containerPosition'] {
     if (scrollY < this.designsTop) return 'static'
-    if ((scrollY + innerHeight) >= this.designsBottom) return 'absolute'
+    if (scrollY + innerHeight >= this.designsBottom) return 'absolute'
     return 'fixed'
   }
 
@@ -153,7 +174,10 @@ export default class DesignsShowcase extends React.Component {
     const totalDistanceToGo = this.designsBottom - this.designsTop - innerHeight
 
     const changeAtDistance = totalDistanceToGo / (this.screens.length - 1)
-    this.visibleScreenIndex = Math.min(this.screens.length - 1, Math.max(0, 1 + Math.floor(scrolledPastDistance / changeAtDistance)))
+    this.visibleScreenIndex = Math.min(
+      this.screens.length - 1,
+      Math.max(0, 1 + Math.floor(scrolledPastDistance / changeAtDistance))
+    )
   }
 
   showVisibleScreen() {
@@ -185,19 +209,19 @@ export default class DesignsShowcase extends React.Component {
 
   styleExplanations() {
     if (this.isDesignsContentFlexRow) {
-      this.explanationsCards.forEach(card => card.style.display = 'none')
-      this.explanationsTexts.forEach(text => text.style.display = 'none')
+      this.explanationsCards.forEach(card => (card.style.display = 'none'))
+      this.explanationsTexts.forEach(text => (text.style.display = 'none'))
       this.explanationsContainerTexts.style.height = '0'
     } else if (this.useCard) {
-      this.explanationsCards.forEach(card => card.style.display = 'block')
-      this.explanationsTexts.forEach(text => text.style.display = 'none')
+      this.explanationsCards.forEach(card => (card.style.display = 'block'))
+      this.explanationsTexts.forEach(text => (text.style.display = 'none'))
       this.explanationsContainerTexts.style.height = '0'
-      forEach(this.explanationsCards, (explanation) => {
+      forEach(this.explanationsCards, explanation => {
         explanation.style.left = `${this.explanationCardLeftOffset}px`
       })
     } else {
-      this.explanationsCards.forEach(card => card.style.display = 'none')
-      this.explanationsTexts.forEach(text => text.style.display = 'block')
+      this.explanationsCards.forEach(card => (card.style.display = 'none'))
+      this.explanationsTexts.forEach(text => (text.style.display = 'block'))
       this.explanationsContainerTexts.style.minHeight = `${this.tallestExplanationHeight()}px`
     }
   }
@@ -242,7 +266,10 @@ export default class DesignsShowcase extends React.Component {
   render() {
     return (
       <div className="designs" ref={this.designsRef}>
-        <div className="designs-content-container static" ref={this.designsContentContainerRef}>
+        <div
+          className="designs-content-container static"
+          ref={this.designsContentContainerRef}
+        >
           <div className="designs-content">
             <h1>What we're building</h1>
             <div className="mac-container">

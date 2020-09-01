@@ -7,19 +7,30 @@ import ButtonGroup from './button-group'
 import useWidgetState, { WidgetProps } from './useWidgetState'
 import onClickaway from '../../effects/onClickaway'
 
-
 export default (props: WidgetProps) => {
   const ref = React.useRef<HTMLDivElement>()
-  const { open, setOpen, postAsNewIssue, setPostAsNewIssue, setIssueTitle, setIssueInitialCommentHtml, similarIssuesState, postIssue, issueTitleLongEnoughToSearchFor, reasonCantPostAsNewIssue } = useWidgetState(props)
+  const {
+    open,
+    setOpen,
+    postAsNewIssue,
+    setPostAsNewIssue,
+    setIssueTitle,
+    setIssueInitialCommentHtml,
+    similarIssuesState,
+    postIssue,
+    issueTitleLongEnoughToSearchFor,
+    reasonCantPostAsNewIssue,
+  } = useWidgetState(props)
   onClickaway(ref, () => setOpen(false))
 
   return (
-    <div
-      className="more-human-internet-widget-boundary"
-      ref={ref as any}
-    >
+    <div className="more-human-internet-widget-boundary" ref={ref as any}>
       <div
-        className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
+        className={`more-human-internet-widget-container ${
+          open
+            ? 'more-human-internet-widget-container-open'
+            : 'more-human-internet-widget-container-closed'
+        }`}
         onClick={() => !open && setOpen(true)}
       >
         <WidgetIcon open={open} />
@@ -33,7 +44,9 @@ export default (props: WidgetProps) => {
                 />
               ) : (
                 <SimilarIssues
-                  issueTitleLongEnoughToSearchFor={issueTitleLongEnoughToSearchFor}
+                  issueTitleLongEnoughToSearchFor={
+                    issueTitleLongEnoughToSearchFor
+                  }
                   similarIssuesState={similarIssuesState}
                 />
               )}

@@ -2,8 +2,10 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-
-type Links = React.DetailedHTMLProps<React.LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>[]
+type Links = React.DetailedHTMLProps<
+  React.LinkHTMLAttributes<HTMLLinkElement>,
+  HTMLLinkElement
+>[]
 
 type SEOProps = {
   description?: string
@@ -15,11 +17,21 @@ type SEOProps = {
 }
 
 export const defaultLinks: Links = [
-  { rel: "apple-touch-icon", sizes: "180x180", href: '/apple-touch-icon.png' },
-  { rel: "icon", type: "image/png", sizes: "16x16", href: '/favicon-16x16.png' },
-  { rel: "icon", type: "image/png", sizes: "32x32", href: '/favicon-32x32.png' },
-  { rel: "manifest", href: '/site.webmanifest' },
-  { rel: "mask-icon", color: "#5bbad5", href: '/safari-pinned-tab.svg' },
+  { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '16x16',
+    href: '/favicon-16x16.png',
+  },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '32x32',
+    href: '/favicon-32x32.png',
+  },
+  { rel: 'manifest', href: '/site.webmanifest' },
+  { rel: 'mask-icon', color: '#5bbad5', href: '/safari-pinned-tab.svg' },
 ]
 
 export default function SEO(props: SEOProps) {
@@ -46,7 +58,9 @@ export default function SEO(props: SEOProps) {
     `
   )
 
-  const title = pageTitle ? `${pageTitle} | ${site.siteMetadata.title}` : site.siteMetadata.title
+  const title = pageTitle
+    ? `${pageTitle} | ${site.siteMetadata.title}`
+    : site.siteMetadata.title
 
   const metaDescription = description || site.siteMetadata.description
 
@@ -68,9 +82,7 @@ export default function SEO(props: SEOProps) {
         { name: 'msapplication-TileColor', content: '#164176' },
         { name: 'theme-color', content: '#ffffff' },
       ].concat(meta)}
-
       link={links}
-
       script={scripts}
     />
   )

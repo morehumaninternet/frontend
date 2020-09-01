@@ -1,8 +1,6 @@
 import React from 'react'
 
-
-const opacity = (open: boolean) => open ? 1 : 0.26
-
+const opacity = (open: boolean) => (open ? 1 : 0.26)
 
 export function MoreHumanInternetLogo() {
   return (
