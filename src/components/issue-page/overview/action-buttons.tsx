@@ -1,4 +1,5 @@
 import React from 'react'
+import { FlagIcon, ShareIcon, HandIcon, CommentIcon } from './action-icons'
 
 export default function IssueActionButtons({
   aggregates,
@@ -9,23 +10,23 @@ export default function IssueActionButtons({
     <div className="issue-action-buttons">
       <div className="issue-action-buttons__item">
         <button>
-          <img src="/flag-icon.svg" alt="Flag" />
+          <FlagIcon />
         </button>
       </div>
       <div className="issue-action-buttons__item">
         <button>
-          <img src="/share-icon.svg" alt="Share" />
+          <ShareIcon />
         </button>
       </div>
       <div className="issue-action-buttons__item">
         <button>
-          <img src="/hand-icon.svg" alt="+1" />
+          <HandIcon clicked={true} />
         </button>
         <p>{aggregates.upvotes.count}</p>
       </div>
       <div className="issue-action-buttons__item">
         <button>
-          <img src="/comment-icon.svg" alt="Comment" />
+          <CommentIcon />
         </button>
         <p>{aggregates.comments.count}</p>
       </div>
