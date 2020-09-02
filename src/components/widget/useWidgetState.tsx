@@ -6,10 +6,7 @@ import debounceDefer from '../../utils/debounceDefer'
 import * as mockApi from '../../clients/mockApi'
 import useCurrentUser from '../../effects/useCurrentUser'
 
-
-
 const searchIssues = debounceDefer(mockApi.searchIssues, 200)
-
 
 export type WidgetProps = { navigate: (href: string) => void }
 
@@ -30,17 +27,23 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
   const [open, setOpen] = React.useState(false)
   const [postAsNewIssue, setPostAsNewIssue] = React.useState(false)
   const [issueTitle, setIssueTitle] = React.useState('')
-  const [issueInitialCommentHtml, setIssueInitialCommentHtml] = React.useState('')
-  const [similarIssuesState, setSimilarIssuesState] = React.useState<SimilarIssuesState>({ searching: false, similarIssues: [] })
+  const [issueInitialCommentHtml, setIssueInitialCommentHtml] = React.useState(
+    ''
+  )
+  const [similarIssuesState, setSimilarIssuesState] = React.useState<
+    SimilarIssuesState
+  >({ searching: false, similarIssues: [] })
 
   const issueTitleLongEnoughToSearchFor = issueTitle.length > 5
   const issueTitleLongEnoughToSubmit = issueTitle.length > 9
 
-  const reasonCantPostAsNewIssue = (
-    similarIssuesState.searching ? 'Searching for similar issues' :
-    !issueTitleLongEnoughToSubmit ? 'Issue title must be longer' :
-    similarIssuesState.similarIssues.length > 3 ? 'Too many similar issues, please refine the title' : null
-  )
+  const reasonCantPostAsNewIssue = similarIssuesState.searching
+    ? 'Searching for similar issues'
+    : !issueTitleLongEnoughToSubmit
+    ? 'Issue title must be longer'
+    : similarIssuesState.similarIssues.length > 3
+    ? 'Too many similar issues, please refine the title'
+    : null
 
   const currentUser = useCurrentUser()
 
@@ -63,7 +66,9 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
     setPostAsNewIssue(false)
     if (issueTitleLongEnoughToSearchFor) {
       setSimilarIssuesState({ searching: true })
-      searchIssues(issueTitle).then(similarIssues => setSimilarIssuesState({ searching: false, similarIssues }))
+      searchIssues(issueTitle).then(similarIssues =>
+        setSimilarIssuesState({ searching: false, similarIssues })
+      )
     } else {
       setSimilarIssuesState({ searching: false, similarIssues: [] })
     }

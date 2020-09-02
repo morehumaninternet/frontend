@@ -30,6 +30,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-react-axe',
+    'gatsby-plugin-tslint',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

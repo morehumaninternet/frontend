@@ -1,8 +1,7 @@
-import React from "react"
+import React from 'react'
 
-import { LayoutWithHeader } from "../components/shared/layout"
-import SEO from "../components/shared/seo"
-
+import { LayoutWithHeader } from '../components/shared/layout'
+import SEO from '../components/shared/seo'
 
 export default () => (
   <LayoutWithHeader mainClassName="not-found" logoAgainstHero={false}>

@@ -1,9 +1,9 @@
-import React from "react"
+import React from 'react'
 
 export default function IssueActionButtons({
   aggregates,
 }: {
-  aggregates: Issue["aggregates"]
+  aggregates: Issue['aggregates']
 }): JSX.Element {
   return (
     <div className="issue-action-buttons">

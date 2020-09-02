@@ -1,7 +1,6 @@
 import React from 'react'
 import HeaderLink from './link'
 
-
 type HeaderProps = {
   children?: React.ReactNode
   logoAgainstHero: boolean
@@ -16,6 +15,5 @@ const Header = ({ children, logoAgainstHero, headerRef }: HeaderProps) => {
     </header>
   )
 }
-
 
 export default Header

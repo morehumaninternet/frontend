@@ -6,7 +6,6 @@ import { GitHub } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
 import debounceDefer from '../../../utils/debounceDefer'
 
-
 async function getUserByUsername(username: string): Promise<any> {
   if (!username) return null
   const result = await axios(`https://api.github.com/users/${username}`)
@@ -20,18 +19,19 @@ const githubIcon = <GitHub />
 // Loads the avatar of a given username, if present.
 // Until an avatar has loaded, display the default github icon.
 function GithubAvatar({ username }: { username: null | string }): JSX.Element {
-
   const [avatar, setAvatar] = React.useState<null | React.ReactNode>(null)
   const [avatarLoaded, setAvatarLoaded] = React.useState(false)
 
   React.useEffect(() => {
     if (username) {
-      setAvatar(<Avatar
-        src={`https://github.com/${username}.png?size=71`}
-        imgProps={{
-          onLoad: () => setAvatarLoaded(true)
-        }}
-      />)
+      setAvatar(
+        <Avatar
+          src={`https://github.com/${username}.png?size=71`}
+          imgProps={{
+            onLoad: () => setAvatarLoaded(true),
+          }}
+        />
+      )
     } else {
       setAvatar(null)
       setAvatarLoaded(false)
@@ -41,8 +41,10 @@ function GithubAvatar({ username }: { username: null | string }): JSX.Element {
   // The display: 'none' trick is to put the underlying <img> on the page, forcing it to load
   return (
     <>
-      {!avatarLoaded && avatar && <div style={{ display: 'none' }}>{avatar}</div>}
-      {(avatarLoaded && avatar) ? avatar : githubIcon}
+      {!avatarLoaded && avatar && (
+        <div style={{ display: 'none' }}>{avatar}</div>
+      )}
+      {avatarLoaded && avatar ? avatar : githubIcon}
     </>
   )
 }
@@ -53,12 +55,16 @@ type GithubInputProps = {
   onChange(): void
 }
 
-
-export default function GithubInput({ checking, setChecking, onChange: formOnChange }: GithubInputProps): JSX.Element {
-
+export default function GithubInput({
+  checking,
+  setChecking,
+  onChange: formOnChange,
+}: GithubInputProps): JSX.Element {
   const inputRef: React.MutableRefObject<HTMLInputElement> = React.useRef() as any
   const [testingUsername, setTestingUsername] = React.useState<string>('')
-  const [confirmedUsername, setConfirmedUsername] = React.useState<null | string>(null)
+  const [confirmedUsername, setConfirmedUsername] = React.useState<
+    null | string
+  >(null)
 
   const [blur, setBlur] = React.useState(false)
   const [error, setError] = React.useState(false)
@@ -102,11 +108,12 @@ export default function GithubInput({ checking, setChecking, onChange: formOnCha
     if (!blur) {
       setError(false)
       setHelperText(null)
-
     } else if (testingUsername && !confirmedUsername && !checking) {
       setError(true)
       setHelperText(`Could not find github account ${testingUsername}`)
-      inputRef.current?.setCustomValidity(`Could not find github account ${testingUsername}, please correct it`)
+      inputRef.current?.setCustomValidity(
+        `Could not find github account ${testingUsername}, please correct it`
+      )
     }
   }, [blur, testingUsername, confirmedUsername, checking])
 
