@@ -5,6 +5,7 @@ import { Avatar } from '@material-ui/core'
 import { GitHub } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
 import debounceDefer from '../../../utils/debounceDefer'
+import { FormattedMessage, useIntl } from 'gatsby-plugin-intl'
 
 async function getUserByUsername(username: string): Promise<any> {
   if (!username) return null
@@ -60,6 +61,7 @@ export default function GithubInput({
   setChecking,
   onChange: formOnChange,
 }: GithubInputProps): JSX.Element {
+  const intl = useIntl()
   const inputRef: React.MutableRefObject<HTMLInputElement> = React.useRef() as any
   const [testingUsername, setTestingUsername] = React.useState<string>('')
   const [confirmedUsername, setConfirmedUsername] = React.useState<
@@ -110,9 +112,17 @@ export default function GithubInput({
       setHelperText(null)
     } else if (testingUsername && !confirmedUsername && !checking) {
       setError(true)
-      setHelperText(`Could not find github account ${testingUsername}`)
+      setHelperText(
+        intl.formatMessage(
+          { id: 'github_input_could_not_find_1' },
+          { account: testingUsername }
+        )
+      )
       inputRef.current?.setCustomValidity(
-        `Could not find github account ${testingUsername}, please correct it`
+        intl.formatMessage(
+          { id: 'github_input_could_not_find_2' },
+          { account: testingUsername }
+        )
       )
     }
   }, [blur, testingUsername, confirmedUsername, checking])
@@ -120,7 +130,7 @@ export default function GithubInput({
   return (
     <TextFieldWithIcon
       inputRef={inputRef}
-      label="Github Username"
+      label={intl.formatMessage({ id: 'github_input_username' })}
       name="githubUsername"
       variant="outlined"
       onChange={onChange}

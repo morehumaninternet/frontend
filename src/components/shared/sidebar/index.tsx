@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { Avatar } from '@material-ui/core'
 import { MoreHumanInternetLogo, HomeIcon, IssuesIcon, AddIcon } from './icons'
+import useCurrentUser from '../../../effects/useCurrentUser'
 
 type SidebarProps = {
   location: Location

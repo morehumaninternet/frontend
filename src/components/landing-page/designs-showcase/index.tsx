@@ -2,22 +2,32 @@ import React from 'react'
 import { forEach, max } from 'lodash'
 import numPixels from '../../../utils/numPixels'
 import MacWithScreens from './mac-with-screens'
+import { FormattedMessage, useIntl } from 'gatsby-plugin-intl'
 
 const Explanations = () => (
   <>
     <div className="explanation">
-      <h2 className="report-issues">A widget to report issues</h2>
-      <p>People can post issues they encounter online</p>
-    </div>
-    <div className="explanation">
-      <h2>A timeline to discuss issues</h2>
-      <p>People can have conversations with website maintainers</p>
-    </div>
-    <div className="explanation">
-      <h2>A taskboard to manage issues</h2>
+      <h2 className="report-issues" lang={useIntl().locale}>
+        <FormattedMessage id="showcase_content1_title" />
+      </h2>
       <p>
-        Maintainers may track progress and sort issues by how many people are
-        experiencing them
+        <FormattedMessage id="showcase_content1_description" />
+      </p>
+    </div>
+    <div className="explanation">
+      <h2>
+        <FormattedMessage id="showcase_content2_title" />
+      </h2>
+      <p>
+        <FormattedMessage id="showcase_content2_description" />
+      </p>
+    </div>
+    <div className="explanation">
+      <h2>
+        <FormattedMessage id="showcase_content3_title" />
+      </h2>
+      <p>
+        <FormattedMessage id="showcase_content3_description" />
       </p>
     </div>
   </>
@@ -271,7 +281,9 @@ export default class DesignsShowcase extends React.Component {
           ref={this.designsContentContainerRef}
         >
           <div className="designs-content">
-            <h1>What we're building</h1>
+            <h1>
+              <FormattedMessage id="showcase_title" />
+            </h1>
             <div className="mac-container">
               <MacWithScreens className="mac-with-screens" />
               <div className="explanations-container cards">
