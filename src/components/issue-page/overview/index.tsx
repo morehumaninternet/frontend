@@ -1,6 +1,6 @@
-import React from "react"
-import IssueStatusBadge from "../status-badge"
-import IssueActionButtons from "./action-buttons"
+import React from 'react'
+import IssueStatusBadge from '../status-badge'
+import IssueActionButtons from './action-buttons'
 
 function IssueBreadcrumbs({
   site,
