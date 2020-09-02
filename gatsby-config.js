@@ -30,7 +30,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-react-axe',
-    'gatsby-plugin-tslint',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -54,7 +53,7 @@ module.exports = {
         defaultLanguage: `en`,
         // option to redirect to `/en` when connecting `/`
         redirect: true,
-    },
+      },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
