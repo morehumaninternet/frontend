@@ -4,8 +4,11 @@ import { Email, Person } from '@material-ui/icons'
 import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
+import { FormattedMessage, useIntl } from 'gatsby-plugin-intl'
 
 export default function ApplicationForm(): JSX.Element {
+  const intl = useIntl()
+
   const formReference = React.useRef<HTMLFormElement>()
 
   const [checking, setChecking] = React.useState(false)
@@ -53,7 +56,7 @@ export default function ApplicationForm(): JSX.Element {
     <form
       name="submit-application"
       method="POST"
-      action="/thank-you"
+      action={`/${intl.locale}/thank-you`}
       data-netlify="true"
       netlify-honeypot="bot-field"
       autoComplete="off"
@@ -63,12 +66,13 @@ export default function ApplicationForm(): JSX.Element {
       <input type="hidden" name="form-name" value="submit-application" />
       <p style={{ display: 'none' }}>
         <label>
-          Don’t fill this out if you're human: <input name="bot-field" />
+          <FormattedMessage id="application_form_bot" />{' '}
+          <input name="bot-field" />
         </label>
       </p>
       <FormGroup>
         <TextFieldWithIcon
-          label="Full Name"
+          label={intl.formatMessage({ id: 'application_form_name' })}
           name="name"
           variant="outlined"
           required
@@ -78,7 +82,7 @@ export default function ApplicationForm(): JSX.Element {
       <FormGroup>
         <TextFieldWithIcon
           type="email"
-          label="Email"
+          label={intl.formatMessage({ id: 'application_form_email' })}
           name="email"
           variant="outlined"
           required
@@ -91,16 +95,18 @@ export default function ApplicationForm(): JSX.Element {
           setChecking={setChecking}
           onChange={ensureGithubUsernameOrResumePresent}
         />
-        <div className="spaced-vertically-centered-text">and/or</div>
+        <div className="spaced-vertically-centered-text">
+          <FormattedMessage id="application_form_and_or" />
+        </div>
         <FileUploadButton
           name="resume"
-          label="Resume"
+          label={intl.formatMessage({ id: 'application_form_resume' })}
           onNewFileName={() => ensureGithubUsernameOrResumePresent()}
         />
       </FormGroup>
       <FormGroup>
         <TextField
-          label="Why do you want to join?"
+          label={intl.formatMessage({ id: 'application_form_why' })}
           name="whyJoin"
           variant="outlined"
           required
@@ -114,7 +120,9 @@ export default function ApplicationForm(): JSX.Element {
         />
       </FormGroup>
       <FormGroup>
-        <Button type="submit">Apply</Button>
+        <Button type="submit">
+          <FormattedMessage id="application_form_apply" />
+        </Button>
       </FormGroup>
     </form>
   )

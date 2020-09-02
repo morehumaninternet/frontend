@@ -24,7 +24,7 @@ export default function debounceDefer<Args extends Array<any>, Resolves>(
       })
     }
 
-    timer = setTimeout(function(): any {
+    timer = setTimeout(function (): any {
       const resolveNow = resolve
       const rejectNow = reject
 

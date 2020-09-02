@@ -1,4 +1,5 @@
 import React from 'react'
+import { FormattedMessage } from 'gatsby-plugin-intl'
 import { Card, CardContent } from '@material-ui/core'
 import Hero from '../components/shared/hero'
 import { LayoutWithHeader } from '../components/shared/layout'
@@ -10,12 +11,14 @@ export default function ThankYouPage() {
       <SEO pageTitle="Thank You" />
       <Hero additionalClassNames="thank-you">
         <Card>
-          <h2>Thank You</h2>
+          <h2>
+            <FormattedMessage id="thank_you_header" />
+          </h2>
           <CardContent className="thank-you">
             <p>
-              We appreciate your interest!
+              <FormattedMessage id="thank_you_card_content1" />
               <br />
-              Someone from our team will get in touch with you shortly.
+              <FormattedMessage id="thank_you_card_content2" />
             </p>
           </CardContent>
         </Card>

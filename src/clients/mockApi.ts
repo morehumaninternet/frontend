@@ -204,7 +204,9 @@ export async function changeStatus({
   return setInLocalStorage(nextIssue)
 }
 
-export async function searchIssues(title: string): Promise<ReadonlyArray<Issue>> {
+export async function searchIssues(
+  title: string
+): Promise<ReadonlyArray<Issue>> {
   const search = new RegExp(title, 'i')
   const matches: Issue[] = [] // tslint:disable-line:readonly-array
   Object.keys(localStorage).forEach(key => {

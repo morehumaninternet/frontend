@@ -43,6 +43,19 @@ module.exports = {
         icon: 'static/human-dots.svg', // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        // language JSON resource path
+        path: path.join(__dirname, `src`, `intl`),
+        // supported language
+        languages: [`en`, `es`],
+        // language file path
+        defaultLanguage: `en`,
+        // option to redirect to `/en` when connecting `/`
+        redirect: true,
+    },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // 'gatsby-plugin-offline',

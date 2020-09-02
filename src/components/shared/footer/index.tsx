@@ -1,4 +1,5 @@
 import React from 'react'
+import { FormattedMessage } from 'gatsby-plugin-intl'
 import FooterRingsLink from './footer-rings-link'
 import TwitterLink from './twitter-link'
 import GithubLink from './github-link'
@@ -11,8 +12,10 @@ export default () => (
       <TwitterLink />
     </div>
     <a className="text-link" href="mailto:info@morehumaninternet.org">
-      Get in touch with us
+      <FormattedMessage id="footer_get_in_touch" />
     </a>
-    <p>© More Human Internet Foundation 2020, All rights reserved</p>
+    <p>
+      <FormattedMessage id="footer_copyright" />
+    </p>
   </footer>
 )

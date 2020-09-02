@@ -91,7 +91,7 @@ $margin-around-mac: 2em;
             > h2 {
               text-align: left;
               font-size: 1.3rem;
-              &.report-issues {
+              &.report-issues:lang(en) {
                 max-width: 160px;
               }
             }
