@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 
-type ActionIconState = { clicked: Boolean }
+type ActionIconState = { clicked: boolean }
 
 export function FlagIcon(): ReactElement {
   return (
