@@ -4,7 +4,7 @@ export const ShoppingCart = () => (
   <div className="shopping-cart-container">
     <h1>Shopping Cart</h1>
 
-    <div>
+    <div className="shopping-cart-contents">
       <div className="cart-item-container">
         <div className="cart-item">
           <img src="/goalco-hero-sm.png" />
