@@ -21,6 +21,7 @@ export const ShoppingCart = () => {
             <p>FREE 24 hour delivery anywhere on planet earth!</p>
           </div>
 
+        </div>
           <div className="checkout-container">
             <div className="total-container">
               <div className="cart-total">Total</div>
@@ -49,7 +50,6 @@ export const ShoppingCart = () => {
           </div>
         </div>
       </div>
-    </div>
   )
 }
 
