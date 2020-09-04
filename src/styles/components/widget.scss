@@ -192,15 +192,19 @@ $trix-button--icon-size: 1.6em;
           }
 
           /* Tooltip caret */
-          > trix-toolbar::after {
+          > trix-toolbar:after {
             content: ' ';
+            display: block;
             position: absolute;
-            top: 100%;
+            top: 80%;
             left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: $human-grey transparent transparent transparent;
+            width: 10px;
+            height: 10px;
+            background: #ffffff;
+            border-left: 1px solid $human-grey;
+            border-bottom: 1px solid $human-grey;
+            -moz-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
           }
 
           > trix-editor {
