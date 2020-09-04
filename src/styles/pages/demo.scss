@@ -4,18 +4,6 @@
   min-height: 100vh;
   font-family: "Roboto";
 
-  .bold {
-    font-weight: bold;
-  }
-
-  .visible {
-    visibility: visible;
-  }
-
-  .hidden {
-    visibility: hidden;
-  }
-
   > header {
     display: flex;
     justify-content: space-between;
@@ -161,7 +149,7 @@
         color: #000000;
       }
 
-      > div {
+      > .shopping-cart-contents {
         display: flex;
         justify-content: stretch;
 
