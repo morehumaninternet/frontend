@@ -193,17 +193,18 @@ $trix-button--icon-size: 1.6em;
 
           /* Tooltip caret */
           $caret-radius: 5px;
+          $caret-border-width: 1px;
           > trix-toolbar:after {
             content: '';
             display: block;
             position: absolute;
-            bottom: -$caret-radius;
+            bottom: -$caret-radius + ($caret-border-width / 2);
             left: calc(50% - #{$caret-radius});
             width: 2 * $caret-radius;
             height: 2 * $caret-radius;
             background: #ffffff;
-            border-left: 1px solid $human-grey;
-            border-bottom: 1px solid $human-grey;
+            border-left: $caret-border-width solid $human-grey;
+            border-bottom: $caret-border-width solid $human-grey;
             -moz-transform: rotate(-45deg);
             -webkit-transform: rotate(-45deg);
           }
