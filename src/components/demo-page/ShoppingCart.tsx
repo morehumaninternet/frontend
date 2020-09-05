@@ -40,11 +40,13 @@ export const ShoppingCart = () => {
               disabled={checkedOut}
             >
               {checkedOut ? (
-                <CircularProgress size="1rem" className="spinner" />
+                <>
+                    <CircularProgress size="1rem" className="spinner" />
+                    Checking out please wait
+                </>
               ) : (
                 'Checkout'
               )}
-              {checkedOut ? 'Checking out please wait' : ''}
             </button>
             <div className="creditcards"></div>
           </div>
