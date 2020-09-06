@@ -2,7 +2,7 @@
   background-color: #f7f7f7;
   color: #000000;
   min-height: 100vh;
-  font-family: "Roboto";
+  font-family: 'Roboto';
 
   > header {
     display: flex;
@@ -79,6 +79,12 @@
     &:active,
     &:focus {
       outline: none;
+    }
+    &:disabled {
+      background: #bababa;
+    }
+    > .spinner {
+      margin: 0 0.5rem 0 0;
     }
   }
 
@@ -221,7 +227,7 @@
           .creditcards {
             width: 220px;
             height: 21px;
-            background: url("/creditcards.png");
+            background: url('/creditcards.png');
           }
         }
       }
