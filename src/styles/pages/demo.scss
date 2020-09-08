@@ -19,6 +19,10 @@
         font-size: 14px;
         line-height: 16px;
         margin: 18px;
+
+        @media (max-width: 540px) {
+          display: none;
+        }
       }
     }
 
@@ -56,6 +60,9 @@
     text-align: center;
     font-weight: bold;
     font-size: 18px;
+    &:enabled {
+      cursor: pointer;
+    }
     &:hover,
     &:active,
     &:focus {
@@ -76,16 +83,21 @@
     text-align: center;
     font-weight: bold;
     font-size: 18px;
-
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    &:hover,
-    &:active,
-    &:focus {
-      outline: none;
+    &:enabled {
+      cursor: pointer;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: #000;
+        color: #fff;
+        outline: none;
+      }
     }
     &:disabled {
       background: #bababa;
