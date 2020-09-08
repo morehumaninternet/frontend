@@ -30,7 +30,11 @@ function Star() {
   )
 }
 
-export default function AddToCart({ onAddToCart }: { onAddToCart: () => void }) {
+export default function AddToCart({
+  onAddToCart,
+}: {
+  onAddToCart: () => void
+}) {
   return (
     <div className="demo-content add-to-cart">
       <div className="text">
@@ -51,13 +55,14 @@ export default function AddToCart({ onAddToCart }: { onAddToCart: () => void }) 
             Add to Cart
           </button>
         </div>
-        <div className="guarantee">Try risk-free, 100% happiness guaranteed</div>
+        <div className="guarantee">
+          Try risk-free, 100% happiness guaranteed
+        </div>
       </div>
 
       <div className="img-container">
         <img className="suit-side" src="/goalco-hero.png" />
       </div>
-
     </div>
   )
 }
