@@ -4,10 +4,10 @@ import { CircularProgress } from '@material-ui/core'
 export const ShoppingCart = () => {
   const [checkedOut, setCheckedOut] = useState(false)
   return (
-    <div className="shopping-cart-container">
+    <div className="demo-content checkout">
       <h1>Shopping Cart</h1>
 
-      <div className="shopping-cart-contents">
+      <div className="checkout-cards">
         <div className="cart-item-container">
           <div className="cart-item">
             <img src="/goalco-hero-sm.png" />
