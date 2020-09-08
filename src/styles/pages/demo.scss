@@ -96,14 +96,13 @@
   }
 
   > .demo-content {
-    padding-top: 150px;
-    padding-left: 200px;
-
     > .product-page-container {
       display: flex;
       justify-content: center;
+      padding: 20px;
+      padding-top: 200px;
 
-      .text {
+      > .text {
         width: 275px;
         margin-top: 75px;
 
@@ -113,6 +112,10 @@
           line-height: 42px;
           text-align: left;
           color: #000000;
+        }
+
+        > img.suit-intext {
+          display: none;
         }
 
         > .reviews {
@@ -147,6 +150,23 @@
           width: 40%;
           font-size: 14px;
           line-height: 16px;
+        }
+      }
+
+      @media (max-width: 630px) {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+
+        > .text {
+          > img.suit-intext {
+            display: block;
+            max-width: 100%;
+            margin-bottom: 40px;
+          }
+        }
+        > img.suit-side {
+          display: none;
         }
       }
     }

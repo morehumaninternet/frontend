@@ -34,6 +34,7 @@ export const ProductPage = ({ onAddToCart }: { onAddToCart: () => void }) => (
   <div className="product-page-container">
     <div className="text">
       <h1>The GoalCo 10X superpower suit</h1>
+      <img className="suit-intext" src="/goalco-hero.png" />
       <Rating stars={5} reviews={9494} />
       <p>
         Take your goal achieving capabilities to the next level with our state
@@ -52,7 +53,7 @@ export const ProductPage = ({ onAddToCart }: { onAddToCart: () => void }) => (
       <div className="guarantee">Try risk-free, 100% happiness guaranteed</div>
     </div>
 
-    <img src="/goalco-hero.png"></img>
+    <img className="suit-side" src="/goalco-hero.png" />
   </div>
 )
 
