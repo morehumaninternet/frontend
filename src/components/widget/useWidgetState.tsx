@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { FormattedMessage, useIntl } from 'gatsby-plugin-intl'
 import { SimilarIssuesState } from './similar-issues'
 import debounceDefer from '../../utils/debounceDefer'
 
@@ -19,11 +19,14 @@ export type WidgetState = {
   setIssueInitialCommentHtml(issueInitialCommentHtml: string): void
   similarIssuesState: SimilarIssuesState
   postIssue(): any
+  anyIssueTitle: boolean
+  issueTitleLongEnoughToSubmit: boolean
   issueTitleLongEnoughToSearchFor: boolean
   reasonCantPostAsNewIssue: null | string
 }
 
 export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
+  const intl = useIntl()
   const [open, setOpen] = React.useState(false)
   const [postAsNewIssue, setPostAsNewIssue] = React.useState(false)
   const [issueTitle, setIssueTitle] = React.useState('')
@@ -32,8 +35,9 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
   )
   const [similarIssuesState, setSimilarIssuesState] = React.useState<
     SimilarIssuesState
-  >({ searching: false, similarIssues: [] })
+  >({ searching: false, hasIssues: false, similarIssues: [] })
 
+  const anyIssueTitle = issueTitle.length > 0
   const issueTitleLongEnoughToSearchFor = issueTitle.length > 5
   const issueTitleLongEnoughToSubmit = issueTitle.length > 9
 
@@ -59,18 +63,26 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
       initialCommentHtml: issueInitialCommentHtml,
     })
 
-    navigate(`/issue?site=${issue.site}&id=${issue.id}`)
+    navigate(`/${intl.locale}/issue?site=${issue.site}&id=${issue.id}`)
   }
 
   React.useEffect(() => {
     setPostAsNewIssue(false)
     if (issueTitleLongEnoughToSearchFor) {
-      setSimilarIssuesState({ searching: true })
+      setSimilarIssuesState({ searching: true, hasIssues: false })
       searchIssues(issueTitle).then(similarIssues =>
-        setSimilarIssuesState({ searching: false, similarIssues })
+        setSimilarIssuesState({
+          searching: false,
+          hasIssues: !!similarIssues.length,
+          similarIssues,
+        })
       )
     } else {
-      setSimilarIssuesState({ searching: false, similarIssues: [] })
+      setSimilarIssuesState({
+        searching: false,
+        hasIssues: false,
+        similarIssues: [],
+      })
     }
   }, [issueTitle])
 
@@ -83,6 +95,8 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
     setIssueInitialCommentHtml,
     similarIssuesState,
     postIssue,
+    anyIssueTitle,
+    issueTitleLongEnoughToSubmit,
     issueTitleLongEnoughToSearchFor,
     reasonCantPostAsNewIssue,
   }

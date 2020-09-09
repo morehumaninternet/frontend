@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import Widget from '../components/widget'
 import SEO from '../components/shared/seo'
 
-import GoalCoLogo from '../components/demo-page/GoalCoLogo'
-import CartButton from '../components/demo-page/CartButton'
-import ProductPage from '../components/demo-page/ProductPage'
-import ShoppingCart from '../components/demo-page/ShoppingCart'
+import GoalCoLogo from '../components/demo-page/goalco-logo'
+import CartButton from '../components/demo-page/cart-button'
+import AddToCart from '../components/demo-page/add-to-cart'
+import Checkout from '../components/demo-page/checkout'
 
 export default function DemoPage(props: any): JSX.Element {
   const [checkout, setCheckout] = useState(false)
@@ -34,11 +34,11 @@ export default function DemoPage(props: any): JSX.Element {
           <CartButton numberItems={checkout ? 1 : 0} />
         </div>
       </header>
-      <div className="demo-content">
+      <div className="demo-content-container">
         {checkout ? (
-          <ShoppingCart />
+          <Checkout />
         ) : (
-          <ProductPage onAddToCart={() => setCheckout(true)} />
+          <AddToCart onAddToCart={() => setCheckout(true)} />
         )}
       </div>
       <Widget navigate={props.navigate} />

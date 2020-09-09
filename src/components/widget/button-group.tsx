@@ -50,7 +50,7 @@ export default function ButtonGroup({
           disabled={!!reasonCantPostAsNewIssue}
           onClick={() => setPostAsNewIssue(true)}
         >
-          Post as new Issue
+          Post as new issue
         </Button>
       )}
     </div>
