@@ -19,7 +19,7 @@ export default function Sidebar({
   return (
     <div className="sidebar">
       <div className="sidebar-contents">
-        <div className="other-links">
+        <div className="sidebar-links">
           <Link
             className="home-link"
             to="/"
@@ -39,11 +39,13 @@ export default function Sidebar({
             <AddIcon />
             <span className="description">Report</span>
           </Link>
-          <Link to="/settings">
+          <Link to="/settings" className="settings">
             <Avatar
               src={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
             />
-            <span className="description">{currentUser.loaded && currentUser.user.username}</span>
+            <span className="description">
+              {currentUser.loaded && currentUser.user.username}
+            </span>
           </Link>
         </div>
       </div>

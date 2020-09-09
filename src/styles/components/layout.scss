@@ -17,7 +17,7 @@ $sidebar-margin: 50px;
     background-color: $human-blue;
     min-height: 100vh;
     border-top-right-radius: 40px;
-    transition: width 0.3s;
+    transition: width 0.2s;
 
     > .sidebar-contents {
       position: absolute;
@@ -32,33 +32,39 @@ $sidebar-margin: 50px;
       align-items: center;
       justify-content: space-between;
 
-      a {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-
-        > .description {
-          opacity: 0;
-          transition: all 0.3s;
-
-          text-decoration: none;
-          position: absolute;
-          top: -2px;
-          left: 42px;
-          color: white;
-          font-weight: bold;
-          font-size: (16/18) * 1em;
-        }
-      }
-
-      > .other-links {
+      > .sidebar-links {
         display: grid;
         grid-template-rows: 100px 70px 70px 1fr auto;
-
         height: 100%;
 
         > a {
+          position: relative;
+          display: flex;
+          justify-content: center;
+
+          > .description {
+            opacity: 0;
+            transition: all 0.3s;
+
+            text-decoration: none;
+            position: absolute;
+            top: -2px;
+            left: 90px;
+            color: white;
+            font-weight: bold;
+            font-size: (16/18) * 1em;
+          }
+
+          &.home-link {
+            position: relative;
+            left: 38px;
+
+            > svg > g.text {
+              transition: opacity 0.3s;
+              opacity: 0;
+            }
+          }
+
           &.inactive {
             > svg > path {
               opacity: 0.26;
@@ -68,6 +74,13 @@ $sidebar-margin: 50px;
           &.active {
             > svg > path {
               opacity: 1;
+            }
+          }
+
+          &.settings {
+            > .description {
+              top: 2px;
+              font-weight: normal;
             }
           }
         }
@@ -84,7 +97,12 @@ $sidebar-margin: 50px;
 
     &:hover {
       @include sidebar-width(200px);
-      a {
+
+      > .sidebar-contents > .sidebar-links > a {
+        > svg > g.text {
+          opacity: 1;
+        }
+
         &.inactive {
           > .description {
             opacity: 0.26;
@@ -92,7 +110,7 @@ $sidebar-margin: 50px;
         }
 
         &.active,
-        &[href="/settings"] {
+        &.settings {
           > .description {
             opacity: 1;
           }
