@@ -13,6 +13,7 @@ export type WidgetProps = { navigate: (href: string) => void }
 export type WidgetState = {
   open: boolean
   setOpen(open: boolean): void
+  submitting: boolean
   postAsNewIssue: boolean
   setPostAsNewIssue(postAsNewIssue: boolean): void
   setIssueTitle(issueTitle: string): void
@@ -28,6 +29,7 @@ export type WidgetState = {
 export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
   const intl = useIntl()
   const [open, setOpen] = React.useState(false)
+  const [submitting, setSubmitting] = React.useState(false)
   const [postAsNewIssue, setPostAsNewIssue] = React.useState(false)
   const [issueTitle, setIssueTitle] = React.useState('')
   const [issueInitialCommentHtml, setIssueInitialCommentHtml] = React.useState(
@@ -35,7 +37,7 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
   )
   const [similarIssuesState, setSimilarIssuesState] = React.useState<
     SimilarIssuesState
-  >({ searching: false, hasIssues: false, similarIssues: [] })
+  >({ searching: false, similarIssues: [] })
 
   const anyIssueTitle = issueTitle.length > 0
   const issueTitleLongEnoughToSearchFor = issueTitle.length > 5
@@ -48,13 +50,14 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
     : similarIssuesState.similarIssues.length > 3
     ? 'Too many similar issues, please refine the title'
     : null
-
   const currentUser = useCurrentUser()
 
   const postIssue = async () => {
     if (!currentUser.loaded) {
       throw new Error(`Cannot post an issue for a nonexistent user`)
     }
+
+    setSubmitting(true)
 
     const issue = await mockApi.postIssue({
       site: 'goalco.com',
@@ -69,26 +72,25 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
   React.useEffect(() => {
     setPostAsNewIssue(false)
     if (issueTitleLongEnoughToSearchFor) {
-      setSimilarIssuesState({ searching: true, hasIssues: false })
+      setSimilarIssuesState({ searching: true, similarIssues: [] })
       searchIssues(issueTitle).then(similarIssues =>
         setSimilarIssuesState({
           searching: false,
-          hasIssues: !!similarIssues.length,
           similarIssues,
         })
       )
     } else {
       setSimilarIssuesState({
         searching: false,
-        hasIssues: false,
         similarIssues: [],
       })
     }
   }, [issueTitle])
 
   return {
-    open,
+    open: open || submitting, // If submitting, keep the widget open
     setOpen,
+    submitting,
     postAsNewIssue,
     setPostAsNewIssue,
     setIssueTitle,

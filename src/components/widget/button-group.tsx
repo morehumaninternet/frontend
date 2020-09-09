@@ -6,8 +6,8 @@ type ButtonGroupProps = Pick<
   WidgetState,
   | 'postAsNewIssue'
   | 'postIssue'
-  | 'reasonCantPostAsNewIssue'
   | 'setPostAsNewIssue'
+  | 'reasonCantPostAsNewIssue'
 >
 
 function AttachIcon() {
@@ -29,8 +29,8 @@ function AttachIcon() {
 
 export default function ButtonGroup({
   postAsNewIssue,
-  postIssue,
   reasonCantPostAsNewIssue,
+  postIssue,
   setPostAsNewIssue,
 }: ButtonGroupProps): JSX.Element {
   return (

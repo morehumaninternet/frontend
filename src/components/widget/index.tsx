@@ -14,6 +14,7 @@ export default (props: WidgetProps) => {
   const {
     open,
     setOpen,
+    submitting,
     postAsNewIssue,
     setPostAsNewIssue,
     setIssueTitle,
@@ -44,28 +45,42 @@ export default (props: WidgetProps) => {
         {open && (
           <div className="more-human-internet-widget-editor-container">
             <div className="more-human-internet-widget-editor">
-              <TitleInput setIssueTitle={setIssueTitle} />
-              {postAsNewIssue ? (
-                <CommentInput
-                  setIssueInitialCommentHtml={setIssueInitialCommentHtml}
-                />
+              {submitting ? (
+                <div className="submitting">
+                  Submitting issue...
+                  <br />
+                  You will be redirected shortly
+                </div>
               ) : (
-                <SimilarIssues
-                  anyIssueTitle={anyIssueTitle}
-                  issueTitleLongEnoughToSubmit={issueTitleLongEnoughToSubmit}
-                  issueTitleLongEnoughToSearchFor={
-                    issueTitleLongEnoughToSearchFor
-                  }
-                  similarIssuesState={similarIssuesState}
-                />
+                <>
+                  <TitleInput setIssueTitle={setIssueTitle} />
+                  {postAsNewIssue ? (
+                    <CommentInput
+                      setIssueInitialCommentHtml={setIssueInitialCommentHtml}
+                    />
+                  ) : (
+                    <SimilarIssues
+                      anyIssueTitle={anyIssueTitle}
+                      issueTitleLongEnoughToSubmit={
+                        issueTitleLongEnoughToSubmit
+                      }
+                      issueTitleLongEnoughToSearchFor={
+                        issueTitleLongEnoughToSearchFor
+                      }
+                      similarIssuesState={similarIssuesState}
+                    />
+                  )}
+                </>
               )}
             </div>
-            <ButtonGroup
-              postAsNewIssue={postAsNewIssue}
-              postIssue={postIssue}
-              reasonCantPostAsNewIssue={reasonCantPostAsNewIssue}
-              setPostAsNewIssue={setPostAsNewIssue}
-            />
+            {!submitting && (
+              <ButtonGroup
+                postAsNewIssue={postAsNewIssue}
+                reasonCantPostAsNewIssue={reasonCantPostAsNewIssue}
+                postIssue={postIssue}
+                setPostAsNewIssue={setPostAsNewIssue}
+              />
+            )}
           </div>
         )}
       </div>
