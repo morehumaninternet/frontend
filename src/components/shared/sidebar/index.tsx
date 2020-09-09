@@ -19,14 +19,14 @@ export default function Sidebar({
   return (
     <div className="sidebar">
       <div className="sidebar-contents">
-        <Link
-          className="home-link"
-          to="/"
-          aria-label="More Human Internet Home"
-        >
-          <MoreHumanInternetLogo />
-        </Link>
         <div className="other-links">
+          <Link
+            className="home-link"
+            to="/"
+            aria-label="More Human Internet Home"
+          >
+            <MoreHumanInternetLogo />
+          </Link>
           <Link to="/" className="inactive">
             <HomeIcon />
             <span className="description">Home</span>
@@ -39,12 +39,13 @@ export default function Sidebar({
             <AddIcon />
             <span className="description">Report</span>
           </Link>
+          <Link to="/settings">
+            <Avatar
+              src={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
+            />
+            <span className="description">{currentUser.loaded && currentUser.user.username}</span>
+          </Link>
         </div>
-        <Link to="/settings">
-          <Avatar
-            src={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
-          />
-        </Link>
       </div>
     </div>
   )
