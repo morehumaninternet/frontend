@@ -71,10 +71,18 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
     if (issueTitleLongEnoughToSearchFor) {
       setSimilarIssuesState({ searching: true, hasIssues: false })
       searchIssues(issueTitle).then(similarIssues =>
-        setSimilarIssuesState({ searching: false, hasIssues: !!similarIssues.length, similarIssues })
+        setSimilarIssuesState({
+          searching: false,
+          hasIssues: !!similarIssues.length,
+          similarIssues,
+        })
       )
     } else {
-      setSimilarIssuesState({ searching: false, hasIssues: false, similarIssues: [] })
+      setSimilarIssuesState({
+        searching: false,
+        hasIssues: false,
+        similarIssues: [],
+      })
     }
   }, [issueTitle])
 

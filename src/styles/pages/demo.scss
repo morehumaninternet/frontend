@@ -1,7 +1,7 @@
 .demo-page {
   background-color: #f7f7f7;
   color: #000000;
-  min-height: 100vh;
+  height: 100vh;
   font-family: 'Roboto';
 
   display: flex;
@@ -122,7 +122,6 @@
 
         > .text {
           width: 275px;
-          margin-top: 75px;
 
           > h1 {
             font-weight: 300;
@@ -169,6 +168,10 @@
             font-size: 14px;
             line-height: 16px;
           }
+        }
+
+        > .img-container > img.suit-side {
+          max-height: 50vh;
         }
 
         @media (max-width: 630px) {

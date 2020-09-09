@@ -2,8 +2,12 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 export type SimilarIssuesState =
-  | { searching: true, hasIssues: false }
-  | { searching: false, hasIssues: boolean, similarIssues: ReadonlyArray<Issue> }
+  | { searching: true; hasIssues: false }
+  | {
+      searching: false
+      hasIssues: boolean
+      similarIssues: ReadonlyArray<Issue>
+    }
 
 type SimilarIssuesProps = {
   similarIssuesState: SimilarIssuesState
@@ -45,13 +49,16 @@ export default function SimilarIssues({
       ) : (
         issueTitleLongEnoughToSearchFor && <p>No similar issues found</p>
       )}
-      {anyIssueTitle && !issueTitleLongEnoughToSubmit && (
-        similarIssuesState.hasIssues ? (
-          <p>Please choose from among the similar issues or specify your issue in more detail to post it</p>
+      {anyIssueTitle &&
+        !issueTitleLongEnoughToSubmit &&
+        (similarIssuesState.hasIssues ? (
+          <p>
+            Please choose from among the similar issues or specify your issue in
+            more detail to post it
+          </p>
         ) : (
           <p>Please specify your issue in more detail to post it</p>
-        )
-      )}
+        ))}
     </div>
   )
 }
