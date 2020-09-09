@@ -1,4 +1,6 @@
 import React from 'react'
+import { IconButton } from '@material-ui/core'
+import { Close } from '@material-ui/icons'
 import WidgetIcon from './icon'
 import TitleInput from './title-input'
 import CommentInput from './comment-input'
@@ -18,6 +20,8 @@ export default (props: WidgetProps) => {
     setIssueInitialCommentHtml,
     similarIssuesState,
     postIssue,
+    anyIssueTitle,
+    issueTitleLongEnoughToSubmit,
     issueTitleLongEnoughToSearchFor,
     reasonCantPostAsNewIssue,
   } = useWidgetState(props)
@@ -34,6 +38,9 @@ export default (props: WidgetProps) => {
         onClick={() => !open && setOpen(true)}
       >
         <WidgetIcon open={open} />
+        {/* <IconButton onClick={() => setOpen(false)}>
+          <Close />
+        </IconButton> */}
         {open && (
           <div className="more-human-internet-widget-editor-container">
             <div className="more-human-internet-widget-editor">
@@ -44,6 +51,8 @@ export default (props: WidgetProps) => {
                 />
               ) : (
                 <SimilarIssues
+                  anyIssueTitle={anyIssueTitle}
+                  issueTitleLongEnoughToSubmit={issueTitleLongEnoughToSubmit}
                   issueTitleLongEnoughToSearchFor={
                     issueTitleLongEnoughToSearchFor
                   }
