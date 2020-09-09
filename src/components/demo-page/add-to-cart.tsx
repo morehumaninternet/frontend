@@ -40,6 +40,12 @@ export default function AddToCart({
       <div className="text">
         <h1>The GoalCo 10X superpower suit</h1>
         <img className="suit-intext" src="/goalco-hero.png" />
+        <div className="price">
+          <h2>$365</h2>
+          <button className="add-to-cart" onClick={() => onAddToCart()}>
+            Add to Cart
+          </button>
+        </div>
         <Rating stars={5} reviews={9494} />
         <p>
           Take your goal achieving capabilities to the next level with our state
@@ -49,17 +55,7 @@ export default function AddToCart({
           Made from the finest bio materials known to man and ethically sourced
           from planet Goalgon.
         </p>
-        <div className="price">
-          <h2>$365</h2>
-          <button className="add-to-cart" onClick={() => onAddToCart()}>
-            Add to Cart
-          </button>
-        </div>
-        <div className="guarantee">
-          Try risk-free, 100% happiness guaranteed
-        </div>
       </div>
-
       <div className="img-container">
         <img className="suit-side" src="/goalco-hero.png" />
       </div>

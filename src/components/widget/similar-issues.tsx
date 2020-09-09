@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { useIntl } from 'gatsby-plugin-intl'
 
 export type SimilarIssuesState =
   | { searching: true; hasIssues: false }
@@ -20,7 +21,7 @@ function SimilarIssueLink({ issue }: { issue: Issue }): JSX.Element {
   return (
     <Link
       className="more-human-internet-similar-issue-link"
-      to={`/issue?site=${issue.site}&id=${issue.id}`}
+      to={`/${useIntl().locale}/issue?site=${issue.site}&id=${issue.id}`}
     >
       {issue.title}
     </Link>
