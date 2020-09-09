@@ -1,21 +1,10 @@
 import React from 'react'
 
-function Rating({ stars, reviews }: { stars: number; reviews: number }) {
-  return (
-    <div className="reviews">
-      {[...Array(stars)].map(n => (
-        <span>
-          <Star />
-        </span>
-      ))}
-      <span>{reviews} Reviews</span>
-    </div>
-  )
-}
 
 function Star() {
   return (
     <svg
+      className="star"
       width="18"
       height="17"
       viewBox="0 0 18 17"
@@ -30,6 +19,19 @@ function Star() {
   )
 }
 
+function Reviews() {
+  return (
+    <div className="reviews">
+      <Star />
+      <Star />
+      <Star />
+      <Star />
+      <Star />
+      9494 Reviews
+    </div>
+  )
+}
+
 export default function AddToCart({
   onAddToCart,
 }: {
@@ -39,14 +41,13 @@ export default function AddToCart({
     <div className="demo-content add-to-cart">
       <div className="text">
         <h1>The GoalCo 10X superpower suit</h1>
-        <img className="suit-intext" src="/goalco-hero.png" />
         <div className="price">
           <h2>$365</h2>
           <button className="add-to-cart" onClick={() => onAddToCart()}>
             Add to Cart
           </button>
         </div>
-        <Rating stars={5} reviews={9494} />
+        <Reviews />
         <p>
           Take your goal achieving capabilities to the next level with our state
           of the art superpower suit.
@@ -57,7 +58,7 @@ export default function AddToCart({
         </p>
       </div>
       <div className="img-container">
-        <img className="suit-side" src="/goalco-hero.png" />
+        <img className="suit" src="/goalco-hero.png" />
       </div>
     </div>
   )
