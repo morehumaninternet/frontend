@@ -1,10 +1,11 @@
 import React from 'react'
-
+import { useIntl } from 'gatsby-plugin-intl'
 import { SimilarIssuesState } from './similar-issues'
 import debounceDefer from '../../utils/debounceDefer'
 
 import * as mockApi from '../../clients/mockApi'
 import useCurrentUser from '../../effects/useCurrentUser'
+
 
 const searchIssues = debounceDefer(mockApi.searchIssues, 200)
 
@@ -24,6 +25,7 @@ export type WidgetState = {
 }
 
 export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
+  const intl = useIntl()
   const [open, setOpen] = React.useState(false)
   const [postAsNewIssue, setPostAsNewIssue] = React.useState(false)
   const [issueTitle, setIssueTitle] = React.useState('')
@@ -59,7 +61,7 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
       initialCommentHtml: issueInitialCommentHtml,
     })
 
-    navigate(`/issue?site=${issue.site}&id=${issue.id}`)
+    navigate(`${intl.locale}/issue?site=${issue.site}&id=${issue.id}`)
   }
 
   React.useEffect(() => {
