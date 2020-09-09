@@ -66,6 +66,18 @@ $sidebar-margin: 50px;
 
         > a {
           margin-top: $sidebar-margin;
+
+          &.inactive {
+            > svg > path {
+              opacity: 0.26;
+            }
+          }
+
+          &.active {
+            > svg > path {
+              opacity: 1;
+            }
+          }
         }
       }
     }
@@ -80,8 +92,18 @@ $sidebar-margin: 50px;
 
     &:hover {
       @include sidebar-width(200px);
-      a > .description {
-        opacity: 1;
+      a {
+        &.inactive {
+          > .description {
+            opacity: 0.26;
+          }
+        }
+
+        &.active {
+          > .description {
+            opacity: 1;
+          }
+        }
       }
     }
   }

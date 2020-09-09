@@ -27,16 +27,16 @@ export default function Sidebar({
           <MoreHumanInternetLogo />
         </Link>
         <div className="other-links">
-          <Link to="/">
-            <HomeIcon open={false} />
+          <Link to="/" className="inactive">
+            <HomeIcon />
             <span className="description">Home</span>
           </Link>
-          <Link to="/issues">
-            <IssuesIcon open={true} />
+          <Link to="/issues" className="active">
+            <IssuesIcon />
             <span className="description">Issues</span>
           </Link>
-          <Link to="/">
-            <AddIcon open={false} />
+          <Link to="/" className="inactive">
+            <AddIcon />
             <span className="description">Report</span>
           </Link>
         </div>
