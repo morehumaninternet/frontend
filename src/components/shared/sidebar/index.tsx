@@ -18,25 +18,34 @@ export default function Sidebar({
 
   return (
     <div className="sidebar">
-      <Link className="home-link" to="/" aria-label="More Human Internet Home">
-        <MoreHumanInternetLogo />
-      </Link>
-      <div className="other-links">
-        <Link to="/">
-          <HomeIcon open={false} />
+      <div className="sidebar-contents">
+        <Link
+          className="home-link"
+          to="/"
+          aria-label="More Human Internet Home"
+        >
+          <MoreHumanInternetLogo />
         </Link>
-        <Link to="/issues">
-          <IssuesIcon open={true} />
-        </Link>
-        <Link to="/">
-          <AddIcon open={false} />
+        <div className="other-links">
+          <Link to="/">
+            <HomeIcon open={false} />
+            <span className="description">Home</span>
+          </Link>
+          <Link to="/issues">
+            <IssuesIcon open={true} />
+            <span className="description">Issues</span>
+          </Link>
+          <Link to="/">
+            <AddIcon open={false} />
+            <span className="description">Report</span>
+          </Link>
+        </div>
+        <Link to="/settings">
+          <Avatar
+            src={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
+          />
         </Link>
       </div>
-      <Link to="/settings">
-        <Avatar
-          src={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
-        />
-      </Link>
     </div>
   )
 }
