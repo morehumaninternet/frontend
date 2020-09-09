@@ -2,13 +2,10 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { useIntl } from 'gatsby-plugin-intl'
 
-export type SimilarIssuesState =
-  | { searching: true; hasIssues: false }
-  | {
-      searching: false
-      hasIssues: boolean
-      similarIssues: ReadonlyArray<Issue>
-    }
+export type SimilarIssuesState = {
+  searching: boolean
+  similarIssues: ReadonlyArray<Issue>
+}
 
 type SimilarIssuesProps = {
   similarIssuesState: SimilarIssuesState
@@ -38,7 +35,7 @@ export default function SimilarIssues({
     <div className="more-human-internet-similar-issues">
       {similarIssuesState.searching ? (
         <p>Looking for similar issues...</p>
-      ) : similarIssuesState.hasIssues ? (
+      ) : similarIssuesState.similarIssues.length ? (
         <>
           <p>Similar Issues</p>
           <div className="more-human-internet-similar-issue-links">
@@ -52,7 +49,7 @@ export default function SimilarIssues({
       )}
       {anyIssueTitle &&
         !issueTitleLongEnoughToSubmit &&
-        (similarIssuesState.hasIssues ? (
+        (similarIssuesState.similarIssues.length ? (
           <p>
             Please choose from among the similar issues or specify your issue in
             more detail to post it

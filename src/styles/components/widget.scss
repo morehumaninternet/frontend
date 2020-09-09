@@ -64,12 +64,21 @@ $trix-button--icon-size: 1.6em;
 
     > .more-human-internet-widget-editor-container {
       margin-bottom: 0;
-      margin-top: 60px;
 
       > .more-human-internet-widget-editor {
         flex-grow: 1;
 
+        > .submitting {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          color: $human-blue;
+        }
+
         > .more-human-internet-widget-editor-issue-title-input {
+          margin-top: 50px;
+
           > trix-toolbar {
             display: none;
           }

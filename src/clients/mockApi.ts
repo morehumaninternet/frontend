@@ -1,3 +1,5 @@
+import delay from '../utils/delay'
+
 // tslint:disable:no-expression-statement
 export type IssuePostBody = {
   id?: number
@@ -113,6 +115,7 @@ function setInLocalStorage(issue: Issue): Issue {
 }
 
 export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
+  await delay(1000)
   return setInLocalStorage(createIssue(issuePostBody))
 }
 
