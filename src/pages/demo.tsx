@@ -13,26 +13,23 @@ const tourSteps = [
     id: 'intro',
     attachTo: {
       element: 'header',
-      on: 'bottom'
+      on: 'bottom',
     },
     buttons: [
       {
-        classes: 'shepherd-button-secondary',
+        classes: 'human-pink-bg',
         text: 'Exit',
         type: 'cancel',
       },
       {
-        classes: 'shepherd-button-primary',
-        text: 'Back',
-        type: 'back',
-      },
-      {
-        classes: 'shepherd-button-primary',
+        classes: 'human-blue-bg',
         text: 'Next',
         type: 'next',
       },
     ],
-    title: 'Welcome to React-Shepherd!',
+    cancelIcon: {
+      enabled: true,
+    },
     text: [
       'React-Shepherd is a JavaScript library for guiding users through your React app.',
     ],
@@ -41,30 +38,23 @@ const tourSteps = [
     id: 'foo',
     attachTo: {
       element: '.more-human-internet-widget-boundary',
-      on: 'left'
+      on: 'left',
     },
     buttons: [
       {
-        classes: 'shepherd-button-secondary',
+        classes: 'human-pink',
         text: 'Exit',
         type: 'cancel',
       },
       {
-        classes: 'shepherd-button-primary',
-        text: 'Back',
-        type: 'back',
-      },
-      {
-        classes: 'shepherd-button-primary',
+        classes: 'human-blue',
         text: 'Next',
         type: 'next',
       },
     ],
     title: 'OK',
-    text: [
-      'GREAT',
-    ],
-  }
+    text: ['GREAT'],
+  },
 ]
 
 const tourOptions = {
@@ -87,7 +77,7 @@ function DemoPageContents(props: any): JSX.Element {
 
   return (
     <>
-      <header>
+      <header className="layout-header">
         <GoalCoLogo />
         <div className="links">
           <a>Products</a>
@@ -121,7 +111,11 @@ export default function DemoPage(props: any): JSX.Element {
             href: '/goalco.ico',
           },
           { rel: 'stylesheet', type: 'text/css', href: '/trix.css' },
-          { rel: "stylesheet", type: 'text/css', href: "https://shepherdjs.dev/dist/css/shepherd.css" },
+          {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: 'https://shepherdjs.dev/dist/css/shepherd.css',
+          },
         ]}
         scripts={[{ type: 'text/javascript', src: '/trix.js' }]}
       />

@@ -9,7 +9,7 @@ type HeaderProps = {
 
 const Header = ({ children, logoAgainstHero, headerRef }: HeaderProps) => {
   return (
-    <header ref={headerRef}>
+    <header className="layout-header" ref={headerRef}>
       <HeaderLink logoAgainstHero={logoAgainstHero} />
       {children}
     </header>
