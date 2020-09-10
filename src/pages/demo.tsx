@@ -11,14 +11,9 @@ import Checkout from '../components/demo-page/checkout'
 const tourSteps = [
   {
     id: 'intro',
-    attachTo: '.more-human-internet-widget-boundary',
-    beforeShowPromise: function () {
-      return new Promise(function (resolve) {
-        setTimeout(function () {
-          window.scrollTo(0, 0)
-          resolve()
-        }, 500)
-      })
+    attachTo: {
+      element: 'header',
+      on: 'bottom'
     },
     buttons: [
       {
@@ -37,25 +32,39 @@ const tourSteps = [
         type: 'next',
       },
     ],
-    classes: 'custom-class-name-1 custom-class-name-2',
-    highlightClass: 'highlight',
-    scrollTo: false,
-    cancelIcon: {
-      enabled: true,
-    },
     title: 'Welcome to React-Shepherd!',
     text: [
       'React-Shepherd is a JavaScript library for guiding users through your React app.',
     ],
-    when: {
-      show: () => {
-        console.log('show step')
-      },
-      hide: () => {
-        console.log('hide step')
-      },
-    },
   },
+  {
+    id: 'foo',
+    attachTo: {
+      element: '.more-human-internet-widget-boundary',
+      on: 'left'
+    },
+    buttons: [
+      {
+        classes: 'shepherd-button-secondary',
+        text: 'Exit',
+        type: 'cancel',
+      },
+      {
+        classes: 'shepherd-button-primary',
+        text: 'Back',
+        type: 'back',
+      },
+      {
+        classes: 'shepherd-button-primary',
+        text: 'Next',
+        type: 'next',
+      },
+    ],
+    title: 'OK',
+    text: [
+      'GREAT',
+    ],
+  }
 ]
 
 const tourOptions = {
@@ -112,10 +121,11 @@ export default function DemoPage(props: any): JSX.Element {
             href: '/goalco.ico',
           },
           { rel: 'stylesheet', type: 'text/css', href: '/trix.css' },
+          { rel: "stylesheet", type: 'text/css', href: "https://shepherdjs.dev/dist/css/shepherd.css" },
         ]}
         scripts={[{ type: 'text/javascript', src: '/trix.js' }]}
       />
-      <ShepherdTour steps={tourSteps as any} tourOptions={tourOptions}>
+      <ShepherdTour steps={tourSteps as any} tourOptions={{}}>
         <DemoPageContents props={props} />
       </ShepherdTour>
     </div>
