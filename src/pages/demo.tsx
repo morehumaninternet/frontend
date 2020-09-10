@@ -1,102 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { ShepherdTour, ShepherdTourContext } from 'react-shepherd'
-import Widget from '../components/widget'
+import React from 'react'
 import SEO from '../components/shared/seo'
 
-import GoalCoLogo from '../components/demo-page/goalco-logo'
-import CartButton from '../components/demo-page/cart-button'
-import AddToCart from '../components/demo-page/add-to-cart'
-import Checkout from '../components/demo-page/checkout'
-
-const tourSteps = [
-  {
-    id: 'intro',
-    attachTo: {
-      element: 'header',
-      on: 'bottom',
-    },
-    buttons: [
-      {
-        classes: 'human-pink-bg',
-        text: 'Exit',
-        type: 'cancel',
-      },
-      {
-        classes: 'human-blue-bg',
-        text: 'Next',
-        type: 'next',
-      },
-    ],
-    cancelIcon: {
-      enabled: true,
-    },
-    text: [
-      'React-Shepherd is a JavaScript library for guiding users through your React app.',
-    ],
-  },
-  {
-    id: 'foo',
-    attachTo: {
-      element: '.more-human-internet-widget-boundary',
-      on: 'left',
-    },
-    buttons: [
-      {
-        classes: 'human-pink',
-        text: 'Exit',
-        type: 'cancel',
-      },
-      {
-        classes: 'human-blue',
-        text: 'Next',
-        type: 'next',
-      },
-    ],
-    title: 'OK',
-    text: ['GREAT'],
-  },
-]
-
-const tourOptions = {
-  defaultStepOptions: {
-    cancelIcon: {
-      enabled: true,
-    },
-  },
-  useModalOverlay: true,
-}
-
-function DemoPageContents(props: any): JSX.Element {
-  const [checkout, setCheckout] = useState(false)
-  const tour = useContext(ShepherdTourContext)
-  console.log('tour', tour)
-
-  useEffect(() => {
-    tour?.start()
-  }, [])
-
-  return (
-    <>
-      <header className="layout-header">
-        <GoalCoLogo />
-        <div className="links">
-          <a>Products</a>
-          <a>About Us</a>
-          <a>Contact</a>
-          <CartButton numberItems={checkout ? 1 : 0} />
-        </div>
-      </header>
-      <div className="demo-content-container">
-        {checkout ? (
-          <Checkout />
-        ) : (
-          <AddToCart onAddToCart={() => setCheckout(true)} />
-        )}
-      </div>
-      <Widget navigate={props.navigate} />
-    </>
-  )
-}
+import DemoTour from '../components/demo-page/tour'
+import DemoPageContents from '../components/demo-page/contents'
 
 export default function DemoPage(props: any): JSX.Element {
   return (
@@ -119,9 +25,9 @@ export default function DemoPage(props: any): JSX.Element {
         ]}
         scripts={[{ type: 'text/javascript', src: '/trix.js' }]}
       />
-      <ShepherdTour steps={tourSteps as any} tourOptions={{}}>
-        <DemoPageContents props={props} />
-      </ShepherdTour>
+      <DemoTour>
+        <DemoPageContents {...props} />
+      </DemoTour>
     </div>
   )
 }

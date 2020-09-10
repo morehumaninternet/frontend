@@ -18,6 +18,12 @@ $trix-button--icon-size: 1.6em;
   z-index: -1;
 }
 
+// Add padding for an element for the tour without affecting its positioning
+@mixin padding-for-tour($size: 10px) {
+  padding: $size;
+  margin: -$size;
+}
+
 .more-human-internet-widget-boundary {
   position: fixed;
   bottom: 0;
@@ -77,7 +83,8 @@ $trix-button--icon-size: 1.6em;
         }
 
         > .more-human-internet-widget-editor-issue-title-input {
-          margin-top: 50px;
+          @include padding-for-tour;
+          margin-top: 40px;
 
           > trix-toolbar {
             display: none;
@@ -92,6 +99,8 @@ $trix-button--icon-size: 1.6em;
         }
 
         > .more-human-internet-similar-issues {
+          @include padding-for-tour;
+
           > p {
             font-weight: 300;
             font-size: 1em;
@@ -120,6 +129,8 @@ $trix-button--icon-size: 1.6em;
         }
 
         > .more-human-internet-widget-editor-issue-body-input {
+          @include padding-for-tour;
+
           position: relative;
 
           /* Change the select background color */

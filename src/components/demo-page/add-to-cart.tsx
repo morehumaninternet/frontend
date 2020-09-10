@@ -38,26 +38,28 @@ export default function AddToCart({
 }) {
   return (
     <div className="demo-content add-to-cart">
-      <div className="text">
-        <h1>The GoalCo 10X superpower suit</h1>
-        <div className="price">
-          <h2>$365</h2>
-          <button className="add-to-cart" onClick={() => onAddToCart()}>
-            Add to Cart
-          </button>
+      <div className="demo-content-inner">
+        <div className="text">
+          <h1>The GoalCo 10X superpower suit</h1>
+          <div className="price">
+            <h2>$365</h2>
+            <button className="add-to-cart" onClick={() => onAddToCart()}>
+              Add to Cart
+            </button>
+          </div>
+          <Reviews />
+          <p>
+            Take your goal achieving capabilities to the next level with our
+            state of the art superpower suit.
+          </p>
+          <p>
+            Made from the finest bio materials known to man and ethically
+            sourced from planet Goalgon.
+          </p>
         </div>
-        <Reviews />
-        <p>
-          Take your goal achieving capabilities to the next level with our state
-          of the art superpower suit.
-        </p>
-        <p>
-          Made from the finest bio materials known to man and ethically sourced
-          from planet Goalgon.
-        </p>
-      </div>
-      <div className="img-container">
-        <img className="suit" src="/goalco-hero.png" />
+        <div className="img-container">
+          <img className="suit" src="/goalco-hero.png" />
+        </div>
       </div>
     </div>
   )
