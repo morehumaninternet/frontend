@@ -7,6 +7,8 @@ export type IssuePostBody = {
   site: string
   title: string
   initialCommentHtml: string
+  aggregates?: IssueAggregates
+  status?: IssueStatus
 }
 
 export const defaultSite = 'goalco.com'
@@ -66,6 +68,11 @@ function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
     avatarUrl: 'https://github.com/will-weiss.png?size=71',
   }
   const title = opts.title || "Checkout isn't working"
+  const status = opts.status || 'opened'
+  const aggregates = opts.aggregates || {
+    upvotes: { count: 1 },
+    comments: { count: 1 },
+  }
 
   const commentHtml = opts.initialCommentHtml || defaultCommentHtml
 
@@ -75,21 +82,18 @@ function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
     id,
     title,
     site,
-    status: 'Opened',
+    status,
     initialReport: {
       by: user,
       timestamp: now,
     },
-    aggregates: {
-      upvotes: { count: 1 },
-      comments: { count: 1 },
-    },
+    aggregates,
     timeline: [
       {
         verb: 'change status',
         by: user,
         timestamp: now,
-        status: 'Opened',
+        status: 'opened',
       },
       {
         verb: 'comment',
@@ -114,6 +118,26 @@ function setInLocalStorage(issue: Issue): Issue {
 export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
   await delay(1000)
   return setInLocalStorage(createIssue(issuePostBody))
+}
+
+export async function getSiteData(site: string): Promise<SiteData | null> {
+  try {
+    const issues = await searchIssues(site)
+    return {
+      site,
+      maintainer: {
+        avatarUrl: '/devdiva.png',
+        username: 'devdiva22',
+      },
+      issues: {
+        opened: issues.filter(issue => issue.status === 'opened'),
+        acknowledged: issues.filter(issue => issue.status === 'acknowledged'),
+        closed: issues.filter(issue => issue.status === 'closed'),
+      },
+    }
+  } catch (err) {
+    return null
+  }
 }
 
 export async function getIssueBySiteAndId(site: string, id: number): Promise<null | Issue> {
@@ -191,11 +215,12 @@ export async function changeStatus({
   return setInLocalStorage(nextIssue)
 }
 
-export async function searchIssues(title: string): Promise<ReadonlyArray<Issue>> {
-  const search = new RegExp(title, 'i')
+export async function searchIssues(site: string, title?: string): Promise<ReadonlyArray<Issue>> {
+  const localStorageSitePrefix = `${localStorageKeyPrefix}:${site}`
+  const search = new RegExp(title || '.*', 'i')
   const matches: Issue[] = [] // tslint:disable-line:readonly-array
   Object.keys(localStorage).forEach(key => {
-    if (key.startsWith(localStorageKeyPrefix)) {
+    if (key.startsWith(localStorageSitePrefix)) {
       const issue = issueFromJson(localStorage.getItem(key)!)
       if (search.test(issue.title)) {
         matches.push(issue)
@@ -208,27 +233,120 @@ export async function searchIssues(title: string): Promise<ReadonlyArray<Issue>>
 function setDefaultIssues(): void {
   if (typeof window === 'undefined') return
 
-  if (!getInLocalStorage(defaultSite, 505)) {
-    setInLocalStorage(
-      createIssue({
-        id: 505,
-        title: 'Your checkout is having major problems',
-        user: { username: 'dadbod22' },
-        initialCommentHtml: '<div>What gives?</div>',
-      })
-    )
-  }
+  const IssuesData: ReadonlyArray<Partial<IssuePostBody>> = [
+    {
+      id: 500,
+      status: 'opened',
+      title: "Checking isn't working",
+      aggregates: {
+        upvotes: {
+          count: 26,
+        },
+        comments: {
+          count: 10,
+        },
+      },
+    },
+    {
+      id: 501,
+      status: 'opened',
+      title: "Your FAQ page talks about being able to customize the suit but I don't see how I can do that",
+      aggregates: {
+        upvotes: {
+          count: 18,
+        },
+        comments: {
+          count: 12,
+        },
+      },
+    },
+    {
+      id: 502,
+      status: 'opened',
+      title: 'Privacy is key. Can you turn off the auto post to facebook?',
+      aggregates: {
+        upvotes: {
+          count: 2,
+        },
+        comments: {
+          count: 2,
+        },
+      },
+    },
+    {
+      id: 503,
+      status: 'acknowledged',
+      title: "The site doesn't work on mobile and it keeps crashing the browser",
+      aggregates: {
+        upvotes: {
+          count: 22,
+        },
+        comments: {
+          count: 8,
+        },
+      },
+    },
+    {
+      id: 504,
+      status: 'acknowledged',
+      title: "I want to sync my other devices to the suit but I'm unable to get the goalibulator to work correctly",
+      aggregates: {
+        upvotes: {
+          count: 2,
+        },
+        comments: {
+          count: 2,
+        },
+      },
+    },
+    {
+      id: 505,
+      status: 'closed',
+      title: 'I keep getting a 401 error but when I reload the page it works fine.',
+      aggregates: {
+        upvotes: {
+          count: 21,
+        },
+        comments: {
+          count: 17,
+        },
+      },
+    },
+    {
+      id: 506,
+      status: 'closed',
+      title: "The Apple Pay feature doesn't function for some reason.",
+      aggregates: {
+        upvotes: {
+          count: 19,
+        },
+        comments: {
+          count: 10,
+        },
+      },
+    },
+    {
+      id: 507,
+      status: 'closed',
+      title: "The cart doesn't show anything after I tried adding the suit to my cart.",
+      aggregates: {
+        upvotes: {
+          count: 2,
+        },
+        comments: {
+          count: 2,
+        },
+      },
+    },
+  ]
 
-  if (!getInLocalStorage(defaultSite, 510)) {
-    setInLocalStorage(
-      createIssue({
-        id: 510,
-        title: "I can't put my credit card on checkout",
-        user: { username: 'mickjagger' },
-        initialCommentHtml: '<div>What gives?</div>',
-      })
-    )
-  }
+  IssuesData.map(issueData => {
+    const site = issueData.site || defaultSite
+    const id = issueData.id || randomId(site)
+    if (!getInLocalStorage(site, id)) {
+      setInLocalStorage(createIssue(issueData))
+    }
+  })
 }
 
 setDefaultIssues()

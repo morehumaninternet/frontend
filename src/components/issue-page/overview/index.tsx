@@ -1,14 +1,7 @@
 import React from 'react'
 import IssueStatusBadge from '../status-badge'
 import IssueActionButtons from './action-buttons'
-
-function IssueBreadcrumbs({ site, issueId }: { site: string; issueId: number }): JSX.Element {
-  return (
-    <div className="issue-breadcrumbs">
-      <img src="/goalco.ico" /> {site} / Issues / {issueId}
-    </div>
-  )
-}
+import IssueBreadcrumbs from '../../shared/issue-bread-crumbs'
 
 export default function IssueOverview({ issue }: { issue: Issue }): JSX.Element {
   return (

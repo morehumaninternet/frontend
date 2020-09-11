@@ -7,7 +7,9 @@ type User = {
 
 type CurrentUser = { loaded: false } | { loaded: true; user: User }
 
-type IssueStatus = 'Opened' | 'Acknowledged' | 'Closed'
+type IssueStatus = 'opened' | 'acknowledged' | 'closed'
+
+type SortIssuesOn = 'Recent' | 'Upvotes' | 'Comments'
 
 type IssueComment = {
   html: string
@@ -27,6 +29,15 @@ type IssueActivity = IssueActivityChangeStatus | IssueActivityComment
 
 type IssueTimeline = ReadonlyArray<IssueActivity>
 
+type IssueAggregates = {
+  upvotes: {
+    count: number
+  }
+  comments: {
+    count: number
+  }
+}
+
 type Issue = {
   id: number
   title: string
@@ -36,13 +47,14 @@ type Issue = {
     by: User
     timestamp: Date
   }
-  aggregates: {
-    upvotes: {
-      count: number
-    }
-    comments: {
-      count: number
-    }
-  }
+  aggregates: IssueAggregates
   timeline: IssueTimeline
+}
+
+type SiteData = {
+  site: string
+  maintainer: User
+  issues: {
+    [status in IssueStatus]: readonly Issue[]
+  }
 }

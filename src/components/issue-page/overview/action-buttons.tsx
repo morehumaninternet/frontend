@@ -22,7 +22,7 @@ export default function IssueActionButtons({ aggregates }: { aggregates: Issue['
       </div>
       <div className="issue-action-buttons__item">
         <button>
-          <CommentIcon />
+          <CommentIcon commented={true} />
         </button>
         <p>{aggregates.comments.count}</p>
       </div>

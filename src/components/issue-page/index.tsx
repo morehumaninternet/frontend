@@ -10,17 +10,17 @@ export type LoadedIssueContentProps = {
 }
 
 function useDemo(issue: Issue, postComment: LoadedIssueContentProps['postComment'], changeStatus: LoadedIssueContentProps['changeStatus']) {
-  if (issue.status === 'Opened') {
+  if (issue.status === 'opened') {
     setTimeout(() => {
-      changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'Acknowledged', {
+      changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'acknowledged', {
         html: `<div>I am able to reproduce this on our end, sorry about that! We'll get working on a fix right away</div>`,
       })
     }, 3000)
   }
 
-  if (issue.status === 'Acknowledged') {
+  if (issue.status === 'acknowledged') {
     setTimeout(() => {
-      changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'Closed', {
+      changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'closed', {
         html: `<div>Deployed a fix that seems to be fixing the issue. Definitely leave a comment and reopen this issue if you're still being affected!</div>`,
       })
     }, 6000)
