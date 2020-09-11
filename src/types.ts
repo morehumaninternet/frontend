@@ -9,6 +9,8 @@ type CurrentUser = { loaded: false } | { loaded: true; user: User }
 
 type IssueStatus = 'Opened' | 'Acknowledged' | 'Closed'
 
+type SortIssuesBy = 'Recent' | 'Upvotes' | 'Comments'
+
 type IssueComment = {
   html: string
 }
@@ -19,19 +21,22 @@ type IssueActivityOf<Verb, AdditionalData = {}> = AdditionalData & {
   timestamp: Date
 }
 
-type IssueActivityChangeStatus = IssueActivityOf<
-  'change status',
-  { status: IssueStatus }
->
+type IssueActivityChangeStatus = IssueActivityOf<'change status', { status: IssueStatus }>
 
-type IssueActivityComment = IssueActivityOf<
-  'comment',
-  { comment: IssueComment }
->
+type IssueActivityComment = IssueActivityOf<'comment', { comment: IssueComment }>
 
 type IssueActivity = IssueActivityChangeStatus | IssueActivityComment
 
 type IssueTimeline = ReadonlyArray<IssueActivity>
+
+type IssueAggregates = {
+  upvotes: {
+    count: number
+  }
+  comments: {
+    count: number
+  }
+}
 
 type Issue = {
   id: number
@@ -42,13 +47,16 @@ type Issue = {
     by: User
     timestamp: Date
   }
-  aggregates: {
-    upvotes: {
-      count: number
-    }
-    comments: {
-      count: number
-    }
-  }
+  aggregates: IssueAggregates
   timeline: IssueTimeline
+}
+
+type SiteData = {
+  site: string
+  maintainer: User
+  issues: {
+    opened: readonly Issue[]
+    acknowledged: readonly Issue[]
+    closed: readonly Issue[]
+  }
 }

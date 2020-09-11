@@ -1,9 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-export type SimilarIssuesState =
-  | { searching: true }
-  | { searching: false; similarIssues: Issue[] }
+export type SimilarIssuesState = { searching: true } | { searching: false; similarIssues: Issue[] }
 
 type SimilarIssuesProps = {
   similarIssuesState: SimilarIssuesState
@@ -12,19 +10,13 @@ type SimilarIssuesProps = {
 
 function SimilarIssueLink({ issue }: { issue: Issue }): JSX.Element {
   return (
-    <Link
-      className="more-human-internet-similar-issue-link"
-      to={`/issue?site=${issue.site}&id=${issue.id}`}
-    >
+    <Link className="more-human-internet-similar-issue-link" to={`/issue?site=${issue.site}&id=${issue.id}`}>
       {issue.title}
     </Link>
   )
 }
 
-export default function SimilarIssues({
-  similarIssuesState,
-  issueTitleLongEnoughToSearchFor,
-}: SimilarIssuesProps): JSX.Element {
+export default function SimilarIssues({ similarIssuesState, issueTitleLongEnoughToSearchFor }: SimilarIssuesProps): JSX.Element {
   return (
     <div className="more-human-internet-similar-issues">
       {similarIssuesState.searching ? (

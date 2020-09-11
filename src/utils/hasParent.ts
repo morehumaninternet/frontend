@@ -1,7 +1,4 @@
-export default function hasParent(
-  possibleChild: HTMLElement,
-  possibleParent: HTMLElement
-): boolean {
+export default function hasParent(possibleChild: HTMLElement, possibleParent: HTMLElement): boolean {
   let test: null | HTMLElement = possibleChild // tslint:disable-line:no-let
 
   while (test) {

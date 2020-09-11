@@ -4,12 +4,7 @@ type TwitterLinkState = { hover: boolean }
 
 function TwitterIcon({ hover }: TwitterLinkState) {
   return (
-    <svg
-      className="twitter-icon"
-      width="48px"
-      height="48px"
-      viewBox="0 0 48 48"
-    >
+    <svg className="twitter-icon" width="48px" height="48px" viewBox="0 0 48 48">
       <g fillRule="nonzero" stroke="none" strokeWidth={1} fill="none">
         <circle cx={24} cy={24} r={24} fill={hover ? '#13ACF7' : '#979797'} />
         <path

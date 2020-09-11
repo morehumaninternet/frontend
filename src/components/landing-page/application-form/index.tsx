@@ -23,9 +23,7 @@ export default function ApplicationForm(): JSX.Element {
 
   useEffect(() => {
     if (awaitingSubmit && !checking) {
-      const submitButton: HTMLButtonElement = formReference.current!.querySelector(
-        'button[type="submit"]'
-      )! as any
+      const submitButton: HTMLButtonElement = formReference.current!.querySelector('button[type="submit"]')! as any
       submitButton.click()
     }
   }, [awaitingSubmit, checking])
@@ -42,9 +40,7 @@ export default function ApplicationForm(): JSX.Element {
     if (githubUsername.value) return
 
     // Otherwise, set the custom validity based on the existence of a resume
-    const customValidity = resume.value
-      ? ''
-      : 'Please add your github username or upload a resume'
+    const customValidity = resume.value ? '' : 'Please add your github username or upload a resume'
     githubUsername.setCustomValidity(customValidity)
   }
 
@@ -66,18 +62,11 @@ export default function ApplicationForm(): JSX.Element {
       <input type="hidden" name="form-name" value="submit-application" />
       <p style={{ display: 'none' }}>
         <label>
-          <FormattedMessage id="application_form_bot" />{' '}
-          <input name="bot-field" />
+          <FormattedMessage id="application_form_bot" /> <input name="bot-field" />
         </label>
       </p>
       <FormGroup>
-        <TextFieldWithIcon
-          label={intl.formatMessage({ id: 'application_form_name' })}
-          name="name"
-          variant="outlined"
-          required
-          startIcon={<Person />}
-        />
+        <TextFieldWithIcon label={intl.formatMessage({ id: 'application_form_name' })} name="name" variant="outlined" required startIcon={<Person />} />
       </FormGroup>
       <FormGroup>
         <TextFieldWithIcon
@@ -90,11 +79,7 @@ export default function ApplicationForm(): JSX.Element {
         />
       </FormGroup>
       <FormGroup className="stretch-row">
-        <GithubInput
-          checking={checking}
-          setChecking={setChecking}
-          onChange={ensureGithubUsernameOrResumePresent}
-        />
+        <GithubInput checking={checking} setChecking={setChecking} onChange={ensureGithubUsernameOrResumePresent} />
         <div className="spaced-vertically-centered-text">
           <FormattedMessage id="application_form_and_or" />
         </div>

@@ -34,13 +34,7 @@ export default function DemoPage(props: any): JSX.Element {
           <CartButton numberItems={checkout ? 1 : 0} />
         </div>
       </header>
-      <div className="demo-content">
-        {checkout ? (
-          <ShoppingCart />
-        ) : (
-          <ProductPage onAddToCart={() => setCheckout(true)} />
-        )}
-      </div>
+      <div className="demo-content">{checkout ? <ShoppingCart /> : <ProductPage onAddToCart={() => setCheckout(true)} />}</div>
       <Widget navigate={props.navigate} />
     </div>
   )

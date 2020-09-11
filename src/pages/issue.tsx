@@ -8,23 +8,14 @@ import * as api from '../clients/mockApi'
 import setLogoFade from '../utils/setLogoFade'
 import LoadedIssue from '../components/issue-page'
 import useIssue, { IssueState, UseIssueReturn } from '../effects/useIssue'
-import useIssueParams, {
-  IssueParams,
-  IssueParamsOk,
-} from '../effects/useIssueParams'
+import useIssueParams, { IssueParams, IssueParamsOk } from '../effects/useIssueParams'
 import useCurrentUser, { CurrentUser } from '../effects/useCurrentUser'
 
 function Loading(): JSX.Element {
   return <p>Loading...</p>
 }
 
-function WithIssueParams({
-  currentUser,
-  params,
-}: {
-  currentUser: CurrentUser
-  params: IssueParamsOk['params']
-}): JSX.Element {
+function WithIssueParams({ currentUser, params }: { currentUser: CurrentUser; params: IssueParamsOk['params'] }): JSX.Element {
   const { issueState, postComment, changeStatus } = useIssue({ api, params })
 
   return issueState.loading ? (
@@ -44,25 +35,14 @@ function WithIssueParams({
   )
 }
 
-function IssueContent({
-  issueParams,
-  currentUser,
-}: {
-  issueParams: IssueParams
-  currentUser: CurrentUser
-}): JSX.Element {
+function IssueContent({ issueParams, currentUser }: { issueParams: IssueParams; currentUser: CurrentUser }): JSX.Element {
   switch (issueParams.state) {
     case 'checking':
       return <Loading />
     case 'not ok':
       throw new Error('Handle this case better!')
     case 'ok':
-      return (
-        <WithIssueParams
-          currentUser={currentUser}
-          params={issueParams.params}
-        />
-      )
+      return <WithIssueParams currentUser={currentUser} params={issueParams.params} />
   }
 }
 
@@ -75,16 +55,10 @@ export default function IssuePage(props: { location: Location }): JSX.Element {
   const avatarUrl = currentUser.loaded ? currentUser.user.avatarUrl : undefined
 
   return (
-    <LayoutWithSidebar
-      mainClassName="issue"
-      currentUser={currentUser}
-      location={props.location}
-    >
+    <LayoutWithSidebar mainClassName="issue" currentUser={currentUser} location={props.location}>
       <SEO
         pageTitle="Issue"
-        links={defaultLinks.concat([
-          { rel: 'stylesheet', type: 'text/css', href: '/trix.css' },
-        ])}
+        links={defaultLinks.concat([{ rel: 'stylesheet', type: 'text/css', href: '/trix.css' }])}
         scripts={[{ type: 'text/javascript', src: '/trix.js' }]}
       />
       <IssueContent issueParams={issueParams} currentUser={currentUser} />

@@ -14,17 +14,13 @@ function* getSelectionClientRects(
   let selectionCharacter = selectionStart
 
   while (selectionCharacter < selectionEnd) {
-    const rect = editorElement.editor.getClientRectAtPosition(
-      selectionCharacter
-    )
+    const rect = editorElement.editor.getClientRectAtPosition(selectionCharacter)
     selectionCharacter++
     if (rect) yield rect
   }
 }
 
-export function getTopSelectedRow(
-  editorElement: any
-): null | { top: number; left: number; right: number } {
+export function getTopSelectedRow(editorElement: any): null | { top: number; left: number; right: number } {
   let startingRect
   let lastRectSameRow
 
@@ -43,8 +39,7 @@ export function getTopSelectedRow(
 
   if (!startingRect) return null
   if (!lastRectSameRow) throw new Error('lastRectSameRow not found')
-  if (startingRect.top !== lastRectSameRow.top)
-    throw new Error('found rectangles on different rows')
+  if (startingRect.top !== lastRectSameRow.top) throw new Error('found rectangles on different rows')
 
   return {
     top: startingRect.top,
@@ -57,18 +52,14 @@ export default function updateTopSelectedRow(
   issueBodyRef: React.MutableRefObject<HTMLDivElement>,
   topSelectedRow: null | { top: number; left: number; right: number }
 ) {
-  const toolbarElement = issueBodyRef.current!.querySelector(
-    'trix-toolbar'
-  ) as any
+  const toolbarElement = issueBodyRef.current!.querySelector('trix-toolbar') as any
 
   if (!topSelectedRow) {
     toolbarElement.style.display = 'none'
   } else {
     toolbarElement.style.display = 'block' // this has to go first so that the .trix-button-group is on the page so that its height & width can be measured
 
-    const toolbarButtonGroup = toolbarElement.querySelector(
-      '.trix-button-row > .trix-button-group'
-    )!
+    const toolbarButtonGroup = toolbarElement.querySelector('.trix-button-row > .trix-button-group')!
     const heightPixels = numPixels(toolbarButtonGroup, 'height')
     const widthPixels = numPixels(toolbarButtonGroup, 'width')
     const midpoint = (topSelectedRow.left + topSelectedRow.right) / 2

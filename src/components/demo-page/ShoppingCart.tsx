@@ -33,11 +33,7 @@ export const ShoppingCart = () => {
               <div className="text bold">FREE</div>
             </div>
           </div>
-          <button
-            className="checkout"
-            onClick={() => setCheckedOut(true)}
-            disabled={checkedOut}
-          >
+          <button className="checkout" onClick={() => setCheckedOut(true)} disabled={checkedOut}>
             {checkedOut ? (
               <>
                 <CircularProgress size="1rem" className="spinner" />

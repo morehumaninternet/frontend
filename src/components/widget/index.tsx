@@ -26,11 +26,7 @@ export default (props: WidgetProps) => {
   return (
     <div className="more-human-internet-widget-boundary" ref={ref as any}>
       <div
-        className={`more-human-internet-widget-container ${
-          open
-            ? 'more-human-internet-widget-container-open'
-            : 'more-human-internet-widget-container-closed'
-        }`}
+        className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
         onClick={() => !open && setOpen(true)}
       >
         <WidgetIcon open={open} />
@@ -39,16 +35,9 @@ export default (props: WidgetProps) => {
             <div className="more-human-internet-widget-editor">
               <TitleInput setIssueTitle={setIssueTitle} />
               {postAsNewIssue ? (
-                <CommentInput
-                  setIssueInitialCommentHtml={setIssueInitialCommentHtml}
-                />
+                <CommentInput setIssueInitialCommentHtml={setIssueInitialCommentHtml} />
               ) : (
-                <SimilarIssues
-                  issueTitleLongEnoughToSearchFor={
-                    issueTitleLongEnoughToSearchFor
-                  }
-                  similarIssuesState={similarIssuesState}
-                />
+                <SimilarIssues issueTitleLongEnoughToSearchFor={issueTitleLongEnoughToSearchFor} similarIssuesState={similarIssuesState} />
               )}
             </div>
             <ButtonGroup

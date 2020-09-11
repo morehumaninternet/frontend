@@ -10,13 +10,9 @@ type FileUploadButtonProps = {
   onNewFileName?: (fileName: Maybe<string>) => void
 }
 
-const fileNameOf = (filePath: Maybe<string>) =>
-  filePath && last(filePath.split(/(\/|\\)/))
+const fileNameOf = (filePath: Maybe<string>) => filePath && last(filePath.split(/(\/|\\)/))
 
-export default class FileUploadButton extends React.Component<
-  FileUploadButtonProps,
-  { fileName: Maybe<string> }
-> {
+export default class FileUploadButton extends React.Component<FileUploadButtonProps, { fileName: Maybe<string> }> {
   state = { fileName: null }
   inputReference: React.RefObject<HTMLInputElement> = React.createRef()
 
@@ -41,18 +37,10 @@ export default class FileUploadButton extends React.Component<
   render(): JSX.Element {
     return (
       <div className="file-upload-button-container">
-        <input
-          name={this.props.name}
-          type="file"
-          hidden
-          ref={this.inputReference}
-          onChange={this.fileUploadInputChange}
-        />
+        <input name={this.props.name} type="file" hidden ref={this.inputReference} onChange={this.fileUploadInputChange} />
         <Button type="button" onClick={this.onClick}>
           {this.state.fileName ? <Close className="close" /> : <CloudUpload />}
-          <span style={{ marginLeft: 8 }}>
-            {this.state.fileName || this.props.label}
-          </span>
+          <span style={{ marginLeft: 8 }}>{this.state.fileName || this.props.label}</span>
         </Button>
       </div>
     )
