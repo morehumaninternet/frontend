@@ -68,7 +68,7 @@ function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
     avatarUrl: 'https://github.com/will-weiss.png?size=71',
   }
   const title = opts.title || "Checkout isn't working"
-  const status = opts.status || 'Opened'
+  const status = opts.status || 'opened'
   const aggregates = opts.aggregates || {
     upvotes: { count: 1 },
     comments: { count: 1 },
@@ -82,18 +82,18 @@ function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
     id,
     title,
     site,
-    status: status,
+    status,
     initialReport: {
       by: user,
       timestamp: now,
     },
-    aggregates: aggregates,
+    aggregates,
     timeline: [
       {
         verb: 'change status',
         by: user,
         timestamp: now,
-        status: 'Opened',
+        status: 'opened',
       },
       {
         verb: 'comment',
@@ -124,15 +124,15 @@ export async function getSiteData(site: string): Promise<SiteData | null> {
   try {
     const issues = await searchIssues(site)
     return {
-      site: defaultSite,
+      site,
       maintainer: {
         avatarUrl: '/devdiva.png',
         username: 'devdiva22',
       },
       issues: {
-        opened: issues.filter(issue => issue.status === 'Opened'),
-        acknowledged: issues.filter(issue => issue.status === 'Acknowledged'),
-        closed: issues.filter(issue => issue.status === 'Closed'),
+        opened: issues.filter(issue => issue.status === 'opened'),
+        acknowledged: issues.filter(issue => issue.status === 'acknowledged'),
+        closed: issues.filter(issue => issue.status === 'closed'),
       },
     }
   } catch (err) {
@@ -236,7 +236,7 @@ function setDefaultIssues(): void {
   const IssuesData: ReadonlyArray<Partial<IssuePostBody>> = [
     {
       id: 500,
-      status: 'Opened',
+      status: 'opened',
       title: "Checking isn't working",
       aggregates: {
         upvotes: {
@@ -249,7 +249,7 @@ function setDefaultIssues(): void {
     },
     {
       id: 501,
-      status: 'Opened',
+      status: 'opened',
       title: "Your FAQ page talks about being able to customize the suit but I don't see how I can do that",
       aggregates: {
         upvotes: {
@@ -262,7 +262,7 @@ function setDefaultIssues(): void {
     },
     {
       id: 502,
-      status: 'Opened',
+      status: 'opened',
       title: 'Privacy is key. Can you turn off the auto post to facebook?',
       aggregates: {
         upvotes: {
@@ -275,7 +275,7 @@ function setDefaultIssues(): void {
     },
     {
       id: 503,
-      status: 'Acknowledged',
+      status: 'acknowledged',
       title: "The site doesn't work on mobile and it keeps crashing the browser",
       aggregates: {
         upvotes: {
@@ -288,7 +288,7 @@ function setDefaultIssues(): void {
     },
     {
       id: 504,
-      status: 'Acknowledged',
+      status: 'acknowledged',
       title: "I want to sync my other devices to the suit but I'm unable to get the goalibulator to work correctly",
       aggregates: {
         upvotes: {
@@ -301,7 +301,7 @@ function setDefaultIssues(): void {
     },
     {
       id: 505,
-      status: 'Closed',
+      status: 'closed',
       title: 'I keep getting a 401 error but when I reload the page it works fine.',
       aggregates: {
         upvotes: {
@@ -314,7 +314,7 @@ function setDefaultIssues(): void {
     },
     {
       id: 506,
-      status: 'Closed',
+      status: 'closed',
       title: "The Apple Pay feature doesn't function for some reason.",
       aggregates: {
         upvotes: {
@@ -327,7 +327,7 @@ function setDefaultIssues(): void {
     },
     {
       id: 507,
-      status: 'Closed',
+      status: 'closed',
       title: "The cart doesn't show anything after I tried adding the suit to my cart.",
       aggregates: {
         upvotes: {

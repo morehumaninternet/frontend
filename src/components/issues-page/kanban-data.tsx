@@ -4,13 +4,13 @@ import { Avatar } from '@material-ui/core'
 
 type KanbanDataProps = {
   maintainer: User
-  setSortBy: React.Dispatch<React.SetStateAction<SortIssuesBy>>
+  setSortBy: React.Dispatch<React.SetStateAction<SortIssuesOn>>
 }
 
 const KanbanData: React.FC<KanbanDataProps> = ({ maintainer, setSortBy }) => {
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault()
-    setSortBy(e.target.value)
+    setSortBy(e.target.value as SortIssuesOn)
   }
 
   return (

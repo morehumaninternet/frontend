@@ -3,17 +3,15 @@ import React from 'react'
 import KanbanColumn from './kanban-column'
 
 type KanbanBoardProps = {
-  openedIssues: readonly Issue[]
-  acknowledgedIssues: readonly Issue[]
-  closedIssues: readonly Issue[]
+  [k in IssueStatus]: readonly Issue[]
 }
 
-const KanbanBoard: React.FC<KanbanBoardProps> = ({ openedIssues, acknowledgedIssues, closedIssues }) => {
+const KanbanBoard: React.FC<KanbanBoardProps> = ({ opened, acknowledged, closed }) => {
   return (
     <div className="kanban">
-      <KanbanColumn title="Opened" issues={openedIssues} />
-      <KanbanColumn title="Acknowledged" issues={acknowledgedIssues} />
-      <KanbanColumn title="Closed" issues={closedIssues} />
+      <KanbanColumn title="opened" issues={opened} />
+      <KanbanColumn title="acknowledged" issues={acknowledged} />
+      <KanbanColumn title="closed" issues={closed} />
     </div>
   )
 }

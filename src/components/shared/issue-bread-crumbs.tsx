@@ -1,12 +1,9 @@
 import React from 'react'
 
-const IssueBreadcrumbs = ({ site, issueId }: { site: string; issueId?: number }): JSX.Element => {
+const IssueBreadcrumbs = ({ site, issueId, iconSrc = '/goalco.ico' }: { site: string; issueId?: number; iconSrc?: string }): JSX.Element => {
   return (
-    <div>
-      <div className="issue-breadcrumbs">
-        <img src="/goalco.ico" /> {site} / Issues {issueId && `/ ${issueId}`}
-      </div>
-      <div></div>
+    <div className="issue-breadcrumbs">
+      <img src={iconSrc} /> {site} / Issues {issueId && `/ ${issueId}`}
     </div>
   )
 }

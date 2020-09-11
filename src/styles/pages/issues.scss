@@ -46,6 +46,7 @@
           border-radius: 1rem 1rem 0 0;
           padding: 1rem;
           text-align: center;
+          text-transform: capitalize;
 
           &.opened {
             background-color: $human-pink;
@@ -77,10 +78,11 @@
             > .kanban-card-info {
               display: flex;
               justify-content: flex-start;
-            }
+              align-items: center;
 
-            > .kanban-card-info > * {
-              margin: 0.25rem;
+              > .kanban-card-upvotes, .kanban-card-comments {
+                margin: 0.25rem 0.5rem;
+              }
             }
           }
         }

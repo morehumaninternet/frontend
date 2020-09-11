@@ -7,9 +7,9 @@ type User = {
 
 type CurrentUser = { loaded: false } | { loaded: true; user: User }
 
-type IssueStatus = 'Opened' | 'Acknowledged' | 'Closed'
+type IssueStatus = 'opened' | 'acknowledged' | 'closed'
 
-type SortIssuesBy = 'Recent' | 'Upvotes' | 'Comments'
+type SortIssuesOn = 'Recent' | 'Upvotes' | 'Comments'
 
 type IssueComment = {
   html: string
@@ -55,8 +55,6 @@ type SiteData = {
   site: string
   maintainer: User
   issues: {
-    opened: readonly Issue[]
-    acknowledged: readonly Issue[]
-    closed: readonly Issue[]
+    [status in IssueStatus]: readonly Issue[]
   }
 }
