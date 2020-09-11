@@ -2,10 +2,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-type Links = React.DetailedHTMLProps<
-  React.LinkHTMLAttributes<HTMLLinkElement>,
-  HTMLLinkElement
->[]
+type Links = React.DetailedHTMLProps<React.LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>[]
 
 type SEOProps = {
   description?: string
@@ -58,9 +55,7 @@ export default function SEO(props: SEOProps) {
     `
   )
 
-  const title = pageTitle
-    ? `${pageTitle} | ${site.siteMetadata.title}`
-    : site.siteMetadata.title
+  const title = pageTitle ? `${pageTitle} | ${site.siteMetadata.title}` : site.siteMetadata.title
 
   const metaDescription = description || site.siteMetadata.description
 

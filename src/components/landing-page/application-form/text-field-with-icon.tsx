@@ -27,10 +27,7 @@ type TextFieldWithIconProps = TextFieldProps & {
   label?: string
 }
 
-class TextFieldWithIcon extends React.Component<
-  TextFieldWithIconProps,
-  { shrink: boolean }
-> {
+class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink: boolean }> {
   state = { shrink: false }
 
   shrinkLabel = (event: any) => {
@@ -46,15 +43,7 @@ class TextFieldWithIcon extends React.Component<
   }
 
   render() {
-    const {
-      classes,
-      endIcon,
-      autoComplete,
-      startIcon,
-      inputRef,
-      label,
-      ...other
-    } = this.props
+    const { classes, endIcon, autoComplete, startIcon, inputRef, label, ...other } = this.props
 
     return (
       <TextField
@@ -66,12 +55,8 @@ class TextFieldWithIcon extends React.Component<
         InputProps={{
           autoComplete,
           inputRef,
-          startAdornment: startIcon && (
-            <InputAdornment position="start">{startIcon}</InputAdornment>
-          ),
-          endAdornment: endIcon && (
-            <InputAdornment position="end">{endIcon}</InputAdornment>
-          ),
+          startAdornment: startIcon && <InputAdornment position="start">{startIcon}</InputAdornment>,
+          endAdornment: endIcon && <InputAdornment position="end">{endIcon}</InputAdornment>,
           inputProps: {
             'aria-label': label,
           },

@@ -42,9 +42,7 @@ function GithubAvatar({ username }: { username: null | string }): JSX.Element {
   // The display: 'none' trick is to put the underlying <img> on the page, forcing it to load
   return (
     <>
-      {!avatarLoaded && avatar && (
-        <div style={{ display: 'none' }}>{avatar}</div>
-      )}
+      {!avatarLoaded && avatar && <div style={{ display: 'none' }}>{avatar}</div>}
       {avatarLoaded && avatar ? avatar : githubIcon}
     </>
   )
@@ -56,17 +54,11 @@ type GithubInputProps = {
   onChange(): void
 }
 
-export default function GithubInput({
-  checking,
-  setChecking,
-  onChange: formOnChange,
-}: GithubInputProps): JSX.Element {
+export default function GithubInput({ checking, setChecking, onChange: formOnChange }: GithubInputProps): JSX.Element {
   const intl = useIntl()
   const inputRef: React.MutableRefObject<HTMLInputElement> = React.useRef() as any
   const [testingUsername, setTestingUsername] = React.useState<string>('')
-  const [confirmedUsername, setConfirmedUsername] = React.useState<
-    null | string
-  >(null)
+  const [confirmedUsername, setConfirmedUsername] = React.useState<null | string>(null)
 
   const [blur, setBlur] = React.useState(false)
   const [error, setError] = React.useState(false)
@@ -112,18 +104,8 @@ export default function GithubInput({
       setHelperText(null)
     } else if (testingUsername && !confirmedUsername && !checking) {
       setError(true)
-      setHelperText(
-        intl.formatMessage(
-          { id: 'github_input_could_not_find_1' },
-          { account: testingUsername }
-        )
-      )
-      inputRef.current?.setCustomValidity(
-        intl.formatMessage(
-          { id: 'github_input_could_not_find_2' },
-          { account: testingUsername }
-        )
-      )
+      setHelperText(intl.formatMessage({ id: 'github_input_could_not_find_1' }, { account: testingUsername }))
+      inputRef.current?.setCustomValidity(intl.formatMessage({ id: 'github_input_could_not_find_2' }, { account: testingUsername }))
     }
   }, [blur, testingUsername, confirmedUsername, checking])
 

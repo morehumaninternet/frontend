@@ -7,7 +7,7 @@ import CommentInput from './comment-input'
 import SimilarIssues from './similar-issues'
 import ButtonGroup from './button-group'
 import useWidgetState, { WidgetProps } from './useWidgetState'
-import onClickaway from '../../effects/onClickaway'
+import hasParent from '../../utils/hasParent'
 
 export default (props: WidgetProps) => {
   const ref = React.useRef<HTMLDivElement>()
@@ -26,17 +26,23 @@ export default (props: WidgetProps) => {
     issueTitleLongEnoughToSearchFor,
     reasonCantPostAsNewIssue,
   } = useWidgetState(props)
-  onClickaway(ref, () => setOpen(false))
+
+  React.useEffect(() => {
+    function listener(event: MouseEvent) {
+      if (!hasParent(event.target as any, ref.current!) && !hasParent(event.target as any, '.shepherd-content')) {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('click', listener)
+
+    return () => document.removeEventListener('click', listener)
+  })
 
   return (
-    <div className="more-human-internet-widget-boundary" ref={ref as any}>
+    <div className="more-human-internet-widget-boundary" ref={ref as any} onClick={() => !open && setOpen(true)}>
       <div
-        className={`more-human-internet-widget-container ${
-          open
-            ? 'more-human-internet-widget-container-open'
-            : 'more-human-internet-widget-container-closed'
-        }`}
-        onClick={() => !open && setOpen(true)}
+        className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >
         <WidgetIcon open={open} />
         {/* <IconButton onClick={() => setOpen(false)}>
@@ -55,18 +61,12 @@ export default (props: WidgetProps) => {
                 <>
                   <TitleInput setIssueTitle={setIssueTitle} />
                   {postAsNewIssue ? (
-                    <CommentInput
-                      setIssueInitialCommentHtml={setIssueInitialCommentHtml}
-                    />
+                    <CommentInput setIssueInitialCommentHtml={setIssueInitialCommentHtml} />
                   ) : (
                     <SimilarIssues
                       anyIssueTitle={anyIssueTitle}
-                      issueTitleLongEnoughToSubmit={
-                        issueTitleLongEnoughToSubmit
-                      }
-                      issueTitleLongEnoughToSearchFor={
-                        issueTitleLongEnoughToSearchFor
-                      }
+                      issueTitleLongEnoughToSubmit={issueTitleLongEnoughToSubmit}
+                      issueTitleLongEnoughToSearchFor={issueTitleLongEnoughToSearchFor}
                       similarIssuesState={similarIssuesState}
                     />
                   )}

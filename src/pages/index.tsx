@@ -19,8 +19,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
     let heroEndsAt = hero.offsetTop + hero.offsetHeight
 
     const onScroll = () => {
-      const headerIsFixed =
-        window.getComputedStyle(this.headerRef.current!).position === 'fixed'
+      const headerIsFixed = window.getComputedStyle(this.headerRef.current!).position === 'fixed'
       if (!headerIsFixed) {
         return setLogoFade(0)
       }
@@ -46,11 +45,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
 
   render(): JSX.Element {
     return (
-      <LayoutWithHeader
-        mainClassName="index"
-        logoAgainstHero={true}
-        headerRef={this.headerRef}
-      >
+      <LayoutWithHeader mainClassName="index" logoAgainstHero={true} headerRef={this.headerRef}>
         <SEO />
         <Hero additionalClassNames="index" heroRef={this.heroRef}>
           <h1 className="white">
@@ -86,11 +81,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
               </div>
               <div className="spacer"></div>
               <a href="https://github.com/will-weiss">
-                <Img
-                  alt="Will Weiss portrait"
-                  className="avatar"
-                  fixed={this.props.data.willAvatar.childImageSharp.fixed}
-                />
+                <Img alt="Will Weiss portrait" className="avatar" fixed={this.props.data.willAvatar.childImageSharp.fixed} />
               </a>
             </div>
             <h1 className="manifesto-item">

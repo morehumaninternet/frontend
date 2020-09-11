@@ -32,12 +32,8 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
   const [submitting, setSubmitting] = React.useState(false)
   const [postAsNewIssue, setPostAsNewIssue] = React.useState(false)
   const [issueTitle, setIssueTitle] = React.useState('')
-  const [issueInitialCommentHtml, setIssueInitialCommentHtml] = React.useState(
-    ''
-  )
-  const [similarIssuesState, setSimilarIssuesState] = React.useState<
-    SimilarIssuesState
-  >({ searching: false, similarIssues: [] })
+  const [issueInitialCommentHtml, setIssueInitialCommentHtml] = React.useState('')
+  const [similarIssuesState, setSimilarIssuesState] = React.useState<SimilarIssuesState>({ searching: false, similarIssues: [] })
 
   const anyIssueTitle = issueTitle.length > 0
   const issueTitleLongEnoughToSearchFor = issueTitle.length > 5

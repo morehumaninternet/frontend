@@ -1,15 +1,8 @@
-import React, { useState } from 'react'
-import Widget from '../components/widget'
+import React from 'react'
 import SEO from '../components/shared/seo'
-
-import GoalCoLogo from '../components/demo-page/goalco-logo'
-import CartButton from '../components/demo-page/cart-button'
-import AddToCart from '../components/demo-page/add-to-cart'
-import Checkout from '../components/demo-page/checkout'
+import DemoPageContents from '../components/demo-page/contents'
 
 export default function DemoPage(props: any): JSX.Element {
-  const [checkout, setCheckout] = useState(false)
-
   return (
     <div className="demo-page">
       <SEO
@@ -22,26 +15,18 @@ export default function DemoPage(props: any): JSX.Element {
             href: '/goalco.ico',
           },
           { rel: 'stylesheet', type: 'text/css', href: '/trix.css' },
+          {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: 'https://shepherdjs.dev/dist/css/shepherd.css',
+          },
         ]}
-        scripts={[{ type: 'text/javascript', src: '/trix.js' }]}
+        scripts={[
+          { type: 'text/javascript', src: '/trix.js' },
+          { type: 'text/javascript', src: 'https://shepherdjs.dev/dist/js/shepherd.min.js' },
+        ]}
       />
-      <header>
-        <GoalCoLogo />
-        <div className="links">
-          <a>Products</a>
-          <a>About Us</a>
-          <a>Contact</a>
-          <CartButton numberItems={checkout ? 1 : 0} />
-        </div>
-      </header>
-      <div className="demo-content-container">
-        {checkout ? (
-          <Checkout />
-        ) : (
-          <AddToCart onAddToCart={() => setCheckout(true)} />
-        )}
-      </div>
-      <Widget navigate={props.navigate} />
+      <DemoPageContents {...props} />
     </div>
   )
 }
