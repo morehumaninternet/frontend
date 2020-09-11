@@ -16,10 +16,7 @@ type SimilarIssuesProps = {
 
 function SimilarIssueLink({ issue }: { issue: Issue }): JSX.Element {
   return (
-    <Link
-      className="more-human-internet-similar-issue-link"
-      to={`/${useIntl().locale}/issue?site=${issue.site}&id=${issue.id}`}
-    >
+    <Link className="more-human-internet-similar-issue-link" to={`/${useIntl().locale}/issue?site=${issue.site}&id=${issue.id}`}>
       {issue.title}
     </Link>
   )
@@ -50,10 +47,7 @@ export default function SimilarIssues({
       {anyIssueTitle &&
         !issueTitleLongEnoughToSubmit &&
         (similarIssuesState.similarIssues.length ? (
-          <p>
-            Please choose from among the similar issues or specify your issue in
-            more detail to post it
-          </p>
+          <p>Please choose from among the similar issues or specify your issue in more detail to post it</p>
         ) : (
           <p>Please specify your issue in more detail to post it</p>
         ))}

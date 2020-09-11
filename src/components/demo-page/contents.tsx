@@ -14,10 +14,7 @@ export default function DemoPageContents(props: any): JSX.Element {
   useEffect(() => {
     tour!.start()
     tour!.once('complete', () => {
-      console.log('complete foo')
-      const postButton = document.querySelector(
-        'button.post'
-      ) as HTMLButtonElement
+      const postButton = document.querySelector('button.post') as HTMLButtonElement
       postButton.click() // tslint:disable-line:no-expression-statement
     })
   }, [])
@@ -33,13 +30,7 @@ export default function DemoPageContents(props: any): JSX.Element {
           <CartButton numberItems={checkout ? 1 : 0} />
         </div>
       </header>
-      <div className="demo-content-container">
-        {checkout ? (
-          <Checkout />
-        ) : (
-          <AddToCart onAddToCart={() => setCheckout(true)} />
-        )}
-      </div>
+      <div className="demo-content-container">{checkout ? <Checkout /> : <AddToCart onAddToCart={() => setCheckout(true)} />}</div>
       <Widget navigate={props.navigate} />
     </>
   )

@@ -2,11 +2,7 @@ import React from 'react'
 import { ShepherdTour } from 'react-shepherd'
 import delay from '../../utils/delay'
 
-export default function DemoTour({
-  children,
-}: {
-  children: React.ReactNode
-}): JSX.Element {
+export default function DemoTour({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <ShepherdTour
       tourOptions={{
@@ -45,9 +41,7 @@ export default function DemoTour({
           text: ['Suppose someone is shopping on your site...'],
           when: {
             hide() {
-              const addToCartButton = document.querySelector(
-                'button.add-to-cart'
-              ) as HTMLButtonElement
+              const addToCartButton = document.querySelector('button.add-to-cart') as HTMLButtonElement
               addToCartButton.click() // tslint:disable-line:no-expression-statement
             },
           },
@@ -60,9 +54,7 @@ export default function DemoTour({
           text: ['But when they click to checkout...'],
           when: {
             hide() {
-              const checkoutButton = document.querySelector(
-                'button.checkout'
-              ) as HTMLButtonElement
+              const checkoutButton = document.querySelector('button.checkout') as HTMLButtonElement
               checkoutButton.click() // tslint:disable-line:no-expression-statement
             },
           },
@@ -79,14 +71,10 @@ export default function DemoTour({
             element: '.more-human-internet-widget-boundary',
             on: 'bottom',
           },
-          text: [
-            'The issue may be reported with our widget that is layered on top your website with a few lines of embedded code.',
-          ],
+          text: ['The issue may be reported with our widget that is layered on top your website with a few lines of embedded code.'],
           when: {
             hide() {
-              const widgetBoundary = document.querySelector(
-                '.more-human-internet-widget-boundary'
-              ) as HTMLDivElement
+              const widgetBoundary = document.querySelector('.more-human-internet-widget-boundary') as HTMLDivElement
               widgetBoundary.click() // tslint:disable-line:no-expression-statement
             },
           },
@@ -102,9 +90,7 @@ export default function DemoTour({
           text: ['They type the issue they are seeing...'],
           when: {
             hide() {
-              const { editor } = document.querySelector(
-                '.more-human-internet-widget-editor-issue-title-input > trix-editor'
-              ) as any
+              const { editor } = document.querySelector('.more-human-internet-widget-editor-issue-title-input > trix-editor') as any
               editor.insertString('Checkout')
             },
           },
@@ -114,17 +100,11 @@ export default function DemoTour({
             element: '.more-human-internet-similar-issues',
             on: 'left',
           },
-          text: [
-            'If there are similar issues, they can select those rather than report a duplicate issue',
-          ],
+          text: ['If there are similar issues, they can select those rather than report a duplicate issue'],
           when: {
             hide() {
-              const { editor } = document.querySelector(
-                '.more-human-internet-widget-editor-issue-title-input > trix-editor'
-              ) as any
-              editor.insertString(
-                " isn't working for an American Express credit card"
-              )
+              const { editor } = document.querySelector('.more-human-internet-widget-editor-issue-title-input > trix-editor') as any
+              editor.insertString(" isn't working for an American Express credit card")
             },
           },
         },
@@ -133,14 +113,10 @@ export default function DemoTour({
             element: 'button.post',
             on: 'left',
           },
-          text: [
-            'When their issue is adequately specified they may post a new issue',
-          ],
+          text: ['When their issue is adequately specified they may post a new issue'],
           when: {
             hide() {
-              const postButton = document.querySelector(
-                'button.post'
-              ) as HTMLButtonElement
+              const postButton = document.querySelector('button.post') as HTMLButtonElement
               postButton.click() // tslint:disable-line:no-expression-statement
             },
           },
@@ -150,14 +126,10 @@ export default function DemoTour({
             element: '.more-human-internet-widget-editor-issue-body-input',
             on: 'left',
           },
-          text: [
-            'People give additional context to help developers pinpoint the issue. These templates may be configured for each site.',
-          ],
+          text: ['People give additional context to help developers pinpoint the issue. These templates may be configured for each site.'],
           when: {
             hide() {
-              const { editor } = document.querySelector(
-                '.more-human-internet-widget-editor-issue-body-input > trix-editor'
-              ) as any
+              const { editor } = document.querySelector('.more-human-internet-widget-editor-issue-body-input > trix-editor') as any
               editor.loadHTML(`
               <strong>Steps I followed</strong>
               <ol>
@@ -175,7 +147,6 @@ export default function DemoTour({
               <br>
               My purchase should have gone through and I should have received a confirmation email with the order details
               `)
-              // editor
             },
           },
         },
@@ -190,9 +161,7 @@ export default function DemoTour({
           when: {
             complete() {
               console.log('complete')
-              const postButton = document.querySelector(
-                'button.post'
-              ) as HTMLButtonElement
+              const postButton = document.querySelector('button.post') as HTMLButtonElement
               postButton.click() // tslint:disable-line:no-expression-statement
             },
           },

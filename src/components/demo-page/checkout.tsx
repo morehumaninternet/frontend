@@ -36,11 +36,7 @@ export const ShoppingCart = () => {
             <p>FREE 24 hour delivery anywhere on planet earth!</p>
           </div>
           <div className="checkout-container">
-            <button
-              className="checkout"
-              onClick={() => setCheckedOut(true)}
-              disabled={checkedOut}
-            >
+            <button className="checkout" onClick={() => setCheckedOut(true)} disabled={checkedOut}>
               {checkedOut ? (
                 <>
                   <CircularProgress size="1rem" className="spinner" />

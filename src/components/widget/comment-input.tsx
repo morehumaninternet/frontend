@@ -22,9 +22,7 @@ type CommentInputProps = {
   setIssueInitialCommentHtml(initialCommentHTML: string): void
 }
 
-export default function CommentInput({
-  setIssueInitialCommentHtml,
-}: CommentInputProps): JSX.Element {
+export default function CommentInput({ setIssueInitialCommentHtml }: CommentInputProps): JSX.Element {
   const ref: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
 
   React.useEffect(() => {
@@ -39,19 +37,12 @@ export default function CommentInput({
       updateTopSelectedRow(ref, null)
     })
 
-    editorElement.addEventListener(
-      'trix-change',
-      (event: { target: { value: string } }) => {
-        setIssueInitialCommentHtml(event.target.value)
-      }
-    )
+    editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
+      setIssueInitialCommentHtml(event.target.value)
+    })
   }, [])
 
   return (
-    <div
-      ref={ref as any}
-      className="more-human-internet-widget-editor-issue-body-input"
-      dangerouslySetInnerHTML={{ __html: `<trix-editor></trix-editor>` }}
-    />
+    <div ref={ref as any} className="more-human-internet-widget-editor-issue-body-input" dangerouslySetInnerHTML={{ __html: `<trix-editor></trix-editor>` }} />
   )
 }

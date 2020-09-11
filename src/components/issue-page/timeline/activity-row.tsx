@@ -3,11 +3,7 @@ import IssueStatusBadge from '../status-badge'
 import IssueTimestampText from './timestamp-text'
 import { Avatar } from '@material-ui/core'
 
-function IssueActivityChangeStatusRow({
-  activity,
-}: {
-  activity: IssueActivityChangeStatus
-}): JSX.Element {
+function IssueActivityChangeStatusRow({ activity }: { activity: IssueActivityChangeStatus }): JSX.Element {
   return (
     <div className="issue-activity change-status">
       <IssueStatusBadge status={activity.status} />
@@ -16,11 +12,7 @@ function IssueActivityChangeStatusRow({
   )
 }
 
-function IssueActivityCommentRow({
-  activity,
-}: {
-  activity: IssueActivityComment
-}): JSX.Element {
+function IssueActivityCommentRow({ activity }: { activity: IssueActivityComment }): JSX.Element {
   return (
     <div className="issue-activity comment">
       <Avatar src={activity.by.avatarUrl} />
@@ -34,11 +26,7 @@ function IssueActivityCommentRow({
   )
 }
 
-export default function IssueActivityRow({
-  activity,
-}: {
-  activity: IssueActivity
-}): JSX.Element {
+export default function IssueActivityRow({ activity }: { activity: IssueActivity }): JSX.Element {
   switch (activity.verb) {
     case 'change status':
       return <IssueActivityChangeStatusRow activity={activity} />

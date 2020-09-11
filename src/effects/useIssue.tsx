@@ -13,17 +13,10 @@ export type UseIssueDependencies = {
 export type UseIssueReturn = {
   issueState: IssueState
   postComment(user: User, comment: { html: string }): Promise<void>
-  changeStatus(
-    user: User,
-    status: IssueStatus,
-    comment: { html: string }
-  ): Promise<void>
+  changeStatus(user: User, status: IssueStatus, comment: { html: string }): Promise<void>
 }
 
-export default function useIssue({
-  params,
-  api,
-}: UseIssueDependencies): UseIssueReturn {
+export default function useIssue({ params, api }: UseIssueDependencies): UseIssueReturn {
   const [issueState, setIssueState] = React.useState<IssueState>({
     loading: true,
   })
@@ -36,16 +29,12 @@ export default function useIssue({
 
   function postComment(user: User, comment: { html: string }) {
     if (issueState.loading) {
-      throw new Error(
-        'Posting comments while the issue is loading should not be possible'
-      )
+      throw new Error('Posting comments while the issue is loading should not be possible')
     }
     const { issue } = issueState
 
     if (!issue) {
-      throw new Error(
-        'Posting comments for a nonexistent issue should not be possible'
-      )
+      throw new Error('Posting comments for a nonexistent issue should not be possible')
     }
 
     const nextTimeline: IssueTimeline = issue.timeline.concat([
@@ -78,22 +67,14 @@ export default function useIssue({
     })
   }
 
-  function changeStatus(
-    user: User,
-    status: IssueStatus,
-    comment: { html: string }
-  ) {
+  function changeStatus(user: User, status: IssueStatus, comment: { html: string }) {
     if (issueState.loading) {
-      throw new Error(
-        'Posting comments while the issue is loading should not be possible'
-      )
+      throw new Error('Posting comments while the issue is loading should not be possible')
     }
     const { issue } = issueState
 
     if (!issue) {
-      throw new Error(
-        'Posting comments for a nonexistent issue should not be possible'
-      )
+      throw new Error('Posting comments for a nonexistent issue should not be possible')
     }
 
     const now = new Date()

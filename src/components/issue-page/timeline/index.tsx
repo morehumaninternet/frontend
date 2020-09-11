@@ -8,11 +8,7 @@ export type IssueTimelineViewProps = {
   postComment: IssueAddCommentProps['postComment']
 }
 
-export default function IssueTimelineView({
-  avatarUrl,
-  timeline,
-  postComment,
-}: IssueTimelineViewProps): JSX.Element {
+export default function IssueTimelineView({ avatarUrl, timeline, postComment }: IssueTimelineViewProps): JSX.Element {
   return (
     <div className="issue-timeline">
       {timeline.map((activity, i) => (

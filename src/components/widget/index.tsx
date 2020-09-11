@@ -29,10 +29,7 @@ export default (props: WidgetProps) => {
 
   React.useEffect(() => {
     function listener(event: MouseEvent) {
-      if (
-        !hasParent(event.target as any, ref.current!) &&
-        !hasParent(event.target as any, '.shepherd-content')
-      ) {
+      if (!hasParent(event.target as any, ref.current!) && !hasParent(event.target as any, '.shepherd-content')) {
         setOpen(false)
       }
     }
@@ -43,17 +40,9 @@ export default (props: WidgetProps) => {
   })
 
   return (
-    <div
-      className="more-human-internet-widget-boundary"
-      ref={ref as any}
-      onClick={() => !open && setOpen(true)}
-    >
+    <div className="more-human-internet-widget-boundary" ref={ref as any} onClick={() => !open && setOpen(true)}>
       <div
-        className={`more-human-internet-widget-container ${
-          open
-            ? 'more-human-internet-widget-container-open'
-            : 'more-human-internet-widget-container-closed'
-        }`}
+        className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >
         <WidgetIcon open={open} />
         {/* <IconButton onClick={() => setOpen(false)}>
@@ -72,18 +61,12 @@ export default (props: WidgetProps) => {
                 <>
                   <TitleInput setIssueTitle={setIssueTitle} />
                   {postAsNewIssue ? (
-                    <CommentInput
-                      setIssueInitialCommentHtml={setIssueInitialCommentHtml}
-                    />
+                    <CommentInput setIssueInitialCommentHtml={setIssueInitialCommentHtml} />
                   ) : (
                     <SimilarIssues
                       anyIssueTitle={anyIssueTitle}
-                      issueTitleLongEnoughToSubmit={
-                        issueTitleLongEnoughToSubmit
-                      }
-                      issueTitleLongEnoughToSearchFor={
-                        issueTitleLongEnoughToSearchFor
-                      }
+                      issueTitleLongEnoughToSubmit={issueTitleLongEnoughToSubmit}
+                      issueTitleLongEnoughToSearchFor={issueTitleLongEnoughToSearchFor}
                       similarIssuesState={similarIssuesState}
                     />
                   )}

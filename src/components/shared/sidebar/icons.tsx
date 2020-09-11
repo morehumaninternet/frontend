@@ -61,10 +61,7 @@ export function IssuesIcon() {
 export function AddIcon() {
   return (
     <svg width={22} height={22} viewBox="0 0 22 22" fill="none">
-      <path
-        d="M22 9.72v2.56h-9.72V22H9.72v-9.72H0V9.72h9.72V0h2.56v9.72H22z"
-        fill="#fff"
-      />
+      <path d="M22 9.72v2.56h-9.72V22H9.72v-9.72H0V9.72h9.72V0h2.56v9.72H22z" fill="#fff" />
     </svg>
   )
 }

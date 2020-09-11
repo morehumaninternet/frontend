@@ -107,10 +107,7 @@ function getInLocalStorage(site: string, id: number): null | Issue {
 }
 
 function setInLocalStorage(issue: Issue): Issue {
-  localStorage.setItem(
-    demoIssuesLocalStorageKey(issue.site, issue.id),
-    JSON.stringify(issue)
-  )
+  localStorage.setItem(demoIssuesLocalStorageKey(issue.site, issue.id), JSON.stringify(issue))
   return issue
 }
 
@@ -119,10 +116,7 @@ export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
   return setInLocalStorage(createIssue(issuePostBody))
 }
 
-export async function getIssueBySiteAndId(
-  site: string,
-  id: number
-): Promise<null | Issue> {
+export async function getIssueBySiteAndId(site: string, id: number): Promise<null | Issue> {
   try {
     return getInLocalStorage(site, id) || createIssue({ id, site })
   } catch (err) {
@@ -130,17 +124,7 @@ export async function getIssueBySiteAndId(
   }
 }
 
-export async function postComment({
-  site,
-  id,
-  user,
-  comment,
-}: {
-  site: string
-  id: number
-  user: User
-  comment: { html: string }
-}): Promise<any> {
+export async function postComment({ site, id, user, comment }: { site: string; id: number; user: User; comment: { html: string } }): Promise<any> {
   const issue = (await getIssueBySiteAndId(site, id))!
 
   const nextTimeline: IssueTimeline = issue.timeline.concat([
@@ -207,9 +191,7 @@ export async function changeStatus({
   return setInLocalStorage(nextIssue)
 }
 
-export async function searchIssues(
-  title: string
-): Promise<ReadonlyArray<Issue>> {
+export async function searchIssues(title: string): Promise<ReadonlyArray<Issue>> {
   const search = new RegExp(title, 'i')
   const matches: Issue[] = [] // tslint:disable-line:readonly-array
   Object.keys(localStorage).forEach(key => {

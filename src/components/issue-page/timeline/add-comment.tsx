@@ -6,19 +6,14 @@ export type IssueAddCommentProps = {
   postComment(comment: { html: string }): Promise<void>
 }
 
-export default function IssueAddComment({
-  avatarUrl,
-  postComment,
-}: IssueAddCommentProps): JSX.Element {
+export default function IssueAddComment({ avatarUrl, postComment }: IssueAddCommentProps): JSX.Element {
   const ref: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
   const [submitting, setSubmitting] = React.useState(false)
   const [hasText, setHasText] = React.useState(false)
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const commentHtml: string = (event.target as any).elements.namedItem(
-      'comment'
-    ).value
+    const commentHtml: string = (event.target as any).elements.namedItem('comment').value
     setSubmitting(true)
     postComment({ html: commentHtml })
       .then(() => {
@@ -35,12 +30,9 @@ export default function IssueAddComment({
   React.useEffect(() => {
     ref.current!.querySelector('input')
     const editorElement = ref.current!.querySelector('trix-editor') as any
-    editorElement.addEventListener(
-      'trix-change',
-      (event: { target: { value: string } }) => {
-        setHasText(!!event.target.value)
-      }
-    )
+    editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
+      setHasText(!!event.target.value)
+    })
   }, [])
 
   return (
