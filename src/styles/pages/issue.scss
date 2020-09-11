@@ -20,7 +20,6 @@
 .layout.issue {
   > main {
     color: $human-blue;
-    margin: 0 150px;
 
     .issue-overview {
       display: flex;
@@ -49,32 +48,32 @@
             font-weight: 300;
             margin-bottom: 0;
           }
+        }
+      }
 
-          > .issue-action-buttons {
-            display: grid;
-            grid-auto-flow: column;
+      > .issue-action-buttons {
+        display: grid;
+        grid-auto-flow: column;
 
-            position: absolute;
-            right: 0px;
+        position: relative;
+        top: 30px;
 
-            > .issue-action-buttons__item {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: space-between;
-              margin-left: 1rem;
-            }
+        > .issue-action-buttons__item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          margin-left: 1rem;
+        }
 
-            > .issue-action-buttons__item button {
-              background: none;
-              color: inherit;
-              border: none;
-              padding: 0;
-              font: inherit;
-              cursor: pointer;
-              outline: inherit;
-            }
-          }
+        > .issue-action-buttons__item button {
+          background: none;
+          color: inherit;
+          border: none;
+          padding: 0;
+          font: inherit;
+          cursor: pointer;
+          outline: inherit;
         }
       }
     }

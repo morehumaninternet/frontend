@@ -4,6 +4,8 @@
   min-height: 100vh;
   font-family: 'Roboto';
 
+  display: flex;
+
   > header {
     display: flex;
     justify-content: space-between;
@@ -16,6 +18,13 @@
       > a {
         font-size: 14px;
         line-height: 16px;
+
+
+        @media (max-width: 540px) {
+          display: none;
+        }
+      }
+      > a, .cart-icon {
         margin: 18px;
       }
     }
@@ -54,6 +63,9 @@
     text-align: center;
     font-weight: bold;
     font-size: 18px;
+    &:enabled {
+      cursor: pointer;
+    }
     &:hover,
     &:active,
     &:focus {
@@ -64,7 +76,6 @@
   }
 
   button.checkout {
-    margin-top: 18px;
     margin-bottom: 18px;
     background: #fade60;
     border: none;
@@ -75,16 +86,21 @@
     text-align: center;
     font-weight: bold;
     font-size: 18px;
-
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    &:hover,
-    &:active,
-    &:focus {
-      outline: none;
+    &:enabled {
+      cursor: pointer;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: #000;
+        color: #fff;
+        outline: none;
+      }
     }
     &:disabled {
       background: #bababa;
@@ -95,146 +111,180 @@
     }
   }
 
-  > .demo-content {
-    padding-top: 150px;
-    padding-left: 200px;
+  > .demo-content-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 
-    > .product-page-container {
+    > .demo-content {
+      padding: 155px 75px;
       display: flex;
-      justify-content: center;
+      align-items: center;
 
-      .text {
-        width: 275px;
-        margin-top: 75px;
-
-        > h1 {
-          font-weight: 300;
-          font-size: 36px;
-          line-height: 42px;
-          text-align: left;
-          color: #000000;
-        }
-
-        > .reviews {
-          display: flex;
-          align-items: center;
-          padding-bottom: 10px;
-          > span {
-            margin-right: 10px;
-            font-weight: bold;
-            font-size: 14px;
-            line-height: 16px;
-          }
-        }
-
-        > p {
-          font-size: 16px;
-          line-height: 19px;
-        }
-
-        > .price {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          > h2 {
-            font-weight: normal;
-            font-size: 36px;
-            margin-bottom: 0px;
-          }
-        }
-
-        > .guarantee {
-          width: 40%;
-          font-size: 14px;
-          line-height: 16px;
-        }
-      }
-    }
-
-    > .shopping-cart-container {
-      margin-top: 75px;
-
-      > h1 {
-        font-weight: 300;
-        font-size: 36px;
-        line-height: 42px;
-        text-align: left;
-        color: #000000;
+      > .demo-content-inner {
+        padding: 25px;
       }
 
-      > .shopping-cart-contents {
-        display: flex;
-        justify-content: stretch;
+      &.add-to-cart {
+        > .demo-content-inner {
+          display: flex;
+          align-items: center;
 
-        /* description section */
-        .cart-item-container {
-          width: 600px;
-          margin-right: 20px;
+          > .text {
+            width: 275px;
 
-          > .cart-item {
-            display: flex;
-            background: #fff;
-            padding: 10px;
+            > h1 {
+              font-weight: 300;
+              font-size: 36px;
+              line-height: 42px;
+              text-align: left;
+              color: #000000;
+            }
 
-            > div {
-              flex: 1;
-              > .close {
-                text-align: right;
-              }
-              > .description {
-                padding-left: 25px;
-                font-size: 16px;
-                line-height: 19px;
-                > h3 {
-                  font-size: 36px;
-                  line-height: 42px;
-                  font-weight: normal;
+            > img.suit-intext {
+              display: none;
+            }
+
+            > .reviews {
+              margin-top: 24px;
+              margin-bottom: 12px;
+              display: flex;
+              align-items: center;
+              padding-bottom: 10px;
+              font-weight: bold;
+              font-size: 14px;
+              line-height: 16px;
+
+              > .star {
+                margin-right: 10px;
+                &:last-child {
+                  margin-right: 16px;
                 }
               }
             }
-          }
 
-          > p {
-            font-weight: bold;
-            font-size: 16px;
-            line-height: 19px;
-            text-align: center;
-            padding: 15px;
-          }
-        }
+            > p {
+              font-size: 16px;
+              line-height: 19px;
+            }
 
-        /* total section */
-        .checkout-container {
-          width: 300px;
-          display: flex;
-          flex-direction: column;
-
-          > .total-container {
-            display: flex;
-            flex-direction: column;
-            background: #fff;
-            padding: 24px;
-
-            > .line-item {
+            > .price {
               display: flex;
               justify-content: space-between;
-            }
-            > .cart-total {
-              font-size: 36px;
-              line-height: 42px;
+              align-items: center;
+
+              > h2 {
+                font-weight: normal;
+                font-size: 36px;
+                margin-bottom: 0px;
+              }
             }
           }
 
-          .text {
-            font-size: 16px;
-            line-height: 19px;
-            margin-top: 18px;
+          > .img-container > img.suit {
+            max-height: 55vh;
+            margin-left: 20px;
           }
 
-          .creditcards {
-            width: 220px;
-            height: 21px;
-            background: url('/creditcards.png');
+          @media (max-width: 700px) {
+            flex-direction: column;
+            align-items: center;
+
+            > .img-container > img.suit {
+              display: none;
+            }
+          }
+        }
+      }
+
+      &.checkout {
+        > .demo-content-inner {
+          > h1 {
+            font-weight: 300;
+            font-size: 36px;
+            line-height: 42px;
+            text-align: left;
+            color: #000000;
+          }
+
+          > .checkout-grid {
+            display: grid;
+            grid-column-gap: 1rem;
+            grid-row-gap: 1rem;
+            grid-template-columns: minmax(310px, 600px) 300px;
+
+            @media (max-width: 630px) {
+              grid-template-columns: 310px;
+
+              > .free-delivery {
+                display: none;
+              }
+            }
+
+            > .checkout-card {
+              display: flex;
+              background: #fff;
+
+              h3 {
+                font-size: 36px;
+                line-height: 42px;
+                font-weight: normal;
+              }
+
+              > .text {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+
+                font-size: 16px;
+                line-height: 19px;
+                > p {
+                  margin-bottom: 0;
+                }
+              }
+
+              &.description {
+                padding: 10px;
+                > .text {
+                  padding-left: 25px;
+                }
+              }
+
+              &.total {
+                display: flex;
+                flex-direction: column;
+                padding: 25px;
+
+                > .text {
+                  > .line-item {
+                    display: flex;
+                    justify-content: space-between;
+
+                    margin-bottom: 6px;
+                    &:last-child {
+                      margin-bottom: 0;
+                    }
+                  }
+                }
+              }
+            }
+
+            > .free-delivery {
+              > p {
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 19px;
+                text-align: center;
+                padding: 15px;
+              }
+            }
+
+            .creditcards {
+              width: 220px;
+              height: 21px;
+              background: url('/creditcards.png');
+            }
           }
         }
       }

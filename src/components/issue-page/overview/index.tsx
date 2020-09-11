@@ -11,9 +11,9 @@ export default function IssueOverview({ issue }: { issue: Issue }): JSX.Element 
         <div className="issue-title-row">
           <IssueStatusBadge status={issue.status} />
           <h2>{issue.title}</h2>
-          <IssueActionButtons aggregates={issue.aggregates} />
         </div>
       </div>
+      <IssueActionButtons aggregates={issue.aggregates} />
     </div>
   )
 }

@@ -15,23 +15,29 @@ export default function Sidebar({ location, currentUser }: SidebarProps): JSX.El
 
   return (
     <div className="sidebar">
-      <Link className="home-link" to="/" aria-label="More Human Internet Home">
-        <MoreHumanInternetLogo />
-      </Link>
-      <div className="other-links">
-        <Link to="/">
-          <HomeIcon open={false} />
-        </Link>
-        <Link to="/issues">
-          <IssuesIcon open={true} />
-        </Link>
-        <Link to="/">
-          <AddIcon open={false} />
-        </Link>
+      <div className="sidebar-contents">
+        <div className="sidebar-links">
+          <Link className="home-link" to="/" aria-label="More Human Internet Home">
+            <MoreHumanInternetLogo />
+          </Link>
+          <Link to="/" className="inactive">
+            <HomeIcon />
+            <span className="description">Home</span>
+          </Link>
+          <Link to="/issues" className="active">
+            <IssuesIcon />
+            <span className="description">Issues</span>
+          </Link>
+          <Link to="/" className="inactive">
+            <AddIcon />
+            <span className="description">Report</span>
+          </Link>
+          <Link to="/settings" className="settings">
+            <Avatar src={currentUser.loaded ? currentUser.user.avatarUrl : undefined} />
+            <span className="description">{currentUser.loaded && currentUser.user.username}</span>
+          </Link>
+        </div>
       </div>
-      <Link to="/settings">
-        <Avatar src={currentUser.loaded ? currentUser.user.avatarUrl : undefined} />
-      </Link>
     </div>
   )
 }

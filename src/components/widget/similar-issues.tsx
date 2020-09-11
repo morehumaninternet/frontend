@@ -1,22 +1,33 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { useIntl } from 'gatsby-plugin-intl'
 
-export type SimilarIssuesState = { searching: true } | { searching: false; similarIssues: Issue[] }
+export type SimilarIssuesState = {
+  searching: boolean
+  similarIssues: ReadonlyArray<Issue>
+}
 
 type SimilarIssuesProps = {
   similarIssuesState: SimilarIssuesState
+  anyIssueTitle: boolean
+  issueTitleLongEnoughToSubmit: boolean
   issueTitleLongEnoughToSearchFor: boolean
 }
 
 function SimilarIssueLink({ issue }: { issue: Issue }): JSX.Element {
   return (
-    <Link className="more-human-internet-similar-issue-link" to={`/issue?site=${issue.site}&id=${issue.id}`}>
+    <Link className="more-human-internet-similar-issue-link" to={`/${useIntl().locale}/issue?site=${issue.site}&id=${issue.id}`}>
       {issue.title}
     </Link>
   )
 }
 
-export default function SimilarIssues({ similarIssuesState, issueTitleLongEnoughToSearchFor }: SimilarIssuesProps): JSX.Element {
+export default function SimilarIssues({
+  similarIssuesState,
+  anyIssueTitle,
+  issueTitleLongEnoughToSubmit,
+  issueTitleLongEnoughToSearchFor,
+}: SimilarIssuesProps): JSX.Element {
   return (
     <div className="more-human-internet-similar-issues">
       {similarIssuesState.searching ? (
@@ -33,6 +44,13 @@ export default function SimilarIssues({ similarIssuesState, issueTitleLongEnough
       ) : (
         issueTitleLongEnoughToSearchFor && <p>No similar issues found</p>
       )}
+      {anyIssueTitle &&
+        !issueTitleLongEnoughToSubmit &&
+        (similarIssuesState.similarIssues.length ? (
+          <p>Please choose from among the similar issues or specify your issue in more detail to post it</p>
+        ) : (
+          <p>Please specify your issue in more detail to post it</p>
+        ))}
     </div>
   )
 }
