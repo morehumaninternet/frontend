@@ -70,7 +70,13 @@ export default function ApplicationForm(): JSX.Element {
         </label>
       </p>
       <FormGroup>
-        <TextFieldWithIcon label={intl.formatMessage({ id: 'application_form_name' })} name="name" variant="outlined" required startIcon={<Person />} />
+        <TextFieldWithIcon
+          label={intl.formatMessage({ id: 'application_form_name' })}
+          name="name"
+          variant="outlined"
+          required
+          startIcon={<Person className="person" />}
+        />
       </FormGroup>
       <FormGroup>
         <TextFieldWithIcon
