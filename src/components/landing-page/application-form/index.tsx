@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, FormGroup, TextField } from '@material-ui/core'
+import { Button, FormControlLabel, FormGroup, Radio, RadioGroup, TextField } from '@material-ui/core'
 import { Email, Person } from '@material-ui/icons'
 import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
@@ -11,6 +11,7 @@ export default function ApplicationForm(): JSX.Element {
 
   const formReference = React.useRef<HTMLFormElement>()
 
+  const [availability, setAvailability] = React.useState('signup')
   const [checking, setChecking] = React.useState(false)
   const [awaitingSubmit, setAwaitingSubmit] = React.useState(false)
 
@@ -35,6 +36,8 @@ export default function ApplicationForm(): JSX.Element {
   const ensureGithubUsernameOrResumePresent = () => {
     const githubUsername = inputElement('githubUsername')
     const resume = inputElement('resume')
+
+    if (availability !== 'volunteer') return githubUsername.setCustomValidity('')
 
     // If a githubUsername has been entered, defer to it to keep track of its custom validity
     if (githubUsername.value) return
@@ -78,34 +81,40 @@ export default function ApplicationForm(): JSX.Element {
           startIcon={<Email className="email" />}
         />
       </FormGroup>
-      <FormGroup className="stretch-row">
-        <GithubInput checking={checking} setChecking={setChecking} onChange={ensureGithubUsernameOrResumePresent} />
-        <div className="spaced-vertically-centered-text">
-          <FormattedMessage id="application_form_and_or" />
-        </div>
-        <FileUploadButton
-          name="resume"
-          label={intl.formatMessage({ id: 'application_form_resume' })}
-          onNewFileName={() => ensureGithubUsernameOrResumePresent()}
-        />
-      </FormGroup>
+      <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value)}>
+        <FormControlLabel value="signup" control={<Radio />} label="Sign me up for beta" />
+        <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" />
+      </RadioGroup>
+      <div className={availability === 'volunteer' ? '' : 'hide'}>
+        <FormGroup className="stretch-row">
+          <GithubInput checking={checking} setChecking={setChecking} onChange={ensureGithubUsernameOrResumePresent} />
+          <div className="spaced-vertically-centered-text">
+            <FormattedMessage id="application_form_and_or" />
+          </div>
+          <FileUploadButton
+            name="resume"
+            label={intl.formatMessage({ id: 'application_form_resume' })}
+            onNewFileName={() => ensureGithubUsernameOrResumePresent()}
+          />
+        </FormGroup>
+        <FormGroup>
+          <TextField
+            label={intl.formatMessage({ id: 'application_form_why' })}
+            name="whyJoin"
+            variant="outlined"
+            required
+            multiline
+            rows={5}
+            InputProps={{
+              inputProps: {
+                'aria-label': 'Why do you want to join?',
+              },
+            }}
+          />
+        </FormGroup>
+      </div>
       <FormGroup>
-        <TextField
-          label={intl.formatMessage({ id: 'application_form_why' })}
-          name="whyJoin"
-          variant="outlined"
-          required
-          multiline
-          rows={5}
-          InputProps={{
-            inputProps: {
-              'aria-label': 'Why do you want to join?',
-            },
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Button type="submit">
+        <Button type="submit" className="mhi-button">
           <FormattedMessage id="application_form_apply" />
         </Button>
       </FormGroup>

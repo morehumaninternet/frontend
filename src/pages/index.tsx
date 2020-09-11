@@ -56,7 +56,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
           </h2>
         </Hero>
         <div className="posthero">
-          <DesignsShowcase />
+          {/* <DesignsShowcase /> */}
           <div className="manifesto">
             <h1 className="manifesto-item">
               <FormattedMessage id="index_manifesto_header" />

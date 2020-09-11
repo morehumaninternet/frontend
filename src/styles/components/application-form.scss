@@ -12,10 +12,6 @@ form[name="submit-application"] {
 
   .MuiFormGroup-root {
     margin-bottom: 20px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 }
 
@@ -64,5 +60,15 @@ form[name="submit-application"] {
 .MuiOutlinedInput-root:hover {
   > .MuiOutlinedInput-notchedOutline {
     border-color: $human-blue;
+  }
+}
+
+.MuiRadio-colorSecondary {
+  &:hover {
+    background-color: $human-pink-faded;
+  }
+
+  &.Mui-checked {
+    color: $human-blue;
   }
 }
