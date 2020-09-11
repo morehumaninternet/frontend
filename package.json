@@ -23,8 +23,7 @@
     "react": "16.12.0",
     "react-axe": "3.5.3",
     "react-dom": "16.12.0",
-    "react-helmet": "6.1.0",
-    "react-shepherd": "^3.3.0"
+    "react-helmet": "6.1.0"
   },
   "devDependencies": {
     "@types/color": "3.0.1",

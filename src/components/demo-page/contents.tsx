@@ -1,22 +1,19 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { ShepherdTourContext } from 'react-shepherd'
+import React, { useState, useEffect } from 'react'
 import Widget from '../widget'
 
 import GoalCoLogo from './goalco-logo'
 import CartButton from './cart-button'
 import AddToCart from './add-to-cart'
 import Checkout from './checkout'
+import { startTour } from './tour'
 
 export default function DemoPageContents(props: any): JSX.Element {
   const [checkout, setCheckout] = useState(false)
-  const tour = useContext(ShepherdTourContext)
 
   useEffect(() => {
-    tour!.start()
-    tour!.once('complete', () => {
-      const postButton = document.querySelector('button.post') as HTMLButtonElement
-      postButton.click() // tslint:disable-line:no-expression-statement
-    })
+    if (typeof window !== 'undefined') {
+      startTour()
+    }
   }, [])
 
   return (
