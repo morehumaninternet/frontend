@@ -12,9 +12,11 @@ import KanbanData from '../components/issues-page/kanban-data'
 const IssuesPage = (props: { location: Location }): JSX.Element => {
   const currentUser = useCurrentUser()
 
-  const params = new URLSearchParams(location.search)
+  const params = new URLSearchParams(props.location.search)
   if (!params.get('site')) {
-    navigate('/404')
+    if (typeof window !== 'undefined') {
+      navigate('/404')
+    }
   }
   const site: string = String(params.get('site'))
 
@@ -43,7 +45,7 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
   }, [])
 
   return (
-    <LayoutWithSidebar mainClassName="issues" currentUser={currentUser} location={location}>
+    <LayoutWithSidebar mainClassName="issues" currentUser={currentUser} location={props.location}>
       <SEO pageTitle="Issues" />
       <IssueBreadcrumbs site={site} />
       {siteData ? (
