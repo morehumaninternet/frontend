@@ -12,6 +12,19 @@ form[name="submit-application"] {
 
   .MuiFormGroup-root {
     margin-bottom: 20px;
+
+    &.select {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      > label {
+        flex-grow: 0;
+      }
+      > .MuiInputBase-root {
+        margin-left: 10px;
+        flex-grow: 1;
+      }
+    }
   }
 }
 
