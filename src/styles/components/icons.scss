@@ -1,10 +1,17 @@
-.MuiSvgIcon-root,
+.MuiSvgIcon-root.person,
 .MuiAvatar-root.MuiAvatar-circle {
   width: 35px;
   height: 35px;
 }
 
 .MuiSvgIcon-root.email {
+  margin-top: 1px;
+  margin-left: 3px;
+  height: 29px;
+  width: 29px;
+}
+
+.MuiSvgIcon-root.employer {
   margin-top: 1px;
   margin-left: 3px;
   height: 29px;

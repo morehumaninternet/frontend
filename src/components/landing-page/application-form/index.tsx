@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Button, FormGroup, TextField } from '@material-ui/core'
-import { Email, Person } from '@material-ui/icons'
+import { Button, FormControlLabel, FormGroup, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from '@material-ui/core'
+import { Business, Email, Person } from '@material-ui/icons'
 import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
@@ -11,6 +11,7 @@ export default function ApplicationForm(): JSX.Element {
 
   const formReference = React.useRef<HTMLFormElement>()
 
+  const [availability, setAvailability] = React.useState('signup')
   const [checking, setChecking] = React.useState(false)
   const [awaitingSubmit, setAwaitingSubmit] = React.useState(false)
 
@@ -32,9 +33,12 @@ export default function ApplicationForm(): JSX.Element {
     return formReference.current!.elements.namedItem(name) as any
   }
 
-  const ensureGithubUsernameOrResumePresent = () => {
+  // Volunteers must include their github username or a resume
+  const volunteerRequirements = () => {
     const githubUsername = inputElement('githubUsername')
     const resume = inputElement('resume')
+
+    if (availability !== 'volunteer') return githubUsername.setCustomValidity('')
 
     // If a githubUsername has been entered, defer to it to keep track of its custom validity
     if (githubUsername.value) return
@@ -45,7 +49,7 @@ export default function ApplicationForm(): JSX.Element {
   }
 
   useEffect(() => {
-    ensureGithubUsernameOrResumePresent()
+    volunteerRequirements()
   })
 
   return (
@@ -66,7 +70,13 @@ export default function ApplicationForm(): JSX.Element {
         </label>
       </p>
       <FormGroup>
-        <TextFieldWithIcon label={intl.formatMessage({ id: 'application_form_name' })} name="name" variant="outlined" required startIcon={<Person />} />
+        <TextFieldWithIcon
+          label={intl.formatMessage({ id: 'application_form_name' })}
+          name="name"
+          variant="outlined"
+          required
+          startIcon={<Person className="person" />}
+        />
       </FormGroup>
       <FormGroup>
         <TextFieldWithIcon
@@ -78,34 +88,61 @@ export default function ApplicationForm(): JSX.Element {
           startIcon={<Email className="email" />}
         />
       </FormGroup>
-      <FormGroup className="stretch-row">
-        <GithubInput checking={checking} setChecking={setChecking} onChange={ensureGithubUsernameOrResumePresent} />
-        <div className="spaced-vertically-centered-text">
-          <FormattedMessage id="application_form_and_or" />
-        </div>
-        <FileUploadButton
-          name="resume"
-          label={intl.formatMessage({ id: 'application_form_resume' })}
-          onNewFileName={() => ensureGithubUsernameOrResumePresent()}
-        />
-      </FormGroup>
       <FormGroup>
-        <TextField
-          label={intl.formatMessage({ id: 'application_form_why' })}
-          name="whyJoin"
+        <TextFieldWithIcon
+          type="employer"
+          label={intl.formatMessage({ id: 'application_form_employer' })}
+          name="employer"
           variant="outlined"
           required
-          multiline
-          rows={5}
-          InputProps={{
-            inputProps: {
-              'aria-label': 'Why do you want to join?',
-            },
-          }}
+          startIcon={<Business className="employer" />}
         />
       </FormGroup>
+      <FormGroup className="select">
+        <InputLabel id="role-select-label">{intl.formatMessage({ id: 'application_form_role' })}</InputLabel>
+        <Select labelId="role-select-label" defaultValue="developer" onChange={volunteerRequirements}>
+          <MenuItem value="ceo/founder">{intl.formatMessage({ id: 'application_form_ceo/founder' })}</MenuItem>
+          <MenuItem value="business development">{intl.formatMessage({ id: 'application_form_business development' })}</MenuItem>
+          <MenuItem value="customer insights">{intl.formatMessage({ id: 'application_form_customer insights' })}</MenuItem>
+          <MenuItem value="designer">{intl.formatMessage({ id: 'application_form_designer' })}</MenuItem>
+          <MenuItem value="developer" selected>
+            {intl.formatMessage({ id: 'application_form_developer' })}
+          </MenuItem>
+          <MenuItem value="marketing">{intl.formatMessage({ id: 'application_form_marketing' })}</MenuItem>
+          <MenuItem value="product manager">{intl.formatMessage({ id: 'application_form_product manager' })}</MenuItem>
+          <MenuItem value="other">{intl.formatMessage({ id: 'application_form_other' })}</MenuItem>
+        </Select>
+      </FormGroup>
+      <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value)}>
+        <FormControlLabel value="signup" control={<Radio />} label="Sign me up for beta" />
+        <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" />
+      </RadioGroup>
+      <div className={availability === 'volunteer' ? '' : 'hide'}>
+        <FormGroup className="stretch-row">
+          <GithubInput checking={checking} setChecking={setChecking} onChange={volunteerRequirements} />
+          <div className="spaced-vertically-centered-text">
+            <FormattedMessage id="application_form_and_or" />
+          </div>
+          <FileUploadButton name="resume" label={intl.formatMessage({ id: 'application_form_resume' })} onNewFileName={() => volunteerRequirements()} />
+        </FormGroup>
+        <FormGroup>
+          <TextField
+            label={intl.formatMessage({ id: 'application_form_why' })}
+            name="whyJoin"
+            variant="outlined"
+            required={availability === 'volunteer'}
+            multiline
+            rows={5}
+            InputProps={{
+              inputProps: {
+                'aria-label': 'Why do you want to join?',
+              },
+            }}
+          />
+        </FormGroup>
+      </div>
       <FormGroup>
-        <Button type="submit">
+        <Button type="submit" className="mhi-button">
           <FormattedMessage id="application_form_apply" />
         </Button>
       </FormGroup>
