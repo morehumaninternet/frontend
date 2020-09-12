@@ -3,16 +3,17 @@ import { Link } from 'gatsby'
 
 type FooterRingsLinkState = { hover: boolean }
 
-function FooterRingsIcon({ hover }: FooterRingsLinkState) {
+function FooterRingsIcon({ hover }: FooterRingsLinkState): JSX.Element {
   const ref: React.MutableRefObject<SVGSVGElement> = React.useRef() as any
 
+  // tslint:disable-next-line:no-expression-statement
   React.useEffect(() => {
-    function onResize() {
+    function onResize(): void {
       const nextHeight = getComputedStyle(ref.current!).width
-      ref.current.style.height = nextHeight
+      ref.current.style.height = nextHeight // tslint:disable-line:no-expression-statement
     }
 
-    window.addEventListener('resize', onResize)
+    window.addEventListener('resize', onResize) // tslint:disable-line:no-expression-statement
 
     return () => window.removeEventListener('resize', onResize)
   })

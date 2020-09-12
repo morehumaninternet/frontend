@@ -1,6 +1,4 @@
 import React from 'react'
-import { IconButton } from '@material-ui/core'
-import { Close } from '@material-ui/icons'
 import WidgetIcon from './icon'
 import TitleInput from './title-input'
 import CommentInput from './comment-input'
@@ -9,7 +7,7 @@ import ButtonGroup from './button-group'
 import useWidgetState, { WidgetProps } from './useWidgetState'
 import hasParent from '../../utils/hasParent'
 
-export default (props: WidgetProps) => {
+export default (props: WidgetProps): JSX.Element => {
   const ref = React.useRef<HTMLDivElement>()
   const {
     open,
@@ -27,14 +25,15 @@ export default (props: WidgetProps) => {
     reasonCantPostAsNewIssue,
   } = useWidgetState(props)
 
+  // tslint:disable-next-line:no-expression-statement
   React.useEffect(() => {
-    function listener(event: MouseEvent) {
+    function listener(event: MouseEvent): void {
       if (!hasParent(event.target as any, ref.current!) && !hasParent(event.target as any, '.shepherd-content')) {
-        setOpen(false)
+        setOpen(false) // tslint:disable-line:no-expression-statement
       }
     }
 
-    document.addEventListener('click', listener)
+    document.addEventListener('click', listener) // tslint:disable-line:no-expression-statement
 
     return () => document.removeEventListener('click', listener)
   })
@@ -45,9 +44,6 @@ export default (props: WidgetProps) => {
         className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >
         <WidgetIcon open={open} />
-        {/* <IconButton onClick={() => setOpen(false)}>
-          <Close />
-        </IconButton> */}
         {open && (
           <div className="more-human-internet-widget-editor-container">
             <div className="more-human-internet-widget-editor">

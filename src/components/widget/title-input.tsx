@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement
 import React from 'react'
 
 function insideDiv(html: string): string {

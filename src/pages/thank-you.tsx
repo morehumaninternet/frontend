@@ -5,7 +5,7 @@ import Hero from '../components/shared/hero'
 import { LayoutWithHeader } from '../components/shared/layout'
 import SEO from '../components/shared/seo'
 
-export default function ThankYouPage() {
+export default function ThankYouPage(): JSX.Element {
   return (
     <LayoutWithHeader mainClassName="thank-you" logoAgainstHero={true}>
       <SEO pageTitle="Thank You" />

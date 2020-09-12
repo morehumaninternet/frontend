@@ -1,8 +1,6 @@
 import * as React from 'react'
 
-type TwitterLinkState = { hover: boolean }
-
-function TwitterIcon({ hover }: TwitterLinkState) {
+function TwitterIcon({ hover }: { hover: boolean }): JSX.Element {
   return (
     <svg className="twitter-icon" width="48px" height="48px" viewBox="0 0 48 48">
       <g fillRule="nonzero" stroke="none" strokeWidth={1} fill="none">
@@ -17,22 +15,18 @@ function TwitterIcon({ hover }: TwitterLinkState) {
   )
 }
 
-class TwitterLink extends React.Component<{}, TwitterLinkState> {
-  state: TwitterLinkState = { hover: false }
+export default function TwitterLink(): JSX.Element {
+  const [hover, setHover] = React.useState(false)
 
-  render(): JSX.Element {
-    return (
-      <a
-        className="footer-link"
-        href="https://twitter.com/morehumaninter1"
-        aria-label="Twitter"
-        onMouseEnter={() => this.setState({ hover: true })}
-        onMouseLeave={() => this.setState({ hover: false })}
-      >
-        <TwitterIcon hover={this.state.hover} />
-      </a>
-    )
-  }
+  return (
+    <a
+      className="footer-link"
+      href="https://twitter.com/morehumaninter1"
+      aria-label="Twitter"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <TwitterIcon hover={hover} />
+    </a>
+  )
 }
-
-export default TwitterLink

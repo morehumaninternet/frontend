@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function WidgetIcon({ open }: { open: boolean }) {
+export default function WidgetIcon({ open }: { open: boolean }): JSX.Element {
   if (!open) {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32">

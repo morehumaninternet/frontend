@@ -1,8 +1,6 @@
 import * as React from 'react'
 
-type GithubLinkState = { hover: boolean }
-
-function GithubIcon({ hover }: GithubLinkState) {
+function GithubIcon({ hover }: { hover: boolean }): JSX.Element {
   return (
     <svg width="48px" height="48px" viewBox="0 0 48 48">
       <path
@@ -16,22 +14,18 @@ function GithubIcon({ hover }: GithubLinkState) {
   )
 }
 
-class GithubLink extends React.Component<{}, GithubLinkState> {
-  state: GithubLinkState = { hover: false }
+export default function GithubLink(): JSX.Element {
+  const [hover, setHover] = React.useState(false)
 
-  render(): JSX.Element {
-    return (
-      <a
-        className="footer-link"
-        href="https://github.com/morehumaninternet"
-        aria-label="Github"
-        onMouseEnter={() => this.setState({ hover: true })}
-        onMouseLeave={() => this.setState({ hover: false })}
-      >
-        <GithubIcon hover={this.state.hover} />
-      </a>
-    )
-  }
+  return (
+    <a
+      className="footer-link"
+      href="https://github.com/morehumaninternet"
+      aria-label="Github"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <GithubIcon hover={hover} />
+    </a>
+  )
 }
-
-export default GithubLink

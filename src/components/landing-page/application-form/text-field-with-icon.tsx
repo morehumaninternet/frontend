@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement no-class no-this
 import React from 'react'
 
 import { TextField, TextFieldProps } from '@material-ui/core'
@@ -42,7 +43,7 @@ class TextFieldWithIcon extends React.Component<TextFieldWithIconProps, { shrink
     this.props.onBlur?.(event)
   }
 
-  render() {
+  render(): JSX.Element {
     const { classes, endIcon, autoComplete, startIcon, inputRef, label, ...other } = this.props
 
     return (

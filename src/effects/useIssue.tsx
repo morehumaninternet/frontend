@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement
 import React from 'react'
 import * as mockApi from '../clients/mockApi'
 
@@ -27,7 +28,7 @@ export default function useIssue({ params, api }: UseIssueDependencies): UseIssu
     })
   }, [params.site, params.issueId])
 
-  function postComment(user: User, comment: { html: string }) {
+  function postComment(user: User, comment: { html: string }): Promise<any> {
     if (issueState.loading) {
       throw new Error('Posting comments while the issue is loading should not be possible')
     }
@@ -67,7 +68,7 @@ export default function useIssue({ params, api }: UseIssueDependencies): UseIssu
     })
   }
 
-  function changeStatus(user: User, status: IssueStatus, comment: { html: string }) {
+  function changeStatus(user: User, status: IssueStatus, comment: { html: string }): Promise<any> {
     if (issueState.loading) {
       throw new Error('Posting comments while the issue is loading should not be possible')
     }

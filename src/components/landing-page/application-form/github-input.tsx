@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement no-class no-this
 import React from 'react'
 import axios from 'axios'
 import { last } from 'lodash'
@@ -5,7 +6,7 @@ import { Avatar } from '@material-ui/core'
 import { GitHub } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
 import debounceDefer from '../../../utils/debounceDefer'
-import { FormattedMessage, useIntl } from 'gatsby-plugin-intl'
+import { useIntl } from 'gatsby-plugin-intl'
 
 async function getUserByUsername(username: string): Promise<any> {
   if (!username) return null
@@ -64,7 +65,7 @@ export default function GithubInput({ checking, setChecking, onChange: formOnCha
   const [error, setError] = React.useState(false)
   const [helperText, setHelperText] = React.useState<null | string>(null)
 
-  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function onChange(event: React.ChangeEvent<HTMLInputElement>): void {
     const username = last(event.target.value.split('/'))!
     setTestingUsername(username)
     setConfirmedUsername(null)

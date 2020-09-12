@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CartIcon({ numberItems }: { numberItems: number }) {
+export default function CartIcon({ numberItems }: { numberItems: number }): JSX.Element {
   const countVisibility = numberItems > 0 ? 'visible' : 'hidden'
 
   return (

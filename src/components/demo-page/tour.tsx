@@ -1,8 +1,9 @@
+// tslint:disable:no-expression-statement no-this no-invalid-this
 import delay from '../../utils/delay'
 
 declare var Shepherd: any
 
-const steps = [
+const steps = Object.freeze([
   {
     text: [
       'With More Human Internet people using your site can let you know of any issues they are having, or features they would like to see, so that you can help them out',
@@ -15,7 +16,7 @@ const steps = [
     },
     text: ['Suppose someone is shopping on your site...'],
     when: {
-      hide() {
+      hide(): void {
         const addToCartButton = document.querySelector('button.add-to-cart') as HTMLButtonElement
         addToCartButton.click() // tslint:disable-line:no-expression-statement
       },
@@ -28,7 +29,7 @@ const steps = [
     },
     text: ['But when they click to checkout...'],
     when: {
-      hide() {
+      hide(): void {
         const checkoutButton = document.querySelector('button.checkout') as HTMLButtonElement
         checkoutButton.click() // tslint:disable-line:no-expression-statement
       },
@@ -48,14 +49,14 @@ const steps = [
     },
     text: ['The issue may be reported with our widget that is layered on top your website with a few lines of embedded code.'],
     when: {
-      hide() {
+      hide(): void {
         const widgetBoundary = document.querySelector('.more-human-internet-widget-boundary') as HTMLDivElement
         widgetBoundary.click() // tslint:disable-line:no-expression-statement
       },
     },
   },
   {
-    beforeShowPromise: function () {
+    beforeShowPromise(): Promise<any> {
       return delay(300)
     },
     attachTo: {
@@ -64,7 +65,7 @@ const steps = [
     },
     text: ['They type the issue they are seeing...'],
     when: {
-      hide() {
+      hide(): void {
         const { editor } = document.querySelector('.more-human-internet-widget-editor-issue-title-input > trix-editor') as any
         editor.insertString('Checkout')
       },
@@ -77,7 +78,7 @@ const steps = [
     },
     text: ['If there are similar issues, they can select those rather than report a duplicate issue'],
     when: {
-      hide() {
+      hide(): void {
         const { editor } = document.querySelector('.more-human-internet-widget-editor-issue-title-input > trix-editor') as any
         editor.insertString(" isn't working for an American Express credit card")
       },
@@ -90,7 +91,7 @@ const steps = [
     },
     text: ['When their issue is adequately specified they may post a new issue'],
     when: {
-      hide() {
+      hide(): void {
         const postButton = document.querySelector('button.post') as HTMLButtonElement
         postButton.click() // tslint:disable-line:no-expression-statement
       },
@@ -103,7 +104,7 @@ const steps = [
     },
     text: ['People give additional context to help developers pinpoint the issue. These templates may be configured for each site.'],
     when: {
-      hide() {
+      hide(): void {
         const { editor } = document.querySelector('.more-human-internet-widget-editor-issue-body-input > trix-editor') as any
         editor.loadHTML(`
         <strong>Steps I followed</strong>
@@ -131,17 +132,10 @@ const steps = [
       on: 'left',
     },
     text: ["When they're done they can post their issue. Notifications may be configured so that you're aware of this issue and can respond in near real-time"],
-    when: {
-      complete() {
-        console.log('complete')
-        const postButton = document.querySelector('button.post') as HTMLButtonElement
-        postButton.click() // tslint:disable-line:no-expression-statement
-      },
-    },
   },
-]
+])
 
-export function startTour() {
+export function startTour(): any {
   if (typeof Shepherd === 'undefined') {
     const script = document.querySelector('script[src="https://shepherdjs.dev/dist/js/shepherd.min.js"]') as HTMLScriptElement
     script.addEventListener('load', () => startTour())
@@ -155,14 +149,14 @@ export function startTour() {
         {
           classes: 'human-pink-bg',
           text: 'Exit',
-          action() {
+          action(): void {
             this.cancel()
           },
         },
         {
           classes: 'human-blue-bg',
           text: 'Next',
-          action() {
+          action(): void {
             this.next()
           },
         },

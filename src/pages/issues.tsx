@@ -22,9 +22,10 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
   const params = new URLSearchParams(props.location.search)
   if (!params.get('site')) {
     if (typeof window !== 'undefined') {
-      navigate('/404')
+      return navigate('/404'), (<></>)
     }
   }
+
   const site: string = String(params.get('site'))
 
   const [siteData, setSiteData] = useState<SiteData | null>(null)
@@ -33,8 +34,9 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
 
   const sortIssues = (issues: readonly Issue[]) => sortBy(issues, sortFns[sortOn])
 
+  // tslint:disable-next-line:no-expression-statement
   useEffect(() => {
-    getSiteData(site).then(setSiteData)
+    getSiteData(site).then(setSiteData) // tslint:disable-line:no-expression-statement
   }, [])
 
   return (

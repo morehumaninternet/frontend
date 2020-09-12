@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Star() {
+function Star(): JSX.Element {
   return (
     <svg className="star" width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -11,7 +11,7 @@ function Star() {
   )
 }
 
-function Reviews() {
+function Reviews(): JSX.Element {
   return (
     <div className="reviews">
       <Star />
@@ -24,7 +24,7 @@ function Reviews() {
   )
 }
 
-export default function AddToCart({ onAddToCart }: { onAddToCart: () => void }) {
+export default function AddToCart({ onAddToCart }: { onAddToCart: () => void }): JSX.Element {
   return (
     <div className="demo-content add-to-cart">
       <div className="demo-content-inner">

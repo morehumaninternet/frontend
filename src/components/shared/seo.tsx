@@ -2,15 +2,15 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-type Links = React.DetailedHTMLProps<React.LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>[]
+type Links = React.DetailedHTMLProps<React.LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>[] // tslint:disable-line:readonly-array
 
 type SEOProps = {
   description?: string
   lang?: string
-  meta?: any[]
+  meta?: readonly any[]
   pageTitle?: string
   links?: Links
-  scripts?: object[]
+  scripts?: readonly object[]
 }
 
 export const defaultLinks: Links = [
@@ -31,7 +31,7 @@ export const defaultLinks: Links = [
   { rel: 'mask-icon', color: '#5bbad5', href: '/safari-pinned-tab.svg' },
 ]
 
-export default function SEO(props: SEOProps) {
+export default function SEO(props: SEOProps): JSX.Element {
   const description = props.description || ''
   const lang = props.lang || 'en'
   const meta = props.meta || []

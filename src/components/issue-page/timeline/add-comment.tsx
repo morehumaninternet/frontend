@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement
 import React from 'react'
 import { Avatar, Button } from '@material-ui/core'
 
@@ -11,7 +12,7 @@ export default function IssueAddComment({ avatarUrl, postComment }: IssueAddComm
   const [submitting, setSubmitting] = React.useState(false)
   const [hasText, setHasText] = React.useState(false)
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault()
     const commentHtml: string = (event.target as any).elements.namedItem('comment').value
     setSubmitting(true)

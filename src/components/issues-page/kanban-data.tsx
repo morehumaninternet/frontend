@@ -9,8 +9,8 @@ type KanbanDataProps = {
 
 const KanbanData: React.FC<KanbanDataProps> = ({ maintainer, setSortBy }) => {
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault()
-    setSortBy(e.target.value as SortIssuesOn)
+    e.preventDefault() // tslint:disable-line:no-expression-statement
+    setSortBy(e.target.value as SortIssuesOn) // tslint:disable-line:no-expression-statement
   }
 
   return (

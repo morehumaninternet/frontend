@@ -1,15 +1,13 @@
 import React from 'react'
 import { LayoutWithSidebar } from '../components/shared/layout'
 import SEO, { defaultLinks } from '../components/shared/seo'
-import Hero from '../components/shared/hero'
-import { Avatar } from '@material-ui/core'
 import * as api from '../clients/mockApi'
 
 import setLogoFade from '../utils/setLogoFade'
 import LoadedIssue from '../components/issue-page'
-import useIssue, { IssueState, UseIssueReturn } from '../effects/useIssue'
+import useIssue from '../effects/useIssue'
 import useIssueParams, { IssueParams, IssueParamsOk } from '../effects/useIssueParams'
-import useCurrentUser, { CurrentUser } from '../effects/useCurrentUser'
+import useCurrentUser from '../effects/useCurrentUser'
 
 function Loading(): JSX.Element {
   return <p>Loading...</p>
@@ -48,11 +46,11 @@ function IssueContent({ issueParams, currentUser }: { issueParams: IssueParams; 
 
 export default function IssuePage(props: { location: Location }): JSX.Element {
   // TODO: use CSS to have a different variable on different pages
+  // tslint:disable-next-line:no-expression-statement
   React.useEffect(() => setLogoFade(1), [])
 
   const issueParams = useIssueParams(props)
   const currentUser = useCurrentUser()
-  const avatarUrl = currentUser.loaded ? currentUser.user.avatarUrl : undefined
 
   return (
     <LayoutWithSidebar mainClassName="issue" currentUser={currentUser} location={props.location}>

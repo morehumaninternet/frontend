@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement no-let
 import numPixels from '../../utils/numPixels'
 
 function* getSelectionClientRects(
@@ -51,7 +52,7 @@ export function getTopSelectedRow(editorElement: any): null | { top: number; lef
 export default function updateTopSelectedRow(
   issueBodyRef: React.MutableRefObject<HTMLDivElement>,
   topSelectedRow: null | { top: number; left: number; right: number }
-) {
+): void {
   const toolbarElement = issueBodyRef.current!.querySelector('trix-toolbar') as any
 
   if (!topSelectedRow) {

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export default function MacIcon(props?: any) {
+export default function MacIcon(props?: any): JSX.Element {
   return (
     <svg
       // width={1572}

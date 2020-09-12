@@ -15,17 +15,18 @@ export default function ApplicationForm(): JSX.Element {
   const [checking, setChecking] = React.useState(false)
   const [awaitingSubmit, setAwaitingSubmit] = React.useState(false)
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(event: React.FormEvent<HTMLFormElement>): void {
     if (checking) {
-      setAwaitingSubmit(true)
-      return event.preventDefault()
+      setAwaitingSubmit(true) // tslint:disable-line:no-expression-statement
+      event.preventDefault() // tslint:disable-line:no-expression-statement
     }
   }
 
+  // tslint:disable-next-line:no-expression-statement
   useEffect(() => {
     if (awaitingSubmit && !checking) {
       const submitButton: HTMLButtonElement = formReference.current!.querySelector('button[type="submit"]')! as any
-      submitButton.click()
+      return submitButton.click()
     }
   }, [awaitingSubmit, checking])
 
@@ -45,12 +46,11 @@ export default function ApplicationForm(): JSX.Element {
 
     // Otherwise, set the custom validity based on the existence of a resume
     const customValidity = resume.value ? '' : 'Please add your github username or upload a resume'
-    githubUsername.setCustomValidity(customValidity)
+    return githubUsername.setCustomValidity(customValidity)
   }
 
-  useEffect(() => {
-    volunteerRequirements()
-  })
+  // tslint:disable-next-line:no-expression-statement
+  useEffect(() => volunteerRequirements())
 
   return (
     <form

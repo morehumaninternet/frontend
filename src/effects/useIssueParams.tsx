@@ -14,6 +14,7 @@ export default function useIssueParams(props: { location: Location }): IssuePara
     state: 'checking',
   })
 
+  // tslint:disable-next-line:no-expression-statement
   React.useEffect(() => {
     const params = new URLSearchParams(props.location.search)
 
@@ -25,7 +26,7 @@ export default function useIssueParams(props: { location: Location }): IssuePara
       })
     }
 
-    const issueId = parseInt(params.get('id')!)
+    const issueId = parseInt(params.get('id')!, 10)
     if (!issueId) {
       return setIssueParams({
         state: 'not ok',

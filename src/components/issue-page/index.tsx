@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement
 import React from 'react'
 import IssueMetadata from './overview'
 import IssueTimelineView, { IssueTimelineViewProps } from './timeline'
@@ -9,7 +10,7 @@ export type LoadedIssueContentProps = {
   changeStatus(user: User, status: IssueStatus, comment: { html: string }): Promise<void>
 }
 
-function useDemo(issue: Issue, postComment: LoadedIssueContentProps['postComment'], changeStatus: LoadedIssueContentProps['changeStatus']) {
+function useDemo(issue: Issue, postComment: LoadedIssueContentProps['postComment'], changeStatus: LoadedIssueContentProps['changeStatus']): void {
   if (issue.status === 'opened') {
     setTimeout(() => {
       changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'acknowledged', {

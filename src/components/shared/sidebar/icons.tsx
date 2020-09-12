@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function MoreHumanInternetLogo() {
+export function MoreHumanInternetLogo(): JSX.Element {
   return (
     <svg width={111} height={38} viewBox="0 0 111 38" fill="none">
       <g>
@@ -36,7 +36,7 @@ export function MoreHumanInternetLogo() {
   )
 }
 
-export function HomeIcon() {
+export function HomeIcon(): JSX.Element {
   return (
     <svg width={26} height={22} viewBox="0 0 26 22" fill="none">
       <path
@@ -47,7 +47,7 @@ export function HomeIcon() {
   )
 }
 
-export function IssuesIcon() {
+export function IssuesIcon(): JSX.Element {
   return (
     <svg width={26} height={25} viewBox="0 0 26 25" fill="none">
       <path
@@ -58,7 +58,7 @@ export function IssuesIcon() {
   )
 }
 
-export function AddIcon() {
+export function AddIcon(): JSX.Element {
   return (
     <svg width={22} height={22} viewBox="0 0 22 22" fill="none">
       <path d="M22 9.72v2.56h-9.72V22H9.72v-9.72H0V9.72h9.72V0h2.56v9.72H22z" fill="#fff" />

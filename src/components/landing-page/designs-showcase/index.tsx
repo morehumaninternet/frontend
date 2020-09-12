@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement no-class no-this
 import React from 'react'
 import { forEach, max } from 'lodash'
 import numPixels from '../../../utils/numPixels'
@@ -63,7 +64,7 @@ export default class DesignsShowcase extends React.Component {
   explanationCardLeftOffset: number
   useCard: boolean
 
-  listenForArrowPress() {
+  listenForArrowPress(): void {
     addEventListener('keydown', event => {
       const up = event.keyCode === 38
       const down = event.keyCode === 40
@@ -89,7 +90,7 @@ export default class DesignsShowcase extends React.Component {
     })
   }
 
-  cacheElementsAndSettings() {
+  cacheElementsAndSettings(): void {
     this.designs = this.designsRef.current!
     this.designsContentContainer = this.designsContentContainerRef.current!
     this.designsContent = this.designsContentContainer.querySelector<HTMLDivElement>('.designs-content')!
@@ -116,7 +117,7 @@ export default class DesignsShowcase extends React.Component {
     this.isIPhone = navigator.userAgent.search('iPhone') >= 0
   }
 
-  cacheStyles() {
+  cacheStyles(): void {
     this.designsTop = this.designs.offsetTop
     this.designsBottom = this.designsTop + this.designs.offsetHeight
     this.isDesignsContentFlexRow = getComputedStyle(this.designsContent).flexDirection === 'row'
@@ -129,8 +130,8 @@ export default class DesignsShowcase extends React.Component {
   }
 
   // Workaround for bug described here https://stackoverflow.com/questions/19119910/safari-height-100-element-inside-a-max-height-element
-  safariWorkaround() {
-    let setHeightExplicitly = false
+  safariWorkaround(): void {
+    let setHeightExplicitly = false // tslint:disable-line:no-let
 
     if (this.isSafari) {
       if (!this.isIPhone || this.isDesignsContentFlexRow) {
@@ -147,9 +148,9 @@ export default class DesignsShowcase extends React.Component {
     return 'fixed'
   }
 
-  setContainerPosition() {
+  setContainerPosition(): void {
     this.containerPosition = this.nextContainerPosition()
-    const classes = ['static', 'fixed', 'absolute']
+    const classes = Object.freeze(['static', 'fixed', 'absolute'])
     classes.forEach(className => {
       if (className === this.containerPosition) {
         this.designsContentContainer.classList.add(className)
@@ -159,7 +160,7 @@ export default class DesignsShowcase extends React.Component {
     })
   }
 
-  setVisibleScreenIndex() {
+  setVisibleScreenIndex(): void {
     const scrolledPastDistance = scrollY - this.designsTop
     const totalDistanceToGo = this.designsBottom - this.designsTop - innerHeight
 
@@ -167,7 +168,7 @@ export default class DesignsShowcase extends React.Component {
     this.visibleScreenIndex = Math.min(this.screens.length - 1, Math.max(0, 1 + Math.floor(scrolledPastDistance / changeAtDistance)))
   }
 
-  showVisibleScreen() {
+  showVisibleScreen(): void {
     const stringIndex = String(this.visibleScreenIndex)
     forEach(this.screens, (screen, i) => {
       const show = screen.id[0] === stringIndex
@@ -175,7 +176,7 @@ export default class DesignsShowcase extends React.Component {
     })
   }
 
-  showVisibleExplanation() {
+  showVisibleExplanation(): void {
     const visibleExplanationIndex = this.visibleScreenIndex - 1
 
     forEach([this.explanationsCards, this.explanationsTexts], explanations => {
@@ -190,7 +191,7 @@ export default class DesignsShowcase extends React.Component {
     return max(Array.from(this.explanationsTexts).map(explanation => numPixels(explanation, 'height')))!
   }
 
-  styleExplanations() {
+  styleExplanations(): void {
     if (this.isDesignsContentFlexRow) {
       this.explanationsCards.forEach(card => (card.style.display = 'none'))
       this.explanationsTexts.forEach(text => (text.style.display = 'none'))
@@ -209,7 +210,7 @@ export default class DesignsShowcase extends React.Component {
     }
   }
 
-  onScroll() {
+  onScroll(): void {
     this.setContainerPosition()
     const lastVisibleScreenIndex = this.visibleScreenIndex
     this.setVisibleScreenIndex()
@@ -228,13 +229,13 @@ export default class DesignsShowcase extends React.Component {
     }
   }
 
-  onResize() {
+  onResize(): void {
     this.cacheStyles()
     this.safariWorkaround()
     this.onScroll()
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.cacheElementsAndSettings()
     this.onResize()
     window.addEventListener('resize', () => this.onResize())
@@ -242,11 +243,7 @@ export default class DesignsShowcase extends React.Component {
     this.listenForArrowPress()
   }
 
-  componentDidUpdate() {
-    // throw new Error('This component should never be updated by a parent')
-  }
-
-  render() {
+  render(): JSX.Element {
     return (
       <div className="designs" ref={this.designsRef}>
         <div className="designs-content-container static" ref={this.designsContentContainerRef}>

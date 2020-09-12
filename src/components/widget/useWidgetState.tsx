@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement
 import React from 'react'
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl'
 import { SimilarIssuesState } from './similar-issues'

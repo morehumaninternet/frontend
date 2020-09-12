@@ -10,9 +10,10 @@ import { startTour } from './tour'
 export default function DemoPageContents(props: any): JSX.Element {
   const [checkout, setCheckout] = useState(false)
 
+  // tslint:disable-next-line:no-expression-statement
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      startTour()
+      startTour() // tslint:disable-line:no-expression-statement
     }
   }, [])
 

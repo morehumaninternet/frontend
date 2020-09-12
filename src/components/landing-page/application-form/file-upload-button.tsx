@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement no-class no-this
 import React from 'react'
 import { last } from 'lodash'
 import { CloudUpload, Close } from '@material-ui/icons'

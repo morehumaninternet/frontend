@@ -1,3 +1,4 @@
+// tslint:disable:no-expression-statement no-class no-this
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
@@ -14,9 +15,9 @@ export default class IndexPage extends React.Component<{ data: any }> {
   headerRef = React.createRef<HTMLDivElement>()
   heroRef = React.createRef<HTMLDivElement>()
 
-  componentDidMount() {
+  componentDidMount(): void {
     const hero = this.heroRef.current!
-    let heroEndsAt = hero.offsetTop + hero.offsetHeight
+    let heroEndsAt = hero.offsetTop + hero.offsetHeight // tslint:disable-line:no-let
 
     const onScroll = () => {
       const headerIsFixed = window.getComputedStyle(this.headerRef.current!).position === 'fixed'
@@ -33,7 +34,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
       return setLogoFade(nextLogoFade)
     }
 
-    function onResize() {
+    function onResize(): void {
       heroEndsAt = hero.offsetTop + hero.offsetHeight
       onScroll()
     }

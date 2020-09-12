@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Logo({ againstHero }: { againstHero: boolean }) {
+export default function Logo({ againstHero }: { againstHero: boolean }): JSX.Element {
   return (
     <svg className={`header-logo ${againstHero ? 'against-hero' : 'against-white-bg'}`} width="138px" height="49px" viewBox="0 0 138 49">
       <g fillRule="nonzero" stroke="none" strokeWidth={1} fill="none">
