@@ -24,11 +24,14 @@ export const steps = Object.freeze([
     text: ['But when they click to checkout...'],
   },
   {
+    beforeShowPromise(): Promise<any> {
+      return delay(1500)
+    },
     attachTo: {
       element: 'button.checkout',
       on: 'bottom',
     },
-    text: ['Hm, this is taking longer than usual...'],
+    text: ['Hm, this is taking a bit long...'],
     ...withNextButton,
   },
   {
@@ -40,6 +43,7 @@ export const steps = Object.freeze([
     text: ["Let's report the issue. This widget can be layered on top your website with a few lines of embedded code."],
   },
   {
+    id: 'lets-write-issue-title',
     beforeShowPromise(): Promise<any> {
       return delay(300)
     },
@@ -47,39 +51,33 @@ export const steps = Object.freeze([
       element: '.more-human-internet-widget-editor-issue-title-input',
       on: 'left',
     },
-    text: ['They type the issue they are seeing...'],
-    when: {
-      hide(): void {
-        const { editor } = document.querySelector('.more-human-internet-widget-editor-issue-title-input > trix-editor') as any
-        editor.insertString('Checkout')
-      },
-    },
+    text: [`Let's write up the issue title. Type "Checkout" to continue`],
   },
   {
     attachTo: {
       element: '.more-human-internet-similar-issues',
       on: 'left',
     },
-    text: ['If there are similar issues, they can select those rather than report a duplicate issue'],
-    when: {
-      hide(): void {
-        const { editor } = document.querySelector('.more-human-internet-widget-editor-issue-title-input > trix-editor') as any
-        editor.insertString(" isn't working for an American Express credit card")
-      },
-    },
+    text: [
+      "We can see that similar issues have already been posted. We could choose from these, but they don't describe our issue. Let's write up the issue in more detail.",
+    ],
+    ...withNextButton,
   },
   {
+    id: 'lets-amend-issue-title',
     attachTo: {
-      element: 'button.post',
+      element: '.more-human-internet-widget-editor-issue-title-input',
       on: 'left',
     },
-    text: ['When their issue is adequately specified they may post a new issue'],
-    when: {
-      hide(): void {
-        const postButton = document.querySelector('button.post') as HTMLButtonElement
-        postButton.click() // tslint:disable-line:no-expression-statement
-      },
+    text: [`Include the information that you were trying to buy the "supersuit" to continue`],
+  },
+  {
+    id: 'post-as-new-issue',
+    attachTo: {
+      element: 'more-human-internet-widget-boundary',
+      on: 'left',
     },
+    text: ["Looks like that issue hasn't been reported before, let's post a new issue"],
   },
   {
     attachTo: {

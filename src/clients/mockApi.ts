@@ -122,7 +122,7 @@ export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
 
 export async function getSiteData(site: string): Promise<SiteData | null> {
   try {
-    const issues = await searchIssues(site)
+    const issues = await searchIssues({ site })
     return {
       site,
       maintainer: {
@@ -215,7 +215,7 @@ export async function changeStatus({
   return setInLocalStorage(nextIssue)
 }
 
-export async function searchIssues(site: string, title?: string): Promise<ReadonlyArray<Issue>> {
+export async function searchIssues({ site, title }: { site: string; title?: string }): Promise<ReadonlyArray<Issue>> {
   const localStorageSitePrefix = `${localStorageKeyPrefix}:${site}`
   const search = new RegExp(title || '.*', 'i')
   const matches: Issue[] = [] // tslint:disable-line:readonly-array
@@ -237,7 +237,7 @@ function setDefaultIssues(): void {
     {
       id: 500,
       status: 'opened',
-      title: "Checking isn't working",
+      title: "Checking isn't working when I try to buy the jetpack",
       aggregates: {
         upvotes: {
           count: 26,
@@ -335,6 +335,19 @@ function setDefaultIssues(): void {
         },
         comments: {
           count: 2,
+        },
+      },
+    },
+    {
+      id: 508,
+      status: 'opened',
+      title: "I tried to checkout to buy the moondust, but it didn't accept my card",
+      aggregates: {
+        upvotes: {
+          count: 29,
+        },
+        comments: {
+          count: 4,
         },
       },
     },

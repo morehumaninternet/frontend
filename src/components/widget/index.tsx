@@ -16,6 +16,7 @@ export default (props: WidgetProps): JSX.Element => {
     submitting,
     postAsNewIssue,
     setPostAsNewIssue,
+    issueTitle,
     setIssueTitle,
     setIssueInitialCommentHtml,
     similarIssuesState,
@@ -46,10 +47,28 @@ export default (props: WidgetProps): JSX.Element => {
   }
 
   React.useEffect(() => {
-    if (open && tour && tour.currentStep.id) {
+    if (open && tour && tour.currentStep.id === 'lets-report') {
       tour.next()
     }
   }, [open])
+
+  React.useEffect(() => {
+    if (issueTitle.trim().toLowerCase() === 'checkout' && tour && tour.currentStep.id === 'lets-write-issue-title') {
+      tour.next()
+    }
+  }, [issueTitle])
+
+  React.useEffect(() => {
+    if (issueTitle.toLowerCase().includes('supersuit') && tour && tour.currentStep.id === 'lets-amend-issue-title') {
+      tour.next()
+    }
+  }, [issueTitle])
+
+  React.useEffect(() => {
+    if (postAsNewIssue && tour && tour.currentStep.id === 'post-as-new-issue') {
+      tour.next()
+    }
+  }, [postAsNewIssue])
   // tslint:enable:no-expression-statement
 
   return (
