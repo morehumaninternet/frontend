@@ -11,9 +11,7 @@ export default function NewLandingPage(): JSX.Element {
   return (
     <ParallaxProvider>
       <LayoutWithNewHeader mainClassName="new-landing-page">
-        <div className="">
-
-        </div>
+        <div className=""></div>
         <div className="sky">
           <Stars />
           <div className="mountains-container">

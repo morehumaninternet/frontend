@@ -1,5 +1,5 @@
 // tslint:disable:no-expression-statement
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import IssueMetadata from './overview'
 import IssueTimelineView, { IssueTimelineViewProps } from './timeline'
 import { startTour } from './tour'

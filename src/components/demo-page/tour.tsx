@@ -1,26 +1,20 @@
-// tslint:disable:no-expression-statement no-this no-invalid-this
+// tslint:disable:no-expression-statement
 import delay from '../../utils/delay'
+import { withNextButton } from '../../effects/useTour'
 
-declare var Shepherd: any
-
-const steps = Object.freeze([
+export const steps = Object.freeze([
   {
     text: [
       'With More Human Internet people using your site can let you know of any issues they are having, or features they would like to see, so that you can help them out',
     ],
+    ...withNextButton,
   },
   {
     attachTo: {
       element: '.demo-content-inner',
       on: 'bottom',
     },
-    text: ['Suppose someone is shopping on your site...'],
-    when: {
-      hide(): void {
-        const addToCartButton = document.querySelector('button.add-to-cart') as HTMLButtonElement
-        addToCartButton.click() // tslint:disable-line:no-expression-statement
-      },
-    },
+    text: ['Suppose someone is shopping on your site, add the GoalCo 10× superpower suit to your cart to continue'],
   },
   {
     attachTo: {
@@ -135,44 +129,7 @@ const steps = Object.freeze([
   },
 ])
 
-export function startTour(): any {
-  if (typeof Shepherd === 'undefined') {
-    const script = document.querySelector('script[src="https://shepherdjs.dev/dist/js/shepherd.min.js"]') as HTMLScriptElement
-    script.addEventListener('load', () => startTour())
-    return
-  }
-
-  const tour = new Shepherd.Tour({
-    defaultStepOptions: {
-      cancelIcon: { enabled: true },
-      buttons: [
-        {
-          classes: 'human-pink-bg',
-          text: 'Exit',
-          action(): void {
-            this.cancel()
-          },
-        },
-        {
-          classes: 'human-blue-bg',
-          text: 'Next',
-          action(): void {
-            this.next()
-          },
-        },
-      ],
-    },
-    useModalOverlay: true,
-  })
-
-  steps.forEach(step => tour.addStep(step))
-
-  tour.once('complete', () => {
-    const postButton = document.querySelector('button.post') as HTMLButtonElement
-    postButton.click() // tslint:disable-line:no-expression-statement
-  })
-
-  tour.start()
-
-  return tour
+export function onComplete(): void {
+  const postButton = document.querySelector('button.post') as HTMLButtonElement
+  postButton.click()
 }

@@ -29,7 +29,7 @@ export default function AddToCart({ onAddToCart }: { onAddToCart: () => void }):
     <div className="demo-content add-to-cart">
       <div className="demo-content-inner">
         <div className="text">
-          <h1>The GoalCo 10X superpower suit</h1>
+          <h1>The GoalCo 10× superpower suit</h1>
           <div className="price">
             <h2>$365</h2>
             <button className="add-to-cart" onClick={() => onAddToCart()}>

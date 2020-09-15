@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { CircularProgress } from '@material-ui/core'
 
-export const ShoppingCart = () => {
-  const [checkedOut, setCheckedOut] = useState(false)
+export const ShoppingCart = ({ checkedOut, onCheckout }: { checkedOut: boolean; onCheckout(): void }) => {
   return (
     <div className="demo-content checkout">
       <div className="demo-content-inner">
@@ -13,7 +12,7 @@ export const ShoppingCart = () => {
             <div className="text">
               <h3>$365</h3>
               <p>
-                The GoalCo 10X
+                The GoalCo 10×
                 <br />
                 superpower suit
               </p>
@@ -36,7 +35,7 @@ export const ShoppingCart = () => {
             <p>FREE 24 hour delivery anywhere on planet earth!</p>
           </div>
           <div className="checkout-container">
-            <button className="checkout" onClick={() => setCheckedOut(true)} disabled={checkedOut}>
+            <button className="checkout" onClick={() => onCheckout()} disabled={checkedOut}>
               {checkedOut ? (
                 <>
                   <CircularProgress size="1rem" className="spinner" />

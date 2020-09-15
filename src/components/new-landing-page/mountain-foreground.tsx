@@ -2,12 +2,7 @@ import * as React from 'react'
 
 export default function MountainForeground(): JSX.Element {
   return (
-    <svg
-      viewBox="0 0 1440 397"
-      fill="none"
-      className="mountain-foreground"
-      preserveAspectRatio="none"
-    >
+    <svg viewBox="0 0 1440 397" fill="none" className="mountain-foreground" preserveAspectRatio="none">
       <path
         d="M231.751 165.522L3.162 2.259C1.777 1.269 1.085.775.542 1.054 0 1.334 0 2.184 0 3.886V394.5c0 .943 0 1.414.293 1.707.293.293.764.293 1.707.293h568.301c.943 0 1.414 0 1.707-.293.293-.293.293-.764.293-1.707V234.339c0-.649 0-.973-.169-1.226-.169-.252-.469-.376-1.069-.623l-210.666-86.775c-.259-.107-.389-.16-.526-.176-.138-.016-.276.006-.553.051l-126.087 20.28h-.001c-.4.064-.6.096-.792.051-.192-.045-.357-.163-.687-.399z"
         fill="url(#mountain-foreground_paint0_linear)"
