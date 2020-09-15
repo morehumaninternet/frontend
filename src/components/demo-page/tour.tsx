@@ -74,50 +74,17 @@ export const steps = Object.freeze([
   {
     id: 'post-as-new-issue',
     attachTo: {
-      element: 'more-human-internet-widget-boundary',
+      element: '.more-human-internet-widget-boundary',
       on: 'left',
     },
-    text: ["Looks like that issue hasn't been reported before, let's post a new issue"],
+    text: [`Looks like that issue hasn't been reported before, so click "Post as new issue" to continue`],
   },
   {
+    id: 'final-post',
     attachTo: {
-      element: '.more-human-internet-widget-editor-issue-body-input',
+      element: '.more-human-internet-widget-boundary',
       on: 'left',
     },
-    text: ['People give additional context to help developers pinpoint the issue. These templates may be configured for each site.'],
-    when: {
-      hide(): void {
-        const { editor } = document.querySelector('.more-human-internet-widget-editor-issue-body-input > trix-editor') as any
-        editor.loadHTML(`
-        <strong>Steps I followed</strong>
-        <ol>
-        <li>I added the Goalco supersuit to my cart</li>
-        <li>I entered in the credit card details for my American Express card</li>
-        <li>I clicked the checkout button</li>
-        </ol>
-
-        <strong>What I Observed</strong>
-        <br>
-        The spinner kept spinning endlessly
-        <br>
-        <br>
-        <strong>What I Expected</strong>
-        <br>
-        My purchase should have gone through and I should have received a confirmation email with the order details
-        `)
-      },
-    },
-  },
-  {
-    attachTo: {
-      element: 'button.post',
-      on: 'left',
-    },
-    text: ["When they're done they can post their issue. Notifications may be configured so that you're aware of this issue and can respond in near real-time"],
+    text: [`Let's give some additional context to help the site pinpoint the issue. When you're done click "Post" to continue`],
   },
 ])
-
-export function onComplete(): void {
-  const postButton = document.querySelector('button.post') as HTMLButtonElement
-  postButton.click()
-}

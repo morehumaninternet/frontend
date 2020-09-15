@@ -1,8 +1,9 @@
 // tslint:disable:no-expression-statement
-import React, { useEffect } from 'react'
+import React from 'react'
 import IssueMetadata from './overview'
 import IssueTimelineView, { IssueTimelineViewProps } from './timeline'
-import { startTour } from './tour'
+import * as tourArgs from './tour'
+import { useTour } from '../../effects/useTour'
 
 export type LoadedIssueContentProps = {
   avatarUrl?: string
@@ -32,11 +33,7 @@ function useDemo(issue: Issue, postComment: LoadedIssueContentProps['postComment
 export default function LoadedIssueContent({ avatarUrl, issue, postComment, changeStatus }: LoadedIssueContentProps): JSX.Element {
   useDemo(issue, postComment, changeStatus)
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      startTour() // tslint:disable-line:no-expression-statement
-    }
-  }, [])
+  const tour = useTour(tourArgs)
 
   return (
     <div className="issue-body">

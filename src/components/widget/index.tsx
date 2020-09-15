@@ -40,12 +40,6 @@ export default (props: WidgetProps): JSX.Element => {
     return () => document.removeEventListener('click', listener)
   })
 
-  const onBoundaryClick = () => {
-    if (!open) {
-      setOpen(true)
-    }
-  }
-
   React.useEffect(() => {
     if (open && tour && tour.currentStep.id === 'lets-report') {
       tour.next()
@@ -72,7 +66,7 @@ export default (props: WidgetProps): JSX.Element => {
   // tslint:enable:no-expression-statement
 
   return (
-    <div className="more-human-internet-widget-boundary" ref={ref as any} onClick={onBoundaryClick}>
+    <div className="more-human-internet-widget-boundary" ref={ref as any} onClick={() => !open && setOpen(true)}>
       <div
         className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >
@@ -106,7 +100,12 @@ export default (props: WidgetProps): JSX.Element => {
               <ButtonGroup
                 postAsNewIssue={postAsNewIssue}
                 reasonCantPostAsNewIssue={reasonCantPostAsNewIssue}
-                postIssue={postIssue}
+                postIssue={() => {
+                  if (tour) {
+                    tour.cancel() // tslint:disable-line:no-expression-statement
+                  }
+                  return postIssue()
+                }}
                 setPostAsNewIssue={setPostAsNewIssue}
               />
             )}
