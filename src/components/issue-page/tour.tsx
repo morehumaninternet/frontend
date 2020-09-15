@@ -34,7 +34,7 @@ const steps = Object.freeze([
         action(): void {
           this.next()
         },
-        disabled: true
+        disabled: true,
       },
     ],
   },
@@ -76,7 +76,7 @@ export function startTour(): any {
     postButton.click() // tslint:disable-line:no-expression-statement
   })
 
-  tour.start()  
+  tour.start()
 
   return tour
 }
