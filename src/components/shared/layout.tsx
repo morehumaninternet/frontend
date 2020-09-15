@@ -18,6 +18,11 @@ type LayoutWithHeaderProps = {
   headerRef?: React.RefObject<HTMLElement>
 }
 
+type LayoutWithNewHeaderProps = {
+  mainClassName: string
+  children: React.ReactNode
+}
+
 type LayoutWithSidebarProps = {
   mainClassName: string
   location: Location
@@ -47,6 +52,10 @@ export const LayoutWithHeader = ({ mainClassName, children, headerLinks, headerR
   >
     {children}
   </Layout>
+)
+
+export const LayoutWithNewHeader = ({ mainClassName, children }: LayoutWithNewHeaderProps) => (
+  <Layout additionalClassNames={mainClassName + ' has-header'}>{children}</Layout>
 )
 
 export const LayoutWithSidebar = ({ mainClassName, location, currentUser, children }: LayoutWithSidebarProps) => (
