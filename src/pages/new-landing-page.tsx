@@ -1,17 +1,34 @@
-// tslint:disable:no-expression-statement no-class no-this
 import React from 'react'
+import { Link } from 'gatsby'
+import { Button } from '@material-ui/core'
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
 import { LayoutWithNewHeader } from '../components/shared/layout'
 import Stars from '../components/new-landing-page/stars'
 import { MountainBackground1, MountainBackground2 } from '../components/new-landing-page/mountain-background'
 import MountainMidground from '../components/new-landing-page/mountain-midground'
 import MountainForeground from '../components/new-landing-page/mountain-foreground'
+import { useIntl } from 'gatsby-plugin-intl'
 
 export default function NewLandingPage(): JSX.Element {
   return (
     <ParallaxProvider>
       <LayoutWithNewHeader mainClassName="new-landing-page">
-        <div className=""></div>
+        <div className="rotating-content">
+          <div className="new-hero">
+            <h1>
+              The time has come for a<br />
+              more human internet
+            </h1>
+            <p>
+              We're on a quest to make the web more transparent
+              <br />
+              and better aligned with the interests of all people
+            </p>
+            <Button className="mhi-button" component={Link} to={`/${useIntl().locale}/demo`}>
+              See the demo
+            </Button>
+          </div>
+        </div>
         <div className="sky">
           <Stars />
           <div className="mountains-container">
