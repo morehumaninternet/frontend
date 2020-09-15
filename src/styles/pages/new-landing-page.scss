@@ -49,7 +49,24 @@ $mountain-size: 48vh;
       position: relative;
       top: -3px; // ugh
       height: 1630px;
+      width: 100vw;
       background-image: linear-gradient(to bottom, $human-blue, rgba(139, 160, 187, 1.0));
+
+      .astronaut {
+        width: 44.166666667%;
+
+        .cord {
+          // Looks off, might be some way of adding the cord in with an animation
+          display: none;
+        }
+      }
+
+      > .astronaut-star-group {
+        position: absolute;
+        left: 6.25%;
+        top: 0;
+        width: 36.736111111%;
+      }
     }
 
     .mountains-container {
