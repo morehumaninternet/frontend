@@ -56,8 +56,18 @@ export default function IssuePage(props: { location: Location }): JSX.Element {
     <LayoutWithSidebar mainClassName="issue" currentUser={currentUser} location={props.location}>
       <SEO
         pageTitle="Issue"
-        links={defaultLinks.concat([{ rel: 'stylesheet', type: 'text/css', href: '/trix.css' }])}
-        scripts={[{ type: 'text/javascript', src: '/trix.js' }]}
+        links={[
+          { rel: 'stylesheet', type: 'text/css', href: '/trix.css' },
+          {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: 'https://shepherdjs.dev/dist/css/shepherd.css',
+          },
+        ]}
+        scripts={[
+          { type: 'text/javascript', src: '/trix.js' },
+          { type: 'text/javascript', src: 'https://shepherdjs.dev/dist/js/shepherd.min.js' },
+        ]}
       />
       <IssueContent issueParams={issueParams} currentUser={currentUser} />
     </LayoutWithSidebar>
