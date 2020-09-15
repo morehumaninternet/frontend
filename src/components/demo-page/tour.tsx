@@ -22,32 +22,22 @@ export const steps = Object.freeze([
       on: 'bottom',
     },
     text: ['But when they click to checkout...'],
-    when: {
-      hide(): void {
-        const checkoutButton = document.querySelector('button.checkout') as HTMLButtonElement
-        checkoutButton.click() // tslint:disable-line:no-expression-statement
-      },
-    },
   },
   {
     attachTo: {
       element: 'button.checkout',
       on: 'bottom',
     },
-    text: ["The spinner doesn't stop spinning"],
+    text: ['Hm, this is taking longer than usual...'],
+    ...withNextButton,
   },
   {
+    id: 'lets-report',
     attachTo: {
       element: '.more-human-internet-widget-boundary',
       on: 'bottom',
     },
-    text: ['The issue may be reported with our widget that is layered on top your website with a few lines of embedded code.'],
-    when: {
-      hide(): void {
-        const widgetBoundary = document.querySelector('.more-human-internet-widget-boundary') as HTMLDivElement
-        widgetBoundary.click() // tslint:disable-line:no-expression-statement
-      },
-    },
+    text: ["Let's report the issue. This widget can be layered on top your website with a few lines of embedded code."],
   },
   {
     beforeShowPromise(): Promise<any> {

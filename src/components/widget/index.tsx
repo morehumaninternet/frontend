@@ -8,6 +8,7 @@ import useWidgetState, { WidgetProps } from './useWidgetState'
 import hasParent from '../../utils/hasParent'
 
 export default (props: WidgetProps): JSX.Element => {
+  const { tour } = props
   const ref = React.useRef<HTMLDivElement>()
   const {
     open,
@@ -25,7 +26,7 @@ export default (props: WidgetProps): JSX.Element => {
     reasonCantPostAsNewIssue,
   } = useWidgetState(props)
 
-  // tslint:disable-next-line:no-expression-statement
+  // tslint:disable:no-expression-statement
   React.useEffect(() => {
     function listener(event: MouseEvent): void {
       if (!hasParent(event.target as any, ref.current!) && !hasParent(event.target as any, '.shepherd-content')) {
@@ -38,8 +39,21 @@ export default (props: WidgetProps): JSX.Element => {
     return () => document.removeEventListener('click', listener)
   })
 
+  const onBoundaryClick = () => {
+    if (!open) {
+      setOpen(true)
+    }
+  }
+
+  React.useEffect(() => {
+    if (open && tour && tour.currentStep.id) {
+      tour.next()
+    }
+  }, [open])
+  // tslint:enable:no-expression-statement
+
   return (
-    <div className="more-human-internet-widget-boundary" ref={ref as any} onClick={() => !open && setOpen(true)}>
+    <div className="more-human-internet-widget-boundary" ref={ref as any} onClick={onBoundaryClick}>
       <div
         className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >

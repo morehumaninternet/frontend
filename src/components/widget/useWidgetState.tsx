@@ -9,7 +9,7 @@ import useCurrentUser from '../../effects/useCurrentUser'
 
 const searchIssues = debounceDefer(mockApi.searchIssues, 200)
 
-export type WidgetProps = { navigate: (href: string) => void }
+export type WidgetProps = { tour: any; navigate: (href: string) => void }
 
 export type WidgetState = {
   open: boolean

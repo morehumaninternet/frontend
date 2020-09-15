@@ -41,7 +41,7 @@ export default function DemoPageContents(props: any): JSX.Element {
       <div className="demo-content-container">
         {checkout ? <Checkout checkedOut={checkedOut} onCheckout={() => setCheckedOut(true)} /> : <AddToCart onAddToCart={() => setCheckout(true)} />}
       </div>
-      <Widget navigate={props.navigate} />
+      <Widget tour={tour} navigate={props.navigate} />
     </>
   )
 }
