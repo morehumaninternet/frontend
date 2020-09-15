@@ -5,17 +5,27 @@ import GoalCoLogo from './goalco-logo'
 import CartButton from './cart-button'
 import AddToCart from './add-to-cart'
 import Checkout from './checkout'
-import { startTour } from './tour'
+import * as tourArgs from './tour'
+import { useTour } from '../../effects/useTour'
 
 export default function DemoPageContents(props: any): JSX.Element {
   const [checkout, setCheckout] = useState(false)
+  const [checkedOut, setCheckedOut] = useState(false)
+  const tour = useTour(tourArgs)
 
-  // tslint:disable-next-line:no-expression-statement
+  // tslint:disable:no-expression-statement
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      startTour() // tslint:disable-line:no-expression-statement
+    if (checkout) {
+      tour.next()
     }
-  }, [])
+  }, [checkout])
+
+  useEffect(() => {
+    if (checkedOut) {
+      tour.next()
+    }
+  }, [checkedOut])
+  // tslint:enable:no-expression-statement
 
   return (
     <>
@@ -28,8 +38,10 @@ export default function DemoPageContents(props: any): JSX.Element {
           <CartButton numberItems={checkout ? 1 : 0} />
         </div>
       </header>
-      <div className="demo-content-container">{checkout ? <Checkout /> : <AddToCart onAddToCart={() => setCheckout(true)} />}</div>
-      <Widget navigate={props.navigate} />
+      <div className="demo-content-container">
+        {checkout ? <Checkout checkedOut={checkedOut} onCheckout={() => setCheckedOut(true)} /> : <AddToCart onAddToCart={() => setCheckout(true)} />}
+      </div>
+      <Widget tour={tour} navigate={props.navigate} />
     </>
   )
 }

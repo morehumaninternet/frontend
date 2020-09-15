@@ -6,8 +6,10 @@ import SimilarIssues from './similar-issues'
 import ButtonGroup from './button-group'
 import useWidgetState, { WidgetProps } from './useWidgetState'
 import hasParent from '../../utils/hasParent'
+import { letsReportStep, letsWriteIssueTitleStep, letsAmendIssueTitleStep, postAsNewIssueStep } from '../demo-page/tour'
 
 export default (props: WidgetProps): JSX.Element => {
+  const { tour } = props
   const ref = React.useRef<HTMLDivElement>()
   const {
     open,
@@ -15,6 +17,7 @@ export default (props: WidgetProps): JSX.Element => {
     submitting,
     postAsNewIssue,
     setPostAsNewIssue,
+    issueTitle,
     setIssueTitle,
     setIssueInitialCommentHtml,
     similarIssuesState,
@@ -25,7 +28,7 @@ export default (props: WidgetProps): JSX.Element => {
     reasonCantPostAsNewIssue,
   } = useWidgetState(props)
 
-  // tslint:disable-next-line:no-expression-statement
+  // tslint:disable:no-expression-statement
   React.useEffect(() => {
     function listener(event: MouseEvent): void {
       if (!hasParent(event.target as any, ref.current!) && !hasParent(event.target as any, '.shepherd-content')) {
@@ -37,6 +40,31 @@ export default (props: WidgetProps): JSX.Element => {
 
     return () => document.removeEventListener('click', listener)
   })
+
+  React.useEffect(() => {
+    if (open && tour && tour.currentStep.id === letsReportStep.id) {
+      tour.next()
+    }
+  }, [open])
+
+  React.useEffect(() => {
+    if (issueTitle.trim().toLowerCase() === 'checkout' && tour && tour.currentStep.id === letsWriteIssueTitleStep.id) {
+      tour.next()
+    }
+  }, [issueTitle])
+
+  React.useEffect(() => {
+    if (issueTitle.toLowerCase().includes('supersuit') && tour && tour.currentStep.id === letsAmendIssueTitleStep.id) {
+      tour.next()
+    }
+  }, [issueTitle])
+
+  React.useEffect(() => {
+    if (postAsNewIssue && tour && tour.currentStep.id === postAsNewIssueStep.id) {
+      tour.next()
+    }
+  }, [postAsNewIssue])
+  // tslint:enable:no-expression-statement
 
   return (
     <div className="more-human-internet-widget-boundary" ref={ref as any} onClick={() => !open && setOpen(true)}>
@@ -73,7 +101,12 @@ export default (props: WidgetProps): JSX.Element => {
               <ButtonGroup
                 postAsNewIssue={postAsNewIssue}
                 reasonCantPostAsNewIssue={reasonCantPostAsNewIssue}
-                postIssue={postIssue}
+                postIssue={() => {
+                  if (tour) {
+                    tour.cancel() // tslint:disable-line:no-expression-statement
+                  }
+                  return postIssue()
+                }}
                 setPostAsNewIssue={setPostAsNewIssue}
               />
             )}

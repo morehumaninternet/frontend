@@ -9,7 +9,7 @@ import useCurrentUser from '../../effects/useCurrentUser'
 
 const searchIssues = debounceDefer(mockApi.searchIssues, 200)
 
-export type WidgetProps = { navigate: (href: string) => void }
+export type WidgetProps = { tour: any; navigate: (href: string) => void }
 
 export type WidgetState = {
   open: boolean
@@ -17,6 +17,7 @@ export type WidgetState = {
   submitting: boolean
   postAsNewIssue: boolean
   setPostAsNewIssue(postAsNewIssue: boolean): void
+  issueTitle: string
   setIssueTitle(issueTitle: string): void
   setIssueInitialCommentHtml(issueInitialCommentHtml: string): void
   similarIssuesState: SimilarIssuesState
@@ -57,7 +58,7 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
     setSubmitting(true)
 
     const issue = await mockApi.postIssue({
-      site: 'goalco.com',
+      site: mockApi.defaultSite,
       title: issueTitle,
       user: currentUser.user,
       initialCommentHtml: issueInitialCommentHtml,
@@ -70,7 +71,7 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
     setPostAsNewIssue(false)
     if (issueTitleLongEnoughToSearchFor) {
       setSimilarIssuesState({ searching: true, similarIssues: [] })
-      searchIssues(issueTitle).then(similarIssues =>
+      searchIssues({ site: mockApi.defaultSite, title: issueTitle }).then(similarIssues =>
         setSimilarIssuesState({
           searching: false,
           similarIssues,
@@ -90,6 +91,7 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
     submitting,
     postAsNewIssue,
     setPostAsNewIssue,
+    issueTitle,
     setIssueTitle,
     setIssueInitialCommentHtml,
     similarIssuesState,

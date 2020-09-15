@@ -1,6 +1,7 @@
 import React from 'react'
 import SEO from '../components/shared/seo'
 import DemoPageContents from '../components/demo-page/contents'
+import { scriptSrc, stylesHref } from '../effects/useTour'
 
 export default function DemoPage(props: any): JSX.Element {
   return (
@@ -18,12 +19,12 @@ export default function DemoPage(props: any): JSX.Element {
           {
             rel: 'stylesheet',
             type: 'text/css',
-            href: 'https://shepherdjs.dev/dist/css/shepherd.css',
+            href: stylesHref,
           },
         ]}
         scripts={[
           { type: 'text/javascript', src: '/trix.js' },
-          { type: 'text/javascript', src: 'https://shepherdjs.dev/dist/js/shepherd.min.js' },
+          { type: 'text/javascript', src: scriptSrc },
         ]}
       />
       <DemoPageContents {...props} />

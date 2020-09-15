@@ -49,7 +49,7 @@ export default function IssueAddComment({ avatarUrl, postComment }: IssueAddComm
           `,
         }}
       />
-      <Button type="submit" disabled={submitting || !hasText}>
+      <Button className="mhi-button" type="submit" disabled={submitting || !hasText}>
         Add Comment
       </Button>
     </form>
