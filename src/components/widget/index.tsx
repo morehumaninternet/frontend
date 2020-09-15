@@ -6,6 +6,7 @@ import SimilarIssues from './similar-issues'
 import ButtonGroup from './button-group'
 import useWidgetState, { WidgetProps } from './useWidgetState'
 import hasParent from '../../utils/hasParent'
+import { letsReportStep, letsWriteIssueTitleStep, letsAmendIssueTitleStep, postAsNewIssueStep } from '../demo-page/tour'
 
 export default (props: WidgetProps): JSX.Element => {
   const { tour } = props
@@ -41,25 +42,25 @@ export default (props: WidgetProps): JSX.Element => {
   })
 
   React.useEffect(() => {
-    if (open && tour && tour.currentStep.id === 'lets-report') {
+    if (open && tour && tour.currentStep.id === letsReportStep.id) {
       tour.next()
     }
   }, [open])
 
   React.useEffect(() => {
-    if (issueTitle.trim().toLowerCase() === 'checkout' && tour && tour.currentStep.id === 'lets-write-issue-title') {
+    if (issueTitle.trim().toLowerCase() === 'checkout' && tour && tour.currentStep.id === letsWriteIssueTitleStep.id) {
       tour.next()
     }
   }, [issueTitle])
 
   React.useEffect(() => {
-    if (issueTitle.toLowerCase().includes('supersuit') && tour && tour.currentStep.id === 'lets-amend-issue-title') {
+    if (issueTitle.toLowerCase().includes('supersuit') && tour && tour.currentStep.id === letsAmendIssueTitleStep.id) {
       tour.next()
     }
   }, [issueTitle])
 
   React.useEffect(() => {
-    if (postAsNewIssue && tour && tour.currentStep.id === 'post-as-new-issue') {
+    if (postAsNewIssue && tour && tour.currentStep.id === postAsNewIssueStep.id) {
       tour.next()
     }
   }, [postAsNewIssue])
