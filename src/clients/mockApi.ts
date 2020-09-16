@@ -206,8 +206,15 @@ export async function changeStatus({
     },
   ])
 
+  const nextAggregates = {
+    ...issue.aggregates,
+    comments: { ...issue.aggregates.comments },
+  }
+  nextAggregates.comments.count += 1
+
   const nextIssue: Issue = {
     ...issue,
+    aggregates: nextAggregates,
     status,
     timeline: nextTimeline,
   }
