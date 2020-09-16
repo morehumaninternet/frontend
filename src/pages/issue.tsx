@@ -1,6 +1,6 @@
 import React from 'react'
 import { LayoutWithSidebar } from '../components/shared/layout'
-import SEO, { defaultLinks } from '../components/shared/seo'
+import SEO from '../components/shared/seo'
 import * as api from '../clients/mockApi'
 
 import setLogoFade from '../utils/setLogoFade'
@@ -8,6 +8,7 @@ import LoadedIssue from '../components/issue-page'
 import useIssue from '../effects/useIssue'
 import useIssueParams, { IssueParams, IssueParamsOk } from '../effects/useIssueParams'
 import useCurrentUser from '../effects/useCurrentUser'
+import { scriptSrc, stylesHref } from '../effects/useTour'
 
 function Loading(): JSX.Element {
   return <p>Loading...</p>
@@ -56,8 +57,18 @@ export default function IssuePage(props: { location: Location }): JSX.Element {
     <LayoutWithSidebar mainClassName="issue" currentUser={currentUser} location={props.location}>
       <SEO
         pageTitle="Issue"
-        links={defaultLinks.concat([{ rel: 'stylesheet', type: 'text/css', href: '/trix.css' }])}
-        scripts={[{ type: 'text/javascript', src: '/trix.js' }]}
+        links={[
+          { rel: 'stylesheet', type: 'text/css', href: '/trix.css' },
+          {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: stylesHref,
+          },
+        ]}
+        scripts={[
+          { type: 'text/javascript', src: '/trix.js' },
+          { type: 'text/javascript', src: scriptSrc },
+        ]}
       />
       <IssueContent issueParams={issueParams} currentUser={currentUser} />
     </LayoutWithSidebar>

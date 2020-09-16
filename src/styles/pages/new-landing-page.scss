@@ -1,0 +1,114 @@
+$mountain-size: 48vh;
+
+.layout.new-landing-page {
+  > main {
+    position: absolute;
+
+    > .rotating-content {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      text-align: center;
+
+      > .new-hero {
+        color: white;
+        > h1 {
+          color: white;
+          font-size: 2em;
+          font-weight: 300;
+        }
+        > .mhi-button {
+          font-weight: bold;
+          padding: 1em 3em;
+        }
+      }
+    }
+
+    > .sky {
+      position: relative;
+      background-image: linear-gradient(to bottom, $human-blue, $human-pink);
+      min-height: 788px;
+      height: 110vh;
+      width: 100vw;
+
+      > .stars {
+        position: relative;
+        left: 4.027777778;
+        top: 19.416243655%;
+        width: 94.236111111%;
+      }
+    }
+
+    .post-sky1 {
+      position: relative;
+      top: -3px; // ugh
+      height: 1630px;
+      width: 100vw;
+      background-image: linear-gradient(to bottom, $human-blue, rgba(139, 160, 187, 1.0));
+
+      .astronaut {
+        width: 44.166666667%;
+
+        .cord {
+          // Looks off, might be some way of adding the cord in with an animation
+          display: none;
+        }
+      }
+
+      > .astronaut-star-group {
+        position: absolute;
+        left: 6.25%;
+        top: 0;
+        width: 36.736111111%;
+      }
+    }
+
+    .mountains-container {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
+
+    .mountains {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      max-height: $mountain-size;
+      width: 100%;
+    }
+
+    .mountain-placeholder {
+      width: 100%;
+      max-height: $mountain-size;
+    }
+
+    .mountain-foreground {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      max-height: $mountain-size;
+    }
+
+    .mountain-midground {
+      width: 100%;
+      max-height: 0.8 * $mountain-size;
+    }
+
+    .mountain-background1 {
+      width: 28%;
+      max-height: 0.8 * $mountain-size;
+    }
+
+    .mountain-background2 {
+      width: 100%;
+      max-height: 0.8 * $mountain-size;
+    }
+  }
+}

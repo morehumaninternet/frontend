@@ -31,7 +31,6 @@ header.layout-header {
     position: absolute;
   }
 
-
   // When against a hero, we use the --logo-color-blue-white to fade from white to blue as the user scrolls past the hero
   // Otherwise, against a white background, we just use blue as the non-pink color
   > a.home-link {
@@ -59,6 +58,38 @@ header.layout-header {
           .more, .internet { fill: $human-blue; }
         }
       }
+    }
+  }
+}
+
+header.layout-new-header {
+  height: $header-height;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  padding-top: $nonhero-margin + 5px;
+  padding-bottom: $nonhero-margin + 10px;
+
+  z-index: 100;
+
+  @include header-width(padding);
+
+  @media (max-width: $breakpoint-header-scrolls) {
+    position: absolute;
+  }
+
+  > a {
+    color: white;
+
+    &.active {
+      border-bottom: 2px $human-pink solid;
+    }
+
+    &[href="/"] {
+      margin-top: -12px;
     }
   }
 }

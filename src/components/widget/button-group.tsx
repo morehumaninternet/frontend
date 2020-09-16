@@ -24,11 +24,11 @@ export default function ButtonGroup({ postAsNewIssue, reasonCantPostAsNewIssue, 
         </Button>
       )}
       {postAsNewIssue ? (
-        <Button className="post" onClick={() => postIssue()}>
+        <Button className="post mhi-button" onClick={() => postIssue()}>
           Post
         </Button>
       ) : (
-        <Button className="post" disabled={!!reasonCantPostAsNewIssue} onClick={() => setPostAsNewIssue(true)}>
+        <Button className="post mhi-button" disabled={!!reasonCantPostAsNewIssue} onClick={() => setPostAsNewIssue(true)}>
           Post as new issue
         </Button>
       )}
