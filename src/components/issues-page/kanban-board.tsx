@@ -1,9 +1,15 @@
 import React from 'react'
+import { cloneDeep } from 'lodash'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 
 import KanbanColumn from './kanban-column'
 import useCurrentUser from '../../effects/useCurrentUser'
 import { changeStatus } from '../../clients/mockApi'
+
+type MutableFilteredIssues = {
+  // tslint:disable-next-line: readonly-array
+  [status in IssueStatus]: Issue[]
+}
 
 type KanbanBoardProps = {
   siteData: SiteData
@@ -34,31 +40,28 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ siteData, setSiteData }) => {
     const destinationStatus = destination.droppableId as IssueStatus
     const issue: Issue = siteData.issues[sourceStatus][source.index]
 
-    // tslint:disable-next-line: no-expression-statement
-    changeStatus({
-      site: issue.site,
-      id: issue.id,
-      user: currentUser.user,
-      status: destinationStatus,
-      comment: { html: `<div>Changed status from ${sourceStatus} to ${destinationStatus}</div>` },
-    })
-
-    const newIssues = {
-      opened: [...siteData.issues.opened],
-      acknowledged: [...siteData.issues.acknowledged],
-      closed: [...siteData.issues.closed],
+    if (sourceStatus !== destinationStatus) {
+      // tslint:disable-next-line: no-expression-statement
+      changeStatus({
+        site: issue.site,
+        id: issue.id,
+        user: currentUser.user,
+        status: destinationStatus,
+        comment: { html: `<div>Changed status from ${sourceStatus} to ${destinationStatus}</div>` },
+      })
     }
 
+    const newIssues = cloneDeep(siteData.issues) as MutableFilteredIssues
+
     // Removing the issue from the source column and inserting it to the destination column
-    // tslint:disable-next-line: no-expression-statement
+    // tslint:disable:no-expression-statement
     newIssues[sourceStatus].splice(source.index, 1)
-    // tslint:disable-next-line: no-expression-statement
     newIssues[destinationStatus].splice(destination.index, 0, issue)
-    // tslint:disable-next-line: no-expression-statement
     setSiteData({
       ...siteData,
       issues: newIssues,
     })
+    // tslint:enable:no-expression-statement
   }
 
   return (

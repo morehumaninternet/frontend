@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash'
 import delay from '../utils/delay'
 
 // tslint:disable:no-expression-statement
@@ -206,10 +207,7 @@ export async function changeStatus({
     },
   ])
 
-  const nextAggregates = {
-    ...issue.aggregates,
-    comments: { ...issue.aggregates.comments },
-  }
+  const nextAggregates = cloneDeep(issue.aggregates)
   nextAggregates.comments.count += 1
 
   const nextIssue: Issue = {

@@ -11,9 +11,9 @@ import { getSiteData } from '../clients/mockApi'
 import KanbanData from '../components/issues-page/kanban-data'
 
 const sortFns = {
-  Recent: (issue: Issue) => issue.initialReport.timestamp.getTime(),
-  Upvotes: (issue: Issue) => issue.aggregates.upvotes.count,
-  Comments: (issue: Issue) => issue.aggregates.comments.count,
+  Recent: (issue: Issue) => -issue.initialReport.timestamp.getTime(),
+  Upvotes: (issue: Issue) => -issue.aggregates.upvotes.count,
+  Comments: (issue: Issue) => -issue.aggregates.comments.count,
 }
 
 const IssuesPage = (props: { location: Location }): JSX.Element => {
