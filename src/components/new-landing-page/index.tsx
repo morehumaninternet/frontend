@@ -179,7 +179,7 @@ export default function NewLandingPage(): JSX.Element {
             </p>
           </div>
           <AstronautStarGroup />
-          <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['40%', '-46%']}>
+          <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['30%', '-83%']}>
             <Astronaut />
           </Parallax>
         </div>
