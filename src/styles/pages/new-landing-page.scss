@@ -49,15 +49,33 @@ $mountain-size: 48vh;
       }
     }
 
-    .post-sky1 {
+    > .post-sky1 {
       position: relative;
       top: -3px; // ugh
       height: 1630px;
       width: 100vw;
       background-image: linear-gradient(to bottom, $human-blue, rgba(139, 160, 187, 1.0));
 
+      $astronaut-width: 44.166666667%;
+
+      > .about {
+        color: white;
+        position: relative;
+        left: $astronaut-width;
+        width: 100% - $astronaut-width;
+        padding-right: 100px;
+        text-align: left;
+
+        > h2 {
+          text-align: left;
+          color: white;
+          font-size: 2em;
+          font-weight: 300;
+        }
+      }
+
       .astronaut {
-        width: 44.166666667%;
+        width: $astronaut-width;
 
         .cord {
           // Looks off, might be some way of adding the cord in with an animation

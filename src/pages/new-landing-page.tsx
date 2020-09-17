@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { useIntl } from 'gatsby-plugin-intl'
+import { useIntl, FormattedMessage } from 'gatsby-plugin-intl'
 import { Button } from '@material-ui/core'
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
 import { LayoutWithNewHeader } from '../components/shared/layout'
@@ -15,7 +15,7 @@ export default function NewLandingPage(): JSX.Element {
   const headerRef = React.useRef<HTMLDivElement>()
 
   const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
-  const makeRefToTrack = (): React.MutableRefObject<any> => {
+  const makeAndTrackRef = (): React.MutableRefObject<any> => {
     const ref = React.useRef()
     refsToTrack.push(ref as any) // tslint:disable-line:no-expression-statement
     return ref as any
@@ -42,20 +42,19 @@ export default function NewLandingPage(): JSX.Element {
   return (
     <ParallaxProvider>
       <LayoutWithNewHeader mainClassName="new-landing-page" headerRef={headerRef as any}>
-        <div className="rotating-content"></div>
         <div className="sky">
           <div className="new-hero">
             <div className="new-hero-contents">
-              <h1 ref={makeRefToTrack()}>
+              <h1 ref={makeAndTrackRef()}>
                 The time has come for a<br />
                 more human internet
               </h1>
-              <p ref={makeRefToTrack()}>
+              <p ref={makeAndTrackRef()}>
                 We're on a quest to make the web more transparent
                 <br />
                 and better aligned with the interests of all people
               </p>
-              <Button ref={makeRefToTrack()} className="mhi-button" component={Link} to={`/${useIntl().locale}/demo`}>
+              <Button ref={makeAndTrackRef()} className="mhi-button" component={Link} to={`/${useIntl().locale}/demo`}>
                 See the demo
               </Button>
             </div>
@@ -78,6 +77,12 @@ export default function NewLandingPage(): JSX.Element {
           </div>
         </div>
         <div className="post-sky1">
+          <div className="about">
+            <h2 ref={makeAndTrackRef()}>About</h2>
+            <p ref={makeAndTrackRef()}>
+              <FormattedMessage id="index_manifesto_content1" />
+            </p>
+          </div>
           <AstronautStarGroup />
           <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['40%', '-40%']}>
             <Astronaut />
