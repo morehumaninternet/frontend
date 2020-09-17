@@ -23,7 +23,7 @@ function useDemo(issue: Issue, postComment: LoadedIssueContentProps['postComment
 
 export default function LoadedIssueContent({ avatarUrl, issue, postComment, changeStatus }: LoadedIssueContentProps): JSX.Element {
   useDemo(issue, postComment, changeStatus)
-  
+
   const steps = Object.freeze([
     {
       text: ['The issue is now posted to the more human internet platform where the site’s maintainer can see and address it.'],
