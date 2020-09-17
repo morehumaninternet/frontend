@@ -72,6 +72,7 @@ header.layout-new-header {
 
   padding-top: $nonhero-margin + 5px;
   padding-bottom: $nonhero-margin + 10px;
+  text-transform: capitalize;
 
   z-index: 100;
 
@@ -83,6 +84,7 @@ header.layout-new-header {
 
   > a {
     color: white;
+    cursor: pointer;
 
     &.active {
       border-bottom: 2px $human-pink solid;

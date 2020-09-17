@@ -1,7 +1,6 @@
 import React from 'react'
 import Footer from './footer'
 import Header from './header'
-import NewHeader from './new-header'
 import Sidebar from './sidebar'
 
 type LayoutProps = {
@@ -16,12 +15,6 @@ type LayoutWithHeaderProps = {
   children: React.ReactNode
   logoAgainstHero: boolean
   headerLinks?: React.ReactNode
-  headerRef?: React.RefObject<HTMLElement>
-}
-
-type LayoutWithNewHeaderProps = {
-  mainClassName: string
-  children: React.ReactNode
   headerRef?: React.RefObject<HTMLElement>
 }
 
@@ -52,12 +45,6 @@ export const LayoutWithHeader = ({ mainClassName, children, headerLinks, headerR
       </Header>
     }
   >
-    {children}
-  </Layout>
-)
-
-export const LayoutWithNewHeader = ({ mainClassName, children, headerRef }: LayoutWithNewHeaderProps) => (
-  <Layout additionalClassNames={mainClassName + ' has-new-header'} header={<NewHeader headerRef={headerRef} />}>
     {children}
   </Layout>
 )
