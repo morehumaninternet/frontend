@@ -12,6 +12,7 @@ import MountainMidground from './svgs/mountain-midground'
 import MountainForeground from './svgs/mountain-foreground'
 import Astronaut from './svgs/astronaut'
 import AstronautStarGroup from './svgs/astronaut-star-group'
+import ApplicationForm from '../../components/shared/application-form'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -44,18 +45,25 @@ function CenteredLogo(props: any): JSX.Element {
 }
 
 export default function NewLandingPage(): JSX.Element {
+  const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
+  const makeAndTrackRef = (): React.MutableRefObject<any> => {
+    const ref = React.useRef()
+    refsToTrack.push(ref as any) // tslint:disable-line:no-expression-statement
+    return ref as any
+  }
+
   const internalSectionRefs = {
-    start: React.useRef<HTMLDivElement>(),
-    about: React.useRef<HTMLDivElement>(),
-    why: React.useRef<HTMLDivElement>(),
-    join: React.useRef<HTMLDivElement>(),
+    start: React.useRef<HTMLElement>(),
+    about: React.useRef<HTMLElement>(),
+    why: makeAndTrackRef(),
+    join: React.useRef<HTMLElement>(),
   }
 
   const internalLinkRefs = {
-    start: React.useRef<HTMLDivElement>(),
-    about: React.useRef<HTMLDivElement>(),
-    why: React.useRef<HTMLDivElement>(),
-    join: React.useRef<HTMLDivElement>(),
+    start: React.useRef<HTMLElement>(),
+    about: React.useRef<HTMLElement>(),
+    why: React.useRef<HTMLElement>(),
+    join: React.useRef<HTMLElement>(),
   }
 
   function InternalLink({ to }: { to: keyof typeof internalSectionRefs }): JSX.Element {
@@ -74,13 +82,6 @@ export default function NewLandingPage(): JSX.Element {
   }
 
   const headerRef = React.useRef<HTMLDivElement>()
-
-  const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
-  const makeAndTrackRef = (): React.MutableRefObject<any> => {
-    const ref = React.useRef()
-    refsToTrack.push(ref as any) // tslint:disable-line:no-expression-statement
-    return ref as any
-  }
 
   React.useEffect(() => {
     const headerElement = headerRef.current!
@@ -196,8 +197,10 @@ export default function NewLandingPage(): JSX.Element {
               <h1>OK</h1>
             </div>
           </div>
+          <div className="join" ref={internalSectionRefs.join as any}>
+            <ApplicationForm />
+          </div>
         </div>
-        <div ref={internalSectionRefs.join as any}></div>
       </Layout>
     </ParallaxProvider>
   )

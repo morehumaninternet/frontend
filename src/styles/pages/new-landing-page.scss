@@ -85,13 +85,27 @@ $mountain-size: 48vh;
     }
 
     .why {
-
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: white;
       border-radius: 40px;
       margin: 300px 100px;
+      padding: 100px;
+
+      h1 {
+        color: $human-blue;
+        text-align: left;
+      }
+    }
+
+    .join {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 40px;
+      margin: 100px;
       padding: 100px;
 
       h1 {
@@ -141,5 +155,9 @@ $mountain-size: 48vh;
       width: 100%;
       max-height: 0.8 * $mountain-size;
     }
+  }
+
+  form[name="submit-application"] {
+    width: 50%;
   }
 }
