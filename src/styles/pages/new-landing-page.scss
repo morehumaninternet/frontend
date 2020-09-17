@@ -29,11 +29,6 @@ $mountain-size: 48vh;
           color: white;
           text-align: center;
 
-          > h1 {
-            color: white;
-            font-size: 2em;
-            font-weight: 300;
-          }
           > .mhi-button {
             font-weight: bold;
             padding: 1em 3em;
@@ -52,7 +47,7 @@ $mountain-size: 48vh;
     > .post-sky1 {
       position: relative;
       top: -3px; // ugh
-      height: 1630px;
+      min-height: 1630px;
       width: 100vw;
       background-image: linear-gradient(to bottom, $human-blue, rgba(139, 160, 187, 1.0));
 
@@ -60,9 +55,7 @@ $mountain-size: 48vh;
 
       > .about {
         color: white;
-        position: relative;
-        left: $astronaut-width;
-        width: 100% - $astronaut-width;
+        margin-left: $astronaut-width;
         padding-right: 100px;
         text-align: left;
 
@@ -86,8 +79,24 @@ $mountain-size: 48vh;
       > .astronaut-star-group {
         position: absolute;
         left: 6.25%;
-        top: 0;
+        top: -4%;
         width: 36.736111111%;
+      }
+    }
+
+    .why {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      border-radius: 40px;
+      margin: 300px 100px;
+      padding: 100px;
+
+      h1 {
+        color: $human-blue;
+        text-align: left;
       }
     }
 

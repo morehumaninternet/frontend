@@ -102,6 +102,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
     )
   }
 }
+
 export const squareImage = graphql`
   fragment squareImage on File {
     childImageSharp {

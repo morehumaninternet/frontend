@@ -64,7 +64,8 @@ export default function NewLandingPage(): JSX.Element {
         ref={internalLinkRefs[to] as any}
         onClick={() => {
           const sectionTop = internalSectionRefs[to].current!.getBoundingClientRect().top
-          window.scroll(0, sectionTop - 0.3 * screen.availHeight)
+          console.log('to', to, sectionTop)
+          window.scroll(0, scrollY + sectionTop - 0.3 * screen.availHeight)
         }}
       >
         {to}
@@ -171,19 +172,31 @@ export default function NewLandingPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="post-sky1" ref={internalSectionRefs.about as any}>
-          <div className="about">
+        <div className="post-sky1">
+          <AstronautStarGroup />
+          <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['15%', '-55%']}>
+            <Astronaut />
+          </Parallax>
+          <div className="about" ref={internalSectionRefs.about as any}>
             <h2 ref={makeAndTrackRef()}>About</h2>
             <p ref={makeAndTrackRef()}>
               <FormattedMessage id="index_manifesto_content1" />
             </p>
           </div>
-          <AstronautStarGroup />
-          <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['30%', '-83%']}>
-            <Astronaut />
-          </Parallax>
+
+          <div className="why" ref={internalSectionRefs.why as any}>
+            <div>
+              <h1>Why</h1>
+              <p>
+                <FormattedMessage id="index_manifesto_content2" />
+              </p>
+            </div>
+
+            <div>
+              <h1>OK</h1>
+            </div>
+          </div>
         </div>
-        <div ref={internalSectionRefs.why as any}></div>
         <div ref={internalSectionRefs.join as any}></div>
       </Layout>
     </ParallaxProvider>
