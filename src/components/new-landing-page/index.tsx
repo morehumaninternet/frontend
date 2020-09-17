@@ -72,7 +72,6 @@ export default function NewLandingPage(): JSX.Element {
         ref={internalLinkRefs[to] as any}
         onClick={() => {
           const sectionTop = internalSectionRefs[to].current!.getBoundingClientRect().top
-          console.log('to', to, sectionTop)
           window.scroll(0, scrollY + sectionTop - 0.3 * screen.availHeight)
         }}
       >
@@ -134,7 +133,7 @@ export default function NewLandingPage(): JSX.Element {
               <CenteredLogo />
             </Link>
             <InternalLink to="join" />
-            <a>Demo</a>
+            <Link to={`${useIntl().locale}/demo`}>Demo</Link>
             <LanguagePicker />
           </header>
         }
