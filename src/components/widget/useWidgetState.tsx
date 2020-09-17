@@ -30,7 +30,7 @@ export type WidgetState = {
 
 export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
   const intl = useIntl()
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(true)
   const [submitting, setSubmitting] = React.useState(false)
   const [postAsNewIssue, setPostAsNewIssue] = React.useState(false)
   const [issueTitle, setIssueTitle] = React.useState('')

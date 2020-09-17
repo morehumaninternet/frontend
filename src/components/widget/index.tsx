@@ -11,6 +11,8 @@ import { letsReportStep, letsWriteIssueTitleStep, letsAmendIssueTitleStep, postA
 export default (props: WidgetProps): JSX.Element => {
   const { tour } = props
   const ref = React.useRef<HTMLDivElement>()
+  const titleInputRef = React.useRef<HTMLDivElement>()
+
   const {
     open,
     setOpen,
@@ -29,6 +31,8 @@ export default (props: WidgetProps): JSX.Element => {
   } = useWidgetState(props)
 
   // tslint:disable:no-expression-statement
+
+  // TODO: This clickaway effect is having clear issues, maybe there's a library to handle this?
   React.useEffect(() => {
     function listener(event: MouseEvent): void {
       if (!hasParent(event.target as any, ref.current!) && !hasParent(event.target as any, '.shepherd-content')) {
@@ -40,6 +44,12 @@ export default (props: WidgetProps): JSX.Element => {
 
     return () => document.removeEventListener('click', listener)
   })
+
+  React.useEffect(() => {
+    if (open && tour && tour.currentStep.id === letsReportStep.id) {
+      titleInputRef.current!.querySelector('trix-editor')!.focus()
+    }
+  }, [open])
 
   React.useEffect(() => {
     if (open && tour && tour.currentStep.id === letsReportStep.id) {
@@ -82,7 +92,7 @@ export default (props: WidgetProps): JSX.Element => {
               </div>
             ) : (
               <>
-                <TitleInput setIssueTitle={setIssueTitle} />
+                <TitleInput setIssueTitle={setIssueTitle} ref={titleInputRef} />
                 {postAsNewIssue ? (
                   <CommentInput setIssueInitialCommentHtml={setIssueInitialCommentHtml} />
                 ) : (

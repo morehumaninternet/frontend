@@ -14,23 +14,26 @@ function insideDiv(html: string): string {
   return match[1]
 }
 
-export default function TitleInput({ setIssueTitle }: { setIssueTitle(issueTitle: string): void }): JSX.Element {
-  const ref = React.useRef<HTMLDivElement>()
+export default React.forwardRef(
+  (props: { setIssueTitle(issueTitle: string): void }, ref: any): JSX.Element => {
+    React.useEffect(() => {
+      const editorElement = ref.current!.querySelector('trix-editor') as any
+      editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
+        props.setIssueTitle(insideDiv(event.target.value))
+      })
+      editorElement.addEventListener('trix-focus', (event: any) => {
+        console.log('trix-focus', event)
+      })
+    }, [])
 
-  React.useEffect(() => {
-    const editorElement = ref.current!.querySelector('trix-editor') as any
-    editorElement.addEventListener('trix-change', (event: { target: { value: string } }) => {
-      setIssueTitle(insideDiv(event.target.value))
-    })
-  }, [])
-
-  return (
-    <div
-      ref={ref as any}
-      className="more-human-internet-widget-editor-issue-title-input"
-      dangerouslySetInnerHTML={{
-        __html: `<trix-editor placeholder="What is your issue?"></trix-editor>`,
-      }}
-    />
-  )
-}
+    return (
+      <div
+        ref={ref as any}
+        className="more-human-internet-widget-editor-issue-title-input"
+        dangerouslySetInnerHTML={{
+          __html: `<trix-editor placeholder="What is your issue?" autofocus></trix-editor>`,
+        }}
+      />
+    )
+  }
+)
