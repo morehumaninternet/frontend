@@ -72,46 +72,44 @@ export default (props: WidgetProps): JSX.Element => {
         className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >
         <WidgetIcon open={open} />
-        {open && (
-          <div className="more-human-internet-widget-editor-container">
-            <div className="more-human-internet-widget-editor">
-              {submitting ? (
-                <div className="submitting">
-                  Submitting issue...
-                  <br />
-                  You will be redirected shortly
-                </div>
-              ) : (
-                <>
-                  <TitleInput setIssueTitle={setIssueTitle} />
-                  {postAsNewIssue ? (
-                    <CommentInput setIssueInitialCommentHtml={setIssueInitialCommentHtml} />
-                  ) : (
-                    <SimilarIssues
-                      anyIssueTitle={anyIssueTitle}
-                      issueTitleLongEnoughToSubmit={issueTitleLongEnoughToSubmit}
-                      issueTitleLongEnoughToSearchFor={issueTitleLongEnoughToSearchFor}
-                      similarIssuesState={similarIssuesState}
-                    />
-                  )}
-                </>
-              )}
-            </div>
-            {!submitting && (
-              <ButtonGroup
-                postAsNewIssue={postAsNewIssue}
-                reasonCantPostAsNewIssue={reasonCantPostAsNewIssue}
-                postIssue={() => {
-                  if (tour) {
-                    tour.cancel() // tslint:disable-line:no-expression-statement
-                  }
-                  return postIssue()
-                }}
-                setPostAsNewIssue={setPostAsNewIssue}
-              />
+        <div className="more-human-internet-widget-editor-container" style={{ display: open ? undefined : 'none' }}>
+          <div className="more-human-internet-widget-editor">
+            {submitting ? (
+              <div className="submitting">
+                Submitting issue...
+                <br />
+                You will be redirected shortly
+              </div>
+            ) : (
+              <>
+                <TitleInput setIssueTitle={setIssueTitle} />
+                {postAsNewIssue ? (
+                  <CommentInput setIssueInitialCommentHtml={setIssueInitialCommentHtml} />
+                ) : (
+                  <SimilarIssues
+                    anyIssueTitle={anyIssueTitle}
+                    issueTitleLongEnoughToSubmit={issueTitleLongEnoughToSubmit}
+                    issueTitleLongEnoughToSearchFor={issueTitleLongEnoughToSearchFor}
+                    similarIssuesState={similarIssuesState}
+                  />
+                )}
+              </>
             )}
           </div>
-        )}
+          {!submitting && (
+            <ButtonGroup
+              postAsNewIssue={postAsNewIssue}
+              reasonCantPostAsNewIssue={reasonCantPostAsNewIssue}
+              postIssue={() => {
+                if (tour) {
+                  tour.cancel() // tslint:disable-line:no-expression-statement
+                }
+                return postIssue()
+              }}
+              setPostAsNewIssue={setPostAsNewIssue}
+            />
+          )}
+        </div>
       </div>
     </div>
   )
