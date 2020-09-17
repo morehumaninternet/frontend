@@ -31,9 +31,9 @@ function CenteredLogo(props: any): JSX.Element {
   )
 }
 
-export default function NewHeader(): JSX.Element {
+export default function NewHeader({ headerRef }: { headerRef?: React.RefObject<HTMLElement> }): JSX.Element {
   return (
-    <header className="layout-new-header">
+    <header className="layout-new-header" ref={headerRef}>
       <a className="active">Start</a>
       <a>About</a>
       <a>Why</a>

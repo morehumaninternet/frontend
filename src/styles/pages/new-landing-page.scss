@@ -4,38 +4,42 @@ $mountain-size: 48vh;
   > main {
     position: absolute;
 
-    > .rotating-content {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 100;
-      text-align: center;
-
-      > .new-hero {
-        color: white;
-        > h1 {
-          color: white;
-          font-size: 2em;
-          font-weight: 300;
-        }
-        > .mhi-button {
-          font-weight: bold;
-          padding: 1em 3em;
-        }
-      }
-    }
-
     > .sky {
       position: relative;
       background-image: linear-gradient(to bottom, $human-blue, $human-pink);
       min-height: 788px;
-      height: 110vh;
+      height: 120vh;
       width: 100vw;
+
+      > .new-hero {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+
+        > .new-hero-contents {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+
+          color: white;
+          text-align: center;
+
+          > h1 {
+            color: white;
+            font-size: 2em;
+            font-weight: 300;
+          }
+          > .mhi-button {
+            font-weight: bold;
+            padding: 1em 3em;
+          }
+        }
+      }
 
       > .stars {
         position: relative;

@@ -12,26 +12,54 @@ import Astronaut from '../components/new-landing-page/astronaut'
 import AstronautStarGroup from '../components/new-landing-page/astronaut-star-group'
 
 export default function NewLandingPage(): JSX.Element {
+  const headerRef = React.useRef<HTMLDivElement>()
+
+  const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
+  const makeRefToTrack = (): React.MutableRefObject<any> => {
+    const ref = React.useRef()
+    refsToTrack.push(ref as any) // tslint:disable-line:no-expression-statement
+    return ref as any
+  }
+
+  React.useEffect(() => {
+    const headerElement = headerRef.current!
+
+    addEventListener(
+      'scroll',
+      () => {
+        const headerBottom = headerElement.getBoundingClientRect().bottom
+        refsToTrack.forEach(ref => {
+          const elementTop = ref.current!.getBoundingClientRect().top
+          const elementDistance = elementTop - headerBottom
+          const elementOpacity = Math.max(0, Math.min(1, (elementDistance + 10) / 150))
+          ref.current!.style.opacity = String(elementOpacity) // tslint:disable-line:no-expression-statement
+        })
+      },
+      { passive: true }
+    )
+  }, [])
+
   return (
     <ParallaxProvider>
-      <LayoutWithNewHeader mainClassName="new-landing-page">
-        <div className="rotating-content">
-          <div className="new-hero">
-            <h1>
-              The time has come for a<br />
-              more human internet
-            </h1>
-            <p>
-              We're on a quest to make the web more transparent
-              <br />
-              and better aligned with the interests of all people
-            </p>
-            <Button className="mhi-button" component={Link} to={`/${useIntl().locale}/demo`}>
-              See the demo
-            </Button>
-          </div>
-        </div>
+      <LayoutWithNewHeader mainClassName="new-landing-page" headerRef={headerRef as any}>
+        <div className="rotating-content"></div>
         <div className="sky">
+          <div className="new-hero">
+            <div className="new-hero-contents">
+              <h1 ref={makeRefToTrack()}>
+                The time has come for a<br />
+                more human internet
+              </h1>
+              <p ref={makeRefToTrack()}>
+                We're on a quest to make the web more transparent
+                <br />
+                and better aligned with the interests of all people
+              </p>
+              <Button ref={makeRefToTrack()} className="mhi-button" component={Link} to={`/${useIntl().locale}/demo`}>
+                See the demo
+              </Button>
+            </div>
+          </div>
           <Stars />
           <div className="mountains-container">
             <div className="mountains">
