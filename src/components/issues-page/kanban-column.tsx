@@ -1,4 +1,5 @@
 import React from 'react'
+import { Droppable } from 'react-beautiful-dnd'
 
 import KanbanCard from './kanban-card'
 
@@ -13,11 +14,16 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({ title, issues }) => {
       <div className={`kanban-title ${title}`}>
         {title} ({issues.length})
       </div>
-      <div className="kanban-card-list">
-        {issues.map((issue, index) => (
-          <KanbanCard key={index} issue={issue} />
-        ))}
-      </div>
+      <Droppable droppableId={title}>
+        {provided => (
+          <div className="kanban-card-list" {...provided.droppableProps} ref={provided.innerRef}>
+            {issues.map((issue, index) => (
+              <KanbanCard id={String(issue.id)} key={issue.id} index={index} issue={issue} />
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
     </div>
   )
 }

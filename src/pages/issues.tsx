@@ -11,9 +11,9 @@ import { getSiteData } from '../clients/mockApi'
 import KanbanData from '../components/issues-page/kanban-data'
 
 const sortFns = {
-  Recent: (issue: Issue) => issue.initialReport.timestamp.getTime(),
-  Upvotes: (issue: Issue) => issue.aggregates.upvotes.count,
-  Comments: (issue: Issue) => issue.aggregates.comments.count,
+  Recent: (issue: Issue) => -issue.initialReport.timestamp.getTime(),
+  Upvotes: (issue: Issue) => -issue.aggregates.upvotes.count,
+  Comments: (issue: Issue) => -issue.aggregates.comments.count,
 }
 
 const IssuesPage = (props: { location: Location }): JSX.Element => {
@@ -39,6 +39,25 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
     getSiteData(site).then(setSiteData) // tslint:disable-line:no-expression-statement
   }, [])
 
+  // tslint:disable-next-line: no-expression-statement
+  useEffect(() => {
+    if (siteData === null) {
+      return
+    }
+
+    const opened = sortIssues(siteData.issues.opened)
+    const acknowledged = sortIssues(siteData.issues.acknowledged)
+    const closed = sortIssues(siteData.issues.closed)
+
+    const newSiteData: SiteData = {
+      ...siteData,
+      issues: { opened, acknowledged, closed },
+    }
+
+    // tslint:disable-next-line: no-expression-statement
+    setSiteData(newSiteData)
+  }, [sortOn])
+
   return (
     <LayoutWithSidebar mainClassName="issues" currentUser={currentUser} location={props.location}>
       <SEO pageTitle="Issues" />
@@ -46,11 +65,7 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
       {siteData ? (
         <>
           <KanbanData maintainer={siteData.maintainer} setSortBy={setSortOn} />
-          <KanbanBoard
-            opened={sortIssues(siteData.issues.opened)}
-            acknowledged={sortIssues(siteData.issues.acknowledged)}
-            closed={sortIssues(siteData.issues.closed)}
-          />
+          <KanbanBoard siteData={siteData} setSiteData={setSiteData} />
         </>
       ) : (
         <p>Loading...</p>
