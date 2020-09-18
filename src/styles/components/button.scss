@@ -9,4 +9,9 @@
   &:hover {
     background-color: $human-pink !important; // TODO: look into why this doesn't work w/out important
   }
+
+  &:disabled {
+    background-color: $human-grey;
+    color: white;
+  }
 }

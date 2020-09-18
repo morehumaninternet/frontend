@@ -115,6 +115,16 @@ $sidebar-margin: 50px;
             opacity: 1;
           }
         }
+
+        &:hover {
+          > .description {
+            opacity: 1;
+          }
+
+          > svg > path {
+            opacity: 1;
+          }
+        }
       }
     }
   }

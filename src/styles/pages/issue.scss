@@ -98,6 +98,11 @@
 
         > .issue-add-comment-editor {
           align-self: stretch;
+
+          // Changing the color of the Trix editor buttons to human-blue
+          .trix-button--icon::before {
+            filter: invert(22%) sepia(17%) saturate(4171%) hue-rotate(184deg) brightness(91%) contrast(95%);
+          }
         }
 
         > button[type='submit'] {
