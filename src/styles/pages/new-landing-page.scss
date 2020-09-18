@@ -103,10 +103,7 @@ $mountain-size: 48vh;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      border-radius: 40px;
       margin: 100px;
-      padding: 100px;
 
       h1 {
         color: $human-blue;
@@ -158,6 +155,6 @@ $mountain-size: 48vh;
   }
 
   form[name="submit-application"] {
-    width: 50%;
+    max-width: 50%;
   }
 }

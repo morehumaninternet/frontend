@@ -85,6 +85,7 @@ header.layout-new-header {
   > a {
     color: white;
     cursor: pointer;
+    transition: border-bottom 0.3s;
 
     &.active {
       border-bottom: 2px $human-pink solid;
