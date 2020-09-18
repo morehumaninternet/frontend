@@ -141,7 +141,7 @@ export default function NewLandingPage(): JSX.Element {
         <div className="sky start" ref={internalSectionRefs.start as any}>
           <div className="new-hero">
             <div className="new-hero-contents">
-              <h1 ref={makeAndTrackRef()}>
+              <h1 className="mhi-heading" ref={makeAndTrackRef()}>
                 The time has come for a<br />
                 more human internet
               </h1>
@@ -178,7 +178,9 @@ export default function NewLandingPage(): JSX.Element {
             <Astronaut />
           </Parallax>
           <div className="about" ref={internalSectionRefs.about as any}>
-            <h2 ref={makeAndTrackRef()}>About</h2>
+            <h2 className="mhi-heading" ref={makeAndTrackRef()}>
+              About
+            </h2>
             <p ref={makeAndTrackRef()}>
               <FormattedMessage id="index_manifesto_content1" />
             </p>
@@ -186,14 +188,14 @@ export default function NewLandingPage(): JSX.Element {
 
           <div className="why" ref={internalSectionRefs.why as any}>
             <div>
-              <h1>Why</h1>
+              <h1 className="mhi-heading">Why</h1>
               <p>
                 <FormattedMessage id="index_manifesto_content2" />
               </p>
             </div>
 
             <div>
-              <h1>OK</h1>
+              <h1 className="mhi-heading">OK</h1>
             </div>
           </div>
           <div className="join" ref={internalSectionRefs.join as any}>

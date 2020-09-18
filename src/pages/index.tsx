@@ -49,17 +49,17 @@ export default class IndexPage extends React.Component<{ data: any }> {
       <LayoutWithHeader mainClassName="index" logoAgainstHero={true} headerRef={this.headerRef}>
         <SEO />
         <Hero additionalClassNames="index" heroRef={this.heroRef}>
-          <h1 className="white">
+          <h1 className="mhi-heading white">
             <FormattedMessage id="index_header1" />
           </h1>
-          <h2 className="white">
+          <h2 className="mhi-heading white">
             <FormattedMessage id="index_header2" />
           </h2>
         </Hero>
         <div className="posthero">
           <DesignsShowcase />
           <div className="manifesto">
-            <h1 className="manifesto-item">
+            <h1 className="manifesto-item human-blue center-text">
               <FormattedMessage id="index_manifesto_header" />
             </h1>
             <div className="manifesto-item manifesto-contents">
@@ -85,7 +85,7 @@ export default class IndexPage extends React.Component<{ data: any }> {
                 <Img alt="Will Weiss portrait" className="avatar" fixed={this.props.data.willAvatar.childImageSharp.fixed} />
               </a>
             </div>
-            <h1 className="manifesto-item">
+            <h1 className="manifesto-item human-blue center-text" style={{ marginTop: 100 }}>
               <FormattedMessage id="index_weneedyou1" />
             </h1>
             <div className="manifesto-item manifesto-contents">

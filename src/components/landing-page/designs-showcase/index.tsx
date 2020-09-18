@@ -248,7 +248,7 @@ export default class DesignsShowcase extends React.Component {
       <div className="designs" ref={this.designsRef}>
         <div className="designs-content-container static" ref={this.designsContentContainerRef}>
           <div className="designs-content">
-            <h1>
+            <h1 className="mhi-heading">
               <FormattedMessage id="showcase_title" />
             </h1>
             <div className="mac-container">
