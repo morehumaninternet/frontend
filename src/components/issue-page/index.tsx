@@ -15,9 +15,9 @@ function useDemo(issue: Issue, postComment: LoadedIssueContentProps['postComment
   if (issue.status === 'acknowledged') {
     setTimeout(() => {
       changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'closed', {
-        html: `<div>Deployed a fix that seems to be fixing the issue. Definitely leave a comment and reopen this issue if you're still being affected!</div>`,
+        html: `<div id="diva-fixed">Deployed a fix that seems to be fixing the issue. Definitely leave a comment and reopen this issue if you're still being affected!</div>`,
       })
-    }, 3000)
+    }, 2000)
   }
 }
 
@@ -44,7 +44,15 @@ export default function LoadedIssueContent({ avatarUrl, issue, postComment, chan
         element: '#diva-acknowledged',
         on: 'top',
       },
+      ...withNextButton,
     },
+    {
+      text: ['Devdiva22 reports the problem is now fixed. Customer will be able to successfully checkout.'],
+      attachTo: {
+        element: '#diva-fixed',
+        on: 'top',
+      },
+    }
   ])
   const tour = useTour({ steps: steps })
 
