@@ -1,21 +1,17 @@
-h1 {
-  color: $human-blue;
-}
-
 p.indent {
   text-indent: 1em;
 }
 
 h1, h2 {
   text-align: center;
+  color: white;
+  font-weight: 300;
 }
 
-@include onmobile {
-  h1 {
-    font-size: 2em;
-  }
+h1 {
+  font-size: 2em;
+}
 
-  h2 {
-    font-size: 1.5em;
-  }
+h2 {
+  font-size: 1.5em;
 }

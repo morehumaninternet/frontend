@@ -101,8 +101,8 @@ export default function ApplicationForm(): JSX.Element {
       <FormGroup className="select">
         <InputLabel id="role-select-label">{intl.formatMessage({ id: 'application_form_role' })}</InputLabel>
         <Select labelId="role-select-label" defaultValue="developer" onChange={volunteerRequirements}>
-          <MenuItem value="ceo/founder">{intl.formatMessage({ id: 'application_form_ceo/founder' })}</MenuItem>
           <MenuItem value="business development">{intl.formatMessage({ id: 'application_form_business development' })}</MenuItem>
+          <MenuItem value="ceo/founder">{intl.formatMessage({ id: 'application_form_ceo/founder' })}</MenuItem>
           <MenuItem value="customer insights">{intl.formatMessage({ id: 'application_form_customer insights' })}</MenuItem>
           <MenuItem value="designer">{intl.formatMessage({ id: 'application_form_designer' })}</MenuItem>
           <MenuItem value="developer" selected>

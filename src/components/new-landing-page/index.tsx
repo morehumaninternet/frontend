@@ -12,6 +12,7 @@ import MountainMidground from './svgs/mountain-midground'
 import MountainForeground from './svgs/mountain-foreground'
 import Astronaut from './svgs/astronaut'
 import AstronautStarGroup from './svgs/astronaut-star-group'
+import ApplicationForm from '../../components/shared/application-form'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -44,18 +45,25 @@ function CenteredLogo(props: any): JSX.Element {
 }
 
 export default function NewLandingPage(): JSX.Element {
+  const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
+  const makeAndTrackRef = (): React.MutableRefObject<any> => {
+    const ref = React.useRef()
+    refsToTrack.push(ref as any) // tslint:disable-line:no-expression-statement
+    return ref as any
+  }
+
   const internalSectionRefs = {
-    start: React.useRef<HTMLDivElement>(),
-    about: React.useRef<HTMLDivElement>(),
-    why: React.useRef<HTMLDivElement>(),
-    join: React.useRef<HTMLDivElement>(),
+    start: React.useRef<HTMLElement>(),
+    about: React.useRef<HTMLElement>(),
+    why: makeAndTrackRef(),
+    join: React.useRef<HTMLElement>(),
   }
 
   const internalLinkRefs = {
-    start: React.useRef<HTMLDivElement>(),
-    about: React.useRef<HTMLDivElement>(),
-    why: React.useRef<HTMLDivElement>(),
-    join: React.useRef<HTMLDivElement>(),
+    start: React.useRef<HTMLElement>(),
+    about: React.useRef<HTMLElement>(),
+    why: React.useRef<HTMLElement>(),
+    join: React.useRef<HTMLElement>(),
   }
 
   function InternalLink({ to }: { to: keyof typeof internalSectionRefs }): JSX.Element {
@@ -64,7 +72,7 @@ export default function NewLandingPage(): JSX.Element {
         ref={internalLinkRefs[to] as any}
         onClick={() => {
           const sectionTop = internalSectionRefs[to].current!.getBoundingClientRect().top
-          window.scroll(0, sectionTop - 0.3 * screen.availHeight)
+          window.scroll(0, scrollY + sectionTop - 0.3 * screen.availHeight)
         }}
       >
         {to}
@@ -73,13 +81,6 @@ export default function NewLandingPage(): JSX.Element {
   }
 
   const headerRef = React.useRef<HTMLDivElement>()
-
-  const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
-  const makeAndTrackRef = (): React.MutableRefObject<any> => {
-    const ref = React.useRef()
-    refsToTrack.push(ref as any) // tslint:disable-line:no-expression-statement
-    return ref as any
-  }
 
   React.useEffect(() => {
     const headerElement = headerRef.current!
@@ -132,7 +133,7 @@ export default function NewLandingPage(): JSX.Element {
               <CenteredLogo />
             </Link>
             <InternalLink to="join" />
-            <a>Demo</a>
+            <Link to={`${useIntl().locale}/demo`}>Demo</Link>
             <LanguagePicker />
           </header>
         }
@@ -171,20 +172,34 @@ export default function NewLandingPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="post-sky1" ref={internalSectionRefs.about as any}>
-          <div className="about">
+        <div className="post-sky1">
+          <AstronautStarGroup />
+          <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['15%', '-55%']}>
+            <Astronaut />
+          </Parallax>
+          <div className="about" ref={internalSectionRefs.about as any}>
             <h2 ref={makeAndTrackRef()}>About</h2>
             <p ref={makeAndTrackRef()}>
               <FormattedMessage id="index_manifesto_content1" />
             </p>
           </div>
-          <AstronautStarGroup />
-          <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['30%', '-83%']}>
-            <Astronaut />
-          </Parallax>
+
+          <div className="why" ref={internalSectionRefs.why as any}>
+            <div>
+              <h1>Why</h1>
+              <p>
+                <FormattedMessage id="index_manifesto_content2" />
+              </p>
+            </div>
+
+            <div>
+              <h1>OK</h1>
+            </div>
+          </div>
+          <div className="join" ref={internalSectionRefs.join as any}>
+            <ApplicationForm />
+          </div>
         </div>
-        <div ref={internalSectionRefs.why as any}></div>
-        <div ref={internalSectionRefs.join as any}></div>
       </Layout>
     </ParallaxProvider>
   )
