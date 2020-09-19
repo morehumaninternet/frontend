@@ -3,7 +3,7 @@ import { LayoutWithSidebar } from '../../components/shared/layout'
 import SEO from '../../components/shared/seo'
 import { scriptSrc, stylesHref } from '../../effects/useTour'
 import LoadedIssue, { LoadedIssueContentProps } from './loaded'
-import { IssuePageStore, IssuePageState } from '../../stores/issue-page'
+import { IssuePageState } from '../../stores/issue-page'
 
 type IssuePageFns = Pick<LoadedIssueContentProps, 'changeStatus'> & {
   postComment(comment: { html: string }): void

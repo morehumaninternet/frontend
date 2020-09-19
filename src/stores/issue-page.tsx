@@ -1,45 +1,5 @@
 import { createStore as reduxCreateStore, Store as ReduxStore } from 'redux'
 
-type ChangeStatusInitiate = { type: 'CHANGE_STATUS_INITIATE'; payload: { user: User; status: IssueStatus; comment: { html: string } } }
-type PostCommentInitiate = { type: 'POST_COMMENT_INITIATE'; payload: { user: User; comment: { html: string } } }
-
-export type IssuePageAction =
-  | { type: 'PAGE_LOAD'; payload: { search: string } }
-  | { type: 'CURRENT_USER_LOAD_SUCCESS'; payload: { user: User } }
-  | { type: 'CURRENT_USER_LOAD_ERROR'; error: { message: string } }
-  | { type: 'INITIAL_ISSUE_LOAD_SUCCESS'; payload: { issue: Issue } }
-  | { type: 'INITIAL_ISSUE_LOAD_ERROR'; error: { message: string } }
-  | ChangeStatusInitiate
-  | { type: 'CHANGE_STATUS_SUCCESS' }
-  | { type: 'CHANGE_STATUS_ERROR'; error: { message: string } }
-  | PostCommentInitiate
-  | { type: 'POST_COMMENT_SUCCESS' }
-  | { type: 'POST_COMMENT_ERROR'; error: { message: string } }
-  | { type: 'DISMISS_ERROR' }
-
-export type IssueParamsChecking = { state: 'checking' }
-export type IssueParamsNotOk = { state: 'not ok'; error: string }
-export type IssueParamsOk = {
-  state: 'ok'
-  params: { site: string; issueId: number }
-}
-
-export type IssueParams = IssueParamsChecking | IssueParamsNotOk | IssueParamsOk
-
-export type IssueStateLoading = { loading: true; issue?: undefined }
-export type IssueStateLoaded = { loading: false; issue: Maybe<Issue> }
-export type IssueState = IssueStateLoading | IssueStateLoaded
-
-export type IssueActionInProgress = { priorState: IssuePageState; action: ChangeStatusInitiate | PostCommentInitiate }
-
-export type IssuePageState = {
-  params: IssueParams
-  currentUser: CurrentUser
-  issueState: IssueState
-  actionInProgress: null | IssueActionInProgress
-  error: null | { message: string }
-}
-
 export type IssuePageStore = ReduxStore<IssuePageState, IssuePageAction>
 
 const emptyState: IssuePageState = {
@@ -103,12 +63,6 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
           issue: action.payload.issue,
         },
       }
-
-    case 'CHANGE_STATUS_SUCCESS':
-      return { ...initialState, actionInProgress: null }
-
-    case 'POST_COMMENT_SUCCESS':
-      return { ...initialState, actionInProgress: null }
 
     // Optimistically update the issue with the timeline that would result from the action.
     // Set the actionInProgress with the prior state and the action so that this can be rolled back on an error.
@@ -205,6 +159,14 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
         actionInProgress: { priorState: initialState, action },
       }
     }
+
+    // The successful completion of the action means that the optimistic update can stay and there's no action in progress.
+    case 'CHANGE_STATUS_SUCCESS':
+      return { ...initialState, actionInProgress: null }
+
+    // The successful completion of the action means that the optimistic update can stay and there's no action in progress.
+    case 'POST_COMMENT_SUCCESS':
+      return { ...initialState, actionInProgress: null }
 
     // Reload the priorState from before the optimistic update
     case 'CHANGE_STATUS_ERROR':

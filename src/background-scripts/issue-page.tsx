@@ -3,7 +3,7 @@
   triggered actions that should result in API calls. Then, it makes those API calls and
   dispatches the result back to the store.
 */
-import { IssuePageStore, IssuePageState } from '../stores/issue-page'
+import { IssuePageStore } from '../stores/issue-page'
 import * as mockApi from '../clients/mockApi'
 
 export default function subscribe(store: IssuePageStore, api: typeof mockApi): void {
