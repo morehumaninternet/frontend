@@ -1,60 +1,87 @@
 import React from 'react'
-import { LayoutWithSidebar } from '../shared/layout'
-import SEO from '../shared/seo'
 import * as api from '../../clients/mockApi'
-
-import setLogoFade from '../../utils/setLogoFade'
-import LoadedIssue from './loaded'
-import useIssue from '../../effects/useIssue'
-import useIssueParams, { IssueParams, IssueParamsOk } from '../../effects/useIssueParams'
-import useCurrentUser from '../../effects/useCurrentUser'
+import { LayoutWithSidebar } from '../../components/shared/layout'
+import SEO from '../../components/shared/seo'
 import { scriptSrc, stylesHref } from '../../effects/useTour'
+import LoadedIssue, { LoadedIssueContentProps } from './loaded'
+import { IssuePageStore, IssueParamsOk, IssueParams, IssuePageState } from '../../stores/issue-page'
 
 function Loading(): JSX.Element {
   return <p>Loading...</p>
 }
 
-function WithIssueParams({ currentUser, params }: { currentUser: CurrentUser; params: IssueParamsOk['params'] }): JSX.Element {
-  const { issueState, postComment, changeStatus } = useIssue({ api, params })
+type WithIssueParamsProps = Pick<IssuePageState, 'currentUser' | 'issueState' | 'actionInProgress'> & Pick<LoadedIssueContentProps, 'changeStatus'> & {
+  postComment(comment: { html: string }): void
+}
 
+function WithIssueParams({ currentUser, issueState, actionInProgress, postComment, changeStatus }: WithIssueParamsProps): JSX.Element {
   return issueState.loading ? (
     <p>Loading...</p>
   ) : (
     <LoadedIssue
       avatarUrl={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
       issue={issueState.issue! /* TODO: handle issues not present */}
+      actionInProgress={!!actionInProgress}
       changeStatus={changeStatus}
-      postComment={async comment => {
-        if (!currentUser.loaded) {
-          throw new Error('Cannot post comment when currentUser not loaded')
-        }
-        return postComment(currentUser.user, comment)
-      }}
+      postComment={postComment}
     />
   )
 }
 
-function IssueContent({ issueParams, currentUser }: { issueParams: IssueParams; currentUser: CurrentUser }): JSX.Element {
-  switch (issueParams.state) {
+function IssuePageComponentInner({ storeState, dispatch }: { storeState: IssuePageState, dispatch: IssuePageStore['dispatch'] }): JSX.Element {
+
+  switch (storeState.params.state) {
     case 'checking':
       return <Loading />
+
     case 'not ok':
       throw new Error('Handle this case better!')
+
     case 'ok':
-      return <WithIssueParams currentUser={currentUser} params={issueParams.params} />
+      return (
+        <WithIssueParams
+          currentUser={storeState.currentUser}
+          issueState={storeState.issueState}
+          actionInProgress={storeState.actionInProgress}
+          postComment={(comment: { html: string }) => {
+            if (!storeState.currentUser.loaded) {
+              throw new Error('Cannot post comment when currentUser not loaded')
+            }
+
+            dispatch({
+              type: 'POST_COMMENT_INITIATE',
+              payload: {
+                user: storeState.currentUser.user,
+                comment
+              }
+            })
+          }}
+          changeStatus={(user, status, comment) => {
+            dispatch({
+              type: 'CHANGE_STATUS_INITIATE',
+              payload: { user, status, comment }
+            })
+          }}
+        />
+      )
   }
 }
 
-export default function IssuePage(props: { location: Location }): JSX.Element {
-  // TODO: use CSS to have a different variable on different pages
-  // tslint:disable-next-line:no-expression-statement
-  React.useEffect(() => setLogoFade(1), [])
 
-  const issueParams = useIssueParams(props)
-  const currentUser = useCurrentUser()
+export default function IssuePageComponent({ store, location }: { store: IssuePageStore, location: Location }): JSX.Element {
+  const [storeState, setStoreState] = React.useState<IssuePageState>(store.getState())
+  // tslint:disable-next-line:no-expression-statement
+
+  const unsubscribe = store.subscribe(() => {
+    setStoreState(store.getState())
+  })
+
+  React.useEffect(() => {
+    return unsubscribe
+  }, [])
 
   return (
-    <LayoutWithSidebar mainClassName="issue" currentUser={currentUser} location={props.location}>
+    <LayoutWithSidebar mainClassName="issue" currentUser={storeState.currentUser} location={location}>
       <SEO
         pageTitle="Issue"
         links={[
@@ -70,7 +97,7 @@ export default function IssuePage(props: { location: Location }): JSX.Element {
           { type: 'text/javascript', src: scriptSrc },
         ]}
       />
-      <IssueContent issueParams={issueParams} currentUser={currentUser} />
+      <IssuePageComponentInner storeState={storeState} dispatch={store.dispatch} />
     </LayoutWithSidebar>
   )
 }
