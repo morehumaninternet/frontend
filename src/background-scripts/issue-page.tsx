@@ -9,6 +9,8 @@ export default function subscribe(store: IssuePageStore): void {
     const prevState = previousState
     previousState = nextState
 
+    console.log('nextState', nextState)
+
     if (nextState.params.state === 'ok' && prevState.params.state !== 'ok') {
       store.dispatch({
         type: 'CURRENT_USER_LOAD_SUCCESS',

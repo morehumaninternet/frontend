@@ -1,22 +1,24 @@
 import React from 'react'
-import * as api from '../../clients/mockApi'
 import { LayoutWithSidebar } from '../../components/shared/layout'
 import SEO from '../../components/shared/seo'
 import { scriptSrc, stylesHref } from '../../effects/useTour'
 import LoadedIssue, { LoadedIssueContentProps } from './loaded'
-import { IssuePageStore, IssueParamsOk, IssueParams, IssuePageState } from '../../stores/issue-page'
+import { IssuePageStore, IssuePageState } from '../../stores/issue-page'
+
+
+type IssuePageFns = Pick<LoadedIssueContentProps, 'changeStatus'> & {
+  postComment(comment: { html: string }): void
+}
+
+type WithIssueParamsProps = Pick<IssuePageState, 'currentUser' | 'issueState' | 'actionInProgress'> & IssuePageFns
 
 function Loading(): JSX.Element {
   return <p>Loading...</p>
 }
 
-type WithIssueParamsProps = Pick<IssuePageState, 'currentUser' | 'issueState' | 'actionInProgress'> & Pick<LoadedIssueContentProps, 'changeStatus'> & {
-  postComment(comment: { html: string }): void
-}
-
 function WithIssueParams({ currentUser, issueState, actionInProgress, postComment, changeStatus }: WithIssueParamsProps): JSX.Element {
   return issueState.loading ? (
-    <p>Loading...</p>
+    <Loading />
   ) : (
     <LoadedIssue
       avatarUrl={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
@@ -28,8 +30,7 @@ function WithIssueParams({ currentUser, issueState, actionInProgress, postCommen
   )
 }
 
-function IssuePageComponentInner({ storeState, dispatch }: { storeState: IssuePageState, dispatch: IssuePageStore['dispatch'] }): JSX.Element {
-
+function IssuePageComponentInner({ storeState, postComment, changeStatus }: { storeState: IssuePageState } & IssuePageFns): JSX.Element {
   switch (storeState.params.state) {
     case 'checking':
       return <Loading />
@@ -43,43 +44,14 @@ function IssuePageComponentInner({ storeState, dispatch }: { storeState: IssuePa
           currentUser={storeState.currentUser}
           issueState={storeState.issueState}
           actionInProgress={storeState.actionInProgress}
-          postComment={(comment: { html: string }) => {
-            if (!storeState.currentUser.loaded) {
-              throw new Error('Cannot post comment when currentUser not loaded')
-            }
-
-            dispatch({
-              type: 'POST_COMMENT_INITIATE',
-              payload: {
-                user: storeState.currentUser.user,
-                comment
-              }
-            })
-          }}
-          changeStatus={(user, status, comment) => {
-            dispatch({
-              type: 'CHANGE_STATUS_INITIATE',
-              payload: { user, status, comment }
-            })
-          }}
+          postComment={postComment}
+          changeStatus={changeStatus}
         />
       )
   }
 }
 
-
-export default function IssuePageComponent({ store, location }: { store: IssuePageStore, location: Location }): JSX.Element {
-  const [storeState, setStoreState] = React.useState<IssuePageState>(store.getState())
-  // tslint:disable-next-line:no-expression-statement
-
-  const unsubscribe = store.subscribe(() => {
-    setStoreState(store.getState())
-  })
-
-  React.useEffect(() => {
-    return unsubscribe
-  }, [])
-
+export default function IssuePageComponent({ storeState, location, postComment, changeStatus }: { storeState: IssuePageState, location: Location } & IssuePageFns): JSX.Element {
   return (
     <LayoutWithSidebar mainClassName="issue" currentUser={storeState.currentUser} location={location}>
       <SEO
@@ -97,7 +69,11 @@ export default function IssuePageComponent({ store, location }: { store: IssuePa
           { type: 'text/javascript', src: scriptSrc },
         ]}
       />
-      <IssuePageComponentInner storeState={storeState} dispatch={store.dispatch} />
+      <IssuePageComponentInner
+        storeState={storeState}
+        postComment={postComment}
+        changeStatus={changeStatus}
+      />
     </LayoutWithSidebar>
   )
 }
