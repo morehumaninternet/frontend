@@ -1,6 +1,5 @@
 // tslint:disable:no-expression-statement no-class no-this
 import React from 'react'
-import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { LayoutWithHeader } from '../shared/layout'
 import Hero from '../shared/hero'
@@ -102,24 +101,3 @@ export default class IndexPage extends React.Component<{ data: any }> {
     )
   }
 }
-
-export const squareImage = graphql`
-  fragment squareImage on File {
-    childImageSharp {
-      fixed(width: 55, height: 55, quality: 100) {
-        ...GatsbyImageSharpFixed
-      }
-    }
-  }
-`
-
-export const query = graphql`
-  query {
-    willAvatar: file(relativePath: { eq: "will-weiss.jpg" }) {
-      ...squareImage
-    }
-    signature: file(relativePath: { eq: "signature.png" }) {
-      ...squareImage
-    }
-  }
-`
