@@ -30,16 +30,13 @@
     }
 
     > .kanban {
-      display: flex;
-
+      display: grid;
       gap: 1%;
+      grid-template-rows: 1fr 1fr 1fr;
       justify-content: space-around;
       margin-right: 4rem;
 
       > .kanban__col {
-        flex-grow: 1;
-        width: 20%;
-
         > .kanban-title {
           color: white;
           font-weight: bold;
