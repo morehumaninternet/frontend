@@ -2,7 +2,6 @@
 import React from 'react'
 import IssueMetadata from './overview'
 import IssueTimelineView, { IssueTimelineViewProps } from './timeline'
-import { useTour, withNextButton } from '../../effects/useTour'
 
 export type LoadedIssueContentProps = {
   avatarUrl?: string
@@ -16,12 +15,7 @@ export default function LoadedIssueContent({ avatarUrl, issue, actionInProgress,
   return (
     <div className="issue-body">
       <IssueMetadata issue={issue} />
-      <IssueTimelineView
-        avatarUrl={avatarUrl}
-        actionInProgress={actionInProgress}
-        timeline={issue.timeline}
-        postComment={postComment}
-      />
+      <IssueTimelineView avatarUrl={avatarUrl} actionInProgress={actionInProgress} timeline={issue.timeline} postComment={postComment} />
     </div>
   )
 }

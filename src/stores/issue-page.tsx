@@ -1,20 +1,20 @@
 import { createStore as reduxCreateStore, Store as ReduxStore } from 'redux'
 
-type ChangeStatusInitiate = { type: 'CHANGE_STATUS_INITIATE', payload: { user: User, status: IssueStatus, comment: { html: string } } }
-type PostCommentInitiate = { type: 'POST_COMMENT_INITIATE', payload: { user: User, comment: { html: string } } }
+type ChangeStatusInitiate = { type: 'CHANGE_STATUS_INITIATE'; payload: { user: User; status: IssueStatus; comment: { html: string } } }
+type PostCommentInitiate = { type: 'POST_COMMENT_INITIATE'; payload: { user: User; comment: { html: string } } }
 
 export type IssuePageAction =
-  | { type: 'PAGE_LOAD', payload: { search: string } }
-  | { type: 'CURRENT_USER_LOAD_SUCCESS', payload: { user: User } }
-  | { type: 'CURRENT_USER_LOAD_ERROR', error: { message: string } }
-  | { type: 'INITIAL_ISSUE_LOAD_SUCCESS', payload: { issue: Issue } }
-  | { type: 'INITIAL_ISSUE_LOAD_ERROR', error: { message: string } }
+  | { type: 'PAGE_LOAD'; payload: { search: string } }
+  | { type: 'CURRENT_USER_LOAD_SUCCESS'; payload: { user: User } }
+  | { type: 'CURRENT_USER_LOAD_ERROR'; error: { message: string } }
+  | { type: 'INITIAL_ISSUE_LOAD_SUCCESS'; payload: { issue: Issue } }
+  | { type: 'INITIAL_ISSUE_LOAD_ERROR'; error: { message: string } }
   | ChangeStatusInitiate
   | { type: 'CHANGE_STATUS_SUCCESS' }
-  | { type: 'CHANGE_STATUS_ERROR', error: { message: string } }
+  | { type: 'CHANGE_STATUS_ERROR'; error: { message: string } }
   | PostCommentInitiate
   | { type: 'POST_COMMENT_SUCCESS' }
-  | { type: 'POST_COMMENT_ERROR', error: { message: string } }
+  | { type: 'POST_COMMENT_ERROR'; error: { message: string } }
   | { type: 'DISMISS_ERROR' }
 
 export type IssueParamsChecking = { state: 'checking' }
@@ -30,7 +30,7 @@ export type IssueStateLoading = { loading: true; issue?: undefined }
 export type IssueStateLoaded = { loading: false; issue: Maybe<Issue> }
 export type IssueState = IssueStateLoading | IssueStateLoaded
 
-export type IssueActionInProgress = { priorState: IssuePageState, action: ChangeStatusInitiate | PostCommentInitiate }
+export type IssueActionInProgress = { priorState: IssuePageState; action: ChangeStatusInitiate | PostCommentInitiate }
 
 export type IssuePageState = {
   params: IssueParams
@@ -47,7 +47,7 @@ const emptyState: IssuePageState = {
   currentUser: { loaded: false },
   issueState: { loading: true },
   actionInProgress: null,
-  error: null
+  error: null,
 }
 
 function reducer(initialState: IssuePageState = emptyState, action: IssuePageAction): IssuePageState {
@@ -62,7 +62,7 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
           params: {
             state: 'not ok',
             error: 'query param `site` is required',
-          }
+          },
         }
       }
 
@@ -73,7 +73,7 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
           params: {
             state: 'not ok',
             error: 'query param `issueId`, an integer, is required',
-          }
+          },
         }
       }
 
@@ -81,8 +81,8 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
         ...initialState,
         params: {
           state: 'ok',
-          params: { site, issueId }
-        }
+          params: { site, issueId },
+        },
       }
     }
 
@@ -91,8 +91,8 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
         ...initialState,
         currentUser: {
           loaded: true,
-          user: action.payload.user
-        }
+          user: action.payload.user,
+        },
       }
 
     case 'INITIAL_ISSUE_LOAD_SUCCESS':
@@ -100,8 +100,8 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
         ...initialState,
         issueState: {
           loading: false,
-          issue: action.payload.issue
-        }
+          issue: action.payload.issue,
+        },
       }
 
     case 'CHANGE_STATUS_SUCCESS':
@@ -110,6 +110,8 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
     case 'POST_COMMENT_SUCCESS':
       return { ...initialState, actionInProgress: null }
 
+    // Optimistically update the issue with the timeline that would result from the action.
+    // Set the actionInProgress with the prior state and the action so that this can be rolled back on an error.
     case 'CHANGE_STATUS_INITIATE': {
       const { issueState } = initialState
       if (issueState.loading) {
@@ -156,10 +158,12 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
       return {
         ...initialState,
         issueState: { loading: false, issue: nextIssue },
-        actionInProgress: { priorState: initialState, action }
+        actionInProgress: { priorState: initialState, action },
       }
     }
 
+    // Optimistically update the issue with the timeline that would result from the action.
+    // Set the actionInProgress with the prior state and the action so that this can be rolled back on an error.
     case 'POST_COMMENT_INITIATE': {
       const { issueState } = initialState
       if (issueState.loading) {
@@ -198,7 +202,7 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
       return {
         ...initialState,
         issueState: { loading: false, issue: nextIssue },
-        actionInProgress: { priorState: initialState, action }
+        actionInProgress: { priorState: initialState, action },
       }
     }
 
@@ -208,7 +212,7 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
       return {
         ...initialState.actionInProgress!.priorState,
         actionInProgress: null,
-        error: action.error
+        error: action.error,
       }
 
     case 'CURRENT_USER_LOAD_ERROR':
@@ -216,7 +220,7 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
       return {
         ...initialState,
         actionInProgress: null,
-        error: action.error
+        error: action.error,
       }
 
     case 'DISMISS_ERROR':

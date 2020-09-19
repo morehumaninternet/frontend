@@ -5,7 +5,6 @@ import { scriptSrc, stylesHref } from '../../effects/useTour'
 import LoadedIssue, { LoadedIssueContentProps } from './loaded'
 import { IssuePageStore, IssuePageState } from '../../stores/issue-page'
 
-
 type IssuePageFns = Pick<LoadedIssueContentProps, 'changeStatus'> & {
   postComment(comment: { html: string }): void
 }
@@ -51,7 +50,12 @@ function IssuePageComponentInner({ storeState, postComment, changeStatus }: { st
   }
 }
 
-export default function IssuePageComponent({ storeState, location, postComment, changeStatus }: { storeState: IssuePageState, location: Location } & IssuePageFns): JSX.Element {
+export default function IssuePageComponent({
+  storeState,
+  location,
+  postComment,
+  changeStatus,
+}: { storeState: IssuePageState; location: Location } & IssuePageFns): JSX.Element {
   return (
     <LayoutWithSidebar mainClassName="issue" currentUser={storeState.currentUser} location={location}>
       <SEO
@@ -69,11 +73,7 @@ export default function IssuePageComponent({ storeState, location, postComment, 
           { type: 'text/javascript', src: scriptSrc },
         ]}
       />
-      <IssuePageComponentInner
-        storeState={storeState}
-        postComment={postComment}
-        changeStatus={changeStatus}
-      />
+      <IssuePageComponentInner storeState={storeState} postComment={postComment} changeStatus={changeStatus} />
     </LayoutWithSidebar>
   )
 }
