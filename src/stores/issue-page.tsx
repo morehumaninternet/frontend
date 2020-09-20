@@ -26,13 +26,13 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
         }
       }
 
-      const issueId = parseInt(params.get('id')!, 10)
-      if (!issueId) {
+      const issueId = Number(params.get('id')!)
+      if (!issueId || Math.floor(issueId) !== issueId) {
         return {
           ...initialState,
           params: {
             state: 'not ok',
-            error: 'query param `issueId`, an integer, is required',
+            error: 'query param `id`, an integer, is required',
           },
         }
       }
