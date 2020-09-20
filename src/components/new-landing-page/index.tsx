@@ -160,25 +160,26 @@ export default function NewLandingPage(): JSX.Element {
             <Parallax
               styleOuter={{ position: 'absolute', width: '100%', height: '100%', top: '0', left: '0' }}
               styleInner={{ width: '100%', height: '100%' }}
-              y={['10%', '50%']}
+              y={['-5%', '60%']}
+            >
+              <MountainBackground1 />
+            </Parallax>
+            <Parallax
+              styleOuter={{ position: 'absolute', width: '100%', height: '100%', top: '0', left: '0' }}
+              styleInner={{ width: '100%', height: '100%' }}
+              y={['-5%', '60%']}
+            >
+              <MountainBackground2 />
+            </Parallax>
+            <Parallax
+              styleOuter={{ position: 'absolute', width: '100%', height: '100%', top: '0', left: '0' }}
+              styleInner={{ width: '100%', height: '100%' }}
+              y={['2%', '40%']}
             >
               <MountainMidground />
             </Parallax>
           </div>
           <MountainForeground />
-          {/* <div className="mountains-container">
-            <div className="mountains">
-              <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '7%' }} y={['-30%', '30%']}>
-                <MountainBackground1 />
-              </Parallax>
-              <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '4.5%' }} y={['-30%', '30%']}>
-                <MountainBackground2 />
-              </Parallax>
-
-              <MountainForeground />
-              <svg viewBox="0 0 1440 397" fill="none" className="mountain-placeholder" preserveAspectRatio="none" />
-            </div>
-          </div> */}
         </article>
         <div className="post-sky1">
           {/* <AstronautStarGroup /> */}
