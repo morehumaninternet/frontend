@@ -66,7 +66,8 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
 
     // Optimistically update the issue with the timeline that would result from the action.
     // Set the actionInProgress with the prior state and the action so that this can be rolled back on an error.
-    case 'CHANGE_STATUS_INITIATE': {
+    case 'CHANGE_STATUS_INITIATE':
+    case 'POST_COMMENT_INITIATE': {
       const { issueState } = initialState
       if (issueState.loading) {
         throw new Error('Posting comments while the issue is loading should not be possible')
@@ -83,74 +84,38 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
 
       const now = new Date()
 
-      const nextTimeline: IssueTimeline = issue.timeline.concat([
-        {
-          verb: 'comment',
-          by: action.payload.user,
-          timestamp: now,
-          comment: action.payload.comment,
-        },
-        {
-          verb: 'change status',
-          by: action.payload.user,
-          timestamp: now,
-          status: action.payload.status,
-        },
-      ])
+      const nextStatus = action.type === 'CHANGE_STATUS_INITIATE' ? action.payload.status : issue.status
+
+      const commentActivity: IssueActivity = {
+        verb: 'comment',
+        by: action.payload.user,
+        timestamp: now,
+        comment: action.payload.comment,
+      }
+
+      const newActivities: IssueTimeline =
+        action.type === 'POST_COMMENT_INITIATE'
+          ? [commentActivity]
+          : [
+              commentActivity,
+              {
+                verb: 'change status',
+                by: action.payload.user,
+                timestamp: now,
+                status: action.payload.status,
+              },
+            ]
 
       const nextIssue: Issue = {
         ...issue,
+        status: nextStatus,
         aggregates: {
           ...issue.aggregates,
           comments: {
             count: issue.aggregates.comments.count + 1,
           },
         },
-        timeline: nextTimeline,
-      }
-
-      return {
-        ...initialState,
-        issueState: { loading: false, issue: nextIssue },
-        actionInProgress: { priorState: initialState, action },
-      }
-    }
-
-    // Optimistically update the issue with the timeline that would result from the action.
-    // Set the actionInProgress with the prior state and the action so that this can be rolled back on an error.
-    case 'POST_COMMENT_INITIATE': {
-      const { issueState } = initialState
-      if (issueState.loading) {
-        throw new Error('Posting comments while the issue is loading should not be possible')
-      }
-      const { issue } = issueState
-
-      if (!issue) {
-        throw new Error('Posting comments for a nonexistent issue should not be possible')
-      }
-
-      if (initialState.actionInProgress) {
-        throw new Error('Wait for the current action to finish before starting another')
-      }
-
-      const nextTimeline: IssueTimeline = issue.timeline.concat([
-        {
-          verb: 'comment',
-          by: action.payload.user,
-          timestamp: new Date(),
-          comment: action.payload.comment,
-        },
-      ])
-
-      const nextIssue: Issue = {
-        ...issue,
-        aggregates: {
-          ...issue.aggregates,
-          comments: {
-            count: issue.aggregates.comments.count + 1,
-          },
-        },
-        timeline: nextTimeline,
+        timeline: issue.timeline.concat(newActivities),
       }
 
       return {
@@ -162,9 +127,6 @@ function reducer(initialState: IssuePageState = emptyState, action: IssuePageAct
 
     // The successful completion of the action means that the optimistic update can stay and there's no action in progress.
     case 'CHANGE_STATUS_SUCCESS':
-      return { ...initialState, actionInProgress: null }
-
-    // The successful completion of the action means that the optimistic update can stay and there's no action in progress.
     case 'POST_COMMENT_SUCCESS':
       return { ...initialState, actionInProgress: null }
 
