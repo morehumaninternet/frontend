@@ -61,7 +61,7 @@ function randomId(site: string): number {
   }
 }
 
-function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
+export function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
   const site = opts.site || defaultSite
   const id = opts.id || randomId(site)
   const user = opts.user || {
