@@ -58,3 +58,47 @@ type SiteData = {
     [status in IssueStatus]: readonly Issue[]
   }
 }
+
+type Action<T extends string> = { type: T }
+type ActionWithPayload<T extends string, P extends object> = Action<T> & { payload: P }
+type ActionWithError<T extends string> = Action<T> & { error: { message: string } }
+
+type ChangeStatusInitiate = ActionWithPayload<'CHANGE_STATUS_INITIATE', { user: User; status: IssueStatus; comment: { html: string } }>
+type PostCommentInitiate = ActionWithPayload<'POST_COMMENT_INITIATE', { user: User; comment: { html: string } }>
+
+type IssuePageAction =
+  | ActionWithPayload<'PAGE_LOAD', { search: string }>
+  | ActionWithPayload<'CURRENT_USER_LOAD_SUCCESS', { user: User }>
+  | ActionWithError<'CURRENT_USER_LOAD_ERROR'>
+  | ActionWithPayload<'INITIAL_ISSUE_LOAD_SUCCESS', { issue: Issue }>
+  | ActionWithError<'INITIAL_ISSUE_LOAD_ERROR'>
+  | ChangeStatusInitiate
+  | Action<'CHANGE_STATUS_SUCCESS'>
+  | ActionWithError<'CHANGE_STATUS_ERROR'>
+  | PostCommentInitiate
+  | Action<'POST_COMMENT_SUCCESS'>
+  | ActionWithError<'POST_COMMENT_ERROR'>
+  | Action<'DISMISS_ERROR'>
+
+type IssueParamsChecking = { state: 'checking' }
+type IssueParamsNotOk = { state: 'not ok'; error: string }
+type IssueParamsOk = {
+  state: 'ok'
+  params: { site: string; issueId: number }
+}
+
+type IssueParams = IssueParamsChecking | IssueParamsNotOk | IssueParamsOk
+
+type IssueStateLoading = { loading: true; issue?: undefined }
+type IssueStateLoaded = { loading: false; issue: Maybe<Issue> }
+type IssueState = IssueStateLoading | IssueStateLoaded
+
+type IssueActionInProgress = { priorState: IssuePageState; action: ChangeStatusInitiate | PostCommentInitiate }
+
+type IssuePageState = {
+  params: IssueParams
+  currentUser: CurrentUser
+  issueState: IssueState
+  actionInProgress: null | IssueActionInProgress
+  error: null | { message: string }
+}

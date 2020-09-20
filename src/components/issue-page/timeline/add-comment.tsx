@@ -4,28 +4,20 @@ import { Avatar, Button } from '@material-ui/core'
 
 export type IssueAddCommentProps = {
   avatarUrl?: string
-  postComment(comment: { html: string }): Promise<void>
+  actionInProgress: boolean
+  postComment(comment: { html: string }): void
 }
 
-export default function IssueAddComment({ avatarUrl, postComment }: IssueAddCommentProps): JSX.Element {
+export default function IssueAddComment({ avatarUrl, actionInProgress, postComment }: IssueAddCommentProps): JSX.Element {
   const ref: React.MutableRefObject<HTMLDivElement> = React.useRef() as any
-  const [submitting, setSubmitting] = React.useState(false)
   const [hasText, setHasText] = React.useState(false)
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault()
     const commentHtml: string = (event.target as any).elements.namedItem('comment').value
-    setSubmitting(true)
     postComment({ html: commentHtml })
-      .then(() => {
-        const trixElement: any = ref.current!.querySelector('trix-editor')!
-        trixElement.editor.loadHTML('')
-        setSubmitting(false)
-      })
-      .catch(err => {
-        // TODO: something else
-        alert(err)
-      })
+    const trixElement: any = ref.current!.querySelector('trix-editor')!
+    trixElement.editor.loadHTML('')
   }
 
   React.useEffect(() => {
@@ -49,7 +41,7 @@ export default function IssueAddComment({ avatarUrl, postComment }: IssueAddComm
           `,
         }}
       />
-      <Button className="mhi-button" type="submit" disabled={submitting || !hasText}>
+      <Button className="mhi-button" type="submit" disabled={actionInProgress || !hasText}>
         Add Comment
       </Button>
     </form>

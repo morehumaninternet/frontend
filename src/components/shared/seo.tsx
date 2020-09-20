@@ -78,7 +78,7 @@ export default function SEO(props: SEOProps): JSX.Element {
         { name: 'theme-color', content: '#ffffff' },
       ].concat(meta)}
       link={links}
-      script={scripts}
+      script={scripts as any}
     />
   )
 }

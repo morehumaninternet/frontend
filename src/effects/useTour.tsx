@@ -4,7 +4,7 @@
 */
 
 // tslint:disable:no-expression-statement no-this no-invalid-this
-import { useState, useEffect } from 'react'
+import { useState, useEffect, DependencyList } from 'react'
 
 declare var Shepherd: any
 
@@ -58,14 +58,14 @@ export function startTour({ steps, onComplete }: TourArgs): Promise<any> {
 }
 
 // Create and return a "tour" state variable, which will take the value of the activeTour when startTour has resolved
-export function useTour(tourArgs: TourArgs): any {
+export function useTour(tourArgs: TourArgs, runTour?: () => boolean, deps?: DependencyList): any {
   const [tour, setTour] = useState<any>(null)
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && !tour) {
+    if (typeof window !== 'undefined' && !tour && (!runTour || runTour())) {
       startTour(tourArgs).then(setTour)
     }
-  }, [])
+  }, deps || [])
 
   return tour
 }

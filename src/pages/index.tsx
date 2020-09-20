@@ -1,7 +1,6 @@
 import { graphql } from 'gatsby'
 import LandingPage from '../components/landing-page'
 
-
 export default LandingPage
 
 export const squareImage = graphql`

@@ -2,7 +2,7 @@ import { cloneDeep } from 'lodash'
 import delay from '../utils/delay'
 
 // tslint:disable:no-expression-statement
-export type IssuePostBody = {
+type IssuePostBody = {
   id?: number
   user?: User
   site: string
@@ -31,7 +31,7 @@ function issueFromJson(issueJson: string): Issue {
   return issue
 }
 
-export const defaultCommentHtml = `
+const defaultCommentHtml = `
   <strong>Steps</strong>
   <br>
   <ol>
