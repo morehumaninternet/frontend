@@ -13,7 +13,6 @@ import MountainForeground from './svgs/mountain-foreground'
 import Astronaut from './svgs/astronaut'
 import AstronautStarGroup from './svgs/astronaut-star-group'
 import ApplicationForm from '../../components/shared/application-form'
-import SS from '../../../static/stars.svg'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -191,20 +190,20 @@ export default function NewLandingPage(): JSX.Element {
               About
             </h2>
             <p ref={makeAndTrackRef()}>
-              <FormattedMessage id="index_manifesto_content1" />
+              <FormattedMessage id="index_manifesto_content2" />
             </p>
           </div>
 
           <div className="why" ref={internalSectionRefs.why as any}>
             <div>
-              <h1 className="mhi-heading">Why</h1>
+              <h2 className="mhi-heading">Why</h2>
               <p>
-                <FormattedMessage id="index_manifesto_content2" />
+                <FormattedMessage id="index_manifesto_content1" />
               </p>
             </div>
 
             <div>
-              <h1 className="mhi-heading">OK</h1>
+              <h2 className="mhi-heading">OK</h2>
             </div>
           </div>
           <div className="join" ref={internalSectionRefs.join as any}>
