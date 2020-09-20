@@ -3,7 +3,7 @@ import React from 'react'
 function Star({ cx, cy, r, durationSeconds }: { cx: number; cy: number; r: number; durationSeconds: number }): JSX.Element {
   return (
     <circle cx={cx} cy={cy} r={r} fill="#fff">
-      <animate attributeName="opacity" values="0.25;0.75;0.25" dur={`${durationSeconds}s`} repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.25;0.95;0.25" dur={`${durationSeconds}s`} repeatCount="indefinite" />
     </circle>
   )
 }
