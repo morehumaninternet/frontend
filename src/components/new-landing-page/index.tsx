@@ -13,6 +13,7 @@ import MountainForeground from './svgs/mountain-foreground'
 import Astronaut from './svgs/astronaut'
 import AstronautStarGroup from './svgs/astronaut-star-group'
 import ApplicationForm from '../../components/shared/application-form'
+import SS from '../../../static/stars.svg'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -138,25 +139,34 @@ export default function NewLandingPage(): JSX.Element {
           </header>
         }
       >
-        <div className="sky start" ref={internalSectionRefs.start as any}>
+        <article className="sky start" ref={internalSectionRefs.start as any}>
           <div className="new-hero">
-            <div className="new-hero-contents">
-              <h1 className="mhi-heading" ref={makeAndTrackRef()}>
-                The time has come for a<br />
-                more human internet
-              </h1>
-              <p ref={makeAndTrackRef()}>
-                We're on a quest to make the web more transparent
-                <br />
-                and better aligned with the interests of all people
-              </p>
-              <Button ref={makeAndTrackRef()} className="mhi-button" component={Link} to={`/${useIntl().locale}/demo`}>
-                See the demo
-              </Button>
-            </div>
+            <h1 className="mhi-heading" ref={makeAndTrackRef()}>
+              The time has come for a<br />
+              more human internet
+            </h1>
+            <p ref={makeAndTrackRef()}>
+              We're on a quest to make the web more transparent
+              <br />
+              and better aligned with the interests of all people
+            </p>
+            <Button ref={makeAndTrackRef()} className="mhi-button" component={Link} to={`/${useIntl().locale}/demo`}>
+              See the demo
+            </Button>
           </div>
-          <Stars />
-          <div className="mountains-container">
+          <Stars x={10000} y={1000} starCount={300} />
+
+          <div className="mountain-background">
+            <Parallax
+              styleOuter={{ position: 'absolute', width: '100%', height: '100%', top: '0', left: '0' }}
+              styleInner={{ width: '100%', height: '100%' }}
+              y={['10%', '50%']}
+            >
+              <MountainMidground />
+            </Parallax>
+          </div>
+          <MountainForeground />
+          {/* <div className="mountains-container">
             <div className="mountains">
               <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '7%' }} y={['-30%', '30%']}>
                 <MountainBackground1 />
@@ -164,19 +174,17 @@ export default function NewLandingPage(): JSX.Element {
               <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '4.5%' }} y={['-30%', '30%']}>
                 <MountainBackground2 />
               </Parallax>
-              <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '7.5%' }} y={['-15%', '14%']}>
-                <MountainMidground />
-              </Parallax>
+
               <MountainForeground />
               <svg viewBox="0 0 1440 397" fill="none" className="mountain-placeholder" preserveAspectRatio="none" />
             </div>
-          </div>
-        </div>
+          </div> */}
+        </article>
         <div className="post-sky1">
-          <AstronautStarGroup />
-          <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['15%', '-55%']}>
+          {/* <AstronautStarGroup /> */}
+          {/* <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['15%', '-55%']}>
             <Astronaut />
-          </Parallax>
+          </Parallax> */}
           <div className="about" ref={internalSectionRefs.about as any}>
             <h2 className="mhi-heading" ref={makeAndTrackRef()}>
               About
