@@ -102,3 +102,13 @@ type IssuePageState = {
   actionInProgress: null | IssueActionInProgress
   error: null | { message: string }
 }
+
+type IssuePostBody = {
+  id?: number
+  user?: User
+  site: string
+  title: string
+  initialCommentHtml: string
+  aggregates?: IssueAggregates
+  status?: IssueStatus
+}

@@ -15,6 +15,7 @@ import AstronautStarGroup from './svgs/astronaut-star-group'
 import SEO from '../../components/shared/seo'
 import ApplicationForm from '../../components/shared/application-form'
 import Widget from '../../components/widget'
+import * as algoliaClient from '../../clients/api'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -140,14 +141,7 @@ export default function NewLandingPage(props: any): JSX.Element {
           </header>
         }
       >
-        <SEO
-          links={[
-            { rel: 'stylesheet', type: 'text/css', href: '/trix.css' },
-          ]}
-          scripts={[
-            { type: 'text/javascript', src: '/trix.js' },
-          ]}
-        />
+        <SEO links={[{ rel: 'stylesheet', type: 'text/css', href: '/trix.css' }]} scripts={[{ type: 'text/javascript', src: '/trix.js' }]} />
         <article className="sky start" ref={internalSectionRefs.start as any}>
           <div className="new-hero">
             <h1 className="mhi-heading" ref={makeAndTrackRef()}>
@@ -220,7 +214,7 @@ export default function NewLandingPage(props: any): JSX.Element {
             <ApplicationForm />
           </div>
         </div>
-        <Widget tour={null} navigate={props.navigate} />
+        <Widget tour={null} navigate={props.navigate} siteOrigin={window.origin} api={algoliaClient} />
       </Layout>
     </ParallaxProvider>
   )

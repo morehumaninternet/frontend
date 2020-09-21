@@ -1,16 +1,7 @@
-import { cloneDeep } from 'lodash'
-import delay from '../utils/delay'
-
 // tslint:disable:no-expression-statement
-type IssuePostBody = {
-  id?: number
-  user?: User
-  site: string
-  title: string
-  initialCommentHtml: string
-  aggregates?: IssueAggregates
-  status?: IssueStatus
-}
+import { cloneDeep } from 'lodash'
+import { issueFromJson } from './util'
+import delay from '../utils/delay'
 
 export const defaultSite = 'goalco.com'
 
@@ -18,17 +9,6 @@ const localStorageKeyPrefix = 'demo-issues'
 
 function demoIssuesLocalStorageKey(site: string, id: number): string {
   return `${localStorageKeyPrefix}:${site}:${id}`
-}
-
-// TODO: typecheck, perhaps rely on a library
-function issueFromJson(issueJson: string): Issue {
-  const issue = JSON.parse(issueJson)
-
-  issue.initialReport.timestamp = new Date(issue.initialReport.timestamp)
-  for (const activity of issue.timeline) {
-    activity.timestamp = new Date(activity.timestamp)
-  }
-  return issue
 }
 
 const defaultCommentHtml = `

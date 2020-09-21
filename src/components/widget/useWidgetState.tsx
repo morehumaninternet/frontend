@@ -3,13 +3,25 @@ import React from 'react'
 import { useIntl } from 'gatsby-plugin-intl'
 import { SimilarIssuesState } from './similar-issues'
 import debounceDefer from '../../utils/debounceDefer'
-
-import * as mockApi from '../../clients/mockApi'
 import useCurrentUser from '../../effects/useCurrentUser'
 
-const searchIssues = debounceDefer(mockApi.searchIssues, 200)
-
-export type WidgetProps = { tour: any; navigate: (href: string) => void }
+export type WidgetProps = {
+  tour: any
+  siteOrigin: string
+  navigate: (href: string) => void
+  api: {
+    postIssue(issue: {
+      id?: number
+      user?: User
+      site: string
+      title: string
+      initialCommentHtml: string
+      aggregates?: IssueAggregates
+      status?: IssueStatus
+    }): Promise<Issue>
+    searchIssues(opts: { site: string; title?: string }): Promise<ReadonlyArray<Issue>>
+  }
+}
 
 export type WidgetState = {
   open: boolean
@@ -28,7 +40,9 @@ export type WidgetState = {
   reasonCantPostAsNewIssue: null | string
 }
 
-export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
+export default function useWidgetState({ siteOrigin, api, navigate }: WidgetProps): WidgetState {
+  const searchIssues = debounceDefer(api.searchIssues, 200)
+
   const intl = useIntl()
   const [open, setOpen] = React.useState(false)
   const [submitting, setSubmitting] = React.useState(false)
@@ -57,8 +71,8 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
 
     setSubmitting(true)
 
-    const issue = await mockApi.postIssue({
-      site: mockApi.defaultSite,
+    const issue = await api.postIssue({
+      site: siteOrigin,
       title: issueTitle,
       user: currentUser.user,
       initialCommentHtml: issueInitialCommentHtml,
@@ -71,7 +85,7 @@ export default function useWidgetState({ navigate }: WidgetProps): WidgetState {
     setPostAsNewIssue(false)
     if (issueTitleLongEnoughToSearchFor) {
       setSimilarIssuesState({ searching: true, similarIssues: [] })
-      searchIssues({ site: mockApi.defaultSite, title: issueTitle }).then(similarIssues =>
+      searchIssues({ site: siteOrigin, title: issueTitle }).then(similarIssues =>
         setSimilarIssuesState({
           searching: false,
           similarIssues,
