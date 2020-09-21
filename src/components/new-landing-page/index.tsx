@@ -138,64 +138,72 @@ export default function NewLandingPage(): JSX.Element {
           </header>
         }
       >
-        <div className="sky start" ref={internalSectionRefs.start as any}>
+        <article className="sky start" ref={internalSectionRefs.start as any}>
           <div className="new-hero">
-            <div className="new-hero-contents">
-              <h1 className="mhi-heading" ref={makeAndTrackRef()}>
-                The time has come for a<br />
-                more human internet
-              </h1>
-              <p ref={makeAndTrackRef()}>
-                We're on a quest to make the web more transparent
-                <br />
-                and better aligned with the interests of all people
-              </p>
-              <Button ref={makeAndTrackRef()} className="mhi-button" component={Link} to={`/${useIntl().locale}/demo`}>
-                See the demo
-              </Button>
-            </div>
+            <h1 className="mhi-heading" ref={makeAndTrackRef()}>
+              The time has come for a<br />
+              more human internet
+            </h1>
+            <p ref={makeAndTrackRef()}>
+              We're on a quest to make the web more transparent
+              <br />
+              and better aligned with the interests of all people
+            </p>
+            <Button ref={makeAndTrackRef()} className="mhi-button" component={Link} to={`/${useIntl().locale}/demo`}>
+              See the demo
+            </Button>
           </div>
-          <Stars />
-          <div className="mountains-container">
-            <div className="mountains">
-              <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '7%' }} y={['-30%', '30%']}>
-                <MountainBackground1 />
-              </Parallax>
-              <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '4.5%' }} y={['-30%', '30%']}>
-                <MountainBackground2 />
-              </Parallax>
-              <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '7.5%' }} y={['-15%', '14%']}>
-                <MountainMidground />
-              </Parallax>
-              <MountainForeground />
-              <svg viewBox="0 0 1440 397" fill="none" className="mountain-placeholder" preserveAspectRatio="none" />
-            </div>
+          <Stars x={10000} y={1000} starCount={300} />
+
+          <div className="mountain-background">
+            <Parallax
+              styleOuter={{ position: 'absolute', width: '100%', height: '100%', top: '0', left: '0' }}
+              styleInner={{ width: '100%', height: '100%' }}
+              y={['-5%', '60%']}
+            >
+              <MountainBackground1 />
+            </Parallax>
+            <Parallax
+              styleOuter={{ position: 'absolute', width: '100%', height: '100%', top: '0', left: '0' }}
+              styleInner={{ width: '100%', height: '100%' }}
+              y={['-5%', '60%']}
+            >
+              <MountainBackground2 />
+            </Parallax>
+            <Parallax
+              styleOuter={{ position: 'absolute', width: '100%', height: '100%', top: '0', left: '0' }}
+              styleInner={{ width: '100%', height: '100%' }}
+              y={['2%', '40%']}
+            >
+              <MountainMidground />
+            </Parallax>
           </div>
-        </div>
+          <MountainForeground />
+        </article>
         <div className="post-sky1">
-          <AstronautStarGroup />
-          <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['15%', '-55%']}>
+          {/* <AstronautStarGroup /> */}
+          {/* <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['15%', '-55%']}>
             <Astronaut />
-          </Parallax>
+          </Parallax> */}
           <div className="about" ref={internalSectionRefs.about as any}>
             <h2 className="mhi-heading" ref={makeAndTrackRef()}>
               About
             </h2>
             <p ref={makeAndTrackRef()}>
-              <FormattedMessage id="index_manifesto_content1" />
+              <FormattedMessage id="index_manifesto_content2" />
             </p>
           </div>
 
           <div className="why" ref={internalSectionRefs.why as any}>
             <div>
-              <h1 className="mhi-heading">Why</h1>
+              <h2 className="mhi-heading">Why</h2>
               <p>
-                <FormattedMessage id="index_manifesto_content2" />
+                <FormattedMessage id="index_manifesto_content1" />
               </p>
             </div>
 
             <div>
-              <h1 className="mhi-heading">OK</h1>
+              <h2 className="mhi-heading">OK</h2>
             </div>
           </div>
           <div className="join" ref={internalSectionRefs.join as any}>

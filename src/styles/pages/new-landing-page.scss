@@ -5,42 +5,76 @@ $mountain-size: 48vh;
     position: absolute;
 
     > .sky {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      grid-template-rows: minmax(250px, 1fr) auto minmax(250px, 1fr);
+
       position: relative;
       background-image: linear-gradient(to bottom, $human-blue, $human-pink);
-      min-height: 788px;
-      height: 120vh;
+      min-height: 700px;
+      height: 100vh;
       width: 100vw;
 
       > .new-hero {
-        position: absolute;
-        width: 100%;
-        height: 100vh;
+        grid-column: 2;
+        grid-row: 2;
+
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: center;
+        text-align: center;
+
+        color: white;
+        text-align: center;
+
         z-index: 99;
 
-        > .new-hero-contents {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          text-align: center;
-
-          color: white;
-          text-align: center;
-
-          > .mhi-button {
-            font-weight: bold;
-            padding: 1em 3em;
-          }
+        > .mhi-button {
+          font-weight: bold;
+          padding: 1em 3em;
         }
       }
 
       > .stars {
+        grid-column: 1 / 4;
+        grid-row: 1 / 4;
+        height: 100%;
+        width: 100%;
+      }
+
+      .mountain-background {
         position: relative;
-        left: 4.027777778;
-        top: 19.416243655%;
-        width: 94.236111111%;
+        grid-column: 1 / 4;
+        grid-row: 3 / 4;
+        height: 100%;
+        width: 100%;
+      }
+
+      .mountain-midground {
+        position: relative;
+        width: 100%;
+        height: 75%;
+      }
+
+      .mountain-background1 {
+        position: relative;
+        width: 35%;
+        height: 100%;
+      }
+
+      .mountain-background2 {
+        position: relative;
+        left: 20%;
+        width: 80%;
+        height: 100%;
+      }
+
+      .mountain-foreground {
+        position: relative;
+        grid-column: 1 / 4;
+        grid-row: 3;
+        height: 100%;
+        width: 100%;
       }
     }
 
@@ -53,13 +87,13 @@ $mountain-size: 48vh;
 
       $astronaut-width: 44.166666667%;
 
-      > .about {
+      > .about, .why {
         color: white;
         margin-left: $astronaut-width;
         padding-right: 100px;
         text-align: left;
 
-        > h2 {
+        h2 {
           text-align: left;
           color: white;
           font-size: 2em;
@@ -84,20 +118,20 @@ $mountain-size: 48vh;
       }
     }
 
-    .why {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: white;
-      border-radius: 40px;
-      margin: 300px 100px;
-      padding: 100px;
+    // .why {
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   background-color: white;
+    //   border-radius: 40px;
+    //   margin: 300px 100px;
+    //   padding: 100px;
 
-      h1 {
-        color: $human-blue;
-        text-align: left;
-      }
-    }
+    //   h1 {
+    //     color: $human-blue;
+    //     text-align: left;
+    //   }
+    // }
 
     .join {
       display: flex;
@@ -109,48 +143,6 @@ $mountain-size: 48vh;
         color: $human-blue;
         text-align: left;
       }
-    }
-
-    .mountains-container {
-      position: absolute;
-      width: 100%;
-      bottom: 0;
-    }
-
-    .mountains {
-      position: relative;
-      bottom: 0;
-      left: 0;
-      max-height: $mountain-size;
-      width: 100%;
-    }
-
-    .mountain-placeholder {
-      width: 100%;
-      max-height: $mountain-size;
-    }
-
-    .mountain-foreground {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      max-height: $mountain-size;
-    }
-
-    .mountain-midground {
-      width: 100%;
-      max-height: 0.8 * $mountain-size;
-    }
-
-    .mountain-background1 {
-      width: 28%;
-      max-height: 0.8 * $mountain-size;
-    }
-
-    .mountain-background2 {
-      width: 100%;
-      max-height: 0.8 * $mountain-size;
     }
   }
 
