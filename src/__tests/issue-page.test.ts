@@ -5,6 +5,7 @@ import { omit } from 'lodash'
 import { createIssue } from '../clients/mockApi'
 import { createStore, IssuePageStore } from '../stores/issue-page'
 import backgroundScript from '../background-scripts/issue-page'
+import { whenState } from './util'
 
 describe('issue-page store & background-script', () => {
   let store: IssuePageStore
@@ -85,16 +86,13 @@ describe('issue-page store & background-script', () => {
 
     it('fetches the corresponding issue when the query params include site & an integer id', async () => {
       const issue: Issue = createIssue({ id: 6 })
-      const getIssueBySiteAndId = Promise.resolve(issue)
 
-      api.getIssueBySiteAndId.returns(getIssueBySiteAndId)
+      api.getIssueBySiteAndId.returns(Promise.resolve(issue))
 
       pageLoad('?site=foo.com&id=6')
 
       expect(api.getIssueBySiteAndId).to.have.callCount(1)
       expect(api.getIssueBySiteAndId.firstCall.args).to.eql(['foo.com', 6])
-
-      await getIssueBySiteAndId
 
       const expectedState: IssuePageState = {
         actionInProgress: null,
@@ -113,23 +111,18 @@ describe('issue-page store & background-script', () => {
         },
       }
 
-      expect(store.getState()).to.eql(expectedState)
+      expect(await whenState(store, state => state.params.state === 'ok')).to.eql(expectedState)
     })
   })
 
   describe('on CHANGE_STATUS_INITIATE', () => {
     it('optimistically updates the issue timeline, then completes the action when the call to api.changeStatus resolves', async () => {
-      const getIssueBySiteAndId = Promise.resolve(createIssue({ id: 6 }))
-      api.getIssueBySiteAndId.returns(getIssueBySiteAndId)
+      api.getIssueBySiteAndId.returns(Promise.resolve(createIssue({ id: 6 })))
+      api.changeStatus.returns(Promise.resolve())
 
       pageLoad('?site=foo.com&id=6')
 
-      await getIssueBySiteAndId
-
-      const changeStatus = Promise.resolve()
-      api.changeStatus.returns(changeStatus)
-
-      const stateBeforeChangeStatusInitiate = store.getState()
+      const stateBeforeChangeStatusInitiate = await whenState(store, state => state.params.state === 'ok')
 
       const changeStatusInitiate: IssuePageAction = {
         type: 'CHANGE_STATUS_INITIATE',
@@ -161,9 +154,7 @@ describe('issue-page store & background-script', () => {
         action: changeStatusInitiate,
       })
 
-      await changeStatus
-
-      const stateAfterChangeStatusResolves = store.getState()
+      const stateAfterChangeStatusResolves = await whenState(store, state => !state.actionInProgress)
 
       expect(stateAfterChangeStatusResolves.actionInProgress).to.equal(null)
       expect(omit(stateAfterChangeStatusResolves, 'actionInProgress')).to.eql(omit(stateAfterChangeStatusInitiate, 'actionInProgress'))
@@ -172,17 +163,12 @@ describe('issue-page store & background-script', () => {
 
   describe('on POST_COMMENT_INITIATE', () => {
     it('optimistically updates the issue timeline, then completes the action when the call to api.changeStatus resolves', async () => {
-      const getIssueBySiteAndId = Promise.resolve(createIssue({ id: 6 }))
-      api.getIssueBySiteAndId.returns(getIssueBySiteAndId)
+      api.getIssueBySiteAndId.returns(Promise.resolve(createIssue({ id: 6 })))
+      api.postComment.returns(Promise.resolve())
 
       pageLoad('?site=foo.com&id=6')
 
-      await getIssueBySiteAndId
-
-      const postComment = Promise.resolve()
-      api.postComment.returns(postComment)
-
-      const stateBeforePostCommentInitiate = store.getState()
+      const stateBeforePostCommentInitiate = await whenState(store, state => state.params.state === 'ok')
 
       const PostCommentInitiate: IssuePageAction = {
         type: 'POST_COMMENT_INITIATE',
@@ -208,9 +194,7 @@ describe('issue-page store & background-script', () => {
         action: PostCommentInitiate,
       })
 
-      await postComment
-
-      const stateAfterPostCommentResolves = store.getState()
+      const stateAfterPostCommentResolves = await whenState(store, state => !state.actionInProgress)
 
       expect(stateAfterPostCommentResolves.actionInProgress).to.equal(null)
       expect(omit(stateAfterPostCommentResolves, 'actionInProgress')).to.eql(omit(stateAfterPostCommentInitiate, 'actionInProgress'))
