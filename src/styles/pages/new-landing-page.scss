@@ -38,6 +38,7 @@ $mountain-size: 48vh;
       > .stars {
         grid-column: 1 / 4;
         grid-row: 1 / 4;
+        padding-top: $header-height + 35px;
         height: 100%;
         width: 100%;
       }
