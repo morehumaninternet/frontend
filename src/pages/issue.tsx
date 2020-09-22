@@ -89,6 +89,7 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
               })
             },
           },
+          scrollTo: { behavior: 'smooth', block: 'center' },
         },
         {
           text: ['Devdiva22 reports the problem is now fixed. Customer will be able to successfully checkout.'],
@@ -96,6 +97,7 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
             element: '#diva-fixed',
             on: 'top',
           },
+          scrollTo: { behavior: 'smooth', block: 'center' },
         },
       ],
     },
