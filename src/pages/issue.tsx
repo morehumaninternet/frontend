@@ -76,7 +76,7 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
           },
         },
         {
-          text: ['Looks like Devdiva22 was online and quickly addressed the issue in near real-time.'],
+          text: ['Looks like the site maintainer was already online, and she has quickly acknowledged the issue.'],
           attachTo: {
             element: '#diva-acknowledged',
             on: 'top',
@@ -92,7 +92,7 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
           scrollTo: { behavior: 'smooth', block: 'center' },
         },
         {
-          text: ['Devdiva22 reports the problem is now fixed. Customer will be able to successfully checkout.'],
+          text: ['She reports that the problem with checkout is now fixed. You will now be able to successfully checkout.'],
           attachTo: {
             element: '#diva-fixed',
             on: 'top',
