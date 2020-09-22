@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash'
+import { cloneDeep, escapeRegExp } from 'lodash'
 import delay from '../utils/delay'
 
 // tslint:disable:no-expression-statement
@@ -222,7 +222,8 @@ export async function changeStatus({
 
 export async function searchIssues({ site, title }: { site: string; title?: string }): Promise<ReadonlyArray<Issue>> {
   const localStorageSitePrefix = `${localStorageKeyPrefix}:${site}`
-  const search = new RegExp(title || '.*', 'i')
+  const escapedTitle = escapeRegExp(title)
+  const search = new RegExp(escapedTitle || '.*', 'i')
   const matches: Issue[] = [] // tslint:disable-line:readonly-array
   Object.keys(localStorage).forEach(key => {
     if (key.startsWith(localStorageSitePrefix)) {
