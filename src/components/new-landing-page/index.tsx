@@ -118,6 +118,11 @@ export default function NewLandingPage(): JSX.Element {
     onScroll()
     addEventListener('scroll', onScroll, { passive: true })
     addEventListener('resize', onScroll)
+
+    return () => {
+      removeEventListener('scroll', onScroll)
+      removeEventListener('resize', onScroll)
+    }
   }, [])
 
   return (
