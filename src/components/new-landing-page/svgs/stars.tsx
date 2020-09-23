@@ -29,8 +29,8 @@ export default function Stars({ x, y, starCount }: { x: number; y: number; starC
 
   return (
     <svg viewBox={`0 0 ${x} ${y}`} fill="none" preserveAspectRatio="xMinYMid slice" className="stars">
-      {stars.map(star => (
-        <Star {...star} />
+      {stars.map((star, i) => (
+        <Star key={i} {...star} />
       ))}
     </svg>
   )
