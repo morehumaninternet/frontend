@@ -2,3 +2,7 @@
   publish = "public/"
   functions = "functions/"
   command = "npm run lint && npm run test && npm run build"
+[[redirects]]
+  from="/api/*"
+  to="/.netlify/functions/:splat"
+  status=200
