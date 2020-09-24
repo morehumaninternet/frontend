@@ -22,14 +22,43 @@ This project uses the [Gatsby](https://github.com/gatsbyjs/gatsby) framework usi
   npm install
   ```
 
-1.  **Start developing**
+2. **Start developing**
   ```shell
   gatsby develop
   ```
 
-1.  **Open the source code and start editing**
+3. **Open the source code and start editing**
 
   Your site is now running at `http://localhost:8000`
+
+4. **Integrate with Algolia**
+  Clicking on the bottom-right corner of the landing page will open a widget. The user can post new issues or search for existing issues. Currently, the issues are saved in `localStorage` or [Algolia](https://www.algolia.com/). To work with Algolia, please follow these steps:
+  4.1 Create an Algolia account and a new index.
+  4.2 Create a `.env.development` file in the root directory of the project with the following environment variables:
+
+  ```shell
+  ALGOLIA_APP_ID=
+  ALGOLIA_API_KEY=
+  ALGOLIA_SEARCH_ONLY_API_KEY=
+  ALGOLIA_INDEX_NAME=
+  ```
+
+  You can find the values of these variables in your Algolia account under "API Keys" on the left.
+  > :warning: Do not commit or share the Admin API Key with anyone!
+
+  4.3 Set your Algolia settings by running:
+
+  ```shell
+  npm run setup
+  ```
+
+  4.4 Run:
+
+  ```shell
+  netlify dev
+  ```
+
+  Your site is now running at `http://localhost:8888`
 
 ## Code Style
 
@@ -45,7 +74,7 @@ This project uses the [Gatsby](https://github.com/gatsbyjs/gatsby) framework usi
   npm run format && npm run lint
   ```
 
-  Our design system could use some more formalization, but we do enforce that all styles are declared in .scss rather than other JS-in-CSS approaches or inline styles. The thinking there is that this enforces good practices around writing clean markup (especially around mobile), helps separate business logic from styling concerns, and would make theming and/or custom styles simpler to implement. All `<div>`s should be given a `className` reflecting what they are. Utilize Sass's ability to nest styles in `{ ... }` blocks and use the `> ` operator so that the markup mirrors the associated styles.
+  Our design system could use some more formalization, but we do enforce that all styles are declared in .scss rather than other JS-in-CSS approaches or inline styles. The thinking there is that this enforces good practices around writing clean markup (especially around mobile), helps separate business logic from styling concerns, and would make theming and/or custom styles simpler to implement. All `<div>`s should be given a `className` reflecting what they are. Utilize Sass's ability to nest styles in `{ ... }` blocks and use the `>` operator so that the markup mirrors the associated styles.
 
 ## 🧐 What's inside?
 
