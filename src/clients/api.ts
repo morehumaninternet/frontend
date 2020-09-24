@@ -21,6 +21,7 @@ export async function postIssue(issuePostBody: IssuePostBody): Promise<Issue> {
   const issue = createIssue(issuePostBody)
   const issueStr = JSON.stringify(issue)
 
+  // tslint:disable-next-line: no-expression-statement
   await fetch('/api/postIssue', {
     method: 'POST',
     body: issueStr,
