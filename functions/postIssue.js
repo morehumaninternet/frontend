@@ -11,7 +11,6 @@ exports.handler = async event => {
   }
 
   const bodyJson = JSON.parse(event.body)
-  const { id, ...rest } = bodyJson
 
   // TODO - validate body arguments
 
@@ -34,17 +33,7 @@ exports.handler = async event => {
 
   // Send the record to Algolia
   try {
-    const result = index
-      .saveObject(
-        {
-          objectID: id,
-          ...rest,
-        },
-        {
-          autoGenerateObjectIDIfNotExist: true, // TODO - make sure ID is generated in our code
-        }
-      )
-      .wait()
+    const result = index.saveObject(bodyJson).wait()
   } catch (error) {
     return {
       statusCode: 500,
@@ -54,6 +43,6 @@ exports.handler = async event => {
 
   return {
     statusCode: 200,
-    body: 'Data was inserted posted successfully',
+    body: 'Data was posted successfully',
   }
 }
