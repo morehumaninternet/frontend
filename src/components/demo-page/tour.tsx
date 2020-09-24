@@ -11,7 +11,7 @@ import { withNextButton } from '../../effects/useTour'
 
 export const introStep = {
   text: [
-    'With More Human Internet people using your site can let you know of any issues they are having, or features they would like to see, so that you can help them out',
+    `With More Human Internet, users of your site can quickly and easily report issues or request features through a simple widget. Let's see it in action...`,
   ],
   ...withNextButton,
 }
@@ -21,7 +21,9 @@ export const addToCartStep = {
     element: '.demo-content-inner',
     on: 'bottom',
   },
-  text: ['Suppose someone is shopping on your site, add the GoalCo 10× superpower suit to your cart to continue'],
+  text: [
+    `Suppose you are shopping for a friend's birthday gift, and you've found the perfect item. Add the GoalCo 10x Superpower suit to your cart to continue...`,
+  ],
 }
 
 export const checkoutStep = {
@@ -29,7 +31,7 @@ export const checkoutStep = {
     element: '.demo-content-inner',
     on: 'bottom',
   },
-  text: ['But when they click to checkout...'],
+  text: ['But when you click to checkout...'],
 }
 
 export const checkoutFailingStep = {
@@ -40,7 +42,7 @@ export const checkoutFailingStep = {
     element: 'button.checkout',
     on: 'bottom',
   },
-  text: ['Hm, this is taking a bit long...'],
+  text: [`Something's wrong. The button is spinning endlessly!`],
   ...withNextButton,
 }
 
@@ -50,7 +52,7 @@ export const letsReportStep = {
     element: '.more-human-internet-widget-boundary',
     on: 'bottom',
   },
-  text: ["Let's report the issue. This widget can be layered on top your website with a few lines of embedded code."],
+  text: ["Let's report this issue. Site maintainers can layer the More Human Internet widget onto their site with a few lines of embedded code."],
 }
 
 export const letsWriteIssueTitleStep = {
@@ -62,7 +64,7 @@ export const letsWriteIssueTitleStep = {
     element: '.more-human-internet-widget-editor-issue-title-input',
     on: 'left',
   },
-  text: [`Let's write up the issue title. Type "Checkout" to continue`],
+  text: [`Let's write up the issue. Type "Checkout" to continue...`],
 }
 
 export const explainSimilarIssuesStep = {
@@ -71,7 +73,7 @@ export const explainSimilarIssuesStep = {
     on: 'left',
   },
   text: [
-    "We can see that similar issues have already been posted. We could choose from these, but they don't describe our issue. Let's write up the issue in more detail.",
+    "Looks like this site has some similar issues reported by other users. You could select an existing issue, but none of them fully describe what you're seeing.",
   ],
   ...withNextButton,
 }
@@ -82,7 +84,7 @@ export const letsAmendIssueTitleStep = {
     element: '.more-human-internet-widget-editor-issue-title-input',
     on: 'left',
   },
-  text: [`Include the information that you were trying to buy the "supersuit" to continue`],
+  text: [`Add some more detail. Type "Checkout is spinning when I try to buy the Supersuit" to continue...`],
 }
 
 export const postAsNewIssueStep = {
@@ -91,7 +93,7 @@ export const postAsNewIssueStep = {
     element: '.more-human-internet-widget-boundary',
     on: 'left',
   },
-  text: [`Looks like that issue hasn't been reported before, so click "Post as new issue" to continue`],
+  text: [`Looks like this is a new issue, so click "Post as new issue" to continue`],
 }
 
 export const finalPostStep = {
@@ -100,7 +102,7 @@ export const finalPostStep = {
     element: '.more-human-internet-widget-boundary',
     on: 'left',
   },
-  text: [`Let's give some additional context to help the site pinpoint the issue. When you're done click "Post" to continue`],
+  text: [`The More Human Internet widget asks for additional detail to help the site's team address the issue. When you're finished, click "Post" to continue`],
 }
 
 export const steps = Object.freeze([
