@@ -12,7 +12,11 @@ import MountainMidground from './svgs/mountain-midground'
 import MountainForeground from './svgs/mountain-foreground'
 import Astronaut from './svgs/astronaut'
 import AstronautStarGroup from './svgs/astronaut-star-group'
+import SEO from '../../components/shared/seo'
 import ApplicationForm from '../../components/shared/application-form'
+import Widget from '../../components/widget'
+import * as algoliaClient from '../../clients/api'
+import { defaultSite } from '../../clients/mockApi'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -44,7 +48,9 @@ function CenteredLogo(props: any): JSX.Element {
   )
 }
 
-export default function NewLandingPage(): JSX.Element {
+export default function NewLandingPage(props: any): JSX.Element {
+  const siteOrigin = typeof window !== 'undefined' ? window.origin : defaultSite
+
   const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
   const makeAndTrackRef = (): React.MutableRefObject<any> => {
     const ref = React.useRef()
@@ -143,6 +149,7 @@ export default function NewLandingPage(): JSX.Element {
           </header>
         }
       >
+        <SEO links={[{ rel: 'stylesheet', type: 'text/css', href: '/trix.css' }]} scripts={[{ type: 'text/javascript', src: '/trix.js' }]} />
         <article className="sky start" ref={internalSectionRefs.start as any}>
           <div className="new-hero">
             <h1 className="mhi-heading" ref={makeAndTrackRef()}>
@@ -215,6 +222,7 @@ export default function NewLandingPage(): JSX.Element {
             <ApplicationForm />
           </div>
         </div>
+        <Widget tour={null} navigate={props.navigate} siteOrigin={siteOrigin} api={algoliaClient} />
       </Layout>
     </ParallaxProvider>
   )

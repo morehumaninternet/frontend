@@ -7,6 +7,7 @@ import AddToCart from './add-to-cart'
 import Checkout from './checkout'
 import * as tourArgs from './tour'
 import { useTour } from '../../effects/useTour'
+import * as mockApi from '../../clients/mockApi'
 
 export default function DemoPageContents(props: any): JSX.Element {
   const [checkout, setCheckout] = useState(false)
@@ -41,7 +42,7 @@ export default function DemoPageContents(props: any): JSX.Element {
       <div className="demo-content-container">
         {checkout ? <Checkout checkedOut={checkedOut} onCheckout={() => setCheckedOut(true)} /> : <AddToCart onAddToCart={() => setCheckout(true)} />}
       </div>
-      <Widget tour={tour} navigate={props.navigate} />
+      <Widget tour={tour} navigate={props.navigate} siteOrigin={mockApi.defaultSite} api={mockApi} />
     </>
   )
 }
