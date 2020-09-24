@@ -16,9 +16,9 @@ exports.handler = async event => {
 
   // Retrieving environment variables.
   // These variable should be configured on Netlify.
-  const algoliaApiId = process.env.ALGOLIA_APP_ID
+  const algoliaApiId = process.env.GATSBY_ALGOLIA_APP_ID
   const algoliaApiKey = process.env.ALGOLIA_API_KEY
-  const algoliaIndexName = process.env.ALGOLIA_INDEX_NAME
+  const algoliaIndexName = process.env.GATSBY_ALGOLIA_INDEX_NAME
 
   if (!algoliaApiId || !algoliaApiKey || !algoliaIndexName) {
     return {

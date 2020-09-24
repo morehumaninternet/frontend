@@ -32,19 +32,20 @@ This project uses the [Gatsby](https://github.com/gatsbyjs/gatsby) framework usi
   Your site is now running at `http://localhost:8000`
 
 4. **Integrate with Algolia**
-  Clicking on the bottom-right corner of the landing page will open a widget. The user can post new issues or search for existing issues. Currently, the issues are saved in `localStorage` or [Algolia](https://www.algolia.com/). To work with Algolia, please follow these steps:
-  4.1 Create an Algolia account and a new index.
+
+  Clicking on the bottom-right corner of the landing page will open a widget. The user can post new issues or search for existing issues. Currently, the issues are saved in `localStorage` or [Algolia](https://www.algolia.com/). To work with Algolia, please follow these steps:  
+  4.1 Create an Algolia account and a new index.  
   4.2 Create a `.env.development` file in the root directory of the project with the following environment variables:
 
   ```shell
-  ALGOLIA_APP_ID=
+  GATSBY_ALGOLIA_APP_ID=
+  GATSBY_ALGOLIA_SEARCH_ONLY_API_KEY=
+  GATSBY_ALGOLIA_INDEX_NAME=
   ALGOLIA_API_KEY=
-  ALGOLIA_SEARCH_ONLY_API_KEY=
-  ALGOLIA_INDEX_NAME=
   ```
 
   You can find the values of these variables in your Algolia account under "API Keys" on the left.
-  > :warning: Do not commit or share the Admin API Key with anyone!
+  > :warning: Do not commit or share ALGOLIA_API_KEY (Admin API Key) with anyone!
 
   4.3 Set your Algolia settings by running:
 

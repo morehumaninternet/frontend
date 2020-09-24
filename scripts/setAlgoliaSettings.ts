@@ -18,16 +18,16 @@ if (existingEnvVars === undefined) {
 }
 
 // Validate that all env variables are configured
-const requiredEnvVars: ReadonlyArray<string> = ['ALGOLIA_APP_ID', 'ALGOLIA_API_KEY', 'ALGOLIA_INDEX_NAME']
+const requiredEnvVars: ReadonlyArray<string> = ['GATSBY_ALGOLIA_APP_ID', 'ALGOLIA_API_KEY', 'GATSBY_ALGOLIA_INDEX_NAME']
 const missingEnvVars = difference(requiredEnvVars, keys(existingEnvVars))
 if (missingEnvVars.length > 0) {
   throw new Error(chalk.red(`Missing environment variable(s): ${missingEnvVars.join(' ,')}`))
 }
 
 // Configure Algolia
-const algoliaApiId = process.env.ALGOLIA_APP_ID
+const algoliaApiId = process.env.GATSBY_ALGOLIA_APP_ID
 const algoliaApiKey = process.env.ALGOLIA_API_KEY
-const algoliaIndexName = process.env.ALGOLIA_INDEX_NAME
+const algoliaIndexName = process.env.GATSBY_ALGOLIA_INDEX_NAME
 const client = algoliasearch(algoliaApiId, algoliaApiKey)
 const index = client.initIndex(algoliaIndexName)
 // tslint:disable-next-line: no-expression-statement
