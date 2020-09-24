@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormattedMessage } from 'gatsby-plugin-intl'
+import { FormattedMessage } from 'react-intl'
 import FooterRingsLink from './footer-rings-link'
 import TwitterLink from './twitter-link'
 import GithubLink from './github-link'

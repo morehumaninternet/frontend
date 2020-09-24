@@ -7,7 +7,7 @@ import SEO from '../shared/seo'
 import DesignsShowcase from './designs-showcase'
 import ApplicationForm from '../shared/application-form'
 import setLogoFade from '../../utils/setLogoFade'
-import { FormattedMessage } from 'gatsby-plugin-intl'
+import { FormattedMessage } from 'react-intl'
 import Signature from '../../images/signature.png'
 
 export default class IndexPage extends React.Component<{ data: any }> {
@@ -85,6 +85,17 @@ export default class IndexPage extends React.Component<{ data: any }> {
               </a>
             </div>
             <h1 className="manifesto-item human-blue center-text" style={{ marginTop: 100 }}>
+              <FormattedMessage id="index_aboutus_header" />
+            </h1>
+            <div className="manifesto-item manifesto-contents">
+              <p>
+                <FormattedMessage id="index_aboutus1" />
+              </p>
+              <p>
+                <FormattedMessage id="index_aboutus2" />
+              </p>
+            </div>
+            <h1 className="manifesto-item human-blue center-text">
               <FormattedMessage id="index_weneedyou1" />
             </h1>
             <div className="manifesto-item manifesto-contents">

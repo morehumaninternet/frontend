@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormattedMessage } from 'gatsby-plugin-intl'
+import { FormattedMessage } from 'react-intl'
 import { Card, CardContent } from '@material-ui/core'
 import Hero from '../components/shared/hero'
 import { LayoutWithHeader } from '../components/shared/layout'

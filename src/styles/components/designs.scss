@@ -36,7 +36,10 @@ $margin-around-mac: 2em;
       justify-content: center;
 
       > h1 {
+        color: $human-blue;
+        font-size: 2.25em;
         margin-bottom: 1em;
+        font-weight: bold;
       }
 
       .explanation {

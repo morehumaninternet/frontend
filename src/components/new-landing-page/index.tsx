@@ -2,7 +2,7 @@
 import React from 'react'
 import { forEach, map, maxBy } from 'lodash'
 import { Link } from 'gatsby'
-import { useIntl, FormattedMessage } from 'gatsby-plugin-intl'
+import { useIntl, FormattedMessage } from 'react-intl'
 import { Button } from '@material-ui/core'
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
 import { Layout } from '../shared/layout'
@@ -61,7 +61,7 @@ export default function NewLandingPage(props: any): JSX.Element {
   const internalSectionRefs = {
     start: React.useRef<HTMLElement>(),
     about: React.useRef<HTMLElement>(),
-    why: makeAndTrackRef(),
+    why: React.useRef<HTMLElement>(),
     join: React.useRef<HTMLElement>(),
   }
 
@@ -202,21 +202,31 @@ export default function NewLandingPage(props: any): JSX.Element {
               About
             </h2>
             <p ref={makeAndTrackRef()}>
-              <FormattedMessage id="index_manifesto_content2" />
+              <FormattedMessage id="index_aboutus1" />
+            </p>
+            <p ref={makeAndTrackRef()}>
+              <FormattedMessage id="index_aboutus2" />
+            </p>
+            <p ref={makeAndTrackRef()}>
+              <FormattedMessage id="index_aboutus3" />
             </p>
           </div>
 
           <div className="why" ref={internalSectionRefs.why as any}>
-            <div>
-              <h2 className="mhi-heading">Why</h2>
-              <p>
-                <FormattedMessage id="index_manifesto_content1" />
-              </p>
-            </div>
-
-            <div>
-              <h2 className="mhi-heading">OK</h2>
-            </div>
+            <h2 className="mhi-heading" ref={makeAndTrackRef()}>
+              Why
+            </h2>
+            <p ref={makeAndTrackRef()}>
+              <FormattedMessage id="index_why1" />
+            </p>
+            <p ref={makeAndTrackRef()}>
+              <FormattedMessage id="index_why2" />
+            </p>
+            <p ref={makeAndTrackRef()}>
+              <strong>
+                <FormattedMessage id="index_why3" />
+              </strong>
+            </p>
           </div>
           <div className="join" ref={internalSectionRefs.join as any}>
             <ApplicationForm />

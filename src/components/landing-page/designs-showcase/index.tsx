@@ -3,7 +3,7 @@ import React from 'react'
 import { forEach, max } from 'lodash'
 import numPixels from '../../../utils/numPixels'
 import MacWithScreens from './mac-with-screens'
-import { FormattedMessage, useIntl } from 'gatsby-plugin-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 const Explanations = () => (
   <>
@@ -248,7 +248,7 @@ export default class DesignsShowcase extends React.Component {
       <div className="designs" ref={this.designsRef}>
         <div className="designs-content-container static" ref={this.designsContentContainerRef}>
           <div className="designs-content">
-            <h1 className="mhi-heading">
+            <h1 className="mhi-heading human-blue">
               <FormattedMessage id="showcase_title" />
             </h1>
             <div className="mac-container">

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { useIntl } from 'gatsby-plugin-intl'
+import { useIntl } from 'react-intl'
 
 export type SimilarIssuesState = {
   searching: boolean

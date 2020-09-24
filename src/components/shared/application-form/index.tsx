@@ -4,7 +4,7 @@ import { Business, Email, Person } from '@material-ui/icons'
 import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
-import { FormattedMessage, useIntl } from 'gatsby-plugin-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 export default function ApplicationForm(): JSX.Element {
   const intl = useIntl()

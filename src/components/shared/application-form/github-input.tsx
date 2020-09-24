@@ -6,7 +6,7 @@ import { Avatar } from '@material-ui/core'
 import { GitHub } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
 import debounceDefer from '../../../utils/debounceDefer'
-import { useIntl } from 'gatsby-plugin-intl'
+import { useIntl } from 'react-intl'
 
 async function getUserByUsername(username: string): Promise<any> {
   if (!username) return null

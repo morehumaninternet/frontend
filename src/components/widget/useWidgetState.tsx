@@ -1,6 +1,6 @@
 // tslint:disable:no-expression-statement
 import React from 'react'
-import { useIntl } from 'gatsby-plugin-intl'
+import { useIntl } from 'react-intl'
 import { SimilarIssuesState } from './similar-issues'
 import debounceDefer from '../../utils/debounceDefer'
 import useCurrentUser from '../../effects/useCurrentUser'
