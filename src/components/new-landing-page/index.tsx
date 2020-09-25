@@ -17,6 +17,7 @@ import ApplicationForm from '../../components/shared/application-form'
 import Widget from '../../components/widget'
 import * as algoliaClient from '../../clients/api'
 import { defaultSite } from '../../clients/mockApi'
+import { homeHref, demoHref } from '../../utils/href'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -140,11 +141,11 @@ export default function NewLandingPage(props: any): JSX.Element {
             <InternalLink to="start" />
             <InternalLink to="about" />
             <InternalLink to="why" />
-            <Link to="/">
+            <Link to={homeHref()}>
               <CenteredLogo />
             </Link>
             <InternalLink to="join" />
-            <Link to={`${useIntl().locale}/demo`}>Demo</Link>
+            <Link to={demoHref()}>Demo</Link>
             <LanguagePicker />
           </header>
         }
@@ -161,7 +162,7 @@ export default function NewLandingPage(props: any): JSX.Element {
               <br />
               and better aligned with the interests of all people
             </p>
-            <Button ref={makeAndTrackRef()} className="mhi-button" component={Link} to={`/${useIntl().locale}/demo`}>
+            <Button ref={makeAndTrackRef()} className="mhi-button" component={Link} to={demoHref()}>
               See the demo
             </Button>
           </div>

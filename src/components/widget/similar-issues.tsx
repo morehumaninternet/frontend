@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { useIntl } from 'react-intl'
+import { issueHref } from '../../utils/href'
 
 export type SimilarIssuesState = {
   searching: boolean
@@ -16,7 +16,7 @@ type SimilarIssuesProps = {
 
 function SimilarIssueLink({ issue }: { issue: Issue }): JSX.Element {
   return (
-    <Link className="more-human-internet-similar-issue-link" to={`/${useIntl().locale}/issue?site=${issue.site}&id=${issue.id}`}>
+    <Link className="more-human-internet-similar-issue-link" to={issueHref(issue)}>
       {issue.title}
     </Link>
   )
