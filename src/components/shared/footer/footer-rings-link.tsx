@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
+import { homeHref } from '../../../utils/href'
 
 type FooterRingsLinkState = { hover: boolean }
 
@@ -65,7 +66,7 @@ export default () => {
     <Link
       aria-label="More Human Internet Home"
       className="footer-link footer-rings-container"
-      to="/"
+      to={homeHref()}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
