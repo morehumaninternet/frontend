@@ -1,5 +1,5 @@
 import algoliasearch from 'algoliasearch'
-import { createIssue } from './mockApi' // TODO - move this function to somewhere outside mockApi
+import { createIssue } from './util'
 
 import { issueFromJson } from './util'
 
@@ -17,7 +17,7 @@ export async function searchIssues({ site, title }: { site: string; title?: stri
   const issues = result.hits.map(hit => {
     const { objectID, ...rest } = hit
     // Algolia uses 'objectID' as the record ID
-    return issueFromJson(JSON.stringify({ id: objectID, ...rest })) // TODO - remove access attributes from rest
+    return issueFromJson(JSON.stringify({ id: objectID, ...rest }))
   })
 
   return issues
