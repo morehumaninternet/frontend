@@ -27,8 +27,6 @@ $mountain-size: 48vh;
         color: white;
         text-align: center;
 
-        z-index: 99;
-
         > .mhi-button {
           font-weight: bold;
           padding: 1em 3em;
@@ -84,11 +82,12 @@ $mountain-size: 48vh;
       top: -3px; // ugh
       min-height: 1630px;
       width: 100vw;
-      background-image: linear-gradient(to bottom, $human-blue, rgba(139, 160, 187, 1.0));
+      background-image: linear-gradient(to bottom, $human-blue, rgba(139, 160, 187, 1));
 
       $astronaut-width: 44.166666667%;
 
-      > .about, .why {
+      > .about,
+      .why {
         color: white;
         margin-left: $astronaut-width;
         padding-right: 100px;
@@ -147,7 +146,7 @@ $mountain-size: 48vh;
     }
   }
 
-  form[name="submit-application"] {
+  form[name='submit-application'] {
     max-width: 50%;
   }
 }
