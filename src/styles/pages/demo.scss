@@ -19,12 +19,12 @@
         font-size: 14px;
         line-height: 16px;
 
-
         @media (max-width: 540px) {
           display: none;
         }
       }
-      > a, .cart-icon {
+      > a,
+      .cart-icon {
         margin: 18px;
       }
     }
@@ -236,7 +236,6 @@
                 flex-direction: column;
                 justify-content: center;
 
-
                 font-size: 16px;
                 line-height: 19px;
                 > p {
@@ -288,6 +287,36 @@
           }
         }
       }
+    }
+  }
+
+  button.start-tour {
+    position: absolute;
+    height: 60px;
+    width: 245px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: $human-pink;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    &:hover,
+    &:active,
+    &:focus {
+      background: $human-pink;
+      color: #fff;
+      outline: none;
+    }
+    .text {
+      font-family: 'Helvetica Neue', serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+    }
+    > img {
+      margin-right: 10px;
     }
   }
 }

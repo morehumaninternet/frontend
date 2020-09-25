@@ -13,7 +13,9 @@ import { defaultSite } from '../../clients/util'
 export default function DemoPageContents(props: any): JSX.Element {
   const [checkout, setCheckout] = useState(false)
   const [checkedOut, setCheckedOut] = useState(false)
-  const tour = useTour(tourArgs)
+  const [startTour, setStart] = useState(false)
+  const tour = useTour(tourArgs, () => startTour, [startTour])
+  const startVisibility = startTour ? 'hidden' : 'visible'
 
   // tslint:disable:no-expression-statement
   useEffect(() => {
@@ -43,7 +45,11 @@ export default function DemoPageContents(props: any): JSX.Element {
       <div className="demo-content-container">
         {checkout ? <Checkout checkedOut={checkedOut} onCheckout={() => setCheckedOut(true)} /> : <AddToCart onAddToCart={() => setCheckout(true)} />}
       </div>
-      <Widget tour={tour} navigate={props.navigate} siteOrigin={defaultSite} api={mockApi} />
+      <Widget tour={tour} navigate={props.navigate} siteOrigin={mockApi.defaultSite} api={mockApi} />
+      <button className={`start-tour ${startVisibility}`} onClick={() => setStart(true)}>
+        <img src="/post.svg" />
+        <span className="text">Begin the tour</span>
+      </button>
     </>
   )
 }
