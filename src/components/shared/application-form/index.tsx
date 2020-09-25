@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { Button, FormControlLabel, FormGroup, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from '@material-ui/core'
 import { Business, Email, Person } from '@material-ui/icons'
+import { FormattedMessage, useIntl } from 'react-intl'
 import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
-import { FormattedMessage, useIntl } from 'react-intl'
+import { thankYouHref } from '../../../utils/href'
 
 export default function ApplicationForm(): JSX.Element {
   const intl = useIntl()
@@ -56,7 +57,7 @@ export default function ApplicationForm(): JSX.Element {
     <form
       name="submit-application"
       method="POST"
-      action={`/${intl.locale}/thank-you`}
+      action={thankYouHref()}
       data-netlify="true"
       netlify-honeypot="bot-field"
       autoComplete="off"

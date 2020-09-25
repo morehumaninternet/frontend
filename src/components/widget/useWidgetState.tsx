@@ -1,9 +1,9 @@
 // tslint:disable:no-expression-statement
 import React from 'react'
-import { useIntl } from 'react-intl'
 import { SimilarIssuesState } from './similar-issues'
 import debounceDefer from '../../utils/debounceDefer'
 import useCurrentUser from '../../effects/useCurrentUser'
+import { issueHref } from '../../utils/href'
 
 export type WidgetProps = {
   tour: any
@@ -43,7 +43,6 @@ export type WidgetState = {
 export default function useWidgetState({ siteOrigin, api, navigate }: WidgetProps): WidgetState {
   const searchIssues = debounceDefer(api.searchIssues, 200)
 
-  const intl = useIntl()
   const [open, setOpen] = React.useState(false)
   const [submitting, setSubmitting] = React.useState(false)
   const [postAsNewIssue, setPostAsNewIssue] = React.useState(false)
@@ -78,7 +77,7 @@ export default function useWidgetState({ siteOrigin, api, navigate }: WidgetProp
       initialCommentHtml: issueInitialCommentHtml,
     })
 
-    navigate(`/${intl.locale}/issue?site=${issue.site}&id=${issue.id}`)
+    navigate(issueHref(issue))
   }
 
   React.useEffect(() => {
