@@ -2,7 +2,7 @@
 import { expect } from 'chai'
 import * as sinon from 'sinon'
 import { omit } from 'lodash'
-import { createIssue } from '../clients/mockApi'
+import { createIssue } from '../clients/util'
 import { createStore, IssuePageStore } from '../stores/issue-page'
 import backgroundScript from '../background-scripts/issue-page'
 import { whenState } from './util'
