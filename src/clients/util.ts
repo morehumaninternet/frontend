@@ -1,5 +1,30 @@
+const defaultSite = 'goalco.com'
+const localStorageKeyPrefix = 'demo-issues'
+
+const defaultCommentHtml = `
+  <strong>Steps</strong>
+  <br>
+  <ol>
+    <li>I added the Goalco supersuit to my cart</li>
+    <li>I entered in the credit card details for my American Express card</li>
+    <li>I clicked the checkout button</li>
+  </ol>
+
+  <strong>Observations</strong>
+  <br>
+  <p>The spinner kept spinning endlessly</p>
+
+  <strong>Expectations</strong>
+  <br>
+  <p>The order should have went through and I should have received a confirmation email</p>
+`
+
+function demoIssuesLocalStorageKey(site: string, id: number): string {
+  return `${localStorageKeyPrefix}:${site}:${id}`
+}
+
 // TODO: typecheck, perhaps rely on a library
-export function issueFromJson(issueJson: string): Issue {
+function issueFromJson(issueJson: string): Issue {
   const issue = JSON.parse(issueJson)
 
   issue.initialReport.timestamp = new Date(issue.initialReport.timestamp) // tslint:disable-line:no-expression-statement
@@ -9,7 +34,19 @@ export function issueFromJson(issueJson: string): Issue {
   return issue
 }
 
-export function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
+function randomId(site: string): number {
+  const keys = Object.keys(localStorage)
+  const idSpace = Math.max(1000, keys.length * 2)
+  while (true) {
+    const id = 1 + Math.floor(idSpace * Math.random())
+    const key = demoIssuesLocalStorageKey(site, id)
+    if (!localStorage.getItem(key)) {
+      return id
+    }
+  }
+}
+
+function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
   const site = opts.site || defaultSite
   const id = opts.id || randomId(site)
   const user = opts.user || {
@@ -53,3 +90,5 @@ export function createIssue(opts: Partial<IssuePostBody> = {}): Issue {
     ],
   }
 }
+
+export { defaultSite, localStorageKeyPrefix, demoIssuesLocalStorageKey, issueFromJson, randomId, createIssue }

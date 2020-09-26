@@ -16,7 +16,7 @@ import SEO from '../../components/shared/seo'
 import ApplicationForm from '../../components/shared/application-form'
 import Widget from '../../components/widget'
 import * as algoliaClient from '../../clients/api'
-import { defaultSite } from '../../clients/mockApi'
+import { defaultSite } from '../../clients/util'
 import { homeHref, demoHref } from '../../utils/href'
 
 function LanguagePicker(): JSX.Element {

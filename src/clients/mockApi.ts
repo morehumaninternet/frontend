@@ -1,45 +1,7 @@
 // tslint:disable:no-expression-statement
 import { cloneDeep, escapeRegExp } from 'lodash'
-import { issueFromJson, createIssue } from './util'
+import { issueFromJson, createIssue, defaultSite, randomId, localStorageKeyPrefix, demoIssuesLocalStorageKey } from './util'
 import delay from '../utils/delay'
-
-export const defaultSite = 'goalco.com'
-
-const localStorageKeyPrefix = 'demo-issues'
-
-function demoIssuesLocalStorageKey(site: string, id: number): string {
-  return `${localStorageKeyPrefix}:${site}:${id}`
-}
-
-const defaultCommentHtml = `
-  <strong>Steps</strong>
-  <br>
-  <ol>
-    <li>I added the Goalco supersuit to my cart</li>
-    <li>I entered in the credit card details for my American Express card</li>
-    <li>I clicked the checkout button</li>
-  </ol>
-
-  <strong>Observations</strong>
-  <br>
-  <p>The spinner kept spinning endlessly</p>
-
-  <strong>Expectations</strong>
-  <br>
-  <p>The order should have went through and I should have received a confirmation email</p>
-`
-
-function randomId(site: string): number {
-  const keys = Object.keys(localStorage)
-  const idSpace = Math.max(1000, keys.length * 2)
-  while (true) {
-    const id = 1 + Math.floor(idSpace * Math.random())
-    const key = demoIssuesLocalStorageKey(site, id)
-    if (!localStorage.getItem(key)) {
-      return id
-    }
-  }
-}
 
 function getInLocalStorage(site: string, id: number): null | Issue {
   const issueJson = localStorage.getItem(demoIssuesLocalStorageKey(site, id))
