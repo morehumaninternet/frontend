@@ -1,5 +1,6 @@
 // tslint:disable:no-expression-statement
 import { useEffect } from 'react'
+import { navigate } from 'gatsby'
 import delay from '../../utils/delay'
 import { withNextButton } from '../../effects/useTour'
 
@@ -117,3 +118,10 @@ export const steps = Object.freeze([
   postAsNewIssueStep,
   finalPostStep,
 ])
+
+export const onComplete = () => {
+  navigate('/new-landing-page')
+}
+export const onCancel = () => {
+  navigate('/new-landing-page')
+}

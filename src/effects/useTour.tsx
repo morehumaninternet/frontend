@@ -11,6 +11,7 @@ declare var Shepherd: any
 type TourArgs = {
   steps: readonly any[]
   onComplete?: () => void
+  onCancel?: () => void
 }
 
 export const stylesHref = 'https://shepherdjs.dev/dist/css/shepherd.css'
@@ -33,7 +34,7 @@ export const withNextButton = {
 // Start the tour when Shepherd is available, resolving with the tour when that has happened.
 // See https://shepherdjs.dev/docs/tutorial-02-usage.html for information about steps to be added
 // Note that if you want the tour to continue after some other event has happened, you'll need to handle that separately
-export function startTour({ steps, onComplete }: TourArgs): Promise<any> {
+export function startTour({ steps, onComplete, onCancel }: TourArgs): Promise<any> {
   if (typeof Shepherd === 'undefined') {
     let resolve: (value: any) => any // tslint:disable-line:no-let
     const script = document.querySelector(`script[src="${scriptSrc}"]`) as HTMLScriptElement
@@ -50,6 +51,10 @@ export function startTour({ steps, onComplete }: TourArgs): Promise<any> {
 
   if (onComplete) {
     tour.once('complete', onComplete)
+  }
+
+  if (onCancel) {
+    tour.once('cancel', onCancel)
   }
 
   tour.start()
