@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import { homeHref } from '../../utils/href'
+import { LocalizedLink } from 'gatsby-theme-i18n'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -38,9 +37,9 @@ export default function NewHeader({ headerRef }: { headerRef?: React.RefObject<H
       <a className="active">Start</a>
       <a>About</a>
       <a>Why</a>
-      <Link to={homeHref()}>
+      <LocalizedLink to="/">
         <CenteredLogo />
-      </Link>
+      </LocalizedLink>
       <a>Demo</a>
       <a>Join</a>
       <LanguagePicker />

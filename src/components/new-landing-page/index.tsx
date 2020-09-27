@@ -2,7 +2,8 @@
 import React from 'react'
 import { forEach, map, maxBy } from 'lodash'
 import { Link } from 'gatsby'
-import { useIntl, FormattedMessage } from 'react-intl'
+import { LocalizedLink } from 'gatsby-theme-i18n'
+import { FormattedMessage } from 'react-intl'
 import { Button } from '@material-ui/core'
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
 import { Layout } from '../shared/layout'
@@ -17,7 +18,6 @@ import ApplicationForm from '../../components/shared/application-form'
 import Widget from '../../components/widget'
 import * as algoliaClient from '../../clients/api'
 import { defaultSite } from '../../clients/util'
-import { homeHref, demoHref } from '../../utils/href'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -141,11 +141,11 @@ export default function NewLandingPage(props: any): JSX.Element {
             <InternalLink to="start" />
             <InternalLink to="about" />
             <InternalLink to="why" />
-            <Link to={homeHref()}>
+            <LocalizedLink to="/">
               <CenteredLogo />
-            </Link>
+            </LocalizedLink>
             <InternalLink to="join" />
-            <Link to={demoHref()}>Demo</Link>
+            <LocalizedLink to="/demo">Demo</LocalizedLink>
             <LanguagePicker />
           </header>
         }
@@ -162,7 +162,7 @@ export default function NewLandingPage(props: any): JSX.Element {
               <br />
               and better aligned with the interests of all people
             </p>
-            <Button ref={makeAndTrackRef()} className="mhi-button" component={Link} to={demoHref()}>
+            <Button ref={makeAndTrackRef()} className="mhi-button" component={LocallizedLink} to="/demo">
               See the demo
             </Button>
           </div>

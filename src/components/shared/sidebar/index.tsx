@@ -1,9 +1,9 @@
 import React from 'react'
 import { last } from 'lodash'
-import { Link } from 'gatsby'
+import { LocalizedLink } from 'gatsby-theme-i18n'
 import { Avatar } from '@material-ui/core'
 import { MoreHumanInternetLogo, HomeIcon, IssuesIcon, AddIcon } from './icons'
-import { homeHref, issuesHref } from '../../../utils/href'
+import { issuesHref } from '../../../utils/href'
 
 type SidebarProps = {
   location: Location
@@ -26,25 +26,25 @@ export default function Sidebar({ location, currentUser }: SidebarProps): JSX.El
     <div className="sidebar">
       <div className="sidebar-contents">
         <div className="sidebar-links">
-          <Link className="home-link" to={homeHref()} aria-label="More Human Internet Home">
+          <LocalizedLink className="home-link" to="/" aria-label="More Human Internet Home">
             <MoreHumanInternetLogo />
-          </Link>
-          <Link to={homeHref()} className="inactive">
+          </LocalizedLink>
+          <LocalizedLink to="/" className="inactive">
             <HomeIcon />
             <span className="description">Home</span>
-          </Link>
-          <Link to={issuesHref({ site })} className="active">
+          </LocalizedLink>
+          <LocalizedLink to={issuesHref({ site })} className="active">
             <IssuesIcon />
             <span className="description">Issues</span>
-          </Link>
-          <Link to={homeHref()} className="inactive">
+          </LocalizedLink>
+          <LocalizedLink to="/" className="inactive">
             <AddIcon />
             <span className="description">Report</span>
-          </Link>
-          <Link to="/settings" className="settings">
+          </LocalizedLink>
+          <LocalizedLink to="/settings" className="settings">
             <Avatar src={currentUser.loaded ? currentUser.user.avatarUrl : undefined} />
             <span className="description">{currentUser.loaded && currentUser.user.username}</span>
-          </Link>
+          </LocalizedLink>
         </div>
       </div>
     </div>

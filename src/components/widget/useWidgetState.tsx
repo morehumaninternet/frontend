@@ -3,7 +3,7 @@ import React from 'react'
 import { SimilarIssuesState } from './similar-issues'
 import debounceDefer from '../../utils/debounceDefer'
 import useCurrentUser from '../../effects/useCurrentUser'
-import { issueHref } from '../../utils/href'
+import { getLocalePrefix, issueHref } from '../../utils/href'
 
 export type WidgetProps = {
   tour: any
@@ -42,6 +42,7 @@ export type WidgetState = {
 
 export default function useWidgetState({ siteOrigin, api, navigate }: WidgetProps): WidgetState {
   const searchIssues = debounceDefer(api.searchIssues, 200)
+  const localePrefix = getLocalePrefix()
 
   const [open, setOpen] = React.useState(false)
   const [submitting, setSubmitting] = React.useState(false)
@@ -77,7 +78,7 @@ export default function useWidgetState({ siteOrigin, api, navigate }: WidgetProp
       initialCommentHtml: issueInitialCommentHtml,
     })
 
-    navigate(issueHref(issue))
+    navigate(localePrefix + issueHref(issue))
   }
 
   React.useEffect(() => {

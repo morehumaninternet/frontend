@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { Link } from 'gatsby'
-import { homeHref } from '../../../utils/href'
+import { LocalizedLink } from 'gatsby-theme-i18n'
 
 type FooterRingsLinkState = { hover: boolean }
 
@@ -63,14 +62,14 @@ export default () => {
   const [hover, setHover] = React.useState(false)
 
   return (
-    <Link
+    <LocalizedLink
       aria-label="More Human Internet Home"
       className="footer-link footer-rings-container"
-      to={homeHref()}
+      to="/"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
       <FooterRingsIcon hover={hover} />
-    </Link>
+    </LocalizedLink>
   )
 }

@@ -1,17 +1,13 @@
 import { useIntl } from 'react-intl'
 
-function localePrefix(): string {
+export function getLocalePrefix(): string {
   const { locale } = useIntl()
   return locale === 'en' ? '' : `/${locale}`
 }
 
 function href(pathname: string): string {
-  return `${localePrefix()}/${pathname}`
+  return `/${pathname}`
 }
-
-export const homeHref = () => href('')
-
-export const demoHref = () => href('demo')
 
 export const thankYouHref = () => href('thank-you')
 

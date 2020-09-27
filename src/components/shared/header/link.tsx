@@ -1,12 +1,11 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { LocalizedLink } from 'gatsby-theme-i18n'
 import Logo from './logo'
-import { homeHref } from '../../../utils/href'
 
 export default function HeaderLink({ logoAgainstHero }: { logoAgainstHero: boolean }): JSX.Element {
   return (
-    <Link className="home-link" to={homeHref()} aria-label="More Human Internet Home">
+    <LocalizedLink className="home-link" to="/" aria-label="More Human Internet Home">
       <Logo againstHero={logoAgainstHero} />
-    </Link>
+    </LocalizedLink>
   )
 }

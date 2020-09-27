@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { LocalizedLink } from 'gatsby-theme-i18n'
 import { issueHref } from '../../utils/href'
 
 export type SimilarIssuesState = {
@@ -16,9 +16,9 @@ type SimilarIssuesProps = {
 
 function SimilarIssueLink({ issue }: { issue: Issue }): JSX.Element {
   return (
-    <Link className="more-human-internet-similar-issue-link" to={issueHref(issue)}>
+    <LocalizedLink className="more-human-internet-similar-issue-link" to={issueHref(issue)}>
       {issue.title}
-    </Link>
+    </LocalizedLink>
   )
 }
 
