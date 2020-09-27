@@ -10,6 +10,9 @@ import { withNextButton } from '../../effects/useTour'
   and continue the tour when certain conditions are met, e.g. writing "Checkout" for the issue title
 */
 
+declare var Shepherd: any
+let tourTimer: any
+
 export const introStep = {
   text: [
     `With More Human Internet, users of your site can quickly and easily report issues or request features through a simple widget. Let's see it in action...`,
@@ -66,6 +69,16 @@ export const letsWriteIssueTitleStep = {
     on: 'left',
   },
   text: [`Let's write up the issue. Type "Checkout" to continue...`],
+  when: {
+    show: () => {
+      tourTimer = setTimeout(() => {
+        Shepherd.activeTour.getCurrentStep().updateStepOptions({ text: 'TYPE CHECKOUT!' })
+      }, 8000)
+    },
+    hide: () => {
+      clearTimeout(tourTimer)
+    },
+  },
 }
 
 export const explainSimilarIssuesStep = {
@@ -86,6 +99,16 @@ export const letsAmendIssueTitleStep = {
     on: 'left',
   },
   text: [`Add some more detail. Type "Checkout is spinning when I try to buy the Supersuit" to continue...`],
+  when: {
+    show: () => {
+      tourTimer = setTimeout(() => {
+        Shepherd.activeTour.getCurrentStep().updateStepOptions({ text: 'TYPE SUPERSUIT!' })
+      }, 8000)
+    },
+    hide: () => {
+      clearTimeout(tourTimer)
+    },
+  },
 }
 
 export const postAsNewIssueStep = {
@@ -119,9 +142,6 @@ export const steps = Object.freeze([
   finalPostStep,
 ])
 
-export const onComplete = () => {
-  navigate('/new-landing-page')
-}
 export const onCancel = () => {
   navigate('/new-landing-page')
 }
