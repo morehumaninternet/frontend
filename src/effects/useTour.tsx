@@ -67,5 +67,11 @@ export function useTour(tourArgs: TourArgs, runTour?: () => boolean, deps?: Depe
     }
   }, deps || [])
 
+  useEffect(() => {
+    return () => {
+      if (tour) tour.cancel()
+    }
+  }, [tour])
+
   return tour
 }

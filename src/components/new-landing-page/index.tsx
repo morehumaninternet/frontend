@@ -1,7 +1,6 @@
 // tslint:disable:no-expression-statement
 import React from 'react'
 import { forEach, map, maxBy } from 'lodash'
-import { Link } from 'gatsby'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import { FormattedMessage } from 'react-intl'
 import { Button } from '@material-ui/core'

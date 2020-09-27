@@ -112,3 +112,34 @@ type IssuePostBody = {
   aggregates?: IssueAggregates
   status?: IssueStatus
 }
+
+type PostIssueInitiate = Action<'POST_ISSUE_INITIATE'>
+type SimilarIssuesSearchInitiate = Action<'SIMILAR_ISSUES_SEARCH_INITIATE'>
+
+type WidgetAction =
+  | Action<'OPEN_WIDGET'>
+  | Action<'CLOSE_WIDGET'>
+  | Action<'CLICK_IS_NEW_ISSUE'>
+  | ActionWithPayload<'UPDATE_ISSUE_TITLE', { title: string }>
+  | ActionWithPayload<'UPDATE_ISSUE_COMMENT_HTML', { html: string }>
+  | SimilarIssuesSearchInitiate
+  | ActionWithPayload<'SIMILAR_ISSUES_SEARCH_SUCCESS', { similarIssues: readonly Issue[] }>
+  | ActionWithError<'SIMILAR_ISSUES_SEARCH_ERROR'>
+  | PostIssueInitiate
+  | ActionWithPayload<'POST_ISSUE_SUCCESS', { issue: Issue }>
+  | ActionWithError<'POST_ISSUE_ERROR'>
+
+type WidgetActionInProgress = { priorState: WidgetState; action: PostIssueInitiate | SimilarIssuesSearchInitiate }
+
+type WidgetState = {
+  open: boolean
+  editingIssue: {
+    title: string
+    commentHtml: string
+  }
+  isNewIssue: boolean
+  similarIssues: readonly Issue[]
+  postedIssue: null | Issue
+  actionInProgress: null | WidgetActionInProgress
+  error: null | { message: string }
+}
