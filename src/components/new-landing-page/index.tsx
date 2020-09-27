@@ -97,6 +97,7 @@ export default function NewLandingPage(props: any): JSX.Element {
       const { availHeight } = screen
 
       refsToTrack.forEach(ref => {
+        if (!ref.current) return
         const elementTop = ref.current!.getBoundingClientRect().top
         const elementDistance = elementTop - headerBottom
         const elementOpacity = Math.max(0, Math.min(1, (elementDistance + 10) / 150))
