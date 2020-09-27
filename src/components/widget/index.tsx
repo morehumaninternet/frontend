@@ -5,8 +5,8 @@ import CommentInput from './comment-input'
 import SimilarIssues from './similar-issues'
 import ButtonGroup from './button-group'
 import hasParent from '../../utils/hasParent'
-import { createStore, WidgetStore } from '../../stores/widget'
-import subscribe from '../../background-scripts/widget'
+import { createStore, WidgetStore } from './store'
+import subscribe from './background-script'
 import { handleTour } from './handleTour'
 
 type WidgetWithStoreProps = {

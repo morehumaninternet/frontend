@@ -1,79 +1,112 @@
+/*
+  The issue page component
+*/
+
+// tslint:disable:no-expression-statement
 import React from 'react'
-import { LayoutWithSidebar } from '../../components/shared/layout'
-import SEO from '../../components/shared/seo'
-import { scriptSrc, stylesHref } from '../../effects/useTour'
-import LoadedIssue, { LoadedIssueContentProps } from './loaded'
-import { IssuePageState } from '../../stores/issue-page'
+import IssuePageComponent from './component'
+import { createStore } from './store'
+import subscribe from './background-script'
+import { useTour, withNextButton } from '../../effects/useTour'
+import * as mockApi from '../../clients/mockApi'
 
-type IssuePageFns = Pick<LoadedIssueContentProps, 'changeStatus'> & {
-  postComment(comment: { html: string }): void
+// The source of truth for the state of the issue page is its store. This reduces the burden on React to manage
+// the state, creating a clearer separation of concerns and reducing the number of complicated effects.
+const store = createStore()
+
+// Only run the background script which makes API calls on the client
+if (typeof window !== 'undefined') {
+  subscribe(store, mockApi)
 }
 
-type WithIssueParamsProps = Pick<IssuePageState, 'currentUser' | 'issueState' | 'actionInProgress'> & IssuePageFns
+export default function IssuePage({ location }: { location: Location }): JSX.Element {
+  const [storeState, setStoreState] = React.useState<IssuePageState>(store.getState())
 
-function Loading(): JSX.Element {
-  return <p>Loading...</p>
-}
+  // Subscribe to the store to keep the storeState up to date.
+  // Running the PAGE_LOAD event results in the issue for the page getting loaded by the background script.
+  React.useEffect(() => {
+    const unsubscribe = store.subscribe(() => setStoreState(store.getState()))
 
-function WithIssueParams({ currentUser, issueState, actionInProgress, postComment, changeStatus }: WithIssueParamsProps): JSX.Element {
-  return issueState.loading ? (
-    <Loading />
-  ) : (
-    <LoadedIssue
-      avatarUrl={currentUser.loaded ? currentUser.user.avatarUrl : undefined}
-      issue={issueState.issue! /* TODO: handle issues not present */}
-      actionInProgress={!!actionInProgress}
-      changeStatus={changeStatus}
-      postComment={postComment}
-    />
-  )
-}
+    store.dispatch({
+      type: 'PAGE_LOAD',
+      payload: { search: location.search },
+    })
 
-function IssuePageComponentInner({ storeState, postComment, changeStatus }: { storeState: IssuePageState } & IssuePageFns): JSX.Element {
-  switch (storeState.params.state) {
-    case 'checking':
-      return <Loading />
+    return unsubscribe
+  }, [])
 
-    case 'not ok':
-      throw new Error('Handle this case better!')
+  function postComment(comment: { html: string }): void {
+    if (!storeState.currentUser.loaded) {
+      throw new Error('Cannot post comment when currentUser not loaded')
+    }
 
-    case 'ok':
-      return (
-        <WithIssueParams
-          currentUser={storeState.currentUser}
-          issueState={storeState.issueState}
-          actionInProgress={storeState.actionInProgress}
-          postComment={postComment}
-          changeStatus={changeStatus}
-        />
-      )
+    store.dispatch({
+      type: 'POST_COMMENT_INITIATE',
+      payload: {
+        user: storeState.currentUser.user,
+        comment,
+      },
+    })
   }
-}
 
-export default function IssuePageComponent({
-  storeState,
-  location,
-  postComment,
-  changeStatus,
-}: { storeState: IssuePageState; location: Location } & IssuePageFns): JSX.Element {
-  return (
-    <LayoutWithSidebar mainClassName="issue" currentUser={storeState.currentUser} location={location}>
-      <SEO
-        pageTitle="Issue"
-        links={[
-          { rel: 'stylesheet', type: 'text/css', href: '/trix.css' },
-          {
-            rel: 'stylesheet',
-            type: 'text/css',
-            href: stylesHref,
+  function changeStatus(user: User, status: IssueStatus, comment: { html: string }): void {
+    store.dispatch({
+      type: 'CHANGE_STATUS_INITIATE',
+      payload: { user, status, comment },
+    })
+  }
+
+  // Use the tour for the issue page if running for an 'opened' goalco.com issue
+  useTour(
+    {
+      steps: [
+        {
+          text: ['The issue is now posted to the more human internet platform where the site’s maintainer can see and address it.'],
+          attachTo: {
+            element: '.issue-timeline',
+            on: 'top',
           },
-        ]}
-        scripts={[
-          { type: 'text/javascript', src: '/trix.js' },
-          { type: 'text/javascript', src: scriptSrc },
-        ]}
-      />
-      <IssuePageComponentInner storeState={storeState} postComment={postComment} changeStatus={changeStatus} />
-    </LayoutWithSidebar>
+          ...withNextButton,
+          when: {
+            hide(): void {
+              return changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'acknowledged', {
+                html: `<div id="diva-acknowledged">I am able to reproduce this on our end, sorry about that! We'll get working on a fix right away</div>`,
+              })
+            },
+          },
+        },
+        {
+          text: ['Looks like the site maintainer was already online, and she has quickly acknowledged the issue.'],
+          attachTo: {
+            element: '#diva-acknowledged',
+            on: 'top',
+          },
+          ...withNextButton,
+          when: {
+            hide(): void {
+              return changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'closed', {
+                html: `<div id="diva-fixed">Deployed a fix that seems to be fixing the issue. Definitely leave a comment and reopen this issue if you're still being affected!</div>`,
+              })
+            },
+          },
+          scrollTo: { behavior: 'smooth', block: 'center' },
+        },
+        {
+          text: ['She reports that the problem with checkout is now fixed. You will now be able to successfully checkout.'],
+          attachTo: {
+            element: '#diva-fixed',
+            on: 'top',
+          },
+          scrollTo: { behavior: 'smooth', block: 'center' },
+        },
+      ],
+    },
+    () => {
+      const { issueState } = storeState
+      return !issueState.loading && !!issueState.issue && issueState.issue.site === 'goalco.com' && issueState.issue.status === 'opened'
+    },
+    [storeState.issueState]
   )
+
+  return <IssuePageComponent location={location} storeState={storeState} postComment={postComment} changeStatus={changeStatus} />
 }

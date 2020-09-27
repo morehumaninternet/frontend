@@ -1,6 +1,6 @@
-import { WidgetStore } from '../stores/widget'
-import { issueHref } from '../utils/href'
-import debounceDefer from '../utils/debounceDefer'
+import { WidgetStore } from './store'
+import { issueHref } from '../../utils/href'
+import debounceDefer from '../../utils/debounceDefer'
 
 type Api = {
   postIssue(issue: {

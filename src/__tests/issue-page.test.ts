@@ -3,8 +3,8 @@ import { expect } from 'chai'
 import * as sinon from 'sinon'
 import { omit } from 'lodash'
 import { createIssue } from '../clients/util'
-import { createStore, IssuePageStore } from '../stores/issue-page'
-import backgroundScript from '../background-scripts/issue-page'
+import { createStore, IssuePageStore } from '../components/issue-page/store'
+import backgroundScript from '../components/issue-page/background-script'
 import { whenState } from './util'
 
 describe('issue-page store & background-script', () => {
