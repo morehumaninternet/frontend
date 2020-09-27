@@ -162,7 +162,7 @@ export default function NewLandingPage(props: any): JSX.Element {
               <br />
               and better aligned with the interests of all people
             </p>
-            <Button ref={makeAndTrackRef()} className="mhi-button" component={LocallizedLink} to="/demo">
+            <Button ref={makeAndTrackRef()} className="mhi-button" component={LocalizedLink} to="/demo">
               See the demo
             </Button>
           </div>
