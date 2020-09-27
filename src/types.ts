@@ -112,3 +112,32 @@ type IssuePostBody = {
   aggregates?: IssueAggregates
   status?: IssueStatus
 }
+
+type PostIssueInitiate = Action<'POST_ISSUE_INITIATE'>
+type SimilarIssuesSearchInitiate = Action<'SIMILAR_ISSUES_SEARCH_INITIATE'>
+
+type ScreenshotWidgetAction =
+  | Action<'OPEN_WIDGET'>
+  | Action<'CLOSE_WIDGET'>
+  | ActionWithPayload<'UPDATE_ISSUE_TITLE', { title: string }>
+  | ActionWithPayload<'UPDATE_ISSUE_COMMENT_HTML', { html: string }>
+  | SimilarIssuesSearchInitiate
+  | ActionWithPayload<'SIMILAR_ISSUES_SEARCH_SUCCESS', { similarIssues: readonly Issue[] }>
+  | ActionWithError<'SIMILAR_ISSUES_SEARCH_ERROR'>
+  | PostIssueInitiate
+  | Action<'POST_ISSUE_SUCCESS'>
+  | ActionWithError<'POST_ISSUE_ERROR'>
+
+type ScreenshotWidgetActionInProgress = { priorState: ScreenshotWidgetState; action: PostIssueInitiate | SimilarIssuesSearchInitiate }
+
+type ScreenshotWidgetState = {
+  open: boolean
+  issue: {
+    title: string
+    commentHtml: string
+  }
+  issueSubmitted: boolean
+  similarIssues: readonly Issue[]
+  actionInProgress: null | ScreenshotWidgetActionInProgress
+  error: null | { message: string }
+}
