@@ -8,6 +8,7 @@ import Checkout from './checkout'
 import * as tourArgs from './tour'
 import { useTour } from '../../effects/useTour'
 import * as mockApi from '../../clients/mockApi'
+import { defaultSite } from '../../clients/util'
 
 export default function DemoPageContents(props: any): JSX.Element {
   const [checkout, setCheckout] = useState(false)

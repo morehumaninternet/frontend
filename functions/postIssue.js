@@ -1,4 +1,6 @@
 const algoliasearch = require('algoliasearch')
+const Ajv = require('ajv')
+const issueSchema = require('../schemas/issue.schema.json')
 
 // A Netlify function to insert a new record to Algolia
 exports.handler = async event => {
@@ -10,9 +12,17 @@ exports.handler = async event => {
     }
   }
 
-  const bodyJson = JSON.parse(event.body)
+  const bodyObj = JSON.parse(event.body)
 
-  // TODO - validate body arguments
+  // Using JSON schema validation to validate the input
+  const ajv = new Ajv()
+  const validInput = ajv.validate(issueSchema, bodyObj)
+  if (!validInput) {
+    return {
+      statusCode: 422,
+      body: `Invalid input`,
+    }
+  }
 
   // Retrieving environment variables.
   // These variable should be configured on Netlify.
@@ -33,7 +43,7 @@ exports.handler = async event => {
 
   // Send the record to Algolia
   try {
-    const result = index.saveObject(bodyJson).wait()
+    const result = index.saveObject(bodyObj).wait()
   } catch (error) {
     return {
       statusCode: 500,
