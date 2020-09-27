@@ -1,8 +1,12 @@
 import React from 'react'
 import { Button } from '@material-ui/core'
-import { WidgetState } from './useWidgetState'
 
-type ButtonGroupProps = Pick<WidgetState, 'postAsNewIssue' | 'postIssue' | 'setPostAsNewIssue' | 'reasonCantPostAsNewIssue'>
+type ButtonGroupProps = {
+  isNewIssue: boolean
+  reasonCantPostAsNewIssue: null | string
+  clickIsNewIssue(): void
+  postIssue(): void
+}
 
 function AttachIcon(): JSX.Element {
   return (
@@ -15,20 +19,20 @@ function AttachIcon(): JSX.Element {
   )
 }
 
-export default function ButtonGroup({ postAsNewIssue, reasonCantPostAsNewIssue, postIssue, setPostAsNewIssue }: ButtonGroupProps): JSX.Element {
+export default function ButtonGroup({ isNewIssue, reasonCantPostAsNewIssue, clickIsNewIssue, postIssue }: ButtonGroupProps): JSX.Element {
   return (
     <div className="more-human-internet-widget-editor-button-group">
-      {postAsNewIssue && (
+      {isNewIssue && (
         <Button className="attach" type="button">
           <AttachIcon />
         </Button>
       )}
-      {postAsNewIssue ? (
+      {isNewIssue ? (
         <Button className="post mhi-button" onClick={() => postIssue()}>
           Post
         </Button>
       ) : (
-        <Button className="post mhi-button" disabled={!!reasonCantPostAsNewIssue} onClick={() => setPostAsNewIssue(true)}>
+        <Button className="post mhi-button" disabled={!!reasonCantPostAsNewIssue} onClick={() => clickIsNewIssue()}>
           Post as new issue
         </Button>
       )}

@@ -14,7 +14,7 @@ import Astronaut from './svgs/astronaut'
 import AstronautStarGroup from './svgs/astronaut-star-group'
 import SEO from '../../components/shared/seo'
 import ApplicationForm from '../../components/shared/application-form'
-import Widget from '../../components/screenshot-widget'
+import Widget from '../../components/widget'
 import * as algoliaClient from '../../clients/api'
 import { defaultSite } from '../../clients/util'
 

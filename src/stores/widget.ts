@@ -1,17 +1,18 @@
 import { createStore as reduxCreateStore, Store as ReduxStore } from 'redux'
 
-export type ScreenshotWidgetStore = ReduxStore<ScreenshotWidgetState, ScreenshotWidgetAction>
+export type WidgetStore = ReduxStore<WidgetState, WidgetAction>
 
-const emptyState: ScreenshotWidgetState = {
+const emptyState: WidgetState = {
   open: false,
-  issue: { title: '', commentHtml: '' },
-  issueSubmitted: false,
+  editingIssue: { title: '', commentHtml: '' },
+  isNewIssue: false,
   similarIssues: [],
+  postedIssue: null,
   actionInProgress: null,
   error: null,
 }
 
-function reducer(initialState: ScreenshotWidgetState = emptyState, action: ScreenshotWidgetAction): ScreenshotWidgetState {
+function reducer(initialState: WidgetState = emptyState, action: WidgetAction): WidgetState {
   switch (action.type) {
     case 'OPEN_WIDGET':
       return { ...initialState, open: true }
@@ -19,22 +20,31 @@ function reducer(initialState: ScreenshotWidgetState = emptyState, action: Scree
     case 'CLOSE_WIDGET':
       return { ...initialState, open: false }
 
+    case 'CLICK_IS_NEW_ISSUE':
+      return { ...initialState, isNewIssue: true }
+
     case 'UPDATE_ISSUE_TITLE':
       return {
         ...initialState,
-        issue: {
-          ...initialState.issue,
-          title: action.payload.title
-        }
+        isNewIssue: false,
+        similarIssues: [],
+        editingIssue: {
+          ...initialState.editingIssue,
+          title: action.payload.title,
+        },
       }
 
     case 'UPDATE_ISSUE_COMMENT_HTML':
+      if (!initialState.isNewIssue) {
+        throw new Error('Should not be able to UPDATE_ISSUE_COMMENT_HTML before confirmed issue is new')
+      }
+
       return {
         ...initialState,
-        issue: {
-          ...initialState.issue,
-          commentHtml: action.payload.html
-        }
+        editingIssue: {
+          ...initialState.editingIssue,
+          commentHtml: action.payload.html,
+        },
       }
 
     case 'SIMILAR_ISSUES_SEARCH_INITIATE':
@@ -43,16 +53,15 @@ function reducer(initialState: ScreenshotWidgetState = emptyState, action: Scree
         ...initialState,
         actionInProgress: {
           priorState: initialState,
-          action
-        }
+          action,
+        },
       }
 
     case 'POST_ISSUE_SUCCESS':
-      return { ...initialState, actionInProgress: null, issueSubmitted: true }
+      return { ...initialState, actionInProgress: null, postedIssue: action.payload.issue }
 
     case 'SIMILAR_ISSUES_SEARCH_SUCCESS':
       return { ...initialState, actionInProgress: null, similarIssues: action.payload.similarIssues }
-
 
     case 'SIMILAR_ISSUES_SEARCH_ERROR':
     case 'POST_ISSUE_ERROR':

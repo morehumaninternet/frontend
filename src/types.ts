@@ -116,28 +116,30 @@ type IssuePostBody = {
 type PostIssueInitiate = Action<'POST_ISSUE_INITIATE'>
 type SimilarIssuesSearchInitiate = Action<'SIMILAR_ISSUES_SEARCH_INITIATE'>
 
-type ScreenshotWidgetAction =
+type WidgetAction =
   | Action<'OPEN_WIDGET'>
   | Action<'CLOSE_WIDGET'>
+  | Action<'CLICK_IS_NEW_ISSUE'>
   | ActionWithPayload<'UPDATE_ISSUE_TITLE', { title: string }>
   | ActionWithPayload<'UPDATE_ISSUE_COMMENT_HTML', { html: string }>
   | SimilarIssuesSearchInitiate
   | ActionWithPayload<'SIMILAR_ISSUES_SEARCH_SUCCESS', { similarIssues: readonly Issue[] }>
   | ActionWithError<'SIMILAR_ISSUES_SEARCH_ERROR'>
   | PostIssueInitiate
-  | Action<'POST_ISSUE_SUCCESS'>
+  | ActionWithPayload<'POST_ISSUE_SUCCESS', { issue: Issue }>
   | ActionWithError<'POST_ISSUE_ERROR'>
 
-type ScreenshotWidgetActionInProgress = { priorState: ScreenshotWidgetState; action: PostIssueInitiate | SimilarIssuesSearchInitiate }
+type WidgetActionInProgress = { priorState: WidgetState; action: PostIssueInitiate | SimilarIssuesSearchInitiate }
 
-type ScreenshotWidgetState = {
+type WidgetState = {
   open: boolean
-  issue: {
+  editingIssue: {
     title: string
     commentHtml: string
   }
-  issueSubmitted: boolean
+  isNewIssue: boolean
   similarIssues: readonly Issue[]
-  actionInProgress: null | ScreenshotWidgetActionInProgress
+  postedIssue: null | Issue
+  actionInProgress: null | WidgetActionInProgress
   error: null | { message: string }
 }
