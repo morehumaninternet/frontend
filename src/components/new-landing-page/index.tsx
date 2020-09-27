@@ -89,49 +89,52 @@ export default function NewLandingPage(props: any): JSX.Element {
 
   const headerRef = React.useRef<HTMLDivElement>()
 
-  React.useEffect(() => {
-    const headerElement = headerRef.current!
+  React.useEffect(
+    () => {
+      const headerElement = headerRef.current!
 
-    function onScroll(): void {
-      const headerBottom = headerElement.getBoundingClientRect().bottom
-      const { availHeight } = screen
+      function onScroll(): void {
+        const headerBottom = headerElement.getBoundingClientRect().bottom
+        const { availHeight } = screen
 
-      refsToTrack.forEach(ref => {
-        if (!ref.current) return
-        const elementTop = ref.current!.getBoundingClientRect().top
-        const elementDistance = elementTop - headerBottom
-        const elementOpacity = Math.max(0, Math.min(1, (elementDistance + 10) / 150))
-        ref.current!.style.opacity = String(elementOpacity) // tslint:disable-line:no-expression-statement
-      })
+        refsToTrack.forEach(ref => {
+          if (!ref.current) return
+          const elementTop = ref.current!.getBoundingClientRect().top
+          const elementDistance = elementTop - headerBottom
+          const elementOpacity = Math.max(0, Math.min(1, (elementDistance + 10) / 150))
+          ref.current!.style.opacity = String(elementOpacity) // tslint:disable-line:no-expression-statement
+        })
 
-      const pixelsInView = map(internalSectionRefs, (ref, sectionKey: keyof typeof internalSectionRefs) => {
-        const { top, bottom } = ref.current!.getBoundingClientRect()
-        const topInView = Math.min(availHeight, Math.max(0, top))
-        const bottomInView = Math.min(availHeight, Math.max(0, bottom))
-        const pixelsInView = bottomInView - topInView
-        return { sectionKey, pixelsInView }
-      })
+        const pixelsInView = map(internalSectionRefs, (ref, sectionKey: keyof typeof internalSectionRefs) => {
+          const { top, bottom } = ref.current!.getBoundingClientRect()
+          const topInView = Math.min(availHeight, Math.max(0, top))
+          const bottomInView = Math.min(availHeight, Math.max(0, bottom))
+          const pixelsInView = bottomInView - topInView
+          return { sectionKey, pixelsInView }
+        })
 
-      const { sectionKey } = maxBy(pixelsInView, 'pixelsInView')!
+        const { sectionKey } = maxBy(pixelsInView, 'pixelsInView')!
 
-      forEach(internalLinkRefs, (ref, key) => {
-        if (key === sectionKey) {
-          ref.current!.classList.add('active')
-        } else {
-          ref.current!.classList.remove('active')
-        }
-      })
-    }
+        forEach(internalLinkRefs, (ref, key) => {
+          if (key === sectionKey) {
+            ref.current!.classList.add('active')
+          } else {
+            ref.current!.classList.remove('active')
+          }
+        })
+      }
 
-    onScroll()
-    addEventListener('scroll', onScroll, { passive: true })
-    addEventListener('resize', onScroll)
+      onScroll()
+      addEventListener('scroll', onScroll, { passive: true })
+      addEventListener('resize', onScroll)
 
-    return () => {
-      removeEventListener('scroll', onScroll)
-      removeEventListener('resize', onScroll)
-    }
-  }, [])
+      return () => {
+        removeEventListener('scroll', onScroll)
+        removeEventListener('resize', onScroll)
+      }
+    },
+    refsToTrack.map(ref => ref.current)
+  )
 
   return (
     <ParallaxProvider>
@@ -163,9 +166,11 @@ export default function NewLandingPage(props: any): JSX.Element {
               <br />
               and better aligned with the interests of all people
             </p>
-            <Button ref={makeAndTrackRef()} className="mhi-button" component={LocalizedLink} to="/demo">
-              See the demo
-            </Button>
+            <div className="container" ref={makeAndTrackRef()}>
+              <Button className="mhi-button" component={LocalizedLink} to="/demo">
+                See the demo
+              </Button>
+            </div>
           </div>
           <Stars x={10000} y={1000} starCount={300} />
 

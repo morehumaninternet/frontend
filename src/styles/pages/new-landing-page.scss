@@ -27,9 +27,12 @@ $mountain-size: 48vh;
         color: white;
         text-align: center;
 
-        > .mhi-button {
-          font-weight: bold;
-          padding: 1em 3em;
+        > .container {
+          > .mhi-button {
+            font-weight: bold;
+            padding: 1em 3em;
+            width: 100%;
+          }
         }
       }
 
