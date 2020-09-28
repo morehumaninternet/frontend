@@ -10,7 +10,7 @@ import { withNextButton } from '../../effects/useTour'
 */
 
 declare var Shepherd: any
-let tourTimer: any
+let tourTimer: any // tslint:disable-line:no-let
 
 export const introStep = {
   text: [
