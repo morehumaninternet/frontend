@@ -1,5 +1,4 @@
 // tslint:disable:no-expression-statement
-import { useEffect } from 'react'
 import { navigate } from 'gatsby'
 import delay from '../../utils/delay'
 import { withNextButton } from '../../effects/useTour'
@@ -72,7 +71,9 @@ export const letsWriteIssueTitleStep = {
   when: {
     show: () => {
       tourTimer = setTimeout(() => {
-        Shepherd.activeTour.getCurrentStep().updateStepOptions({ text: 'TYPE CHECKOUT!' })
+        Shepherd.activeTour
+          .getCurrentStep()
+          .updateStepOptions({ text: 'The first step in reporting issue is to give it a title. So type "Checkout" to continue the demo.' })
       }, 8000)
     },
     hide: () => {
@@ -102,7 +103,7 @@ export const letsAmendIssueTitleStep = {
   when: {
     show: () => {
       tourTimer = setTimeout(() => {
-        Shepherd.activeTour.getCurrentStep().updateStepOptions({ text: 'TYPE SUPERSUIT!' })
+        Shepherd.activeTour.getCurrentStep().updateStepOptions({ text: `Let's add a more specific title. To continue demo, type "Checkout is spinning when I try to buy the Supersuit"` })
       }, 8000)
     },
     hide: () => {

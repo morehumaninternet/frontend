@@ -45,7 +45,7 @@ export default function DemoPageContents(props: any): JSX.Element {
       <div className="demo-content-container">
         {checkout ? <Checkout checkedOut={checkedOut} onCheckout={() => setCheckedOut(true)} /> : <AddToCart onAddToCart={() => setCheckout(true)} />}
       </div>
-      <Widget tour={tour} navigate={props.navigate} siteOrigin={mockApi.defaultSite} api={mockApi} />
+      <Widget tour={tour} navigate={props.navigate} siteOrigin={defaultSite} api={mockApi} />
       <button className={`start-tour ${startVisibility}`} onClick={() => setStart(true)}>
         <img src="/post.svg" />
         <span className="text">Begin the tour</span>

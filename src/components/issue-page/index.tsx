@@ -4,6 +4,7 @@
 
 // tslint:disable:no-expression-statement
 import React from 'react'
+import { navigate } from 'gatsby'
 import IssuePageComponent from './component'
 import { createStore } from './store'
 import subscribe from './background-script'
@@ -109,6 +110,7 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
           scrollTo: { behavior: 'smooth', block: 'center' },
         },
       ],
+      onCancel: () => navigate('/new-landing-page'),
     },
     () => {
       const { issueState } = storeState
