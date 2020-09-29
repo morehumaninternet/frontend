@@ -105,6 +105,20 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
           on: 'right',
         },
         scrollTo: { behavior: 'smooth', block: 'center' },
+        ...withNextButton,
+      },
+      {
+        text: ['You have completed the tour. Have a suggestion? Feel free to open an issue on our home page'],
+        buttons: [
+          {
+            classes: 'human-pink-bg',
+            text: 'Go home',
+            action(): void {
+              // tslint:disable-next-line: no-invalid-this no-this no-expression-statement
+              this.complete()
+            },
+          },
+        ],
       },
     ],
     onComplete: () => {

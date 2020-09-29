@@ -97,6 +97,15 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
             element: '#diva-fixed',
             on: 'top',
           },
+          ...withNextButton,
+          scrollTo: { behavior: 'smooth', block: 'center' },
+        },
+        {
+          text: ['Click on the "issues" button to see all issues'],
+          attachTo: {
+            element: '.sidebar-links .active svg',
+            on: 'right',
+          },
           scrollTo: { behavior: 'smooth', block: 'center' },
         },
       ],
