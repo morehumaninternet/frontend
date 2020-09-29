@@ -102,7 +102,7 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
           ...withNextButton,
         },
         {
-          text: ['Click and drag the card to close the issue, type in "not seeing this any more in production"'],
+          text: ['You can click and drag the card to close the issue.'],
           attachTo: {
             element: '#card-500',
             on: 'right',
