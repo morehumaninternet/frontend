@@ -14,7 +14,7 @@ import Astronaut from './svgs/astronaut'
 import AstronautStarGroup from './svgs/astronaut-star-group'
 import SEO from '../../components/shared/seo'
 import ApplicationForm from '../../components/shared/application-form'
-import Widget from '../../components/widget'
+import SimpleFeedbackWidget from '../../components/simple-feedback-widget'
 import * as algoliaClient from '../../clients/api'
 import { defaultSite } from '../../clients/util'
 
@@ -238,7 +238,7 @@ export default function NewLandingPage(props: any): JSX.Element {
             <ApplicationForm />
           </div>
         </div>
-        <Widget tour={null} navigate={props.navigate} siteOrigin={siteOrigin} api={algoliaClient} />
+        <SimpleFeedbackWidget />
       </Layout>
     </ParallaxProvider>
   )
