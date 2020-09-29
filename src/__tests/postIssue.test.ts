@@ -6,11 +6,17 @@ import rewire from 'rewire'
 const postIssueModule = rewire('../../functions/postIssue')
 
 describe('Post issue function', () => {
+  const originalProcessEnv = process.env
+
   beforeEach('Mock Algolia', () => {
     // Mocking the environment variable required for Algolia
-    process.env['GATSBY_ALGOLIA_APP_ID'] = 'fake app ID'
-    process.env['ALGOLIA_API_KEY'] = 'fake API key'
-    process.env['GATSBY_ALGOLIA_INDEX_NAME'] = 'fake index name'
+    Object.assign(process, {
+      env: {
+        GATSBY_ALGOLIA_APP_ID: 'fake app ID',
+        ALGOLIA_API_KEY: 'fake API key',
+        GATSBY_ALGOLIA_INDEX_NAME: 'fake index name',
+      },
+    })
 
     // Mocking algoliasearch
     const fakeAlgoliasearch = () => ({
@@ -26,6 +32,7 @@ describe('Post issue function', () => {
   })
 
   afterEach(() => {
+    Object.assign(process, { env: originalProcessEnv })
     sinon.restore()
   })
 
