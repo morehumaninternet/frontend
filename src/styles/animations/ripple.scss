@@ -1,0 +1,21 @@
+.ripple {
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  transform: scale(0);
+  background: $human-pink;
+  border-radius: 50%;
+  position: fixed;
+  animation: ripple-mo 1s cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes ripple-mo {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(20);
+    opacity: 0;
+  }
+}
