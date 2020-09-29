@@ -38,7 +38,7 @@ export function startTour({ steps, onComplete, onCancel }: TourArgs): Promise<an
   if (typeof Shepherd === 'undefined') {
     let resolve: (value: any) => any // tslint:disable-line:no-let
     const script = document.querySelector(`script[src="${scriptSrc}"]`) as HTMLScriptElement
-    script.addEventListener('load', () => startTour({ steps, onComplete }).then(resolve))
+    script.addEventListener('load', () => startTour({ steps, onComplete, onCancel }).then(resolve))
     return new Promise(r => (resolve = r))
   }
 

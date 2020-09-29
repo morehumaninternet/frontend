@@ -103,7 +103,9 @@ export const letsAmendIssueTitleStep = {
   when: {
     show: () => {
       tourTimer = setTimeout(() => {
-        Shepherd.activeTour.getCurrentStep().updateStepOptions({ text: `Let's add a more specific title. To continue demo, type "Checkout is spinning when I try to buy the Supersuit"` })
+        Shepherd.activeTour
+          .getCurrentStep()
+          .updateStepOptions({ text: `Let's add a more specific title. To continue demo, type "Checkout is spinning when I try to buy the Supersuit"` })
       }, 8000)
     },
     hide: () => {
