@@ -17,10 +17,10 @@ const sortFns = {
   Comments: (issue: Issue) => -issue.aggregates.comments.count,
 }
 
-const IssuesPage = (props: { location: Location }): JSX.Element => {
+const IssuesPage = ({ location, navigate }: { location: Location; navigate(href: string): void }): JSX.Element => {
   const currentUser = useCurrentUser()
 
-  const params = new URLSearchParams(props.location.search)
+  const params = new URLSearchParams(location.search)
   if (!params.get('site')) {
     if (typeof window !== 'undefined') {
       return navigate('/404'), (<></>)
@@ -112,19 +112,15 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
           },
         },
       ],
-      onComplete: () => {
-        if (typeof window !== 'undefined') {
-          // tslint:disable-next-line: no-expression-statement
-          navigate('/')
-        }
-      },
+      onCancel: () => navigate('/new-landing-page'),
+      onComplete: () => navigate('/new-landing-page'),
     },
     // Run tour only on goalco.com
     () => site === 'goalco.com'
   )
 
   return (
-    <LayoutWithSidebar mainClassName="issues" currentUser={currentUser} location={props.location}>
+    <LayoutWithSidebar mainClassName="issues" currentUser={currentUser} location={location}>
       <SEO
         pageTitle="Issues"
         links={[

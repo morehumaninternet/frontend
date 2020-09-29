@@ -21,7 +21,7 @@ if (typeof window !== 'undefined') {
   subscribe(store, mockApi)
 }
 
-export default function IssuePage({ location }: { location: Location }): JSX.Element {
+export default function IssuePage({ location, navigate }: { location: Location; navigate(href: string): void }): JSX.Element {
   const [storeState, setStoreState] = React.useState<IssuePageState>(store.getState())
 
   // Subscribe to the store to keep the storeState up to date.

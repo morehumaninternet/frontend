@@ -5,7 +5,7 @@ import GoalCoLogo from './goalco-logo'
 import CartButton from './cart-button'
 import AddToCart from './add-to-cart'
 import Checkout from './checkout'
-import * as tourArgs from './tour'
+import { steps } from './tour'
 import { useTour } from '../../effects/useTour'
 import * as mockApi from '../../clients/mockApi'
 import { defaultSite } from '../../clients/util'
@@ -14,7 +14,7 @@ export default function DemoPageContents(props: any): JSX.Element {
   const [checkout, setCheckout] = useState(false)
   const [checkedOut, setCheckedOut] = useState(false)
   const [startTour, setStart] = useState(false)
-  const tour = useTour(tourArgs, () => startTour, [startTour])
+  const tour = useTour({ steps, onCancel: () => props.navigate('/new-landing-page') }, () => startTour, [startTour])
   const startVisibility = startTour ? 'hidden' : 'visible'
 
   // tslint:disable:no-expression-statement

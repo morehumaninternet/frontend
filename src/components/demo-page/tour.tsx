@@ -163,7 +163,3 @@ export const steps = Object.freeze([
   postAsNewIssueStep,
   finalPostStep,
 ])
-
-export const onCancel = () => {
-  navigate('/new-landing-page')
-}
