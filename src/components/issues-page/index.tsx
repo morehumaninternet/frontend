@@ -9,6 +9,7 @@ import IssueBreadcrumbs from '../shared/issue-bread-crumbs'
 import KanbanBoard from './kanban-board'
 import { getSiteData } from '../../clients/mockApi'
 import KanbanData from './kanban-data'
+import { useTour, withNextButton, scriptSrc, stylesHref } from '../../effects/useTour'
 
 const sortFns = {
   Recent: (issue: Issue) => -issue.initialReport.timestamp.getTime(),
@@ -58,9 +59,95 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
     setSiteData(newSiteData)
   }, [sortOn])
 
+  // tslint:disable-next-line: no-expression-statement
+  useTour(
+    {
+      steps: [
+        {
+          text: ['On this page, you as the maintainer can see all the issues across your website...'],
+          ...withNextButton,
+        },
+        {
+          text: ["These are issues that users have reported. This columns is only visible to the site's maintainer, so that we can screen hooligans"],
+          attachTo: {
+            element: '#col-opened',
+            on: 'top',
+          },
+          ...withNextButton,
+        },
+        {
+          text: ['By acknowledging issues, you indicate to users that you agree something is an issue and make the issue publicly visible'],
+          attachTo: {
+            element: '#col-acknowledged',
+            on: 'top',
+          },
+          ...withNextButton,
+        },
+        {
+          text: ["These are issues that are either fixed or won't fix. These are held in case issues resurface."],
+          attachTo: {
+            element: '#col-closed',
+            on: 'top',
+          },
+          ...withNextButton,
+        },
+        {
+          text: [
+            'By default, issues are organized by how many people indicated they are experiencing them, you can also sort by number of comments or recency.',
+          ],
+          attachTo: {
+            element: '#sort-issues',
+            on: 'bottom',
+          },
+          ...withNextButton,
+        },
+        {
+          text: ['You can click and drag the card to close the issue.'],
+          attachTo: {
+            element: '#card-500',
+            on: 'right',
+          },
+          scrollTo: { behavior: 'smooth', block: 'center' },
+          ...withNextButton,
+        },
+        {
+          text: ['You have completed the tour. Have a suggestion? Feel free to open an issue on our home page'],
+          buttons: [
+            {
+              classes: 'human-pink-bg',
+              text: 'Go home',
+              action(): void {
+                // tslint:disable-next-line: no-invalid-this no-this no-expression-statement
+                this.complete()
+              },
+            },
+          ],
+        },
+      ],
+      onComplete: () => {
+        if (typeof window !== 'undefined') {
+          // tslint:disable-next-line: no-expression-statement
+          navigate('/')
+        }
+      },
+    },
+    // Run tour only on goalco.com
+    () => site === 'goalco.com'
+  )
+
   return (
     <LayoutWithSidebar mainClassName="issues" currentUser={currentUser} location={props.location}>
-      <SEO pageTitle="Issues" />
+      <SEO
+        pageTitle="Issues"
+        links={[
+          {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: stylesHref,
+          },
+        ]}
+        scripts={[{ type: 'text/javascript', src: scriptSrc }]}
+      />
       <IssueBreadcrumbs site={site} />
       {siteData ? (
         <>
