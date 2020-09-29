@@ -1,5 +1,5 @@
 // tslint:disable:no-expression-statement
-import { useEffect } from 'react'
+import { navigate } from 'gatsby'
 import delay from '../../utils/delay'
 import { withNextButton } from '../../effects/useTour'
 
@@ -8,6 +8,9 @@ import { withNextButton } from '../../effects/useTour'
   Where no "Next" button is included, we include an "id" for the step so that separate handlers can determine what step they are on
   and continue the tour when certain conditions are met, e.g. writing "Checkout" for the issue title
 */
+
+declare var Shepherd: any
+let tourTimer: any // tslint:disable-line:no-let
 
 export const introStep = {
   text: [
@@ -65,6 +68,18 @@ export const letsWriteIssueTitleStep = {
     on: 'left',
   },
   text: [`Let's write up the issue. Type "Checkout" to continue...`],
+  when: {
+    show: () => {
+      tourTimer = setTimeout(() => {
+        Shepherd.activeTour
+          .getCurrentStep()
+          .updateStepOptions({ text: 'The first step in reporting issue is to give it a title. So type "Checkout" to continue the demo.' })
+      }, 8000)
+    },
+    hide: () => {
+      clearTimeout(tourTimer)
+    },
+  },
 }
 
 export const explainSimilarIssuesStep = {
@@ -85,6 +100,18 @@ export const letsAmendIssueTitleStep = {
     on: 'left',
   },
   text: [`Add some more detail. Type "Checkout is spinning when I try to buy the Supersuit" to continue...`],
+  when: {
+    show: () => {
+      tourTimer = setTimeout(() => {
+        Shepherd.activeTour
+          .getCurrentStep()
+          .updateStepOptions({ text: `Let's add a more specific title. To continue demo, type "Checkout is spinning when I try to buy the Supersuit"` })
+      }, 8000)
+    },
+    hide: () => {
+      clearTimeout(tourTimer)
+    },
+  },
 }
 
 export const postAsNewIssueStep = {
@@ -117,3 +144,7 @@ export const steps = Object.freeze([
   postAsNewIssueStep,
   finalPostStep,
 ])
+
+export const onCancel = () => {
+  navigate('/new-landing-page')
+}
