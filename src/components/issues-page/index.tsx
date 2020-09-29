@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { sortBy } from 'lodash'
-import { navigate } from 'gatsby'
 
 import { LayoutWithSidebar } from '../shared/layout'
 import useCurrentUser from '../../effects/useCurrentUser'
