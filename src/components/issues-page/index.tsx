@@ -9,7 +9,7 @@ import IssueBreadcrumbs from '../shared/issue-bread-crumbs'
 import KanbanBoard from './kanban-board'
 import { getSiteData } from '../../clients/mockApi'
 import KanbanData from './kanban-data'
-import { useTour, withNextButton, scriptSrc, stylesHref } from '../../effects/useTour'
+import { useTour, scriptSrc, stylesHref } from '../../effects/useTour'
 
 const sortFns = {
   Recent: (issue: Issue) => -issue.initialReport.timestamp.getTime(),
@@ -65,7 +65,6 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
       steps: [
         {
           text: ['On this page, you as the maintainer can see all the issues across your website...'],
-          ...withNextButton,
         },
         {
           text: ["These are issues that users have reported. This columns is only visible to the site's maintainer, so that we can screen hooligans"],
@@ -73,7 +72,6 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
             element: '#col-opened',
             on: 'top',
           },
-          ...withNextButton,
         },
         {
           text: ['By acknowledging issues, you indicate to users that you agree something is an issue and make the issue publicly visible'],
@@ -81,7 +79,6 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
             element: '#col-acknowledged',
             on: 'top',
           },
-          ...withNextButton,
         },
         {
           text: ["These are issues that are either fixed or won't fix. These are held in case issues resurface."],
@@ -89,7 +86,6 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
             element: '#col-closed',
             on: 'top',
           },
-          ...withNextButton,
         },
         {
           text: [
@@ -99,7 +95,6 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
             element: '#sort-issues',
             on: 'bottom',
           },
-          ...withNextButton,
         },
         {
           text: ['You can click and drag the card to close the issue.'],
@@ -108,20 +103,13 @@ const IssuesPage = (props: { location: Location }): JSX.Element => {
             on: 'right',
           },
           scrollTo: { behavior: 'smooth', block: 'center' },
-          ...withNextButton,
         },
         {
           text: ['You have completed the tour. Have a suggestion? Feel free to open an issue on our home page'],
-          buttons: [
-            {
-              classes: 'human-pink-bg',
-              text: 'Go home',
-              action(): void {
-                // tslint:disable-next-line: no-invalid-this no-this no-expression-statement
-                this.complete()
-              },
-            },
-          ],
+          nextText: 'Go home',
+          onNextClick(): void {
+            this.complete() // tslint:disable-line:no-this no-invalid-this no-expression-statement
+          },
         },
       ],
       onComplete: () => {

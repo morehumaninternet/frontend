@@ -8,8 +8,9 @@ import { navigate } from 'gatsby'
 import IssuePageComponent from './component'
 import { createStore } from './store'
 import subscribe from './background-script'
-import { useTour, withNextButton } from '../../effects/useTour'
+import { useTour } from '../../effects/useTour'
 import * as mockApi from '../../clients/mockApi'
+import drawRipple from '../../animations/ripple'
 
 // The source of truth for the state of the issue page is its store. This reduces the burden on React to manage
 // the state, creating a clearer separation of concerns and reducing the number of complicated effects.
@@ -67,7 +68,6 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
             element: '.issue-timeline',
             on: 'top',
           },
-          ...withNextButton,
           when: {
             hide(): void {
               return changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'acknowledged', {
@@ -82,7 +82,6 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
             element: '#diva-acknowledged',
             on: 'top',
           },
-          ...withNextButton,
           when: {
             hide(): void {
               return changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'closed', {
@@ -98,7 +97,6 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
             element: '#diva-fixed',
             on: 'top',
           },
-          ...withNextButton,
           scrollTo: { behavior: 'smooth', block: 'center' },
         },
         {
@@ -108,6 +106,9 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
             on: 'right',
           },
           scrollTo: { behavior: 'smooth', block: 'center' },
+          onNextClick(): void {
+            drawRipple(document.querySelector('.sidebar-links .active svg')!)
+          },
         },
       ],
       onCancel: () => navigate('/new-landing-page'),

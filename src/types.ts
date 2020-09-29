@@ -143,3 +143,26 @@ type WidgetState = {
   actionInProgress: null | WidgetActionInProgress
   error: null | { message: string }
 }
+
+type TourStep = {
+  id?: string
+  attachTo?: {
+    element: string
+    on: 'bottom' | 'left' | 'right' | 'top'
+  }
+  text?: readonly string[]
+  when?: {
+    show?(): void
+    hide?(): void
+  }
+  scrollTo?: { behavior: 'smooth'; block: 'center' }
+  beforeShowPromise?(): Promise<any>
+  nextText?: string
+  onNextClick?(): void
+}
+
+type TourArgs = {
+  steps: readonly TourStep[]
+  onComplete?: () => void
+  onCancel?: () => void
+}
