@@ -17,6 +17,7 @@ import ApplicationForm from '../../components/shared/application-form'
 import Widget from '../../components/widget'
 import * as algoliaClient from '../../clients/api'
 import { defaultSite } from '../../clients/util'
+import Team from './team'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -237,6 +238,7 @@ export default function NewLandingPage(props: any): JSX.Element {
           <div className="join" ref={internalSectionRefs.join as any}>
             <ApplicationForm />
           </div>
+          <Team />
         </div>
         <Widget tour={null} navigate={props.navigate} siteOrigin={siteOrigin} api={algoliaClient} />
       </Layout>
