@@ -10,7 +10,7 @@ type KanbanColumnProps = {
 
 const KanbanColumn: React.FC<KanbanColumnProps> = ({ title, issues }) => {
   return (
-    <div className="kanban__col">
+    <div id={`col-${title}`} className="kanban__col">
       <div className={`kanban-title ${title}`}>
         {title} ({issues.length})
       </div>
@@ -18,7 +18,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({ title, issues }) => {
         {provided => (
           <div className="kanban-card-list" {...provided.droppableProps} ref={provided.innerRef}>
             {issues.map((issue, index) => (
-              <KanbanCard id={String(issue.id)} key={issue.id} index={index} issue={issue} />
+              <KanbanCard id={`card-${issue.id}`} key={issue.id} index={index} issue={issue} />
             ))}
             {provided.placeholder}
           </div>

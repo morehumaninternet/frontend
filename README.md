@@ -24,7 +24,7 @@ This project uses the [Gatsby](https://github.com/gatsbyjs/gatsby) framework usi
 
 2. **Start developing**
   ```shell
-  gatsby develop
+  npm run develop
   ```
 
 3. **Open the source code and start editing**

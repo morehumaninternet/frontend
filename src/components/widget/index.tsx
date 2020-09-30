@@ -149,7 +149,7 @@ function WidgetWithStore({ tour, store }: WidgetWithStoreProps): JSX.Element {
       clickIsNewIssue={() => store.dispatch({ type: 'CLICK_IS_NEW_ISSUE' })}
       postIssue={() => {
         if (tour) {
-          tour.cancel() // tslint:disable-line:no-expression-statement
+          tour.complete() // tslint:disable-line:no-expression-statement
         }
         return store.dispatch({ type: 'POST_ISSUE_INITIATE' })
       }}

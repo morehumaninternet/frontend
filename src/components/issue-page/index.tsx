@@ -4,11 +4,13 @@
 
 // tslint:disable:no-expression-statement
 import React from 'react'
+import { navigate } from 'gatsby'
 import IssuePageComponent from './component'
 import { createStore } from './store'
 import subscribe from './background-script'
-import { useTour, withNextButton } from '../../effects/useTour'
+import { useTour } from '../../effects/useTour'
 import * as mockApi from '../../clients/mockApi'
+import drawRipple from '../../animations/ripple'
 
 // The source of truth for the state of the issue page is its store. This reduces the burden on React to manage
 // the state, creating a clearer separation of concerns and reducing the number of complicated effects.
@@ -19,7 +21,7 @@ if (typeof window !== 'undefined') {
   subscribe(store, mockApi)
 }
 
-export default function IssuePage({ location }: { location: Location }): JSX.Element {
+export default function IssuePage({ location, navigate }: { location: Location; navigate(href: string): void }): JSX.Element {
   const [storeState, setStoreState] = React.useState<IssuePageState>(store.getState())
 
   // Subscribe to the store to keep the storeState up to date.
@@ -66,7 +68,6 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
             element: '.issue-timeline',
             on: 'top',
           },
-          ...withNextButton,
           when: {
             hide(): void {
               return changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'acknowledged', {
@@ -81,7 +82,6 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
             element: '#diva-acknowledged',
             on: 'top',
           },
-          ...withNextButton,
           when: {
             hide(): void {
               return changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'closed', {
@@ -99,7 +99,19 @@ export default function IssuePage({ location }: { location: Location }): JSX.Ele
           },
           scrollTo: { behavior: 'smooth', block: 'center' },
         },
+        {
+          text: ['Click on the "issues" button to see all issues'],
+          attachTo: {
+            element: '.sidebar-links .active svg',
+            on: 'right',
+          },
+          scrollTo: { behavior: 'smooth', block: 'center' },
+          onNextClick(): void {
+            drawRipple(document.querySelector('.sidebar-links .active svg')!)
+          },
+        },
       ],
+      onCancel: () => navigate('/new-landing-page'),
     },
     () => {
       const { issueState } = storeState

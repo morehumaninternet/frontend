@@ -8,48 +8,60 @@ import { useState, useEffect, DependencyList } from 'react'
 
 declare var Shepherd: any
 
-type TourArgs = {
-  steps: readonly any[]
-  onComplete?: () => void
-}
-
 export const stylesHref = 'https://shepherdjs.dev/dist/css/shepherd.css'
 
 export const scriptSrc = 'https://shepherdjs.dev/dist/js/shepherd.min.js'
 
-// Include these whenever you want to include a "Next" button
-export const withNextButton = {
-  buttons: [
-    {
-      classes: 'human-blue-bg',
-      text: 'Next',
-      action(): void {
-        this.next()
-      },
-    },
-  ],
-}
-
 // Start the tour when Shepherd is available, resolving with the tour when that has happened.
 // See https://shepherdjs.dev/docs/tutorial-02-usage.html for information about steps to be added
 // Note that if you want the tour to continue after some other event has happened, you'll need to handle that separately
-export function startTour({ steps, onComplete }: TourArgs): Promise<any> {
+export function startTour({ steps, onComplete, onCancel }: TourArgs): Promise<any> {
   if (typeof Shepherd === 'undefined') {
     let resolve: (value: any) => any // tslint:disable-line:no-let
     const script = document.querySelector(`script[src="${scriptSrc}"]`) as HTMLScriptElement
-    script.addEventListener('load', () => startTour({ steps }).then(resolve))
+    script.addEventListener('load', () => startTour({ steps, onComplete, onCancel }).then(resolve))
     return new Promise(r => (resolve = r))
   }
 
   const tour = new Shepherd.Tour({
-    defaultStepOptions: { cancelIcon: { enabled: true } },
+    defaultStepOptions: { cancelIcon: { enabled: false } },
     useModalOverlay: true,
   })
 
-  steps.forEach(step => tour.addStep(step))
+  steps.forEach(stepArgs => {
+    const { nextText, onNextClick, ...rest } = stepArgs
+
+    tour.addStep({
+      ...rest,
+      buttons: [
+        {
+          classes: 'human-pink-bg',
+          text: 'Exit',
+          action(): void {
+            this.cancel()
+          },
+        },
+        {
+          classes: 'human-blue-bg',
+          text: nextText || 'Next',
+          action(): void {
+            if (onNextClick) {
+              onNextClick.call(this)
+            } else {
+              this.next()
+            }
+          },
+        },
+      ],
+    })
+  })
 
   if (onComplete) {
     tour.once('complete', onComplete)
+  }
+
+  if (onCancel) {
+    tour.once('cancel', onCancel)
   }
 
   tour.start()
@@ -69,7 +81,7 @@ export function useTour(tourArgs: TourArgs, runTour?: () => boolean, deps?: Depe
 
   useEffect(() => {
     return () => {
-      if (tour) tour.cancel()
+      if (tour) tour.complete()
     }
   }, [tour])
 

@@ -153,3 +153,26 @@ type TeamMember = {
   background_shape: 'square' | 'circle'
   fixed: FixedObject | undefined
 }
+
+type TourStep = {
+  id?: string
+  attachTo?: {
+    element: string
+    on: 'bottom' | 'left' | 'right' | 'top'
+  }
+  text?: readonly string[]
+  when?: {
+    show?(): void
+    hide?(): void
+  }
+  scrollTo?: { behavior: 'smooth'; block: 'center' }
+  beforeShowPromise?(): Promise<any>
+  nextText?: string
+  onNextClick?(): void
+}
+
+type TourArgs = {
+  steps: readonly TourStep[]
+  onComplete?: () => void
+  onCancel?: () => void
+}
