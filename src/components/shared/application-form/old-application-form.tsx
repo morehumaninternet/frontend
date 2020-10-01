@@ -144,7 +144,7 @@ export default function ApplicationForm(): JSX.Element {
       </div>
       <FormGroup>
         <Button type="submit" className="mhi-button">
-          <FormattedMessage id="application_form_apply" />
+          <FormattedMessage id="application_form_join" />
         </Button>
       </FormGroup>
     </form>

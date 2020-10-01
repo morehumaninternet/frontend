@@ -37,7 +37,7 @@
   "application_form_resume": "Resume",
   "application_form_why": "Why do you want to join?",
   "application_form_and_or": "and/or",
-  "application_form_apply": "Apply",
+  "application_form_join": "Join",
   "github_input_username": "Github Username",
   "github_input_could_not_find_1": "Could not find github account {account}",
   "github_input_could_not_find_2": "Could not find github account {account}, please correct it",

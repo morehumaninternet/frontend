@@ -10,9 +10,10 @@ import { thankYouHref } from '../../../utils/href'
 type ApplicationFormType = {
   availability: string
   setAvailability: React.Dispatch<React.SetStateAction<string>>
+  makeAndTrackRef(): any
 }
 
-export default function ApplicationForm({ availability, setAvailability }: ApplicationFormType): JSX.Element {
+export default function ApplicationForm({ availability, setAvailability, makeAndTrackRef }: ApplicationFormType): JSX.Element {
   const intl = useIntl()
 
   const formReference = React.useRef<HTMLFormElement>()
@@ -74,7 +75,7 @@ export default function ApplicationForm({ availability, setAvailability }: Appli
           <FormattedMessage id="application_form_bot" /> <input name="bot-field" />
         </label>
       </p>
-      <FormGroup>
+      <FormGroup ref={makeAndTrackRef()}>
         <TextFieldWithIcon
           label={intl.formatMessage({ id: 'application_form_name' })}
           name="name"
@@ -83,7 +84,7 @@ export default function ApplicationForm({ availability, setAvailability }: Appli
           startIcon={<Person className="person" />}
         />
       </FormGroup>
-      <FormGroup>
+      <FormGroup ref={makeAndTrackRef()}>
         <TextFieldWithIcon
           type="email"
           label={intl.formatMessage({ id: 'application_form_email' })}
@@ -93,7 +94,7 @@ export default function ApplicationForm({ availability, setAvailability }: Appli
           startIcon={<Email className="email" />}
         />
       </FormGroup>
-      <FormGroup>
+      <FormGroup ref={makeAndTrackRef()}>
         <TextFieldWithIcon
           type="employer"
           label={intl.formatMessage({ id: 'application_form_employer' })}
@@ -103,7 +104,7 @@ export default function ApplicationForm({ availability, setAvailability }: Appli
           startIcon={<Business className="employer" />}
         />
       </FormGroup>
-      <FormGroup className="select">
+      <FormGroup className="select" ref={makeAndTrackRef()}>
         <InputLabel id="role-select-label">{intl.formatMessage({ id: 'application_form_role' })}</InputLabel>
         <Select labelId="role-select-label" defaultValue="developer" onChange={volunteerRequirements}>
           <MenuItem value="business development">{intl.formatMessage({ id: 'application_form_business development' })}</MenuItem>
@@ -119,18 +120,18 @@ export default function ApplicationForm({ availability, setAvailability }: Appli
         </Select>
       </FormGroup>
       <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value)}>
-        <FormControlLabel value="signup" control={<Radio />} label="Sign me up for beta" />
-        <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" />
+        <FormControlLabel value="signup" control={<Radio />} label="Sign me up for beta" ref={makeAndTrackRef()} />
+        <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" ref={makeAndTrackRef()} />
       </RadioGroup>
       <div className={availability === 'volunteer' ? '' : 'hide'}>
-        <FormGroup className="stretch-row">
+        <FormGroup className="stretch-row" ref={makeAndTrackRef()}>
           <GithubInput checking={checking} setChecking={setChecking} onChange={volunteerRequirements} />
           <div className="spaced-vertically-centered-text">
             <FormattedMessage id="application_form_and_or" />
           </div>
           <FileUploadButton name="resume" label={intl.formatMessage({ id: 'application_form_resume' })} onNewFileName={() => volunteerRequirements()} />
         </FormGroup>
-        <FormGroup>
+        <FormGroup ref={makeAndTrackRef()}>
           <TextField
             label={intl.formatMessage({ id: 'application_form_why' })}
             name="whyJoin"
@@ -146,9 +147,9 @@ export default function ApplicationForm({ availability, setAvailability }: Appli
           />
         </FormGroup>
       </div>
-      <FormGroup>
+      <FormGroup ref={makeAndTrackRef()}>
         <Button type="submit" className="mhi-button">
-          <FormattedMessage id="application_form_apply" />
+          <FormattedMessage id="application_form_join" />
         </Button>
       </FormGroup>
     </form>

@@ -25,6 +25,16 @@ $mountain-size: 48vh;
         color: white;
         text-align: center;
 
+        margin: 0 25px;
+
+        > h1 {
+          font-size: 2.5em;
+        }
+
+        > p {
+          font-size: 1.1em;
+        }
+
         > .container {
           > .mhi-button {
             font-weight: bold;
@@ -78,21 +88,60 @@ $mountain-size: 48vh;
       }
     }
 
-    > .post-sky1 {
+    > .post-sky {
       position: relative;
       top: -3px; // ugh
       min-height: 1630px;
       width: 100vw;
-      background-image: linear-gradient(to bottom, $human-blue, rgba(139, 160, 187, 1));
+      background-image: linear-gradient(to bottom, $human-blue, rgba(139, 160, 187, 1), white);
 
       $astronaut-width: 44.166666667%;
 
-      > .about,
+      .manifesto {
+        display: flex;
+        margin: 0 25px;
+        justify-content: center;
+
+        @media (max-width: 1100px) {
+          flex-direction: column-reverse;
+
+          .astronaut-container {
+            margin: 150px 0;
+            width: 100%;
+          }
+
+          .astronaut-star-group {
+            width: 100%;
+          }
+        }
+
+        @media (min-width: 1101px) {
+          .about,
+          .why {
+            max-width: 500px;
+          }
+
+          .astronaut-container {
+            width: $astronaut-width;
+          }
+
+          .astronaut {
+            margin-right: 140px;
+          }
+
+          .astronaut-star-group {
+            position: relative;
+            left: 10%;
+            width: 80%;
+          }
+        }
+      }
+
+      .about,
       .why {
         color: white;
-        margin-left: $astronaut-width;
-        padding-right: 100px;
         text-align: left;
+        font-size: 1.1em;
 
         h2 {
           text-align: left;
@@ -102,59 +151,57 @@ $mountain-size: 48vh;
         }
       }
 
-      .astronaut {
-        width: $astronaut-width;
-
-        .cord {
-          // Looks off, might be some way of adding the cord in with an animation
-          display: none;
-        }
+      .why {
+        margin-top: 100px;
       }
 
-      > .astronaut-star-group {
-        position: absolute;
-        left: 6.25%;
-        top: -4%;
-        width: 36.736111111%;
+      .astronaut-container {
+        position: relative;
+      }
+
+      .astronaut {
+        position: relative;
+        width: 35%;
+        left: 22%;
       }
     }
 
-    // .why {
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    //   background-color: white;
-    //   border-radius: 40px;
-    //   margin: 300px 100px;
-    //   padding: 100px;
-
-    //   h1 {
-    //     color: $human-blue;
-    //     text-align: left;
-    //   }
-    // }
-
     .join {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin: 100px;
+      margin: 150px 25px;
 
       h1 {
         color: $human-blue;
         text-align: left;
+        margin-bottom: 50px;
       }
+    }
+
+    .team-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 25px;
     }
 
     .team {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 100px;
+      align-items: center;
+
+      max-width: 1000px;
+      width: 100%;
 
       > .volunteer {
         margin-bottom: 40px;
         align-self: center;
+        display: flex;
+        flex-direction: column;
+
         > h1 {
           color: $human-blue;
         }
@@ -162,13 +209,18 @@ $mountain-size: 48vh;
         > p {
           color: $human-blue;
         }
+
+        button {
+          font-weight: bold;
+        }
       }
 
       > .staff {
         display: grid;
-        row-gap: 10px;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        max-width: 560px;
+        row-gap: 20px;
+        column-gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 208px));
+        max-width: 680px;
 
         > .staff-card {
           display: flex;
@@ -185,9 +237,21 @@ $mountain-size: 48vh;
           }
 
           > .staff-card__image {
-            width: 140px;
-            height: 140px;
+            width: 100%;
           }
+        }
+      }
+
+      @media (max-width: 881px) {
+        .volunteer {
+          max-width: 680px;
+        }
+        .staff {
+          align-self: center;
+        }
+
+        .volunteer button {
+          align-self: center;
         }
       }
 
@@ -196,6 +260,7 @@ $mountain-size: 48vh;
         margin-left: 50px;
 
         .volunteer {
+          max-width: 300px;
           order: 2;
           margin-bottom: 0;
           margin-left: 40px;
@@ -212,6 +277,8 @@ $mountain-size: 48vh;
   }
 
   form[name='submit-application'] {
-    max-width: 50%;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 25px;
   }
 }

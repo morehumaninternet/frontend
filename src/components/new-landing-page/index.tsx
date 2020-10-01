@@ -1,6 +1,6 @@
 // tslint:disable:no-expression-statement
 import React from 'react'
-import { forEach, map, maxBy } from 'lodash'
+import { find, forEach, maxBy } from 'lodash'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import { FormattedMessage } from 'react-intl'
 import { Button } from '@material-ui/core'
@@ -15,13 +15,7 @@ import AstronautStarGroup from './svgs/astronaut-star-group'
 import SEO from '../../components/shared/seo'
 import ApplicationForm from '../../components/shared/application-form'
 import SimpleFeedbackWidget from '../../components/simple-feedback-widget'
-import * as algoliaClient from '../../clients/api'
-import { defaultSite } from '../../clients/util'
 import Team from './team'
-
-function LanguagePicker(): JSX.Element {
-  return <a>English</a>
-}
 
 function CenteredLogo(props: any): JSX.Element {
   return (
@@ -50,8 +44,6 @@ function CenteredLogo(props: any): JSX.Element {
 }
 
 export default function NewLandingPage(props: any): JSX.Element {
-  const siteOrigin = typeof window !== 'undefined' ? window.origin : defaultSite
-
   // User availability
   const [availability, setAvailability] = React.useState<string>('signup')
 
@@ -98,25 +90,24 @@ export default function NewLandingPage(props: any): JSX.Element {
 
       function onScroll(): void {
         const headerBottom = headerElement.getBoundingClientRect().bottom
-        const { availHeight } = screen
 
         refsToTrack.forEach(ref => {
           if (!ref.current) return
-          const elementTop = ref.current!.getBoundingClientRect().top
+          const rect = ref.current.getBoundingClientRect()
+          if (!rect.height && !rect.width) return
+          const elementTop = rect.top
           const elementDistance = elementTop - headerBottom
           const elementOpacity = Math.max(0, Math.min(1, (elementDistance + 10) / 150))
-          ref.current!.style.opacity = String(elementOpacity) // tslint:disable-line:no-expression-statement
+          ref.current.style.opacity = String(elementOpacity) // tslint:disable-line:no-expression-statement
         })
 
-        const pixelsInView = map(internalSectionRefs, (ref, sectionKey: keyof typeof internalSectionRefs) => {
+        const screenMidpoint = screen.availHeight / 2
+
+        const sectionKey = Object.keys(internalSectionRefs).find((sectionKey: keyof typeof internalSectionRefs) => {
+          const ref = internalSectionRefs[sectionKey]
           const { top, bottom } = ref.current!.getBoundingClientRect()
-          const topInView = Math.min(availHeight, Math.max(0, top))
-          const bottomInView = Math.min(availHeight, Math.max(0, bottom))
-          const pixelsInView = bottomInView - topInView
-          return { sectionKey, pixelsInView }
-        })
-
-        const { sectionKey } = maxBy(pixelsInView, 'pixelsInView')!
+          return top <= screenMidpoint && bottom >= screenMidpoint
+        })!
 
         forEach(internalLinkRefs, (ref, key) => {
           if (key === sectionKey) {
@@ -153,7 +144,7 @@ export default function NewLandingPage(props: any): JSX.Element {
             </LocalizedLink>
             <InternalLink to="join" />
             <LocalizedLink to="/demo">Demo</LocalizedLink>
-            <LanguagePicker />
+            <LocalizedLink to="/donate">Donate</LocalizedLink>
           </header>
         }
       >
@@ -202,46 +193,57 @@ export default function NewLandingPage(props: any): JSX.Element {
           </div>
           <MountainForeground />
         </article>
-        <div className="post-sky1">
-          {/* <AstronautStarGroup /> */}
-          {/* <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '-5%', left: '-12%' }} y={['15%', '-55%']}>
-            <Astronaut />
-          </Parallax> */}
-          <div className="about" ref={internalSectionRefs.about as any}>
-            <h2 className="mhi-heading" ref={makeAndTrackRef()}>
-              About
-            </h2>
-            <p ref={makeAndTrackRef()}>
-              <FormattedMessage id="index_aboutus1" />
-            </p>
-            <p ref={makeAndTrackRef()}>
-              <FormattedMessage id="index_aboutus2" />
-            </p>
-            <p ref={makeAndTrackRef()}>
-              <FormattedMessage id="index_aboutus3" />
-            </p>
-          </div>
+        <div className="post-sky">
+          <div className="manifesto">
+            <div className="astronaut-container">
+              <AstronautStarGroup />
+              <Parallax styleOuter={{ position: 'absolute', width: '100%', top: '0', left: '0' }} y={['100%', '-5%']}>
+                <Astronaut />
+              </Parallax>
+            </div>
+            <div className="text-container">
+              <div className="about" ref={internalSectionRefs.about as any}>
+                <h2 className="mhi-heading" ref={makeAndTrackRef()}>
+                  About
+                </h2>
+                <p ref={makeAndTrackRef()}>
+                  <FormattedMessage id="index_aboutus1" />
+                </p>
+                <p ref={makeAndTrackRef()}>
+                  <FormattedMessage id="index_aboutus2" />
+                </p>
+                <p ref={makeAndTrackRef()}>
+                  <FormattedMessage id="index_aboutus3" />
+                </p>
+              </div>
 
-          <div className="why" ref={internalSectionRefs.why as any}>
-            <h2 className="mhi-heading" ref={makeAndTrackRef()}>
-              Why
-            </h2>
-            <p ref={makeAndTrackRef()}>
-              <FormattedMessage id="index_why1" />
-            </p>
-            <p ref={makeAndTrackRef()}>
-              <FormattedMessage id="index_why2" />
-            </p>
-            <p ref={makeAndTrackRef()}>
-              <strong>
-                <FormattedMessage id="index_why3" />
-              </strong>
-            </p>
+              <div className="why" ref={internalSectionRefs.why as any}>
+                <h2 className="mhi-heading" ref={makeAndTrackRef()}>
+                  Why
+                </h2>
+                <p ref={makeAndTrackRef()}>
+                  <FormattedMessage id="index_why1" />
+                </p>
+                <p ref={makeAndTrackRef()}>
+                  <FormattedMessage id="index_why2" />
+                </p>
+                <p ref={makeAndTrackRef()}>
+                  <strong>
+                    <FormattedMessage id="index_why3" />
+                  </strong>
+                </p>
+              </div>
+            </div>
           </div>
           <div className="join" ref={internalSectionRefs.join as any}>
-            <ApplicationForm availability={availability} setAvailability={setAvailability} />
+            <h1 className="mhi-heading" ref={makeAndTrackRef()}>
+              Be a part of our community
+            </h1>
+            <ApplicationForm availability={availability} setAvailability={setAvailability} makeAndTrackRef={makeAndTrackRef} />
           </div>
-          <Team makeAndTrackRef={makeAndTrackRef} availability={availability} setAvailability={setAvailability} />
+          <div className="team-container">
+            <Team makeAndTrackRef={makeAndTrackRef} availability={availability} setAvailability={setAvailability} />
+          </div>
         </div>
         <SimpleFeedbackWidget />
       </Layout>

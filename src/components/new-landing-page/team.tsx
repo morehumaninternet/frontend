@@ -25,11 +25,8 @@ const Team: React.FC<TeamProps> = ({ makeAndTrackRef, availability, setAvailabil
   return (
     <div className="team">
       <div className="volunteer">
-        <h1 ref={makeAndTrackRef()}>Community of volunteers</h1>
-        <p ref={makeAndTrackRef()}>
-          Go deeper than that. Large corporations have taken control of a once open system. While they have brought efficiency, the platforms they have built
-          are for their benefit.
-        </p>
+        <h1 ref={makeAndTrackRef()}>Volunteer Community</h1>
+        <p ref={makeAndTrackRef()}>Join our dedicated team of international volunteers to help make this vision a reality</p>
         <Button className="mhi-button" ref={makeAndTrackRef()} onClick={onClick}>
           Volunteer
         </Button>

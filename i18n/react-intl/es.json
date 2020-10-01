@@ -30,7 +30,7 @@
   "application_form_resume": "CV",
   "application_form_why": "Por qué quieres sumarte al equipo?",
   "application_form_and_or": "y/o",
-  "application_form_apply": "Aplicar",
+  "application_form_join": "Unirse",
   "github_input_username": "Usuario de Github",
   "github_input_could_not_find_1": "No se pudo encontrar el usuario de Github {account}",
   "github_input_could_not_find_2": "No se pudo encontrar el usuario de Github {account}, por favor corríjalo",

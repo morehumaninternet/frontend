@@ -33,6 +33,11 @@ export default function SimpleFeedbackWidget(): JSX.Element {
       }, 0)
     }
   }, [open])
+
+  React.useEffect(() => {
+    const hrefInput = document.querySelector('input[name="href"]') as any
+    hrefInput.value = window.location.href
+  }, [])
   // tslint:enable:no-expression-statement
 
   return (
@@ -64,6 +69,13 @@ export default function SimpleFeedbackWidget(): JSX.Element {
             // tslint:enable:no-expression-statement
           }}
         >
+          <input type="hidden" name="form-name" value="submit-feedback" />
+          <p style={{ display: 'none' }}>
+            <label>
+              <input name="bot-field" />
+            </label>
+          </p>
+          <input type="hidden" name="href" />
           <div className="more-human-internet-widget-editor">
             <textarea
               className={`more-human-internet-widget-editor-issue-body-input simple-feedback ${!isDoneEditingFeedback ? 'visible' : 'hide'}`}
