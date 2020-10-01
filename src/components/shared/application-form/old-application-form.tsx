@@ -7,16 +7,12 @@ import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
 import { thankYouHref } from '../../../utils/href'
 
-type ApplicationFormType = {
-  availability: string
-  setAvailability: React.Dispatch<React.SetStateAction<string>>
-}
-
-export default function ApplicationForm({ availability, setAvailability }: ApplicationFormType): JSX.Element {
+export default function ApplicationForm(): JSX.Element {
   const intl = useIntl()
 
   const formReference = React.useRef<HTMLFormElement>()
 
+  const [availability, setAvailability] = React.useState<string>('signup')
   const [checking, setChecking] = React.useState(false)
   const [awaitingSubmit, setAwaitingSubmit] = React.useState(false)
 

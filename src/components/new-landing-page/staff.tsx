@@ -1,23 +1,17 @@
 import React from 'react'
-import Img, { FixedObject } from 'gatsby-image'
-import colors from '../../styles/shared/colors.scss'
 
-const Staff: React.FC<TeamMember<FixedObject>> = ({ name, title, background_color, background_shape, fixed }) => {
+type StaffProps = TeamMember & { makeAndTrackRef: () => React.MutableRefObject<any> }
+
+const Staff: React.FC<StaffProps> = ({ name, title, image_file_name, background_color, background_shape, makeAndTrackRef }) => {
   return (
     <div className="staff-card">
-      <Img
-        fixed={fixed}
-        alt={name}
-        title={title}
-        style={{
-          width: '140px',
-          height: '140px',
-          borderRadius: background_shape === 'circle' ? '50%' : '0',
-          backgroundColor: colors[background_color],
-        }}
-      />
-      <p className="staff-card__name">{name}</p>
-      <p className="staff-card__title">{title}</p>
+      <img className={`staff-card__image ${background_color} ${background_shape}`} ref={makeAndTrackRef()} src={`/headshots/${image_file_name}`} alt={name} />
+      <p className="staff-card__name" ref={makeAndTrackRef()}>
+        {name}
+      </p>
+      <p className="staff-card__title" ref={makeAndTrackRef()}>
+        {title}
+      </p>
     </div>
   )
 }

@@ -32,14 +32,10 @@ $default-background-color: white;
   background-color: $human-pink !important;
 }
 
-:export {
-  human-blue: $human-blue;
-  human-light-blue: $human-light-blue;
-  human-pink: $human-pink;
-  human-pink-faded: $human-pink-faded;
-  human-green: $human-green;
-  human-grey: $human-grey;
-  human-gold: $human-gold;
-  border-grey: $border-grey;
-  default-background-color: $default-background-color;
+.human-green-bg {
+  background-color: $human-green !important;
+}
+
+.human-gold-bg {
+  background-color: $human-gold !important;
 }

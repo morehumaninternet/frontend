@@ -168,6 +168,7 @@ $mountain-size: 48vh;
         display: grid;
         row-gap: 10px;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        max-width: 560px;
 
         > .staff-card {
           display: flex;
@@ -182,10 +183,15 @@ $mountain-size: 48vh;
           > .staff-card__name {
             font-weight: bold;
           }
+
+          > .staff-card__image {
+            width: 140px;
+            height: 140px;
+          }
         }
       }
 
-      @media (min-width: 630px) {
+      @media (min-width: 880px) {
         flex-direction: row;
         margin-left: 50px;
 
