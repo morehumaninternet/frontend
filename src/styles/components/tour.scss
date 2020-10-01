@@ -1,6 +1,6 @@
 .shepherd-content {
   > header.shepherd-header {
-    padding: .25rem .75rem 0;
+    padding: 0.25rem 0.75rem 0;
   }
 
   > .shepherd-text {
@@ -34,6 +34,10 @@
       &:nth-child(2) {
         border-bottom-right-radius: 5px;
       }
+    }
+    > .single-button {
+      grid-column: 1 / span 2;
+      font-size: 18px;
     }
   }
 }

@@ -159,6 +159,7 @@ type TourStep = {
   beforeShowPromise?(): Promise<any>
   nextText?: string
   onNextClick?(): void
+  buttons?: any[]
 }
 
 type TourArgs = {
