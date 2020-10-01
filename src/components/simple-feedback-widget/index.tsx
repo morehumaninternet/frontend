@@ -23,6 +23,16 @@ export default function SimpleFeedbackWidget(): JSX.Element {
 
     return () => document.removeEventListener('click', listener)
   })
+
+  React.useEffect(() => {
+    if (open) {
+      const focusOn = isDoneEditingFeedback ? 'input[name="email"]' : 'textarea[name="feedback"]'
+      setTimeout(() => {
+        const input = document.querySelector(`form[name="submit-feedback"] ${focusOn}`) as any
+        input.focus()
+      }, 0)
+    }
+  }, [open])
   // tslint:enable:no-expression-statement
 
   return (
@@ -47,7 +57,7 @@ export default function SimpleFeedbackWidget(): JSX.Element {
               event.preventDefault()
               setIsDoneEditingFeedback(true)
               setTimeout(() => {
-                const emailInput = document.querySelector('form[name="submit-feedback"] label[for="email"] input') as any
+                const emailInput = document.querySelector('form[name="submit-feedback"] input[name="email"]') as any
                 emailInput.focus()
               }, 0)
             }
@@ -55,8 +65,9 @@ export default function SimpleFeedbackWidget(): JSX.Element {
           }}
         >
           <div className="more-human-internet-widget-editor">
-            <input
+            <textarea
               className={`more-human-internet-widget-editor-issue-body-input simple-feedback ${!isDoneEditingFeedback ? 'visible' : 'hide'}`}
+              name="feedback"
               placeholder="Your feedback..."
               autoFocus
               required

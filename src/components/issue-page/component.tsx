@@ -3,6 +3,7 @@ import { LayoutWithSidebar } from '../shared/layout'
 import SEO from '../shared/seo'
 import { scriptSrc, stylesHref } from '../../effects/useTour'
 import LoadedIssue, { LoadedIssueContentProps } from './loaded'
+import SimpleFeedbackWidget from '../simple-feedback-widget'
 
 type IssuePageFns = Pick<LoadedIssueContentProps, 'changeStatus'> & {
   postComment(comment: { html: string }): void
@@ -73,6 +74,7 @@ export default function IssuePageComponent({
         ]}
       />
       <IssuePageComponentInner storeState={storeState} postComment={postComment} changeStatus={changeStatus} />
+      <SimpleFeedbackWidget />
     </LayoutWithSidebar>
   )
 }

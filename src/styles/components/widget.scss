@@ -94,7 +94,6 @@ $trix-button--icon-size: 1.6em;
         > .more-human-internet-widget-editor-issue-title-input {
           @include padding-for-tour;
 
-
           > trix-toolbar {
             display: none;
           }
@@ -141,12 +140,13 @@ $trix-button--icon-size: 1.6em;
           @include padding-for-tour;
 
           position: relative;
+          width: 100%;
 
           &.simple-feedback {
-            border: 0;
-            padding: 0;
             font-size: 24px;
             color: $human-blue;
+            resize: none;
+            height: 100%;
 
             @include no-outline-no-border;
           }

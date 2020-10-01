@@ -83,6 +83,17 @@ function WidgetWithState({
 
     return () => document.removeEventListener('click', listener)
   })
+
+  React.useEffect(() => {
+    if (open) {
+      if (!isNewIssue) {
+        setTimeout(() => {
+          const input = document.querySelector(`.more-human-internet-widget-editor .more-human-internet-widget-editor-issue-title-input`) as any
+          input.focus()
+        }, 0)
+      }
+    }
+  }, [open])
   // tslint:enable:no-expression-statement
 
   return (
