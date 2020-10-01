@@ -84,12 +84,13 @@ export default function SimpleFeedbackWidget(): JSX.Element {
               autoFocus
               required
             />
-            {isDoneEditingFeedback && (
-              <label htmlFor="email" className={isDoneEditingFeedback ? 'visible' : 'hide'}>
+            {/* {isDoneEditingFeedback && (
+              <label htmlFor="email">
                 Email
                 <input name="email" type="email" autoFocus required />
               </label>
-            )}
+            )} */}
+            {isDoneEditingFeedback && <input name="email" type="email" autoFocus required />}
           </div>
           <div className="more-human-internet-widget-editor-button-group">
             <Button type="submit" className="post mhi-button">
