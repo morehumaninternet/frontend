@@ -9,6 +9,7 @@ import KanbanBoard from './kanban-board'
 import { getSiteData } from '../../clients/mockApi'
 import KanbanData from './kanban-data'
 import { useTour, scriptSrc, stylesHref } from '../../effects/useTour'
+import SimpleFeedbackWidget from '../simple-feedback-widget'
 
 const sortFns = {
   Recent: (issue: Issue) => -issue.initialReport.timestamp.getTime(),
@@ -140,6 +141,7 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
       ) : (
         <p>Loading...</p>
       )}
+      <SimpleFeedbackWidget />
     </LayoutWithSidebar>
   )
 }
