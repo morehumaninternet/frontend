@@ -36,6 +36,7 @@ $trix-button--icon-size: 1.6em;
   position: fixed;
   bottom: 0;
   right: 0;
+  z-index: 101;
 
   > .more-human-internet-widget-container {
     border-top-left-radius: 30px;

@@ -85,6 +85,7 @@ header.layout-new-header {
   > a {
     color: white;
     cursor: pointer;
+    text-decoration: none;
     transition: border-bottom 0.3s;
 
     &.active {
