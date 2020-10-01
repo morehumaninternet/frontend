@@ -3,6 +3,14 @@ $more-human-internet-widget-open-padding: 50px;
 $caret-size: 10px;
 $trix-button--icon-size: 1.6em;
 
+@mixin no-outline-no-border {
+  outline: none !important;
+  border: none;
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 @mixin semicircular-border($direction) {
   content: '';
   position: absolute;
@@ -73,6 +81,7 @@ $trix-button--icon-size: 1.6em;
 
       > .more-human-internet-widget-editor {
         flex-grow: 1;
+        margin-top: 40px;
 
         > .submitting {
           display: flex;
@@ -84,7 +93,7 @@ $trix-button--icon-size: 1.6em;
 
         > .more-human-internet-widget-editor-issue-title-input {
           @include padding-for-tour;
-          margin-top: 40px;
+
 
           > trix-toolbar {
             display: none;
@@ -132,6 +141,15 @@ $trix-button--icon-size: 1.6em;
           @include padding-for-tour;
 
           position: relative;
+
+          &.simple-feedback {
+            border: 0;
+            padding: 0;
+            font-size: 24px;
+            color: $human-blue;
+
+            @include no-outline-no-border;
+          }
 
           /* Change the select background color */
           ::selection {
@@ -243,9 +261,27 @@ $trix-button--icon-size: 1.6em;
             color: $human-blue;
           }
         }
+
+        > label[for="email"] {
+          display: flex;
+          flex-direction: column;
+          font-size: 16px;
+          font-weight: bold;
+          color: $human-blue;
+          border-bottom: 1px solid $human-grey;
+
+          > input {
+            margin-top: 10px;
+            font-size: 26px;
+            font-weight: 300;
+            color: $human-blue;
+
+            @include no-outline-no-border;
+          }
+        }
       }
 
-      > .more-human-internet-widget-editor-button-group {
+      .more-human-internet-widget-editor-button-group {
         display: flex;
         width: 100%;
 

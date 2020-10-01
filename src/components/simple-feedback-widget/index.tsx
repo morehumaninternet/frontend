@@ -1,44 +1,21 @@
 import React from 'react'
-import SimpleFeedbackWidgetIcon from './icon'
-import CommentInput from './comment-input'
-import ButtonGroup from './button-group'
+import SimpleFeedbackWidgetIcon from '../widget/icon'
+import { Button } from '@material-ui/core'
 import hasParent from '../../utils/hasParent'
-import { createStore, SimpleFeedbackWidgetStore } from './store'
-import subscribe from './background-script'
+import { thankYouHref } from '../../utils/href'
 
-type SimpleFeedbackWidgetWithStoreProps = {
-  store: SimpleFeedbackWidgetStore
-}
-
-type SimpleFeedbackWidgetWithStateProps = {
-  state: SimpleFeedbackWidgetState
-  openSimpleFeedbackWidget(): void
-  closeSimpleFeedbackWidget(): void
-  updateEmail(email: string): void
-  updateFeedback(html: string): void
-  clickIsDoneEditing(): void
-  submitFeedback(): void
-}
-
-function SimpleFeedbackWidgetWithState({
-  state,
-  openSimpleFeedbackWidget,
-  closeSimpleFeedbackWidget,
-  updateFeedback,
-  clickIsDoneEditing: clickIsDoneEditingFeedback,
-  submitFeedback,
-}: SimpleFeedbackWidgetWithStateProps): JSX.Element {
+// A very simple feedback widget that leverages the styles we largely already had for the existing widget, with some minor modifications
+// Uses netlify forms to capture feedback
+export default function SimpleFeedbackWidget(): JSX.Element {
   const ref = React.useRef<HTMLDivElement>()
-
-  const { open, actionInProgress, isDoneEditingFeedback } = state
-
-  const submittingFeedback = !!actionInProgress && actionInProgress.action.type === 'SUBMIT_FEEDBACK_INITIATE'
+  const [open, setOpen] = React.useState(false)
+  const [isDoneEditingFeedback, setIsDoneEditingFeedback] = React.useState(false)
 
   // tslint:disable:no-expression-statement
   React.useEffect(() => {
     function listener(event: MouseEvent): void {
       if (!hasParent(event.target as any, ref.current!) && !hasParent(event.target as any, '.shepherd-content')) {
-        closeSimpleFeedbackWidget() // tslint:disable-line:no-expression-statement
+        setOpen(false) // tslint:disable-line:no-expression-statement
       }
     }
 
@@ -49,81 +26,55 @@ function SimpleFeedbackWidgetWithState({
   // tslint:enable:no-expression-statement
 
   return (
-    <div className="more-human-internet-widget-boundary" ref={ref as any} onClick={() => !open && openSimpleFeedbackWidget()}>
+    <div className="more-human-internet-widget-boundary" ref={ref as any} onClick={() => !open && setOpen(true)}>
       <div
         className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >
         <SimpleFeedbackWidgetIcon open={open} />
-        <div className="more-human-internet-widget-editor-container" style={{ display: open ? undefined : 'none' }}>
+        <form
+          className="more-human-internet-widget-editor-container"
+          style={{ display: open ? undefined : 'none' }}
+          name="submit-feedback"
+          method="POST"
+          action={thankYouHref()}
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          autoComplete="off"
+          onSubmit={event => {
+            // The first submit just takes you to the email input, so don't actually submit yet
+            // tslint:disable:no-expression-statement
+            if (!isDoneEditingFeedback) {
+              event.preventDefault()
+              setIsDoneEditingFeedback(true)
+              setTimeout(() => {
+                const emailInput = document.querySelector('form[name="submit-feedback"] label[for="email"] input') as any
+                emailInput.focus()
+              }, 0)
+            }
+            // tslint:enable:no-expression-statement
+          }}
+        >
           <div className="more-human-internet-widget-editor">
-            {submittingFeedback ? (
-              <div className="submitting">
-                Submitting issue...
-                <br />
-                You will be redirected shortly
-              </div>
-            ) : (
-              <>
-                {isDoneEditingFeedback ? null : (
-                  // <EmailInput
-
-                  // />
-                  <CommentInput updateFeedback={updateFeedback} />
-                )}
-              </>
+            <input
+              className={`more-human-internet-widget-editor-issue-body-input simple-feedback ${!isDoneEditingFeedback ? 'visible' : 'hide'}`}
+              placeholder="Your feedback..."
+              autoFocus
+              required
+            />
+            {isDoneEditingFeedback && (
+              <label htmlFor="email" className={isDoneEditingFeedback ? 'visible' : 'hide'}>
+                Email
+                <input name="email" type="email" autoFocus required />
+              </label>
             )}
           </div>
-          {!submittingFeedback && (
-            <ButtonGroup
-              isDoneEditingFeedback={isDoneEditingFeedback}
-              reasonCantPostAsNewIssue={null}
-              clickIsDoneEditingFeedback={clickIsDoneEditingFeedback}
-              submitFeedback={submitFeedback}
-            />
-          )}
-        </div>
+          <div className="more-human-internet-widget-editor-button-group">
+            <Button type="submit" className="post mhi-button">
+              Submit feedback
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   )
-}
-
-function SimpleFeedbackWidgetWithStore({ store }: SimpleFeedbackWidgetWithStoreProps): JSX.Element {
-  const [state, setState] = React.useState<SimpleFeedbackWidgetState>(store.getState())
-
-  // tslint:disable:no-expression-statement
-  React.useEffect(() => {
-    return store.subscribe(() => setState(store.getState()))
-  }, [])
-
-  // tslint:enable:no-expression-statement
-
-  return (
-    <SimpleFeedbackWidgetWithState
-      state={state}
-      openSimpleFeedbackWidget={() => store.dispatch({ type: 'OPEN_WIDGET' })}
-      closeSimpleFeedbackWidget={() => store.dispatch({ type: 'CLOSE_WIDGET' })}
-      updateFeedback={feedback => store.dispatch({ type: 'UPDATE_FEEDBACK', payload: { feedback } })}
-      updateEmail={email => store.dispatch({ type: 'UPDATE_EMAIL', payload: { email } })}
-      clickIsDoneEditing={() => store.dispatch({ type: 'CLICK_DONE_EDITING' })}
-      submitFeedback={() => store.dispatch({ type: 'SUBMIT_FEEDBACK_INITIATE' })}
-    />
-  )
-}
-
-export default (): null | JSX.Element => {
-  const [store, setStore] = React.useState<null | SimpleFeedbackWidgetStore>(null)
-
-  // tslint:disable:no-expression-statement
-  React.useEffect(() => {
-    const s = createStore()
-    subscribe(s, {
-      submitFeedback(): Promise<any> {
-        throw new Error('Implement')
-      },
-    })
-    setStore(s)
-  }, [])
-  // tslint:enable:no-expression-statement
-
-  return store && <SimpleFeedbackWidgetWithStore store={store} />
 }

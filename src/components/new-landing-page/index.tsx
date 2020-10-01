@@ -153,7 +153,7 @@ export default function NewLandingPage(props: any): JSX.Element {
           </header>
         }
       >
-        <SEO links={[{ rel: 'stylesheet', type: 'text/css', href: '/trix.css' }]} scripts={[{ type: 'text/javascript', src: '/trix.js' }]} />
+        <SEO />
         <article className="sky start" ref={internalSectionRefs.start as any}>
           <div className="new-hero">
             <h1 className="mhi-heading" ref={makeAndTrackRef()}>

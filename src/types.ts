@@ -144,30 +144,6 @@ type WidgetState = {
   error: null | { message: string }
 }
 
-type SubmitFeedbackInitiate = Action<'SUBMIT_FEEDBACK_INITIATE'>
-
-type SimpleFeedbackWidgetAction =
-  | Action<'OPEN_WIDGET'>
-  | Action<'CLOSE_WIDGET'>
-  | Action<'CLICK_DONE_EDITING'>
-  | ActionWithPayload<'UPDATE_FEEDBACK', { feedback: string }>
-  | ActionWithPayload<'UPDATE_EMAIL', { email: string }>
-  | SubmitFeedbackInitiate
-  | ActionWithPayload<'SUBMIT_FEEDBACK_SUCCESS', { feedback: string; email: string }>
-  | ActionWithError<'SUBMIT_FEEDBACK_ERROR'>
-
-type SimpleFeedbackWidgetActionInProgress = { priorState: SimpleFeedbackWidgetState; action: SubmitFeedbackInitiate }
-
-type SimpleFeedbackWidgetState = {
-  open: boolean
-  editingFeedback: string
-  email: string
-  isDoneEditingFeedback: boolean
-  submitted: null | { feedback: string; email: string }
-  actionInProgress: null | SimpleFeedbackWidgetActionInProgress
-  error: null | { message: string }
-}
-
 type TourStep = {
   id?: string
   attachTo?: {

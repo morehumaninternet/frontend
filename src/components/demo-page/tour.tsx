@@ -80,7 +80,7 @@ export const letsWriteIssueTitleStep: TourStep = {
     show: () => {
       tourTimer = setTimeout(() => {
         Shepherd.activeTour
-          .getCurrentStep()
+          ?.getCurrentStep()
           .updateStepOptions({ text: 'The first step in reporting issue is to give it a title. So type "Checkout" to continue the demo.' })
       }, 8000)
     },
@@ -114,7 +114,7 @@ export const letsAmendIssueTitleStep: TourStep = {
     show: () => {
       tourTimer = setTimeout(() => {
         Shepherd.activeTour
-          .getCurrentStep()
+          ?.getCurrentStep()
           .updateStepOptions({ text: `Let's add a more specific title. To continue demo, type "Checkout is spinning when I try to buy the Supersuit"` })
       }, 8000)
     },
