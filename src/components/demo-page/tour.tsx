@@ -25,7 +25,7 @@ export const startStep: TourStep = {
         </span>
       `,
       action(): void {
-        this.next()
+        this.next() // tslint:disable-line: no-invalid-this no-this
       },
     },
   ],
