@@ -2,8 +2,6 @@ $mountain-size: 48vh;
 
 .layout.new-landing-page {
   > main {
-    position: absolute;
-
     > .sky {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
