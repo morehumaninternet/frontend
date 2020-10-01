@@ -2,7 +2,7 @@ import React from 'react'
 import Img, { FixedObject } from 'gatsby-image'
 import colors from '../../styles/shared/colors.scss'
 
-const Staff: React.FC<TeamMember> = ({ name, title, background_color, background_shape, fixed }) => {
+const Staff: React.FC<TeamMember<FixedObject>> = ({ name, title, background_color, background_shape, fixed }) => {
   return (
     <div className="staff-card">
       <Img

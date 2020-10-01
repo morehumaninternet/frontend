@@ -1,5 +1,3 @@
-import { FixedObject } from 'gatsby-image'
-
 type Maybe<T> = null | undefined | T
 
 type User = {
@@ -146,9 +144,10 @@ type WidgetState = {
   error: null | { message: string }
 }
 
-type TeamMember = {
+type TeamMember<FixedObject> = {
   name: string
   title: string
+  image_file_name: string
   background_color: string
   background_shape: 'square' | 'circle'
   fixed: FixedObject | undefined

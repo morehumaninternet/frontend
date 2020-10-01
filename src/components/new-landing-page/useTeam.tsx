@@ -5,7 +5,7 @@ import path from 'path'
 import { reduce } from 'lodash'
 import { FixedObject } from 'gatsby-image'
 
-const teamMembers: readonly TeamMember[] = [
+const teamMembers: readonly TeamMember<FixedObject>[] = [
   {
     name: 'Will Weiss',
     title: 'Founder',
