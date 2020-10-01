@@ -1,10 +1,11 @@
 $human-blue: #164176;
-$human-light-blue: #4A81BC;
-$human-pink: #FA759E;
-$human-pink-faded: rgba(250, 117, 158, 0.20);
-$human-green: #6FCF97;
+$human-light-blue: #4a81bc;
+$human-pink: #fa759e;
+$human-pink-faded: rgba(250, 117, 158, 0.2);
+$human-green: #6fcf97;
 $human-grey: #8aa0bc;
-$border-grey: #DFDFDF;
+$human-gold: #ffca00;
+$border-grey: #dfdfdf;
 $default-background-color: white;
 
 .white {
@@ -29,4 +30,12 @@ $default-background-color: white;
 
 .human-pink-bg {
   background-color: $human-pink !important;
+}
+
+.human-green-bg {
+  background-color: $human-green !important;
+}
+
+.human-gold-bg {
+  background-color: $human-gold !important;
 }

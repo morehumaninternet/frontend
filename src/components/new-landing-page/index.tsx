@@ -17,6 +17,7 @@ import ApplicationForm from '../../components/shared/application-form'
 import SimpleFeedbackWidget from '../../components/simple-feedback-widget'
 import * as algoliaClient from '../../clients/api'
 import { defaultSite } from '../../clients/util'
+import Team from './team'
 
 function LanguagePicker(): JSX.Element {
   return <a>English</a>
@@ -50,6 +51,9 @@ function CenteredLogo(props: any): JSX.Element {
 
 export default function NewLandingPage(props: any): JSX.Element {
   const siteOrigin = typeof window !== 'undefined' ? window.origin : defaultSite
+
+  // User availability
+  const [availability, setAvailability] = React.useState<string>('signup')
 
   const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
   const makeAndTrackRef = (): React.MutableRefObject<any> => {
@@ -235,8 +239,9 @@ export default function NewLandingPage(props: any): JSX.Element {
             </p>
           </div>
           <div className="join" ref={internalSectionRefs.join as any}>
-            <ApplicationForm />
+            <ApplicationForm availability={availability} setAvailability={setAvailability} />
           </div>
+          <Team makeAndTrackRef={makeAndTrackRef} availability={availability} setAvailability={setAvailability} />
         </div>
         <SimpleFeedbackWidget />
       </Layout>
