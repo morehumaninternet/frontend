@@ -177,13 +177,8 @@ $mountain-size: 48vh;
 
       .astronaut {
         position: relative;
-        width: 35%;
-        left: 22%;
-
-        @include onmobile {
-          width: 55%;
-          left: 12%;
-        }
+        width: 55%;
+        left: 12%;
       }
     }
 
@@ -330,7 +325,7 @@ $mountain-size: 48vh;
 
   form[name='submit-application'] {
     width: 100%;
-    max-width: 1000px;
+    max-width: 600px;
     margin: 0 25px;
   }
 }
