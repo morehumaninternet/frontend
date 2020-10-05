@@ -131,6 +131,15 @@ export default function NewLandingPage(props: any): JSX.Element {
     refsToTrack.map(ref => ref.current)
   )
 
+  // We do this to "lock in" the 100vh before any
+  React.useEffect(() => {
+    const isIPhone = navigator.userAgent.search('iPhone') >= 0
+    if (isIPhone) {
+      const sky = document.querySelector('.sky') as any
+      sky.style.height = getComputedStyle(sky).height
+    }
+  }, [])
+
   return (
     <ParallaxProvider>
       <Layout
@@ -144,8 +153,12 @@ export default function NewLandingPage(props: any): JSX.Element {
               <CenteredLogo />
             </LocalizedLink>
             <InternalLink to="join" />
-            <LocalizedLink className="foo" to="/demo">Demo</LocalizedLink>
-            <LocalizedLink className="foo" to="/donate">Donate</LocalizedLink>
+            <LocalizedLink className="foo" to="/demo">
+              Demo
+            </LocalizedLink>
+            <LocalizedLink className="foo" to="/donate">
+              Donate
+            </LocalizedLink>
           </header>
         }
       >
