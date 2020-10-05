@@ -71,6 +71,7 @@ export default function NewLandingPage(props: any): JSX.Element {
   function InternalLink({ to }: { to: keyof typeof internalSectionRefs }): JSX.Element {
     return (
       <a
+        className="foo"
         ref={internalLinkRefs[to] as any}
         onClick={() => {
           const sectionTop = internalSectionRefs[to].current!.getBoundingClientRect().top
@@ -139,12 +140,12 @@ export default function NewLandingPage(props: any): JSX.Element {
             <InternalLink to="start" />
             <InternalLink to="about" />
             <InternalLink to="why" />
-            <LocalizedLink to="/">
+            <LocalizedLink className="logo" to="/">
               <CenteredLogo />
             </LocalizedLink>
             <InternalLink to="join" />
-            <LocalizedLink to="/demo">Demo</LocalizedLink>
-            <LocalizedLink to="/donate">Donate</LocalizedLink>
+            <LocalizedLink className="foo" to="/demo">Demo</LocalizedLink>
+            <LocalizedLink className="foo" to="/donate">Donate</LocalizedLink>
           </header>
         }
       >

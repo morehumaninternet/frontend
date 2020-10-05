@@ -27,12 +27,25 @@ $mountain-size: 48vh;
 
         margin: 0 25px;
 
+        @include onmobile {
+          margin-top: -50px;
+          margin-bottom: 30px;
+        }
+
         > h1 {
           font-size: 2.5em;
+
+          @include onmobile {
+            font-size: 8vw;
+          }
         }
 
         > p {
           font-size: 1.1em;
+
+          @include onmobile {
+            font-size: 3.7vw;
+          }
         }
 
         > .container {
@@ -153,6 +166,10 @@ $mountain-size: 48vh;
 
       .why {
         margin-top: 100px;
+
+        @include onmobile {
+          margin-top: 30px;
+        }
       }
 
       .astronaut-container {
@@ -163,6 +180,11 @@ $mountain-size: 48vh;
         position: relative;
         width: 35%;
         left: 22%;
+
+        @include onmobile {
+          width: 55%;
+          left: 12%;
+        }
       }
     }
 
@@ -175,8 +197,11 @@ $mountain-size: 48vh;
 
       h1 {
         color: $human-blue;
-        text-align: left;
         margin-bottom: 50px;
+
+        @include onmobile {
+          font-size: 6.9vw;
+        }
       }
     }
 
@@ -185,6 +210,10 @@ $mountain-size: 48vh;
       justify-content: center;
       align-items: center;
       padding: 100px 25px;
+
+      @include onmobile {
+        padding-top: 0;
+      }
     }
 
     .team {
@@ -221,8 +250,23 @@ $mountain-size: 48vh;
         display: grid;
         row-gap: 20px;
         column-gap: 20px;
+
         grid-template-columns: repeat(auto-fit, minmax(160px, 208px));
         max-width: 680px;
+
+        @include onmobile {
+          column-gap: 10px;
+          grid-template-columns: 1fr 1fr;
+
+          > .staff-card {
+            > .staff-card__name {
+              font-size: 3.7vw;
+            }
+            > .staff-card__title {
+              font-size: 3.5vw;
+            }
+          }
+        }
 
         > .staff-card {
           display: flex;
@@ -241,6 +285,12 @@ $mountain-size: 48vh;
           > .staff-card__image {
             width: 100%;
           }
+        }
+      }
+
+      @include onmobile {
+        .volunteer > h1 {
+          font-size: 8vw;
         }
       }
 

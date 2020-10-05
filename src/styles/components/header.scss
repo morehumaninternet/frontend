@@ -82,6 +82,12 @@ header.layout-new-header {
     position: absolute;
   }
 
+  @include onmobile {
+    > a.foo {
+      visibility: hidden;
+    }
+  }
+
   > a {
     color: white;
     cursor: pointer;
