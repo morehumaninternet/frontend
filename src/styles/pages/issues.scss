@@ -1,7 +1,6 @@
 .layout.issues {
   > main {
     color: $human-blue;
-    margin: 3.5rem 4rem;
 
     > .kanban-data {
       box-sizing: border-box;
@@ -9,7 +8,7 @@
       display: flex;
       justify-content: space-between;
 
-      margin: 3rem 4rem 2rem 0;
+      margin: 3rem 0 2rem 0;
 
       > .kanban-data__avatar {
         display: flex;

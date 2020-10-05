@@ -17,3 +17,9 @@
 .center-text {
   text-align: center !important;
 }
+
+.hidden-on-mobile {
+  @include onmobile {
+    visibility: hidden;
+  }
+}

@@ -79,7 +79,7 @@ export default function IssuePage({ location, navigate }: { location: Location; 
         {
           text: ['Looks like the site maintainer was already online, and she has quickly acknowledged the issue.'],
           attachTo: {
-            element: '#diva-acknowledged',
+            element: '.issue-activity.comment:nth-child(3)',
             on: 'top',
           },
           when: {
@@ -94,7 +94,7 @@ export default function IssuePage({ location, navigate }: { location: Location; 
         {
           text: ['She reports that the problem with checkout is now fixed. You will now be able to successfully checkout.'],
           attachTo: {
-            element: '#diva-fixed',
+            element: '.issue-activity.comment:nth-child(4)',
             on: 'top',
           },
           scrollTo: { behavior: 'smooth', block: 'center' },
