@@ -82,11 +82,16 @@ This project uses the [Gatsby](https://github.com/gatsbyjs/gatsby) framework usi
 A quick look at the top-level files and directories in this project.
 
     .
+    ├── functions
+       ├── postIssue.js
     ├── src
+       ├── __tests
+       ├── animations
        ├── clients
        ├── components
           ├── shared
           ├── widget
+          ├── simple-feedback-widget
        ├── effects
        ├── fonts
        ├── images
@@ -95,6 +100,7 @@ A quick look at the top-level files and directories in this project.
           ├── demo.tsx
           ├── index.tsx
           ├── issue.tsx
+          ├── issues.tsx
           ├── thank-you.tsx
        ├── styles
           ├── components
@@ -105,13 +111,17 @@ A quick look at the top-level files and directories in this project.
        ├── types.ts
     ├── static
 
-* **`/src`** Code goes here
-  * **`/src/clients`** Modules that connect with the outside world. Currently there is only [src/clients/mockApi.ts](src/clients/mockApi.ts) used by the [demo](https://morehumaninternet.org/demo) and representing the functionality the [API](github.com/morehumaninternet/api) should support.
+* **`/functions`** "Serverless" functions executed by netlify go here. [functions/postIssue.js](functions/postIssue.js) posts an issue to Algolia.
+* **`/i18n`** Translations go here. Support for Spanish and other languages is planned, but not fully implemented yet.
+* **`/src`** Frontend code goes here
+  * **`/src/__tests`** Unit tests run by mocha. Tests both `/src` & `/functions`.
+  * **`/src/animations`** Reusable animations requiring javascript.
+  * **`/src/clients`** Modules that connect with the outside world. [src/clients/mockApi.ts](src/clients/mockApi.ts) is used by the [demo](https://morehumaninternet.org/demo) and representing the functionality the [API](github.com/morehumaninternet/api) should support. [src/clients/api.ts](src/clients/api.ts) is currently unused, but interacts with algolia to search issues and with the serverless function on the backend to post issues.
   * **`/src/components`** React components that aren't whole pages go here. If the components are page-specific, they go in their corresponding folder e.g., `demo-page`, `issue-page`, etc. Shared components go in `shared`. The `widget` is used in the demo. On our roadmap, we plan on building a cross platform widget, to be written [here](https://github.com/morehumaninternet/widget), built separately from this frontend.
   * **`/src/effects`** Reusable React hooks/effects
   * **`/src/fonts`** Fonts go here. Be sure there's a file for each font-weight you are using. [/src/styles/shared/fonts.scss](/src/styles/shared/fonts.scss) can be used as a reference and would need to be updated accordingly.
   * **`/src/images`** Images that need resizing via [gatsby-image](https://www.gatsbyjs.com/plugins/gatsby-image/) go here. We're not using this much, which might change in the future or we might get rid gatsby-image altogether. Note, svgs are defined inline so that they are included directly in the resultant mockup.
-  * **`/src/pages`** Pages go here. Each file corresponds with a page at the same route, e.g. [demo.tsx](src/pages/demo.tsx) defines [morehumaninternet.org/demo](morehumaninternet.org/demo)
+  * **`/src/pages`** Pages go here. Each file corresponds with a page at the same route, e.g. [demo.tsx](src/pages/demo.tsx) defines [morehumaninternet.org/demo](morehumaninternet.org/demo). Note that the convention is for any complicated pages to just point to a corresponding component in the page-specific directory in [src/components](src/components) e.g., [src/pages/issue.tsx](src/pages/issue.tsx) just points to [src/pages/issue.tsx](src/pages/issue.tsx).
   * **`/src/styles`** Styles go here. Styles that are shared across pages go in `shared`. Styles that are specific to given to components go in `components`. Page layouts go in `pages`. `global.scss` imports the corresponding `_all.scss` file for each, so be sure to add the relevant import whenever you add a file.
   * **`/src/utils`** Poor programming style, but functions that don't otherwise have a clear home.
   * **`/src/types.ts`** Type definitions available across the project. Define any types that are used in multiple places here.
