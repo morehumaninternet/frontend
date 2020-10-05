@@ -76,7 +76,7 @@ export const letsReportStep: TourStep = {
   id: 'lets-report',
   attachTo: {
     element: '.more-human-internet-widget-boundary',
-    on: 'bottom',
+    on: 'bottom-end',
   },
   text: ["Let's report this issue. Site maintainers can layer the More Human Internet widget onto their site with a few lines of embedded code."],
   onNextClick(): void {
