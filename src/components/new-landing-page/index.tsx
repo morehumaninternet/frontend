@@ -167,7 +167,7 @@ export default function NewLandingPage(props: any): JSX.Element {
             <InternalLink to="start" />
             <InternalLink to="about" />
             <InternalLink to="why" />
-            <LocalizedLink className="logo" to="/" style={{ width: '100%' }}>
+            <LocalizedLink className="logo" to="/">
               <CenteredLogo />
             </LocalizedLink>
             <InternalLink to="join" />
@@ -246,7 +246,9 @@ export default function NewLandingPage(props: any): JSX.Element {
                 </p>
                 <p ref={makeAndTrackRef()}>
                   <FormattedMessage id="index_aboutus3" />
-                  <LocalizedLink className="same-color" to="/demo"><FormattedMessage id="index_aboutus4" /></LocalizedLink>
+                  <LocalizedLink className="same-color" to="/demo">
+                    <FormattedMessage id="index_aboutus4" />
+                  </LocalizedLink>
                   <FormattedMessage id="index_aboutus5" />
                 </p>
               </div>

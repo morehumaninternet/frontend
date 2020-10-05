@@ -66,7 +66,7 @@ header.layout-new-header {
   top: 0;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 
   padding-top: $nonhero-margin + 5px;
   padding-bottom: $nonhero-margin + 10px;
@@ -83,6 +83,10 @@ header.layout-new-header {
   > a.logo {
     display: flex;
     justify-content: center;
+
+    @include onmobile {
+      width: 100%;
+    }
   }
 
   > a {
