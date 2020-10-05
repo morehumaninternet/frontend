@@ -80,6 +80,15 @@ header.layout-new-header {
     position: absolute;
   }
 
+  > a.logo {
+    display: flex;
+    justify-content: center;
+
+    @include onmobile {
+      width: 100%;
+    }
+  }
+
   > a {
     color: var(--logo-color-blue-white);
     cursor: pointer;

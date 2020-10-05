@@ -18,8 +18,8 @@
   text-align: center !important;
 }
 
-.hidden-on-mobile {
+.hide-on-mobile {
   @include onmobile {
-    visibility: hidden;
+    display: none
   }
 }

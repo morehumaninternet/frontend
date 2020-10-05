@@ -71,7 +71,7 @@ export default function NewLandingPage(props: any): JSX.Element {
   function InternalLink({ to }: { to: keyof typeof internalSectionRefs }): JSX.Element {
     return (
       <a
-        className="hidden-on-mobile"
+        className="hide-on-mobile"
         ref={internalLinkRefs[to] as any}
         onClick={() => {
           const sectionTop = internalSectionRefs[to].current!.getBoundingClientRect().top
@@ -171,10 +171,10 @@ export default function NewLandingPage(props: any): JSX.Element {
               <CenteredLogo />
             </LocalizedLink>
             <InternalLink to="join" />
-            <LocalizedLink className="hidden-on-mobile" to="/demo">
+            <LocalizedLink className="hide-on-mobile" to="/demo">
               Demo
             </LocalizedLink>
-            <a className="hidden-on-mobile" href="https://buymeacoffee.com/morehumaninter">
+            <a className="hide-on-mobile" href="https://buymeacoffee.com/morehumaninter">
               Donate
             </a>
           </header>
@@ -246,6 +246,10 @@ export default function NewLandingPage(props: any): JSX.Element {
                 </p>
                 <p ref={makeAndTrackRef()}>
                   <FormattedMessage id="index_aboutus3" />
+                  <LocalizedLink className="same-color" to="/demo">
+                    <FormattedMessage id="index_aboutus4" />
+                  </LocalizedLink>
+                  <FormattedMessage id="index_aboutus5" />
                 </p>
               </div>
 
@@ -268,7 +272,7 @@ export default function NewLandingPage(props: any): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="post-sky2" ref={postSky2Ref}>
+        <div className="post-sky2" ref={postSky2Ref as any}>
           <div className="join" ref={internalSectionRefs.join as any}>
             <h1 className="mhi-heading" ref={makeAndTrackRef()}>
               Be a part of our community
