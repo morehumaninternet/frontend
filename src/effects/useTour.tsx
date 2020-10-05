@@ -29,32 +29,32 @@ export function startTour({ steps, onComplete, onCancel }: TourArgs): Promise<an
   })
 
   steps.forEach(stepArgs => {
-    const { nextText, onNextClick, buttons, ...rest } = stepArgs
+    const { nextText, onNextClick, buttons, attachTo, scrollTo, ...rest } = stepArgs
 
     tour.addStep({
       ...rest,
-      buttons: buttons
-        ? buttons
-        : [
-            {
-              classes: 'human-pink-bg',
-              text: 'Exit',
-              action(): void {
-                this.cancel()
-              },
-            },
-            {
-              classes: 'human-blue-bg',
-              text: nextText || 'Next',
-              action(): void {
-                if (onNextClick) {
-                  onNextClick.call(this)
-                } else {
-                  this.next()
-                }
-              },
-            },
-          ],
+      attachTo,
+      scrollTo: scrollTo || (attachTo && { behavior: 'smooth', block: 'center' }),
+      buttons: buttons || [
+        {
+          classes: 'human-pink-bg',
+          text: 'Exit',
+          action(): void {
+            this.cancel()
+          },
+        },
+        {
+          classes: 'human-blue-bg',
+          text: nextText || 'Next',
+          action(): void {
+            if (onNextClick) {
+              onNextClick.call(this)
+            } else {
+              this.next()
+            }
+          },
+        },
+      ],
     })
   })
 

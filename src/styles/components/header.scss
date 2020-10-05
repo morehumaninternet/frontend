@@ -30,34 +30,32 @@ header.layout-header {
   @media (max-width: $breakpoint-header-scrolls) {
     position: absolute;
   }
+}
 
-  // When against a hero, we use the --logo-color-blue-white to fade from white to blue as the user scrolls past the hero
-  // Otherwise, against a white background, we just use blue as the non-pink color
-  > a.home-link {
-    > svg.header-logo {
-      .more, .internet, .left-head { fill: $human-pink; }
+// When against a hero, we use the --logo-color-blue-white to fade from white to blue as the user scrolls past the hero
+// Otherwise, against a white background, we just use blue as the non-pink color
+svg.header-logo {
+  .human, .left-head { fill: $human-pink; }
 
-      &.against-hero {
-        .human, .right-head, .bodies { fill: var(--logo-color-blue-white); }
-        .bodies { stroke: var(--logo-color-blue-white); }
-      }
+  &.against-hero {
+    .more, .internet, .right-head, .bodies { fill: var(--logo-color-blue-white); }
+    .bodies { stroke: var(--logo-color-blue-white); }
+  }
 
-      &.against-white-bg {
-        .human, .right-head, .bodies { fill: $human-blue; }
-        .bodies { stroke: $human-blue; }
-      }
+  &.against-white-bg {
+    .more, .internet, .right-head, .bodies { fill: $human-blue; }
+    .bodies { stroke: $human-blue; }
+  }
 
-      &:hover {
-        .human { fill: $human-pink; }
+  &:hover {
+    .more, .internet { fill: $human-pink; }
 
-        &.against-hero {
-          .more, .internet { fill: var(--logo-color-blue-white); }
-        }
+    &.against-hero {
+      .human { fill: var(--logo-color-blue-white); }
+    }
 
-        &.against-white-bg {
-          .more, .internet { fill: $human-blue; }
-        }
-      }
+    &.against-white-bg {
+      .human { fill: $human-blue; }
     }
   }
 }
@@ -82,9 +80,8 @@ header.layout-new-header {
     position: absolute;
   }
 
-
   > a {
-    color: white;
+    color: var(--logo-color-blue-white);
     cursor: pointer;
     text-decoration: none;
     transition: border-bottom 0.3s;

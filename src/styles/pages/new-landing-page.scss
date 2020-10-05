@@ -101,18 +101,17 @@ $mountain-size: 48vh;
       }
     }
 
-    > .post-sky {
+    > .post-sky1 {
       position: relative;
       top: -3px; // ugh
-      min-height: 1630px;
       width: 100vw;
-      background-image: linear-gradient(to bottom, $human-blue, rgba(139, 160, 187, 1), white);
+      background-image: linear-gradient(to bottom, $human-blue, rgba(139, 160, 187, 1) 77%, white 100%);
 
       $astronaut-width: 44.166666667%;
 
       .manifesto {
         display: flex;
-        padding: 100px 25px;
+        padding: 100px 25px 245px 25px;
         justify-content: center;
 
         @media (max-width: 1100px) {

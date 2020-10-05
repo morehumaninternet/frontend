@@ -178,7 +178,7 @@ type TourStep = {
     show?(): void
     hide?(): void
   }
-  scrollTo?: { behavior: 'smooth'; block: 'center' }
+  scrollTo?: { behavior: 'smooth'; block: 'center' | 'start' | 'end' }
   beforeShowPromise?(): Promise<any>
   nextText?: string
   onNextClick?(): void

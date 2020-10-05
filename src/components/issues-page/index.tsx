@@ -60,7 +60,7 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
   }, [sortOn])
 
   // tslint:disable-next-line: no-expression-statement
-  useTour(
+  const tour = useTour(
     {
       steps: [
         {
@@ -79,6 +79,7 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
             element: '#col-acknowledged',
             on: 'top',
           },
+          scrollTo: { behavior: 'smooth', block: 'start' },
         },
         {
           text: ["These are issues that are either fixed or won't fix. These are held in case issues resurface."],
@@ -86,6 +87,7 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
             element: '#col-closed',
             on: 'top',
           },
+          scrollTo: { behavior: 'smooth', block: 'start' },
         },
         {
           text: [
@@ -95,12 +97,14 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
             element: '#sort-issues',
             on: 'bottom',
           },
+          scrollTo: { behavior: 'smooth', block: 'start' },
         },
         {
-          text: ['You can click and drag the card to close the issue.'],
+          id: 'change-status',
+          text: ['Click and drag a card to change its status'],
           attachTo: {
-            element: '#card-500',
-            on: 'right',
+            element: '.kanban',
+            on: 'top',
           },
           scrollTo: { behavior: 'smooth', block: 'center' },
         },
@@ -119,6 +123,13 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
     () => site === 'goalco.com'
   )
 
+  function setSiteDataAndAdvanceTour(nextSiteData: SiteData): void {
+    setSiteData(nextSiteData) // tslint:disable-line:no-expression-statement
+    if (tour && tour.currentStep.id === 'change-status') {
+      tour.next() // tslint:disable-line:no-expression-statement
+    }
+  }
+
   return (
     <LayoutWithSidebar mainClassName="issues" currentUser={currentUser} location={location}>
       <SEO
@@ -136,7 +147,7 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
       {siteData ? (
         <>
           <KanbanData maintainer={siteData.maintainer} setSortBy={setSortOn} />
-          <KanbanBoard siteData={siteData} setSiteData={setSiteData} />
+          <KanbanBoard siteData={siteData} setSiteData={setSiteDataAndAdvanceTour} />
         </>
       ) : (
         <p>Loading...</p>
