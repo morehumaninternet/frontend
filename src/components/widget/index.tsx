@@ -44,6 +44,7 @@ type WidgetProps = {
 }
 
 function WidgetWithState({
+  tour,
   state,
   openWidget,
   closeWidget,
@@ -75,7 +76,10 @@ function WidgetWithState({
   React.useEffect(() => {
     function listener(event: MouseEvent): void {
       if (!hasParent(event.target as any, ref.current!) && !hasParent(event.target as any, '.shepherd-content')) {
-        closeWidget() // tslint:disable-line:no-expression-statement
+        // If there is a tour, just always keep the widget open. A hack, but it should work for the time being.
+        if (!tour) {
+          closeWidget() // tslint:disable-line:no-expression-statement
+        }
       }
     }
 
