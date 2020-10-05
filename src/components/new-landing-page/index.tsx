@@ -246,6 +246,8 @@ export default function NewLandingPage(props: any): JSX.Element {
                 </p>
                 <p ref={makeAndTrackRef()}>
                   <FormattedMessage id="index_aboutus3" />
+                  <LocalizedLink className="same-color" to="/demo"><FormattedMessage id="index_aboutus4" /></LocalizedLink>
+                  <FormattedMessage id="index_aboutus5" />
                 </p>
               </div>
 
