@@ -14,6 +14,7 @@
 // tslint:disable:no-expression-statement
 import React from 'react'
 import { forEach } from 'lodash'
+// @ts-ignore
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import setLogoFade from '../../utils/setLogoFade'
 

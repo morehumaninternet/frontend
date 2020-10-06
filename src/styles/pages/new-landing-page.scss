@@ -1,4 +1,5 @@
-$mountain-size: 48vh;
+$standard-max-width: 600px;
+$standard-margin: 25px;
 
 .layout.new-landing-page {
   > main {
@@ -25,7 +26,7 @@ $mountain-size: 48vh;
         color: white;
         text-align: center;
 
-        margin: 0 25px;
+        margin: 0 $standard-margin;
 
         @include onmobile {
           margin-top: -50px;
@@ -111,11 +112,19 @@ $mountain-size: 48vh;
 
       .manifesto {
         display: flex;
-        padding: 100px 25px 245px 25px;
+        padding: 100px $standard-margin 245px $standard-margin;
         justify-content: center;
+
+        .text-container {
+          max-width: $standard-max-width;
+        }
 
         @media (max-width: 1100px) {
           flex-direction: column-reverse;
+
+          .text-container {
+            align-self: center;
+          }
 
           .astronaut-container {
             margin: 150px 0;
@@ -187,7 +196,7 @@ $mountain-size: 48vh;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin: 150px 25px;
+      margin: 150px $standard-margin;
 
       h1 {
         color: $human-blue;
@@ -203,7 +212,7 @@ $mountain-size: 48vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 100px 25px;
+      padding: 100px $standard-margin;
 
       @include onmobile {
         padding-top: 0;
@@ -325,7 +334,24 @@ $mountain-size: 48vh;
 
   form[name='submit-application'] {
     width: 100%;
-    max-width: 600px;
-    margin: 0 25px;
+    max-width: $standard-max-width;
+    margin: 0 $standard-margin;
+  }
+
+  .donate-container {
+    padding: 100px $standard-margin;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > .donate {
+      max-width: $standard-max-width;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }

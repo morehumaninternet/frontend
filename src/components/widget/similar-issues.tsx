@@ -1,4 +1,5 @@
 import React from 'react'
+// @ts-ignore
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import { issueHref } from '../../utils/href'
 

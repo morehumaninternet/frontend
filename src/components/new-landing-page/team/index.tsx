@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from '@material-ui/core'
-
-import useTeam from './useTeam'
+import { members } from './members'
 import Staff from './staff'
 
 type TeamProps = {
@@ -11,8 +10,6 @@ type TeamProps = {
 }
 
 const Team: React.FC<TeamProps> = ({ makeAndTrackRef, availability, setAvailability }) => {
-  const { teamMembers } = useTeam()
-
   const onClick = () => {
     if (availability !== 'volunteer') {
       // tslint:disable-next-line: no-expression-statement
@@ -32,7 +29,7 @@ const Team: React.FC<TeamProps> = ({ makeAndTrackRef, availability, setAvailabil
         </Button>
       </div>
       <div className="staff">
-        {teamMembers.map(member => (
+        {members.map(member => (
           <Staff
             key={member.name}
             makeAndTrackRef={makeAndTrackRef}

@@ -1,7 +1,4 @@
-// tslint:disable:no-expression-statement
-import React from 'react'
-
-const teamMembers: readonly TeamMember[] = [
+export const members: readonly TeamMember[] = [
   {
     name: 'Will Weiss 🇺🇸',
     title: 'Founder',
@@ -66,9 +63,3 @@ const teamMembers: readonly TeamMember[] = [
     background_shape: 'circle',
   },
 ]
-
-const useTeam = () => {
-  return { teamMembers }
-}
-
-export default useTeam
