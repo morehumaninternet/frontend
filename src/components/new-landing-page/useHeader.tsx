@@ -64,7 +64,7 @@ export default function useHeader<Section extends string>({ internalSections, ot
 
   const makeAndTrackRef = (): React.MutableRefObject<any> => {
     const ref = React.useRef()
-    refsToTrack.push(ref as any) // tslint:disable-line:no-expression-statement
+    refsToTrack.push(ref as any)
     return ref as any
   }
 
@@ -84,28 +84,17 @@ export default function useHeader<Section extends string>({ internalSections, ot
     {} as any
   )
 
-  function InternalLink({ to }: { to: Section }): JSX.Element {
-    return (
-      <a
-        className="hide-on-mobile"
-        ref={internalLinkRefs[to] as any}
-        onClick={() => {
-          const sectionTop = internalSectionRefs[to].current!.getBoundingClientRect().top
-          window.scroll(0, scrollY + sectionTop - 0.3 * screen.availHeight)
-        }}
-      >
-        {to}
-      </a>
-    )
-  }
-
   const headerRef = React.useRef<HTMLDivElement>()
 
   React.useEffect(
     () => {
       const headerElement = headerRef.current!
 
+      let headerIsFixed = getComputedStyle(headerElement).position === 'fixed' // tslint:disable-line:no-let
+
       function onScroll(): void {
+        if (!headerIsFixed) return
+
         const headerBottom = headerElement.getBoundingClientRect().bottom
 
         refsToTrack.forEach(ref => {
@@ -115,7 +104,7 @@ export default function useHeader<Section extends string>({ internalSections, ot
           const elementTop = rect.top
           const elementDistance = elementTop - headerBottom
           const elementOpacity = Math.max(0, Math.min(1, (elementDistance + 10) / 150))
-          ref.current.style.opacity = String(elementOpacity) // tslint:disable-line:no-expression-statement
+          ref.current.style.opacity = String(elementOpacity)
         })
 
         const screenMidpoint = screen.availHeight / 2
@@ -152,19 +141,34 @@ export default function useHeader<Section extends string>({ internalSections, ot
         }
       }
 
+      function onResize(): void {
+        headerIsFixed = getComputedStyle(headerElement).position === 'fixed'
+        onScroll()
+      }
+
       onScroll()
       addEventListener('scroll', onScroll, { passive: true })
-      addEventListener('resize', onScroll)
+      addEventListener('resize', onResize)
 
       return () => {
         removeEventListener('scroll', onScroll)
-        removeEventListener('resize', onScroll)
+        removeEventListener('resize', onResize)
       }
     },
     refsToTrack.map(ref => ref.current)
   )
 
-  const links = internalSections.map(section => <InternalLink to={section} />).concat(otherLinks)
+  const internalLinks = internalSections.map(section => (
+    <a
+      className="hide-on-mobile"
+      ref={internalLinkRefs[section] as any}
+      onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
+    >
+      {section}
+    </a>
+  ))
+
+  const links = internalLinks.concat(otherLinks)
 
   const linkMidpoint = links.length / 2
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import SimpleFeedbackWidgetIcon from '../widget/icon'
+import WidgetIcon from '../widget/icon'
 import { Button } from '@material-ui/core'
 import hasParent from '../../utils/hasParent'
 import { thankYouHref } from '../../utils/href'
@@ -45,7 +45,7 @@ export default function SimpleFeedbackWidget(): JSX.Element {
       <div
         className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >
-        <SimpleFeedbackWidgetIcon open={open} />
+        <WidgetIcon open={open} />
         <form
           className="more-human-internet-widget-editor-container"
           style={{ display: open ? undefined : 'none' }}
