@@ -14,6 +14,7 @@ import Mountains from './mountains'
 import NewHero from './new-hero'
 import Donate from './donate'
 import TextContainer from './text-container'
+import useExplicitHeightOnIPhone from '../../effects/useExplicitHeightOnIPhone'
 
 export default function NewLandingPage(props: any): JSX.Element {
   const postSky2Ref = React.useRef<HTMLDivElement>()
@@ -31,16 +32,8 @@ export default function NewLandingPage(props: any): JSX.Element {
     fadeAtRef: postSky2Ref,
   })
 
-  // iPhone will change the value of 1vh once you start scrolling, so if we detect you're on an iPhone,
-  // we explicitly set the height of the element after its initial render. Resizing never happens, so
-  // this hack should be ok.
-  React.useEffect(() => {
-    const isIPhone = navigator.userAgent.search('iPhone') >= 0
-    if (isIPhone) {
-      const sky = internalSectionRefs.start.current!
-      sky.style.height = getComputedStyle(sky).height // tslint:disable-line:no-expression-statement
-    }
-  }, [])
+  // tslint:disable-next-line: no-expression-statement
+  useExplicitHeightOnIPhone(internalSectionRefs.start)
 
   const [availability, setAvailability] = React.useState<string>('signup')
 
