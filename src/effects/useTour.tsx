@@ -5,6 +5,7 @@
 
 // tslint:disable:no-expression-statement no-this no-invalid-this
 import { useState, useEffect, DependencyList } from 'react'
+import scriptLoaded from '../utils/scriptLoaded'
 
 declare var Shepherd: any
 
@@ -15,13 +16,8 @@ export const scriptSrc = 'https://shepherdjs.dev/dist/js/shepherd.min.js'
 // Start the tour when Shepherd is available, resolving with the tour when that has happened.
 // See https://shepherdjs.dev/docs/tutorial-02-usage.html for information about steps to be added
 // Note that if you want the tour to continue after some other event has happened, you'll need to handle that separately
-export function startTour({ steps, onComplete, onCancel }: TourArgs): Promise<any> {
-  if (typeof Shepherd === 'undefined') {
-    let resolve: (value: any) => any // tslint:disable-line:no-let
-    const script = document.querySelector(`script[src="${scriptSrc}"]`) as HTMLScriptElement
-    script.addEventListener('load', () => startTour({ steps, onComplete, onCancel }).then(resolve))
-    return new Promise(r => (resolve = r))
-  }
+export async function startTour({ steps, onComplete, onCancel }: TourArgs): Promise<any> {
+  await scriptLoaded(scriptSrc, () => typeof Shepherd !== 'undefined')
 
   const tour = new Shepherd.Tour({
     defaultStepOptions: { cancelIcon: { enabled: false } },
