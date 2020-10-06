@@ -16,9 +16,6 @@ import Donate from './donate'
 import TextContainer from './text-container'
 
 export default function NewLandingPage(props: any): JSX.Element {
-  // User availability
-  const [availability, setAvailability] = React.useState<string>('signup')
-
   const postSky2Ref = React.useRef<HTMLDivElement>()
 
   const { header, internalSectionRefs, makeAndTrackRef } = useHeader({
@@ -45,6 +42,14 @@ export default function NewLandingPage(props: any): JSX.Element {
     }
   }, [])
 
+  const [availability, setAvailability] = React.useState<string>('signup')
+
+  const volunteer = () => {
+    // tslint:disable-next-line: no-expression-statement
+    if (availability !== 'volunteer') setAvailability('volunteer')
+    return internalSectionRefs.join.current!.scrollIntoView()
+  }
+
   return (
     <ParallaxProvider>
       <Layout additionalClassNames="new-landing-page has-new-header" header={header}>
@@ -68,7 +73,7 @@ export default function NewLandingPage(props: any): JSX.Element {
             <ApplicationForm availability={availability} setAvailability={setAvailability} makeAndTrackRef={makeAndTrackRef} />
           </div>
           <div className="team-container">
-            <Team makeAndTrackRef={makeAndTrackRef} availability={availability} setAvailability={setAvailability} />
+            <Team makeAndTrackRef={makeAndTrackRef} volunteer={volunteer} />
           </div>
         </div>
         <Donate makeAndTrackRef={makeAndTrackRef} />
