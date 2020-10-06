@@ -7,11 +7,21 @@
   text-transform: none;
 
   &:hover {
-    background-color: $human-pink !important; // TODO: look into why this doesn't work w/out important
+    background-color: $human-pink; // TODO: look into why this doesn't work w/out important
   }
 
   &:disabled {
     background-color: $human-grey;
     color: white;
+  }
+}
+
+.donate-link {
+  height: 60px;
+
+  .buymeacoffee {
+    height: 30px;
+    margin-bottom: 1px;
+    margin-right: 6px;
   }
 }
