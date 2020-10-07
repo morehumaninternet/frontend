@@ -70,7 +70,9 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           text: ['On this page, you as the maintainer can see all the issues across your website...'],
         },
         {
-          text: ["These are issues that users have reported. This columns is only visible to the site's maintainer, so that we can screen hooligans"],
+          text: [
+            'These are issues that users have reported. This column is only visible to the you as the site maintainer, so that issues can be screened before they are acknowledged publicly',
+          ],
           attachTo: {
             element: '#col-opened',
             on: 'top',
@@ -78,7 +80,7 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           scrollTo: false,
         },
         {
-          text: ['By acknowledging issues, you indicate to users that you agree something is an issue and make the issue publicly visible'],
+          text: ['By acknowledging, you indicate to users that you agree something is an issue and make the issue publicly visible'],
           attachTo: {
             element: '#col-acknowledged',
             on: 'top',
@@ -86,7 +88,9 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           scrollTo: false,
         },
         {
-          text: ["These are issues that are either fixed or won't fix. These are held in case issues resurface."],
+          text: [
+            "Closing an issue indicates are you either have fixed or won't fix an issue. These are held in case issues resurface so conversation may continue",
+          ],
           attachTo: {
             element: '#col-closed',
             on: 'top',
@@ -120,7 +124,7 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           },
         },
         {
-          text: [`Awesome! You've just let your users know that you've seen their issue.`],
+          text: [`Awesome! You've just let your users know that you've seen their issue`],
         },
         {
           text: [`That concludes the tour. Sign up for our beta to get this functionality on your site.`],

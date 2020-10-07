@@ -1,3 +1,9 @@
+// Add padding for an element for the tour without affecting its positioning
+@mixin padding-for-tour($size: 10px) {
+  padding: $size;
+  margin: -$size;
+}
+
 .shepherd-content {
   > header.shepherd-header {
     padding: 0.25rem 0.75rem 0;
@@ -12,11 +18,9 @@
 
   > footer.shepherd-footer {
     padding: 0;
-    padding-bottom: 4px;
 
     display: grid;
     grid-gap: 2px;
-    grid-template-rows: 36px;
     grid-template-columns: 1fr 1fr;
 
     > button {
@@ -117,3 +121,6 @@
   }
 }
 
+.shepherd-element.shepherd-enabled[data-shepherd-step-id="click-issues"] {
+  margin-top: 25px !important;
+}
