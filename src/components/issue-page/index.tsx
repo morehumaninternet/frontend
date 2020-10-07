@@ -21,7 +21,7 @@ if (typeof window !== 'undefined') {
   subscribe(store, mockApi)
 }
 
-export default function IssuePage({ location, navigate }: { location: Location; navigate(href: string): void }): JSX.Element {
+export default function IssuePage({ location, navigate }: PageProps): JSX.Element {
   const [storeState, setStoreState] = React.useState<IssuePageState>(store.getState())
 
   // Subscribe to the store to keep the storeState up to date.
@@ -94,7 +94,7 @@ export default function IssuePage({ location, navigate }: { location: Location; 
         {
           text: ['She reports that the problem with checkout is now fixed. You will now be able to successfully checkout.'],
           attachTo: {
-            element: '.issue-activity.comment:nth-child(4)',
+            element: '.issue-activity.comment:nth-child(5)',
             on: 'top',
           },
           scrollTo: { behavior: 'smooth', block: 'center' },
@@ -102,12 +102,12 @@ export default function IssuePage({ location, navigate }: { location: Location; 
         {
           text: ['Click on the "issues" button to see all issues'],
           attachTo: {
-            element: '.sidebar-links .active svg',
+            element: '.sidebar-links a[href^="/issues"]',
             on: 'right',
           },
           scrollTo: { behavior: 'smooth', block: 'center' },
           onNextClick(): void {
-            drawRipple(document.querySelector('.sidebar-links .active svg')!)
+            drawRipple(document.querySelector('.sidebar-links a[href^="/issues"]')!)
           },
         },
       ],

@@ -10,7 +10,6 @@ import drawRipple from '../../animations/ripple'
 */
 
 declare var Shepherd: any
-let tourTimer: any // tslint:disable-line:no-let
 
 export const startStep: TourStep = {
   buttons: [
@@ -94,19 +93,10 @@ export const letsWriteIssueTitleStep: TourStep = {
     on: 'left',
   },
   text: [`Let's write up the issue. Type "Checkout" to continue...`],
-  when: {
-    show: () => {
-      tourTimer = setTimeout(() => {
-        Shepherd.activeTour
-          ?.getCurrentStep()
-          .updateStepOptions({ text: 'The first step in reporting issue is to give it a title. So type "Checkout" to continue the demo.' })
-      }, 8000)
-    },
-    hide: () => {
-      clearTimeout(tourTimer)
-    },
-  },
   onNextClick(): void {
+    Shepherd.activeTour
+      ?.getCurrentStep()
+      .updateStepOptions({ text: 'The first step in reporting issue is to give it a title. So type "Checkout" to continue the demo.' })
     drawRipple(document.querySelector('.more-human-internet-widget-editor-issue-title-input')!)
   },
 }
@@ -127,20 +117,11 @@ export const letsAmendIssueTitleStep: TourStep = {
     element: '.more-human-internet-widget-editor-issue-title-input',
     on: 'left',
   },
-  text: [`Add some more detail. Type "Checkout is spinning when I try to buy the Supersuit" to continue...`],
-  when: {
-    show: () => {
-      tourTimer = setTimeout(() => {
-        Shepherd.activeTour
-          ?.getCurrentStep()
-          .updateStepOptions({ text: `Let's add a more specific title. To continue demo, type "Checkout is spinning when I try to buy the Supersuit"` })
-      }, 8000)
-    },
-    hide: () => {
-      clearTimeout(tourTimer)
-    },
-  },
+  text: [`Add some more detail. Type "Checkout is spinning when I try to buy the supersuit" to continue...`],
   onNextClick(): void {
+    Shepherd.activeTour
+      ?.getCurrentStep()
+      .updateStepOptions({ text: `Let's add a more specific title. To continue the demo, type "Checkout is spinning when I try to buy the supersuit"` })
     drawRipple(document.querySelector('.more-human-internet-widget-editor-issue-title-input')!)
   },
 }

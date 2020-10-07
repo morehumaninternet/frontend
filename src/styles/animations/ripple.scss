@@ -6,7 +6,9 @@
   background: $human-pink;
   border-radius: 50%;
   position: fixed;
+  pointer-events: none;
   animation: ripple-mo 1s cubic-bezier(0, 0, 0.2, 1);
+  z-index: 102;
 }
 
 @keyframes ripple-mo {

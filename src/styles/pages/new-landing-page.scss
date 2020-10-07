@@ -112,7 +112,7 @@ $standard-margin: 25px;
 
       .manifesto {
         display: flex;
-        padding: 100px $standard-margin 245px $standard-margin;
+        padding: 100px $standard-margin 145px $standard-margin;
         justify-content: center;
 
         .text-container {
@@ -196,7 +196,7 @@ $standard-margin: 25px;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin: 150px $standard-margin;
+      padding: 200px $standard-margin;
 
       h1 {
         color: $human-blue;

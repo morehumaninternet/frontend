@@ -10,6 +10,9 @@ import { getSiteData } from '../../clients/mockApi'
 import KanbanData from './kanban-data'
 import { useTour, scriptSrc, stylesHref } from '../../effects/useTour'
 import SimpleFeedbackWidget from '../simple-feedback-widget'
+import drawRipple from '../../animations/ripple'
+
+declare var Shepherd: any
 
 const sortFns = {
   Recent: (issue: Issue) => -issue.initialReport.timestamp.getTime(),
@@ -17,7 +20,7 @@ const sortFns = {
   Comments: (issue: Issue) => -issue.aggregates.comments.count,
 }
 
-const IssuesPage = ({ location, navigate }: { location: Location; navigate(href: string): void }): JSX.Element => {
+const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
   const currentUser = useCurrentUser()
 
   const params = new URLSearchParams(location.search)
@@ -72,6 +75,7 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
             element: '#col-opened',
             on: 'top',
           },
+          scrollTo: false,
         },
         {
           text: ['By acknowledging issues, you indicate to users that you agree something is an issue and make the issue publicly visible'],
@@ -79,7 +83,7 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
             element: '#col-acknowledged',
             on: 'top',
           },
-          scrollTo: { behavior: 'smooth', block: 'start' },
+          scrollTo: false,
         },
         {
           text: ["These are issues that are either fixed or won't fix. These are held in case issues resurface."],
@@ -87,17 +91,17 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
             element: '#col-closed',
             on: 'top',
           },
-          scrollTo: { behavior: 'smooth', block: 'start' },
+          scrollTo: false,
         },
         {
           text: [
             'By default, issues are organized by how many people indicated they are experiencing them, you can also sort by number of comments or recency.',
           ],
           attachTo: {
-            element: '#sort-issues',
+            element: '.kanban-data__sort',
             on: 'bottom',
           },
-          scrollTo: { behavior: 'smooth', block: 'start' },
+          scrollTo: { behavior: 'smooth', block: 'nearest' },
         },
         {
           id: 'change-status',
@@ -106,18 +110,28 @@ const IssuesPage = ({ location, navigate }: { location: Location; navigate(href:
             element: '.kanban',
             on: 'top',
           },
-          scrollTo: { behavior: 'smooth', block: 'center' },
+          scrollTo: { behavior: 'smooth', block: 'nearest' },
+          onNextClick(): void {
+            // tslint:disable-next-line: no-expression-statement
+            Shepherd.activeTour
+              ?.getCurrentStep()
+              .updateStepOptions({ text: `Let's acknowledge an issue. Click the card and drag it over to the Acknowledged column.` })
+            return drawRipple(document.getElementById('card-500')!)
+          },
         },
         {
-          text: ['You have completed the tour. Have a suggestion? Feel free to open an issue on our home page'],
-          nextText: 'Go home',
+          text: [`Awesome! You've just let your users know that you've seen their issue.`],
+        },
+        {
+          text: [`That concludes the tour. Sign up for our beta to get this functionality on your site.`],
+          nextText: 'Sign up',
           onNextClick(): void {
             this.complete() // tslint:disable-line:no-this no-invalid-this no-expression-statement
           },
         },
       ],
       onCancel: () => navigate('/new-landing-page'),
-      onComplete: () => navigate('/new-landing-page'),
+      onComplete: () => navigate('/new-landing-page#join'),
     },
     // Run tour only on goalco.com
     () => site === 'goalco.com'
