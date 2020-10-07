@@ -314,3 +314,31 @@ $trix-button--icon-size: 1.6em;
     }
   }
 }
+
+
+.more-human-internet-widget-boundary.simple-feedback {
+  > .more-human-internet-widget-container {
+    &.more-human-internet-widget-container-open {
+      max-height: 500px;
+
+      .widget-icon.open {
+        display: none
+      }
+
+      .more-human-internet-widget-editor {
+        margin-top: 20px !important;
+
+        display: flex;
+        overflow-x: hidden;
+
+        > * {
+          width: 100%
+        }
+
+        > label {
+          margin-left: 50px;
+        }
+      }
+    }
+  }
+}

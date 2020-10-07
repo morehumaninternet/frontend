@@ -41,7 +41,7 @@ export default function SimpleFeedbackWidget(): JSX.Element {
   // tslint:enable:no-expression-statement
 
   return (
-    <div className="more-human-internet-widget-boundary" ref={ref as any} onClick={() => !open && setOpen(true)}>
+    <div className="more-human-internet-widget-boundary simple-feedback" ref={ref as any} onClick={() => !open && setOpen(true)}>
       <div
         className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >
@@ -78,13 +78,13 @@ export default function SimpleFeedbackWidget(): JSX.Element {
           <input type="hidden" name="href" />
           <div className="more-human-internet-widget-editor">
             <textarea
-              className={`more-human-internet-widget-editor-issue-body-input simple-feedback ${!isDoneEditingFeedback ? 'visible' : 'hide'}`}
+              className={`more-human-internet-widget-editor-issue-body-input simple-feedback`}
               name="feedback"
               placeholder="Your feedback..."
               autoFocus
               required
             />
-            <label htmlFor="email" className={isDoneEditingFeedback ? 'visible' : 'hide'}>
+            <label htmlFor="email">
               Email
               <input name="email" type="email" autoFocus required={isDoneEditingFeedback} />
             </label>
