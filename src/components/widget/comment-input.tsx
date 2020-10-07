@@ -44,6 +44,10 @@ export default function CommentInput({ setIssueInitialCommentHtml }: CommentInpu
   }, [])
 
   return (
-    <div ref={ref as any} className="more-human-internet-widget-editor-issue-body-input" dangerouslySetInnerHTML={{ __html: `<trix-editor></trix-editor>` }} />
+    <div
+      ref={ref as any}
+      className="more-human-internet-widget-editor-issue-body-input demo-widget"
+      dangerouslySetInnerHTML={{ __html: `<trix-editor></trix-editor>` }}
+    />
   )
 }

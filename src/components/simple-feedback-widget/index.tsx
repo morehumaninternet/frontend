@@ -78,16 +78,18 @@ export default function SimpleFeedbackWidget(): JSX.Element {
           <input type="hidden" name="href" />
           <div className="more-human-internet-widget-editor">
             <textarea
-              className={`more-human-internet-widget-editor-issue-body-input simple-feedback`}
+              className={`more-human-internet-widget-editor-issue-body-input simple-feedback ${isDoneEditingFeedback ? 'complete' : ''}`}
               name="feedback"
               placeholder="Your feedback..."
               autoFocus
               required
             />
-            <label htmlFor="email">
-              Email
-              <input name="email" type="email" autoFocus required={isDoneEditingFeedback} />
-            </label>
+            <div className="email-input-container">
+              <label htmlFor="email">
+                Email
+                <input name="email" type="email" autoFocus required={isDoneEditingFeedback} />
+              </label>
+            </div>
           </div>
           <div className="more-human-internet-widget-editor-button-group">
             <Button type="submit" className="post mhi-button">
