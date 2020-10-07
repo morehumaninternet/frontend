@@ -1,5 +1,6 @@
 import React from 'react'
 import { last } from 'lodash'
+// @ts-ignore
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import { Avatar } from '@material-ui/core'
 import { MoreHumanInternetLogo, HomeIcon, IssuesIcon, AddIcon } from './icons'

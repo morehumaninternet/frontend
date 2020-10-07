@@ -73,6 +73,12 @@ $trix-button--icon-size: 1.6em;
       width: 60px;
       cursor: pointer;
 
+      > svg {
+        // Making the SVG clickable.
+        // This attribute will disable hover events on the SVG.
+        pointer-events: none;
+      }
+
       > .more-human-internet-widget-editor-container {
         display: none;
       }

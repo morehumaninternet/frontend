@@ -5,23 +5,19 @@
 
 // tslint:disable:no-expression-statement no-this no-invalid-this
 import { useState, useEffect, DependencyList } from 'react'
+import scriptLoaded from '../utils/scriptLoaded'
 
 declare var Shepherd: any
 
 export const stylesHref = 'https://shepherdjs.dev/dist/css/shepherd.css'
 
-export const scriptSrc = 'https://shepherdjs.dev/dist/js/shepherd.min.js'
+export const scriptSrc = 'https://cdn.jsdelivr.net/npm/shepherd.js@8.1.0/dist/js/shepherd.min.js'
 
 // Start the tour when Shepherd is available, resolving with the tour when that has happened.
 // See https://shepherdjs.dev/docs/tutorial-02-usage.html for information about steps to be added
 // Note that if you want the tour to continue after some other event has happened, you'll need to handle that separately
-export function startTour({ steps, onComplete, onCancel }: TourArgs): Promise<any> {
-  if (typeof Shepherd === 'undefined') {
-    let resolve: (value: any) => any // tslint:disable-line:no-let
-    const script = document.querySelector(`script[src="${scriptSrc}"]`) as HTMLScriptElement
-    script.addEventListener('load', () => startTour({ steps, onComplete, onCancel }).then(resolve))
-    return new Promise(r => (resolve = r))
-  }
+export async function startTour({ steps, onComplete, onCancel }: TourArgs): Promise<any> {
+  await scriptLoaded(scriptSrc, () => typeof Shepherd !== 'undefined')
 
   const tour = new Shepherd.Tour({
     defaultStepOptions: { cancelIcon: { enabled: false } },
@@ -29,12 +25,15 @@ export function startTour({ steps, onComplete, onCancel }: TourArgs): Promise<an
   })
 
   steps.forEach(stepArgs => {
-    const { nextText, onNextClick, buttons, attachTo, scrollTo, ...rest } = stepArgs
+    const { nextText, onNextClick, buttons, attachTo, ...rest } = stepArgs
+
+    // If scrollTo is defined, use it. Otherwise, default to
+    const scrollTo = 'scrollTo' in stepArgs ? stepArgs.scrollTo : { behavior: 'smooth', block: 'center' }
 
     tour.addStep({
       ...rest,
       attachTo,
-      scrollTo: scrollTo || (attachTo && { behavior: 'smooth', block: 'center' }),
+      scrollTo,
       buttons: buttons || [
         {
           classes: 'human-pink-bg',
@@ -75,8 +74,16 @@ export function startTour({ steps, onComplete, onCancel }: TourArgs): Promise<an
 export function useTour(tourArgs: TourArgs, runTour?: () => boolean, deps?: DependencyList): any {
   const [tour, setTour] = useState<any>(null)
 
+  const shouldStartTour = () => {
+    if (typeof window === 'undefined') return false
+    if (tour) return false
+    if (new URLSearchParams(location.search).get('noTour')) return false
+    if (!runTour) return true
+    return runTour()
+  }
+
   useEffect(() => {
-    if (typeof window !== 'undefined' && !tour && (!runTour || runTour())) {
+    if (shouldStartTour()) {
       startTour(tourArgs).then(setTour)
     }
   }, deps || [])
