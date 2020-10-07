@@ -11,7 +11,7 @@ declare var Shepherd: any
 
 export const stylesHref = 'https://shepherdjs.dev/dist/css/shepherd.css'
 
-export const scriptSrc = 'https://shepherdjs.dev/dist/js/shepherd.min.js'
+export const scriptSrc = 'https://cdn.jsdelivr.net/npm/shepherd.js@8.1.0/dist/js/shepherd.min.js'
 
 // Start the tour when Shepherd is available, resolving with the tour when that has happened.
 // See https://shepherdjs.dev/docs/tutorial-02-usage.html for information about steps to be added
@@ -25,12 +25,15 @@ export async function startTour({ steps, onComplete, onCancel }: TourArgs): Prom
   })
 
   steps.forEach(stepArgs => {
-    const { nextText, onNextClick, buttons, attachTo, scrollTo, ...rest } = stepArgs
+    const { nextText, onNextClick, buttons, attachTo, ...rest } = stepArgs
+
+    // If scrollTo is defined, use it. Otherwise, default to
+    const scrollTo = 'scrollTo' in stepArgs ? stepArgs.scrollTo : { behavior: 'smooth', block: 'center' }
 
     tour.addStep({
       ...rest,
       attachTo,
-      scrollTo: scrollTo || (attachTo && { behavior: 'smooth', block: 'center' }),
+      scrollTo,
       buttons: buttons || [
         {
           classes: 'human-pink-bg',

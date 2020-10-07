@@ -123,8 +123,14 @@ export async function searchIssues({ site, title }: { site: string; title?: stri
   const search = new RegExp(escapedTitle || '.*', 'i')
   const matches: Issue[] = [] // tslint:disable-line:readonly-array
   Object.keys(localStorage).forEach(key => {
+    // cap the number of similar issues returned at 5
+    if (matches.length >= 5) return
     if (key.startsWith(localStorageSitePrefix)) {
       const issue = issueFromJson(localStorage.getItem(key)!)
+      // Ignore issues titled "supersuit" on the demo pate
+      if (location.pathname.includes('demo') && issue.title.toLowerCase().includes('supersuit')) return
+      // Ignore issues that have the exact same title
+      if (matches.some(match => match.title === issue.title)) return
       if (search.test(issue.title)) {
         matches.push(issue)
       }

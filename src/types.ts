@@ -1,5 +1,10 @@
 type Maybe<T> = null | undefined | T
 
+type PageProps = {
+  location: Location
+  navigate(href: string): void
+}
+
 type User = {
   username: string
   avatarUrl?: string
@@ -178,7 +183,7 @@ type TourStep = {
     show?(): void
     hide?(): void
   }
-  scrollTo?: { behavior: 'smooth'; block: 'center' | 'start' | 'end' }
+  scrollTo?: false | { behavior: 'smooth'; block: 'center' | 'start' | 'end' | 'nearest' }
   beforeShowPromise?(): Promise<any>
   nextText?: string
   onNextClick?(): void

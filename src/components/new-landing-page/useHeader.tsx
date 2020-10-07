@@ -44,6 +44,7 @@ function CenteredLogo(): JSX.Element {
 }
 
 type UseHeaderProps<Section extends string> = {
+  location: Location
   internalSections: readonly Section[]
   otherLinks: readonly JSX.Element[]
   fadeAtRef?: React.MutableRefObject<any>
@@ -59,7 +60,12 @@ type UseHeaderReturn<Section extends string> = {
   makeAndTrackRef(): React.MutableRefObject<any>
 }
 
-export default function useHeader<Section extends string>({ internalSections, otherLinks, fadeAtRef }: UseHeaderProps<Section>): UseHeaderReturn<Section> {
+export default function useHeader<Section extends string>({
+  location,
+  internalSections,
+  otherLinks,
+  fadeAtRef,
+}: UseHeaderProps<Section>): UseHeaderReturn<Section> {
   const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
 
   const makeAndTrackRef = (): React.MutableRefObject<any> => {
@@ -103,7 +109,7 @@ export default function useHeader<Section extends string>({ internalSections, ot
           if (!rect.height && !rect.width) return
           const elementTop = rect.top
           const elementDistance = elementTop - headerBottom
-          const elementOpacity = Math.max(0, Math.min(1, (elementDistance + 10) / 150))
+          const elementOpacity = Math.max(0, Math.min(1, (elementDistance + 10) / 100))
           ref.current.style.opacity = String(elementOpacity)
         })
 
@@ -157,6 +163,15 @@ export default function useHeader<Section extends string>({ internalSections, ot
     },
     refsToTrack.map(ref => ref.current)
   )
+
+  React.useEffect(() => {
+    const hash = location.hash.slice(1)
+    console.log('here', hash, internalSections)
+    if (hash && internalSections.includes(hash as any)) {
+      // Not sure why this requires a timeout, but it seems to
+      setTimeout(() => internalSectionRefs[hash as Section].current.scrollIntoView())
+    }
+  }, [location.hash])
 
   const internalLinks = internalSections.map(section => (
     <a

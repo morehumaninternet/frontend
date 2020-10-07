@@ -16,10 +16,11 @@ import Donate from './donate'
 import TextContainer from './text-container'
 import useExplicitHeightOnIPhone from '../../effects/useExplicitHeightOnIPhone'
 
-export default function NewLandingPage(props: any): JSX.Element {
+export default function NewLandingPage({ location }: PageProps): JSX.Element {
   const postSky2Ref = React.useRef<HTMLDivElement>()
 
   const { header, internalSectionRefs, makeAndTrackRef } = useHeader({
+    location,
     internalSections: ['start', 'about', 'why', 'join'],
     otherLinks: [
       <LocalizedLink className="hide-on-mobile" to="/demo">
