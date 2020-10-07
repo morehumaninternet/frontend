@@ -3,7 +3,7 @@ import React from 'react'
 export default function WidgetIcon({ open }: { open: boolean }): JSX.Element {
   if (!open) {
     return (
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32">
+      <svg className="widget-icon closed" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32">
         <circle cx="7.5" cy="24.5" r="7.5" fill="#FA759E"></circle>
         <circle cx="24.5" cy="7.5" r="7.5" fill="#164176"></circle>
       </svg>
@@ -11,7 +11,7 @@ export default function WidgetIcon({ open }: { open: boolean }): JSX.Element {
   }
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="102" height="37" fill="none" viewBox="0 0 102 37">
+    <svg className="widget-icon open" xmlns="http://www.w3.org/2000/svg" width="102" height="37" fill="none" viewBox="0 0 102 37">
       <path
         fill="#FA759E"
         d="M9.343 10.494c1.982 0 3.594-1.6 3.594-3.566 0-1.965-1.613-3.564-3.594-3.564-1.982 0-3.595 1.6-3.595 3.564 0 1.967 1.613 3.566 3.595 3.566z"

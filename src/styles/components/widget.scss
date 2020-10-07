@@ -139,7 +139,9 @@ $trix-button--icon-size: 1.6em;
         }
 
         > .more-human-internet-widget-editor-issue-body-input {
-          @include padding-for-tour;
+          &.demo-widget {
+            @include padding-for-tour;
+          }
 
           position: relative;
           width: 100%;
@@ -264,7 +266,7 @@ $trix-button--icon-size: 1.6em;
           }
         }
 
-        > label[for='email'] {
+        label[for='email'] {
           display: flex;
           flex-direction: column;
           font-size: 16px;
@@ -309,6 +311,42 @@ $trix-button--icon-size: 1.6em;
               box-shadow: 0px 4px 26px rgba(22, 65, 118, 0.5);
             }
           }
+        }
+      }
+    }
+  }
+}
+
+.more-human-internet-widget-boundary.simple-feedback {
+  > .more-human-internet-widget-container {
+    &.more-human-internet-widget-container-open {
+      max-height: 500px;
+
+      .widget-icon.open {
+        display: none
+      }
+
+      .more-human-internet-widget-editor {
+        margin-top: 20px !important;
+
+        display: flex;
+        overflow-x: hidden;
+        width: 320%;
+
+        > * {
+          width: 31.25%
+        }
+
+        > textarea {
+          transition: margin-left 0.1s;
+
+          &.complete {
+            margin-left: -31.25% - 37.5%;
+          }
+        }
+
+        > .email-input-container {
+          margin-left: 37.5%;
         }
       }
     }
