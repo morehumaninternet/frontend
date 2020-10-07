@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
+import { Button, ClickAwayListener, Popper } from '@material-ui/core'
 
 type ButtonGroupProps = {
   isNewIssue: boolean
@@ -20,12 +20,30 @@ function AttachIcon(): JSX.Element {
 }
 
 export default function ButtonGroup({ isNewIssue, reasonCantPostAsNewIssue, clickIsNewIssue, postIssue }: ButtonGroupProps): JSX.Element {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    // tslint:disable-next-line: no-expression-statement
+    setAnchorEl(anchorEl ? null : event.currentTarget)
+  }
+  const handleClose = (event: React.MouseEvent<EventTarget>) => {
+    // tslint:disable-next-line: no-expression-statement
+    setAnchorEl(null)
+  }
+  const open = Boolean(anchorEl)
+
   return (
     <div className="more-human-internet-widget-editor-button-group">
       {isNewIssue && (
-        <Button className="attach" type="button">
-          <AttachIcon />
-        </Button>
+        <>
+          <Button className="attach" type="button" onClick={handleClick}>
+            <AttachIcon />
+          </Button>
+          <Popper placement="top" open={open} anchorEl={anchorEl} disablePortal>
+            <ClickAwayListener onClickAway={handleClose}>
+              <div className="attach-popper">Oops! We are still working on this feature</div>
+            </ClickAwayListener>
+          </Popper>
+        </>
       )}
       {isNewIssue ? (
         <Button className="post mhi-button" onClick={() => postIssue()}>
