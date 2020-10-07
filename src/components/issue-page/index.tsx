@@ -68,6 +68,15 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
             element: '.issue-timeline',
             on: 'top',
           },
+        },
+        {
+          text: [
+            'Other people who experience the same issue can upvote the issue to promote its visibility, add comments, share issues on other platforms, or flag bad behavior',
+          ],
+          attachTo: {
+            element: '.issue-action-buttons',
+            on: 'top',
+          },
           when: {
             hide(): void {
               return changeStatus({ username: 'devdiva', avatarUrl: '/devdiva.png' }, 'acknowledged', {
@@ -77,7 +86,7 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
           },
         },
         {
-          text: ['Looks like the site maintainer was already online, and she has quickly acknowledged the issue.'],
+          text: ['Looks like the site maintainer was already online and she has quickly acknowledged the issue.'],
           attachTo: {
             element: '.issue-activity.comment:nth-child(3)',
             on: 'top',
@@ -92,7 +101,9 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
           scrollTo: { behavior: 'smooth', block: 'center' },
         },
         {
-          text: ['She reports that the problem with checkout is now fixed. You will now be able to successfully checkout.'],
+          text: [
+            'She reports that the problem with checkout is now fixed and closed the issue. People can still see the issue and upvote it in case it comes up again',
+          ],
           attachTo: {
             element: '.issue-activity.comment:nth-child(5)',
             on: 'top',
@@ -100,14 +111,15 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
           scrollTo: { behavior: 'smooth', block: 'center' },
         },
         {
-          text: ['Click on the "issues" button to see all issues'],
+          id: 'click-issues',
+          text: ['Click on the "Issues" link to see all issues'],
           attachTo: {
-            element: '.sidebar-links a[href^="/issues"]',
-            on: 'right',
+            element: '.sidebar-links a[href^="/issues"] svg',
+            on: 'bottom-end',
           },
           scrollTo: { behavior: 'smooth', block: 'center' },
           onNextClick(): void {
-            drawRipple(document.querySelector('.sidebar-links a[href^="/issues"]')!)
+            drawRipple(document.querySelector('.sidebar-links a[href^="/issues"] svg')!)
           },
         },
       ],

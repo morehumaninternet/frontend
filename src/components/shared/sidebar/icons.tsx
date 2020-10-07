@@ -38,7 +38,7 @@ export function MoreHumanInternetLogo(): JSX.Element {
 
 export function HomeIcon(): JSX.Element {
   return (
-    <svg width={26} height={22} viewBox="0 0 26 22" fill="none">
+    <svg width={26} height={22} viewBox="0 0 26 22" fill="none" className="icon home">
       <path
         d="M13 0l13 12.74-1.591 1.6L13 3.17 1.591 14.34 0 12.74 13 0zm7.274 19.755v-6.931l2.273 2.23V22H14.82v-7.184H11.18V22H3.452v-6.945l2.274-2.231v6.931h3.182v-7.184h8.184v7.184h3.182z"
         fill="#fff"
@@ -49,7 +49,7 @@ export function HomeIcon(): JSX.Element {
 
 export function IssuesIcon(): JSX.Element {
   return (
-    <svg width={26} height={25} viewBox="0 0 26 25" fill="none">
+    <svg width={26} height={25} viewBox="0 0 26 25" fill="none" className="icon issues">
       <path
         d="M13 22.505l10.974-7.09L26 16.61 13 25 0 16.61l2.039-1.195L13 22.505zm0-4.49l10.974-7.09L26 12.118l-13 8.39-13-8.39 2.039-1.195L13 18.014zm0-2.01L0 7.616 13 0l13 7.616-13 8.39zM4 7.708l9 5.804 9-5.804-9-5.291-9 5.291z"
         fill="#fff"
@@ -60,7 +60,7 @@ export function IssuesIcon(): JSX.Element {
 
 export function AddIcon(): JSX.Element {
   return (
-    <svg width={22} height={22} viewBox="0 0 22 22" fill="none">
+    <svg width={22} height={22} viewBox="0 0 22 22" fill="none" className="icon report">
       <path d="M22 9.72v2.56h-9.72V22H9.72v-9.72H0V9.72h9.72V0h2.56v9.72H22z" fill="#fff" />
     </svg>
   )

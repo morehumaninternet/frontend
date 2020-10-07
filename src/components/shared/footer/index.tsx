@@ -5,7 +5,7 @@ import TwitterLink from './twitter-link'
 import GithubLink from './github-link'
 
 export default () => (
-  <footer>
+  <footer className="mhi-footer">
     <div className="footer-links">
       <GithubLink />
       <FooterRingsLink />

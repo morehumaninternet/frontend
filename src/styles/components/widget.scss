@@ -26,12 +26,6 @@ $trix-button--icon-size: 1.6em;
   z-index: -1;
 }
 
-// Add padding for an element for the tour without affecting its positioning
-@mixin padding-for-tour($size: 10px) {
-  padding: $size;
-  margin: -$size;
-}
-
 .more-human-internet-widget-boundary {
   @include padding-for-tour(4px);
   position: fixed;
