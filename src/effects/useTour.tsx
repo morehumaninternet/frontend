@@ -71,8 +71,16 @@ export async function startTour({ steps, onComplete, onCancel }: TourArgs): Prom
 export function useTour(tourArgs: TourArgs, runTour?: () => boolean, deps?: DependencyList): any {
   const [tour, setTour] = useState<any>(null)
 
+  const shouldStartTour = () => {
+    if (typeof window !== 'undefined') return false
+    if (tour) return false
+    if (new URLSearchParams(location.search).get('noTour')) return false
+    if (!runTour) return true
+    return runTour()
+  }
+
   useEffect(() => {
-    if (typeof window !== 'undefined' && !tour && (!runTour || runTour())) {
+    if (shouldStartTour()) {
       startTour(tourArgs).then(setTour)
     }
   }, deps || [])
