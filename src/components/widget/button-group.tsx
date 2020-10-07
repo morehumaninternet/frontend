@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from '@material-ui/core'
+import Popper from '../shared/popper'
 
 type ButtonGroupProps = {
   isNewIssue: boolean
@@ -23,9 +24,14 @@ export default function ButtonGroup({ isNewIssue, reasonCantPostAsNewIssue, clic
   return (
     <div className="more-human-internet-widget-editor-button-group">
       {isNewIssue && (
-        <Button className="attach" type="button">
-          <AttachIcon />
-        </Button>
+        <Popper
+          position="top"
+          message="Coming soon, the attach button will let you add screenshots, videos, or other media to help maintainers see and identify your issue"
+        >
+          <Button className="attach" type="button">
+            <AttachIcon />
+          </Button>
+        </Popper>
       )}
       {isNewIssue ? (
         <Button className="post mhi-button" onClick={() => postIssue()}>

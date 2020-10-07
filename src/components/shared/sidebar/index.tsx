@@ -5,6 +5,7 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 import { Avatar } from '@material-ui/core'
 import { MoreHumanInternetLogo, HomeIcon, IssuesIcon, AddIcon } from './icons'
 import { issuesHref } from '../../../utils/href'
+import Popper from '../popper'
 
 type SidebarProps = {
   location: Location
@@ -30,21 +31,34 @@ export default function Sidebar({ location, currentUser }: SidebarProps): JSX.El
           <LocalizedLink className="home-link" to="/" aria-label="More Human Internet Home">
             <MoreHumanInternetLogo />
           </LocalizedLink>
-          <LocalizedLink to="/" className="inactive">
-            <HomeIcon />
-            <span className="description">Home</span>
+          <LocalizedLink className="inactive">
+            <Popper position="top" message="See all your issues on one page. Coming soon.">
+              <div>
+                <HomeIcon />
+                <span className="description">Home</span>
+              </div>
+            </Popper>
           </LocalizedLink>
+
           <LocalizedLink to={issuesHref({ site })} className="active">
             <IssuesIcon />
             <span className="description">Issues</span>
           </LocalizedLink>
-          <LocalizedLink to="/" className="inactive">
-            <AddIcon />
-            <span className="description">Report</span>
+          <LocalizedLink className="inactive">
+            <Popper position="bottom" message="Report a new issue. Coming soon.">
+              <div>
+                <AddIcon />
+                <span className="description">Report</span>
+              </div>
+            </Popper>
           </LocalizedLink>
-          <LocalizedLink to="/settings" className="settings">
-            <Avatar src={currentUser.loaded ? currentUser.user.avatarUrl : undefined} />
-            <span className="description">{currentUser.loaded && currentUser.user.username}</span>
+          <LocalizedLink className="settings">
+            <Popper position="top" message="Settings page. Coming soon.">
+              <div>
+                <Avatar src={currentUser.loaded ? currentUser.user.avatarUrl : undefined} />
+                <span className="description">{currentUser.loaded && currentUser.user.username}</span>
+              </div>
+            </Popper>
           </LocalizedLink>
         </div>
       </div>

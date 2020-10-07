@@ -41,8 +41,9 @@ $sidebar-margin: 50px;
           position: relative;
           display: flex;
           justify-content: center;
+          align-items: flex-start;
 
-          > .description {
+          .description {
             opacity: 0;
             transition: all 0.3s;
 
@@ -104,20 +105,20 @@ $sidebar-margin: 50px;
         }
 
         &.inactive {
-          > .description {
+          .description {
             opacity: 0.26;
           }
         }
 
         &.active,
         &.settings {
-          > .description {
+          .description {
             opacity: 1;
           }
         }
 
         &:hover {
-          > .description {
+          .description {
             opacity: 1;
           }
 
