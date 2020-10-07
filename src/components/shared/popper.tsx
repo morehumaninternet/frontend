@@ -3,9 +3,22 @@ import { ClickAwayListener, Popper as MUIPopper } from '@material-ui/core'
 
 type PopperProps = {
   message: string
+  position:
+    | 'bottom'
+    | 'left'
+    | 'right'
+    | 'top'
+    | 'bottom-end'
+    | 'bottom-start'
+    | 'left-end'
+    | 'left-start'
+    | 'right-end'
+    | 'right-start'
+    | 'top-end'
+    | 'top-start'
 }
 
-const Popper: React.FC<PopperProps> = ({ children, message }) => {
+const Popper: React.FC<PopperProps> = ({ children, message, position }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     // tslint:disable-next-line: no-expression-statement
@@ -16,12 +29,13 @@ const Popper: React.FC<PopperProps> = ({ children, message }) => {
     setAnchorEl(null)
   }
   const open = Boolean(anchorEl)
+
   return (
     <>
       {React.Children.map(children, child => {
         return React.cloneElement(child as React.ReactElement<any>, { onClick: handleClick })
       })}
-      <MUIPopper placement="top" open={open} anchorEl={anchorEl} disablePortal>
+      <MUIPopper placement={position} open={open} anchorEl={anchorEl}>
         <ClickAwayListener onClickAway={handleClose}>
           <div className="popper">{message}</div>
         </ClickAwayListener>

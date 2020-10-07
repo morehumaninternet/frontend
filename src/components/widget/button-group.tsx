@@ -24,7 +24,10 @@ export default function ButtonGroup({ isNewIssue, reasonCantPostAsNewIssue, clic
   return (
     <div className="more-human-internet-widget-editor-button-group">
       {isNewIssue && (
-        <Popper message="Coming soon, the attach button will let you add screenshots, videos, or other media to help maintainers see and identify your issue">
+        <Popper
+          position="top"
+          message="Coming soon, the attach button will let you add screenshots, videos, or other media to help maintainers see and identify your issue"
+        >
           <Button className="attach" type="button">
             <AttachIcon />
           </Button>
