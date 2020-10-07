@@ -146,7 +146,7 @@ function setDefaultIssues(): void {
     {
       id: 500,
       status: 'opened',
-      title: "Checking isn't working when I try to buy the jetpack",
+      title: "Checking out isn't working when I try to buy the jetpack",
       aggregates: {
         upvotes: {
           count: 26,
