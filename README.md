@@ -8,11 +8,17 @@
   More Human Internet
 </h1>
 
-## Overview
-
 This repository houses the frontend code for [morehumaninternet.org](morehumaninternet.org), check us out to see what we're about!
 
-## Development
+## 🔗 Links
+
+- **[Landing Page](https://morehumaninternet.org)** - the current landing page for the site.
+- **[New Landing Page](https://morehumaninternet.org/new-landing-page)** - the new version of the landing page we are actively working on.
+- **[Demo Page](https://morehumaninternet.org/demo)** - the start of the demo, with an example of a faulty checkout experience where more human internet could be useful. For this and all subsequent pages add `?noTour=true` as the query as in [morehumaninternet.org/demo?noTour=true](https://morehumaninternet.org/demo?noTour=true) to view the page by itself with no tour.
+- **[Issue Page](https://morehumaninternet.org/issue?site=goalco.com&id=7)** - a page for a specific issue, identified by the `site` and `id` in the query params. Change the `id` query parameter to another integer and the [mockApi](https://github.com/morehumaninternet/frontend/blob/production/src/clients/mockApi.ts) will generate a new issue for you. The [issue page with no tour](https://morehumaninternet.org/issue?site=goalco.com&id=9&noTour=1) has `noTour=1` as a query parameter.
+- **[Issues Page](https://morehumaninternet.org/issues?site=goalco.com)** - a page for all the issues of a given site, identified by the `site` query parameter. The [issues page with no tour](https://morehumaninternet.org/issue?site=goalco.com&noTour=1) has `noTour=1` as a query parameter.
+
+## 👩🏽‍💻 Development
 
 This project uses the [Gatsby](https://github.com/gatsbyjs/gatsby) framework using [Typescript](https://www.typescriptlang.org/), [React](https://reactjs.org/), and [Sass](https://sass-lang.com/). We aren't using much of Gatsby's GraphQL capabilities and don't intend to.
 
@@ -33,8 +39,8 @@ This project uses the [Gatsby](https://github.com/gatsbyjs/gatsby) framework usi
 
 4. **Integrate with Algolia**
 
-  Clicking on the bottom-right corner of the landing page will open a widget. The user can post new issues or search for existing issues. Currently, the issues are saved in `localStorage` or [Algolia](https://www.algolia.com/). To work with Algolia, please follow these steps:  
-  4.1 Create an Algolia account and a new index.  
+  Clicking on the bottom-right corner of the landing page will open a widget. The user can post new issues or search for existing issues. Currently, the issues are saved in `localStorage` or [Algolia](https://www.algolia.com/). To work with Algolia, please follow these steps:
+  4.1 Create an Algolia account and a new index.
   4.2 Create a `.env.development` file in the root directory of the project with the following environment variables:
 
   ```shell
@@ -61,7 +67,7 @@ This project uses the [Gatsby](https://github.com/gatsbyjs/gatsby) framework usi
 
   Your site is now running at `http://localhost:8888`
 
-## Code Style
+## 💅 Code Style
 
 ### Typescript
 
