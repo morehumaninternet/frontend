@@ -6,6 +6,8 @@
   padding: 12px;
   border-radius: 5px;
   border: 1px solid $human-pink;
+}
 
-  z-index: 103;
+[role="tooltip"] {
+  z-index: 9999;
 }

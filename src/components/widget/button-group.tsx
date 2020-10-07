@@ -26,7 +26,7 @@ export default function ButtonGroup({ isNewIssue, reasonCantPostAsNewIssue, clic
       {isNewIssue && (
         <Popper
           position="top"
-          message="Coming soon, the attach button will let you add screenshots, videos, or other media to help maintainers see and identify your issue"
+          message="Coming soon, the attach button will<br>let you add screenshots, videos, or <br>other media to help maintainers see<br>and identify your issue"
         >
           <Button className="attach" type="button">
             <AttachIcon />

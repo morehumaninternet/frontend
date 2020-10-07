@@ -37,7 +37,7 @@ const Popper: React.FC<PopperProps> = ({ children, message, position }) => {
       })}
       <MUIPopper placement={position} open={open} anchorEl={anchorEl}>
         <ClickAwayListener onClickAway={handleClose}>
-          <div className="popper">{message}</div>
+          <div className="popper" dangerouslySetInnerHTML={{ __html: message }} />
         </ClickAwayListener>
       </MUIPopper>
     </>

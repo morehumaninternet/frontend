@@ -32,7 +32,7 @@ export default function Sidebar({ location, currentUser }: SidebarProps): JSX.El
             <MoreHumanInternetLogo />
           </LocalizedLink>
           <LocalizedLink className="inactive">
-            <Popper position="top" message="See all your issues on one page. Coming soon.">
+            <Popper position="top" message="Coming soon, see all your issues on one page.">
               <div>
                 <HomeIcon />
                 <span className="description">Home</span>
@@ -45,7 +45,7 @@ export default function Sidebar({ location, currentUser }: SidebarProps): JSX.El
             <span className="description">Issues</span>
           </LocalizedLink>
           <LocalizedLink className="inactive">
-            <Popper position="bottom" message="Report a new issue. Coming soon.">
+            <Popper position="bottom" message="Coming soon, report a new issue.">
               <div>
                 <AddIcon />
                 <span className="description">Report</span>
@@ -53,7 +53,7 @@ export default function Sidebar({ location, currentUser }: SidebarProps): JSX.El
             </Popper>
           </LocalizedLink>
           <LocalizedLink className="settings">
-            <Popper position="top" message="Settings page. Coming soon.">
+            <Popper position="top" message="Coming soon, configure settings">
               <div>
                 <Avatar src={currentUser.loaded ? currentUser.user.avatarUrl : undefined} />
                 <span className="description">{currentUser.loaded && currentUser.user.username}</span>

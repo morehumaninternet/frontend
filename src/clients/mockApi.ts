@@ -117,25 +117,33 @@ export async function changeStatus({
   return setInLocalStorage(nextIssue)
 }
 
-export async function searchIssues({ site, title }: { site: string; title?: string }): Promise<ReadonlyArray<Issue>> {
+function* siteIssuesInLocalStorage(site: string): Generator<Issue> {
   const localStorageSitePrefix = `${localStorageKeyPrefix}:${site}`
+  for (const key in localStorage) {
+    if (key.startsWith(localStorageSitePrefix)) {
+      yield issueFromJson(localStorage.getItem(key)!)
+    }
+  }
+}
+
+export async function searchIssues({ site, title }: { site: string; title?: string }): Promise<ReadonlyArray<Issue>> {
   const escapedTitle = escapeRegExp(title)
   const search = new RegExp(escapedTitle || '.*', 'i')
+  const onDemoPage = location.pathname.includes('demo')
   const matches: Issue[] = [] // tslint:disable-line:readonly-array
-  Object.keys(localStorage).forEach(key => {
-    // cap the number of similar issues returned at 5
-    if (matches.length >= 5) return
-    if (key.startsWith(localStorageSitePrefix)) {
-      const issue = issueFromJson(localStorage.getItem(key)!)
-      // Ignore issues titled "supersuit" on the demo pate
-      if (location.pathname.includes('demo') && issue.title.toLowerCase().includes('supersuit')) return
-      // Ignore issues that have the exact same title
-      if (matches.some(match => match.title === issue.title)) return
-      if (search.test(issue.title)) {
-        matches.push(issue)
-      }
+
+  for (const issue of siteIssuesInLocalStorage(site)) {
+    const titleLower = issue.title.toLowerCase()
+    // Ignore issues titled "supersuit" on the demo page or any default issues that got added
+    if (onDemoPage && (titleLower.includes('supersuit') || titleLower === "checkout isn't working")) continue
+    // Ignore issues that have the exact same title
+    if (matches.some(match => match.title === issue.title)) continue
+    if (search.test(issue.title)) {
+      matches.push(issue)
+      if (matches.length >= 5) break
     }
-  })
+  }
+
   return matches
 }
 
