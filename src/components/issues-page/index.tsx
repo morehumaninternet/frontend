@@ -134,8 +134,8 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           },
         },
       ],
-      onCancel: () => navigate('/new-landing-page'),
-      onComplete: () => navigate('/new-landing-page#join'),
+      onCancel: () => navigate('/'),
+      onComplete: () => navigate('/#join'),
     },
     // Run tour only on goalco.com
     () => site === 'goalco.com'

@@ -13,7 +13,7 @@ import { defaultSite } from '../../clients/util'
 export default function DemoPageContents(props: any): JSX.Element {
   const [checkout, setCheckout] = useState(false)
   const [checkedOut, setCheckedOut] = useState(false)
-  const tour = useTour({ steps, onCancel: () => props.navigate('/new-landing-page') })
+  const tour = useTour({ steps, onCancel: () => props.navigate('/') })
 
   // tslint:disable:no-expression-statement
   useEffect(() => {
