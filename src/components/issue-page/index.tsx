@@ -123,7 +123,7 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
           },
         },
       ],
-      onCancel: () => navigate('/new-landing-page'),
+      onCancel: () => navigate('/'),
     },
     () => {
       const { issueState } = storeState
