@@ -15,9 +15,13 @@ type SimilarIssuesProps = {
   issueTitleLongEnoughToSearchFor: boolean
 }
 
+declare var Shepherd: any
+
 function SimilarIssueLink({ issue }: { issue: Issue }): JSX.Element {
+  // The links shouldn't go anywhere if there's a tour
+  const props = Shepherd.activeTour ? {} : { to: issueHref(issue) }
   return (
-    <LocalizedLink className="more-human-internet-similar-issue-link" to={issueHref(issue)}>
+    <LocalizedLink className="more-human-internet-similar-issue-link" {...props}>
       {issue.title}
     </LocalizedLink>
   )

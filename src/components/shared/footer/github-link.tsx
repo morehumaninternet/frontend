@@ -20,7 +20,7 @@ export default function GithubLink(): JSX.Element {
   return (
     <a
       className="footer-link"
-      href="https://github.com/morehumaninternet"
+      href="https://github.com/morehumaninternet/frontend"
       aria-label="Github"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
