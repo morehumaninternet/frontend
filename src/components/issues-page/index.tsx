@@ -67,11 +67,11 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
     {
       steps: [
         {
-          text: ['On this page, you as the maintainer can see all the issues across your website...'],
+          text: ['As a maintainer, you can see every reported issue across your site'],
         },
         {
           text: [
-            'These are issues that users have reported. This column is only visible to the you as the site maintainer, so that issues can be screened before they are acknowledged publicly',
+            'These are issues that site users have reported. Only you can see this list, so you can screen newly reported issues before publicly acknowledging them',
           ],
           attachTo: {
             element: '#col-opened',
@@ -80,7 +80,9 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           scrollTo: false,
         },
         {
-          text: ['By acknowledging, you indicate to users that you agree something is an issue and make the issue publicly visible'],
+          text: [
+            "When an issue is Acknowledged, it is publicly visible, indicating to users that you agree that there is a problem, and that you're working on a fix",
+          ],
           attachTo: {
             element: '#col-acknowledged',
             on: 'top',
@@ -89,7 +91,7 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
         },
         {
           text: [
-            "Closing an issue indicates are you either have fixed or won't fix an issue. These are held in case issues resurface so conversation may continue",
+            'Closing an issue indicates that a final resolution has been reached. These are held in Closed to continue the conversation and in case the same issue resurfaces',
           ],
           attachTo: {
             element: '#col-closed',
@@ -98,9 +100,7 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           scrollTo: false,
         },
         {
-          text: [
-            'By default, issues are organized by how many people indicated they are experiencing them, you can also sort by number of comments or recency.',
-          ],
+          text: ['By default, issues are organized by popularity. You can sort by recency or number of comments.'],
           attachTo: {
             element: '.kanban-data__sort',
             on: 'bottom',
@@ -127,7 +127,7 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           text: [`Awesome! You've just let your users know that you've seen their issue`],
         },
         {
-          text: [`That concludes the tour. Sign up for our beta to get this functionality on your site.`],
+          text: [`That concludes the tour! Sign up to receive updates or get involved`],
           nextText: 'Sign up',
           onNextClick(): void {
             this.complete() // tslint:disable-line:no-this no-invalid-this no-expression-statement
