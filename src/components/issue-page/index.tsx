@@ -63,16 +63,14 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
     {
       steps: [
         {
-          text: ['The issue is now posted to the more human internet platform where the site’s maintainer can see and address it.'],
+          text: ['The issue is now posted to the More Human Internet platform where the site’s maintainer can see and address it.'],
           attachTo: {
             element: '.issue-timeline',
             on: 'top',
           },
         },
         {
-          text: [
-            'Other people who experience the same issue can upvote the issue to promote its visibility, add comments, share issues on other platforms, or flag bad behavior',
-          ],
+          text: ['Others who experience the same issue can upvote for visibility, add comments, share similar issues or flag bad behavior.'],
           attachTo: {
             element: '.issue-action-buttons',
             on: 'top',
@@ -86,7 +84,7 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
           },
         },
         {
-          text: ['Looks like the site maintainer was already online and she has quickly acknowledged the issue.'],
+          text: ["It looks like the site's maintainer was already online, and she quickly acknowledged the issue"],
           attachTo: {
             element: '.issue-activity.comment:nth-child(3)',
             on: 'top',
@@ -102,7 +100,7 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
         },
         {
           text: [
-            'She reports that the problem with checkout is now fixed and closed the issue. People can still see the issue and upvote it in case it comes up again',
+            'She reports that the problem with checkout is now fixed, and she marked this issue as closed. People can still see the issue, and they can upvote it if the same problem resurfaces.',
           ],
           attachTo: {
             element: '.issue-activity.comment:nth-child(5)',
@@ -112,7 +110,7 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
         },
         {
           id: 'click-issues',
-          text: ['Click on the "Issues" link to see all issues'],
+          text: ['Click "Issues" to see every issue associated with this site'],
           attachTo: {
             element: '.sidebar-links a[href^="/issues"] svg',
             on: 'bottom-end',
