@@ -1,9 +1,34 @@
 import React from 'react'
 import SEO from '../shared/seo'
 import DemoPageContents from './contents'
+import { createStore } from './store'
+import subscribe from './background-script'
+import * as mockApi from '../../clients/mockApi'
+import { defaultSite } from '../../clients/util'
 import { scriptSrc, stylesHref } from '../../effects/useTour'
 
-export default function DemoPage(props: any): JSX.Element {
+type WidgetProps = {
+  tour: any
+  siteOrigin: string
+  navigate: (href: string) => void
+  api: {
+    postIssue(issue: {
+      id?: number
+      user?: User
+      site: string
+      title: string
+      initialCommentHtml: string
+      aggregates?: IssueAggregates
+      status?: IssueStatus
+    }): Promise<Issue>
+    searchIssues(opts: { site: string; title?: string }): Promise<ReadonlyArray<Issue>>
+  }
+}
+
+export default function DemoPage({ navigate }: PageProps): JSX.Element {
+  const store = createStore()
+  subscribe(store, mockApi, defaultSite, navigate)
+
   return (
     <div className="demo-page">
       <SEO
@@ -27,7 +52,7 @@ export default function DemoPage(props: any): JSX.Element {
           { type: 'text/javascript', src: scriptSrc },
         ]}
       />
-      <DemoPageContents {...props} />
+      <DemoPageContents store={store} navigate={navigate} />
     </div>
   )
 }

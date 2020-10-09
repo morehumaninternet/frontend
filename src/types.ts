@@ -121,7 +121,9 @@ type IssuePostBody = {
 type PostIssueInitiate = Action<'POST_ISSUE_INITIATE'>
 type SimilarIssuesSearchInitiate = Action<'SIMILAR_ISSUES_SEARCH_INITIATE'>
 
-type WidgetAction =
+type DemoAction =
+  | Action<'ADD_TO_CART'>
+  | Action<'CHECKOUT'>
   | Action<'OPEN_WIDGET'>
   | Action<'CLOSE_WIDGET'>
   | Action<'CLICK_IS_NEW_ISSUE'>
@@ -134,9 +136,11 @@ type WidgetAction =
   | ActionWithPayload<'POST_ISSUE_SUCCESS', { issue: Issue }>
   | ActionWithError<'POST_ISSUE_ERROR'>
 
-type WidgetActionInProgress = { priorState: WidgetState; action: PostIssueInitiate | SimilarIssuesSearchInitiate }
+type DemoActionInProgress = { priorState: DemoState; action: PostIssueInitiate | SimilarIssuesSearchInitiate }
 
-type WidgetState = {
+type DemoState = {
+  checkout: boolean
+  checkedOut: boolean
   open: boolean
   editingIssue: {
     title: string
@@ -145,7 +149,7 @@ type WidgetState = {
   isNewIssue: boolean
   similarIssues: readonly Issue[]
   postedIssue: null | Issue
-  actionInProgress: null | WidgetActionInProgress
+  actionInProgress: null | DemoActionInProgress
   error: null | { message: string }
 }
 

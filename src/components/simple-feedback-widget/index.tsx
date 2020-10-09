@@ -1,5 +1,5 @@
 import React from 'react'
-import WidgetIcon from '../widget/icon'
+import WidgetIcon from '../demo-page/widget/icon'
 import { Button } from '@material-ui/core'
 import hasParent from '../../utils/hasParent'
 import { thankYouHref } from '../../utils/href'

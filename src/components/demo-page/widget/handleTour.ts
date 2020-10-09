@@ -1,8 +1,8 @@
 // tslint:disable:no-expression-statement
 import { useEffect } from 'react'
-import { letsReportStep, letsWriteIssueTitleStep, letsAmendIssueTitleStep, postAsNewIssueStep } from '../demo-page/tour'
+import { letsReportStep, letsWriteIssueTitleStep, letsAmendIssueTitleStep, postAsNewIssueStep } from '../tour'
 
-export function handleTour(tour: any, state: WidgetState): void {
+export function handleTour(tour: any, state: DemoState): void {
   useEffect(() => {
     if (state.open && tour && tour.currentStep.id === letsReportStep.id) {
       tour.next()

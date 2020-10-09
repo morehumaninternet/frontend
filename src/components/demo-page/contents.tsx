@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import Widget from '../widget'
+import React, { useEffect } from 'react'
+import Widget from './widget'
 
 import GoalCoLogo from './goalco-logo'
 import CartButton from './cart-button'
@@ -7,26 +7,30 @@ import AddToCart from './add-to-cart'
 import Checkout from './checkout'
 import { steps } from './tour'
 import { useTour } from '../../effects/useTour'
-import * as mockApi from '../../clients/mockApi'
-import { defaultSite } from '../../clients/util'
+import { DemoStore } from './store'
 
-export default function DemoPageContents(props: any): JSX.Element {
-  const [checkout, setCheckout] = useState(false)
-  const [checkedOut, setCheckedOut] = useState(false)
-  const tour = useTour({ steps, onCancel: () => props.navigate('/') })
+export default function DemoPageContents({ store, navigate }: { store: DemoStore; navigate(href: string): void }): JSX.Element {
+  const tour = useTour({ steps, onCancel: () => navigate('/') })
+  const [state, setState] = React.useState(store.getState())
+
+  useEffect(() => {
+    return store.subscribe(() => {
+      setState(store.getState())
+    })
+  }, [])
 
   // tslint:disable:no-expression-statement
   useEffect(() => {
-    if (checkout) {
+    if (state.checkout) {
       tour.next()
     }
-  }, [checkout])
+  }, [state.checkout])
 
   useEffect(() => {
-    if (checkedOut) {
+    if (state.checkedOut) {
       tour.next()
     }
-  }, [checkedOut])
+  }, [state.checkedOut])
   // tslint:enable:no-expression-statement
 
   return (
@@ -37,13 +41,17 @@ export default function DemoPageContents(props: any): JSX.Element {
           <a>Products</a>
           <a>About Us</a>
           <a>Contact</a>
-          <CartButton numberItems={checkout ? 1 : 0} />
+          <CartButton numberItems={state.checkout ? 1 : 0} />
         </div>
       </header>
       <div className="demo-content-container">
-        {checkout ? <Checkout checkedOut={checkedOut} onCheckout={() => setCheckedOut(true)} /> : <AddToCart onAddToCart={() => setCheckout(true)} />}
+        {state.checkout ? (
+          <Checkout checkedOut={state.checkedOut} onCheckout={() => store.dispatch({ type: 'CHECKOUT' })} />
+        ) : (
+          <AddToCart onAddToCart={() => store.dispatch({ type: 'ADD_TO_CART' })} />
+        )}
       </div>
-      <Widget tour={tour} navigate={props.navigate} siteOrigin={defaultSite} api={mockApi} />
+      <Widget tour={tour} store={store} />
     </>
   )
 }

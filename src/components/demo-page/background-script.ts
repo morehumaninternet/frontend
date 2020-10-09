@@ -1,4 +1,4 @@
-import { WidgetStore } from './store'
+import { DemoStore } from './store'
 import { issueHref } from '../../utils/href'
 import debounceDefer from '../../utils/debounceDefer'
 
@@ -15,13 +15,13 @@ type Api = {
   searchIssues(opts: { site: string; title?: string }): Promise<ReadonlyArray<Issue>>
 }
 
-export default function subscribe(store: WidgetStore, api: Api, siteOrigin: string, navigate: (href: string) => void): void {
+export default function subscribe(store: DemoStore, api: Api, siteOrigin: string, navigate: (href: string) => void): void {
   const searchIssues = debounceDefer(api.searchIssues, 200)
 
-  let previousState: WidgetState = store.getState() // tslint:disable-line:no-let
+  let previousState: DemoState = store.getState() // tslint:disable-line:no-let
 
   store.subscribe(() => {
-    const nextState: WidgetState = store.getState()
+    const nextState: DemoState = store.getState()
     const prevState = previousState
     previousState = nextState // tslint:disable-line:no-expression-statement
 

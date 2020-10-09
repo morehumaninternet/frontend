@@ -1,5 +1,5 @@
 // tslint:disable:no-expression-statement no-let
-import numPixels from '../../utils/numPixels'
+import numPixels from '../../../utils/numPixels'
 
 function* getSelectionClientRects(
   editorElement: any

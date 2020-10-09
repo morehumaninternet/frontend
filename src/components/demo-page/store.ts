@@ -1,8 +1,10 @@
 import { createStore as reduxCreateStore, Store as ReduxStore } from 'redux'
 
-export type WidgetStore = ReduxStore<WidgetState, WidgetAction>
+export type DemoStore = ReduxStore<DemoState, DemoAction>
 
-const emptyState: WidgetState = {
+const emptyState: DemoState = {
+  checkout: false,
+  checkedOut: false,
   open: false,
   editingIssue: { title: '', commentHtml: '' },
   isNewIssue: false,
@@ -12,8 +14,14 @@ const emptyState: WidgetState = {
   error: null,
 }
 
-function reducer(initialState: WidgetState = emptyState, action: WidgetAction): WidgetState {
+function reducer(initialState: DemoState, action: DemoAction): DemoState {
   switch (action.type) {
+    case 'ADD_TO_CART':
+      return { ...initialState, checkout: true }
+
+    case 'CHECKOUT':
+      return { ...initialState, checkedOut: true }
+
     case 'OPEN_WIDGET':
       return { ...initialState, open: true }
 
@@ -81,4 +89,22 @@ function reducer(initialState: WidgetState = emptyState, action: WidgetAction): 
   }
 }
 
-export const createStore = () => reduxCreateStore(reducer)
+const localStorageKey = () => `redux-${location.href}`
+
+const wrappedReducer: (initialState: DemoState, action: DemoAction) => DemoState =
+  typeof window === 'undefined'
+    ? reducer
+    : (initialState, action) => {
+        const nextState = reducer(initialState, action)
+        localStorage.setItem(localStorageKey(), JSON.stringify(nextState))
+        return nextState
+      }
+
+function getInitialState(): DemoState {
+  if (typeof window === 'undefined') return emptyState
+  const localStorageItem = localStorage.getItem(localStorageKey())
+  if (!localStorageItem) return emptyState
+  return JSON.parse(localStorageItem)
+}
+
+export const createStore = () => reduxCreateStore(wrappedReducer, getInitialState())

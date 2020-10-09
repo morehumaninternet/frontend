@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@material-ui/core'
-import Popper from '../shared/popper'
+import Popper from '../../shared/popper'
 
 type ButtonGroupProps = {
   isNewIssue: boolean

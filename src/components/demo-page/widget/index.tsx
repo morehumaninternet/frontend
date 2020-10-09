@@ -4,43 +4,24 @@ import TitleInput from './title-input'
 import CommentInput from './comment-input'
 import SimilarIssues from './similar-issues'
 import ButtonGroup from './button-group'
-import hasParent from '../../utils/hasParent'
-import { createStore, WidgetStore } from './store'
-import subscribe from './background-script'
+import hasParent from '../../../utils/hasParent'
 import { handleTour } from './handleTour'
+import { DemoStore } from '../store'
 
 type WidgetWithStoreProps = {
   tour?: any
-  store: WidgetStore
+  store: DemoStore
 }
 
 type WidgetWithStateProps = {
   tour: any
-  state: WidgetState
+  state: DemoState
   openWidget(): void
   closeWidget(): void
   setIssueTitle(title: string): void
   setIssueInitialCommentHtml(html: string): void
   clickIsNewIssue(): void
   postIssue(): void
-}
-
-type WidgetProps = {
-  tour: any
-  siteOrigin: string
-  navigate: (href: string) => void
-  api: {
-    postIssue(issue: {
-      id?: number
-      user?: User
-      site: string
-      title: string
-      initialCommentHtml: string
-      aggregates?: IssueAggregates
-      status?: IssueStatus
-    }): Promise<Issue>
-    searchIssues(opts: { site: string; title?: string }): Promise<ReadonlyArray<Issue>>
-  }
 }
 
 function WidgetWithState({
@@ -142,8 +123,8 @@ function WidgetWithState({
   )
 }
 
-function WidgetWithStore({ tour, store }: WidgetWithStoreProps): JSX.Element {
-  const [state, setState] = React.useState<WidgetState>(store.getState())
+export default function Widget({ tour, store }: WidgetWithStoreProps): JSX.Element {
+  const [state, setState] = React.useState<DemoState>(store.getState())
 
   // tslint:disable:no-expression-statement
   React.useEffect(() => {
@@ -170,18 +151,4 @@ function WidgetWithStore({ tour, store }: WidgetWithStoreProps): JSX.Element {
       }}
     />
   )
-}
-
-export default ({ tour, siteOrigin, navigate, api }: WidgetProps): null | JSX.Element => {
-  const [store, setStore] = React.useState<null | WidgetStore>(null)
-
-  // tslint:disable:no-expression-statement
-  React.useEffect(() => {
-    const s = createStore()
-    subscribe(s, api, siteOrigin, navigate)
-    setStore(s)
-  }, [])
-  // tslint:enable:no-expression-statement
-
-  return store && <WidgetWithStore tour={tour} store={store} />
 }
