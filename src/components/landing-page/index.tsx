@@ -36,7 +36,7 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
   // tslint:disable-next-line: no-expression-statement
   useExplicitHeightOnIPhone(internalSectionRefs.start)
 
-  const [availability, setAvailability] = React.useState<string>('signup')
+  const [availability, setAvailability] = React.useState<Availability>('signup')
 
   const volunteer = () => {
     // tslint:disable-next-line: no-expression-statement

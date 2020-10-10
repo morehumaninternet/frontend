@@ -16,7 +16,7 @@ export default ({ makeAndTrackRef }: { makeAndTrackRef(): React.MutableRefObject
     </p>
     <div className="container" ref={makeAndTrackRef()}>
       <Button className="mhi-button" component={LocalizedLink} to="/demo">
-        See the demo
+        Try the demo
       </Button>
     </div>
   </div>

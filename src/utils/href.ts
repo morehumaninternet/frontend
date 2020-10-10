@@ -9,7 +9,7 @@ function href(pathname: string): string {
   return `/${pathname}`
 }
 
-export const thankYouHref = () => href('thank-you')
+export const thankYouHref = (thankYouFor: ThankYouFor) => href(`thank-you-${thankYouFor}`)
 
 export const issueHref = ({ site, id }: { site: string; id: number }) => href(`issue?site=${site}&id=${id}`)
 

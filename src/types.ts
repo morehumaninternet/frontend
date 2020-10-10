@@ -195,3 +195,6 @@ type TourArgs = {
   onComplete?: () => void
   onCancel?: () => void
 }
+
+type Availability = 'signup' | 'volunteer'
+type ThankYouFor = 'feedback' | Availability
