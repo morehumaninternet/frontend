@@ -8,8 +8,8 @@ import GithubInput from './github-input'
 import { thankYouHref } from '../../../utils/href'
 
 type ApplicationFormType = {
-  availability: string
-  setAvailability: React.Dispatch<React.SetStateAction<string>>
+  availability: Availability
+  setAvailability: React.Dispatch<React.SetStateAction<Availability>>
   makeAndTrackRef(): any
 }
 
@@ -62,7 +62,7 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
     <form
       name="submit-application"
       method="POST"
-      action={thankYouHref()}
+      action={thankYouHref(availability)}
       data-netlify="true"
       netlify-honeypot="bot-field"
       autoComplete="off"
@@ -119,7 +119,7 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
           <MenuItem value="other">{intl.formatMessage({ id: 'application_form_other' })}</MenuItem>
         </Select>
       </FormGroup>
-      <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value)}>
+      <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value as any)}>
         <FormControlLabel value="signup" control={<Radio />} label="Sign me up for beta" ref={makeAndTrackRef()} />
         <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" ref={makeAndTrackRef()} />
       </RadioGroup>
