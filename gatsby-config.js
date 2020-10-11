@@ -45,15 +45,15 @@ module.exports = {
         defaultLocale: `./i18n/react-intl/en.json`,
       },
     },
-    {
-      resolve: `gatsby-plugin-umami`,
-      options: {
-        websiteId: 'e8c8631c-8552-4888-8506-b05681b04dfa',
-        srcUrl: 'http://142.93.15.154/umami.js',
-        includeInDevelopment: false,
-        autoTrack: true,
-        respectDoNotTrack: true,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-umami`,
+    //   options: {
+    //     websiteId: 'e8c8631c-8552-4888-8506-b05681b04dfa',
+    //     srcUrl: 'http://142.93.15.154/umami.js',
+    //     includeInDevelopment: true,
+    //     autoTrack: true,
+    //     respectDoNotTrack: true,
+    //   },
+    // },
   ],
 }
