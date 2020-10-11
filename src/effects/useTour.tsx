@@ -25,25 +25,26 @@ export async function startTour({ steps, onComplete, onCancel }: TourArgs): Prom
   })
 
   steps.forEach(stepArgs => {
-    const { nextText, onNextClick, buttons, attachTo, ...rest } = stepArgs
+    const { id, nextText, onNextClick, buttons, attachTo, ...rest } = stepArgs
 
     // If scrollTo is defined, use it. Otherwise, default to
     const scrollTo = 'scrollTo' in stepArgs ? stepArgs.scrollTo : { behavior: 'smooth', block: 'center' }
 
     tour.addStep({
       ...rest,
+      id,
       attachTo,
       scrollTo,
       buttons: buttons || [
         {
-          classes: 'human-pink-bg',
+          classes: `human-pink-bg umami--click--tour-step-exit-${id}`,
           text: 'Exit',
           action(): void {
             this.cancel()
           },
         },
         {
-          classes: 'human-blue-bg',
+          classes: `human-blue-bg umami--click--tour-step-next-${id}`,
           text: nextText || 'Next',
           action(): void {
             if (onNextClick) {

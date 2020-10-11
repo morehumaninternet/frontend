@@ -12,6 +12,7 @@ import drawRipple from '../../animations/ripple'
 declare var Shepherd: any
 
 export const startStep: TourStep = {
+  id: 'begin-tour',
   buttons: [
     {
       classes: 'human-pink-bg single-button',
@@ -31,12 +32,14 @@ export const startStep: TourStep = {
 }
 
 export const introStep: TourStep = {
+  id: 'tour-intro',
   text: [
     `With More Human Internet, users of your site can quickly and easily report issues or request features through a simple widget. Let's see it in action...`,
   ],
 }
 
 export const addToCartStep: TourStep = {
+  id: 'add-to-cart',
   attachTo: {
     element: '.demo-content-inner',
     on: 'bottom',
@@ -48,6 +51,7 @@ export const addToCartStep: TourStep = {
 }
 
 export const checkoutStep: TourStep = {
+  id: 'checkout',
   attachTo: {
     element: '.demo-content-inner',
     on: 'bottom',
@@ -59,6 +63,7 @@ export const checkoutStep: TourStep = {
 }
 
 export const checkoutFailingStep: TourStep = {
+  id: 'checkout-fail',
   beforeShowPromise(): Promise<any> {
     return delay(1500)
   },
@@ -102,6 +107,7 @@ export const letsWriteIssueTitleStep: TourStep = {
 }
 
 export const explainSimilarIssuesStep: TourStep = {
+  id: 'explain-similar-issue',
   attachTo: {
     element: '.more-human-internet-similar-issues',
     on: 'left',
