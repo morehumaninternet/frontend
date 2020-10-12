@@ -34,7 +34,7 @@ export default ({ makeAndTrackRef }: { makeAndTrackRef(): React.MutableRefObject
         Support our work
       </h1>
       <p className="human-blue" ref={makeAndTrackRef()}>
-        Your donation will help keep servers running and development happening towards this important mission
+        Your donation will help keep us and our servers running
       </p>
       <Button ref={makeAndTrackRef()} className="donate-link mhi-button" component="a" href="https://buymeacoffee.com/morehumaninter">
         <BuyMeACoffee />

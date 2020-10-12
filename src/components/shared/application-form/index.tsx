@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Button, FormControlLabel, FormGroup, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from '@material-ui/core'
-import { Business, Email, Person } from '@material-ui/icons'
+import { Business, Email, Person, Language } from '@material-ui/icons'
 import { FormattedMessage, useIntl } from 'react-intl'
 import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
@@ -77,15 +77,6 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
       </p>
       <FormGroup ref={makeAndTrackRef()}>
         <TextFieldWithIcon
-          label={intl.formatMessage({ id: 'application_form_name' })}
-          name="name"
-          variant="outlined"
-          required
-          startIcon={<Person className="person" />}
-        />
-      </FormGroup>
-      <FormGroup ref={makeAndTrackRef()}>
-        <TextFieldWithIcon
           type="email"
           label={intl.formatMessage({ id: 'application_form_email' })}
           name="email"
@@ -96,13 +87,24 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
       </FormGroup>
       <FormGroup ref={makeAndTrackRef()}>
         <TextFieldWithIcon
+          label={intl.formatMessage({ id: 'application_form_name' })}
+          name="name"
+          variant="outlined"
+          required={availability === 'volunteer'}
+          startIcon={<Person className="person" />}
+        />
+      </FormGroup>
+      <FormGroup ref={makeAndTrackRef()}>
+        <TextFieldWithIcon
           type="employer"
           label={intl.formatMessage({ id: 'application_form_employer' })}
           name="employer"
           variant="outlined"
-          required
           startIcon={<Business className="employer" />}
         />
+      </FormGroup>
+      <FormGroup ref={makeAndTrackRef()}>
+        <TextFieldWithIcon type="website" label="Website" name="website" variant="outlined" startIcon={<Language className="website" />} />
       </FormGroup>
       <FormGroup className="select" ref={makeAndTrackRef()}>
         <InputLabel id="role-select-label">{intl.formatMessage({ id: 'application_form_role' })}</InputLabel>
@@ -120,7 +122,7 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
         </Select>
       </FormGroup>
       <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value as any)}>
-        <FormControlLabel value="signup" control={<Radio />} label="Sign me up for beta" ref={makeAndTrackRef()} />
+        <FormControlLabel value="signup" control={<Radio />} label="Keep me updated" ref={makeAndTrackRef()} />
         <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" ref={makeAndTrackRef()} />
       </RadioGroup>
       <div className={availability === 'volunteer' ? '' : 'hide'}>

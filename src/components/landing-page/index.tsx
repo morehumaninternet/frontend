@@ -62,7 +62,7 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
         <div className="post-sky2" ref={postSky2Ref as any}>
           <div className="join" ref={internalSectionRefs.join as any}>
             <h1 className="mhi-heading" ref={makeAndTrackRef()}>
-              Be a part of our community
+              Join the community
             </h1>
             <ApplicationForm availability={availability} setAvailability={setAvailability} makeAndTrackRef={makeAndTrackRef} />
           </div>
