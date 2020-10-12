@@ -41,9 +41,7 @@ export const addToCartStep: TourStep = {
     element: '.demo-content-inner',
     on: 'bottom',
   },
-  text: [
-    `Suppose you are shopping for a friend's birthday gift, and you've found the perfect item. Add the GoalCo 10x Superpower suit to your cart to continue...`,
-  ],
+  text: [`Suppose you are shopping for a friend's birthday gift, and you've found the perfect item. <strong>Click "Add to Cart"</strong> to continue...`],
   onNextClick(): void {
     drawRipple(document.querySelector('button.add-to-cart')!)
   },
@@ -54,7 +52,7 @@ export const checkoutStep: TourStep = {
     element: '.demo-content-inner',
     on: 'bottom',
   },
-  text: ['But when you click to checkout...'],
+  text: ['Next <strong>click "Checkout"</strong>...'],
   onNextClick(): void {
     drawRipple(document.querySelector('button.checkout')!)
   },
@@ -77,7 +75,9 @@ export const letsReportStep: TourStep = {
     element: '.more-human-internet-widget-boundary',
     on: 'bottom-end',
   },
-  text: ["Let's report this issue. Site maintainers can layer the More Human Internet widget onto their site with a few lines of embedded code."],
+  text: [
+    "Let's report this issue. <strong>Click the widget</strong> to continue. Site maintainers can layer the More Human Internet widget onto their site with a few lines of embedded code.",
+  ],
   onNextClick(): void {
     drawRipple(document.querySelector('.more-human-internet-widget-boundary')!)
   },
@@ -92,11 +92,11 @@ export const letsWriteIssueTitleStep: TourStep = {
     element: '.more-human-internet-widget-editor-issue-title-input',
     on: 'left',
   },
-  text: [`Let's write up the issue. Type "Checkout" to continue...`],
+  text: [`Let's write up the issue. <strong>Type "Checkout"</strong> to continue...`],
   onNextClick(): void {
     Shepherd.activeTour
       ?.getCurrentStep()
-      .updateStepOptions({ text: 'The first step in reporting issue is to give it a title. So type "Checkout" to continue the demo.' })
+      .updateStepOptions({ text: 'The first step in reporting issue is to give it a title. So <strong>type "Checkout"</strong> to continue.' })
     drawRipple(document.querySelector('.more-human-internet-widget-editor-issue-title-input')!)
   },
 }
@@ -117,11 +117,11 @@ export const letsAmendIssueTitleStep: TourStep = {
     element: '.more-human-internet-widget-editor-issue-title-input',
     on: 'left',
   },
-  text: [`Add some more detail. Type "Checkout is spinning when I try to buy the supersuit" to continue...`],
+  text: [`Add some more detail. <strong>Type "Checkout is broken for the supersuit"</strong> to continue...`],
   onNextClick(): void {
     Shepherd.activeTour
       ?.getCurrentStep()
-      .updateStepOptions({ text: `Let's add a more specific title. To continue the demo, type "Checkout is spinning when I try to buy the supersuit"` })
+      .updateStepOptions({ text: `Let's add a more specific title. <strong>Type "Checkout is broken for the supersuit"</strong> to continue.` })
     drawRipple(document.querySelector('.more-human-internet-widget-editor-issue-title-input')!)
   },
 }
@@ -132,7 +132,7 @@ export const postAsNewIssueStep: TourStep = {
     element: '.more-human-internet-widget-boundary',
     on: 'left',
   },
-  text: [`Looks like this is a new issue, so click "Post as new issue" to continue`],
+  text: [`Looks like this is a new issue, so <strong>click "Post as new issue"</strong> to continue`],
   onNextClick(): void {
     drawRipple(document.querySelector('button.post')!)
   },
@@ -144,7 +144,9 @@ export const finalPostStep: TourStep = {
     element: '.more-human-internet-widget-boundary',
     on: 'left',
   },
-  text: [`The More Human Internet widget asks for additional detail to help the site's team address the issue. When you're finished, click "Post" to continue`],
+  text: [
+    `The More Human Internet widget asks for additional detail to help the site's team address the issue. When you're finished, <strong>click "Post"</strong> to continue`,
+  ],
   onNextClick(): void {
     drawRipple(document.querySelector('button.post')!)
   },

@@ -109,7 +109,7 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
         },
         {
           id: 'change-status',
-          text: ['Click and drag a card to change its status'],
+          text: ['<strong>Click and drag a card</strong> to change its status'],
           attachTo: {
             element: '.kanban',
             on: 'top',
@@ -117,9 +117,9 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           scrollTo: { behavior: 'smooth', block: 'nearest' },
           onNextClick(): void {
             // tslint:disable-next-line: no-expression-statement
-            Shepherd.activeTour
-              ?.getCurrentStep()
-              .updateStepOptions({ text: `Let's acknowledge an issue. Click the card and drag it over to the Acknowledged column.` })
+            Shepherd.activeTour?.getCurrentStep().updateStepOptions({
+              text: `Let's acknowledge an issue. <strong>Click the card and drag it over to the Acknowledged column</strong> to continue.`,
+            })
             return drawRipple(document.getElementById('card-500')!)
           },
         },

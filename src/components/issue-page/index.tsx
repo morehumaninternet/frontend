@@ -110,7 +110,7 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
         },
         {
           id: 'click-issues',
-          text: ['Click "Issues" to see every issue associated with this site'],
+          text: ['<strong>Click "Issues"</strong> to see every issue associated with this site'],
           attachTo: {
             element: '.sidebar-links a[href^="/issues"] svg',
             on: 'bottom-end',
