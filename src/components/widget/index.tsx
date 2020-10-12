@@ -107,9 +107,13 @@ function WidgetWithState({
       <div
         className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >
-        <WidgetIcon open={open} />
+        <div className="more-human-internet-widget-top">
+          <WidgetIcon open={open} />
+          <IconButton className="close-button" onClick={closeWidget}>
+            <CloseIcon />
+          </IconButton>
+        </div>
         <div className="more-human-internet-widget-editor-container" style={{ display: open ? undefined : 'none' }}>
-          <IconButton className="close-button" onClick={closeWidget}><CloseIcon /></IconButton>
           <div className="more-human-internet-widget-editor">
             {postingIssue ? (
               <div className="submitting">

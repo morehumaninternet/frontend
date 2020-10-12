@@ -42,29 +42,36 @@ $trix-button--icon-size: 1.6em;
     flex-direction: column;
     transition: all 0.3s;
 
+    > .more-human-internet-widget-top {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-button {
+      display: none;
+      align-self: flex-end;
+    }
+
     &.more-human-internet-widget-container-open {
       padding: $more-human-internet-widget-open-padding;
       height: 100vh;
 
       @media (min-width: 601px) {
         width: 500px;
-
-        .close-button {
-          display: none;
-        }
       }
-      
+
       @media (max-width: 600px) {
         border-top-left-radius: 0;
         width: 100vw;
 
         .close-button {
-          background-color: $human-blue;
-          color: white;
-          position: relative;
-          top: -40px; right: -400px;
-          width: 10px;
-          height: 10px;
+          display: block;
+          color: $human-blue;
+          padding: 6px;
+          top: -11px;
+          margin-right: -11px;
         }
       }
 
@@ -336,13 +343,7 @@ $trix-button--icon-size: 1.6em;
     &.more-human-internet-widget-container-open {
       max-height: 500px;
 
-      .widget-icon.open {
-        display: none
-      }
-
       .more-human-internet-widget-editor {
-        margin-top: 20px !important;
-
         display: flex;
         overflow-x: hidden;
         width: 320%;
