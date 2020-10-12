@@ -48,10 +48,24 @@ $trix-button--icon-size: 1.6em;
 
       @media (min-width: 601px) {
         width: 500px;
+
+        .close-button {
+          display: none;
+        }
       }
+      
       @media (max-width: 600px) {
         border-top-left-radius: 0;
         width: 100vw;
+
+        .close-button {
+          background-color: $human-blue;
+          color: white;
+          position: relative;
+          top: -40px; right: -400px;
+          width: 10px;
+          height: 10px;
+        }
       }
 
       > .more-human-internet-widget-editor-container {

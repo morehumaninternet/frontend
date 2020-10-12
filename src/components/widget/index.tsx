@@ -8,6 +8,8 @@ import hasParent from '../../utils/hasParent'
 import { createStore, WidgetStore } from './store'
 import subscribe from './background-script'
 import { handleTour } from './handleTour'
+import IconButton from '@material-ui/core/IconButton/IconButton'
+import CloseIcon from '@material-ui/icons/Close';
 
 type WidgetWithStoreProps = {
   tour?: any
@@ -107,6 +109,7 @@ function WidgetWithState({
       >
         <WidgetIcon open={open} />
         <div className="more-human-internet-widget-editor-container" style={{ display: open ? undefined : 'none' }}>
+          <IconButton className="close-button" onClick={closeWidget}><CloseIcon /></IconButton>
           <div className="more-human-internet-widget-editor">
             {postingIssue ? (
               <div className="submitting">
