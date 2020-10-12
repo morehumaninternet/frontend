@@ -9,7 +9,7 @@ const onRenderBody = ({ setHeadComponents }, pluginOptions) => {
   //   }
 
   const options = {
-    src: 'http://142.93.15.154/umami.js',
+    src: 'https://vercel-umami.vercel.app/umami.js',
     'data-website-id': 'e8c8631c-8552-4888-8506-b05681b04dfa',
     'data-auto-track': true,
     'data-do-not-track': true,
