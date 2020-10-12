@@ -8,7 +8,7 @@
   More Human Internet
 </h1>
 
-This repository houses the frontend code for [morehumaninternet.org](morehumaninternet.org), check us out to see what we're about!
+This repository houses the frontend code for [morehumaninternet.org](https://morehumaninternet.org), check us out to see what we're about!
 
 ## 🔗 Links
 
