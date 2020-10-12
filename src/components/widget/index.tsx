@@ -9,7 +9,7 @@ import { createStore, WidgetStore } from './store'
 import subscribe from './background-script'
 import { handleTour } from './handleTour'
 import IconButton from '@material-ui/core/IconButton/IconButton'
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@material-ui/icons/Close'
 
 type WidgetWithStoreProps = {
   tour?: any
