@@ -3,7 +3,7 @@ import React from 'react'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import { Button } from '@material-ui/core'
 
-export default ({ makeAndTrackRef }: { makeAndTrackRef(): React.MutableRefObject<any> }) => (
+export default ({ makeAndTrackRef, joinRef }: { makeAndTrackRef(): React.MutableRefObject<any>; joinRef: React.MutableRefObject<any> }) => (
   <div className="new-hero">
     <h1 className="mhi-heading" ref={makeAndTrackRef()}>
       The time has come for a<br />
@@ -15,8 +15,11 @@ export default ({ makeAndTrackRef }: { makeAndTrackRef(): React.MutableRefObject
       and better aligned with the interests of all people
     </p>
     <div className="container" ref={makeAndTrackRef()}>
-      <Button className="mhi-button" component={LocalizedLink} to="/demo">
+      <Button className="mhi-button hide-on-mobile" component={LocalizedLink} to="/demo">
         Try the demo
+      </Button>
+      <Button className="mhi-button hide-on-desktop" onClick={() => joinRef.current!.scrollIntoView({ block: 'center' })}>
+        Sign up
       </Button>
     </div>
   </div>

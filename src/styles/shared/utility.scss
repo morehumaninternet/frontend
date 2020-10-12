@@ -23,3 +23,9 @@
     display: none
   }
 }
+
+.hide-on-desktop {
+  @include ondesktop {
+    display: none
+  }
+}

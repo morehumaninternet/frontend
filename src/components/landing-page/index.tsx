@@ -49,7 +49,7 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
       <Layout additionalClassNames="landing-page" header={header}>
         <SEO />
         <article className="sky start" ref={internalSectionRefs.start as any}>
-          <Hero makeAndTrackRef={makeAndTrackRef} />
+          <Hero makeAndTrackRef={makeAndTrackRef} joinRef={internalSectionRefs.join} />
           <Stars x={10000} y={1000} starCount={300} />
           <Mountains />
         </article>
