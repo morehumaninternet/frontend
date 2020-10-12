@@ -1,6 +1,7 @@
 import React from 'react'
 import WidgetIcon from '../widget/icon'
-import { Button } from '@material-ui/core'
+import { Button, IconButton } from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close'
 import hasParent from '../../utils/hasParent'
 import { thankYouHref } from '../../utils/href'
 
@@ -45,13 +46,18 @@ export default function SimpleFeedbackWidget(): JSX.Element {
       <div
         className={`more-human-internet-widget-container ${open ? 'more-human-internet-widget-container-open' : 'more-human-internet-widget-container-closed'}`}
       >
-        <WidgetIcon open={open} />
+        <div className="more-human-internet-widget-top">
+          <WidgetIcon open={open} />
+          <IconButton className="close-button" onClick={() => setOpen(false)}>
+            <CloseIcon />
+          </IconButton>
+        </div>
         <form
           className="more-human-internet-widget-editor-container"
           style={{ display: open ? undefined : 'none' }}
           name="submit-feedback"
           method="POST"
-          action={thankYouHref()}
+          action={thankYouHref('feedback')}
           data-netlify="true"
           netlify-honeypot="bot-field"
           autoComplete="off"
