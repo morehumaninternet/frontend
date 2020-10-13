@@ -62,7 +62,7 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
     <form
       name="submit-application"
       method="POST"
-      action={thankYouHref(availability)}
+      action={thankYouHref('signup')}
       data-netlify="true"
       netlify-honeypot="bot-field"
       autoComplete="off"
