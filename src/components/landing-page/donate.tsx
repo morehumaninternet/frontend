@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
 
 function BuyMeACoffee(): JSX.Element {
   return (
@@ -36,10 +35,10 @@ export default ({ makeAndTrackRef }: { makeAndTrackRef(): React.MutableRefObject
       <p className="human-blue" ref={makeAndTrackRef()}>
         Your donation will help keep us and our servers running
       </p>
-      <Button ref={makeAndTrackRef()} className="donate-link mhi-button umami--click--donate" component="a" href="https://buymeacoffee.com/morehumaninter">
+      <button ref={makeAndTrackRef()} className="donate-link mhi-button umami--click--donate" component="a" href="https://buymeacoffee.com/morehumaninter">
         <BuyMeACoffee />
         Buy us a coffee
-      </Button>
+      </button>
     </div>
   </div>
 )

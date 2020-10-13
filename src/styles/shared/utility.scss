@@ -20,12 +20,12 @@
 
 .hide-on-mobile {
   @include onmobile {
-    display: none
+    display: none !important;
   }
 }
 
 .hide-on-desktop {
   @include ondesktop {
-    display: none
+    display: none !important;
   }
 }

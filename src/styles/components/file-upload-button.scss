@@ -8,11 +8,9 @@
     padding: 0;
     position: relative;
 
-    > .MuiButton-label {
-      justify-content: flex-start;
-      font-size: 16px;
-      padding: 11.6916656494140625px 15px; // Makes this the same size as a TextInput
-    }
+    justify-content: flex-start;
+    font-size: 16px;
+    padding: 11.6916656494140625px 15px; // Makes this the same size as a TextInput
 
     @include onmobile {
       min-width: 100%;

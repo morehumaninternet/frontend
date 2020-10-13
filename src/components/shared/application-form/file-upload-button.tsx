@@ -2,7 +2,6 @@
 import React from 'react'
 import { last } from 'lodash'
 import { CloudUpload, Close } from '@material-ui/icons'
-import { Button } from '@material-ui/core'
 
 type FileUploadButtonProps = {
   name: string
@@ -39,10 +38,10 @@ export default class FileUploadButton extends React.Component<FileUploadButtonPr
     return (
       <div className="file-upload-button-container">
         <input name={this.props.name} type="file" hidden ref={this.inputReference} onChange={this.fileUploadInputChange} />
-        <Button type="button" className="mhi-button" onClick={this.onClick}>
+        <button type="button" className="mhi-button" onClick={this.onClick}>
           {this.state.fileName ? <Close className="close" /> : <CloudUpload />}
           <span style={{ marginLeft: 8 }}>{this.state.fileName || this.props.label}</span>
-        </Button>
+        </button>
       </div>
     )
   }

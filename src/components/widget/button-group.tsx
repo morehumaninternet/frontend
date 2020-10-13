@@ -28,19 +28,19 @@ export default function ButtonGroup({ isNewIssue, reasonCantPostAsNewIssue, clic
           position="top"
           message="Coming soon, the attach button will<br>let you add screenshots, videos, or <br>other media to help maintainers see<br>and identify your issue"
         >
-          <Button className="attach" type="button">
+          <button className="attach mhi-button" type="button">
             <AttachIcon />
-          </Button>
+          </button>
         </Popper>
       )}
       {isNewIssue ? (
-        <Button className="post mhi-button" onClick={() => postIssue()}>
+        <button className="post mhi-button" onClick={() => postIssue()}>
           Post
-        </Button>
+        </button>
       ) : (
-        <Button className="post mhi-button" disabled={!!reasonCantPostAsNewIssue} onClick={() => clickIsNewIssue()}>
+        <button className="post mhi-button" disabled={!!reasonCantPostAsNewIssue} onClick={() => clickIsNewIssue()}>
           Post as new issue
-        </Button>
+        </button>
       )}
     </div>
   )
