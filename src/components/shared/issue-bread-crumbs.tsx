@@ -3,7 +3,7 @@ import React from 'react'
 const IssueBreadcrumbs = ({ site, issueId, iconSrc = '/goalco.ico' }: { site: string; issueId?: number; iconSrc?: string }): JSX.Element => {
   return (
     <div className="issue-breadcrumbs">
-      <img src={iconSrc} /> {site} / Issues {issueId && `/ ${issueId}`}
+      <img src={iconSrc} alt="site logo" /> {site} / Issues {issueId && `/ ${issueId}`}
     </div>
   )
 }

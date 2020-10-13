@@ -41,7 +41,7 @@ export default function AddToCart({ onAddToCart }: { onAddToCart: () => void }):
           <p>Made from the finest bio materials known to man and ethically sourced from planet Goalgon.</p>
         </div>
         <div className="img-container">
-          <img className="suit" src="/goalco-hero.png" />
+          <img className="suit" src="/goalco-hero.png" alt="goalco superpower suit" />
         </div>
       </div>
     </div>

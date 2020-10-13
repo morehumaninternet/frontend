@@ -23,10 +23,10 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
     location,
     internalSections: ['start', 'about', 'why', 'join'],
     otherLinks: [
-      <LocalizedLink className="hide-on-mobile" to="/demo">
+      <LocalizedLink key="demo-link" className="hide-on-mobile" to="/demo">
         Demo
       </LocalizedLink>,
-      <a className="hide-on-mobile umami--click--nav-bar-donate" href="https://buymeacoffee.com/morehumaninter">
+      <a key="donate-link" className="hide-on-mobile umami--click--nav-bar-donate" href="https://buymeacoffee.com/morehumaninter">
         Donate
       </a>,
     ],
