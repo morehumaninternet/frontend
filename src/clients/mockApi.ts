@@ -140,7 +140,7 @@ export async function searchIssues({ site, title }: { site: string; title?: stri
     if (matches.some(match => match.title === issue.title)) continue
     if (search.test(issue.title)) {
       matches.push(issue)
-      if (matches.length >= 5) break
+      if (onDemoPage && matches.length >= 5) break
     }
   }
 
