@@ -26,7 +26,7 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
       <LocalizedLink className="hide-on-mobile" to="/demo">
         Demo
       </LocalizedLink>,
-      <a className="hide-on-mobile" href="https://buymeacoffee.com/morehumaninter">
+      <a className="hide-on-mobile umami--click--nav-bar-donate" href="https://buymeacoffee.com/morehumaninter">
         Donate
       </a>,
     ],

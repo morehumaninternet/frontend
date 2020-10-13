@@ -32,7 +32,7 @@ export default function AddToCart({ onAddToCart }: { onAddToCart: () => void }):
           <h1>The GoalCo 10× superpower suit</h1>
           <div className="price">
             <h2>$365</h2>
-            <button className="add-to-cart" onClick={() => onAddToCart()}>
+            <button className="add-to-cart umami--click--demo-add-to-cart" onClick={() => onAddToCart()}>
               Add to Cart
             </button>
           </div>
