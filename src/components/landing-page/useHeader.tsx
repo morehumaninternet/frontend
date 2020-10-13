@@ -166,7 +166,6 @@ export default function useHeader<Section extends string>({
 
   React.useEffect(() => {
     const hash = location.hash.slice(1)
-    console.log('here', hash, internalSections)
     if (hash && internalSections.includes(hash as any)) {
       // Not sure why this requires a timeout, but it seems to
       setTimeout(() => internalSectionRefs[hash as Section].current.scrollIntoView())
@@ -175,6 +174,7 @@ export default function useHeader<Section extends string>({
 
   const internalLinks = internalSections.map(section => (
     <a
+      key={section}
       className={`hide-on-mobile umami--click--nav-bar-${section}`}
       ref={internalLinkRefs[section] as any}
       onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
@@ -194,7 +194,7 @@ export default function useHeader<Section extends string>({
   links.splice(
     linkMidpoint,
     0,
-    <LocalizedLink className="logo" to="/">
+    <LocalizedLink key="MHI-logo" className="logo" to="/" aria-label="logo">
       <CenteredLogo />
     </LocalizedLink>
   )

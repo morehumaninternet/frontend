@@ -5,24 +5,24 @@ export default function IssueActionButtons({ aggregates }: { aggregates: Issue['
   return (
     <div className="issue-action-buttons">
       <div className="issue-action-buttons__item">
-        <button>
+        <button aria-label="upvote">
           <HandIcon clicked={true} />
         </button>
         <p>{aggregates.upvotes.count}</p>
       </div>
       <div className="issue-action-buttons__item">
-        <button>
+        <button aria-label="comment">
           <CommentIcon commented={true} />
         </button>
         <p>{aggregates.comments.count}</p>
       </div>
       <div className="issue-action-buttons__item">
-        <button>
+        <button aria-label="share">
           <ShareIcon />
         </button>
       </div>
       <div className="issue-action-buttons__item">
-        <button>
+        <button aria-label="flag">
           <FlagIcon />
         </button>
       </div>

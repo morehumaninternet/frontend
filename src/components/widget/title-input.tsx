@@ -29,7 +29,7 @@ export default function TitleInput({ setIssueTitle }: { setIssueTitle(issueTitle
       ref={ref as any}
       className="more-human-internet-widget-editor-issue-title-input"
       dangerouslySetInnerHTML={{
-        __html: `<trix-editor placeholder="What is your issue?"></trix-editor>`,
+        __html: `<trix-editor aria-label="search issue" placeholder="What is your issue?"></trix-editor>`,
       }}
     />
   )

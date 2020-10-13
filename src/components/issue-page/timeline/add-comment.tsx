@@ -37,7 +37,7 @@ export default function IssueAddComment({ avatarUrl, actionInProgress, postComme
         dangerouslySetInnerHTML={{
           __html: `
             <input id="add-comment-input" type="hidden" name="comment" required>
-            <trix-editor input="add-comment-input"></trix-editor>
+            <trix-editor input="add-comment-input" aria-label="add comment"></trix-editor>
           `,
         }}
       />
