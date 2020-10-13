@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, FormControlLabel, FormGroup, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from '@material-ui/core'
+import { FormControlLabel, FormGroup, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from '@material-ui/core'
 import { Business, Email, Person, Language } from '@material-ui/icons'
 import { FormattedMessage, useIntl } from 'react-intl'
 import FileUploadButton from './file-upload-button'
@@ -150,9 +150,9 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
         </FormGroup>
       </div>
       <FormGroup ref={makeAndTrackRef()}>
-        <Button type="submit" className="mhi-button">
+        <button type="submit" className="mhi-button">
           <FormattedMessage id="application_form_join" />
-        </Button>
+        </button>
       </FormGroup>
     </form>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 import WidgetIcon from '../widget/icon'
-import { Button, IconButton } from '@material-ui/core'
+import { IconButton } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import hasParent from '../../utils/hasParent'
 import { thankYouHref } from '../../utils/href'
@@ -98,9 +98,9 @@ export default function SimpleFeedbackWidget(): JSX.Element {
             </div>
           </div>
           <div className="more-human-internet-widget-editor-button-group">
-            <Button type="submit" className="post mhi-button">
+            <button type="submit" className="post mhi-button">
               Submit feedback
-            </Button>
+            </button>
           </div>
         </form>
       </div>
