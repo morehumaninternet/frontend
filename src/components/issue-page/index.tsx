@@ -4,7 +4,6 @@
 
 // tslint:disable:no-expression-statement
 import React from 'react'
-import { navigate } from 'gatsby'
 import IssuePageComponent from './component'
 import { createStore } from './store'
 import subscribe from './background-script'
@@ -63,6 +62,7 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
     {
       steps: [
         {
+          id: 'issue-now-posted',
           text: ['The issue is now posted to the More Human Internet platform where the site’s maintainer can see and address it.'],
           attachTo: {
             element: '.issue-timeline',
@@ -70,6 +70,7 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
           },
         },
         {
+          id: 'highlight-issue-action-buttons',
           text: ['Others who experience the same issue can upvote for visibility, add comments, share similar issues or flag bad behavior.'],
           attachTo: {
             element: '.issue-action-buttons',
@@ -84,6 +85,7 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
           },
         },
         {
+          id: 'maintainer-acknowledged',
           text: ["It looks like the site's maintainer was already online, and she quickly acknowledged the issue"],
           attachTo: {
             element: '.issue-activity.comment:nth-child(3)',
@@ -99,6 +101,7 @@ export default function IssuePage({ location, navigate }: PageProps): JSX.Elemen
           scrollTo: { behavior: 'smooth', block: 'center' },
         },
         {
+          id: 'maintainer-closed',
           text: [
             'She reports that the problem with checkout is now fixed, and she marked this issue as closed. People can still see the issue, and they can upvote it if the same problem resurfaces.',
           ],
