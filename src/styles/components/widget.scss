@@ -2,6 +2,7 @@ $more-human-internet-widget-editor-button-height: 60px;
 $more-human-internet-widget-open-padding: 50px;
 $caret-size: 10px;
 $trix-button--icon-size: 1.6em;
+$full-width-widget-at: 600px;
 
 @mixin no-outline-no-border {
   outline: none !important;
@@ -58,11 +59,9 @@ $trix-button--icon-size: 1.6em;
       padding: $more-human-internet-widget-open-padding;
       height: 100vh;
 
-      @media (min-width: 601px) {
-        width: 500px;
-      }
+      width: 500px;
 
-      @media (max-width: 600px) {
+      @media (max-width: $full-width-widget-at) {
         border-top-left-radius: 0;
         width: 100vw;
 
@@ -342,6 +341,10 @@ $trix-button--icon-size: 1.6em;
   > .more-human-internet-widget-container {
     &.more-human-internet-widget-container-open {
       max-height: 500px;
+
+      @media (max-width: $full-width-widget-at) {
+        max-height: none;
+      }
 
       .more-human-internet-widget-editor {
         display: flex;
