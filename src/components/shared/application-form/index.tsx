@@ -96,7 +96,7 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
       </FormGroup>
       <FormGroup ref={makeAndTrackRef()}>
         <TextFieldWithIcon
-          type="employer"
+          type="text"
           label={intl.formatMessage({ id: 'application_form_employer' })}
           name="employer"
           variant="outlined"
@@ -104,7 +104,7 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
         />
       </FormGroup>
       <FormGroup ref={makeAndTrackRef()}>
-        <TextFieldWithIcon type="website" label="Website" name="website" variant="outlined" startIcon={<Language className="website" />} />
+        <TextFieldWithIcon type="url" label="Website" name="website" variant="outlined" startIcon={<Language className="website" />} />
       </FormGroup>
       <FormGroup className="select" ref={makeAndTrackRef()}>
         <InputLabel id="role-select-label">{intl.formatMessage({ id: 'application_form_role' })}</InputLabel>
