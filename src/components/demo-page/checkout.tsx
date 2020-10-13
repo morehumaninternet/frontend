@@ -35,7 +35,7 @@ export const ShoppingCart = ({ checkedOut, onCheckout }: { checkedOut: boolean; 
             <p>FREE 24 hour delivery anywhere on planet earth!</p>
           </div>
           <div className="checkout-container">
-            <button className="checkout" onClick={() => onCheckout()} disabled={checkedOut}>
+            <button className="checkout umami--click--demo-checkout" onClick={() => onCheckout()} disabled={checkedOut}>
               {checkedOut ? (
                 <>
                   <CircularProgress size="1rem" className="spinner" />

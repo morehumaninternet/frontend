@@ -15,10 +15,10 @@ export default ({ makeAndTrackRef, joinRef }: { makeAndTrackRef(): React.Mutable
       and better aligned with the interests of all people
     </p>
     <div className="container" ref={makeAndTrackRef()}>
-      <Button className="mhi-button hide-on-mobile" component={LocalizedLink} to="/demo">
+      <Button className="mhi-button hide-on-mobile umami--click--try-the-demo" component={LocalizedLink} to="/demo">
         Try the demo
       </Button>
-      <Button className="mhi-button hide-on-desktop" onClick={() => joinRef.current!.scrollIntoView({ block: 'center' })}>
+      <Button className="mhi-button hide-on-desktop umami--click--sign-up" onClick={() => joinRef.current!.scrollIntoView({ block: 'center' })}>
         Sign up
       </Button>
     </div>

@@ -1,6 +1,5 @@
 const path = require('path')
 
-
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://morehumaninternet.org',
@@ -44,6 +43,16 @@ module.exports = {
       resolve: `gatsby-theme-i18n-react-intl`,
       options: {
         defaultLocale: `./i18n/react-intl/en.json`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-umami`,
+      options: {
+        websiteId: 'e8c8631c-8552-4888-8506-b05681b04dfa',
+        srcUrl: 'https://vercel-umami.vercel.app/umami.js',
+        includeInDevelopment: false,
+        autoTrack: true,
+        respectDoNotTrack: true,
       },
     },
   ],

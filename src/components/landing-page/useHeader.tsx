@@ -175,7 +175,7 @@ export default function useHeader<Section extends string>({
 
   const internalLinks = internalSections.map(section => (
     <a
-      className="hide-on-mobile"
+      className={`hide-on-mobile umami--click--nav-bar-${section}`}
       ref={internalLinkRefs[section] as any}
       onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
     >

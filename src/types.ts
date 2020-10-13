@@ -158,7 +158,7 @@ type TeamMember = {
 }
 
 type TourStep = {
-  id?: string
+  id: string
   attachTo?: {
     element: string
     on:

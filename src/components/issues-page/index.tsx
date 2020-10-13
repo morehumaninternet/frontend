@@ -67,9 +67,11 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
     {
       steps: [
         {
+          id: 'issues-overview',
           text: ['As a maintainer, you can see every reported issue across your site'],
         },
         {
+          id: 'show-opened-column',
           text: [
             'These are issues that site users have reported. Only you can see this list, so you can screen newly reported issues before publicly acknowledging them',
           ],
@@ -80,6 +82,7 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           scrollTo: false,
         },
         {
+          id: 'show-acknowledged-column',
           text: [
             "When an issue is Acknowledged, it is publicly visible, indicating to users that you agree that there is a problem, and that you're working on a fix",
           ],
@@ -90,6 +93,7 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           scrollTo: false,
         },
         {
+          id: 'show-closed-column',
           text: [
             'Closing an issue indicates that a final resolution has been reached. These are held in Closed to continue the conversation and in case the same issue resurfaces',
           ],
@@ -100,6 +104,7 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           scrollTo: false,
         },
         {
+          id: 'show-issue-sorting',
           text: ['By default, issues are organized by popularity. You can sort by recency or number of comments.'],
           attachTo: {
             element: '.kanban-data__sort',
@@ -124,9 +129,11 @@ const IssuesPage = ({ location, navigate }: PageProps): JSX.Element => {
           },
         },
         {
+          id: 'you-just-changed-status',
           text: [`Awesome! You've just let your users know that you've seen their issue`],
         },
         {
+          id: 'tour-concluded',
           text: [`That concludes the tour! Sign up to receive updates or get involved`],
           nextText: 'Sign up',
           onNextClick(): void {
