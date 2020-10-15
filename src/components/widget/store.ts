@@ -1,4 +1,5 @@
 import { createStore as reduxCreateStore, Store as ReduxStore } from 'redux'
+import { devToolsEnhancer } from 'redux-devtools-extension'
 
 export type WidgetStore = ReduxStore<WidgetState, WidgetAction>
 
@@ -73,7 +74,7 @@ function reducer(initialState: WidgetState = emptyState, action: WidgetAction): 
 
     default: {
       const faultyAction: any = action
-      if (!/^@@redux/.test(faultyAction.type)) {
+      if (!/^@@[redux|INIT]/.test(faultyAction.type)) {
         throw new Error(`Unknown action type ${faultyAction.type}`)
       }
       return initialState
@@ -81,4 +82,4 @@ function reducer(initialState: WidgetState = emptyState, action: WidgetAction): 
   }
 }
 
-export const createStore = () => reduxCreateStore(reducer)
+export const createStore = () => reduxCreateStore(reducer, devToolsEnhancer({}))
