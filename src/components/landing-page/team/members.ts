@@ -62,4 +62,11 @@ export const members: readonly TeamMember[] = [
     background_color: 'human-pink-bg',
     background_shape: 'circle',
   },
+  {
+    name: 'Hank Liu 🇺🇸',
+    title: 'Software Developer',
+    image_file_name: 'hank_liu.png',
+    background_color: 'human-green-bg',
+    background_shape: 'square',
+  }
 ]
