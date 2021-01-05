@@ -17,13 +17,13 @@ export default function DemoPageContents(props: any): JSX.Element {
 
   // tslint:disable:no-expression-statement
   useEffect(() => {
-    if (checkout) {
+    if (checkout && tour) {
       tour.next()
     }
   }, [checkout])
 
   useEffect(() => {
-    if (checkedOut) {
+    if (checkedOut && tour) {
       tour.next()
     }
   }, [checkedOut])
