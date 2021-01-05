@@ -68,5 +68,5 @@ export const members: readonly TeamMember[] = [
     image_file_name: 'hank_liu.png',
     background_color: 'human-green-bg',
     background_shape: 'square',
-  }
+  },
 ]
