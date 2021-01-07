@@ -1,0 +1,177 @@
+$more-human-internet-widget-editor-button-height: 60px;
+$more-human-internet-widget-open-padding: 50px;
+$caret-size: 10px;
+$trix-button--icon-size: 1.6em;
+
+@mixin semicircular-border($direction) {
+  content: '';
+  position: absolute;
+  display: block;
+  #{$direction}: -($trix-button--icon-size / 2);
+  width: $trix-button--icon-size;
+  height: $trix-button--icon-size;
+  border: 1px solid $human-grey;
+  border-#{opposite-direction($direction)}: none;
+  border-top-#{$direction}-radius: 100%;
+  border-bottom-#{$direction}-radius: 100%;
+  background-color: white;
+  z-index: -1;
+}
+
+.more-human-internet-widget-boundary {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  > .more-human-internet-widget-container {
+    border-top-left-radius: 30px;
+    background-color: white;
+    box-shadow: -4px -4px 26px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+
+    &.more-human-internet-widget-container-open {
+      padding: $more-human-internet-widget-open-padding;
+      height: 100vh;
+      width: 500px;
+
+      > .more-human-internet-widget-editor-container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+    }
+
+    &.more-human-internet-widget-container-closed {
+      padding: 15px;
+      height: 60px;
+      width: 60px;
+      cursor: pointer;
+
+      > .more-human-internet-widget-editor-container {
+        display: none;
+      }
+    }
+
+    > .more-human-internet-widget-editor-container {
+      margin-bottom: 0;
+      margin-top: 60px;
+
+      > .more-human-internet-widget-editor {
+        flex-grow: 1;
+
+        > .more-human-internet-widget-editor-issue-title-input {
+          > trix-toolbar {
+            display: none;
+          }
+
+          > trix-editor {
+            border: 0;
+            padding: 0;
+            font-size: 24px;
+            color: $human-blue;
+          }
+        }
+
+        > .more-human-internet-widget-editor-issue-body-input {
+          position: relative;
+
+          > trix-toolbar {
+            position: fixed;
+            display: none;
+
+            > .trix-button-row {
+              overflow-x: hidden; // We manipulate the buttons so that technically they are scrollable, so we block that here
+
+              &:before {
+                @include semicircular-border(left);
+              }
+
+              &:after {
+                @include semicircular-border(right);
+              }
+
+              > .trix-button-group {
+                margin-bottom: 0;
+                border: none;
+                display: none;
+
+                > .trix-button {
+                  display: none;
+                  background-color: white;
+                  color: $human-blue;
+                }
+
+                &:first-child {
+                  display: block;
+                  position: relative;
+
+                  > .trix-button {
+                    &.trix-button--icon {
+                      width: $trix-button--icon-size;
+                      height: $trix-button--icon-size;
+                    }
+                    &.trix-button--icon-bold,
+                    &.trix-button--icon-italic,
+                    &.trix-button--icon-link {
+                      position: relative;
+                      display: block;
+                      border-top: 1px solid $human-grey;
+                      border-bottom: 1px solid $human-grey;
+                      border-left: none;
+                      border-right: none;
+                    }
+                    &.trix-button--icon-bold {
+                      margin-left: -0.4em;
+                    }
+                    &.trix-button--icon-link {
+                      margin-right: -0.1em;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          > trix-editor {
+            border: 0;
+            padding: 0;
+            font-size: 16px;
+            color: $human-blue;
+          }
+        }
+      }
+
+      > .more-human-internet-widget-editor-button-group {
+        display: flex;
+        width: 100%;
+
+        > button {
+          height: $more-human-internet-widget-editor-button-height;
+
+          &:first-child {
+            background-color: $human-pink;
+            width: $more-human-internet-widget-editor-button-height;
+            margin-right: 20px;
+
+            &:hover {
+              box-shadow: 0px 4px 26px rgba(250, 117, 158, 0.5);
+            }
+          }
+
+          &:nth-child(2) {
+            width: 100%;
+            font-weight: 700;
+
+            &:hover {
+              background-color: $human-blue !important;
+              box-shadow: 0px 4px 26px rgba(22, 65, 118, 0.5);
+            }
+          }
+        }
+      }
+    }
+  }
+}

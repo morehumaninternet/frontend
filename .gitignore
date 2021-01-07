@@ -70,6 +70,3 @@ yarn-error.log
 
 # Local Netlify folder
 .netlify
-
-# Idea files
-.idea

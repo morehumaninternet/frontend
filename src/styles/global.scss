@@ -1,4 +1,42 @@
-@import './shared/_all';
-@import './animations/_all';
-@import './components/_all';
-@import './pages/_all';
+@import './functions';
+@import './colors';
+@import './sizes';
+@import './fonts';
+@import './layout';
+@import './link';
+@import './header';
+@import './button';
+@import './file-upload-button';
+@import './hero';
+@import './icons';
+@import './card';
+@import './footer';
+@import './submit-application-form';
+@import './designs';
+@import './widget';
+@import './pages/index';
+@import './pages/thank-you';
+@import './pages/demo';
+@import './pages/issue';
+
+h1 {
+  color: $human-blue;
+}
+
+p.indent {
+  text-indent: 1em;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+@include onmobile {
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+}

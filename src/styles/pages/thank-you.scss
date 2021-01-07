@@ -2,18 +2,9 @@
   text-align: center;
 }
 
-.layout.thank-you {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto;
-
-  .hero.thank-you {
-    height: 100%;
-
-    > .MuiPaper-root {
-      margin-top: 100px;
-      margin-bottom: 100px;
-      max-width: 600px;
-    }
+.hero.thank-you {
+  > .MuiPaper-root {
+    margin-top: 100px;
+    margin-bottom: 100px;
   }
 }

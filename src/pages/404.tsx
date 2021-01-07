@@ -1,12 +1,14 @@
-import React from 'react'
+import React from "react"
 
-import { LayoutWithHeader } from '../components/shared/layout'
-import SEO from '../components/shared/seo'
+import Layout from "../components/layout"
+import SEO from "../components/seo"
 
-export default () => (
-  <LayoutWithHeader mainClassName="not-found" logoAgainstHero={false}>
-    <SEO pageTitle="404: Not found" />
+const NotFoundPage = () => (
+  <Layout>
+    <SEO title="404: Not found" />
     <h1>NOT FOUND</h1>
     <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </LayoutWithHeader>
+  </Layout>
 )
+
+export default NotFoundPage
