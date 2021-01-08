@@ -198,3 +198,9 @@ type TourArgs = {
 
 type Availability = 'signup' | 'volunteer'
 type ThankYouFor = 'feedback' | Availability
+
+type Link = {
+  href: string
+  ariaLabel: string
+  icon: JSX.Element
+}

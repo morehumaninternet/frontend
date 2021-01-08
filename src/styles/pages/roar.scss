@@ -1,0 +1,241 @@
+.layout.roar {
+  .introduction-section {
+    height: 100vh;
+    background: linear-gradient($human-pink-light, white);
+    display: grid;
+    grid-template-rows: auto 1fr auto 2fr;
+    color: $human-blue;
+  }
+
+  .logo {
+    display: flex;
+    grid-row: 1;
+  }
+
+  .hero-container {
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: 3fr minmax(290px, auto) 1fr auto 3fr;
+    align-items: center;
+  }
+
+  .hero-content {
+    grid-column: 2;
+    flex-direction: column;
+    align-self: center;
+  }
+
+  .hero__header {
+    font-size: 3rem;
+  }
+
+  .hero__text {
+    font-size: 1.5rem;
+  }
+
+  .hero__gif {
+    grid-column: 4;
+    max-width: 90vw;
+    padding: 0 5vw;
+  }
+
+  .btn {
+    padding: 10px 10px;
+  }
+
+  .btn--download {
+    background-color: $human-blue;
+    color: white;
+  }
+
+  .steps-title {
+    color: $human-blue;
+    text-align: center;
+  }
+
+  .steps {
+    display: flex;
+    padding: 5% 10%;
+  }
+
+  .step {
+    padding: 0 3%;
+  }
+
+  .step-explanation > svg {
+    height: 60px;
+    width: 60px;
+  }
+
+  /* accordion styles */
+  .accordion_header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+  }
+
+  .accordion_header > h3 {
+    margin-left: 1rem;
+  }
+
+  .accordion__text {
+    position: relative;
+    padding: 0 0 0 1.5rem;
+    overflow: hidden;
+  }
+
+  .accordion_item:not(.active) .accordion__text {
+    display: none;
+  }
+
+  .arrow {
+    transition: transform 0.2s;
+    width: 16px;
+    height: 14px;
+  }
+
+  .accordion_item.active .arrow {
+    transform: rotate(90deg);
+  }
+
+  .get-updates {
+    display: grid;
+    grid-template-columns:
+      1fr minmax(max-content, 300px) minmax(max-content, 300px)
+      1fr;
+    gap: 20px;
+    align-items: center;
+    margin: 5rem 0;
+  }
+
+  .slack,
+  .newsletter__form {
+    height: 52px;
+  }
+
+  .slack {
+    background-color: white;
+    color: $human-blue;
+    font-weight: bold;
+    grid-column: 2;
+    align-self: flex-start;
+
+    border: 1px solid $human-blue;
+
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .slack:hover {
+    border: 1px solid $human-blue;
+    background-color: $human-blue;
+    color: white;
+  }
+
+  .newsletter {
+    grid-column: 3;
+  }
+
+  .newsletter__form {
+    display: flex;
+    place-items: center;
+    margin-bottom: 0;
+  }
+
+  .newsletter__email {
+    height: 100%;
+    flex-grow: 1;
+    outline: none;
+    color: $human-blue;
+    padding: 0 1rem;
+    border: 1px solid $human-blue;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .newsletter__submit {
+    height: 100%;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .newsletter__promise {
+    font-size: 0.6rem;
+    text-align: right;
+  }
+
+  /* media query  */
+  @media (max-width: 700px) {
+    .introduction-section {
+      grid-template-rows: max-content 0.5fr max-content 2fr;
+      justify-items: center;
+    }
+
+    .logo {
+      padding-left: initial;
+    }
+
+    .hero-container {
+      align-items: initial;
+      grid-template-rows: max-content 30% max-content;
+      grid-template-columns: initial;
+    }
+
+    .hero-content {
+      grid-column: initial;
+      grid-row: 1;
+      padding-left: 5vw;
+      align-self: initial;
+    }
+
+    .hero__header {
+      font-size: initial;
+    }
+
+    .hero__text {
+      font-size: initial;
+    }
+
+    .hero__gif {
+      grid-column: initial;
+      grid-row: 3;
+    }
+
+    .btn--download {
+      display: none; /* Hide the download button on mobile */
+    }
+
+    .steps-title {
+      padding: 0 15%;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      padding: 3% 15%;
+    }
+
+    .step {
+      padding: 5% 25%;
+    }
+
+    .get-updates {
+      display: grid;
+      grid-template-columns: initial;
+      grid-template-rows: max-content max-content;
+      align-items: center;
+      justify-content: center;
+      margin: 5rem 0;
+    }
+
+    .slack {
+      height: initial;
+      grid-column: initial;
+    }
+
+    .newsletter {
+      height: initial;
+      grid-column: initial;
+    }
+  }
+}
