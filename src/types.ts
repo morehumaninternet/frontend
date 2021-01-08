@@ -162,21 +162,21 @@ type TourStep = {
   attachTo?: {
     element: string
     on:
-      | 'auto'
-      | 'auto-start'
-      | 'auto-end'
-      | 'top'
-      | 'top-start'
-      | 'top-end'
-      | 'bottom'
-      | 'bottom-start'
-      | 'bottom-end'
-      | 'right'
-      | 'right-start'
-      | 'right-end'
-      | 'left'
-      | 'left-start'
-      | 'left-end'
+    | 'auto'
+    | 'auto-start'
+    | 'auto-end'
+    | 'top'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'right'
+    | 'right-start'
+    | 'right-end'
+    | 'left'
+    | 'left-start'
+    | 'left-end'
   }
   text?: readonly string[]
   when?: {
@@ -198,3 +198,9 @@ type TourArgs = {
 
 type Availability = 'signup' | 'volunteer'
 type ThankYouFor = 'feedback' | Availability
+
+type Link = {
+  href: string,
+  ariaLabel: string,
+  icon: JSX.Element
+}
