@@ -6,14 +6,14 @@ import Accordion from './accordion'
 import GetUpdates from './get-updates'
 
 const RoarPage = (): JSX.Element => {
-    return (
-        <Layout>
-            <Introduction />
-            <Steps />
-            <Accordion />
-            <GetUpdates />
-        </Layout>
-    )
+  return (
+    <Layout>
+      <Introduction />
+      <Steps />
+      <Accordion />
+      <GetUpdates />
+    </Layout>
+  )
 }
 
 export default RoarPage

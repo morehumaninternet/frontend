@@ -4,47 +4,45 @@ import { BuyMeACoffeeIcon, EmailIcon, GithubIcon, LinkedInIcon, TwitterIcon } fr
 import SocialLinks from './social-links'
 
 const socialLinkData: ReadonlyArray<Link> = [
-    {
-        href: 'https://github.com/morehumaninternet',
-        ariaLabel: 'Github',
-        icon: <GithubIcon />,
-    },
-    {
-        href: 'https://twitter.com/morehumaninter1',
-        ariaLabel: 'Twitter',
-        icon: <TwitterIcon />
-    },
-    {
-        href: 'https://www.linkedin.com/company/more-human-internet/',
-        ariaLabel: 'LinkedIn',
-        icon: <LinkedInIcon />
-    },
-    {
-        href: 'https://www.buymeacoffee.com/morehumaninter',
-        ariaLabel: 'Buy Me A Coffee',
-        icon: <BuyMeACoffeeIcon />
-    },
-    {
-        href: 'mailto:info@morehumaninternet.org',
-        ariaLabel: 'Email',
-        icon: <EmailIcon />
-    },
+  {
+    href: 'https://github.com/morehumaninternet',
+    ariaLabel: 'Github',
+    icon: <GithubIcon />,
+  },
+  {
+    href: 'https://twitter.com/morehumaninter1',
+    ariaLabel: 'Twitter',
+    icon: <TwitterIcon />,
+  },
+  {
+    href: 'https://www.linkedin.com/company/more-human-internet/',
+    ariaLabel: 'LinkedIn',
+    icon: <LinkedInIcon />,
+  },
+  {
+    href: 'https://www.buymeacoffee.com/morehumaninter',
+    ariaLabel: 'Buy Me A Coffee',
+    icon: <BuyMeACoffeeIcon />,
+  },
+  {
+    href: 'mailto:info@morehumaninternet.org',
+    ariaLabel: 'Email',
+    icon: <EmailIcon />,
+  },
 ]
 
 const Footer = (): JSX.Element => {
-    return (
-        <footer>
-            <BuiltWith />
-            <div className="footer-banner">
-                <div className="footer-links__container">
-                    <SocialLinks
-                        links={socialLinkData}
-                    />
-                </div>
-                <p className="copyright">© More Human Internet Foundation 2020, All rights reserved</p>
-            </div>
-        </footer>
-    )
+  return (
+    <footer>
+      <BuiltWith />
+      <div className="footer-banner">
+        <div className="footer-links__container">
+          <SocialLinks links={socialLinkData} />
+        </div>
+        <p className="copyright">© More Human Internet Foundation 2020, All rights reserved</p>
+      </div>
+    </footer>
+  )
 }
 
 export default Footer
