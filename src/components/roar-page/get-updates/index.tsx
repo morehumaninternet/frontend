@@ -48,12 +48,11 @@ const GetUpdates = (): JSX.Element => {
     <section className="get-updates">
       <a
         className="mhi-button slack"
-        target="_blank"
         rel="noopener noreferrer"
         href="https://join.slack.com/t/morehumaninternet/shared_invite/zt-kkbdraz8-XT5~cViVQTJlzaklWgj7Dg"
       >
         <SlackIcon />
-        <p className="slack__text">Join our Slack channel</p>
+        <span className="slack__text">Join our Slack channel</span>
       </a>
       <div className="newsletter">
         {!result ? (

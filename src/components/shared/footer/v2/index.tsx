@@ -33,7 +33,7 @@ const socialLinkData: ReadonlyArray<Link> = [
 
 const Footer = (): JSX.Element => {
   return (
-    <footer>
+    <footer className="v2">
       <BuiltWith />
       <div className="footer-banner">
         <div className="footer-links__container">
