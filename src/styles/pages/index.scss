@@ -7,6 +7,12 @@ $standard-margin: 25px;
 }
 
 .layout.landing-page {
+  header.layout-new-header {
+    a[href="/"] {
+      margin-top: -12px;
+    }
+  }
+
   > main {
     > .sky {
       display: grid;

@@ -1,8 +1,25 @@
+/*
+  Returns a header and associated objects/functions with the following capabilities:
+    1. Links that can scroll to various internal sections. The caller must then use the
+       returned `internalSectionRefs` as ref attributes in the corresponding element
+    2. The css variable corresponding to blue/white is set so that the logo and links
+       fade from white to blue as you scroll past a provided fadeAtRef.
+       See src/styles/components/header.scss
+    3. A makeAndTrackRef function is returned so that elements will fade out from full
+       opacity to zero opacity as they move toward the header. The caller must add a
+       ref attribute as in ref={makeAndTrackRef()} for any element where this effect
+       is desired.
+*/
+
+// tslint:disable:no-expression-statement
 import React from 'react'
+import { forEach } from 'lodash'
+// @ts-ignore
+import { Link } from 'gatsby'
 
 const RoarLogo = (): JSX.Element => {
   return (
-    <svg width="164" height="60" viewBox="0 0 164 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className="roar-logo" viewBox="0 0 164 60" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="Roar! Logo">
         <path
           id="!"
@@ -43,14 +60,150 @@ const RoarLogo = (): JSX.Element => {
   )
 }
 
-const Header = (): JSX.Element => {
-  return (
-    <header>
-      <a href="/" className="home-link">
-        <RoarLogo />
-      </a>
-    </header>
-  )
+type UseHeaderProps<Section extends string> = {
+  location: Location
+  internalSections: readonly Section[]
+  otherLinks: readonly JSX.Element[]
 }
 
-export default Header
+type SectionRefs<Section extends string> = {
+  [section in Section]: React.MutableRefObject<any>
+}
+
+type UseHeaderReturn<Section extends string> = {
+  header: JSX.Element
+  internalSectionRefs: SectionRefs<Section>
+  makeAndTrackRef(): React.MutableRefObject<any>
+}
+
+export default function useHeader<Section extends string>({
+  location,
+  internalSections,
+  otherLinks,
+}: UseHeaderProps<Section>): UseHeaderReturn<Section | 'hero'> {
+  const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
+
+  const makeAndTrackRef = (): React.MutableRefObject<any> => {
+    const ref = React.useRef()
+    refsToTrack.push(ref as any)
+    return ref as any
+  }
+
+  const internalSectionRefs: SectionRefs<Section | 'hero'> = internalSections.reduce(
+    (refs, section) => ({
+      ...refs,
+      [section]: React.useRef<HTMLElement>(),
+    }),
+    {
+      hero: React.useRef<any>()
+    } as any
+  )
+
+  const internalLinkRefs: SectionRefs<Section | 'hero'> = internalSections.reduce(
+    (refs, section) => ({
+      ...refs,
+      [section]: React.useRef<HTMLElement>(),
+    }),
+    {
+      hero: React.useRef<any>()
+    } as any
+  )
+
+  const headerRef = React.useRef<HTMLDivElement>()
+
+  React.useEffect(
+    () => {
+      const headerElement = headerRef.current!
+
+      let headerIsFixed = getComputedStyle(headerElement).position === 'fixed' // tslint:disable-line:no-let
+
+      function onScroll(): void {
+        if (!headerIsFixed) return
+
+        const headerBottom = headerElement.getBoundingClientRect().bottom
+
+        refsToTrack.forEach(ref => {
+          if (!ref.current) return
+          const rect = ref.current.getBoundingClientRect()
+          if (!rect.height && !rect.width) return
+          const elementTop = rect.top
+          const elementDistance = elementTop - headerBottom
+          const elementOpacity = Math.max(0, Math.min(1, (elementDistance + 10) / 100))
+          ref.current.style.opacity = String(elementOpacity)
+        })
+
+        const screenMidpoint = screen.availHeight / 2
+
+        const currentSection = Object.keys(internalSectionRefs).find((section: Section) => {
+          const ref = internalSectionRefs[section]
+          const { top, bottom } = ref.current!.getBoundingClientRect()
+          return top <= screenMidpoint && bottom >= screenMidpoint
+        })!
+
+        // If there is no current section, leave whatever link is already active as active
+        if (currentSection) {
+          forEach(internalLinkRefs, (ref, key) => {
+            if (key === currentSection) {
+              ref.current!.classList.add('active')
+            } else {
+              ref.current!.classList.remove('active')
+            }
+          })
+        }
+      }
+
+      function onResize(): void {
+        headerIsFixed = getComputedStyle(headerElement).position === 'fixed'
+        onScroll()
+      }
+
+      onScroll()
+      addEventListener('scroll', onScroll, { passive: true })
+      addEventListener('resize', onResize)
+
+      return () => {
+        removeEventListener('scroll', onScroll)
+        removeEventListener('resize', onResize)
+      }
+    },
+    refsToTrack.map(ref => ref.current)
+  )
+
+  React.useEffect(() => {
+    const hash = location.hash.slice(1)
+    if (hash && internalSections.includes(hash as any)) {
+      // Not sure why this requires a timeout, but it seems to
+      setTimeout(() => internalSectionRefs[hash as Section].current.scrollIntoView())
+    }
+  }, [location.hash])
+
+  const internalLinks = internalSections.map(section => (
+    <a
+      key={section}
+      className={`hide-on-mobile internal-link umami--click--nav-bar-${section}`}
+      ref={internalLinkRefs[section] as any}
+      onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
+    >
+      {section}
+    </a>
+  ))
+
+  const links = internalLinks.concat(otherLinks)
+
+  const header = (
+    <header className="layout-new-header" ref={headerRef as any}>
+      <Link ref={internalLinkRefs.hero} key="MHI-logo" className="roar-home active" to="/roar" aria-label="logo">
+        <RoarLogo />
+      </Link>
+      <div className="other-links">
+        {links}
+      </div>
+    </header>
+  )
+
+  return {
+    header,
+    makeAndTrackRef,
+    internalSectionRefs,
+  }
+}
