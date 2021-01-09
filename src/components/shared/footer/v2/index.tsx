@@ -34,12 +34,14 @@ const socialLinkData: ReadonlyArray<Link> = [
 const Footer = (): JSX.Element => {
   return (
     <footer className="v2">
-      <BuiltWith />
-      <div className="footer-banner">
-        <div className="footer-links__container">
-          <SocialLinks links={socialLinkData} />
-        </div>
-        <p className="copyright">© More Human Internet Foundation 2020, All rights reserved</p>
+      <div className="mhi-footer">
+        <BuiltWith />
+        <div className="footer-banner">
+          <div className="footer-links__container">
+            <SocialLinks links={socialLinkData} />
+          </div>
+          <p className="copyright">© More Human Internet Foundation 2020, All rights reserved</p>
+      </div>
       </div>
     </footer>
   )
