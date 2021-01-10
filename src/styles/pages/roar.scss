@@ -23,11 +23,15 @@
       @include button-fonts;
       color: $human-pink;
       cursor: pointer;
+
+      @media (max-width: 800px) {
+        display: none;
+      }
     }
 
     .other-links {
       display: flex;
-      gap: 28px;
+      gap: 24px;
       align-items: center;
     }
   }
@@ -100,10 +104,10 @@
     text-align: right;
   }
 
-  /* media query  */
+  /* media query */
   @media (max-width: 700px) {
-    .logo {
-      padding-left: initial;
+    header {
+      justify-content: center;
     }
 
     .btn--download {

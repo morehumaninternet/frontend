@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 import SlackIcon from './slack-icon'
 
-const GetUpdates = (): JSX.Element => {
+
+
+const GetUpdates = forwardRef((_, ref): JSX.Element => {
   const [email, setEmail] = useState('')
   const [result, setResult] = useState('')
 
@@ -41,7 +43,7 @@ const GetUpdates = (): JSX.Element => {
   }
 
   return (
-    <section className="get-updates">
+    <section className="get-updates" ref={ref as any}>
       <a
         className="mhi-button slack"
         rel="noopener noreferrer"
@@ -67,6 +69,6 @@ const GetUpdates = (): JSX.Element => {
       </div>
     </section>
   )
-}
+})
 
 export default GetUpdates

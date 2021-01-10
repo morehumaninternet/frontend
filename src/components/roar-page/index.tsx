@@ -6,19 +6,7 @@ import GetUpdates from './get-updates'
 
 
 const RoarPage = ({ location }: PageProps): JSX.Element => {
-  const { header, internalSectionRefs, makeAndTrackRef } = useHeader({
-    location,
-    internalSections: ['How it works', 'Learn more'],
-    otherLinks: [
-      <a
-        className="mhi-button btn btn--download"
-        rel="noopener noreferrer"
-        href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
-      >
-        Install the free extension
-      </a>
-    ],
-  })
+  const { header, internalSectionRefs } = useHeader(location)
 
   return (
     <Layout additionalClassNames="roar" footerKind="v2" header={header}>
@@ -29,7 +17,7 @@ const RoarPage = ({ location }: PageProps): JSX.Element => {
       <div ref={internalSectionRefs['Learn more']} style={{ backgroundColor: 'purple', width: '100%', height: '100vh' }}>
 
       </div>
-      <GetUpdates />
+      <GetUpdates ref={internalSectionRefs['Community']} />
     </Layout>
   )
 }

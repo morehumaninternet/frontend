@@ -95,8 +95,9 @@ header.layout-new-header {
     text-decoration: none;
     transition: border-bottom 0.3s;
 
+    border-bottom: 2px transparent solid;
     &.active:not(.roar-home) {
-      border-bottom: 2px $human-pink solid;
+      border-color: $human-pink;
     }
   }
 }
