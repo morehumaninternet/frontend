@@ -15,6 +15,7 @@
     "test": "mocha -r ts-node/register -r src/types.ts -r src/__tests/setup.ts src/**/*.test.ts*"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.27",
     "@material-ui/core": "4.10.2",
     "@material-ui/icons": "4.9.1",
     "@material-ui/styles": "4.10.0",
