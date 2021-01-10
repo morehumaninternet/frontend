@@ -1,5 +1,4 @@
 .layout.roar {
-
   /* footer styles  */
   footer {
     font-size: 0.8em;
@@ -52,17 +51,27 @@
     align-items: center;
     color: $human-blue;
 
-    svg {
+    > h4 > svg {
       height: 17px;
       position: relative;
       padding: 1px;
       top: 5px;
+    }
 
-      .top-right { fill: $human-blue; }
-      .more { fill: $human-blue; }
-      .internet { fill: $human-blue; }
-      .bottom-left { fill: $human-pink; }
-      .human { fill: $human-pink; }
+    .top-right {
+      fill: $human-blue;
+    }
+    .more {
+      fill: $human-blue;
+    }
+    .internet {
+      fill: $human-blue;
+    }
+    .bottom-left {
+      fill: $human-pink;
+    }
+    .human {
+      fill: $human-pink;
     }
   }
 
