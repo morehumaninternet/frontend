@@ -65,8 +65,8 @@ npm run setup
 
 5. **Integrate with Mailchimp**
 
-Roar's landing page includes a form to subscribe to our newsletter. If you want to test this feature, follow these steps:
-5.1 Create a Mailchimp account. If you need More Human Internet's account details, please contact Will Weiss or Shachar Langer.
+Roar's landing page includes a form to subscribe to our newsletter. If you want to test this feature, follow these steps:  
+5.1 Create a Mailchimp account. If you need More Human Internet's account details, please contact Will Weiss or Shachar Langer.  
 5.2 Create a `.env.development` file in the root directory of the project with the following environment variables:
 
 ```shell
