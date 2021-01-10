@@ -95,9 +95,11 @@ header.layout-new-header {
     text-decoration: none;
     transition: border-bottom 0.3s;
 
-    border-bottom: 2px transparent solid;
-    &.active:not(.roar-home) {
-      border-color: $human-pink;
+    &:not(.roar-home) {
+      border-bottom: 2px transparent solid;
+      &.active {
+        border-color: $human-pink;
+      }
     }
   }
 }

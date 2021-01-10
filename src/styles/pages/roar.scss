@@ -12,10 +12,14 @@
       margin: 25px 0;
     }
 
-    a.roar-home:not(.active) {
-      svg.roar-logo {
-        height: 40px;
-        margin: 15px 0;
+    a.roar-home {
+      display: flex;
+
+      &:not(.active) {
+        svg.roar-logo {
+          height: 40px;
+          margin: 15px 0;
+        }
       }
     }
 
@@ -106,14 +110,6 @@
 
   /* media query */
   @media (max-width: 700px) {
-    header {
-      justify-content: center;
-    }
-
-    .btn--download {
-      display: none; /* Hide the download button on mobile */
-    }
-
     .get-updates {
       display: grid;
       grid-template-columns: initial;
@@ -131,6 +127,17 @@
     .newsletter {
       height: initial;
       grid-column: initial;
+    }
+  }
+
+  @media (max-width: 500px) {
+    header {
+      padding: 0 10px;
+      svg.roar-logo {
+        height: 50px;
+        transition: all 0.3s;
+        margin: 10px 0;
+      }
     }
   }
 }

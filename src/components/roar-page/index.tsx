@@ -6,7 +6,8 @@ import GetUpdates from './get-updates'
 
 
 const RoarPage = ({ location }: PageProps): JSX.Element => {
-  const { header, internalSectionRefs } = useHeader(location)
+  const navigator = typeof window === 'undefined' ? undefined : window.navigator
+  const { header, internalSectionRefs } = useHeader(location, navigator)
 
   return (
     <Layout additionalClassNames="roar" footerKind="v2" header={header}>

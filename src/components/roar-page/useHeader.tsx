@@ -11,6 +11,7 @@ import React from 'react'
 import { forEach, kebabCase, map } from 'lodash'
 // @ts-ignore
 import { Link } from 'gatsby'
+import { UAParser } from 'ua-parser-js'
 import RoarLogo from './roar-logo'
 
 
@@ -25,7 +26,9 @@ type UseHeaderReturn = {
   internalSectionRefs: SectionRefs
 }
 
-export default function useHeader(location: Location): UseHeaderReturn {
+export default function useHeader(location: Location, navigator?: Navigator): UseHeaderReturn {
+
+  const [disabledReason, setDisabledReason] = React.useState<null | string>(null)
 
   // Refs to each of the various sections, to be used by the caller
   const internalSectionRefs: SectionRefs = {
@@ -92,6 +95,17 @@ export default function useHeader(location: Location): UseHeaderReturn {
     []
   )
 
+  // The extension is only available for Chrome on Desktop
+  React.useEffect(() => {
+    if (!navigator) return
+    const parsed = new UAParser().setUA(navigator.userAgent).getResult()
+    if (parsed.device.type) {
+      setDisabledReason('Available on Desktop')
+    } else if (parsed.browser.name !== 'Chrome') {
+      setDisabledReason('Available for Chrome')
+    }
+  }, [navigator?.userAgent])
+
   // Scroll to the relevant section of the page when the hash changes
   // e.g., /roar#learn-more scrolls to the learn more section
   React.useEffect(() => {
@@ -122,13 +136,22 @@ export default function useHeader(location: Location): UseHeaderReturn {
             {section}
           </a>
         ))}
-        <a
-          className="mhi-button btn btn--download"
-          rel="noopener noreferrer"
-          href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
-        >
-          Install the free extension
-        </a>
+        {disabledReason ? (
+          <button
+            className="mhi-button btn btn--download"
+            disabled
+          >
+            {disabledReason}
+          </button>
+        ) : (
+          <a
+            className="mhi-button btn btn--download"
+            rel="noopener noreferrer"
+            href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
+          >
+            Install the free extension
+          </a>
+        )}
       </div>
     </header>
   )
