@@ -1,8 +1,9 @@
 import React from 'react'
 
-const RoarLogo = (): JSX.Element => {
+
+export default (): JSX.Element => {
   return (
-    <svg width="164" height="60" viewBox="0 0 164 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className="roar-logo" viewBox="0 0 164 60" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="Roar! Logo">
         <path
           id="!"
@@ -42,15 +43,3 @@ const RoarLogo = (): JSX.Element => {
     </svg>
   )
 }
-
-const Header = (): JSX.Element => {
-  return (
-    <header>
-      <a href="/" className="home-link">
-        <RoarLogo />
-      </a>
-    </header>
-  )
-}
-
-export default Header

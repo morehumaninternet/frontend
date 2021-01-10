@@ -4,9 +4,9 @@ $header-height: 100px;
   --logo-color-blue-white: white;
 }
 
-@mixin header-width($prop) {
-  #{$prop}-left: 100px;
-  #{$prop}-right: 100px;
+@mixin header-width($prop: padding, $amount: 100px) {
+  #{$prop}-left: $amount;
+  #{$prop}-right: $amount;
 
   @media (max-width: 800px) {
     #{$prop}-left: $nonhero-margin;
@@ -25,7 +25,7 @@ header.layout-header {
   padding-top: $nonhero-margin;
   padding-bottom: $nonhero-margin;
 
-  @include header-width(padding);
+  @include header-width();
 
   @media (max-width: $breakpoint-header-scrolls) {
     position: absolute;
@@ -89,18 +89,17 @@ header.layout-new-header {
     }
   }
 
-  > a {
+  a {
     color: var(--logo-color-blue-white);
     cursor: pointer;
     text-decoration: none;
     transition: border-bottom 0.3s;
 
-    &.active {
-      border-bottom: 2px $human-pink solid;
-    }
-
-    &[href="/"] {
-      margin-top: -12px;
+    &:not(.roar-home) {
+      border-bottom: 2px transparent solid;
+      &.active {
+        border-color: $human-pink;
+      }
     }
   }
 }
