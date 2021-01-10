@@ -62,7 +62,7 @@ const GetUpdates = (): JSX.Element => {
             <p className="newsletter__promise">* We hate spam and won’t ever share your email with anyone else</p>
           </>
         ) : (
-          <p className="newsletter__result">{result}</p>
+          <span className="newsletter__result">{result}</span>
         )}
       </div>
     </section>
