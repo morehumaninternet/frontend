@@ -6,42 +6,38 @@ const GetUpdates = (): JSX.Element => {
   const [result, setResult] = useState('')
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // tslint:disable-next-line: no-expression-statement
+    // tslint:disable: no-expression-statement
     e.preventDefault()
 
-    // TODO - implement /subscribe in a Netlify function
-    // let response, result
-    // try {
-    //     response = await fetch("/subscribe", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({ email })
-    //     })
-    // } catch (error) {
-    //     // Network failure or request failed to complete
-    //     console.error({ error })
-    // }
+    // tslint:disable-next-line: no-let
+    let response, result
 
-    // if (response && response.ok) {
-    //     result = "✔ Subscribed. Please check your email for a confirmation link."
-    // } else {
-    //     // Server returned 4xx or 5xx
-    //     result = "✖ Something went wrong. "
-    //     if (response && response.status === 400) {
-    //         result += "You are already subscribed."
-    //     } else {
-    //         result += "Please wait a few minutes and try again."
-    //     }
-    // }
+    response = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    })
 
-    // tslint:disable-next-line: no-expression-statement
-    setResult('✖ Something went wrong.')
+    if (response && response.ok) {
+      result = '✔ Subscribed. Please check your email for a confirmation link.'
+    } else {
+      // Server returned 4xx or 5xx
+      result = '✖ Something went wrong. '
+      if (response && response.status === 400) {
+        result += 'You are already subscribed.'
+      } else {
+        result += 'Please wait a few minutes and try again.'
+      }
+    }
+
+    setResult(result)
 
     // Clear the results after 5 seconds
-    // tslint:disable-next-line: no-expression-statement
     setTimeout(() => setResult(''), 5000)
+
+    // tslint:enable: no-expression-statement
   }
 
   return (
@@ -66,7 +62,7 @@ const GetUpdates = (): JSX.Element => {
             <p className="newsletter__promise">* We hate spam and won’t ever share your email with anyone else</p>
           </>
         ) : (
-          <p className="newsletter__result">{result}</p>
+          <span className="newsletter__result">{result}</span>
         )}
       </div>
     </section>
