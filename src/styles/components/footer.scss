@@ -3,8 +3,6 @@ footer .mhi-footer {
   flex-direction: column;
   align-items: center;
   font-size: 0.77777em;
-  // padding-left: $nonhero-margin;
-  // padding-right: $nonhero-margin;
   background-color: #f9f9f9;
 
   padding-top: 68px;
@@ -21,19 +19,17 @@ footer .mhi-footer {
     background-color: $human-blue;
     width: 100%;
     margin-top: 5rem;
-    padding: 0 1rem;
 
     > .footer-links__container {
       display: flex;
       justify-content: center;
-      padding: 0.5rem 0;
 
       > .footer-links {
+        height: 3.5rem;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        // margin-bottom: 20px;
 
         @include onmobile {
           min-width: 100%;
