@@ -22,65 +22,85 @@ This repository houses the frontend code for [morehumaninternet.org](https://mor
 This project uses the [Gatsby](https://github.com/gatsbyjs/gatsby) framework using [Typescript](https://www.typescriptlang.org/), [React](https://reactjs.org/), and [Sass](https://sass-lang.com/). We aren't using much of Gatsby's GraphQL capabilities and don't intend to.
 
 1. **Install**
-  ```shell
-  git clone git@github.com:morehumaninternet/frontend.git
-  npm install
-  ```
+
+```shell
+git clone git@github.com:morehumaninternet/frontend.git
+npm install
+```
 
 2. **Start developing**
-  ```shell
-  npm run develop
-  ```
+
+If you want to integrate with Algolia and Mailchimp jump to step 4. Otherwise run:
+
+```shell
+npm run develop
+```
 
 3. **Open the source code and start editing**
 
-  Your site is now running at `http://localhost:8000`
+Your site is now running at `http://localhost:8000`
 
 4. **Integrate with Algolia**
 
-  Clicking on the bottom-right corner of the landing page will open a widget. The user can post new issues or search for existing issues. Currently, the issues are saved in `localStorage` or [Algolia](https://www.algolia.com/). To work with Algolia, please follow these steps:
-  4.1 Create an Algolia account and a new index.
-  4.2 Create a `.env.development` file in the root directory of the project with the following environment variables:
+Clicking on the bottom-right corner of the landing page will open a widget. The user can post new issues or search for existing issues. Currently, the issues are saved in `localStorage` or [Algolia](https://www.algolia.com/). To work with Algolia, please follow these steps:
+4.1 Create an Algolia account and a new index.
+4.2 Create a `.env.development` file in the root directory of the project with the following environment variables:
 
-  ```shell
-  GATSBY_ALGOLIA_APP_ID=
-  GATSBY_ALGOLIA_SEARCH_ONLY_API_KEY=
-  GATSBY_ALGOLIA_INDEX_NAME=
-  ALGOLIA_API_KEY=
-  ```
+```shell
+GATSBY_ALGOLIA_APP_ID=
+GATSBY_ALGOLIA_SEARCH_ONLY_API_KEY=
+GATSBY_ALGOLIA_INDEX_NAME=
+ALGOLIA_API_KEY=
+```
 
-  You can find the values of these variables in your Algolia account under "API Keys" on the left.
-  > :warning: Do not commit or share ALGOLIA_API_KEY (Admin API Key) with anyone!
+You can find the values of these variables in your Algolia account under "API Keys" on the left.
 
-  4.3 Set your Algolia settings by running:
+> :warning: Do not commit or share ALGOLIA_API_KEY (Admin API Key) with anyone!
 
-  ```shell
-  npm run setup
-  ```
+4.3 Set your Algolia settings by running:
 
-  4.4 Run:
+```shell
+npm run setup
+```
 
-  ```shell
-  netlify dev
-  ```
+5. **Integrate with Mailchimp**
 
-  Your site is now running at `http://localhost:8888`
+Roar's landing page includes a form to subscribe to our newsletter. If you want to test this feature, follow these steps:
+5.1 Create a Mailchimp account. If you need More Human Internet's account details, please contact Will Weiss or Shachar Langer.
+5.2 Create a `.env.development` file in the root directory of the project with the following environment variables:
+
+```shell
+MAILCHIMP_LIST_ID=
+MAILCHIMP_API_KEY=
+MAILCHIMP_SERVER_PREFIX=
+```
+
+> :warning: Do not commit or share MAILCHIMP_API_KEY (Admin API Key) with anyone!
+
+6. **Start developing with Netlify functions**
+
+```shell
+npm install netlify-cli -g
+netlify dev
+```
+
+Your site is now running at `http://localhost:8888`
 
 ## 💅 Code Style
 
 ### Typescript
 
-  We favor functional programming and immutability within reason. This means prefering `const` to `let` and never mutating arguments passed into a function, but also means we simply use `null | T` to represent data of type `Maybe<T>`.
+We favor functional programming and immutability within reason. This means prefering `const` to `let` and never mutating arguments passed into a function, but also means we simply use `null | T` to represent data of type `Maybe<T>`.
 
-  The build process runs `npm run lint` to enforce the rules in [tslint.json](tslint.json) and will fail the build with any errors, so be sure to add this executable script at `.git/hooks/pre-commit`.
+The build process runs `npm run lint` to enforce the rules in [tslint.json](tslint.json) and will fail the build with any errors, so be sure to add this executable script at `.git/hooks/pre-commit`.
 
-  ```shell
-  #!/bin/sh
+```shell
+#!/bin/sh
 
-  npm run format && npm run lint
-  ```
+npm run format && npm run lint
+```
 
-  Our design system could use some more formalization, but we do enforce that all styles are declared in .scss rather than other JS-in-CSS approaches or inline styles. The thinking there is that this enforces good practices around writing clean markup (especially around mobile), helps separate business logic from styling concerns, and would make theming and/or custom styles simpler to implement. All `<div>`s should be given a `className` reflecting what they are. Utilize Sass's ability to nest styles in `{ ... }` blocks and use the `>` operator so that the markup mirrors the associated styles.
+Our design system could use some more formalization, but we do enforce that all styles are declared in .scss rather than other JS-in-CSS approaches or inline styles. The thinking there is that this enforces good practices around writing clean markup (especially around mobile), helps separate business logic from styling concerns, and would make theming and/or custom styles simpler to implement. All `<div>`s should be given a `className` reflecting what they are. Utilize Sass's ability to nest styles in `{ ... }` blocks and use the `>` operator so that the markup mirrors the associated styles.
 
 ## 🧐 What's inside?
 
@@ -116,20 +136,20 @@ A quick look at the top-level files and directories in this project.
        ├── types.ts
     ├── static
 
-* **`/functions`** "Serverless" functions executed by netlify go here. [functions/postIssue.js](functions/postIssue.js) posts an issue to Algolia.
-* **`/i18n`** Translations go here. Support for Spanish and other languages is planned, but not fully implemented yet.
-* **`/src`** Frontend code goes here
-  * **`/src/__tests`** Unit tests run by mocha. Tests both `/src` & `/functions`.
-  * **`/src/animations`** Reusable animations requiring javascript.
-  * **`/src/clients`** Modules that connect with the outside world. [src/clients/mockApi.ts](src/clients/mockApi.ts) is used by the [demo](https://morehumaninternet.org/demo) and representing the functionality the [API](github.com/morehumaninternet/api) should support. [src/clients/api.ts](src/clients/api.ts) is currently unused, but interacts with algolia to search issues and with the serverless function on the backend to post issues.
-  * **`/src/components`** React components that aren't whole pages go here. If the components are page-specific, they go in their corresponding folder e.g., `demo-page`, `issue-page`, etc. Shared components go in `shared`. The `widget` is used in the demo. On our roadmap, we plan on building a cross platform widget, to be written [here](https://github.com/morehumaninternet/widget), built separately from this frontend.
-  * **`/src/effects`** Reusable React hooks/effects
-  * **`/src/fonts`** Fonts go here. Be sure there's a file for each font-weight you are using. [/src/styles/shared/fonts.scss](/src/styles/shared/fonts.scss) can be used as a reference and would need to be updated accordingly.
-  * **`/src/pages`** Pages go here. Each file corresponds with a page at the same route, e.g. [demo.tsx](src/pages/demo.tsx) defines [morehumaninternet.org/demo](morehumaninternet.org/demo). Note that the convention is for any complicated pages to just point to a corresponding component in the page-specific directory in [src/components](src/components) e.g., [src/pages/issue.tsx](src/pages/issue.tsx) just points to [src/pages/issue.tsx](src/pages/issue.tsx).
-  * **`/src/styles`** Styles go here. Styles that are shared across pages go in `shared`. Styles that are specific to given to components go in `components`. Page layouts go in `pages`. `global.scss` imports the corresponding `_all.scss` file for each, so be sure to add the relevant import whenever you add a file.
-  * **`/src/utils`** Poor programming style, but functions that don't otherwise have a clear home.
-  * **`/src/types.ts`** Type definitions available across the project. Define any types that are used in multiple places here.
-* **`/static`** Any files to be included without modification. Note the direct inclusion of `trix.js` and `trix.css` to support the [trix](https://github.com/basecamp/trix) editor, used by the widget and the comment boxes.
+- **`/functions`** "Serverless" functions executed by netlify go here. [functions/postIssue.js](functions/postIssue.js) posts an issue to Algolia.
+- **`/i18n`** Translations go here. Support for Spanish and other languages is planned, but not fully implemented yet.
+- **`/src`** Frontend code goes here
+  - **`/src/__tests`** Unit tests run by mocha. Tests both `/src` & `/functions`.
+  - **`/src/animations`** Reusable animations requiring javascript.
+  - **`/src/clients`** Modules that connect with the outside world. [src/clients/mockApi.ts](src/clients/mockApi.ts) is used by the [demo](https://morehumaninternet.org/demo) and representing the functionality the [API](github.com/morehumaninternet/api) should support. [src/clients/api.ts](src/clients/api.ts) is currently unused, but interacts with algolia to search issues and with the serverless function on the backend to post issues.
+  - **`/src/components`** React components that aren't whole pages go here. If the components are page-specific, they go in their corresponding folder e.g., `demo-page`, `issue-page`, etc. Shared components go in `shared`. The `widget` is used in the demo. On our roadmap, we plan on building a cross platform widget, to be written [here](https://github.com/morehumaninternet/widget), built separately from this frontend.
+  - **`/src/effects`** Reusable React hooks/effects
+  - **`/src/fonts`** Fonts go here. Be sure there's a file for each font-weight you are using. [/src/styles/shared/fonts.scss](/src/styles/shared/fonts.scss) can be used as a reference and would need to be updated accordingly.
+  - **`/src/pages`** Pages go here. Each file corresponds with a page at the same route, e.g. [demo.tsx](src/pages/demo.tsx) defines [morehumaninternet.org/demo](morehumaninternet.org/demo). Note that the convention is for any complicated pages to just point to a corresponding component in the page-specific directory in [src/components](src/components) e.g., [src/pages/issue.tsx](src/pages/issue.tsx) just points to [src/pages/issue.tsx](src/pages/issue.tsx).
+  - **`/src/styles`** Styles go here. Styles that are shared across pages go in `shared`. Styles that are specific to given to components go in `components`. Page layouts go in `pages`. `global.scss` imports the corresponding `_all.scss` file for each, so be sure to add the relevant import whenever you add a file.
+  - **`/src/utils`** Poor programming style, but functions that don't otherwise have a clear home.
+  - **`/src/types.ts`** Type definitions available across the project. Define any types that are used in multiple places here.
+- **`/static`** Any files to be included without modification. Note the direct inclusion of `trix.js` and `trix.css` to support the [trix](https://github.com/basecamp/trix) editor, used by the widget and the comment boxes.
 
 ## 💫 Deploy
 
