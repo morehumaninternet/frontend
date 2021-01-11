@@ -89,13 +89,6 @@
 
     a.roar-home {
       display: flex;
-
-      &:not(.active) {
-        svg.roar-logo {
-          height: 40px;
-          margin: 15px 0;
-        }
-      }
     }
 
     a.internal-link {
@@ -112,6 +105,19 @@
       display: flex;
       gap: 24px;
       align-items: center;
+    }
+
+    &.shrink {
+      -webkit-box-shadow: 0px 0px 9px 3px rgba(41,41,41,.25);
+      -moz-box-shadow: 0px 0px 9px 3px rgba(41,41,41,.25);
+      box-shadow: 0px 0px 9px 3px rgba(41,41,41,.25);
+
+      a.roar-home {
+        svg.roar-logo {
+          height: 40px;
+          margin: 15px 0;
+        }
+      }
     }
   }
 

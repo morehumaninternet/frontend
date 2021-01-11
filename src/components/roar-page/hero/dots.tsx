@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Dots = (): JSX.Element => {
+const Dots = React.forwardRef((_, ref: React.MutableRefObject<any>): JSX.Element => {
   return (
-    <svg className="dots" viewBox="0 0 629 619">
+    <svg className="dots" viewBox="0 0 629 619" ref={ref}>
       <circle cx={278.5} cy={340.5} r={278.5} fill="#FA759E" />
       <circle cx={350.5} cy={278.5} r={278.5} fill="#164176" />
       <path
@@ -11,6 +11,6 @@ const Dots = (): JSX.Element => {
       />
     </svg>
   )
-}
+})
 
 export default Dots
