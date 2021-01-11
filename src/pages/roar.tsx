@@ -1,2 +1,2 @@
-import RoarPage from '../components/roar-page'
+import RoarPage from '../components/roar/landing-page'
 export default RoarPage
