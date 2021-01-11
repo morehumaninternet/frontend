@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 export default (): JSX.Element => {
   return (
     <svg className="roar-logo" viewBox="0 0 164 60" fill="none" xmlns="http://www.w3.org/2000/svg">
