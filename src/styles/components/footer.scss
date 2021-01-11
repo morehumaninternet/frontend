@@ -73,6 +73,17 @@ footer {
   }
 }
 
+/* privacy and tos section */
+
+.privacy-tos-section {
+  color: $human-blue;
+  padding-top: 10rem;
+
+  h3 {
+    padding: 1rem 0;
+  }
+}
+
 footer.mhi-footer {
   display: flex;
   flex-direction: column;
