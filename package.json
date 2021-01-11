@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "author": "Will Weiss <will.weiss1230@gmail.com>",
   "scripts": {
-    "setup": "npx ts-node scripts/setAlgoliaSettings.ts",
     "build": "gatsby build",
     "develop": "gatsby develop --host=0.0.0.0",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
@@ -20,7 +19,6 @@
     "@material-ui/icons": "4.9.1",
     "@material-ui/styles": "4.10.0",
     "ajv": "6.12.5",
-    "algoliasearch": "4.5.1",
     "axios": "0.19.2",
     "color": "3.1.2",
     "gatsby-plugin-umami": "0.1.2",

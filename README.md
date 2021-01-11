@@ -13,6 +13,12 @@ This repository houses the frontend code for [morehumaninternet.org](https://mor
 ## 🔗 Links
 
 - **[Landing Page](https://morehumaninternet.org)** - the current landing page for the site.
+- **[Roar Page](https://morehumaninternet.org/roar)** - promoting [Roar!](https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc?hl=en&authuser=0)
+
+### Semi-deprecated
+
+These pages are for a demo of an initial idea to market a widget for website maintainers. They are retained for posterity and because some of the ideas may be revisited.
+
 - **[Demo Page](https://morehumaninternet.org/demo)** - the start of the demo, with an example of a faulty checkout experience where more human internet could be useful. For this and all subsequent pages add `?noTour=true` as the query as in [morehumaninternet.org/demo?noTour=true](https://morehumaninternet.org/demo?noTour=true) to view the page by itself with no tour.
 - **[Issue Page](https://morehumaninternet.org/issue?site=goalco.com&id=7)** - a page for a specific issue, identified by the `site` and `id` in the query params. Change the `id` query parameter to another integer and the [mockApi](https://github.com/morehumaninternet/frontend/blob/production/src/clients/mockApi.ts) will generate a new issue for you. The [issue page with no tour](https://morehumaninternet.org/issue?site=goalco.com&id=9&noTour=1) has `noTour=1` as a query parameter.
 - **[Issues Page](https://morehumaninternet.org/issues?site=goalco.com)** - a page for all the issues of a given site, identified by the `site` query parameter. The [issues page with no tour](https://morehumaninternet.org/issue?site=goalco.com&noTour=1) has `noTour=1` as a query parameter.
@@ -30,7 +36,7 @@ npm install
 
 2. **Start developing**
 
-If you want to integrate with Algolia and Mailchimp jump to step 4. Otherwise run:
+If you want to integrate with Mailchimp jump to step 4. Otherwise run:
 
 ```shell
 npm run develop
@@ -40,33 +46,10 @@ npm run develop
 
 Your site is now running at `http://localhost:8000`
 
-4. **Integrate with Algolia**
+4. **Integrate with Mailchimp**
 
-Clicking on the bottom-right corner of the landing page will open a widget. The user can post new issues or search for existing issues. Currently, the issues are saved in `localStorage` or [Algolia](https://www.algolia.com/). To work with Algolia, please follow these steps:
-4.1 Create an Algolia account and a new index.
-4.2 Create a `.env.development` file in the root directory of the project with the following environment variables:
-
-```shell
-GATSBY_ALGOLIA_APP_ID=
-GATSBY_ALGOLIA_SEARCH_ONLY_API_KEY=
-GATSBY_ALGOLIA_INDEX_NAME=
-ALGOLIA_API_KEY=
-```
-
-You can find the values of these variables in your Algolia account under "API Keys" on the left.
-
-> :warning: Do not commit or share ALGOLIA_API_KEY (Admin API Key) with anyone!
-
-4.3 Set your Algolia settings by running:
-
-```shell
-npm run setup
-```
-
-5. **Integrate with Mailchimp**
-
-Roar's landing page includes a form to subscribe to our newsletter. If you want to test this feature, follow these steps:  
-5.1 Create a Mailchimp account. If you need More Human Internet's account details, please contact Will Weiss or Shachar Langer.  
+Roar's landing page includes a form to subscribe to our newsletter. If you want to test this feature, follow these steps:
+5.1 Create a Mailchimp account. If you need More Human Internet's account details, please contact Will Weiss or Shachar Langer.
 5.2 Create a `.env.development` file in the root directory of the project with the following environment variables:
 
 ```shell
@@ -126,6 +109,7 @@ A quick look at the top-level files and directories in this project.
           ├── index.tsx
           ├── issue.tsx
           ├── issues.tsx
+          ├── roar.tsx
           ├── thank-you.tsx
        ├── styles
           ├── components
@@ -136,16 +120,16 @@ A quick look at the top-level files and directories in this project.
        ├── types.ts
     ├── static
 
-- **`/functions`** "Serverless" functions executed by netlify go here. [functions/postIssue.js](functions/postIssue.js) posts an issue to Algolia.
+- **`/functions`** "Serverless" functions executed by netlify go here.
 - **`/i18n`** Translations go here. Support for Spanish and other languages is planned, but not fully implemented yet.
 - **`/src`** Frontend code goes here
   - **`/src/__tests`** Unit tests run by mocha. Tests both `/src` & `/functions`.
   - **`/src/animations`** Reusable animations requiring javascript.
-  - **`/src/clients`** Modules that connect with the outside world. [src/clients/mockApi.ts](src/clients/mockApi.ts) is used by the [demo](https://morehumaninternet.org/demo) and representing the functionality the [API](github.com/morehumaninternet/api) should support. [src/clients/api.ts](src/clients/api.ts) is currently unused, but interacts with algolia to search issues and with the serverless function on the backend to post issues.
+  - **`/src/clients`** Modules that connect with the outside world. [src/clients/mockApi.ts](src/clients/mockApi.ts) is used by the [demo](https://morehumaninternet.org/demo) and representing the functionality the [API](github.com/morehumaninternet/api) might support.
   - **`/src/components`** React components that aren't whole pages go here. If the components are page-specific, they go in their corresponding folder e.g., `demo-page`, `issue-page`, etc. Shared components go in `shared`. The `widget` is used in the demo. On our roadmap, we plan on building a cross platform widget, to be written [here](https://github.com/morehumaninternet/widget), built separately from this frontend.
   - **`/src/effects`** Reusable React hooks/effects
   - **`/src/fonts`** Fonts go here. Be sure there's a file for each font-weight you are using. [/src/styles/shared/fonts.scss](/src/styles/shared/fonts.scss) can be used as a reference and would need to be updated accordingly.
-  - **`/src/pages`** Pages go here. Each file corresponds with a page at the same route, e.g. [demo.tsx](src/pages/demo.tsx) defines [morehumaninternet.org/demo](morehumaninternet.org/demo). Note that the convention is for any complicated pages to just point to a corresponding component in the page-specific directory in [src/components](src/components) e.g., [src/pages/issue.tsx](src/pages/issue.tsx) just points to [src/pages/issue.tsx](src/pages/issue.tsx).
+  - **`/src/pages`** Pages go here. Each file corresponds with a page at the same route, e.g. [demo.tsx](src/pages/demo.tsx) defines [morehumaninternet.org/demo](morehumaninternet.org/demo). Note that the convention is for any complicated pages to just point to a corresponding component in the page-specific directory in [src/components](src/components) e.g., [src/pages/issue.tsx](src/pages/issue.tsx) just points to [src/components/issue-page.tsx](src/components/issue-page.tsx).
   - **`/src/styles`** Styles go here. Styles that are shared across pages go in `shared`. Styles that are specific to given to components go in `components`. Page layouts go in `pages`. `global.scss` imports the corresponding `_all.scss` file for each, so be sure to add the relevant import whenever you add a file.
   - **`/src/utils`** Poor programming style, but functions that don't otherwise have a clear home.
   - **`/src/types.ts`** Type definitions available across the project. Define any types that are used in multiple places here.
