@@ -106,7 +106,7 @@ export default function useHeader<Section extends string>({
         refsToTrack.forEach(ref => {
           if (!ref.current) return
           const rect = ref.current.getBoundingClientRect()
-          if (!rect.height && !rect.width) return
+          if (!rect.height || !rect.width) return
           const elementTop = rect.top
           const elementDistance = elementTop - headerBottom
           const elementOpacity = Math.max(0, Math.min(1, (elementDistance + 10) / 100))

@@ -23,6 +23,7 @@ type SectionRefs = {
 type UseHeaderReturn = {
   header: JSX.Element
   internalSectionRefs: SectionRefs
+  dotsRef: React.MutableRefObject<any>
 }
 
 export default function useHeader(location: Location, navigator?: Navigator): UseHeaderReturn {
@@ -44,6 +45,8 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
     Community: React.useRef<any>(),
   }
 
+  const dotsRef = React.useRef<any>()
+
   const headerRef = React.useRef<HTMLDivElement>()
 
   // Add/remove the active class depending on which section is scrolled to, only relevant if the header is fixed
@@ -52,8 +55,25 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
 
     let headerIsFixed = getComputedStyle(headerElement).position === 'fixed' // tslint:disable-line:no-let
 
+    let shrink = false // tslint:disable-line:no-let
+
     function onScroll(): void {
       if (!headerIsFixed) return
+
+      const headerBottom = headerElement.getBoundingClientRect().bottom
+
+      // Add/remove the shrink class to the header when the dots get close/move away
+      if (dotsRef.current) {
+        const dotsRect = dotsRef.current.getBoundingClientRect()
+        const dotsTop = dotsRect.top
+        const dotsDistance = dotsTop - headerBottom
+        shrink = shrink ? dotsDistance < 90 : dotsDistance < 50
+        if (shrink) {
+          headerElement.classList.add('shrink')
+        } else {
+          headerElement.classList.remove('shrink')
+        }
+      }
 
       const screenMidpoint = screen.availHeight / 2
 
@@ -150,5 +170,6 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
   return {
     header,
     internalSectionRefs,
+    dotsRef,
   }
 }
