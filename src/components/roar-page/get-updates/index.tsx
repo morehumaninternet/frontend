@@ -1,8 +1,6 @@
 import React, { forwardRef, useState } from 'react'
 import SlackIcon from './slack-icon'
 
-
-
 const GetUpdates = forwardRef((_, ref): JSX.Element => {
   const [email, setEmail] = useState('')
   const [result, setResult] = useState('')
@@ -59,16 +57,17 @@ const GetUpdates = forwardRef((_, ref): JSX.Element => {
               <input className="newsletter__email" type="email" placeholder="email" required value={email} onChange={e => setEmail(e.target.value)} />
               <button className="mhi-button newsletter__submit" type="submit">
                 Get updates
-              </button>
+                </button>
             </form>
             <p className="newsletter__promise">* We hate spam and won’t ever share your email with anyone else</p>
           </>
         ) : (
-          <span className="newsletter__result">{result}</span>
-        )}
+            <span className="newsletter__result">{result}</span>
+          )}
       </div>
     </section>
   )
-})
+}
+)
 
 export default GetUpdates

@@ -14,7 +14,6 @@ import { Link } from 'gatsby'
 import { UAParser } from 'ua-parser-js'
 import RoarLogo from './roar-logo'
 
-
 type Section = 'hero' | 'How it works' | 'Learn more' | 'Community'
 
 type SectionRefs = {
@@ -27,73 +26,69 @@ type UseHeaderReturn = {
 }
 
 export default function useHeader(location: Location, navigator?: Navigator): UseHeaderReturn {
-
   const [disabledReason, setDisabledReason] = React.useState<null | string>(null)
 
   // Refs to each of the various sections, to be used by the caller
   const internalSectionRefs: SectionRefs = {
-    'hero': React.useRef<any>(),
+    hero: React.useRef<any>(),
     'How it works': React.useRef<any>(),
     'Learn more': React.useRef<any>(),
-    'Community': React.useRef<any>(),
+    Community: React.useRef<any>(),
   }
 
   // Refs to each of the links
   const internalLinkRefs: SectionRefs = {
-    'hero': React.useRef<any>(),
+    hero: React.useRef<any>(),
     'How it works': React.useRef<any>(),
     'Learn more': React.useRef<any>(),
-    'Community': React.useRef<any>(),
+    Community: React.useRef<any>(),
   }
 
   const headerRef = React.useRef<HTMLDivElement>()
 
   // Add/remove the active class depending on which section is scrolled to, only relevant if the header is fixed
-  React.useEffect(
-    () => {
-      const headerElement = headerRef.current!
+  React.useEffect(() => {
+    const headerElement = headerRef.current!
 
-      let headerIsFixed = getComputedStyle(headerElement).position === 'fixed' // tslint:disable-line:no-let
+    let headerIsFixed = getComputedStyle(headerElement).position === 'fixed' // tslint:disable-line:no-let
 
-      function onScroll(): void {
-        if (!headerIsFixed) return
+    function onScroll(): void {
+      if (!headerIsFixed) return
 
-        const screenMidpoint = screen.availHeight / 2
+      const screenMidpoint = screen.availHeight / 2
 
-        const currentSection = Object.keys(internalSectionRefs).find((section: Section) => {
-          const ref = internalSectionRefs[section]
-          const { top, bottom } = ref.current!.getBoundingClientRect()
-          return top <= screenMidpoint && bottom >= screenMidpoint
-        })!
+      const currentSection = Object.keys(internalSectionRefs).find((section: Section) => {
+        const ref = internalSectionRefs[section]
+        const { top, bottom } = ref.current!.getBoundingClientRect()
+        return top <= screenMidpoint && bottom >= screenMidpoint
+      })!
 
-        // If there is no current section, leave whatever link is already active as active
-        if (currentSection) {
-          forEach(internalLinkRefs, (ref, key) => {
-            if (key === currentSection) {
-              ref.current!.classList.add('active')
-            } else {
-              ref.current!.classList.remove('active')
-            }
-          })
-        }
+      // If there is no current section, leave whatever link is already active as active
+      if (currentSection) {
+        forEach(internalLinkRefs, (ref, key) => {
+          if (key === currentSection) {
+            ref.current!.classList.add('active')
+          } else {
+            ref.current!.classList.remove('active')
+          }
+        })
       }
+    }
 
-      function onResize(): void {
-        headerIsFixed = getComputedStyle(headerElement).position === 'fixed'
-        onScroll()
-      }
-
+    function onResize(): void {
+      headerIsFixed = getComputedStyle(headerElement).position === 'fixed'
       onScroll()
-      addEventListener('scroll', onScroll, { passive: true })
-      addEventListener('resize', onResize)
+    }
 
-      return () => {
-        removeEventListener('scroll', onScroll)
-        removeEventListener('resize', onResize)
-      }
-    },
-    []
-  )
+    onScroll()
+    addEventListener('scroll', onScroll, { passive: true })
+    addEventListener('resize', onResize)
+
+    return () => {
+      removeEventListener('scroll', onScroll)
+      removeEventListener('resize', onResize)
+    }
+  }, [])
 
   // The extension is only available for Chrome on Desktop
   React.useEffect(() => {
@@ -118,7 +113,6 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
     }
   }, [location.hash])
 
-
   // The actual header
   const header = (
     <header className="layout-new-header" ref={headerRef as any}>
@@ -137,10 +131,7 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
           </a>
         ))}
         {disabledReason ? (
-          <button
-            className="mhi-button btn btn--download"
-            disabled
-          >
+          <button className="mhi-button btn btn--download" disabled>
             {disabledReason}
           </button>
         ) : (

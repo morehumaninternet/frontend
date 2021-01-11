@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dots2 = (): JSX.Element => {
+const Dots = (): JSX.Element => {
     return (
         <svg className="dots" viewBox="0 0 629 619"  >
             <circle cx={278.5} cy={340.5} r={278.5} fill="#FA759E" />
@@ -14,4 +14,4 @@ const Dots2 = (): JSX.Element => {
 }
 
 
-export default Dots2
+export default Dots
