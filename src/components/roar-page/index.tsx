@@ -3,6 +3,7 @@ import { Layout } from '../shared/layout'
 import useHeader from './useHeader'
 
 import GetUpdates from './get-updates'
+import Hero from './hero'
 
 
 const RoarPage = ({ location }: PageProps): JSX.Element => {
@@ -11,7 +12,7 @@ const RoarPage = ({ location }: PageProps): JSX.Element => {
 
   return (
     <Layout additionalClassNames="roar" footerKind="v2" header={header}>
-      <div ref={internalSectionRefs['hero']} style={{ backgroundColor: 'red', width: '100%', height: '100vh' }} />
+      <Hero ref={internalSectionRefs['hero']} />
       <div ref={internalSectionRefs['How it works']} style={{ backgroundColor: 'green', width: '100%', height: '100vh' }}>
 
       </div>
