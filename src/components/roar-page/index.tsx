@@ -7,11 +7,11 @@ import Hero from './hero'
 
 const RoarPage = ({ location }: PageProps): JSX.Element => {
   const navigator = typeof window === 'undefined' ? undefined : window.navigator
-  const { header, internalSectionRefs } = useHeader(location, navigator)
+  const { header, internalSectionRefs, dotsRef } = useHeader(location, navigator)
 
   return (
     <Layout additionalClassNames="roar" footerKind="v2" header={header}>
-      <Hero ref={internalSectionRefs['hero']} />
+      <Hero ref={internalSectionRefs['hero']} dotsRef={dotsRef} />
       <div ref={internalSectionRefs['How it works']} style={{ backgroundColor: 'green', width: '100%', height: '100vh' }}></div>
       <div ref={internalSectionRefs['Learn more']} style={{ backgroundColor: 'purple', width: '100%', height: '100vh' }}></div>
       <GetUpdates ref={internalSectionRefs['Community']} />
