@@ -9,14 +9,6 @@ $sidebar-margin: 50px;
   }
 }
 
-@mixin full_bleed_grid($pad: 50px, $min_center_column_width: 65ch) {
-  display: grid;
-  grid-template-columns:
-    minmax(#{$pad}, 1fr)
-    min(#{$min_center_column_width}, calc(100% - #{2 * $pad}))
-    minmax(#{$pad}, 1fr);
-}
-
 .layout.has-sidebar {
   > .sidebar {
     position: fixed;
