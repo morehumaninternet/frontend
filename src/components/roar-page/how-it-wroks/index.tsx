@@ -6,7 +6,7 @@ const HowItWorks = forwardRef(
     return (
       <section className="how-it-works" ref={ref as any}>
         <div className="how-it-works__wrapper">
-          <h2 className="how-it-works__title">Bring attention to problems on the web</h2>
+          <h1 className="how-it-works__title">Bring attention to problems on the web</h1>
           <Video videoSrcURL="https://www.youtube.com/embed/dQw4w9WgXcQ" videoTitle="Roar" />
         </div>
       </section>

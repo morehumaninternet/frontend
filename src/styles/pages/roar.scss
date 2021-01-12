@@ -55,7 +55,7 @@
       height: 17px;
       position: relative;
       padding: 1px;
-      top: 5px;
+      top: 3px;
     }
 
     .top-right {
@@ -148,10 +148,14 @@
     height: 100vh;
 
     display: grid;
+    // grid-template-columns: minmax(25px, 1fr) 800px minmax(25px, 1fr);
     place-items: center;
 
     > .how-it-works__wrapper {
-      width: 50%;
+      margin: 0 25px;
+      min-width: 50%;
+      width: 800px;
+      max-width: calc(100vw - 50px);
 
       > .how-it-works__title {
         color: white;
@@ -207,7 +211,7 @@
 
     > .learn-more__info {
       display: grid;
-      grid-template-columns: 15% 65%;
+      grid-template-columns: minmax(20%, 12rem) 55%;
 
       justify-content: center;
       padding: 10rem 15%;
@@ -217,7 +221,7 @@
       }
 
       > p {
-        margin-left: 5rem;
+        margin-left: 2.5rem;
       }
     }
   }
@@ -291,6 +295,8 @@
     .learn-more {
       > .big-circle {
         width: 20%;
+        top: 1.5rem;
+        right: -1rem;
       }
 
       > .small-circle {
@@ -300,6 +306,11 @@
       > .learn-more__info {
         display: flex;
         flex-direction: column;
+        padding: 10rem 25px;
+
+        > h3:first-child {
+          margin-top: 40px;
+        }
 
         > p {
           margin-left: 0;
@@ -317,12 +328,10 @@
     }
 
     .slack {
-      height: initial;
       grid-column: initial;
     }
 
     .newsletter {
-      height: initial;
       grid-column: initial;
     }
 
@@ -343,6 +352,12 @@
         transition: all 0.3s;
         margin: 10px 0;
       }
+    }
+  }
+
+  @media (max-width: 800px) {
+    .how-it-works__title {
+      font-size: 4.8vw;
     }
   }
 }
