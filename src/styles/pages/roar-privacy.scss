@@ -1,0 +1,11 @@
+.layout.privacy-page {
+  .privacy-tos-section {
+    background: linear-gradient($human-pink-light, white);
+    // @include full-bleed-grid($min-center-column-width: 80ch);
+    color: $human-blue;
+    padding-top: 10rem;
+    h3 {
+      padding: 1rem 0;
+    }
+  }
+}

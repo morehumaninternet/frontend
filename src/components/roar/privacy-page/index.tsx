@@ -5,7 +5,7 @@ import Header from '../header'
 
 const RoarPage = ({ location }: PageProps): JSX.Element => {
   return (
-    <Layout additionalClassNames="roar-privacy" footerKind="v2" header={<Header />}>
+    <Layout additionalClassNames="privacy-page" footerKind="v2" header={<Header />}>
       <section className="privacy-tos-section">
 
         <h1>Privacy Policy</h1>
