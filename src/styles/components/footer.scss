@@ -41,6 +41,16 @@ footer.v2 {
     color: white;
     text-align: center;
   }
+  /* media query */
+  @media (max-width: 700px) {
+    .footer-banner {
+      padding: 0.5rem 1rem;
+    }
+    .footer-links__container,
+    .copyright {
+      width: 100%;
+    }
+  }
 }
 
 .mhi-logo {
