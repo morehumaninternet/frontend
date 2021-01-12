@@ -12,7 +12,7 @@ import { forEach, kebabCase, map } from 'lodash'
 // @ts-ignore
 import { Link } from 'gatsby'
 import { UAParser } from 'ua-parser-js'
-import RoarLogo from './roar-logo'
+import Header from '../header'
 
 type Section = 'hero' | 'How it works' | 'Learn more' | 'Community'
 
@@ -135,22 +135,20 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
 
   // The actual header
   const header = (
-    <header className="layout-new-header" ref={headerRef as any}>
-      <Link ref={internalLinkRefs.hero} className="roar-home active" to="/roar" aria-label="logo">
-        <RoarLogo />
-      </Link>
-      <div className="other-links">
-        {['How it works', 'Learn more', 'Community'].map((section: Section) => (
-          <a
-            key={section}
-            className={`hide-on-mobile internal-link umami--click--nav-bar-${section}`}
-            ref={internalLinkRefs[section] as any}
-            onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
-          >
-            {section}
-          </a>
-        ))}
-        {disabledReason ? (
+    <Header
+      headerRef={headerRef}
+      heroRef={internalLinkRefs.hero}
+      otherLinks={['How it works', 'Learn more', 'Community'].map((section: Section) => (
+        <a
+          key={section}
+          className={`hide-on-mobile internal-link umami--click--nav-bar-${section}`}
+          ref={internalLinkRefs[section] as any}
+          onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
+        >
+          {section}
+        </a>
+      )).concat([
+        disabledReason ? (
           <button className="mhi-button btn btn--download" disabled>
             {disabledReason}
           </button>
@@ -162,9 +160,9 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
           >
             Install the free extension
           </a>
-        )}
-      </div>
-    </header>
+        )
+      ])}
+    />
   )
 
   return {
