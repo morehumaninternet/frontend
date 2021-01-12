@@ -1,21 +1,22 @@
 import React from 'react'
+import { Link } from 'gatsby'
 
 type TermsLinkProps = {
-  href: string
+  to: string
   children: React.ReactNode
 }
 
-const TermsLink = ({ href, children }: TermsLinkProps) => (
-  <a className="terms__link" target="_blank" rel="noopener noreferrer" href={href}>
+const TermsLink = ({ to, children }: TermsLinkProps) => (
+  <Link className="terms__link" target="_blank" rel="noopener noreferrer" to={to}>
     {children}
-  </a>
+  </Link>
 )
 
 const Terms = () => (
   <div className="terms">
-    <TermsLink href="/roar#learn-more">Why do I need Twitter?</TermsLink>
-    <TermsLink href="/roar/privacy">Privacy Policy</TermsLink>
-    <TermsLink href="/roar/tos">Terms of Service</TermsLink>
+    <TermsLink to="/roar#learn-more">Why do I need Twitter?</TermsLink>
+    <TermsLink to="/roar/privacy">Privacy Policy</TermsLink>
+    <TermsLink to="/roar/tos">Terms of Service</TermsLink>
   </div>
 )
 

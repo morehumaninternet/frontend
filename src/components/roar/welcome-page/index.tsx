@@ -7,8 +7,8 @@ import SignInButton from './sign-in-button'
 
 const WelcomePage = () => {
   return (
-    <Layout footerKind="v2" header={<Header />}>
-      <div className="welcome">
+    <Layout additionalClassNames="welcome" footerKind="v2" header={<Header />}>
+      <div className="welcome__contents">
         <BigCircle />
         <SmallCircle />
         <div className="wrapper">
