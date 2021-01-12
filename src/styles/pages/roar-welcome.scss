@@ -1,0 +1,89 @@
+$desktop-header-height: 110px;
+$desktop-footer-height: 301px;
+
+.welcome {
+  height: calc(100vh - #{$desktop-header-height} - #{$desktop-footer-height});
+  margin-top: $desktop-header-height;
+
+  display: grid;
+  place-items: center;
+
+  > .big-circle {
+    width: 8%;
+    max-width: 200px;
+    fill: $human-pink;
+    position: absolute;
+    top: 8rem;
+    right: 0;
+    z-index: -1;
+  }
+
+  > .small-circle {
+    width: 4%;
+    max-width: 120px;
+    fill: $human-blue;
+    position: absolute;
+    bottom: 7rem;
+    left: 0;
+    z-index: -1;
+  }
+
+  > .wrapper {
+    text-align: center;
+
+    > h1 {
+      font-size: 3rem;
+    }
+
+    > h2 {
+      font-size: 1.5rem;
+    }
+
+    > .sign-in-btn__container {
+      display: flex;
+      justify-content: center;
+
+      > .sign-in-btn {
+        font-size: 1.5rem;
+        flex-grow: 0;
+        border-radius: 35px;
+        background-color: #1da1f2;
+        color: white;
+        padding: 1rem 1.5rem 1rem 1rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+
+        .twitter-logo {
+          padding: 3px;
+          height: 35px;
+
+          > path {
+            fill: white;
+          }
+        }
+      }
+    }
+
+    > .terms {
+      > a {
+        color: #757575;
+        font-size: 0.5rem;
+        font-weight: 500;
+        line-height: 16px;
+      }
+
+      > a:not(:last-child) {
+        margin-right: 1.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .welcome {
+    height: auto;
+    min-height: calc(100vh - #{$desktop-header-height} - #{$desktop-footer-height});
+  }
+}

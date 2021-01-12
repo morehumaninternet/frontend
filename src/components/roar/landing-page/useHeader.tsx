@@ -149,18 +149,19 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
         </a>
       )).concat([
         disabledReason ? (
-          <button className="mhi-button btn btn--download" disabled>
+          <button className="mhi-button btn btn--download" key="disabled-btn" disabled>
             {disabledReason}
           </button>
         ) : (
-          <a
-            className="mhi-button btn btn--download"
-            rel="noopener noreferrer"
-            href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
-          >
-            Install the free extension
-          </a>
-        )
+            <a
+              key="install-btn"
+              className="mhi-button btn btn--download"
+              rel="noopener noreferrer"
+              href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
+            >
+              Install the free extension
+            </a>
+          )
       ])}
     />
   )
