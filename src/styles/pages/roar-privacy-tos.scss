@@ -1,26 +1,26 @@
+$desktop-header-height: 110px;
+$desktop-footer-height: 265px;
+
 .layout.privacy-tos-page {
   header {
     position: initial;
   }
 
-  > main {
-    padding: 0, 10rem;
-    .privacy-tos-section {
-      padding: 0, 10 rem;
-      text-align: center;
+  .privacy-tos-section {
+    padding: 0 5rem;
+    text-align: center;
 
-      > h1 {
-        font-size: 2.5rem;
-      }
+    > h1 {
+      font-size: 2.5rem;
+    }
 
-      > h3 {
-        text-align: left;
-        font-size: 1.3rem;
-      }
+    > h3 {
+      text-align: left;
+      font-size: 1.3rem;
+    }
 
-      > p {
-        text-align: left;
-      }
+    > p {
+      text-align: left;
     }
   }
 }
