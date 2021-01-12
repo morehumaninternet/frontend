@@ -138,30 +138,33 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
     <Header
       headerRef={headerRef}
       heroRef={internalLinkRefs.hero}
-      otherLinks={['How it works', 'Learn more', 'Community'].map((section: Section) => (
-        <a
-          key={section}
-          className={`hide-on-mobile internal-link umami--click--nav-bar-${section}`}
-          ref={internalLinkRefs[section] as any}
-          onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
-        >
-          {section}
-        </a>
-      )).concat([
-        disabledReason ? (
-          <button className="mhi-button btn btn--download" disabled>
-            {disabledReason}
-          </button>
-        ) : (
+      otherLinks={['How it works', 'Learn more', 'Community']
+        .map((section: Section) => (
           <a
-            className="mhi-button btn btn--download"
-            rel="noopener noreferrer"
-            href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
+            key={section}
+            className={`hide-on-mobile internal-link umami--click--nav-bar-${section}`}
+            ref={internalLinkRefs[section] as any}
+            onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
           >
-            Install the free extension
+            {section}
           </a>
-        )
-      ])}
+        ))
+        .concat([
+          disabledReason ? (
+            <button className="mhi-button btn btn--download" key="disabled-btn" disabled>
+              {disabledReason}
+            </button>
+          ) : (
+            <a
+              key="install-btn"
+              className="mhi-button btn btn--download"
+              rel="noopener noreferrer"
+              href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
+            >
+              Install the free extension
+            </a>
+          ),
+        ])}
     />
   )
 

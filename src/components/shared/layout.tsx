@@ -4,7 +4,7 @@ import Header from './header'
 import Sidebar from './sidebar'
 
 type LayoutProps = {
-  additionalClassNames: string
+  additionalClassNames?: string
   header?: React.ReactNode
   sidebar?: React.ReactNode
   footerKind?: 'v1' | 'v2'
@@ -28,7 +28,7 @@ type LayoutWithSidebarProps = {
 
 export const Layout = ({ header, sidebar, additionalClassNames, footerKind, children }: LayoutProps) => {
   return (
-    <div className={`layout ${additionalClassNames}`}>
+    <div className={`layout ${additionalClassNames || ''}`}>
       {header}
       {sidebar}
       <main>{children}</main>
