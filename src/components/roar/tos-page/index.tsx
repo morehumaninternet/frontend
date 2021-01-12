@@ -7,13 +7,13 @@ const TosPage = ({ location }: PageProps): JSX.Element => {
   return (
     <Layout additionalClassNames="privacy-page" footerKind="v2" header={<Header />}>
       <div className="privacy-tos-section">
-      
+
       <h1>Terms & Conditions</h1>
       <h3>1. License Grant</h3>
       <p>We grant you a worldwide, non-exclusive and non-transferable right to use our services.</p>
 
       <h3>2. Support</h3>
-      <p>If you are in need of support, contact us at <a target="_blank" href="mailto:support@morehumaninternet.org">support@morehumaninternet.org</a>. 
+      <p>If you are in need of support, contact us at <a target="_blank" href="mailto:support@morehumaninternet.org">support@morehumaninternet.org</a>.
       </p>
 
       <h3>3. Copyright Infringement</h3>

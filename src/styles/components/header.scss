@@ -103,3 +103,58 @@ header.layout-new-header {
     }
   }
 }
+
+header.roar {
+  height: auto;
+  background-color: white;
+
+  padding: 0 25px;
+
+  svg.roar-logo {
+    height: 60px;
+    transition: all 0.3s;
+    margin: 25px 0;
+  }
+
+  a.roar-home {
+    display: flex;
+  }
+
+  a.internal-link {
+    @include button-fonts;
+    color: $human-pink;
+    cursor: pointer;
+
+    @media (max-width: 800px) {
+      display: none;
+    }
+  }
+
+  .other-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  &.shrink {
+    -webkit-box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, 0.25);
+    -moz-box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, 0.25);
+    box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, 0.25);
+
+    a.roar-home {
+      svg.roar-logo {
+        height: 40px;
+        margin: 15px 0;
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    padding: 0 10px;
+    svg.roar-logo {
+      height: 50px;
+      transition: all 0.3s;
+      margin: 10px 0;
+    }
+  }
+}
