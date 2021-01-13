@@ -6,6 +6,7 @@ import GetUpdates from './get-updates'
 import Hero from './hero'
 import HowItWorks from './how-it-wroks'
 import LearnMore from './learn-more'
+import SocialMediaBar from './social-media-bar'
 
 const RoarPage = ({ location }: PageProps): JSX.Element => {
   const navigator = typeof window === 'undefined' ? undefined : window.navigator
@@ -17,6 +18,7 @@ const RoarPage = ({ location }: PageProps): JSX.Element => {
       <HowItWorks ref={internalSectionRefs['How it works']} />
       <LearnMore ref={internalSectionRefs['Learn more']} />
       <GetUpdates ref={internalSectionRefs['Community']} />
+      <SocialMediaBar />
     </Layout>
   )
 }

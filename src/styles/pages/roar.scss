@@ -168,6 +168,19 @@
     text-align: right;
   }
 
+  /* social media bar */
+  .social-media-bar {
+    position: fixed;
+    top: 66%;
+    right: 10px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+
+    button {
+      display: block;
+    }
+  }
+
   /* media query */
   @media (max-width: 700px) {
     .learn-more {
@@ -211,6 +224,16 @@
 
     .newsletter {
       grid-column: initial;
+    }
+
+    .social-media-bar {
+      position: static;
+      display: flex;
+      justify-content: center;
+
+      button {
+        margin: 0 10px;
+      }
     }
   }
 
