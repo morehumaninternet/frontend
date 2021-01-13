@@ -1,23 +1,34 @@
 .layout.privacy-tos-page {
+  font-family: 'Roboto', 'Helvetica Neue', serif;
+
   header {
     position: initial;
   }
 
-  .privacy-tos-section {
-    padding: 0 5rem;
-    text-align: center;
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    > h1 {
-      font-size: 2.5rem;
-    }
+    .privacy-tos-section {
+      max-width: 1000px;
+      padding: 0 25px;
+      text-align: center;
 
-    > h3 {
-      text-align: left;
-      font-size: 1.3rem;
-    }
+      > h1 {
+        font-size: 2.5rem;
+        padding: 0 5rem;
+        text-align: center;
+      }
 
-    > p {
-      text-align: left;
+      > h3 {
+        // text-align: left;
+        font-size: 1.3rem;
+      }
+
+      // > p {
+      //   text-align: left;
+      // }
     }
   }
 }
