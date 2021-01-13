@@ -1,5 +1,5 @@
 import React from 'react'
-import { 
+import {
   EmailShareButton, EmailIcon,
   FacebookShareButton, FacebookIcon,
   RedditShareButton, RedditIcon,
@@ -10,15 +10,15 @@ const RoarURL = "https://roar.morehumaninternet.org"
 const PageTitle = "Roar"
 const shortSummary = "See something broken online? Tell the world and get help with Roar from More Human Internet.";
 const longSummary = `
-  Roar is a free, non-profit web extension that automatically captures a snapshot of any online 
-  issue and addresses a tweet to the site's maintainer. Turn a tweet into a Roar as experts and 
+  Roar is a free, non-profit web extension that automatically captures a snapshot of any online
+  issue and addresses a tweet to the site's maintainer. Turn a tweet into a Roar as experts and
   maintainers see the issue and offer solutions.
   Checkout ${RoarURL}
-  
+
 `
 
 const SocialMediaBar = () => {
-  const iconProps = { size: 48, round:true }
+  const iconProps = { size: 47, round: true }
   return (
     <div className="social-media-bar">
       <TwitterShareButton
@@ -29,7 +29,7 @@ const SocialMediaBar = () => {
       </TwitterShareButton>
 
       <div className="social-link">
-        <a href="#">
+        <a href="https://www.producthunt.com/posts/roar-by-more-human-internet">
           <ProductHuntIcon />
         </a>
       </div>
@@ -39,7 +39,7 @@ const SocialMediaBar = () => {
         title={PageTitle}
       >
         <RedditIcon {...iconProps} />
-      </RedditShareButton>  
+      </RedditShareButton>
 
       <FacebookShareButton
         url={RoarURL}

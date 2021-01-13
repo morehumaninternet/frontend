@@ -1,4 +1,8 @@
 .layout.roar {
+  main {
+    position: relative;
+  }
+
   .btn {
     padding: 10px 20px;
   }
@@ -170,8 +174,8 @@
 
   /* social media bar */
   .social-media-bar {
-    position: fixed;
-    top: 66%;
+    position: absolute;
+    bottom: 0;
     right: 10px;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
@@ -179,6 +183,12 @@
 
     button {
       display: block;
+    }
+
+    .react-share__ShareButton[aria-label="reddit"] {
+      circle {
+        fill: #FF4500;
+      }
     }
 
     .social-link {
@@ -240,7 +250,7 @@
       display: flex;
       justify-content: center;
 
-      button, 
+      button,
       .social-link svg {
         margin: 0 10px;
       }
