@@ -8,7 +8,7 @@ const TwitterIcon = () => (
 
 const SignInButton = () => (
   <div className="sign-in-btn__container">
-    <a className="sign-in-btn" href="/v1/auth/twitter">
+    <a className="sign-in-btn" href="https://roar.morehumaninternet.org/v1/auth/twitter">
       <TwitterIcon /> Log in with Twitter
     </a>
   </div>
