@@ -3,19 +3,19 @@ import {
   EmailShareButton, EmailIcon,
   FacebookShareButton, FacebookIcon,
   RedditShareButton, RedditIcon,
-  TwitterShareButton, TwitterIcon } from "react-share"
-import ProductHuntIcon from "./product-hunt-icon"
+  TwitterShareButton, TwitterIcon } from 'react-share'
+import ProductHuntIcon from './product-hunt-icon'
 
-const RoarURL = "https://roar.morehumaninternet.org"
-const PageTitle = "Roar"
-const shortSummary = "See something broken online? Tell the world and get help with Roar from More Human Internet.";
+const RoarURL = 'https://roar.morehumaninternet.org'
+const PageTitle = 'Roar'
+const shortSummary = 'See something broken online? Tell the world and get help with Roar from More Human Internet.'
 const longSummary = `
   Roar is a free, non-profit web extension that automatically captures a snapshot of any online
   issue and addresses a tweet to the site's maintainer. Turn a tweet into a Roar as experts and
   maintainers see the issue and offer solutions.
   Checkout ${RoarURL}
-
 `
+
 
 const SocialMediaBar = () => {
   const iconProps = { size: 47, round: true }
@@ -59,4 +59,4 @@ const SocialMediaBar = () => {
   )
 }
 
-export default SocialMediaBar;
+export default SocialMediaBar
