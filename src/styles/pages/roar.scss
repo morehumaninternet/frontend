@@ -175,9 +175,18 @@
     right: 10px;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 
     button {
       display: block;
+    }
+
+    .social-link {
+      height: 48px;
+      margin-bottom: 5px;
+      svg {
+        width: 48px;
+      }
     }
   }
 
@@ -231,7 +240,8 @@
       display: flex;
       justify-content: center;
 
-      button {
+      button, 
+      .social-link svg {
         margin: 0 10px;
       }
     }

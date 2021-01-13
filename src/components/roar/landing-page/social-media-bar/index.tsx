@@ -3,7 +3,8 @@ import {
   EmailShareButton, EmailIcon,
   FacebookShareButton, FacebookIcon,
   RedditShareButton, RedditIcon,
-  TwitterShareButton, TwitterIcon } from "react-share";
+  TwitterShareButton, TwitterIcon } from "react-share"
+import ProductHuntIcon from "./product-hunt-icon"
 
 const RoarURL = "https://roar.morehumaninternet.org"
 const PageTitle = "Roar"
@@ -26,6 +27,12 @@ const SocialMediaBar = () => {
       >
         <TwitterIcon {...iconProps} />
       </TwitterShareButton>
+
+      <div className="social-link">
+        <a href="#">
+          <ProductHuntIcon />
+        </a>
+      </div>
 
       <RedditShareButton
         url={RoarURL}
