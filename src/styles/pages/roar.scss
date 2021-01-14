@@ -185,9 +185,9 @@
       display: block;
     }
 
-    .react-share__ShareButton[aria-label="reddit"] {
+    .react-share__ShareButton[aria-label='reddit'] {
       circle {
-        fill: #FF4500;
+        fill: #ff4500;
       }
     }
 
@@ -252,7 +252,7 @@
 
       button,
       .social-link svg {
-        margin: 0 10px;
+        margin: 0 5px;
       }
     }
   }

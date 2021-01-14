@@ -1,10 +1,7 @@
 import React from 'react'
-import {
-  EmailShareButton, EmailIcon,
-  FacebookShareButton, FacebookIcon,
-  RedditShareButton, RedditIcon,
-  TwitterShareButton, TwitterIcon } from 'react-share'
+import { EmailShareButton, FacebookShareButton, FacebookIcon, RedditShareButton, RedditIcon, TwitterShareButton, TwitterIcon } from 'react-share'
 import ProductHuntIcon from './product-hunt-icon'
+import EmailAtIcon from './email-at-icon'
 
 const RoarURL = 'https://roar.morehumaninternet.org'
 const PageTitle = 'Roar'
@@ -16,15 +13,11 @@ const longSummary = `
   Checkout ${RoarURL}
 `
 
-
 const SocialMediaBar = () => {
   const iconProps = { size: 47, round: true }
   return (
     <div className="social-media-bar">
-      <TwitterShareButton
-        url={RoarURL}
-        title={PageTitle}
-      >
+      <TwitterShareButton url={RoarURL} title={PageTitle}>
         <TwitterIcon {...iconProps} />
       </TwitterShareButton>
 
@@ -34,26 +27,16 @@ const SocialMediaBar = () => {
         </a>
       </div>
 
-      <RedditShareButton
-        url={RoarURL}
-        title={PageTitle}
-      >
+      <RedditShareButton url={RoarURL} title={PageTitle}>
         <RedditIcon {...iconProps} />
       </RedditShareButton>
 
-      <FacebookShareButton
-        url={RoarURL}
-        quote={shortSummary}
-      >
+      <FacebookShareButton url={RoarURL} quote={shortSummary}>
         <FacebookIcon {...iconProps} />
       </FacebookShareButton>
 
-      <EmailShareButton
-        url={RoarURL}
-        subject={PageTitle}
-        body={longSummary}
-      >
-        <EmailIcon {...iconProps} />
+      <EmailShareButton url={RoarURL} subject={PageTitle} body={longSummary}>
+        <EmailAtIcon />
       </EmailShareButton>
     </div>
   )
