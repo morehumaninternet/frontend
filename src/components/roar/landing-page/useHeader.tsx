@@ -27,7 +27,7 @@ type UseHeaderReturn = {
 }
 
 export default function useHeader(location: Location, navigator?: Navigator): UseHeaderReturn {
-  const [disabledReason, setDisabledReason] = React.useState<null | string>(null)
+  const [downloadButtonText, setDownloadButtonText] = React.useState<string>('Install the free extension')
 
   // Refs to each of the various sections, to be used by the caller
   const internalSectionRefs: SectionRefs = {
@@ -115,9 +115,9 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
     if (!navigator) return
     const parsed = new UAParser().setUA(navigator.userAgent).getResult()
     if (parsed.device.type) {
-      setDisabledReason('Available on Desktop')
+      setDownloadButtonText('Available on Desktop')
     } else if (parsed.browser.name !== 'Chrome') {
-      setDisabledReason('Available for Chrome')
+      setDownloadButtonText('Available for Chrome')
     }
   }, [navigator?.userAgent])
 
@@ -150,20 +150,14 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
           </a>
         ))
         .concat([
-          disabledReason ? (
-            <button className="mhi-button btn btn--download" key="disabled-btn" disabled>
-              {disabledReason}
-            </button>
-          ) : (
-            <a
-              key="install-btn"
-              className="mhi-button btn btn--download"
-              rel="noopener noreferrer"
-              href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
-            >
-              Install the free extension
-            </a>
-          ),
+          <a
+            key="install-btn"
+            className="mhi-button btn btn--download"
+            rel="noopener noreferrer"
+            href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
+          >
+            {downloadButtonText}
+          </a>
         ])}
     />
   )
