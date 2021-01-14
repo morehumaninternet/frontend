@@ -23,10 +23,12 @@ export default ({ aboutRef, whyRef, makeAndTrackRef }: TextContainerProps) => (
       </p>
       <p ref={makeAndTrackRef()}>
         <FormattedMessage id="index_aboutus3" />
-        <LocalizedLink className="same-color" to="/demo">
+
+        {/* <LocalizedLink className="same-color" to="/demo">
           <FormattedMessage id="index_aboutus4" />
         </LocalizedLink>
-        <FormattedMessage id="index_aboutus5" />
+        <FormattedMessage id="index_aboutus5" /> */}
+
       </p>
     </div>
     <div className="why" ref={whyRef}>

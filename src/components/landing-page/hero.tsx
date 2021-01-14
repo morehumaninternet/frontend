@@ -11,7 +11,7 @@ export default ({ makeAndTrackRef, joinRef }: { makeAndTrackRef(): React.Mutable
     <p ref={makeAndTrackRef()}>
       We're on a quest to make the web more transparent
       <br />
-      and better aligned with the interests of all people
+      better aligned with human interests
     </p>
     <div className="container" ref={makeAndTrackRef()}>
       <LocalizedLink role="button" className="mhi-button hide-on-mobile umami--click--try-the-demo" to="/demo">
