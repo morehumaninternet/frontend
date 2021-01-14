@@ -2,18 +2,17 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-type Links = React.DetailedHTMLProps<React.LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>[] // tslint:disable-line:readonly-array
-
 type SEOProps = {
+  author?: string
   description?: string
   lang?: string
   meta?: readonly any[]
   pageTitle?: string
-  links?: Links
+  links?: SEOLinks
   scripts?: readonly object[]
 }
 
-export const defaultLinks: Links = [
+export const defaultLinks: SEOLinks = [
   { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
   {
     rel: 'icon',
@@ -59,6 +58,8 @@ export default function SEO(props: SEOProps): JSX.Element {
 
   const metaDescription = description || site.siteMetadata.description
 
+  const author = props.author || site.siteMetadata.author
+
   return (
     <Helmet
       htmlAttributes={{
@@ -71,7 +72,7 @@ export default function SEO(props: SEOProps): JSX.Element {
         { property: 'og:description', content: metaDescription },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary' },
-        { name: 'twitter:creator', content: site.siteMetadata.author },
+        { name: 'twitter:creator', content: author },
         { name: 'twitter:title', content: title },
         { name: 'twitter:description', content: metaDescription },
         { name: 'msapplication-TileColor', content: '#164176' },

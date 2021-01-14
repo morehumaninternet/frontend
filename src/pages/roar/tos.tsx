@@ -1,9 +1,11 @@
 import React from 'react'
 import PrivacyTosPage from '../../components/roar/privacy-tos-page'
+import RoarSEO from '../../components/roar/roar-seo'
 
 export default function TosPage(): JSX.Element {
   return (
     <PrivacyTosPage>
+      <RoarSEO title="Terms & Conditions" />
       <h1>Terms & Conditions</h1>
       <h3>1. License Grant</h3>
       <p>We grant you a worldwide, non-exclusive and non-transferable right to use our services.</p>

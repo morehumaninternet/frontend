@@ -157,7 +157,7 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
             href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
           >
             {downloadButtonText}
-          </a>
+          </a>,
         ])}
     />
   )

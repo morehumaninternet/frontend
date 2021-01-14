@@ -204,3 +204,5 @@ type Link = {
   ariaLabel: string
   icon: JSX.Element
 }
+
+type SEOLinks = ReadonlyArray<React.DetailedHTMLProps<React.LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>>
