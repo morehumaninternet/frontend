@@ -6,10 +6,13 @@ import GetUpdates from './get-updates'
 import Hero from './hero'
 import HowItWorks from './how-it-wroks'
 import LearnMore from './learn-more'
+import useExplicitHeightOnIPhone from '../../../effects/useExplicitHeightOnIPhone'
 
 const RoarPage = ({ location }: PageProps): JSX.Element => {
   const navigator = typeof window === 'undefined' ? undefined : window.navigator
   const { header, internalSectionRefs, dotsRef } = useHeader(location, navigator)
+
+  useExplicitHeightOnIPhone(internalSectionRefs['hero'], internalSectionRefs['How it works']) // tslint:disable-line:no-expression-statement
 
   return (
     <Layout additionalClassNames="roar" footerKind="v2" header={header}>
