@@ -7,6 +7,7 @@ import Hero from './hero'
 import HowItWorks from './how-it-wroks'
 import LearnMore from './learn-more'
 import useExplicitHeightOnIPhone from '../../../effects/useExplicitHeightOnIPhone'
+import RoarSEO from '../roar-seo'
 
 const RoarPage = ({ location }: PageProps): JSX.Element => {
   const navigator = typeof window === 'undefined' ? undefined : window.navigator
@@ -16,6 +17,7 @@ const RoarPage = ({ location }: PageProps): JSX.Element => {
 
   return (
     <Layout additionalClassNames="roar" footerKind="v2" header={header}>
+      <RoarSEO />
       <Hero ref={internalSectionRefs['hero']} dotsRef={dotsRef} />
       <HowItWorks ref={internalSectionRefs['How it works']} />
       <LearnMore ref={internalSectionRefs['Learn more']} />

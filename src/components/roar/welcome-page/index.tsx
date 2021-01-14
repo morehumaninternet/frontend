@@ -4,10 +4,12 @@ import { BigCircle, SmallCircle } from '../../shared/circles'
 import Header from '../header'
 import Terms from './terms'
 import SignInButton from './sign-in-button'
+import RoarSEO from '../roar-seo'
 
 const WelcomePage = () => {
   return (
     <Layout additionalClassNames="welcome" footerKind="v2" header={<Header />}>
+      <RoarSEO title="Welcome" />
       <div className="welcome__contents">
         <BigCircle />
         <SmallCircle />
