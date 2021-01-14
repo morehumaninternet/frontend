@@ -17,7 +17,7 @@ export default ({ makeAndTrackRef, joinRef }: { makeAndTrackRef(): React.Mutable
       <a role="button" className="mhi-button hide-on-mobile umami--click--try-the-demo" target="_blank" href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc?hl=en&authuser=0">
         Get Roar!
       </a>
-      <LocalizedLink className="terms" target="_blank" to="roar/welcome">What is Roar?</LocalizedLink>
+      <LocalizedLink className="terms" to="/roar/welcome">What is Roar?</LocalizedLink>
       <button className="mhi-button hide-on-desktop umami--click--sign-up" onClick={() => joinRef.current!.scrollIntoView({ block: 'center' })}>
         Sign up
       </button>
