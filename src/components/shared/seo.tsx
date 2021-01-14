@@ -54,7 +54,7 @@ export default function SEO(props: SEOProps): JSX.Element {
     `
   )
 
-  const title = pageTitle ? `${pageTitle} | ${site.siteMetadata.title}` : site.siteMetadata.title
+  const title = pageTitle ? `${pageTitle} by ${site.siteMetadata.title}` : site.siteMetadata.title
 
   const metaDescription = description || site.siteMetadata.description
 
