@@ -11,12 +11,13 @@ export default ({ makeAndTrackRef, joinRef }: { makeAndTrackRef(): React.Mutable
     <p ref={makeAndTrackRef()}>
       We're on a quest to make the web more transparent
       <br />
-      better aligned with human interests
+      and better aligned with human interests
     </p>
     <div className="container" ref={makeAndTrackRef()}>
-      <LocalizedLink role="button" className="mhi-button hide-on-mobile umami--click--try-the-demo" to="/demo">
-        Try the demo
-      </LocalizedLink>
+      <a role="button" className="mhi-button hide-on-mobile umami--click--try-the-demo" target="_blank" href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc?hl=en&authuser=0">
+        Get Roar!
+      </a>
+      <LocalizedLink className="terms" target="_blank" to="roar/welcome">What is Roar?</LocalizedLink>
       <button className="mhi-button hide-on-desktop umami--click--sign-up" onClick={() => joinRef.current!.scrollIntoView({ block: 'center' })}>
         Sign up
       </button>
