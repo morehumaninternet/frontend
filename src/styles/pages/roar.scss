@@ -17,13 +17,14 @@
       height: 70%;
       width: 90%;
       max-height: 625px;
+      margin-bottom: 40px; // Centers the dots. 40px is ~#header-height/2
     }
   }
 
   .how-it-works {
     background-color: $human-blue;
     width: 100%;
-    height: 100vh;
+    padding: 4rem 0;
 
     display: grid;
     // grid-template-columns: minmax(25px, 1fr) 800px minmax(25px, 1fr);
@@ -168,6 +169,11 @@
     text-align: right;
   }
 
+  .newsletter__result {
+    display: inline-block;
+    max-width: 354px; // Match the width of the newsletter form
+  }
+
   /* media query */
   @media (max-width: 700px) {
     .learn-more {
@@ -211,6 +217,10 @@
 
     .newsletter {
       grid-column: initial;
+    }
+
+    .newsletter__result {
+      max-width: 317px; // Match the width of the newsletter form
     }
   }
 
