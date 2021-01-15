@@ -9,6 +9,7 @@ const shortSummary = `Check out Roar! - a free extension I'm using to easily and
 
 const SocialMediaBar = () => {
   const iconProps = { size: 47, round: true }
+
   return (
     <div className="social-media-bar">
       <TwitterShareButton url={RoarURL} title={shortSummary}>
