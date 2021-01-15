@@ -6,18 +6,16 @@
   .hero-container {
     width: 100%;
     height: 100vh;
+    grid-template-rows: minmax(130px, 15fr) 70fr 15fr;
 
     display: grid;
     place-items: center;
-    // First row is for the header and the second is for the hero section.
-    grid-template-rows: minmax(70px, 110px) 85%;
 
     > .dots {
       grid-row: 2;
-      height: 70%;
-      width: 90%;
+      height: 100%;
+      max-width: 90%;
       max-height: 625px;
-      margin-bottom: 40px; // Centers the dots. 40px is ~#header-height/2
     }
   }
 
@@ -226,7 +224,7 @@
 
   @media (max-width: 800px) {
     .how-it-works__title {
-      font-size: 4.8vw;
+      font-size: 4.5vw;
     }
   }
 }
