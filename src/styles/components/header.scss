@@ -113,6 +113,12 @@ header.layout-new-header {
     }
   }
 
+  &.mhi {
+    .link__container {
+      width: 50px;
+    }
+  }
+
   a {
     color: var(--logo-color-blue-white);
     cursor: pointer;
@@ -140,14 +146,14 @@ header.layout-new-header {
     }
 
     &:hover {
-      .more, .internet { fill: $human-pink; }
+      .more, .internet, .bottom-left { fill: $human-pink; }
 
       &.against-hero {
-        .human { fill: var(--logo-color-blue-white); }
+        .human, .top-right { fill: var(--logo-color-blue-white); }
       }
 
       &.against-white-bg {
-        .human { fill: $human-blue; }
+        .human, .top-right { fill: $human-blue; }
       }
     }
   }

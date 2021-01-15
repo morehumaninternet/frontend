@@ -151,22 +151,27 @@ export default function useHeader({
 
   function InternalLink({ section }: { section: Section }): JSX.Element {
     return (
-      <a
-        key={section}
-        className={`hide-on-mobile umami--click--nav-bar-${section}`}
-        ref={internalLinkRefs[section] as any}
-        onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
-      >
-        {section}
-      </a>
+      <div className="link__container">
+        <a
+          key={section}
+          className={`hide-on-mobile umami--click--nav-bar-${section}`}
+          ref={internalLinkRefs[section] as any}
+          onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
+        >
+          {section}
+        </a>
+      </div>
     )
   }
 
   const header = (
-    <header className="layout-new-header" ref={headerRef as any}>
-      <LocalizedLink key="roar-link" className="hide-on-mobile" to="/roar">
-        Roar!
-      </LocalizedLink>
+    <header className="layout-new-header mhi" ref={headerRef as any}>
+      <div className="link__container">
+        <LocalizedLink key="roar-link" className="hide-on-mobile" to="/roar">
+          Roar!
+        </LocalizedLink>
+      </div>
+
       <InternalLink section="about" />
       <a
         className={`logo home umami--click--nav-bar-start`}

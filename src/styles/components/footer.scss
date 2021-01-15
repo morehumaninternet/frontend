@@ -63,23 +63,15 @@ footer.v2 {
     height: 17px;
     position: relative;
     padding: 1px;
-    top: 5px;
+    top: 3px;
   }
 
-  .top-right {
-    fill: $human-blue;
-  }
-  .more {
-    fill: $human-blue;
-  }
-  .internet {
-    fill: $human-blue;
-  }
-  .bottom-left {
-    fill: $human-pink;
-  }
-  .human {
-    fill: $human-pink;
+  .human, .top-right { fill: $human-pink; }
+  .more, .internet, .bottom-left { fill: $human-blue; }
+
+  &:hover {
+    .more, .internet, .bottom-left { fill: $human-pink; }
+    .human, .top-right { fill: $human-blue; }
   }
 }
 

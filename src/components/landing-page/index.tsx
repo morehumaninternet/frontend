@@ -53,9 +53,8 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
             <h1 className="mhi-heading" ref={makeAndTrackRef()}>
               Join the community
             </h1>
+            <p ref={makeAndTrackRef()}>Join our dedicated team of international volunteers to help make this vision a reality</p>
             <GetUpdates ref={makeAndTrackRef()} />
-          </div>
-          <div className="team-container">
             <Team makeAndTrackRef={makeAndTrackRef} volunteer={volunteer} />
           </div>
         </div>
