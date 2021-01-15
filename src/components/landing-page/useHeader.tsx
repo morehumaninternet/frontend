@@ -189,7 +189,7 @@ export default function useHeader({
     <header className="layout-new-header" ref={headerRef as any}>
       <LocalizedLink key="roar-link" className="hide-on-mobile" to="/roar">
         Roar!
-      </LocalizedLink>,
+      </LocalizedLink>
       <InternalLink section="about" />
       <a
         className={`logo home umami--click--nav-bar-start`}
@@ -198,7 +198,7 @@ export default function useHeader({
         onClick={() => internalSectionRefs.start.current!.scrollIntoView({ block: 'center' })}
       >
         <CenteredLogo />
-      </a>,
+      </a>
       <InternalLink section="why" />
       <InternalLink section="join" />
     </header>
