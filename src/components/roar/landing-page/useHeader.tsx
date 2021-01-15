@@ -67,7 +67,7 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
         const dotsRect = dotsRef.current.getBoundingClientRect()
         const dotsTop = dotsRect.top
         const dotsDistance = dotsTop - headerBottom
-        shrink = shrink ? dotsDistance < 90 : dotsDistance < 50
+        shrink = shrink ? dotsDistance < 60 : dotsDistance < 20
         if (shrink) {
           headerElement.classList.add('shrink')
         } else {
