@@ -121,7 +121,8 @@ header.layout-new-header {
 
     &:not(.roar-home) {
       border-bottom: 2px transparent solid;
-      &.active {
+      &.active,
+      &:hover {
         border-color: $human-pink;
       }
     }
