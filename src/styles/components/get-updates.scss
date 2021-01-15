@@ -1,0 +1,100 @@
+.get-updates {
+  display: grid;
+  grid-template-columns:
+    1fr minmax(max-content, 300px) minmax(max-content, 300px)
+    1fr;
+  gap: 20px;
+  align-items: center;
+  margin: 5rem 0;
+
+  .slack,
+  .newsletter__form {
+    height: 52px;
+  }
+
+  .slack {
+    background-color: white;
+    color: $human-blue;
+    font-weight: bold;
+    grid-column: 2;
+    align-self: flex-start;
+
+    border: 1px solid $human-blue;
+
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .slack:hover {
+    border: 1px solid $human-blue;
+    background-color: $human-blue;
+    color: white;
+  }
+
+  .newsletter {
+    grid-column: 3;
+  }
+
+  .newsletter__form {
+    display: flex;
+    place-items: center;
+    margin-bottom: 0;
+  }
+
+  .newsletter__email {
+    height: 100%;
+    flex-grow: 1;
+    outline: none;
+    color: $human-blue;
+    padding: 0 1rem;
+    border: 1px solid $human-blue;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .newsletter__submit {
+    height: 100%;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .newsletter__promise {
+    font-size: 0.6rem;
+    text-align: right;
+  }
+
+  .newsletter__result {
+    display: inline-block;
+    max-width: 354px; // Match the width of the newsletter form
+  }
+
+  @media (max-width: 700px) {
+    display: grid;
+    grid-template-columns: initial;
+    grid-template-rows: max-content max-content;
+    align-items: center;
+    justify-content: center;
+    margin: 5rem 0;
+
+    .slack {
+      grid-column: initial;
+    }
+
+    .newsletter {
+      grid-column: initial;
+    }
+
+    .newsletter__result {
+      max-width: 317px; // Match the width of the newsletter form
+    }
+
+    .social-media-bar {
+      position: static;
+      display: flex;
+      justify-content: center;
+
+      button,
+      .social-link svg {
+        margin: 0 5px;
+      }
+    }
+  }
+}

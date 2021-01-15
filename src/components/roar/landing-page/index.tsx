@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout } from '../../shared/layout'
 import useHeader from './useHeader'
 
-import GetUpdates from './get-updates'
+import GetUpdates from '../../shared/get-updates'
 import Hero from './hero'
 import HowItWorks from './how-it-wroks'
 import LearnMore from './learn-more'

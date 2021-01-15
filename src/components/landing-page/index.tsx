@@ -14,6 +14,7 @@ import Mountains from './mountains'
 import Hero from './hero'
 import Donate from './donate'
 import TextContainer from './text-container'
+import GetUpdates from '../shared/get-updates'
 import useExplicitHeightOnIPhone from '../../effects/useExplicitHeightOnIPhone'
 
 export default function LandingPage({ location }: PageProps): JSX.Element {
@@ -55,7 +56,7 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
             <h1 className="mhi-heading" ref={makeAndTrackRef()}>
               Join the community
             </h1>
-            <ApplicationForm availability={availability} setAvailability={setAvailability} makeAndTrackRef={makeAndTrackRef} />
+            <GetUpdates ref={makeAndTrackRef()} />
           </div>
           <div className="team-container">
             <Team makeAndTrackRef={makeAndTrackRef} volunteer={volunteer} />

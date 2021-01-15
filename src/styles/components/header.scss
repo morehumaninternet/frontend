@@ -127,6 +127,30 @@ header.layout-new-header {
       }
     }
   }
+
+  svg.mhi-with-text-logo {
+    .human, .top-right { fill: $human-pink; }
+
+    &.against-hero {
+      .more, .internet, .bottom-left { fill: var(--logo-color-blue-white); }
+    }
+
+    &.against-white-bg {
+      .more, .internet, .bottom-left { fill: $human-blue; }
+    }
+
+    &:hover {
+      .more, .internet { fill: $human-pink; }
+
+      &.against-hero {
+        .human { fill: var(--logo-color-blue-white); }
+      }
+
+      &.against-white-bg {
+        .human { fill: $human-blue; }
+      }
+    }
+  }
 }
 
 header.roar {
