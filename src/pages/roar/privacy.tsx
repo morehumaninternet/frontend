@@ -1,9 +1,11 @@
 import React from 'react'
 import PrivacyTosPage from '../../components/roar/privacy-tos-page'
+import RoarSEO from '../../components/roar/roar-seo'
 
 export default function PrivacyPage(): JSX.Element {
   return (
     <PrivacyTosPage>
+      <RoarSEO title="Privacy Policy" />
       <h1>Privacy Policy</h1>
       <h3>1. Information Collection & Usage</h3>
       <p>

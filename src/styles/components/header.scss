@@ -35,27 +35,51 @@ header.layout-header {
 // When against a hero, we use the --logo-color-blue-white to fade from white to blue as the user scrolls past the hero
 // Otherwise, against a white background, we just use blue as the non-pink color
 svg.header-logo {
-  .human, .left-head { fill: $human-pink; }
+  .human,
+  .left-head {
+    fill: $human-pink;
+  }
 
   &.against-hero {
-    .more, .internet, .right-head, .bodies { fill: var(--logo-color-blue-white); }
-    .bodies { stroke: var(--logo-color-blue-white); }
+    .more,
+    .internet,
+    .right-head,
+    .bodies {
+      fill: var(--logo-color-blue-white);
+    }
+    .bodies {
+      stroke: var(--logo-color-blue-white);
+    }
   }
 
   &.against-white-bg {
-    .more, .internet, .right-head, .bodies { fill: $human-blue; }
-    .bodies { stroke: $human-blue; }
+    .more,
+    .internet,
+    .right-head,
+    .bodies {
+      fill: $human-blue;
+    }
+    .bodies {
+      stroke: $human-blue;
+    }
   }
 
   &:hover {
-    .more, .internet { fill: $human-pink; }
+    .more,
+    .internet {
+      fill: $human-pink;
+    }
 
     &.against-hero {
-      .human { fill: var(--logo-color-blue-white); }
+      .human {
+        fill: var(--logo-color-blue-white);
+      }
     }
 
     &.against-white-bg {
-      .human { fill: $human-blue; }
+      .human {
+        fill: $human-blue;
+      }
     }
   }
 }
@@ -97,7 +121,8 @@ header.layout-new-header {
 
     &:not(.roar-home) {
       border-bottom: 2px transparent solid;
-      &.active {
+      &.active,
+      &:hover {
         border-color: $human-pink;
       }
     }
@@ -132,8 +157,10 @@ header.roar {
 
   .other-links {
     display: flex;
-    gap: 24px;
     align-items: center;
+    :not(:first-child) {
+      margin-left: 24px;
+    }
   }
 
   &.shrink {

@@ -10,16 +10,15 @@
   .hero-container {
     width: 100%;
     height: 100vh;
+    grid-template-rows: minmax(130px, 15fr) 70fr 15fr;
 
     display: grid;
     place-items: center;
-    // First row is for the header and the second is for the hero section.
-    grid-template-rows: minmax(70px, 110px) 85%;
 
     > .dots {
       grid-row: 2;
-      height: 70%;
-      width: 90%;
+      height: 100%;
+      max-width: 90%;
       max-height: 625px;
     }
   }
@@ -27,7 +26,7 @@
   .how-it-works {
     background-color: $human-blue;
     width: 100%;
-    height: 100vh;
+    padding: 4rem 0;
 
     display: grid;
     // grid-template-columns: minmax(25px, 1fr) 800px minmax(25px, 1fr);
@@ -171,6 +170,11 @@
     font-size: 0.6rem;
     text-align: right;
   }
+  
+  .newsletter__result {
+    display: inline-block;
+    max-width: 354px; // Match the width of the newsletter form
+  }
 
   /* social media bar */
   .social-media-bar {
@@ -199,9 +203,13 @@
       }
     }
   }
-
+  
   /* media query */
   @media (max-width: 700px) {
+    .hero-container {
+      grid-template-rows: minmax(70px, 15fr) 70fr 15fr 40px;
+    }
+
     .learn-more {
       > .big-circle {
         width: 20%;
@@ -244,6 +252,10 @@
     .newsletter {
       grid-column: initial;
     }
+    
+    .newsletter__result {
+      max-width: 317px; // Match the width of the newsletter form
+    }
 
     .social-media-bar {
       position: static;
@@ -259,7 +271,7 @@
 
   @media (max-width: 800px) {
     .how-it-works__title {
-      font-size: 4.8vw;
+      font-size: 4.5vw;
     }
   }
 }
