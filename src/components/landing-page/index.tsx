@@ -23,8 +23,8 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
     location,
     internalSections: ['start', 'about', 'why', 'join'],
     otherLinks: [
-      <LocalizedLink key="demo-link" className="hide-on-mobile" to="/demo">
-        Demo
+      <LocalizedLink key="roar-link" className="hide-on-mobile" to="/roar">
+        Roar!
       </LocalizedLink>,
       <a key="donate-link" className="hide-on-mobile umami--click--nav-bar-donate" href="https://buymeacoffee.com/morehumaninter">
         Donate

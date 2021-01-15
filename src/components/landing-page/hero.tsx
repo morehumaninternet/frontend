@@ -1,6 +1,6 @@
 import React from 'react'
 // @ts-ignore
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import { Link } from 'gatsby'
 
 export default ({ makeAndTrackRef, joinRef }: { makeAndTrackRef(): React.MutableRefObject<any>; joinRef: React.MutableRefObject<any> }) => (
   <div className="new-hero">
@@ -11,12 +11,12 @@ export default ({ makeAndTrackRef, joinRef }: { makeAndTrackRef(): React.Mutable
     <p ref={makeAndTrackRef()}>
       We're on a quest to make the web more transparent
       <br />
-      and better aligned with the interests of all people
+      and better aligned with human interests
     </p>
     <div className="container" ref={makeAndTrackRef()}>
-      <LocalizedLink role="button" className="mhi-button hide-on-mobile umami--click--try-the-demo" to="/demo">
-        Try the demo
-      </LocalizedLink>
+      <Link role="button" className="mhi-button hide-on-mobile" to="/roar">
+        Get Roar!
+      </Link>
       <button className="mhi-button hide-on-desktop umami--click--sign-up" onClick={() => joinRef.current!.scrollIntoView({ block: 'center' })}>
         Sign up
       </button>

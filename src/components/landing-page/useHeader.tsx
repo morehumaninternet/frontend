@@ -194,7 +194,7 @@ export default function useHeader<Section extends string>({
   links.splice(
     linkMidpoint,
     0,
-    <LocalizedLink key="MHI-logo" className="logo" to="/" aria-label="logo">
+    <LocalizedLink key="MHI-logo" className="logo home" to="/" aria-label="logo">
       <CenteredLogo />
     </LocalizedLink>
   )

@@ -21,11 +21,11 @@ export default function PrivacyPage(): JSX.Element {
       <p>
         This extension posts to Twitter using your account. By using More Human Internet’s services, you agree not to violate any of the policies set out in
         Twitter’s{' '}
-        <a target="_blank" href="https://twitter.com/en/privacy">
+        <a href="https://twitter.com/en/privacy">
           privacy policy
         </a>{' '}
         or{' '}
-        <a target="_blank" href="https://twitter.com/en/tos">
+        <a href="https://twitter.com/en/tos">
           terms of service
         </a>
         .
@@ -53,7 +53,7 @@ export default function PrivacyPage(): JSX.Element {
       <h3>6. Dispute Resolution</h3>
       <p>
         If you have a complaint about More Human Internet’s privacy policies, please let us know at{' '}
-        <a target="_blank" href="mailto:privacy@morehumaninternet.org">
+        <a href="mailto:privacy@morehumaninternet.org">
           privacy@morehumaninternet.org
         </a>
         .

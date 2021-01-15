@@ -7,7 +7,7 @@ type TermsLinkProps = {
 }
 
 const TermsLink = ({ to, children }: TermsLinkProps) => (
-  <Link className="terms__link" target="_blank" rel="noopener noreferrer" to={to}>
+  <Link className="terms__link" rel="noopener noreferrer" to={to}>
     {children}
   </Link>
 )

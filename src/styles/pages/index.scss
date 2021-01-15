@@ -66,6 +66,12 @@ $standard-margin: 25px;
             padding: 1em 3em;
             width: 100%;
           }
+          > .terms {
+            color: #757575;
+            font-size: 0.6rem;
+            font-weight: 500;
+            line-height: 16px;
+          }
         }
       }
 
@@ -347,7 +353,7 @@ $standard-margin: 25px;
     }
   }
 
-  form[name='submit-application'] {
+  form[name="submit-application"] {
     width: 100%;
     max-width: $standard-max-width;
     margin: 0 $standard-margin;

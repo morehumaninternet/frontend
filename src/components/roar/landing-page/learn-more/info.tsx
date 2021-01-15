@@ -3,7 +3,6 @@ import React from 'react'
 const ExtensionLink = ({ children }: { children: React.ReactNode }) => (
   <a
     className="extension-link"
-    target="_blank"
     rel="noopener noreferrer"
     href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
   >
