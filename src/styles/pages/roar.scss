@@ -111,6 +111,9 @@
     margin: 5rem 0;
   }
 
+  $social-link-desktop-size: 47px;
+  $social-link-mobile-size: 40px;
+
   /* social media bar */
   .social-media-bar {
     position: absolute;
@@ -131,10 +134,10 @@
     }
 
     .social-link {
-      height: 48px;
+      height: $social-link-desktop-size;
       margin-bottom: 5px;
       svg {
-        width: 48px;
+        width: $social-link-desktop-size;
       }
     }
   }
@@ -143,6 +146,30 @@
   @media (max-width: 700px) {
     .hero-container {
       grid-template-rows: minmax(70px, 15fr) 70fr 15fr 40px;
+    }
+
+    .social-media-bar {
+      position: static;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      > .social-link {
+        margin-top: $social-link-desktop-size - $social-link-mobile-size;
+      }
+
+      > button, > .social-link {
+        height: $social-link-mobile-size;
+        margin-bottom: 0;
+        svg {
+          width: $social-link-mobile-size;
+        }
+        margin-right: 4px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
     }
 
     .learn-more {
