@@ -1,14 +1,11 @@
 import React from 'react'
 // @ts-ignore
-import { LocalizedLink } from 'gatsby-theme-i18n'
 import { ParallaxProvider } from 'react-scroll-parallax'
 import { Layout } from '../shared/layout'
 import Stars from './stars'
 import Astronaut from './astronaut'
 import SEO from '../shared/seo'
 import useHeader from './useHeader'
-import ApplicationForm from '../shared/application-form'
-import SimpleFeedbackWidget from '../simple-feedback-widget'
 import Team from './team'
 import Mountains from './mountains'
 import Hero from './hero'
@@ -63,7 +60,6 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
           </div>
         </div>
         <Donate makeAndTrackRef={makeAndTrackRef} />
-        <SimpleFeedbackWidget />
       </Layout>
     </ParallaxProvider>
   )
