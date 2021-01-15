@@ -20,15 +20,13 @@ export default ({ aboutRef, whyRef, makeAndTrackRef }: TextContainerProps) => (
       </p>
       <p ref={makeAndTrackRef()}>
         <FormattedMessage id="index_aboutus2" />
+        <a className="same-color" href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc?hl=en&authuser=0">
+          <FormattedMessage id="index_aboutus3" />
+        </a>
+        <FormattedMessage id="index_aboutus4" />
       </p>
       <p ref={makeAndTrackRef()}>
-        <FormattedMessage id="index_aboutus3" />
-
-        {/* <LocalizedLink className="same-color" to="/demo">
-          <FormattedMessage id="index_aboutus4" />
-        </LocalizedLink>
-        <FormattedMessage id="index_aboutus5" /> */}
-
+        <FormattedMessage id="index_aboutus5" />
       </p>
     </div>
     <div className="why" ref={whyRef}>
