@@ -3,21 +3,15 @@ import { EmailShareButton, FacebookShareButton, FacebookIcon, RedditShareButton,
 import ProductHuntIcon from './product-hunt-icon'
 import EmailAtIcon from './email-at-icon'
 
-const RoarURL = 'https://roar.morehumaninternet.org'
-const PageTitle = 'Roar'
-const shortSummary = 'See something broken online? Tell the world and get help with Roar from More Human Internet.'
-const longSummary = `
-  Roar is a free, non-profit web extension that automatically captures a snapshot of any online
-  issue and addresses a tweet to the site's maintainer. Turn a tweet into a Roar as experts and
-  maintainers see the issue and offer solutions.
-  Checkout ${RoarURL}
-`
+const RoarURL = 'https://morehumaninternet.org/roar'
+const PageTitle = 'Roar!'
+const shortSummary = `Check out Roar! - a free extension I'm using to easily and publicly report issues I encounter on the internet.`
 
 const SocialMediaBar = () => {
   const iconProps = { size: 47, round: true }
   return (
     <div className="social-media-bar">
-      <TwitterShareButton url={RoarURL} title={PageTitle}>
+      <TwitterShareButton url={RoarURL} title={shortSummary}>
         <TwitterIcon {...iconProps} />
       </TwitterShareButton>
 
@@ -27,7 +21,7 @@ const SocialMediaBar = () => {
         </a>
       </div>
 
-      <RedditShareButton url={RoarURL} title={PageTitle}>
+      <RedditShareButton url={RoarURL} title={shortSummary}>
         <RedditIcon {...iconProps} />
       </RedditShareButton>
 
@@ -35,7 +29,7 @@ const SocialMediaBar = () => {
         <FacebookIcon {...iconProps} />
       </FacebookShareButton>
 
-      <EmailShareButton url={RoarURL} subject={PageTitle} body={longSummary}>
+      <EmailShareButton url={RoarURL} subject={PageTitle} body={shortSummary}>
         <EmailAtIcon />
       </EmailShareButton>
     </div>
