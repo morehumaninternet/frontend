@@ -21,15 +21,6 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
 
   const { header, internalSectionRefs, makeAndTrackRef } = useHeader({
     location,
-    internalSections: ['start', 'about', 'why', 'join'],
-    otherLinks: [
-      <LocalizedLink key="roar-link" className="hide-on-mobile" to="/roar">
-        Roar!
-      </LocalizedLink>,
-      <a key="donate-link" className="hide-on-mobile umami--click--nav-bar-donate" href="https://buymeacoffee.com/morehumaninter">
-        Donate
-      </a>,
-    ],
     fadeAtRef: postSky2Ref,
   })
 

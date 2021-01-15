@@ -43,29 +43,29 @@ function CenteredLogo(): JSX.Element {
   )
 }
 
-type UseHeaderProps<Section extends string> = {
+type Section = 'start' | 'about' | 'why' | 'join'
+
+type UseHeaderProps = {
   location: Location
-  internalSections: readonly Section[]
-  otherLinks: readonly JSX.Element[]
   fadeAtRef?: React.MutableRefObject<any>
 }
 
-type SectionRefs<Section extends string> = {
+type SectionRefs = {
   [section in Section]: React.MutableRefObject<any>
 }
 
-type UseHeaderReturn<Section extends string> = {
+type UseHeaderReturn = {
   header: JSX.Element
-  internalSectionRefs: SectionRefs<Section>
+  internalSectionRefs: SectionRefs
   makeAndTrackRef(): React.MutableRefObject<any>
 }
 
-export default function useHeader<Section extends string>({
+export default function useHeader({
   location,
-  internalSections,
-  otherLinks,
   fadeAtRef,
-}: UseHeaderProps<Section>): UseHeaderReturn<Section> {
+}: UseHeaderProps): UseHeaderReturn {
+  const internalSections: ReadonlyArray<Section> = ['start', 'about', 'why', 'join']
+
   const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array
 
   const makeAndTrackRef = (): React.MutableRefObject<any> => {
@@ -74,7 +74,7 @@ export default function useHeader<Section extends string>({
     return ref as any
   }
 
-  const internalSectionRefs: SectionRefs<Section> = internalSections.reduce(
+  const internalSectionRefs: SectionRefs = internalSections.reduce(
     (refs, section) => ({
       ...refs,
       [section]: React.useRef<HTMLElement>(),
@@ -82,7 +82,7 @@ export default function useHeader<Section extends string>({
     {} as any
   )
 
-  const internalLinkRefs: SectionRefs<Section> = internalSections.reduce(
+  const internalLinkRefs: SectionRefs = internalSections.reduce(
     (refs, section) => ({
       ...refs,
       [section]: React.useRef<HTMLElement>(),
@@ -172,36 +172,35 @@ export default function useHeader<Section extends string>({
     }
   }, [location.hash])
 
-  const internalLinks = internalSections.map(section => (
-    <a
-      key={section}
-      className={`hide-on-mobile umami--click--nav-bar-${section}`}
-      ref={internalLinkRefs[section] as any}
-      onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
-    >
-      {section}
-    </a>
-  ))
-
-  const links = internalLinks.concat(otherLinks)
-
-  const linkMidpoint = links.length / 2
-
-  if (linkMidpoint !== Math.floor(linkMidpoint)) {
-    throw new Error('Number of links must be even')
+  function InternalLink({ section }: { section: Section }): JSX.Element {
+    return (
+      <a
+        key={section}
+        className={`hide-on-mobile umami--click--nav-bar-${section}`}
+        ref={internalLinkRefs[section] as any}
+        onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
+      >
+        {section}
+      </a>
+    )
   }
-
-  links.splice(
-    linkMidpoint,
-    0,
-    <LocalizedLink key="MHI-logo" className="logo home" to="/" aria-label="logo">
-      <CenteredLogo />
-    </LocalizedLink>
-  )
 
   const header = (
     <header className="layout-new-header" ref={headerRef as any}>
-      {links}
+      <LocalizedLink key="roar-link" className="hide-on-mobile" to="/roar">
+        Roar!
+      </LocalizedLink>,
+      <InternalLink section="about" />
+      <a
+        className={`logo home umami--click--nav-bar-start`}
+        aria-label="More Human Internet"
+        ref={internalLinkRefs.start as any}
+        onClick={() => internalSectionRefs.start.current!.scrollIntoView({ block: 'center' })}
+      >
+        <CenteredLogo />
+      </a>,
+      <InternalLink section="why" />
+      <InternalLink section="join" />
     </header>
   )
 
