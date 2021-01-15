@@ -27,7 +27,7 @@ export default ({ aboutRef, whyRef, makeAndTrackRef }: TextContainerProps) => (
       </p>
       <p ref={makeAndTrackRef()}>
         <FormattedMessage id="index_aboutus5" />
-        <a className="same-color umami--click--nav-bar-join">
+        <a className="same-color umami--click--nav-bar-join" href="#">
           <FormattedMessage id="index_aboutus6" />
         </a>
         <FormattedMessage id="index_aboutus7" />
