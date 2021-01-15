@@ -119,7 +119,7 @@ header.layout-new-header {
     text-decoration: none;
     transition: border-bottom 0.3s;
 
-    &:not(.roar-home) {
+    &:not(.home) {
       border-bottom: 2px transparent solid;
       &.active,
       &:hover {

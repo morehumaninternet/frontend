@@ -11,7 +11,7 @@ type HeaderProps = {
 export default function Header({ headerRef, heroRef, otherLinks }: HeaderProps): JSX.Element {
   return (
     <header className="layout-new-header roar" ref={headerRef as any}>
-      <Link ref={heroRef} className="roar-home active" to="/roar" aria-label="logo">
+      <Link ref={heroRef} className="roar-home home active" to="/roar" aria-label="logo">
         <RoarLogo />
       </Link>
       {otherLinks && <div className="other-links">{otherLinks}</div>}

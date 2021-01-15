@@ -17,6 +17,12 @@ export default ({ aboutRef, whyRef, makeAndTrackRef }: TextContainerProps) => (
       </h2>
       <p ref={makeAndTrackRef()}>
         <FormattedMessage id="index_aboutus1" />
+        &nbsp;
+        <FormattedMessage id="index_aboutus5" />
+        <a className="same-color umami--click--nav-bar-join" href="#join">
+          <FormattedMessage id="index_aboutus6" />
+        </a>
+        <FormattedMessage id="index_aboutus7" />
       </p>
       <p ref={makeAndTrackRef()}>
         <FormattedMessage id="index_aboutus2" />
@@ -25,15 +31,6 @@ export default ({ aboutRef, whyRef, makeAndTrackRef }: TextContainerProps) => (
         </a>
         <FormattedMessage id="index_aboutus4" />
       </p>
-      <p ref={makeAndTrackRef()}>
-        <FormattedMessage id="index_aboutus5" />
-        <a className="same-color umami--click--nav-bar-join" href="#">
-          <FormattedMessage id="index_aboutus6" />
-        </a>
-        <FormattedMessage id="index_aboutus7" />
-      </p>
-      
-      
     </div>
     <div className="why" ref={whyRef}>
       <h2 className="mhi-heading" ref={makeAndTrackRef()}>

@@ -1,6 +1,6 @@
 import React from 'react'
 // @ts-ignore
-import { LocalizedLink } from 'gatsby-theme-i18n'
+import { Link } from 'gatsby'
 
 export default ({ makeAndTrackRef, joinRef }: { makeAndTrackRef(): React.MutableRefObject<any>; joinRef: React.MutableRefObject<any> }) => (
   <div className="new-hero">
@@ -14,10 +14,9 @@ export default ({ makeAndTrackRef, joinRef }: { makeAndTrackRef(): React.Mutable
       and better aligned with human interests
     </p>
     <div className="container" ref={makeAndTrackRef()}>
-      <a role="button" className="mhi-button hide-on-mobile umami--click--try-the-demo" target="_blank" href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc?hl=en&authuser=0">
+      <Link role="button" className="mhi-button hide-on-mobile" to="/roar">
         Get Roar!
-      </a>
-      <LocalizedLink className="terms" to="/roar/welcome">What is Roar?</LocalizedLink>
+      </Link>
       <button className="mhi-button hide-on-desktop umami--click--sign-up" onClick={() => joinRef.current!.scrollIntoView({ block: 'center' })}>
         Sign up
       </button>
