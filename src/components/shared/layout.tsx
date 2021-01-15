@@ -32,7 +32,7 @@ export const Layout = ({ header, sidebar, additionalClassNames, footerKind, chil
       {header}
       {sidebar}
       <main>{children}</main>
-      <Footer kind={footerKind || 'v1'} />
+      <Footer kind={footerKind || 'v2'} />
     </div>
   )
 }

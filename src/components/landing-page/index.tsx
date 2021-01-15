@@ -1,19 +1,17 @@
 import React from 'react'
 // @ts-ignore
-import { LocalizedLink } from 'gatsby-theme-i18n'
 import { ParallaxProvider } from 'react-scroll-parallax'
 import { Layout } from '../shared/layout'
 import Stars from './stars'
 import Astronaut from './astronaut'
 import SEO from '../shared/seo'
 import useHeader from './useHeader'
-import ApplicationForm from '../shared/application-form'
-import SimpleFeedbackWidget from '../simple-feedback-widget'
 import Team from './team'
 import Mountains from './mountains'
 import Hero from './hero'
 import Donate from './donate'
 import TextContainer from './text-container'
+import GetUpdates from '../shared/get-updates'
 import useExplicitHeightOnIPhone from '../../effects/useExplicitHeightOnIPhone'
 
 export default function LandingPage({ location }: PageProps): JSX.Element {
@@ -55,14 +53,12 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
             <h1 className="mhi-heading" ref={makeAndTrackRef()}>
               Join the community
             </h1>
-            <ApplicationForm availability={availability} setAvailability={setAvailability} makeAndTrackRef={makeAndTrackRef} />
-          </div>
-          <div className="team-container">
+            <p ref={makeAndTrackRef()}>Join our dedicated team of international volunteers to help make this vision a reality</p>
+            <GetUpdates ref={makeAndTrackRef()} />
             <Team makeAndTrackRef={makeAndTrackRef} volunteer={volunteer} />
           </div>
         </div>
         <Donate makeAndTrackRef={makeAndTrackRef} />
-        <SimpleFeedbackWidget />
       </Layout>
     </ParallaxProvider>
   )
