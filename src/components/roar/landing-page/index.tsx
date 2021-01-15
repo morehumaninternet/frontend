@@ -6,6 +6,7 @@ import GetUpdates from './get-updates'
 import Hero from './hero'
 import HowItWorks from './how-it-wroks'
 import LearnMore from './learn-more'
+import SocialMediaBar from './social-media-bar'
 import useExplicitHeightOnIPhone from '../../../effects/useExplicitHeightOnIPhone'
 import RoarSEO from '../roar-seo'
 
@@ -22,6 +23,7 @@ const RoarPage = ({ location }: PageProps): JSX.Element => {
       <HowItWorks ref={internalSectionRefs['How it works']} />
       <LearnMore ref={internalSectionRefs['Learn more']} />
       <GetUpdates ref={internalSectionRefs['Community']} />
+      <SocialMediaBar />
     </Layout>
   )
 }

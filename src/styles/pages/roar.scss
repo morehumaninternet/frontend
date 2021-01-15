@@ -1,4 +1,8 @@
 .layout.roar {
+  main {
+    position: relative;
+  }
+
   .btn {
     padding: 10px 20px;
   }
@@ -166,12 +170,40 @@
     font-size: 0.6rem;
     text-align: right;
   }
-
+  
   .newsletter__result {
     display: inline-block;
     max-width: 354px; // Match the width of the newsletter form
   }
 
+  /* social media bar */
+  .social-media-bar {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    button {
+      display: block;
+    }
+
+    .react-share__ShareButton[aria-label='reddit'] {
+      circle {
+        fill: #ff4500;
+      }
+    }
+
+    .social-link {
+      height: 48px;
+      margin-bottom: 5px;
+      svg {
+        width: 48px;
+      }
+    }
+  }
+  
   /* media query */
   @media (max-width: 700px) {
     .hero-container {
@@ -220,9 +252,20 @@
     .newsletter {
       grid-column: initial;
     }
-
+    
     .newsletter__result {
       max-width: 317px; // Match the width of the newsletter form
+    }
+
+    .social-media-bar {
+      position: static;
+      display: flex;
+      justify-content: center;
+
+      button,
+      .social-link svg {
+        margin: 0 5px;
+      }
     }
   }
 
