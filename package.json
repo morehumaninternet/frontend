@@ -20,6 +20,7 @@
     "@material-ui/styles": "4.10.0",
     "ajv": "6.12.5",
     "axios": "0.19.2",
+    "chrome-aws-lambda": "5.5.0",
     "color": "3.1.2",
     "gatsby-plugin-umami": "0.1.2",
     "lodash": "4.17.20",
@@ -31,7 +32,8 @@
     "react-scroll-parallax": "2.3.4",
     "react-share": "^4.3.1",
     "redux": "4.0.5",
-    "ua-parser-js": "0.7.23"
+    "ua-parser-js": "0.7.23",
+    "wappalyzer": "6.5.24"
   },
   "devDependencies": {
     "@types/chai": "4.2.12",

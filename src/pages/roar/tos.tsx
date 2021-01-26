@@ -12,20 +12,13 @@ export default function TosPage(): JSX.Element {
 
       <h3>2. Support</h3>
       <p>
-        If you are in need of support, contact us at{' '}
-        <a href="mailto:support@morehumaninternet.org">
-          support@morehumaninternet.org
-        </a>
-        .
+        If you are in need of support, contact us at <a href="mailto:support@morehumaninternet.org">support@morehumaninternet.org</a>.
       </p>
 
       <h3>3. Copyright Infringement</h3>
       <p>
         If you believe that our Services have been used in a way that constitutes copyright infringement, you should follow the process outlined here:{' '}
-        <a href="https://www.dmca.com/faq/Report-copyright-infringement">
-          https://www.dmca.com/faq/Report-copyright-infringement
-        </a>
-        .
+        <a href="https://www.dmca.com/faq/Report-copyright-infringement">https://www.dmca.com/faq/Report-copyright-infringement</a>.
       </p>
 
       <h3>4. Disclaimer of Warranties</h3>
