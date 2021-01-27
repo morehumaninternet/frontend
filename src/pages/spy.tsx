@@ -1,2 +1,2 @@
-import spyPage from '../components/spy'
-export default spyPage
+import SpyPage from '../components/spy'
+export default SpyPage

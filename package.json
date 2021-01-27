@@ -20,7 +20,6 @@
     "@material-ui/styles": "4.10.0",
     "ajv": "6.12.5",
     "axios": "0.19.2",
-    "chrome-aws-lambda": "5.5.0",
     "color": "3.1.2",
     "gatsby-plugin-umami": "0.1.2",
     "lodash": "4.17.20",
