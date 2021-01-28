@@ -14,7 +14,8 @@ const SpyPage = (): JSX.Element => {
     setLoading(true)
     let response, data
     try {
-      response = await fetch(`https://localhost:5004/v1/spy/?url=${url}`, {
+      const urlWithProtocol = url.startsWith('http') ? url : `http://${url}`
+      response = await fetch(`https://localhost:5004/v1/spy/?url=${urlWithProtocol}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
