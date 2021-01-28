@@ -1,19 +1,43 @@
+// tslint:disable:no-expression-statement no-let
 import React, { useState } from 'react'
 
 const SpyPage = (): JSX.Element => {
   const [url, setUrl] = useState<string>('')
-  const [spyList, setSpyList] = useState<Maybe<ReadonlyArray<string>>>()
+  const [spyList, setSpyList] = useState<ReadonlyArray<string>>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    // tslint:disable-next-line no-expression-statement
     e.preventDefault()
-
-    const response = await fetch(`/spy/?url=${url}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    setError('')
+    setSpyList([])
+    setLoading(true)
+    let response, data
+    try {
+      response = await fetch(`https://localhost:5004/v1/spy/?url=${url}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      data = await response.json()
+    } catch (error) {
+      console.error(error)
+      setLoading(false)
+      setError('Error while scanning for spies')
+      return
+    }
+    setLoading(false)
+    if (!response || !response.ok) {
+      setError('Error while scanning for spies')
+      return
+    } else {
+      if (data.spies) {
+        setSpyList(data.spies.join(', '))
+      } else {
+        setError('Could not find any spies')
+      }
+    }
   }
 
   return (
@@ -22,9 +46,11 @@ const SpyPage = (): JSX.Element => {
         <h1>Who's been spying on me?</h1>
         <form onSubmit={handleSubmit}>
           <input type="text" name="url" placeholder="https://..." value={url} onChange={e => setUrl(e.target.value)} />
-          <input type="submit" value="analyze" />
+          <input className="mhi-button" type="submit" value="analyze" />
         </form>
-        {spyList}
+        {loading && <p>Please wait...</p>}
+        {error && <p>{error}</p>}
+        {spyList && <p>{spyList}</p>}
       </div>
     </div>
   )
