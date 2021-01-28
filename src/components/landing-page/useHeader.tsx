@@ -19,7 +19,6 @@ import { LocalizedLink } from 'gatsby-theme-i18n'
 import setLogoFade from '../../utils/setLogoFade'
 import MHIDotsLogo from '../shared/mhi-dots-logo'
 
-
 type Section = 'start' | 'about' | 'why' | 'join'
 
 type UseHeaderProps = {
@@ -37,10 +36,7 @@ type UseHeaderReturn = {
   makeAndTrackRef(): React.MutableRefObject<any>
 }
 
-export default function useHeader({
-  location,
-  fadeAtRef,
-}: UseHeaderProps): UseHeaderReturn {
+export default function useHeader({ location, fadeAtRef }: UseHeaderProps): UseHeaderReturn {
   const internalSections: ReadonlyArray<Section> = ['start', 'about', 'why', 'join']
 
   const refsToTrack: React.MutableRefObject<HTMLElement>[] = [] // tslint:disable-line:readonly-array

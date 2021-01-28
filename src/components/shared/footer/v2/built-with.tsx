@@ -1,7 +1,6 @@
 import React from 'react'
 import MHIDotsLogo from '../../mhi-dots-logo'
 
-
 const BuiltWith = (): JSX.Element => {
   return (
     <div className="mhi-logo">
