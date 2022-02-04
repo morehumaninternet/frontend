@@ -14,15 +14,16 @@ $header-height: 100px;
   }
 }
 
-@mixin animate($animation, $duration, $method, $times) {
-  animation: $animation $duration $method $times;
-}
+// animation not working under scss - wip
+// @mixin animate($animation, $duration, $method, $times) {
+//   animation: $animation $duration $method $times;
+// }
 
-@mixin keyframes($name) {
-  @keyframes #{$name} {
-    @content;
-  }
-}
+// @mixin keyframes($name) {
+//   @keyframes #{$name} {
+//     @content;
+//   }
+// }
 
 header.layout-header {
   height: $header-height;
@@ -151,20 +152,7 @@ header.layout-new-header {
     }
 
     &.against-hero {
-      .more {
-        @include keyframes(vision-animate) {
-          0% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-          100% {
-            opacity: 0;
-          }
-        }
-        @include animate(vision-animate, 5s, liner, 1);
-      }
+      .more,
       .internet,
       .bottom-left {
         fill: var(--logo-color-blue-white);
