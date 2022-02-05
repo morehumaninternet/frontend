@@ -147,6 +147,7 @@ header.layout-new-header {
 
   svg.mhi-with-text-logo {
     .human,
+    .global,
     .top-right {
       fill: $human-pink;
     }
@@ -154,6 +155,8 @@ header.layout-new-header {
     &.against-hero {
       .more,
       .internet,
+      .join,
+      .community,
       .bottom-left {
         fill: var(--logo-color-blue-white);
       }
