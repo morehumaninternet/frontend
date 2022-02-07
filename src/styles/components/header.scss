@@ -15,15 +15,15 @@ $header-height: 100px;
 }
 
 // animation not working under scss - wip
-// @mixin animate($animation, $duration, $method, $times) {
-//   animation: $animation $duration $method $times;
-// }
+@mixin animate($animation, $duration, $method, $times) {
+  animation: $animation $duration $method $times;
+}
 
-// @mixin keyframes($name) {
-//   @keyframes #{$name} {
-//     @content;
-//   }
-// }
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
 
 header.layout-header {
   height: $header-height;
@@ -57,6 +57,9 @@ svg.header-logo {
     .right-head,
     .bodies {
       fill: var(--logo-color-blue-white);
+    }
+    .more {
+      color: red;
     }
     .bodies {
       stroke: var(--logo-color-blue-white);
@@ -159,6 +162,21 @@ header.layout-new-header {
       .community,
       .bottom-left {
         fill: var(--logo-color-blue-white);
+      }
+      .more {
+        fill: var(--logo-color-blue-white);
+        @include keyframes(fade) {
+          0% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+        @include animate(fade, 1s, linear, 5);
       }
     }
 
