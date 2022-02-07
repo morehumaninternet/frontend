@@ -58,9 +58,6 @@ svg.header-logo {
     .bodies {
       fill: var(--logo-color-blue-white);
     }
-    .more {
-      color: red;
-    }
     .bodies {
       stroke: var(--logo-color-blue-white);
     }
@@ -179,7 +176,7 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(fade, 1s, linear, 5);
+        @include animate(fade, 1s, linear, 3);
       }
     }
 
