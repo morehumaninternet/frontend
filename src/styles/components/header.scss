@@ -163,8 +163,11 @@ header.layout-new-header {
       .bottom-left {
         fill: var(--logo-color-blue-white);
       }
-      .more {
-        fill: var(--logo-color-blue-white);
+      .more,
+      .internet,
+      .human,
+      .top-right,
+      .bottom-left {
         @include keyframes(fade) {
           0% {
             opacity: 1;
