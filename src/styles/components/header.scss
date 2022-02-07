@@ -164,7 +164,10 @@ header.layout-new-header {
       .internet,
       .human,
       .top-right,
-      .bottom-left {
+      .bottom-left,
+      .join,
+      .global,
+      .community {
         @include keyframes(fade) {
           0% {
             opacity: 1;
