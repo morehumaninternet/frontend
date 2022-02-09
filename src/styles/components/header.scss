@@ -135,8 +135,8 @@ header.layout-new-header {
   }
 
   // add keyframes animation in scss
-  @mixin animate($animation, $duration, $method, $times, $fill-mode) {
-    animation: $animation $duration $method $times $fill-mode;
+  @mixin animate($animation, $duration, $method, $delay, $times, $fill-mode) {
+    animation: $animation $duration $method $delay $times $fill-mode;
   }
   @mixin keyframes($name) {
     @keyframes #{$name} {
@@ -178,12 +178,11 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(fade, 1s, linear, 3, none);
+        @include animate(fade, 1s, linear, 0s, 3, none);
       }
       //testing flipOutX on join2, gloabl2 and community2 class selectors
       .join2 {
-        fill: red;
-        @include keyframes(flipOutX) {
+        @include keyframes(flipOutXJoin) {
           from {
             transform: perspective(400px);
           }
@@ -198,8 +197,52 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutX, 5s, linear, 1, forwards);
-        backface-visibility: visible;
+        @include animate(flipOutXJoin, 5s, linear, 0s, 1, forwards);
+        backface-visibility: visible !important;
+      }
+      .global2 {
+        opacity: 0;
+        @include keyframes(flipOutXGlobal) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXGlobal, 5s, linear, 5s, 1, forwards);
+        backface-visibility: visible !important;
+      }
+      .community2 {
+        opacity: 0;
+        backface-visibility: visible !important;
+
+        @include keyframes(flipOutXCommunity) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXCommunity, 5s, linear, 10s, 1, forwards);
+        backface-visibility: visible !important;
       }
     }
 
