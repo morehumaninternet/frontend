@@ -14,17 +14,6 @@ $header-height: 100px;
   }
 }
 
-// add keyframes animation in scss
-@mixin animate($animation, $duration, $method, $times) {
-  animation: $animation $duration $method $times;
-}
-
-@mixin keyframes($name) {
-  @keyframes #{$name} {
-    @content;
-  }
-}
-
 header.layout-header {
   height: $header-height;
   position: fixed;
@@ -145,6 +134,16 @@ header.layout-new-header {
     }
   }
 
+  // add keyframes animation in scss
+  @mixin animate($animation, $duration, $method, $times, $fill-mode) {
+    animation: $animation $duration $method $times $fill-mode;
+  }
+  @mixin keyframes($name) {
+    @keyframes #{$name} {
+      @content;
+    }
+  }
+
   svg.mhi-with-text-logo {
     .human,
     .global,
@@ -165,7 +164,7 @@ header.layout-new-header {
       .human,
       .top-right,
       .bottom-left,
-      // .join,
+      .join,
       .global,
       .community {
         @include keyframes(fade) {
@@ -179,10 +178,28 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(fade, 1s, linear, 3);
+        @include animate(fade, 1s, linear, 3, none);
       }
-      .join {
+      //testing flipOutX on join2, gloabl2 and community2 class selectors
+      .join2 {
         fill: red;
+        @include keyframes(flipOutX) {
+          from {
+            transform: perspective(400px);
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutX, 5s, linear, 1, forwards);
+        backface-visibility: visible;
       }
     }
 
