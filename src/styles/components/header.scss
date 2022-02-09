@@ -14,7 +14,7 @@ $header-height: 100px;
   }
 }
 
-// animation not working under scss - wip
+// add keyframes animation in scss
 @mixin animate($animation, $duration, $method, $times) {
   animation: $animation $duration $method $times;
 }
@@ -165,7 +165,7 @@ header.layout-new-header {
       .human,
       .top-right,
       .bottom-left,
-      .join,
+      // .join,
       .global,
       .community {
         @include keyframes(fade) {
@@ -180,6 +180,9 @@ header.layout-new-header {
           }
         }
         @include animate(fade, 1s, linear, 3);
+      }
+      .join {
+        fill: red;
       }
     }
 
