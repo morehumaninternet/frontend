@@ -160,7 +160,66 @@ header.layout-new-header {
         fill: var(--logo-color-blue-white);
       }
       //testing flipOutX on join2, gloabl2 and community2 class selectors
+      .more {
+        backface-visibility: visible !important;
+        @include keyframes(flipOutXMore) {
+          from {
+            transform: perspective(400px);
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXMore, 3s, linear, 1s, 1, forwards);
+      }
+      .human {
+        backface-visibility: visible !important;
+        @include keyframes(flipOutXMore) {
+          from {
+            transform: perspective(400px);
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXMore, 3s, linear, 2s, 1, forwards);
+      }
+      .internet {
+        backface-visibility: visible !important;
+        @include keyframes(flipOutXMore) {
+          from {
+            transform: perspective(400px);
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXMore, 3s, linear, 3s, 1, forwards);
+      }
       .join {
+        opacity: 0;
+        backface-visibility: visible !important;
         @include keyframes(flipOutXJoin) {
           from {
             transform: perspective(400px);
@@ -176,11 +235,11 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXJoin, 5s, linear, 0s, 1, forwards);
-        backface-visibility: visible !important;
+        @include animate(flipOutXJoin, 3s, linear, 4s, 1, forwards);
       }
       .global {
         opacity: 0;
+        backface-visibility: visible !important;
         @include keyframes(flipOutXGlobal) {
           from {
             transform: perspective(400px);
@@ -197,8 +256,7 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXGlobal, 5s, linear, 5s, 1, forwards);
-        backface-visibility: visible !important;
+        @include animate(flipOutXGlobal, 3s, linear, 5s, 1, forwards);
       }
       .community {
         opacity: 0;
@@ -220,8 +278,7 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXCommunity, 5s, linear, 10s, 1, forwards);
-        backface-visibility: visible !important;
+        @include animate(flipOutXCommunity, 3s, linear, 6s, 1, forwards);
       }
     }
 
