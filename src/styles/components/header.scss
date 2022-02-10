@@ -159,29 +159,8 @@ header.layout-new-header {
       .bottom-left {
         fill: var(--logo-color-blue-white);
       }
-      .more,
-      .internet,
-      .human,
-      .top-right,
-      .bottom-left,
-      .join,
-      .global,
-      .community {
-        @include keyframes(fade) {
-          0% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-          100% {
-            opacity: 0;
-          }
-        }
-        @include animate(fade, 1s, linear, 0s, 3, none);
-      }
       //testing flipOutX on join2, gloabl2 and community2 class selectors
-      .join2 {
+      .join {
         @include keyframes(flipOutXJoin) {
           from {
             transform: perspective(400px);
@@ -200,7 +179,7 @@ header.layout-new-header {
         @include animate(flipOutXJoin, 5s, linear, 0s, 1, forwards);
         backface-visibility: visible !important;
       }
-      .global2 {
+      .global {
         opacity: 0;
         @include keyframes(flipOutXGlobal) {
           from {
@@ -221,7 +200,7 @@ header.layout-new-header {
         @include animate(flipOutXGlobal, 5s, linear, 5s, 1, forwards);
         backface-visibility: visible !important;
       }
-      .community2 {
+      .community {
         opacity: 0;
         backface-visibility: visible !important;
 

@@ -18,8 +18,6 @@ import { forEach } from 'lodash'
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import setLogoFade from '../../utils/setLogoFade'
 import MHIDotsLogo from '../shared/mhi-dots-logo'
-import MHIJoinGlobalCommunityLogo from '../shared/mhi-join-global-community-logo'
-
 
 type Section = 'start' | 'about' | 'why' | 'join'
 
@@ -181,7 +179,6 @@ export default function useHeader({
         onClick={() => internalSectionRefs.start.current!.scrollIntoView({ block: 'center' })}
       >
         <MHIDotsLogo additionalClassNames="against-hero" />
-        <MHIJoinGlobalCommunityLogo additionalClassNames="against-hero" />
       </a>
       <InternalLink section="why" />
       <InternalLink section="join" />

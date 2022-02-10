@@ -1,3 +1,5 @@
+// this is a testing component for svg animation. not rendering on home page right now. 
+
 import React from 'react'
 
 export default function MHIJoinGlobalCommunityLogo({ additionalClassNames }: { additionalClassNames?: string }): JSX.Element {
