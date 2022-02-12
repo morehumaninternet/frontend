@@ -152,6 +152,10 @@ header.layout-new-header {
     }
 
     &.against-hero {
+      .upper-container {
+        display: flex;
+        flex-direction: column;
+      }
       .more,
       .internet,
       .join,
@@ -225,7 +229,12 @@ header.layout-new-header {
             transform: perspective(400px);
           }
 
-          30% {
+          10% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -45deg);
+            opacity: 1;
+          }
+
+          50% {
             transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
             opacity: 1;
           }
