@@ -145,22 +145,34 @@ header.layout-new-header {
   }
 
   div.mhi-with-text-logo {
+    display: flex;
+    flex-direction: column;
+
     .human,
     .global,
+    .important,
     .top-right {
+      position: absolute;
+      left: 0;
       fill: $human-pink;
     }
 
     &.against-hero {
-      .upper-container {
-        display: flex;
-        flex-direction: column;
+      .upper-container,
+      .mid-container,
+      .bottom-container {
+        position: relative;
+        height: 15px;
       }
       .more,
       .internet,
       .join,
       .community,
+      .support,
+      .causes,
       .bottom-left {
+        position: absolute;
+        left: 0;
         fill: var(--logo-color-blue-white);
       }
       //testing flipOutX on join2, gloabl2 and community2 class selectors
@@ -200,7 +212,7 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXMore, 3s, linear, 2s, 1, forwards);
+        @include animate(flipOutXMore, 3s, linear, 1s, 1, forwards);
       }
       .internet {
         backface-visibility: visible !important;
@@ -219,7 +231,7 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXMore, 3s, linear, 3s, 1, forwards);
+        @include animate(flipOutXMore, 3s, linear, 1s, 1, forwards);
       }
       .join {
         opacity: 0;
@@ -265,7 +277,7 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXGlobal, 3s, linear, 5s, 1, forwards);
+        @include animate(flipOutXGlobal, 3s, linear, 4s, 1, forwards);
       }
       .community {
         opacity: 0;
@@ -287,7 +299,71 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXCommunity, 3s, linear, 6s, 1, forwards);
+        @include animate(flipOutXCommunity, 3s, linear, 4s, 1, forwards);
+      }
+      .support {
+        opacity: 0;
+        backface-visibility: visible !important;
+
+        @include keyframes(flipOutXCommunity) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXCommunity, 3s, linear, 7s, 1, forwards);
+      }
+      .important {
+        opacity: 0;
+        backface-visibility: visible !important;
+        @include keyframes(flipOutXGlobal) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXGlobal, 3s, linear, 7s, 1, forwards);
+      }
+      .causes {
+        opacity: 0;
+        backface-visibility: visible !important;
+        @include keyframes(flipOutXGlobal) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXGlobal, 3s, linear, 7s, 1, forwards);
       }
     }
 
