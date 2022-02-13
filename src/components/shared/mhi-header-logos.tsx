@@ -1,5 +1,3 @@
-// this is a testing component for svg animation. not rendering on home page right now. 
-
 import React from 'react'
 
 export default function MHIHeaderLogos({ additionalClassNames }: { additionalClassNames?: string }): JSX.Element {
