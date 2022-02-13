@@ -175,7 +175,7 @@ header.layout-new-header {
         left: 0;
         fill: var(--logo-color-blue-white);
       }
-      //testing flipOutX on join2, gloabl2 and community2 class selectors
+      //testing flipOutX on join, gloabl and community classes selectors
       .more {
         backface-visibility: visible !important;
         @include keyframes(flipOutXMore) {
@@ -193,7 +193,7 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXMore, 3s, linear, 1s, 1, forwards);
+        @include animate(flipOutXMore, 5s, linear, 1s, 1, forwards);
       }
       .human {
         backface-visibility: visible !important;
@@ -238,25 +238,25 @@ header.layout-new-header {
         backface-visibility: visible !important;
         @include keyframes(flipOutXJoin) {
           from {
-            transform: perspective(400px);
+            transform: perspective(200px);
           }
 
-          10% {
-            transform: perspective(400px) rotate3d(1, 0, 0, -45deg);
-            opacity: 1;
-          }
+          // 10% {
+          //   transform: perspective(200px) rotate3d(1, 0, 0, -45deg);
+          //   opacity: 1;
+          // }
 
           50% {
-            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            transform: perspective(200px) rotate3d(1, 0, 0, -20deg);
             opacity: 1;
           }
 
           to {
-            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            transform: perspective(200px) rotate3d(1, 0, 0, 90deg);
             opacity: 0;
           }
         }
-        @include animate(flipOutXJoin, 3s, linear, 4s, 1, forwards);
+        @include animate(flipOutXJoin, 5s, linear, 6s, 1, forwards);
       }
       .global {
         opacity: 0;
@@ -321,7 +321,7 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXCommunity, 3s, linear, 7s, 1, forwards);
+        @include animate(flipOutXCommunity, 5s, linear, 12s, 1, none);
       }
       .important {
         opacity: 0;
@@ -342,7 +342,7 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXGlobal, 3s, linear, 7s, 1, forwards);
+        @include animate(flipOutXGlobal, 3s, linear, 7s, 1, none);
       }
       .causes {
         opacity: 0;
@@ -363,7 +363,7 @@ header.layout-new-header {
             opacity: 0;
           }
         }
-        @include animate(flipOutXGlobal, 3s, linear, 7s, 1, forwards);
+        @include animate(flipOutXGlobal, 3s, linear, 7s, 1, none);
       }
     }
 
