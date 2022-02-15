@@ -40,7 +40,6 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
         <article className="sky start" ref={internalSectionRefs.start as any}>
           <Hero makeAndTrackRef={makeAndTrackRef} joinRef={internalSectionRefs.join} />
           <Stars x={10000} y={1000} starCount={300} />
-          <Mountains />
         </article>
         <div className="post-sky1">
           <div className="manifesto">
@@ -57,6 +56,9 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
             <GetUpdates ref={makeAndTrackRef()} />
             <Team makeAndTrackRef={makeAndTrackRef} volunteer={volunteer} />
           </div>
+        </div>
+        <div className='sky'>
+          <Mountains />
         </div>
         <Donate makeAndTrackRef={makeAndTrackRef} />
       </Layout>
