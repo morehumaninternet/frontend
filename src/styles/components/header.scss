@@ -84,6 +84,73 @@ svg.header-logo {
   }
 }
 
+
+  // add keyframes animation in scss
+  @mixin animate($animation, $duration, $method, $delay, $times, $fill-mode) {
+    animation: $animation $duration $method $delay $times $fill-mode;
+  }
+  @mixin keyframes($name) {
+    @keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @keyframes rotate-nothing {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes rotate-first {
+    0% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    20%, 80% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate3d(-25px, 0, 0);
+    }
+  }
+
+  @keyframes rotate {
+    0% {
+      opacity: 0;
+      transform: translate3d(50px, 0, 0);
+    }
+
+    20%, 80% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate3d(-25px, 0, 0);
+    }
+  }
+
+  @keyframes rotate-last {
+    0% {
+      opacity: 0;
+      transform: translate3d(50px, 0, 0);
+    }
+
+    50%, 100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
 .foobar {
   display: grid;
   grid-template-rows: 50px 50px 50px;
@@ -115,26 +182,34 @@ svg.header-logo {
   text-transform: uppercase;
   top: 0;
   width: 500px;
-}
-
-.rotatingText-adjective:nth-of-type(1) {
+  animation-duration: 1.5s;
   animation-name: rotate;
-  animation-duration: 1.5s;
-  animation-delay: 0.5s;
 }
 
-.rotatingText-adjective:nth-of-type(2) {
-  animation-name: rotate;
-  animation-duration: 1.5s;
-  animation-delay: 1.75s;
-}
+// .rotatingText-adjective {
+//   animation-name: rotate-first;
+//   animation-duration: 1.5s;
+//   animation-delay: 0.5s;
+// }
 
-.rotatingText-adjective:nth-of-type(3) {
-  animation-name: rotate-last;
-  animation-duration: 1.5s;
-  animation-delay: 3s;
-  animation-fill-mode: forwards;
-}
+// .rotatingText-adjective:nth-of-type(2) {
+//   animation-name: rotate;
+//   animation-duration: 1.5s;
+//   animation-delay: 1.5s;
+// }
+
+// .rotatingText-adjective:nth-of-type(3) {
+//   animation-name: rotate;
+//   animation-duration: 1.5s;
+//   animation-delay: 2.75s;
+// }
+
+// .rotatingText-adjective:nth-of-type(4) {
+//   animation-name: rotate-last;
+//   animation-duration: 1.5s;
+//   animation-delay: 4s;
+//   animation-fill-mode: forwards;
+// }
 
 header.layout-new-header {
   height: $header-height;
@@ -183,45 +258,6 @@ header.layout-new-header {
       &:hover {
         border-color: $human-pink;
       }
-    }
-  }
-
-  // add keyframes animation in scss
-  @mixin animate($animation, $duration, $method, $delay, $times, $fill-mode) {
-    animation: $animation $duration $method $delay $times $fill-mode;
-  }
-  @mixin keyframes($name) {
-    @keyframes #{$name} {
-      @content;
-    }
-  }
-
-  @keyframes rotate {
-    0% {
-      opacity: 0;
-      transform: translate3d(50px, 0, 0);
-    }
-
-    20%, 80% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-
-    100% {
-      opacity: 0;
-      transform: translate3d(-25px, 0, 0);
-    }
-  }
-
-  @keyframes rotate-last {
-    0% {
-      opacity: 0;
-      transform: translate3d(50px, 0, 0);
-    }
-
-    50%, 100% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
     }
   }
 

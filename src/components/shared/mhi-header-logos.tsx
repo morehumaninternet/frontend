@@ -92,24 +92,78 @@ import React from 'react'
 // 2. have the words rotate in one at a time
 // 3. add
 
+const firstWords = [
+  'more',
+  'more',
+  'beautiful',
+  'maintainable',
+  'perfect',
+]
+
+const secondWords = [
+  'human',
+  'human',
+  'foo',
+  'bar',
+  'baz',
+]
+
+const thirdWords = [
+  'internet',
+  'internet',
+  'zing',
+  'bing',
+  'foo',
+]
+
 
 export default function MHIHeaderLogos({ additionalClassNames }: { additionalClassNames?: string }): JSX.Element {
   return (
     <div className="foobar">
       <div className="rotatingText human-blue">
-        <span className="rotatingText-adjective">beautiful</span>
-        <span className="rotatingText-adjective">maintainable</span>
-        <span className="rotatingText-adjective">perfect 👌</span>
+        {firstWords.map((word, i) =>
+          <span className="rotatingText-adjective" style={{
+            animationDelay: `${0.5 + 1.25 * (i - 1)}s`,
+            ...(i === 1 ? {
+              animationName: 'rotate-first',
+            } : i === firstWords.length - 1 ? {
+              animationName: 'rotate-last',
+              animationFillMode: 'forwards'
+            } : i === 0 ? {
+              animationName: 'rotate-nothing',
+              animationDuration: '0.5s',
+            } : {})
+          }}>{word}</span>)}
       </div>
       <div className="rotatingText human-pink">
-        <span className="rotatingText-adjective">foo</span>
-        <span className="rotatingText-adjective">bar</span>
-        <span className="rotatingText-adjective">baz 👌</span>
+        {secondWords.map((word, i) =>
+          <span className="rotatingText-adjective" style={{
+            animationDelay: `${0.6 + 1.25 * (i - 1)}s`,
+            ...(i === 1 ? {
+              animationName: 'rotate-first',
+            } : i === secondWords.length - 1 ? {
+              animationName: 'rotate-last',
+              animationFillMode: 'forwards'
+            } : i === 0 ? {
+              animationName: 'rotate-nothing',
+              animationDuration: '0.6s',
+            } : {})
+          }}>{word}</span>)}
       </div>
       <div className="rotatingText human-blue">
-        <span className="rotatingText-adjective">zing</span>
-        <span className="rotatingText-adjective">bing</span>
-        <span className="rotatingText-adjective">foo 👌</span>
+        {thirdWords.map((word, i) =>
+          <span className="rotatingText-adjective" style={{
+            animationDelay: `${0.7 + 1.25 * (i - 1)}s`,
+            ...(i === 1 ? {
+              animationName: 'rotate-first',
+            } : i === thirdWords.length - 1 ? {
+              animationName: 'rotate-last',
+              animationFillMode: 'forwards'
+            } : i === 0 ? {
+              animationName: 'rotate-nothing',
+              animationDuration: '0.7s',
+            } : {})
+          }}>{word}</span>)}
       </div>
     </div>
 
