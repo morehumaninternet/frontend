@@ -57,9 +57,9 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
             <Team makeAndTrackRef={makeAndTrackRef} volunteer={volunteer} />
           </div>
         </div>
-        <div className='sky'>
+        <article className='sky start' ref={internalSectionRefs.start as any}>
           <Mountains />
-        </div>
+        </article>
         <Donate makeAndTrackRef={makeAndTrackRef} />
       </Layout>
     </ParallaxProvider>
