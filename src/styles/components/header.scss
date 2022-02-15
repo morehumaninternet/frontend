@@ -178,6 +178,7 @@ header.layout-new-header {
       //testing flipOutX on join, gloabl and community classes selectors
       .more {
         backface-visibility: visible !important;
+        transform-origin: bottom;
         @include keyframes(flipOutXMore) {
           from {
             transform: perspective(400px);
@@ -197,6 +198,7 @@ header.layout-new-header {
       }
       .human {
         backface-visibility: visible !important;
+        transform-origin: bottom;
         @include keyframes(flipOutXMore) {
           from {
             transform: perspective(400px);
@@ -216,6 +218,7 @@ header.layout-new-header {
       }
       .internet {
         backface-visibility: visible !important;
+        transform-origin: bottom;
         @include keyframes(flipOutXMore) {
           from {
             transform: perspective(400px);
@@ -236,16 +239,12 @@ header.layout-new-header {
       .join {
         opacity: 0;
         backface-visibility: visible !important;
+        transform-origin: bottom;
         @include keyframes(flipOutXJoin) {
           from {
             transform: perspective(400px);
+            opacity: 1;
           }
-
-          // 10% {
-          //   transform: perspective(400px) rotate3d(1, 0, 0, -45deg);
-          //   opacity: 1;
-          // }
-
           30% {
             transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
             opacity: 1;
@@ -261,6 +260,7 @@ header.layout-new-header {
       .global {
         opacity: 0;
         backface-visibility: visible !important;
+        transform-origin: bottom;
         @include keyframes(flipOutXGlobal) {
           from {
             transform: perspective(400px);
@@ -282,7 +282,7 @@ header.layout-new-header {
       .community {
         opacity: 0;
         backface-visibility: visible !important;
-
+        transform-origin: bottom;
         @include keyframes(flipOutXCommunity) {
           from {
             transform: perspective(400px);
@@ -304,7 +304,7 @@ header.layout-new-header {
       .support {
         opacity: 0;
         backface-visibility: visible !important;
-
+        transform-origin: bottom;
         @include keyframes(flipOutXCommunity) {
           from {
             transform: perspective(400px);
@@ -326,6 +326,7 @@ header.layout-new-header {
       .important {
         opacity: 0;
         backface-visibility: visible !important;
+        transform-origin: bottom;
         @include keyframes(flipOutXGlobal) {
           from {
             transform: perspective(400px);
@@ -347,6 +348,7 @@ header.layout-new-header {
       .causes {
         opacity: 0;
         backface-visibility: visible !important;
+        transform-origin: bottom;
         @include keyframes(flipOutXGlobal) {
           from {
             transform: perspective(400px);
