@@ -35,7 +35,7 @@ export default function LandingPage({ location }: PageProps): JSX.Element {
 
   return (
     <ParallaxProvider>
-      <Layout additionalClassNames="landing-page" header={header}>
+      <Layout additionalClassNames="landing-page orig" header={header}>
         <SEO />
         <article className="sky start" ref={internalSectionRefs.start as any}>
           <Hero makeAndTrackRef={makeAndTrackRef} joinRef={internalSectionRefs.join} />
