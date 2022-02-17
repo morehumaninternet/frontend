@@ -125,7 +125,6 @@ const thirdWords = [
   'internet',
 ]
 
-
 export default function MHIHeaderLogos({ additionalClassNames }: { additionalClassNames?: string }): JSX.Element {
   return (
     <div className="mhi-rotating-logo">
