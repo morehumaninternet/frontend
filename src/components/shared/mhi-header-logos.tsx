@@ -97,33 +97,15 @@ import React from 'react'
 // 5. at the end of the animation, the dots should slide in and text slide out
 // 6. fonts
 
-
-const firstWords = [
-  'more',
-  'more',
-  'beautiful',
-  'maintainable',
-  'perfect',
-  'more',
+const words = [
+  { color: 'human-blue', words: [ 'more', 'beautiful', 'maintainable', 'perfect' ] },
+  { color: 'human-pink', words: [ 'human', 'foo', 'bar', 'baz' ] },
+  { color: 'human-blue', words: [ 'internet', 'zing', 'bing', 'foo' ] },
 ]
 
-const secondWords = [
-  'human',
-  'human',
-  'foo',
-  'bar',
-  'baz',
-  'human',
-]
 
-const thirdWords = [
-  'internet',
-  'internet',
-  'zing',
-  'bing',
-  'foo',
-  'internet',
-]
+// 1. Make it so that the time of the dots fading in is based on the length of the words, not hard-coded in the scss
+// 2. Add a row of buttons that slides down and fades in at the same time as the dots
 
 export default function MHIHeaderLogos({ additionalClassNames }: { additionalClassNames?: string }): JSX.Element {
   return (
@@ -133,60 +115,30 @@ export default function MHIHeaderLogos({ additionalClassNames }: { additionalCla
         <circle className="top-right human-pink" cx="30.7503" cy="14.9704" r="11.25" />
       </svg>
       <div className="mhi-rotating-logo-words">
-        <div className="rotatingText human-blue">
-          {firstWords.map((word, i) =>
+        {words.map((foo, i) =>
+          <div className={`rotatingText ${foo.color}`}>
             <div className="rotatingText-adjective" style={{
-              animationDelay: `${0.5 + 1.25 * (i - 1)}s`,
-              ...(i === 1 ? {
-                animationName: 'rotate-first',
-              } : i === 0 ? {
-                animationName: 'rotate-nothing',
-                animationDuration: '0.5s',
-                animationDelay: '0s',
-                position: 'static'
-              } : i === firstWords.length - 1 ? {
-                animationName: 'rotate-last',
-                animationFillMode: 'forwards'
-              } : {})
-            }}>{word}</div>)}
-        </div>
-        <div className="rotatingText human-pink">
-          {secondWords.map((word, i) =>
+              animationName: 'rotate-nothing',
+              animationDuration: `${(0.5 + (0.1 * i))}s`,
+              animationDelay: '0s',
+              position: 'static'
+            }}>{foo.words[0]}</div>
+            {foo.words.map((word, j) =>
+              <div className="rotatingText-adjective" style={{
+                animationDelay: `${(0.5 + (0.1 * i)) + 1.25 * (j - 1)}s`,
+                ...(j === 0 ? {
+                  animationName: 'rotate-first',
+                } : {})
+              }}>{word}</div>
+            )}
             <div className="rotatingText-adjective" style={{
-              animationDelay: `${0.6 + 1.25 * (i - 1)}s`,
-              ...(i === 1 ? {
-                animationName: 'rotate-first',
-              } : i === 0 ? {
-                animationName: 'rotate-nothing',
-                animationDuration: '0.6s',
-                animationDelay: '0s',
-                position: 'static'
-              } : i === secondWords.length - 1 ? {
-                animationName: 'rotate-last',
-                animationFillMode: 'forwards'
-              } : {})
-            }}>{word}</div>)}
-        </div>
-        <div className="rotatingText human-blue">
-          {thirdWords.map((word, i) =>
-            <div className="rotatingText-adjective" style={{
-              animationDelay: `${0.7 + 1.25 * (i - 1)}s`,
-              ...(i === 1 ? {
-                animationName: 'rotate-first',
-              } : i === 0 ? {
-                animationName: 'rotate-nothing',
-                animationDuration: '0.7s',
-                animationDelay: '0s',
-                position: 'static'
-              } : i === thirdWords.length - 1 ? {
-                animationName: 'rotate-last',
-                animationFillMode: 'forwards'
-              } : {})
-            }}>{word}</div>)}
-        </div>
+              animationName: 'rotate-last',
+              animationDelay: `${(0.5 + (0.1 * i)) + 1.25 * (foo.words.length - 1)}s`,
+              animationFillMode: 'forwards'
+            }}>{foo.words[0]}</div>
+          </div>
+        )}
       </div>
     </div>
-
-
   )
 }
