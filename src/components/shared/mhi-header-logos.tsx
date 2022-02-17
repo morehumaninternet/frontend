@@ -88,9 +88,15 @@ import React from 'react'
 // }
 
 
+
+
 // 1. rotate horizontally instead of vertically
 // 2. have the words rotate in one at a time
-// 3. add
+// 3. more human internet should initially be visible
+// 4. centering?
+// 5. at the end of the animation, the dots should slide in and text slide out
+// 6. fonts
+
 
 const firstWords = [
   'more',
@@ -98,6 +104,7 @@ const firstWords = [
   'beautiful',
   'maintainable',
   'perfect',
+  'more',
 ]
 
 const secondWords = [
@@ -106,6 +113,7 @@ const secondWords = [
   'foo',
   'bar',
   'baz',
+  'human',
 ]
 
 const thirdWords = [
@@ -114,58 +122,72 @@ const thirdWords = [
   'zing',
   'bing',
   'foo',
+  'internet',
 ]
 
 
 export default function MHIHeaderLogos({ additionalClassNames }: { additionalClassNames?: string }): JSX.Element {
   return (
-    <div className="foobar">
-      <div className="rotatingText human-blue">
-        {firstWords.map((word, i) =>
-          <span className="rotatingText-adjective" style={{
-            animationDelay: `${0.5 + 1.25 * (i - 1)}s`,
-            ...(i === 1 ? {
-              animationName: 'rotate-first',
-            } : i === firstWords.length - 1 ? {
-              animationName: 'rotate-last',
-              animationFillMode: 'forwards'
-            } : i === 0 ? {
-              animationName: 'rotate-nothing',
-              animationDuration: '0.5s',
-            } : {})
-          }}>{word}</span>)}
-      </div>
-      <div className="rotatingText human-pink">
-        {secondWords.map((word, i) =>
-          <span className="rotatingText-adjective" style={{
-            animationDelay: `${0.6 + 1.25 * (i - 1)}s`,
-            ...(i === 1 ? {
-              animationName: 'rotate-first',
-            } : i === secondWords.length - 1 ? {
-              animationName: 'rotate-last',
-              animationFillMode: 'forwards'
-            } : i === 0 ? {
-              animationName: 'rotate-nothing',
-              animationDuration: '0.6s',
-            } : {})
-          }}>{word}</span>)}
-      </div>
-      <div className="rotatingText human-blue">
-        {thirdWords.map((word, i) =>
-          <span className="rotatingText-adjective" style={{
-            animationDelay: `${0.7 + 1.25 * (i - 1)}s`,
-            ...(i === 1 ? {
-              animationName: 'rotate-first',
-            } : i === thirdWords.length - 1 ? {
-              animationName: 'rotate-last',
-              animationFillMode: 'forwards'
-            } : i === 0 ? {
-              animationName: 'rotate-nothing',
-              animationDuration: '0.7s',
-            } : {})
-          }}>{word}</span>)}
+    <div className="mhi-rotating-logo">
+      <svg className={`mhi-rotating-logo-dots`} viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg">
+        <circle className="bottom-left human-blue" cx="11.2498" cy="34.4704" r="11.25" />
+        <circle className="top-right human-pink" cx="30.7503" cy="14.9704" r="11.25" />
+      </svg>
+      <div className="mhi-rotating-logo-words">
+        <div className="rotatingText human-blue">
+          {firstWords.map((word, i) =>
+            <div className="rotatingText-adjective" style={{
+              animationDelay: `${0.5 + 1.25 * (i - 1)}s`,
+              ...(i === 1 ? {
+                animationName: 'rotate-first',
+              } : i === 0 ? {
+                animationName: 'rotate-nothing',
+                animationDuration: '0.5s',
+                animationDelay: '0s',
+                position: 'static'
+              } : i === firstWords.length - 1 ? {
+                animationName: 'rotate-last',
+                animationFillMode: 'forwards'
+              } : {})
+            }}>{word}</div>)}
+        </div>
+        <div className="rotatingText human-pink">
+          {secondWords.map((word, i) =>
+            <div className="rotatingText-adjective" style={{
+              animationDelay: `${0.6 + 1.25 * (i - 1)}s`,
+              ...(i === 1 ? {
+                animationName: 'rotate-first',
+              } : i === 0 ? {
+                animationName: 'rotate-nothing',
+                animationDuration: '0.6s',
+                animationDelay: '0s',
+                position: 'static'
+              } : i === secondWords.length - 1 ? {
+                animationName: 'rotate-last',
+                animationFillMode: 'forwards'
+              } : {})
+            }}>{word}</div>)}
+        </div>
+        <div className="rotatingText human-blue">
+          {thirdWords.map((word, i) =>
+            <div className="rotatingText-adjective" style={{
+              animationDelay: `${0.7 + 1.25 * (i - 1)}s`,
+              ...(i === 1 ? {
+                animationName: 'rotate-first',
+              } : i === 0 ? {
+                animationName: 'rotate-nothing',
+                animationDuration: '0.7s',
+                animationDelay: '0s',
+                position: 'static'
+              } : i === thirdWords.length - 1 ? {
+                animationName: 'rotate-last',
+                animationFillMode: 'forwards'
+              } : {})
+            }}>{word}</div>)}
+        </div>
       </div>
     </div>
+
 
   )
 }

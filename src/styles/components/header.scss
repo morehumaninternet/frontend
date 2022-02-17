@@ -84,85 +84,134 @@ svg.header-logo {
   }
 }
 
-
-  // add keyframes animation in scss
-  @mixin animate($animation, $duration, $method, $delay, $times, $fill-mode) {
-    animation: $animation $duration $method $delay $times $fill-mode;
+// add keyframes animation in scss
+@mixin animate($animation, $duration, $method, $delay, $times, $fill-mode) {
+  animation: $animation $duration $method $delay $times $fill-mode;
+}
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
   }
-  @mixin keyframes($name) {
-    @keyframes #{$name} {
-      @content;
-    }
-  }
+}
 
-  @keyframes rotate-nothing {
-    0% {
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 1;
-    }
+@keyframes rotate-nothing {
+  0% {
+    opacity: 1;
   }
 
-  @keyframes rotate-first {
-    0% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
+  100% {
+    opacity: 1;
+  }
+}
 
-    20%, 80% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-
-    100% {
-      opacity: 0;
-      transform: translate3d(-25px, 0, 0);
-    }
+@keyframes rotate-first {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 
-  @keyframes rotate {
-    0% {
-      opacity: 0;
-      transform: translate3d(50px, 0, 0);
-    }
-
-    20%, 80% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-
-    100% {
-      opacity: 0;
-      transform: translate3d(-25px, 0, 0);
-    }
+  20%, 80% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 
-  @keyframes rotate-last {
-    0% {
-      opacity: 0;
-      transform: translate3d(50px, 0, 0);
-    }
+  100% {
+    opacity: 0;
+    transform: translate3d(-25px, 0, 0);
+  }
+}
 
-    50%, 100% {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
+@keyframes rotate {
+  0% {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
   }
 
-.foobar {
-  display: grid;
-  grid-template-rows: 50px 50px 50px;
+  20%, 80% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-25px, 0, 0);
+  }
+}
+
+@keyframes rotate-last {
+  0% {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+  }
+
+  50%, 100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes dots-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes words-right {
+  0% {
+    transform: translate3d(-50px, 0, 0);
+  }
+
+  80% {
+    transform: translate3d(-50px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.mhi-rotating-logo {
+  display: flex;
+  align-items: center;
+}
+
+.mhi-rotating-logo-dots {
+  position: relative;
+  height: 120px;
+  opacity: 0;
+
+  .bottom-left {
+    fill: $human-blue;
+  }
+  .top-right {
+    fill: $human-pink;
+  }
+
+  animation-delay: 6s;
+  animation-duration: 1.5s;
+  animation-name: dots-in;
+  animation-fill-mode: forwards;
+}
+
+.mhi-rotating-logo-words {
   width: 500px;
+  animation-duration: 7.5s;
+  animation-name: words-right;
+  animation-fill-mode: forwards;
 }
 
 .rotatingText {
-  font-family: "Georgia", serif;
   font-style: italic;
-  font-size: 18px;
-  text-align: left;
-  height: 50px;
   position: relative;
   width: 500px;
 }
@@ -174,7 +223,6 @@ svg.header-logo {
   font-weight: 700;
   left: 0;
   margin-bottom: 0;
-  margin-top: 50px;
   opacity: 0;
   position: absolute;
   right: 0;
@@ -182,34 +230,13 @@ svg.header-logo {
   text-transform: uppercase;
   top: 0;
   width: 500px;
+  line-height: 42px;
   animation-duration: 1.5s;
   animation-name: rotate;
+  vertical-align: center;
+  display: block;
 }
 
-// .rotatingText-adjective {
-//   animation-name: rotate-first;
-//   animation-duration: 1.5s;
-//   animation-delay: 0.5s;
-// }
-
-// .rotatingText-adjective:nth-of-type(2) {
-//   animation-name: rotate;
-//   animation-duration: 1.5s;
-//   animation-delay: 1.5s;
-// }
-
-// .rotatingText-adjective:nth-of-type(3) {
-//   animation-name: rotate;
-//   animation-duration: 1.5s;
-//   animation-delay: 2.75s;
-// }
-
-// .rotatingText-adjective:nth-of-type(4) {
-//   animation-name: rotate-last;
-//   animation-duration: 1.5s;
-//   animation-delay: 4s;
-//   animation-fill-mode: forwards;
-// }
 
 header.layout-new-header {
   height: $header-height;
