@@ -107,13 +107,13 @@ const words = [
 
 const animationWordsCount = words.length
 const animationFramesCount =  words[0].words.length
-const logoAnimationLastDelay = 0.5 + (0.1 * animationWordsCount) + 1.25 * animationFramesCount
+const logoAnimationLastDelay = (0.5 + (0.1 * animationWordsCount) + 1.25 * animationFramesCount).toString().concat('s')
 
 export default function MHIHeaderLogos({ additionalClassNames }: { additionalClassNames?: string }): JSX.Element {
   return (
     <>
       <div className="mhi-rotating-logo">
-        <svg className={`mhi-rotating-logo-dots`} style={{animationDelay: `${logoAnimationLastDelay}s`, animationDuration: '1.5s'}} viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg">
+        <svg className={`mhi-rotating-logo-dots`} style={{animationDelay: `${logoAnimationLastDelay}`, animationDuration: '1.5s'}} viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg">
           <circle className="bottom-left human-blue" cx="11.2498" cy="34.4704" r="11.25" />
           <circle className="top-right human-pink" cx="30.7503" cy="14.9704" r="11.25" />
         </svg>
