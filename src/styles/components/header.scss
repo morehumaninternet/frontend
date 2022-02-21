@@ -185,13 +185,16 @@ svg.header-logo {
 
 @keyframes buttons-down {
   0% {
-    opacity: 0;
-    transform: translate3d(0, -15px, 0);
+    transform: perspective(400px) rotate3d(1, 0, 0, -90deg);
+  }
+
+  50% {
+    transform: perspective(400px) rotate(1, 0, 0, -45deg);
   }
 
   100% {
     opacity: 1;
-    transform: translate3d(0, 25px, 0);
+    transform: perspective(400px) rotatte3d(1, 0, 0, 90deg);
   }
 }
 
@@ -251,6 +254,7 @@ svg.header-logo {
   opacity: 0;
   padding: 0 1rem 0 1rem;
   animation-name: buttons-down;
+  transform-origin: top;
   animation-fill-mode: forwards;
 }
 
