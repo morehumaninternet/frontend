@@ -110,7 +110,8 @@ svg.header-logo {
     transform: translate3d(0, 0, 0);
   }
 
-  20%, 80% {
+  20%,
+  80% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -127,7 +128,8 @@ svg.header-logo {
     transform: translate3d(50px, 0, 0);
   }
 
-  20%, 80% {
+  20%,
+  80% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -144,7 +146,8 @@ svg.header-logo {
     transform: translate3d(50px, 0, 0);
   }
 
-  50%, 100% {
+  50%,
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -197,7 +200,7 @@ svg.header-logo {
     fill: $human-pink;
   }
 
-  animation-delay: 6s;
+  // animation-delay: 6s;
   animation-duration: 1.5s;
   animation-name: dots-in;
   animation-fill-mode: forwards;
@@ -233,7 +236,6 @@ svg.header-logo {
   display: block;
   white-space: nowrap;
 }
-
 
 header.layout-new-header {
   height: $header-height;

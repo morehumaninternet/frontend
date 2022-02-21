@@ -103,17 +103,20 @@ const words = [
   { color: 'human-blue', words: [ 'internet', 'zing', 'bing', 'foo' ] },
 ]
 
-
-// 1. Make it so that the time of the dots fading in is based on the length of the words, not hard-coded in the scss
 // 2. Add a row of buttons that slides down and fades in at the same time as the dots
+
+const animateWordsCount = words.length
+const animateFramesCount =  words[0].words.length
+const logoAnimateLastDelay = 0.5 + (0.1 * animateWordsCount) + 1.25 * animateFramesCount
 
 export default function MHIHeaderLogos({ additionalClassNames }: { additionalClassNames?: string }): JSX.Element {
   return (
     <div className="mhi-rotating-logo">
-      <svg className={`mhi-rotating-logo-dots`} viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg">
+      <svg className={`mhi-rotating-logo-dots`} style={{animationDelay: `${logoAnimateLastDelay}s`}} viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg">
         <circle className="bottom-left human-blue" cx="11.2498" cy="34.4704" r="11.25" />
         <circle className="top-right human-pink" cx="30.7503" cy="14.9704" r="11.25" />
       </svg>
+      
       <div className="mhi-rotating-logo-words">
         {words.map((foo, i) =>
           <div className={`rotatingText ${foo.color}`}>
