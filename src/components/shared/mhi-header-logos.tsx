@@ -87,9 +87,6 @@ import React from 'react'
 //   )
 // }
 
-
-
-
 // 1. rotate horizontally instead of vertically
 // 2. have the words rotate in one at a time
 // 3. more human internet should initially be visible
@@ -102,8 +99,6 @@ const words = [
   { color: 'human-pink', words: [ 'human', 'foo', 'bar', 'baz' ] },
   { color: 'human-blue', words: [ 'internet', 'zing', 'bing', 'foo' ] },
 ]
-
-// 2. Add a row of buttons that slides down and fades in at the same time as the dots
 
 const animationWordsCount = words.length
 const animationFramesCount =  words[0].words.length
