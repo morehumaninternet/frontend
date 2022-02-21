@@ -183,6 +183,18 @@ svg.header-logo {
   }
 }
 
+@keyframes buttons-down {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -15px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+}
+
 .mhi-rotating-logo {
   display: flex;
   align-items: center;
@@ -235,6 +247,15 @@ svg.header-logo {
   animation-name: rotate;
   display: block;
   white-space: nowrap;
+}
+
+.rotatingButton-adjective {
+  opacity: 0;
+  padding: 0 1rem 0 1rem;
+  animation-name: buttons-down;
+  animation-fill-mode: forwards;
+  // animation-duration: 5s;
+  // animation-delay: 1s;
 }
 
 header.layout-new-header {
