@@ -199,11 +199,9 @@ svg.header-logo {
   }
 
   // button flip from top 90 deg with perspective
-
   // 0% {
   //   transform: perspective(400px) rotate3d(1, 0, 0, -90deg);
   // }
-
   // 100% {
   //   opacity: 1;
   //   transform: perspective(400px) rotate3d(1, 0, 0, 0deg);
@@ -213,6 +211,7 @@ svg.header-logo {
 .mhi-rotating-logo {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .mhi-rotating-logo-dots {
@@ -262,12 +261,16 @@ svg.header-logo {
   white-space: nowrap;
 }
 
-.rotatingButton-adjective {
-  opacity: 0;
-  padding: 0 1rem 0 1rem;
-  animation-name: buttons-down;
-  transform-origin: top;
-  animation-fill-mode: forwards;
+.mhi-rotating-buttons {
+  padding: 1rem;
+
+  .rotatingButton-adjective {
+    opacity: 0;
+    padding: 0 0.5rem 0 0.5rem;
+    animation-name: buttons-down;
+    // transform-origin: top;
+    animation-fill-mode: forwards;
+  }
 }
 
 header.layout-new-header {
