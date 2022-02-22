@@ -185,13 +185,29 @@ svg.header-logo {
 
 @keyframes buttons-down {
   0% {
-    transform: perspective(400px) rotate3d(1, 0, 0, -90deg);
+    opacity: 0;
+    transform: translate3d(0, -15px, 0);
+  }
+
+  50% {
+    opacity: 0;
   }
 
   100% {
     opacity: 1;
-    transform: perspective(400px) rotate3d(1, 0, 0, 0deg);
+    transform: translate3d(0, +50px, 0);
   }
+
+  // button flip from top 90 deg with perspective
+
+  // 0% {
+  //   transform: perspective(400px) rotate3d(1, 0, 0, -90deg);
+  // }
+
+  // 100% {
+  //   opacity: 1;
+  //   transform: perspective(400px) rotate3d(1, 0, 0, 0deg);
+  // }
 }
 
 .mhi-rotating-logo {
