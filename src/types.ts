@@ -211,4 +211,4 @@ type AnimateWord = {
   color: string
   words: ReadonlyArray<string>
 }
-type AnimateWords = [AnimateWord, AnimateWord, AnimateWord]
+type AnimateWords = ReadonlyArray<AnimateWord>
