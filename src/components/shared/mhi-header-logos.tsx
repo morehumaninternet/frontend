@@ -94,7 +94,7 @@ import React from 'react'
 // 5. at the end of the animation, the dots should slide in and text slide out
 // 6. fonts
 
-const words = [
+const words: any[] = [
   { color: 'human-blue', words: [ 'more', 'beautiful', 'maintainable', 'perfect' ] },
   { color: 'human-pink', words: [ 'human', 'foo', 'bar', 'baz' ] },
   { color: 'human-blue', words: [ 'internet', 'zing', 'bing', 'foo' ] },
