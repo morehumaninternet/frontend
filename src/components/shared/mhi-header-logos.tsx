@@ -115,7 +115,7 @@ export default function MHIHeaderLogos({ additionalClassNames }: { additionalCla
         
         <div className="mhi-rotating-logo-words">
           {words.map((foo, i) =>
-            <div className={`rotatingText ${foo.color}`}>
+            <div className={`rotatingText ${foo.color}`} key={i}>
               <div className="rotatingText-adjective" style={{
                 animationName: 'rotate-nothing',
                 animationDuration: `${(0.5 + (0.1 * i))}s`,
@@ -123,7 +123,7 @@ export default function MHIHeaderLogos({ additionalClassNames }: { additionalCla
                 position: 'static'
               }}>{foo.words[0]}</div>
               {foo.words.map((word, j) =>
-                <div className="rotatingText-adjective" style={{
+                <div className="rotatingText-adjective" key={j} style={{
                   animationDelay: `${(0.5 + (0.1 * i)) + 1.25 * (j - 1)}s`,
                   ...(j === 0 ? {
                     animationName: 'rotate-first',
