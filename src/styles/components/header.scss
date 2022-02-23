@@ -84,6 +84,195 @@ svg.header-logo {
   }
 }
 
+// add keyframes animation in scss
+@mixin animate($animation, $duration, $method, $delay, $times, $fill-mode) {
+  animation: $animation $duration $method $delay $times $fill-mode;
+}
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@keyframes rotate-nothing {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate-first {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  20%,
+  80% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-25px, 0, 0);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+  }
+
+  20%,
+  80% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-25px, 0, 0);
+  }
+}
+
+@keyframes rotate-last {
+  0% {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes dots-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes words-right {
+  0% {
+    transform: translate3d(-50px, 0, 0);
+  }
+
+  80% {
+    transform: translate3d(-50px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes buttons-down {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -15px, 0);
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, +50px, 0);
+  }
+
+  // button flip from top 90 deg with perspective
+  // 0% {
+  //   transform: perspective(400px) rotate3d(1, 0, 0, -90deg);
+  // }
+  // 100% {
+  //   opacity: 1;
+  //   transform: perspective(400px) rotate3d(1, 0, 0, 0deg);
+  // }
+}
+
+.mhi-rotating-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mhi-rotating-logo-dots {
+  position: relative;
+  height: 120px;
+  opacity: 0;
+
+  .bottom-left {
+    fill: $human-blue;
+  }
+  .top-right {
+    fill: $human-pink;
+  }
+
+  animation-name: dots-in;
+  animation-fill-mode: forwards;
+}
+
+.mhi-rotating-logo-words {
+  animation-duration: 7.5s;
+  animation-name: words-right;
+  animation-fill-mode: forwards;
+}
+
+.rotatingText {
+  font-style: italic;
+  position: relative;
+}
+
+.rotatingText-adjective {
+  font-family: "Open Sans", sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  left: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: left;
+  text-transform: uppercase;
+  top: 0;
+  line-height: 42px;
+  animation-duration: 1.5s;
+  animation-name: rotate;
+  display: block;
+  white-space: nowrap;
+}
+
+.mhi-rotating-buttons {
+  padding: 1rem;
+
+  .rotatingButton-adjective {
+    opacity: 0;
+    padding: 0 0.5rem 0 0.5rem;
+    animation-name: buttons-down;
+    // transform-origin: top;
+    animation-fill-mode: forwards;
+  }
+}
+
 header.layout-new-header {
   height: $header-height;
   position: fixed;
@@ -134,26 +323,299 @@ header.layout-new-header {
     }
   }
 
-  svg.mhi-with-text-logo {
-    .human, .top-right { fill: $human-pink; }
+  .mhi-logo-rotating-words {
+    display: flex;
+    flex-direction: column;
+
+    .human,
+    .global,
+    .important,
+    .top-right {
+      position: absolute;
+      left: 0;
+      fill: $human-pink;
+    }
 
     &.against-hero {
-      .more, .internet, .bottom-left { fill: var(--logo-color-blue-white); }
+      .upper-container,
+      .mid-container,
+      .bottom-container {
+        position: relative;
+        height: 15px;
+      }
+      .more,
+      .internet,
+      .join,
+      .community,
+      .support,
+      .causes,
+      .bottom-left {
+        position: absolute;
+        left: 0;
+        fill: var(--logo-color-blue-white);
+      }
+      //testing flipOutX on join, gloabl and community classes selectors
+      .more {
+        backface-visibility: visible !important;
+        transform-origin: bottom;
+        @include keyframes(flipOutXMore) {
+          from {
+            transform: perspective(400px);
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXMore, 5s, linear, 1s, 1, forwards);
+      }
+      .human {
+        backface-visibility: visible !important;
+        transform-origin: bottom;
+        @include keyframes(flipOutXMore) {
+          from {
+            transform: perspective(400px);
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXMore, 5s, linear, 1s, 1, forwards);
+      }
+      .internet {
+        backface-visibility: visible !important;
+        transform-origin: bottom;
+        @include keyframes(flipOutXMore) {
+          from {
+            transform: perspective(400px);
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXMore, 5s, linear, 1s, 1, forwards);
+      }
+      .join {
+        opacity: 0;
+        backface-visibility: visible !important;
+        transform-origin: bottom;
+        @include keyframes(flipOutXJoin) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXJoin, 5s, linear, 6s, 1, forwards);
+      }
+      .global {
+        opacity: 0;
+        backface-visibility: visible !important;
+        transform-origin: bottom;
+        @include keyframes(flipOutXGlobal) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXGlobal, 5s, linear, 6s, 1, forwards);
+      }
+      .community {
+        opacity: 0;
+        backface-visibility: visible !important;
+        transform-origin: bottom;
+        @include keyframes(flipOutXCommunity) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXCommunity, 5s, linear, 6s, 1, forwards);
+      }
+      .support {
+        opacity: 0;
+        backface-visibility: visible !important;
+        transform-origin: bottom;
+        @include keyframes(flipOutXCommunity) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXCommunity, 5s, linear, 11s, 1, none);
+      }
+      .important {
+        opacity: 0;
+        backface-visibility: visible !important;
+        transform-origin: bottom;
+        @include keyframes(flipOutXGlobal) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXGlobal, 5s, linear, 11s, 1, none);
+      }
+      .causes {
+        opacity: 0;
+        backface-visibility: visible !important;
+        transform-origin: bottom;
+        @include keyframes(flipOutXGlobal) {
+          from {
+            transform: perspective(400px);
+            opacity: 1;
+          }
+
+          30% {
+            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+            opacity: 1;
+          }
+
+          to {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            opacity: 0;
+          }
+        }
+        @include animate(flipOutXGlobal, 5s, linear, 11s, 1, none);
+      }
     }
 
     &.against-white-bg {
-      .more, .internet, .bottom-left { fill: $human-blue; }
+      .more,
+      .internet,
+      .bottom-left {
+        fill: $human-blue;
+      }
     }
 
     &:hover {
-      .more, .internet, .bottom-left { fill: $human-pink; }
+      .more,
+      .internet,
+      .bottom-left {
+        fill: $human-pink;
+      }
 
       &.against-hero {
-        .human, .top-right { fill: var(--logo-color-blue-white); }
+        .human,
+        .top-right {
+          fill: var(--logo-color-blue-white);
+        }
+      }
+    }
+  }
+
+  svg.mhi-with-text-logo {
+    .human,
+    .global,
+    .top-right {
+      fill: $human-pink;
+    }
+
+    &.against-hero {
+      .more,
+      .internet,
+      .join,
+      .community,
+      .bottom-left {
+        fill: var(--logo-color-blue-white);
+      }
+    }
+
+    &.against-white-bg {
+      .more,
+      .internet,
+      .bottom-left {
+        fill: $human-blue;
+      }
+    }
+
+    &:hover {
+      .more,
+      .internet,
+      .bottom-left {
+        fill: $human-pink;
+      }
+
+      &.against-hero {
+        .human,
+        .top-right {
+          fill: var(--logo-color-blue-white);
+        }
       }
 
       &.against-white-bg {
-        .human, .top-right { fill: $human-blue; }
+        .human,
+        .top-right {
+          fill: $human-blue;
+        }
       }
     }
   }

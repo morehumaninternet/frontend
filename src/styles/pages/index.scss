@@ -6,6 +6,14 @@ $standard-margin: 25px;
   max-width: 100%;
 }
 
+.layout.landing-page.orig {
+  > main {
+    > .sky {
+      background-image: linear-gradient(to bottom, $human-blue, $human-pink);
+    }
+  }
+}
+
 .layout.landing-page {
   header.layout-new-header {
     a[href="/"] {
@@ -20,7 +28,6 @@ $standard-margin: 25px;
       grid-template-rows: minmax(250px, 1fr) auto minmax(250px, 1fr);
 
       position: relative;
-      background-image: linear-gradient(to bottom, $human-blue, $human-pink);
       min-height: 700px;
       height: 100vh;
       @include full-width;
