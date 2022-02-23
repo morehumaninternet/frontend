@@ -122,7 +122,7 @@ export default function MHIHeaderLogos({ additionalClassNames }: { additionalCla
                 animationDelay: '0s',
                 position: 'static'
               }}>{foo.words[0]}</div>
-              {foo.words.map((word, j) =>
+              {foo.words.map((word:any, j:any) =>
                 <div className="rotatingText-adjective" key={j} style={{
                   animationDelay: `${(0.5 + (0.1 * i)) + 1.25 * (j - 1)}s`,
                   ...(j === 0 ? {
