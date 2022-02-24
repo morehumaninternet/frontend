@@ -247,20 +247,20 @@ svg.header-logo {
 
 .mhi-rotating-buttons {
   padding: 1rem;
-
-  &:nth-of-type(0) {
-    background-color: $human-blue;
-  }
-
-  &:nth-of-type(1) {
-    background-color: $human-pink;
-  }
   .rotatingButton-adjective {
+    width: 310px;
+    height: 70px;
     opacity: 0;
-    padding: 0 0.5rem 0 0.5rem;
+    margin: 0 0.5rem 0 0.5rem;
     animation-name: buttons-down;
-    // transform-origin: top;
     animation-fill-mode: forwards;
+
+    &:nth-of-type(1) {
+      background-color: $human-blue;
+    }
+    &:nth-of-type(2) {
+      background-color: $human-pink;
+    }
   }
 }
 

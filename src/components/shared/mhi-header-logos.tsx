@@ -99,8 +99,8 @@ export default function MHIHeaderLogos({ additionalClassNames }: { additionalCla
         </div>
       </div>
       <div className="mhi-rotating-buttons">
-        <button className="rotatingButton-adjective">For Contributors</button>
-        <button className="rotatingButton-adjective">For Causes</button>
+        <button className="mhi-button rotatingButton-adjective" style={{animationDelay: `${logoAnimationLastDelay}`, animationDuration: '1.5s'}} >For Contributors</button>
+        <button className="mhi-button rotatingButton-adjective" style={{animationDelay: `${logoAnimationLastDelay}`, animationDuration: '1.5s'}} >For Causes</button>
       </div>
     </>
   )
