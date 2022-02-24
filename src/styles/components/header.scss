@@ -248,6 +248,13 @@ svg.header-logo {
 .mhi-rotating-buttons {
   padding: 1rem;
 
+  &:nth-of-type(0) {
+    background-color: $human-blue;
+  }
+
+  &:nth-of-type(1) {
+    background-color: $human-pink;
+  }
   .rotatingButton-adjective {
     opacity: 0;
     padding: 0 0.5rem 0 0.5rem;
