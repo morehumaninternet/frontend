@@ -14,6 +14,23 @@ const phrases: ReadonlyArray<string> = [
 // Write a function that creates "wordGroups" from the phrases
 // Extra credit if it throws an error if you make a phrase with a # of words that isn't exactly equal to 3
 
+// iterate the phrases array element. 
+// assign color for each array element base on their index 
+// push the word into words base on their index
+
+const wordGroups1 = []
+const groupWords = (phrases: any) => {
+    phrases.forEach((phrase: any, index: number) => {
+      // split phrase into strings of array. 
+      let phraseArray = phrase.split[' ']
+      // if the array lenght greater tham 3, return error messages. 
+      if (phraseArray.length !== 3 ) { console.log(`please check phrases ${phrase}`)}
+      // push color value into wordGroup color
+      // let wordGroups1[0];
+      // push each phrase string into wordGroup words
+
+  })
+}
 const wordGroups: AnimateWords = [
   { color: 'human-blue', words: ['more', 'beautiful', 'maintainable', 'perfect', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
   { color: 'human-pink', words: ['human', 'foo', 'bar', 'baz', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
