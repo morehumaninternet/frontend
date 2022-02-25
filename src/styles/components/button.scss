@@ -36,7 +36,11 @@
   text-transform: none;
 
   &:hover {
-    background-color: $human-pink; // TODO: look into why this doesn't work w/out important
+    background-color: #1C5498;
+  }
+
+  &.human-pink-bg:hover {
+    background-color: #FA9CB9 !important;
   }
 
   &:disabled {
