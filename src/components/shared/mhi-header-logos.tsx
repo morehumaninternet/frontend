@@ -1,3 +1,4 @@
+import { ContactSupportOutlined } from '@material-ui/icons'
 import React from 'react'
 
 const phrases: ReadonlyArray<string> = [
@@ -8,7 +9,7 @@ const phrases: ReadonlyArray<string> = [
   'Learn New Skills',
   'Use Latest Technology',
   'Mentor Diverse Community',
-  'Live Your Values',
+  'Live Your Values more Chars',
 ]
 
 // Write a function that creates "wordGroups" from the phrases
@@ -18,21 +19,28 @@ const createWordGroups = function(phrases : ReadonlyArray<string>) {
   phrases.forEach((phrase, index) => {
     let wordArray = phrase.split(' '); 
     wordArray.forEach((word, i) => {
-      if(i === 0 || i === 2) {
-        AnimateWordsArray[i].color= 'human-blue'; 
-        AnimateWordsArray[i].words.push(word); 
-      }else if (i === 1) {
-        AnimateWordsArray[i].color= 'human-pink'; 
-        AnimateWordsArray[i].words.push(word); 
+      try {
+        if(i === 0 || i === 2) {
+          AnimateWordsArray[i].color= 'human-blue'; 
+          AnimateWordsArray[i].words.push(word); 
+        }else if (i === 1) {
+          AnimateWordsArray[i].color= 'human-pink'; 
+          AnimateWordsArray[i].words.push(word); 
+        }else if (i > 2 ) {
+          throw (`The ${index}th phrase (${phrase}) need to be exact 3 words`)
+        }
+      }
+      catch(err) {
+        console.log(err)
+        alert(err)
       }
     })
-    console.log(AnimateWordsArray)
   })
   return AnimateWordsArray;
 }
 
 const wordTestGroups = createWordGroups(phrases)
-console.log(wordTestGroups)
+// console.log(wordTestGroups)
 
 const wordGroups: AnimateWords = [
   { color: 'human-blue', words: ['more', 'beautiful', 'maintainable', 'perfect', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
