@@ -12,7 +12,7 @@ const phrases: ReadonlyArray<string> = [
   'Live Your Values',
 ]
 
-const AnimateWordsArray = [{color: '', words: ['']},{color: '', words: ['']},{color: '', words: ['']}]
+const AnimateWordsArray = [{color: '', words: ['']}, {color: '', words: ['']}, {color: '', words: ['']}]
 
 const createWordGroups = function(phrasesArray: ReadonlyArray<string>) {
   phrasesArray.forEach((phrase, index): void => {
