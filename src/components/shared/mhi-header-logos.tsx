@@ -13,6 +13,7 @@ const phrases: ReadonlyArray<string> = [
 ]
 
 const AnimateWordsArray = [{color:'', words:['']}, {color:'', words: ['']}, {color:'', words: ['']}]
+
 const createWordGroups = function(phrasesArray : ReadonlyArray<string>) {
   phrasesArray.forEach((phrase, index) => {
     let wordsArray = phrase.split(' ') 
@@ -28,7 +29,7 @@ const createWordGroups = function(phrasesArray : ReadonlyArray<string>) {
         AnimateWordsArray[i].words[0] ? AnimateWordsArray[i].words.push(word) : AnimateWordsArray[i].words[0] = word
     })
   })
-  return AnimateWordsArray;
+  return AnimateWordsArray
 }
 
 const wordGroups = createWordGroups(phrases)
