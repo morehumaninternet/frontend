@@ -32,6 +32,14 @@ const createWordGroups = function(phrasesArray: ReadonlyArray<string>) {
   return AnimateWordsArray
 }
 
+/*
+const wordGroups: AnimateWords = [
+  { color: 'human-blue', words: ['more', 'beautiful', 'maintainable', 'perfect', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
+  { color: 'human-pink', words: ['human', 'foo', 'bar', 'baz', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
+  { color: 'human-blue', words: ['internet', 'zing', 'bing', 'foo', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
+] 
+*/
+
 const wordGroups = createWordGroups(phrases)
 const animationWordsCount = wordGroups.length
 const animationFramesCount = wordGroups[0].words.length
