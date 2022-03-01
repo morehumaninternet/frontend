@@ -21,10 +21,10 @@ const createWordGroups = function(phrasesArray : ReadonlyArray<string>) {
       throw new Error (`The ${index}th phrase (${phrase}) need to be exact 3 words`)
     }
     wordsArray.forEach((word, i) => {
-        if(i === 0 || i === 2) {
-          AnimateWordsArray[i].color= 'human-blue'
-        }else if (i === 1) {
-          AnimateWordsArray[i].color= 'human-pink'
+        if (i === 0 || i === 2) {
+          AnimateWordsArray[i].color = 'human-blue'
+        } else if (i === 1) {
+          AnimateWordsArray[i].color = 'human-pink'
         }
         AnimateWordsArray[i].words[0] ? AnimateWordsArray[i].words.push(word) : AnimateWordsArray[i].words[0] = word
     })
