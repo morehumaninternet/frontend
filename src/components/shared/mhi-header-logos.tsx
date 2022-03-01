@@ -9,47 +9,38 @@ const phrases: ReadonlyArray<string> = [
   'Learn New Skills',
   'Use Latest Technology',
   'Mentor Diverse Community',
-  'Live Your Values more Chars',
+  'Live Your Values',
 ]
 
-// Write a function that creates "wordGroups" from the phrases
-// Extra credit if it throws an error if you make a phrase with a # of words that isn't exactly equal to 3
-const AnimateWordsArray = [{color:'', words:['more']}, {color:'', words: ['human']}, {color:'', words: ['internet']}]
+const AnimateWordsArray = [{color:'', words:['']}, {color:'', words: ['']}, {color:'', words: ['']}]
 const createWordGroups = function(phrases : ReadonlyArray<string>) {
   phrases.forEach((phrase, index) => {
     let wordArray = phrase.split(' '); 
+    if (wordArray.length !== 3) {
+      throw new Error (`The ${index}th phrase (${phrase}) need to be exact 3 words`)
+    }
     wordArray.forEach((word, i) => {
-      try {
         if(i === 0 || i === 2) {
           AnimateWordsArray[i].color= 'human-blue'; 
-          AnimateWordsArray[i].words.push(word); 
         }else if (i === 1) {
           AnimateWordsArray[i].color= 'human-pink'; 
-          AnimateWordsArray[i].words.push(word); 
-        }else if (i > 2 ) {
-          throw (`The ${index}th phrase (${phrase}) need to be exact 3 words`)
         }
-      }
-      catch(err) {
-        console.log(err)
-        alert(err)
-      }
+        AnimateWordsArray[i].words[0] ? AnimateWordsArray[i].words.push(word) : AnimateWordsArray[i].words[0] = word
     })
   })
   return AnimateWordsArray;
 }
 
-const wordTestGroups = createWordGroups(phrases)
-// console.log(wordTestGroups)
+const wordGroups = createWordGroups(phrases)
 
-const wordGroups: AnimateWords = [
-  { color: 'human-blue', words: ['more', 'beautiful', 'maintainable', 'perfect', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
-  { color: 'human-pink', words: ['human', 'foo', 'bar', 'baz', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
-  { color: 'human-blue', words: ['internet', 'zing', 'bing', 'foo', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
-]
+// const wordGroups: AnimateWords = [
+//   { color: 'human-blue', words: ['more', 'beautiful', 'maintainable', 'perfect', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
+//   { color: 'human-pink', words: ['human', 'foo', 'bar', 'baz', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
+//   { color: 'human-blue', words: ['internet', 'zing', 'bing', 'foo', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
+// ]
 
-const animationWordsCount = wordTestGroups.length
-const animationFramesCount = wordTestGroups[0].words.length
+const animationWordsCount = wordGroups.length
+const animationFramesCount = wordGroups[0].words.length
 const logoAnimationLastDelay = (0.5 + 0.1 * animationWordsCount + 1.25 * (animationFramesCount - 1)).toString().concat('s')
 
 export default function MHIHeaderLogos({ additionalClassNames }: { additionalClassNames?: string }): JSX.Element {
@@ -66,7 +57,7 @@ export default function MHIHeaderLogos({ additionalClassNames }: { additionalCla
           <circle className="top-right human-pink" cx="30.7503" cy="14.9704" r="11.25" />
         </svg>
         <div className="mhi-rotating-logo-words" style={{ animationDelay: logoAnimationLastDelay }}>
-          {wordTestGroups.map((wordGroup, i) => (
+          {wordGroups.map((wordGroup, i) => (
             <div className={`rotatingText ${wordGroup.color}`} key={i}>
               <div
                 className="rotatingText-adjective"
