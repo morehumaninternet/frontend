@@ -12,11 +12,11 @@ const phrases: ReadonlyArray<string> = [
   'Live Your Values',
 ]
 
-const AnimateWordsArray = [{color:'',words:['']},{color:'',words:['']},{color:'',words: ['']}]
+const AnimateWordsArray = [{color: '',words: ['']},{color: '',words: ['']},{color: '',words: ['']}]
 
-const createWordGroups = function(phrasesArray : ReadonlyArray<string>) {
+const createWordGroups = function(phrasesArray: ReadonlyArray<string>) {
   phrasesArray.forEach((phrase, index) => {
-    let wordsArray = phrase.split(' ')
+    const wordsArray = phrase.split(' ')
     if (wordsArray.length !== 3) {
       throw new Error (`The ${index}th phrase (${phrase}) need to be exact 3 words`)
     }
@@ -33,13 +33,6 @@ const createWordGroups = function(phrasesArray : ReadonlyArray<string>) {
 }
 
 const wordGroups = createWordGroups(phrases)
-
-// const wordGroups: AnimateWords = [
-//   { color: 'human-blue', words: ['more', 'beautiful', 'maintainable', 'perfect', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
-//   { color: 'human-pink', words: ['human', 'foo', 'bar', 'baz', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
-//   { color: 'human-blue', words: ['internet', 'zing', 'bing', 'foo', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
-// ]
-
 const animationWordsCount = wordGroups.length
 const animationFramesCount = wordGroups[0].words.length
 const logoAnimationLastDelay = (0.5 + 0.1 * animationWordsCount + 1.25 * (animationFramesCount - 1)).toString().concat('s')
