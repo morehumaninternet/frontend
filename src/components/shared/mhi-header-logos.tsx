@@ -12,33 +12,24 @@ const phrases: ReadonlyArray<string> = [
   'Live Your Values',
 ]
 
-const AnimateWordsArray = [{color: '', words: ['']}, {color: '', words: ['']}, {color: '', words: ['']}]
-
 const createWordGroups = function(phrasesArray: ReadonlyArray<string>) {
-  phrasesArray.forEach((phrase, index): void => {
+  return phrasesArray.reduce((AnimateWordsArray, phrase, index) => {
     const wordsArray = phrase.split(' ')
     if (wordsArray.length !== 3) {
       throw new Error (`The ${index}th phrase (${phrase}) need to be exact 3 words`)
     }
-    wordsArray.forEach((word, i): void => {
-        if (i === 0 || i === 2) {
-          AnimateWordsArray[i].color = 'human-blue'
-        } else if (i === 1) {
-          AnimateWordsArray[i].color = 'human-pink'
-        }
-        AnimateWordsArray[i].words[0] ? AnimateWordsArray[i].words.push(word) : AnimateWordsArray[i].words[0] = word
+    return AnimateWordsArray.map((wordGroup, i) => {
+      return {
+        color: wordGroup.color, 
+        words: [...wordGroup.words, wordsArray[i]]
+      }
     })
-  })
-  return AnimateWordsArray
+  }, [
+    {color: 'human-blue', words: []},
+    {color: 'human-pink', words: []},
+    {color: 'human-blue', words: []}
+  ])
 }
-
-/*
-const wordGroups: AnimateWords = [
-  { color: 'human-blue', words: ['more', 'beautiful', 'maintainable', 'perfect', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
-  { color: 'human-pink', words: ['human', 'foo', 'bar', 'baz', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
-  { color: 'human-blue', words: ['internet', 'zing', 'bing', 'foo', 'quux', 'eiio', 'bug', 'zug', 'hug'] },
-] 
-*/
 
 const wordGroups = createWordGroups(phrases)
 const animationWordsCount = wordGroups.length
