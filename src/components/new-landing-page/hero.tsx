@@ -19,7 +19,7 @@ const createWordGroups = function(phrasesArray: ReadonlyArray<string>) {
     }
     return AnimateWordsArray.map((wordGroup, i) => {
       return {
-        color: wordGroup.color, 
+        color: wordGroup.color,
         words: [...wordGroup.words, wordsArray[i]]
       }
     })
