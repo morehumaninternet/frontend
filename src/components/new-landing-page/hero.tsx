@@ -11,7 +11,7 @@ const phrases: ReadonlyArray<string> = [
   'Live Your Values',
 ]
 
-const createWordGroups = function(phrasesArray: ReadonlyArray<string>) {  // tslint:disable-line:no-expression-statement
+const createWordGroups = function(phrasesArray: ReadonlyArray<string>) {  // tslint:disable-line
   return phrasesArray.reduce((AnimateWordsArray, phrase, index) => {
     const wordsArray = phrase.split(' ')
     if (wordsArray.length !== 3) {
