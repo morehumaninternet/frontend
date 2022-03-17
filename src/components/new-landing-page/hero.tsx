@@ -15,7 +15,7 @@ const createWordGroups = function(phrasesArray: ReadonlyArray<string>): readonly
   return phrasesArray.reduce((AnimateWordsArray, phrase, index) => {
     const wordsArray = phrase.split(' ')
     if (wordsArray.length !== 3) {
-      throw new Error (`The ${index}th phrase (${phrase}) need to be exact 3 words`)
+      throw new Error (`The ${index}th phrase (${phrase}) need to be exactly 3 words`)
     }
     return AnimateWordsArray.map((wordGroup, i) => {
       return {
