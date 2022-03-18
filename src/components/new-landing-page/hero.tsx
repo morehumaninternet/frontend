@@ -11,6 +11,11 @@ const phrases: ReadonlyArray<string> = [
   'Live Your Values',
 ]
 
+const wordGroupInitValue = [
+  {color: 'human-blue', words: []},
+  {color: 'human-pink', words: []},
+  {color: 'human-blue', words: []}
+]
 const createWordGroups = function(phrasesArray: ReadonlyArray<string>): readonly object[] {
   return phrasesArray.reduce((AnimateWordsArray, phrase, index) => {
     const wordsArray = phrase.split(' ')
@@ -23,11 +28,7 @@ const createWordGroups = function(phrasesArray: ReadonlyArray<string>): readonly
         words: [...wordGroup.words, wordsArray[i]]
       }
     })
-  }, [
-    {color: 'human-blue', words: []},
-    {color: 'human-pink', words: []},
-    {color: 'human-blue', words: []}
-  ])
+  }, wordGroupInitValue)
 }
 
 const wordGroups = createWordGroups(phrases)

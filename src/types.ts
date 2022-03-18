@@ -212,3 +212,7 @@ type AnimateWord = {
   words: ReadonlyArray<string>
 }
 type AnimateWords = ReadonlyArray<AnimateWord>
+
+type wordsGroupInit = [
+  AnimateWord, AnimateWord, AnimateWord
+]
