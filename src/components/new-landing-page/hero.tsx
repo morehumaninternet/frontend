@@ -10,13 +10,14 @@ const phrases: ReadonlyArray<string> = [
   'Mentor Diverse Community',
   'Live Your Values',
 ]
-
-const wordGroupInitValue = [
+//ts-lint:disable:readonly-array
+const wordsGroupInitValue: wordsGroupInit = [
   {color: 'human-blue', words: []},
   {color: 'human-pink', words: []},
   {color: 'human-blue', words: []}
 ]
-const createWordGroups = function(phrasesArray: ReadonlyArray<string>): readonly object[] {
+
+const createWordGroups = function(phrasesArray: ReadonlyArray<string>): wordsGroupInit {
   return phrasesArray.reduce((AnimateWordsArray, phrase, index) => {
     const wordsArray = phrase.split(' ')
     if (wordsArray.length !== 3) {
@@ -28,8 +29,9 @@ const createWordGroups = function(phrasesArray: ReadonlyArray<string>): readonly
         words: [...wordGroup.words, wordsArray[i]]
       }
     })
-  }, wordGroupInitValue)
+  }, wordsGroupInitValue)
 }
+// ts-lint:eable:readonly-array
 
 const wordGroups = createWordGroups(phrases)
 const animationWordsCount = wordGroups.length
