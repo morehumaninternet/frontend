@@ -1,6 +1,7 @@
 import React from 'react'
 
-const phrases: ReadonlyArray<string> = [
+// tslint:disable:readonly-array
+const phrases: string[] = [
   'more human internet',
   'join international community',
   'Boost Your Resume',
@@ -10,14 +11,19 @@ const phrases: ReadonlyArray<string> = [
   'Mentor Diverse Community',
   'Live Your Values',
 ]
- // tslint:disable:readonly-array
+interface AnimateWord {
+  color: string
+  words: string[]
+}
+type wordsGroupInit = AnimateWord[]
+
 const wordsGroupInitValue: wordsGroupInit = [
   {color: 'human-blue', words: []},
   {color: 'human-pink', words: []},
   {color: 'human-blue', words: []}
 ]
 
-const createWordGroups = function(phrasesArray: ReadonlyArray<string>): wordsGroupInit {
+const createWordGroups = function(phrasesArray: string[]): wordsGroupInit {
   return phrasesArray.reduce((AnimateWordsArray, phrase, index) => {
     const wordsArray = phrase.split(' ')
     if (wordsArray.length !== 3) {
