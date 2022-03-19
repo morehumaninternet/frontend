@@ -10,7 +10,7 @@ const phrases: ReadonlyArray<string> = [
   'Mentor Diverse Community',
   'Live Your Values',
 ]
- //ts-lint:disable:readonly-array
+ // tslint:disable:readonly-array
 const wordsGroupInitValue: wordsGroupInit = [
   {color: 'human-blue', words: []},
   {color: 'human-pink', words: []},
@@ -31,7 +31,7 @@ const createWordGroups = function(phrasesArray: ReadonlyArray<string>): wordsGro
     })
   }, wordsGroupInitValue)
 }
- // ts-lint:enable:readonly-array
+ // tslint:enable:readonly-array
 
 const wordGroups = createWordGroups(phrases)
 const animationWordsCount = wordGroups.length
