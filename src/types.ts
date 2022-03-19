@@ -207,9 +207,11 @@ type Link = {
 
 type SEOLinks = ReadonlyArray<React.DetailedHTMLProps<React.LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>>
 
-interface AnimateWord {
+// tslint:disable:readonly-array
+interface AnimateWord { 
   color: string
-  words: string[] // tslint:disable:readonly-array
+  words: string[] 
 }
+// tslint:enable:readonly-array
 
 type wordsGroupInit = AnimateWord[]
