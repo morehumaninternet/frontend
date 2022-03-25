@@ -207,8 +207,4 @@ type Link = {
 
 type SEOLinks = ReadonlyArray<React.DetailedHTMLProps<React.LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>>
 
-type AnimateWord = {
-  color: string
-  words: ReadonlyArray<string>
-}
-type AnimateWords = ReadonlyArray<AnimateWord>
+
