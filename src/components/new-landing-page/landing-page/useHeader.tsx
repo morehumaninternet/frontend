@@ -27,7 +27,7 @@ type UseHeaderReturn = {
 }
 
 export default function useHeader(location: Location, navigator?: Navigator): UseHeaderReturn {
-  const [downloadButtonText, setDownloadButtonText] = React.useState<string>('Install the free extension')
+  const [downloadButtonText, setDownloadButtonText] = React.useState<string>('Join')
 
   // Refs to each of the various sections, to be used by the caller
   const internalSectionRefs: SectionRefs = {
