@@ -14,7 +14,7 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
   const navigator = typeof window === 'undefined' ? undefined : window.navigator
   const { header, internalSectionRefs, dotsRef } = useHeader(location, navigator)
 
-  useExplicitHeightOnIPhone(internalSectionRefs['hero'], internalSectionRefs['How it works']) // tslint:disable-line:no-expression-statement
+  useExplicitHeightOnIPhone(internalSectionRefs['hero'], internalSectionRefs['Causes']) // tslint:disable-line:no-expression-statement
 
   return (
     <Layout
@@ -27,9 +27,9 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
     >
       <RoarSEO />
       <Hero ref={internalSectionRefs['hero']} dotsRef={dotsRef} />
-      <HowItWorks ref={internalSectionRefs['How it works']} />
-      <LearnMore ref={internalSectionRefs['Learn more']} />
-      <GetUpdates ref={internalSectionRefs['Community']} />
+      <HowItWorks ref={internalSectionRefs['Causes']} />
+      <LearnMore ref={internalSectionRefs['Contributors']} />
+      <GetUpdates ref={internalSectionRefs['Workshops']} />
       <SocialMediaBar />
     </Layout>
   )

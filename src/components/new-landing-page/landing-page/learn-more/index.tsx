@@ -5,7 +5,7 @@ import Info from './info'
 const LearnMore = forwardRef(
   (_, ref): JSX.Element => {
     return (
-      <section className="learn-more" ref={ref as any}>
+      <section className="contributors" ref={ref as any}>
         <BigCircle />
         <SmallCircle />
         <Info />

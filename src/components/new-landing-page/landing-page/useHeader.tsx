@@ -14,7 +14,7 @@ import { Link } from 'gatsby'
 import { UAParser } from 'ua-parser-js'
 import Header from '../header'
 
-type Section = 'hero' | 'How it works' | 'Learn more' | 'Community'
+type Section = 'hero' | 'Causes' | 'Contributors' | 'Workshops'
 
 type SectionRefs = {
   [section in Section]: React.MutableRefObject<any>
@@ -32,17 +32,17 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
   // Refs to each of the various sections, to be used by the caller
   const internalSectionRefs: SectionRefs = {
     hero: React.useRef<any>(),
-    'How it works': React.useRef<any>(),
-    'Learn more': React.useRef<any>(),
-    Community: React.useRef<any>(),
+    'Causes': React.useRef<any>(),
+    'Contributors': React.useRef<any>(),
+    'Workshops': React.useRef<any>(),
   }
 
   // Refs to each of the links
   const internalLinkRefs: SectionRefs = {
     hero: React.useRef<any>(),
-    'How it works': React.useRef<any>(),
-    'Learn more': React.useRef<any>(),
-    Community: React.useRef<any>(),
+    'Causes': React.useRef<any>(),
+    'Contributors': React.useRef<any>(),
+    'Workshops': React.useRef<any>(),
   }
 
   const dotsRef = React.useRef<any>()
@@ -122,7 +122,7 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
   }, [navigator?.userAgent])
 
   // Scroll to the relevant section of the page when the hash changes
-  // e.g., /roar#learn-more scrolls to the learn more section
+  // e.g., /roar#learn-more scrolls to the Contributors section
   React.useEffect(() => {
     const hash = location.hash.slice(1)
     const sectionHashes = map(internalSectionRefs, (section, sectionKey) => ({ section, hash: kebabCase(sectionKey) }))
@@ -138,7 +138,7 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
     <Header
       headerRef={headerRef}
       heroRef={internalLinkRefs.hero}
-      otherLinks={['How it works', 'Learn more', 'Community']
+      otherLinks={['Causes', 'Contributors', 'Workshops']
         .map((section: Section) => (
           <a
             key={section}
