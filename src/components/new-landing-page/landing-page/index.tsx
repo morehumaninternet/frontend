@@ -4,8 +4,8 @@ import useHeader from './useHeader'
 
 import GetUpdates from '../../shared/get-updates'
 import Hero from './hero'
-import HowItWorks from './how-it-wroks'
-import LearnMore from './learn-more'
+import Causes from './causes'
+import Contributors from './contributors'
 import SocialMediaBar from './social-media-bar'
 import useExplicitHeightOnIPhone from '../../../effects/useExplicitHeightOnIPhone'
 import RoarSEO from '../roar-seo'
@@ -27,8 +27,8 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
     >
       <RoarSEO />
       <Hero ref={internalSectionRefs['hero']} dotsRef={dotsRef} />
-      <HowItWorks ref={internalSectionRefs['Causes']} />
-      <LearnMore ref={internalSectionRefs['Contributors']} />
+      <Causes ref={internalSectionRefs['Causes']} />
+      <Contributors ref={internalSectionRefs['Contributors']} />
       <GetUpdates ref={internalSectionRefs['Workshops']} />
       <SocialMediaBar />
     </Layout>
