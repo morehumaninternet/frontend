@@ -94,9 +94,14 @@ svg.header-logo {
   }
 }
 
+header.mhi,
+header.roar {
+  position: fixed;
+}
+
 header.layout-new-header {
   height: $header-height;
-  position: fixed;
+
   top: 0;
   width: 100%;
   display: flex;
@@ -442,7 +447,8 @@ header.layout-new-header {
   }
 }
 
-header.roar {
+header.roar,
+header.new-landing-page {
   height: auto;
   background-color: white;
 
