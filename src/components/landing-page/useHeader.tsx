@@ -17,7 +17,7 @@ import { forEach } from 'lodash'
 // @ts-ignore
 import { LocalizedLink } from 'gatsby-theme-i18n'
 import setLogoFade from '../../utils/setLogoFade'
-import MHIDotsLogo from '../shared/mhi-dots-logo'
+import { MHIDotsLogo } from '../shared/mhi-dots-logo'
 
 
 type Section = 'start' | 'about' | 'why' | 'join'

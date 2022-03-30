@@ -1,10 +1,10 @@
 import React from 'react'
-import MHIDotsLogo from '../mhi-dots-logo'
+import { MHIHomeLink } from '../mhi-dots-logo'
 
 
 const BuiltWith = (): JSX.Element => {
   return (
-    <div className="mhi-logo">
+    <div className="built-with">
       <h4>
         Built with
         <svg width="33" height="17" viewBox="0 0 20 19" fill="none">
@@ -16,9 +16,7 @@ const BuiltWith = (): JSX.Element => {
         by the team at
       </h4>
 
-      <a href="https://morehumaninternet.org/">
-        <MHIDotsLogo />
-      </a>
+      <MHIHomeLink />
     </div>
   )
 }
