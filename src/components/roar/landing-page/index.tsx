@@ -6,7 +6,7 @@ import GetUpdates from '../../shared/get-updates'
 import Hero from './hero'
 import HowItWorks from './how-it-works'
 import LearnMore from './learn-more'
-import SocialMediaBar from './social-media-bar'
+import SocialMediaBar from '../../shared/social-media-bar'
 import useExplicitHeightOnIPhone from '../../../effects/useExplicitHeightOnIPhone'
 import RoarSEO from '../roar-seo'
 
