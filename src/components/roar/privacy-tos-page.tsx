@@ -4,7 +4,7 @@ import Header from './header'
 
 export default function PrivacyTosPage({ children }: { children: React.ReactNode }): JSX.Element {
   return (
-    <Layout additionalClassNames="privacy-tos-page" footerKind="v2" header={<Header />}>
+    <Layout additionalClassNames="privacy-tos-page" header={<Header />}>
       <div className="privacy-tos-section">{children}</div>
     </Layout>
   )

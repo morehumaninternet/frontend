@@ -19,7 +19,6 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
   return (
     <Layout
       additionalClassNames="new-landing-page"
-      footerKind="v2"
       header={header}
       announcement={
         <div style={{ width: '100%', height: '200px', backgroundColor: 'red' }} />
