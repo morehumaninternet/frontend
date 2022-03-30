@@ -12,7 +12,7 @@ import { forEach, kebabCase, map } from 'lodash'
 // @ts-ignore
 import { Link } from 'gatsby'
 import { UAParser } from 'ua-parser-js'
-import Header from '../header'
+import Header from './header'
 
 type Section = 'hero' | 'Causes' | 'Contributors' | 'Workshops'
 
@@ -110,17 +110,6 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
     }
   }, [])
 
-  // The extension is only available for Chrome on Desktop
-  React.useEffect(() => {
-    if (!navigator) return
-    const parsed = new UAParser().setUA(navigator.userAgent).getResult()
-    if (parsed.device.type) {
-      setDownloadButtonText('Available on Desktop')
-    } else if (parsed.browser.name !== 'Chrome') {
-      setDownloadButtonText('Available for Chrome')
-    }
-  }, [navigator?.userAgent])
-
   // Scroll to the relevant section of the page when the hash changes
   // e.g., /roar#learn-more scrolls to the Contributors section
   React.useEffect(() => {
@@ -151,12 +140,11 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
         ))
         .concat([
           <a
-            key="install-btn"
-            className="mhi-button btn btn--download"
+            className="mhi-button human-pink-bg btn btn--download"
             rel="noopener noreferrer"
             href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
           >
-            {downloadButtonText}
+            Join
           </a>,
         ])}
     />

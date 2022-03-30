@@ -97,6 +97,10 @@ svg.header-logo {
 header.mhi,
 header.roar {
   position: fixed;
+
+  @media (max-width: $breakpoint-header-scrolls) {
+    position: absolute;
+  }
 }
 
 header.layout-new-header {
@@ -114,10 +118,6 @@ header.layout-new-header {
   z-index: 100;
 
   @include header-width(padding);
-
-  @media (max-width: $breakpoint-header-scrolls) {
-    position: absolute;
-  }
 
   > a.logo {
     display: flex;
@@ -447,13 +447,9 @@ header.layout-new-header {
   }
 }
 
-header.roar,
-header.new-landing-page {
-  height: auto;
-  background-color: white;
 
-  padding: 0 25px;
 
+header.roar {
   svg.roar-logo {
     height: 60px;
     transition: all 0.3s;
@@ -464,9 +460,47 @@ header.new-landing-page {
     display: flex;
   }
 
+  &.shrink {
+    a.roar-home {
+      svg.roar-logo {
+        height: 40px;
+        margin: 15px 0;
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    svg.roar-logo {
+      height: 50px;
+      transition: all 0.3s;
+      margin: 10px 0;
+    }
+  }
+}
+
+
+header.roar {
+  a.internal-link {
+    color: $human-pink;
+  }
+}
+
+header.new-landing-page {
+  a.internal-link {
+    color: $human-blue;
+  }
+}
+
+
+header.roar,
+header.new-landing-page {
+  height: auto;
+  background-color: white;
+
+  padding: 0 25px;
+
   a.internal-link {
     @include button-fonts;
-    color: $human-pink;
     cursor: pointer;
 
     @media (max-width: 800px) {
@@ -486,21 +520,9 @@ header.new-landing-page {
     -webkit-box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, 0.25);
     -moz-box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, 0.25);
     box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, 0.25);
-
-    a.roar-home {
-      svg.roar-logo {
-        height: 40px;
-        margin: 15px 0;
-      }
-    }
   }
 
   @media (max-width: 500px) {
     padding: 0 10px;
-    svg.roar-logo {
-      height: 50px;
-      transition: all 0.3s;
-      margin: 10px 0;
-    }
   }
 }

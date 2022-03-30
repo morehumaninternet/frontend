@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { BigCircle, SmallCircle } from '../../../shared/circles'
+import { BigCircle, SmallCircle } from '../../shared/circles'
 import Info from './info'
 
 const LearnMore = forwardRef(

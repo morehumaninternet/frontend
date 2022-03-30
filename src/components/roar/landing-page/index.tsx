@@ -4,7 +4,7 @@ import useHeader from './useHeader'
 
 import GetUpdates from '../../shared/get-updates'
 import Hero from './hero'
-import HowItWorks from './how-it-wroks'
+import HowItWorks from './how-it-works'
 import LearnMore from './learn-more'
 import SocialMediaBar from './social-media-bar'
 import useExplicitHeightOnIPhone from '../../../effects/useExplicitHeightOnIPhone'

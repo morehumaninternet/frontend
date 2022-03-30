@@ -102,19 +102,3 @@ export function MHIRotatingLogo(): JSX.Element {
     </div>
   )
 }
-
-export function HeroButtonGroup(): JSX.Element {
-  return (
-    <div className="button-group">
-      <button className="mhi-button" style={{animationDelay: `${logoAnimationLastDelay}`, animationDuration: '1.5s'}} >For Contributors</button>
-      <button className="mhi-button human-pink-bg" style={{animationDelay: `${logoAnimationLastDelay}`, animationDuration: '1.5s'}} >For Causes</button>
-    </div>
-  )
-}
-
-export default () => (
-  <div className="new-hero">
-    <MHIRotatingLogo />
-    <HeroButtonGroup />
-  </div>
-)
