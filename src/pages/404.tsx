@@ -1,12 +1,21 @@
 import React from 'react'
-
-import { LayoutWithHeader } from '../components/shared/layout'
+import { Link } from 'gatsby'
+import { Layout } from '../components/shared/layout'
 import SEO from '../components/shared/seo'
 
 export default () => (
-  <LayoutWithHeader mainClassName="not-found" logoAgainstHero={false}>
+  <Layout style={{
+    display: 'grid',
+    gridTemplateRows: '1fr auto'
+   }}>
     <SEO pageTitle="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </LayoutWithHeader>
+    <div style={{
+      margin: 25
+    }}>
+      <h1>
+        404: page not found
+      </h1>
+      <p>Sorry, but the page you requested could not be found. <Link to="/">Return home.</Link></p>
+    </div>
+  </Layout>
 )

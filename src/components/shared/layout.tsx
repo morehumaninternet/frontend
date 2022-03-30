@@ -1,22 +1,14 @@
-import React from 'react'
+import React, { HTMLAttributes } from 'react'
 import Footer from './footer'
-import Header from './header'
 import Sidebar from './sidebar'
 
 type LayoutProps = {
   additionalClassNames?: string
+  announcement?: React.ReactNode
   header?: React.ReactNode
   sidebar?: React.ReactNode
-  footerKind?: 'v1' | 'v2'
   children: React.ReactNode
-}
-
-type LayoutWithHeaderProps = {
-  mainClassName: string
-  children: React.ReactNode
-  logoAgainstHero: boolean
-  headerLinks?: React.ReactNode
-  headerRef?: React.RefObject<HTMLElement>
+  style?: any
 }
 
 type LayoutWithSidebarProps = {
@@ -26,29 +18,17 @@ type LayoutWithSidebarProps = {
   children: React.ReactNode
 }
 
-export const Layout = ({ header, sidebar, additionalClassNames, footerKind, children }: LayoutProps) => {
+export const Layout = ({ announcement, header, sidebar, additionalClassNames, style, children }: LayoutProps) => {
   return (
-    <div className={`layout ${additionalClassNames || ''}`}>
+    <div className={`layout ${additionalClassNames || ''}`} style={style}>
+      {announcement}
       {header}
       {sidebar}
       <main>{children}</main>
-      <Footer kind={footerKind || 'v2'} />
+      <Footer />
     </div>
   )
 }
-
-export const LayoutWithHeader = ({ mainClassName, children, headerLinks, headerRef, logoAgainstHero }: LayoutWithHeaderProps) => (
-  <Layout
-    additionalClassNames={mainClassName + ' has-header'}
-    header={
-      <Header headerRef={headerRef} logoAgainstHero={logoAgainstHero}>
-        {headerLinks}
-      </Header>
-    }
-  >
-    {children}
-  </Layout>
-)
 
 export const LayoutWithSidebar = ({ mainClassName, location, currentUser, children }: LayoutWithSidebarProps) => (
   <Layout additionalClassNames={mainClassName + ' has-sidebar'} sidebar={<Sidebar location={location} currentUser={currentUser} />}>

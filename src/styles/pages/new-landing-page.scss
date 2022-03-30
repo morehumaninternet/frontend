@@ -1,0 +1,209 @@
+.layout.new-landing-page {
+  main {
+    position: relative;
+  }
+
+  .btn {
+    padding: 10px 20px;
+  }
+
+  .hero-container {
+    width: 100%;
+    height: 100vh;
+    grid-template-rows: minmax(130px, 15fr) 70fr 15fr;
+
+    display: grid;
+    place-items: center;
+
+    > .dots {
+      grid-row: 2;
+      height: 100%;
+      max-width: 90%;
+      max-height: 625px;
+    }
+  }
+
+  .causes {
+    background-color: $human-blue;
+    width: 100%;
+    padding: 4rem 0;
+
+    display: grid;
+    // grid-template-columns: minmax(25px, 1fr) 800px minmax(25px, 1fr);
+    place-items: center;
+
+    > .causes__wrapper {
+      margin: 0 25px;
+      min-width: 50%;
+      width: 800px;
+      max-width: calc(100vw - 50px);
+
+      > .causes__title {
+        color: white;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      // Making the iframe responsive
+      > .video {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+
+        > iframe {
+          margin: 0 auto;
+
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .contributors {
+    width: 100%;
+    position: relative;
+
+    > .big-circle {
+      width: 10%;
+      max-width: 200px;
+      fill: $human-pink;
+      position: absolute;
+      top: 3rem;
+      right: 0;
+      z-index: -1;
+    }
+
+    > .small-circle {
+      width: 6%;
+      max-width: 120px;
+      fill: $human-blue;
+      position: absolute;
+      bottom: 10rem;
+      left: 0;
+      z-index: -1;
+    }
+
+    > .learn-more__info {
+      display: grid;
+      grid-template-columns: minmax(20%, 12rem) 55%;
+
+      justify-content: center;
+      padding: 10rem 15%;
+
+      > h3 {
+        font-weight: 400;
+      }
+
+      > p {
+        margin-left: 2.5rem;
+      }
+    }
+  }
+
+  .get-updates {
+    margin: 5rem 0;
+  }
+
+  $social-link-desktop-size: 47px;
+  $social-link-mobile-size: 40px;
+
+  /* social media bar */
+  .social-media-bar {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    button {
+      display: block;
+    }
+
+    .react-share__ShareButton[aria-label="reddit"] {
+      circle {
+        fill: #ff4500;
+      }
+    }
+
+    .social-link {
+      height: $social-link-desktop-size;
+      margin-bottom: 5px;
+      svg {
+        width: $social-link-desktop-size;
+      }
+    }
+  }
+
+  /* media query */
+  @media (max-width: 700px) {
+    .hero-container {
+      grid-template-rows: minmax(70px, 15fr) 70fr 15fr 40px;
+    }
+
+    .social-media-bar {
+      position: static;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+
+      > .social-link {
+        margin-top: $social-link-desktop-size - $social-link-mobile-size;
+      }
+
+      > button,
+      > .social-link {
+        height: $social-link-mobile-size;
+        margin-bottom: 0;
+        svg {
+          width: $social-link-mobile-size;
+        }
+        margin-right: 4px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .learn-more {
+      > .big-circle {
+        width: 20%;
+        top: 1.5rem;
+        right: -1rem;
+      }
+
+      > .small-circle {
+        display: none;
+      }
+
+      > .learn-more__info {
+        display: flex;
+        flex-direction: column;
+        padding: 10rem 25px;
+
+        > h3:first-child {
+          margin-top: 40px;
+        }
+
+        > p {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    .how-it-works__title {
+      font-size: 4.5vw;
+    }
+  }
+}

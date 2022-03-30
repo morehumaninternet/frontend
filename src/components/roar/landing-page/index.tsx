@@ -4,9 +4,9 @@ import useHeader from './useHeader'
 
 import GetUpdates from '../../shared/get-updates'
 import Hero from './hero'
-import HowItWorks from './how-it-wroks'
+import HowItWorks from './how-it-works'
 import LearnMore from './learn-more'
-import SocialMediaBar from './social-media-bar'
+import SocialMediaBar from '../../shared/social-media-bar'
 import useExplicitHeightOnIPhone from '../../../effects/useExplicitHeightOnIPhone'
 import RoarSEO from '../roar-seo'
 
@@ -17,7 +17,7 @@ const RoarPage = ({ location }: PageProps): JSX.Element => {
   useExplicitHeightOnIPhone(internalSectionRefs['hero'], internalSectionRefs['How it works']) // tslint:disable-line:no-expression-statement
 
   return (
-    <Layout additionalClassNames="roar" footerKind="v2" header={header}>
+    <Layout additionalClassNames="roar" header={header}>
       <RoarSEO />
       <Hero ref={internalSectionRefs['hero']} dotsRef={dotsRef} />
       <HowItWorks ref={internalSectionRefs['How it works']} />

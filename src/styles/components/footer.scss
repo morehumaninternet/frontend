@@ -1,4 +1,4 @@
-footer.v2 {
+footer {
   font-size: 0.8em;
   padding-top: 2.5rem;
 
@@ -53,7 +53,17 @@ footer.v2 {
   }
 }
 
-.mhi-logo {
+a.home-link {
+  .human, .top-right { fill: $human-pink; }
+  .more, .internet, .bottom-left { fill: $human-blue; }
+
+  &:hover {
+    .more, .internet, .bottom-left { fill: $human-pink; }
+    .human, .top-right { fill: $human-blue; }
+  }
+}
+
+.built-with {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,14 +74,6 @@ footer.v2 {
     position: relative;
     padding: 1px;
     top: 3px;
-  }
-
-  .human, .top-right { fill: $human-pink; }
-  .more, .internet, .bottom-left { fill: $human-blue; }
-
-  &:hover {
-    .more, .internet, .bottom-left { fill: $human-pink; }
-    .human, .top-right { fill: $human-blue; }
   }
 }
 

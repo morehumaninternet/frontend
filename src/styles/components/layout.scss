@@ -9,6 +9,10 @@ $sidebar-margin: 50px;
   }
 }
 
+.layout {
+  min-height: 100vh;
+}
+
 .layout.has-sidebar {
   > .sidebar {
     position: fixed;

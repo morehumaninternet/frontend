@@ -8,7 +8,7 @@ import RoarSEO from '../roar-seo'
 
 const WelcomePage = () => {
   return (
-    <Layout additionalClassNames="welcome" footerKind="v2" header={<Header />}>
+    <Layout additionalClassNames="welcome" header={<Header />}>
       <RoarSEO title="Welcome" />
       <div className="welcome__contents">
         <BigCircle />
