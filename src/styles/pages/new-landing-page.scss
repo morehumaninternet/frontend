@@ -66,21 +66,6 @@
     }
   }
 
-  .causes {
-    width: 100%;
-    position: relative;
-    padding: 25px;
-    display: grid;
-    place-items: center;
-
-    .causes__content {
-      max-width: 960px;
-      display: grid;
-      grid-template-columns: 1fr 25px 1fr;
-      grid-template-rows: 1fr 4fr 1fr 4fr 1fr 4fr 1fr;
-    }
-  }
-
   .get-updates {
     margin: 5rem 0;
   }
