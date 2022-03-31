@@ -12,14 +12,15 @@
 
   img {
     border-radius: 50%;
-    border: 3px solid red;
+    border: 5px solid;
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 710px) {
   .causes__content {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    max-width: 450px;
   }
 
   .cause__image, .cause__text-content {
@@ -33,9 +34,9 @@
   }
 }
 
-@media (min-width: 680px) {
+@media (min-width: 710px) {
   .causes__content {
-    max-width: 960px;
+    max-width: 925px;
     display: grid;
     grid-template-columns: 1fr 25px 1fr;
     grid-template-rows: 1fr 4fr 1fr 4fr 1fr 4fr 1fr;
@@ -74,6 +75,17 @@
   .cause__text-content {
     display: grid;
     place-items: center;
-    padding: 10px
+    padding: 10px;
+  }
+}
+
+@media (min-width: 710px) and (max-width: 800px) {
+  .cause__text-content {
+    h2 {
+      font-size: 1.4rem;
+    }
+    p {
+      font-size: 1rem;
+    }
   }
 }

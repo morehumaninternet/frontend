@@ -10,9 +10,9 @@ import Info from './info'
   - Use single column layout on mobile
 */
 
-const CauseImage = ({ src }: { src: string }) => (
+const CauseImage = ({ src, borderColor }: { src: string, borderColor: string }) => (
   <div className="cause__image">
-    <img src={src} />
+    <img src={src} style={{ borderColor }} />
   </div>
 )
 
@@ -25,9 +25,9 @@ const CauseTextContent = ({ heading, description }: { heading: string, descripti
   </div>
 )
 
-const Cause = ({ imgSrc, heading, description }: { imgSrc: string, heading: string, description: string }) => (
+const Cause = ({ imgSrc, borderColor, heading, description }: { imgSrc: string, borderColor: string, heading: string, description: string }) => (
   <>
-    <CauseImage src={imgSrc} />
+    <CauseImage src={imgSrc} borderColor={borderColor}/>
     <CauseTextContent
       heading={heading}
       description={description}
@@ -42,18 +42,21 @@ const Causes = forwardRef(
         <div className="causes__content">
           <Cause
             imgSrc="/dsa_hero.png"
+            borderColor="#FADE60"
             heading="Developing African Leaders Through Sports"
-            description="Developing African Leaders Through Sports"
+            description="More Human Internet helped redesign Dream Sports Africa’s website, positioning it as the preeminent organization offering life skills education through sports in Africa"
           />
           <Cause
-            imgSrc="/dsa_hero.png"
-            heading="Developing African Leaders Through Sports"
-            description="Developing African Leaders Through Sports"
+            imgSrc="/lhkh_hero.png"
+            borderColor="#FA759E"
+            heading="Stewarding Hawaii Across Generations"
+            description="Through our partnership with Livable Hawaii Kai Hui, we are aiming to bring 1500 volunteers of all ages to care for and commune with Hawaii’s sacred landscapes."
           />
           <Cause
-            imgSrc="/dsa_hero.png"
-            heading="Developing African Leaders Through Sports"
-            description="Developing African Leaders Through Sports"
+            imgSrc="/roar_hero.png"
+            borderColor="#164176"
+            heading="Bringing attention to problems on the web"
+            description="Roar! by More Human Internet enables users of the web Turn a tweet into a Roar so experts and maintainers see the issue and offer solutions."
           />
         </div>
       </section>
