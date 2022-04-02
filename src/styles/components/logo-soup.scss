@@ -11,7 +11,7 @@
 
 }
 .soup__header{
-    max-width: 925px;
+    max-width: 70vw;
     text-align: center;
     color: white;
     font-size: 2.5rem;
@@ -25,5 +25,14 @@
 
     img {
         padding: 1rem;
+    }
+}
+
+@media (max-width: 710px) {
+    .logo-soup {
+        padding: 0.25rem;
+    }
+    .soup__content img {
+        padding: 0;
     }
 }
