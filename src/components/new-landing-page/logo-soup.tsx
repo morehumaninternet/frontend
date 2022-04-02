@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function LogoSoup() {
+export default function LogoSoup(): JSX.Element {
     return (
         <div className="logo-soup">
             <h3 className="soup__header">Streamline your operations and reach more donors with the latest technology</h3>
