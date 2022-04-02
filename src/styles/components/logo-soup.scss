@@ -2,9 +2,27 @@
     background-color: $human-blue;
     width: 100%; 
     height: 200px;
+    position: relative;
+    padding: 2rem;
     display: grid;
-    align-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr;
+    place-items: center;
+    
+    h3 {
+        text-align: center;
+    }
 }
-.logos-header {
-    justify-content: center;
+.soup__header {
+    place-items: center;
+}
+.soup__content {
+    display: grid; 
+    place-items: center;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 1fr;
+
+    img {
+        padding: 1rem;
+    }
 }
