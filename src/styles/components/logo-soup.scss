@@ -19,19 +19,13 @@
     max-width: 925px;
     display: grid; 
     place-items: center;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     grid-template-rows: 1fr;
-
-    img {
-        padding: 1rem;
-    }
+    grid-gap: 1em;
 }
 
 @media (max-width: 710px) {
     .logo-soup {
         padding: 1rem 0.25rem;
-    }
-    .soup__content img {
-        padding: 0;
     }
 }
