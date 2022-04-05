@@ -1,4 +1,4 @@
-.logo-soup {
+.technologies {
     background-color: $human-blue;
     width: 100%; 
     height: auto;
@@ -10,12 +10,12 @@
     place-items: center; 
 
 }
-.soup__header{
+.technologies__header{
     max-width: 70vw;
     text-align: center;
     color: white;
 }
-.soup__content {
+.technologies__content {
     max-width: 925px;
     display: grid; 
     place-items: center;
@@ -25,7 +25,7 @@
 }
 
 @media (max-width: 710px) {
-    .logo-soup {
+    .technologies {
         padding: 1rem 0.25rem;
     }
 }
