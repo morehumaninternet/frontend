@@ -8,13 +8,14 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     place-items: center; 
-
 }
+
 .technologies__header{
     max-width: 70vw;
     text-align: center;
     color: white;
 }
+
 .technologies__content {
     max-width: 925px;
     display: grid; 
