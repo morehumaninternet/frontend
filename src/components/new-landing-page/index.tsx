@@ -5,7 +5,8 @@ import useHeader from './useHeader'
 import GetUpdates from '../shared/get-updates'
 import Hero from './hero'
 import Leaders from './leaders'
-import Causes from '../landing-page/causes'
+import Causes from './causes'
+import Technologies from './technologies'
 // import Contributors from './contributors'
 import SocialMediaBar from '../shared/social-media-bar'
 import useExplicitHeightOnIPhone from '../../effects/useExplicitHeightOnIPhone'
@@ -30,6 +31,7 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
       <Leaders />
       <Causes ref={internalSectionRefs['Causes']} />
       {/* <Contributors ref={internalSectionRefs['Contributors']} /> */}
+      <Technologies />
       <GetUpdates ref={internalSectionRefs['Workshops']} />
       <SocialMediaBar />
     </Layout>
