@@ -12,7 +12,7 @@ export default function Technologies(): JSX.Element {
                 <img src="/technologies/react.png" />
                 <img src="/technologies/notion.png" />
                 <img src="/technologies/slack.png" />
-                <img src="/technologies/donorbox3.png" />
+                <img src="/technologies/donorbox1.png" />
             </div>
         </div>
     )
