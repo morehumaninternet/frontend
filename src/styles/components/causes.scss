@@ -42,56 +42,28 @@
     grid-template-rows: 1fr 4fr 1fr 4fr 1fr 4fr 1fr;
   }
   
-  // $rowCounter: 3;
-  // @for $i from 1 through $rowCounter {
-  //   .cause__image:nth-of-type(#{$i}) {
-  //     grid-row-start: $i * 2 - 1;
-  //     grid-row-end: $i * 2 + 2;
-  //     //condition for image on the lect
-  //     @if $i % 2 == 1 {
-  //       border: 10px solid yellow;
-  //     }
-  //     // confition for image on the right
-  //     @if $i % 2 == 0 {
-  //       border: 10px solid $human-pink;
-  //     }
-  //     // @if $i == 3 {
-  //     //   border: 10px solid $human-blue;
-  //     // }
-  //     + .cause__text-content {
-  //       color: $human-blue;
-  //       grid-row: $i*2;
-  //     }
-  //   }
-  // }
-
-  .cause__image:nth-child(1) {
-    grid-row: 1/4;
-    grid-column: 1;
-
-    + .cause__text-content {
-      grid-row: 2;
-      grid-column: 3;
-    }
-  }
-
-  .cause__image:nth-child(3) {
-    grid-row: 3/6;
-    grid-column: 3;
-
-    + .cause__text-content {
-      grid-row: 4;
-      grid-column: 1;
-    }
-  }
-
-  .cause__image:nth-child(5) {
-    grid-row: 5/8;
-    grid-column: 1;
-
-    + .cause__text-content {
-      grid-row: 6;
-      grid-column: 3;
+  $causesRowCounter: 7;
+  @for $i from 1 through $causesRowCounter {
+    .cause__image:nth-child(#{$i}) {
+      grid-row-start: $i;
+      grid-row-end: $i + 2;
+      //condition for image on the left - col1
+      $causeImageColTracker: ($i - 1)/2;
+      @if $causeImageColTracker%2 == 0 {
+        grid-column: 1;
+        + .cause__text-content {
+          grid-row: $i + 1;
+          grid-column: 3;
+        }
+      }
+      // condition for image on the right - col3
+      @if $causeImageColTracker%2 == 1 {
+        grid-column: 3;
+        + .cause__text-content {
+          grid-row: $i + 1;
+          grid-column: 1;
+        }
+      }
     }
   }
 
