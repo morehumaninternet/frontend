@@ -41,28 +41,25 @@
     grid-template-columns: 1fr 25px 1fr;
     grid-template-rows: 1fr 4fr 1fr 4fr 1fr 4fr 1fr;
   }
-  
-  $causesRowCounter: 7;
-  @for $i from 1 through $causesRowCounter {
-    .cause__image:nth-child(#{$i}) {
-      grid-row-start: $i;
-      grid-row-end: $i + 2;
-      //condition for image on the left - col1
-      $causeImageColTracker: ($i - 1)/2;
-      @if $causeImageColTracker%2 == 0 {
+
+  $numCauses: 10;
+  @for $cause_index from 1 through $numCauses {
+    $cause_image_index: ($cause_index * 2) - 1;
+
+    .cause__image:nth-child(#{$cause_image_index}) {
+      grid-row-start: $cause_image_index;
+      grid-row-end: $cause_image_index + 2;
+
+      + .cause__text-content { grid-row: $cause_image_index + 1; }
+
+      // Alternate between placing the image in column 1 
+      // and the text in column 3 and visa versa
+      @if ($cause_index % 2 == 1) {
         grid-column: 1;
-        + .cause__text-content {
-          grid-row: $i + 1;
-          grid-column: 3;
-        }
-      }
-      // condition for image on the right - col3
-      @if $causeImageColTracker%2 == 1 {
+        + .cause__text-content { grid-column: 3; }
+      } @else {
         grid-column: 3;
-        + .cause__text-content {
-          grid-row: $i + 1;
-          grid-column: 1;
-        }
+        + .cause__text-content { grid-column: 1; }
       }
     }
   }
