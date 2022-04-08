@@ -41,6 +41,29 @@
     grid-template-columns: 1fr 25px 1fr;
     grid-template-rows: 1fr 4fr 1fr 4fr 1fr 4fr 1fr;
   }
+  
+  // $rowCounter: 3;
+  // @for $i from 1 through $rowCounter {
+  //   .cause__image:nth-of-type(#{$i}) {
+  //     grid-row-start: $i * 2 - 1;
+  //     grid-row-end: $i * 2 + 2;
+  //     //condition for image on the lect
+  //     @if $i % 2 == 1 {
+  //       border: 10px solid yellow;
+  //     }
+  //     // confition for image on the right
+  //     @if $i % 2 == 0 {
+  //       border: 10px solid $human-pink;
+  //     }
+  //     // @if $i == 3 {
+  //     //   border: 10px solid $human-blue;
+  //     // }
+  //     + .cause__text-content {
+  //       color: $human-blue;
+  //       grid-row: $i*2;
+  //     }
+  //   }
+  // }
 
   .cause__image:nth-child(1) {
     grid-row: 1/4;
