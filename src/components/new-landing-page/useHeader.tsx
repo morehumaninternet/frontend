@@ -142,9 +142,10 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
         ))
         .concat([
           <a
+            key="Join"
             className="mhi-button human-pink-bg btn btn--download"
             rel="noopener noreferrer"
-            href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
+            onClick={() => internalSectionRefs.Join.current!.scrollIntoView({ block: 'center' })}
           >
             Join
           </a>,

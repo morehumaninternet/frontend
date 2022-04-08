@@ -7,14 +7,10 @@ import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
 import { thankYouHref } from '../../../utils/href'
 
-type ApplicationFormType = {
-  availability: Availability
-  setAvailability: React.Dispatch<React.SetStateAction<Availability>>
-  makeAndTrackRef(): any
-}
-
-export function ApplicationForm({ ref,availability,setAvailability }: { ref: any, availability: any, setAvailability: any }): JSX.Element {
+export function ApplicationForm(): JSX.Element {
   const intl = useIntl()
+
+  const [availability, setAvailability] = React.useState('volunteer');
 
   const formReference = React.useRef<HTMLFormElement>()
 

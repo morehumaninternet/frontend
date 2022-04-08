@@ -11,7 +11,7 @@ import Technologies from './technologies'
 import SocialMediaBar from '../shared/social-media-bar'
 import useExplicitHeightOnIPhone from '../../effects/useExplicitHeightOnIPhone'
 import SEO from '../shared/seo'
-import { ApplicationForm } from '../shared/application-form'
+import JoinSection from './join-section'
 
 const NewLandingPage = ({ location }: PageProps): JSX.Element => {
   const navigator = typeof window === 'undefined' ? undefined : window.navigator
@@ -19,8 +19,11 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
 
   useExplicitHeightOnIPhone(internalSectionRefs['hero'], internalSectionRefs['Causes']) // tslint:disable-line:no-expression-statement
 
-  const [availability, setAvailability] = React.useState('volunteer');
-
+  /*
+    - Add a header
+    - add max-width 
+    - add padding
+  */
   return (
     <Layout
       additionalClassNames="new-landing-page"
@@ -36,7 +39,7 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
       {/* <Contributors ref={internalSectionRefs['Contributors']} /> */}
       <Technologies />
       <GetUpdates ref={internalSectionRefs['Workshops']} />
-      <ApplicationForm ref={internalSectionRefs['Join']} availability={availability} setAvailability={setAvailability}/>
+      <JoinSection ref={internalSectionRefs['Join']} />
       <SocialMediaBar />
 
     </Layout>
