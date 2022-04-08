@@ -42,33 +42,25 @@
     grid-template-rows: 1fr 4fr 1fr 4fr 1fr 4fr 1fr;
   }
 
-  .cause__image:nth-child(1) {
-    grid-row: 1/4;
-    grid-column: 1;
+  $numCauses: 10;
+  @for $cause_index from 1 through $numCauses {
+    $cause_image_index: ($cause_index * 2) - 1;
 
-    + .cause__text-content {
-      grid-row: 2;
-      grid-column: 3;
-    }
-  }
+    .cause__image:nth-child(#{$cause_image_index}) {
+      grid-row-start: $cause_image_index;
+      grid-row-end: $cause_image_index + 2;
 
-  .cause__image:nth-child(3) {
-    grid-row: 3/6;
-    grid-column: 3;
+      + .cause__text-content { grid-row: $cause_image_index + 1; }
 
-    + .cause__text-content {
-      grid-row: 4;
-      grid-column: 1;
-    }
-  }
-
-  .cause__image:nth-child(5) {
-    grid-row: 5/8;
-    grid-column: 1;
-
-    + .cause__text-content {
-      grid-row: 6;
-      grid-column: 3;
+      // Alternate between placing the image in column 1 
+      // and the text in column 3 and visa versa
+      @if ($cause_index % 2 == 1) {
+        grid-column: 1;
+        + .cause__text-content { grid-column: 3; }
+      } @else {
+        grid-column: 3;
+        + .cause__text-content { grid-column: 1; }
+      }
     }
   }
 

@@ -5,7 +5,6 @@ export default function Technologies(): JSX.Element {
         <div className="technologies">
             <h2 className="technologies__header">Streamline your operations and reach more donors with the latest technology</h2>
             <div className="technologies__content">
-                <img src="/technologies/donorbox.png" />
                 <img src="/technologies/gatsby.png" />
                 <img src="/technologies/webflow.png" />
                 <img src="/technologies/zoom.png" />
@@ -13,6 +12,7 @@ export default function Technologies(): JSX.Element {
                 <img src="/technologies/react.png" />
                 <img src="/technologies/notion.png" />
                 <img src="/technologies/slack.png" />
+                <img src="/technologies/donorbox1.png" />
             </div>
         </div>
     )
