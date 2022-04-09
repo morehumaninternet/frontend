@@ -10,7 +10,7 @@ import { thankYouHref } from '../../../utils/href'
 export function ApplicationForm(): JSX.Element {
   const intl = useIntl()
 
-  const [availability, setAvailability] = React.useState('volunteer');
+  const [availability, setAvailability] = React.useState('volunteer')
 
   const formReference = React.useRef<HTMLFormElement>()
 

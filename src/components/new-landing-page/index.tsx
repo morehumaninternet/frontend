@@ -21,7 +21,7 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
 
   /*
     - Add a header
-    - add max-width 
+    - add max-width
     - add padding
   */
   return (
