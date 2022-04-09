@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react'
 import {MHIRotatingLogo} from '../components/new-landing-page/Rotating-Logo'
+
 export default () => {
     return (
         <div>
