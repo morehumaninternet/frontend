@@ -38,8 +38,8 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
       <Causes ref={internalSectionRefs['Causes']} />
       {/* <Contributors ref={internalSectionRefs['Contributors']} /> */}
       <Technologies />
-      <GetUpdates ref={internalSectionRefs['Workshops']} />
       <JoinSection ref={internalSectionRefs['Join']} />
+      <GetUpdates ref={internalSectionRefs['Workshops']} />
       <SocialMediaBar />
 
     </Layout>
