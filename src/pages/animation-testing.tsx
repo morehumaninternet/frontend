@@ -6,8 +6,10 @@ import {Layout} from '../components/shared/layout'
 export default () => {
     return (
         <Layout>
-            <h2>Animation Testing - Rotating Logos</h2>
-            <MHIRotatingLogo />
+            <h2>Animation Test - Rotating Logos</h2>
+            <div className="new-hero">
+                <MHIRotatingLogo />
+            </div>
         </Layout>
     )
 }
