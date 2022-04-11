@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react'
-import Video from './video'
 
 
 const Leaders = forwardRef(
@@ -7,8 +6,7 @@ const Leaders = forwardRef(
     return (
       <section className="leaders" ref={ref as any}>
         <div className="leaders__wrapper">
-          <h1 className="leaders__title">Bring attention to problems on the web</h1>
-          <Video videoSrcURL="https://youtube.com//embed/yU6b5oYl2DM" videoTitle="Roar" />
+          <h1 className="leaders__title">Our leaders join your cause directly, working alongside you to meet your online &amp; offline goals.</h1>
         </div>
       </section>
     )

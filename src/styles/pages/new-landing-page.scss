@@ -166,3 +166,35 @@
     }
   }
 }
+
+.new-landing-page-hero {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  min-height: calc(90vh - 200px - #{$header-height});
+
+  h1 {
+    color: $human-blue;
+    font-size: #{(60/18)}em;
+  }
+
+  h2 { 
+    color: $human-pink 
+  }
+
+  .new-landing-page-hero__content {
+    margin: 100px 25px;
+    max-width: 750px;
+  }
+
+  @media (max-width: 775px) {
+    // I'm sorry for my sins!
+    h1 {
+      font-size: 7.4vw;
+    }
+
+    h2 { 
+      font-size: #{(29.2808 / 60) * 7.4}vw;
+    }
+  }
+}
