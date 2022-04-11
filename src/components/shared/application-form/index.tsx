@@ -7,14 +7,10 @@ import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
 import { thankYouHref } from '../../../utils/href'
 
-type ApplicationFormType = {
-  availability: Availability
-  setAvailability: React.Dispatch<React.SetStateAction<Availability>>
-  makeAndTrackRef(): any
-}
-
-export default function ApplicationForm({ availability, setAvailability, makeAndTrackRef }: ApplicationFormType): JSX.Element {
+export function ApplicationForm(): JSX.Element {
   const intl = useIntl()
+
+  const [availability, setAvailability] = React.useState('volunteer')
 
   const formReference = React.useRef<HTMLFormElement>()
 
@@ -75,7 +71,7 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
           <FormattedMessage id="application_form_bot" /> <input name="bot-field" />
         </label>
       </p>
-      <FormGroup ref={makeAndTrackRef()}>
+      <FormGroup>
         <TextFieldWithIcon
           type="email"
           label={intl.formatMessage({ id: 'application_form_email' })}
@@ -85,7 +81,7 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
           startIcon={<Email className="email" />}
         />
       </FormGroup>
-      <FormGroup ref={makeAndTrackRef()}>
+      <FormGroup>
         <TextFieldWithIcon
           label={intl.formatMessage({ id: 'application_form_name' })}
           name="name"
@@ -94,7 +90,7 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
           startIcon={<Person className="person" />}
         />
       </FormGroup>
-      <FormGroup ref={makeAndTrackRef()}>
+      <FormGroup>
         <TextFieldWithIcon
           type="text"
           label={intl.formatMessage({ id: 'application_form_employer' })}
@@ -103,10 +99,10 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
           startIcon={<Business className="employer" />}
         />
       </FormGroup>
-      <FormGroup ref={makeAndTrackRef()}>
+      <FormGroup>
         <TextFieldWithIcon type="url" label="Website" name="website" variant="outlined" startIcon={<Language className="website" />} />
       </FormGroup>
-      <FormGroup className="select" ref={makeAndTrackRef()}>
+      <FormGroup className="select">
         <InputLabel id="role-select-label">{intl.formatMessage({ id: 'application_form_role' })}</InputLabel>
         <Select labelId="role-select-label" defaultValue="developer" onChange={volunteerRequirements}>
           <MenuItem value="business development">{intl.formatMessage({ id: 'application_form_business development' })}</MenuItem>
@@ -122,18 +118,18 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
         </Select>
       </FormGroup>
       <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value as any)}>
-        <FormControlLabel value="signup" control={<Radio />} label="Keep me updated" ref={makeAndTrackRef()} />
-        <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" ref={makeAndTrackRef()} />
+        <FormControlLabel value="signup" control={<Radio />} label="Keep me updated" />
+        <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" />
       </RadioGroup>
       <div className={availability === 'volunteer' ? '' : 'hide'}>
-        <FormGroup className="stretch-row" ref={makeAndTrackRef()}>
+        <FormGroup className="stretch-row">
           <GithubInput checking={checking} setChecking={setChecking} onChange={volunteerRequirements} />
           <div className="spaced-vertically-centered-text">
             <FormattedMessage id="application_form_and_or" />
           </div>
           <FileUploadButton name="resume" label={intl.formatMessage({ id: 'application_form_resume' })} onNewFileName={() => volunteerRequirements()} />
         </FormGroup>
-        <FormGroup ref={makeAndTrackRef()}>
+        <FormGroup>
           <TextField
             label={intl.formatMessage({ id: 'application_form_why' })}
             name="whyJoin"
@@ -149,7 +145,7 @@ export default function ApplicationForm({ availability, setAvailability, makeAnd
           />
         </FormGroup>
       </div>
-      <FormGroup ref={makeAndTrackRef()}>
+      <FormGroup>
         <button type="submit" className="mhi-button">
           <FormattedMessage id="application_form_join" />
         </button>
