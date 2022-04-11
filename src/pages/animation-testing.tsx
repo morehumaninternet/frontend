@@ -1,5 +1,5 @@
 import React from 'react'
-import {MHIRotatingLogo} from '../components/new-landing-page/rotating-Logo'
+import {MHIRotatingLogo} from '../components/new-landing-page/rotating-logo'
 import {Layout} from '../components/shared/layout'
 
 export default function AnimationTestingPage(): JSX.Element {
