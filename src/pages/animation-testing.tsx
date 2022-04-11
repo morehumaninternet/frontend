@@ -1,8 +1,6 @@
 import React from 'react'
 import {MHIRotatingLogo} from '../components/new-landing-page/rotating-Logo'
-import Hero from '../components/new-landing-page/hero'
 import {Layout} from '../components/shared/layout'
-import { blue } from '@material-ui/core/colors'
 
 export default () => {
     return (
