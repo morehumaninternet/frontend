@@ -2,7 +2,7 @@ import React from 'react'
 import {MHIRotatingLogo} from '../components/new-landing-page/rotating-Logo'
 import {Layout} from '../components/shared/layout'
 
-export default () => {
+export default function AnimationTestingPage(): JSX.Element {
     return (
         <Layout>
             <h2 style={{color: '#164176', textAlign: 'center', padding: '2rem 0'}}>
