@@ -101,10 +101,10 @@ export function MHIRotatingLogo(): JSX.Element {
         ))}
       </div>
     </div>
-    {/* <div className="mhi-rotating-buttons">
+    <div className="mhi-rotating-buttons">
         <button className="mhi-button rotatingButton-adjective" style={{animationDelay: `${logoAnimationLastDelay}`, animationDuration: '1.5s'}} >For Contributors</button>
         <button className="mhi-button rotatingButton-adjective" style={{animationDelay: `${logoAnimationLastDelay}`, animationDuration: '1.5s'}} >For Causes</button>
-    </div> */}
+    </div>
     </>
   )
 }
