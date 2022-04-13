@@ -6,6 +6,7 @@ import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
 import { thankYouHref } from '../../../utils/href'
+import { DropzoneArea } from 'material-ui-dropzone';
 
 export function ApplicationForm(): JSX.Element {
   const intl = useIntl()
@@ -134,10 +135,12 @@ export function ApplicationForm(): JSX.Element {
       <div className={availability === 'volunteer' ? '' : 'hide'}>
         <FormGroup className="stretch-row">
           <GithubInput checking={checking} setChecking={setChecking} onChange={volunteerRequirements} />
+          
           <div className="spaced-vertically-centered-text">
             <FormattedMessage id="application_form_and_or" />
           </div>
           <FileUploadButton name="resume" label={intl.formatMessage({ id: 'application_form_resume' })} onNewFileName={() => volunteerRequirements()} />
+        <DropzoneArea />
         </FormGroup>
         <FormGroup>
           <TextField
