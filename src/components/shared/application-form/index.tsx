@@ -6,7 +6,7 @@ import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
 import { thankYouHref } from '../../../utils/href'
-import { DropzoneArea } from 'material-ui-dropzone';
+import { DropzoneArea } from 'material-ui-dropzone'
 
 export function ApplicationForm(): JSX.Element {
   const intl = useIntl()
@@ -97,7 +97,6 @@ export function ApplicationForm(): JSX.Element {
           startIcon={<Person className="person" />}
         />
       </FormGroup>
-
       {/* <FormGroup>
         <TextFieldWithIcon
           type="text"
@@ -107,11 +106,9 @@ export function ApplicationForm(): JSX.Element {
           startIcon={<Business className="employer" />}
         />
   </FormGroup> */}
-
       {/*<FormGroup>
         <TextFieldWithIcon type="url" label="Website" name="website" variant="outlined" startIcon={<Language className="website" />} />
 </FormGroup> */}
-
       {/* <FormGroup className="select">
         <InputLabel id="role-select-label">{intl.formatMessage({ id: 'application_form_role' })}</InputLabel>
         <Select labelId="role-select-label" defaultValue="developer" onChange={volunteerRequirements}>
@@ -127,21 +124,19 @@ export function ApplicationForm(): JSX.Element {
           <MenuItem value="other">{intl.formatMessage({ id: 'application_form_other' })}</MenuItem>
         </Select>
 </FormGroup> */}
-
       <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value as any)}>
         <FormControlLabel value="signup" control={<Radio />} label="Keep me updated" />
         <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" />
       </RadioGroup>
       <div className={availability === 'volunteer' ? '' : 'hide'}>
-        <FormGroup className="stretch-row">
-          <GithubInput checking={checking} setChecking={setChecking} onChange={volunteerRequirements} />
-          
-          <div className="spaced-vertically-centered-text">
-            <FormattedMessage id="application_form_and_or" />
-          </div>
-          <FileUploadButton name="resume" label={intl.formatMessage({ id: 'application_form_resume' })} onNewFileName={() => volunteerRequirements()} />
+      <FormGroup className="stretch-row">
+        <GithubInput checking={checking} setChecking={setChecking} onChange={volunteerRequirements} />
+        {/* <div className="spaced-vertically-centered-text">
+          <FormattedMessage id="application_form_and_or" />
+        </div> */}
+        <FileUploadButton name="resume" label={intl.formatMessage({ id: 'application_form_resume' })} onNewFileName={() => volunteerRequirements()} />
         <DropzoneArea />
-        </FormGroup>
+      </FormGroup>
         <FormGroup>
           <TextField
             label={intl.formatMessage({ id: 'application_form_why' })}
