@@ -72,6 +72,12 @@ export function ApplicationForm(): JSX.Element {
         </label>
       </p>
       <FormGroup>
+        <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value as any)}>
+          <FormControlLabel value="signup" control={<Radio />} label="I want to contribute" />
+          <FormControlLabel value="volunteer" control={<Radio />} label="I represent an important cause" />
+          <FormControlLabel value="signup" control={<Radio />} label="I want to teach a workshop" />
+        </RadioGroup>
+
         <TextFieldWithIcon
           type="email"
           label={intl.formatMessage({ id: 'application_form_email' })}
@@ -90,7 +96,8 @@ export function ApplicationForm(): JSX.Element {
           startIcon={<Person className="person" />}
         />
       </FormGroup>
-      <FormGroup>
+
+      {/* <FormGroup>
         <TextFieldWithIcon
           type="text"
           label={intl.formatMessage({ id: 'application_form_employer' })}
@@ -98,11 +105,13 @@ export function ApplicationForm(): JSX.Element {
           variant="outlined"
           startIcon={<Business className="employer" />}
         />
-      </FormGroup>
-      <FormGroup>
+  </FormGroup> */}
+
+      {/*<FormGroup>
         <TextFieldWithIcon type="url" label="Website" name="website" variant="outlined" startIcon={<Language className="website" />} />
-      </FormGroup>
-      <FormGroup className="select">
+</FormGroup> */}
+
+      {/* <FormGroup className="select">
         <InputLabel id="role-select-label">{intl.formatMessage({ id: 'application_form_role' })}</InputLabel>
         <Select labelId="role-select-label" defaultValue="developer" onChange={volunteerRequirements}>
           <MenuItem value="business development">{intl.formatMessage({ id: 'application_form_business development' })}</MenuItem>
@@ -116,7 +125,8 @@ export function ApplicationForm(): JSX.Element {
           <MenuItem value="product manager">{intl.formatMessage({ id: 'application_form_product manager' })}</MenuItem>
           <MenuItem value="other">{intl.formatMessage({ id: 'application_form_other' })}</MenuItem>
         </Select>
-      </FormGroup>
+</FormGroup> */}
+
       <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value as any)}>
         <FormControlLabel value="signup" control={<Radio />} label="Keep me updated" />
         <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" />
