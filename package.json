@@ -24,6 +24,7 @@
     "color": "3.1.2",
     "gatsby-plugin-umami": "0.1.2",
     "lodash": "4.17.20",
+    "material-ui-dropzone": "^3.5.0",
     "react": "16.12.0",
     "react-axe": "3.5.3",
     "react-beautiful-dnd": "13.0.0",

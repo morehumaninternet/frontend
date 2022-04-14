@@ -6,6 +6,7 @@ import FileUploadButton from './file-upload-button'
 import TextFieldWithIcon from './text-field-with-icon'
 import GithubInput from './github-input'
 import { thankYouHref } from '../../../utils/href'
+import { DropzoneArea } from 'material-ui-dropzone'
 
 export function ApplicationForm(): JSX.Element {
   const intl = useIntl()
@@ -72,6 +73,12 @@ export function ApplicationForm(): JSX.Element {
         </label>
       </p>
       <FormGroup>
+        <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value as any)}>
+          <FormControlLabel value="signup" control={<Radio />} label="I want to contribute" />
+          <FormControlLabel value="volunteer" control={<Radio />} label="I represent an important cause" />
+          <FormControlLabel value="signup" control={<Radio />} label="I want to teach a workshop" />
+        </RadioGroup>
+
         <TextFieldWithIcon
           type="email"
           label={intl.formatMessage({ id: 'application_form_email' })}
@@ -90,33 +97,6 @@ export function ApplicationForm(): JSX.Element {
           startIcon={<Person className="person" />}
         />
       </FormGroup>
-      <FormGroup>
-        <TextFieldWithIcon
-          type="text"
-          label={intl.formatMessage({ id: 'application_form_employer' })}
-          name="employer"
-          variant="outlined"
-          startIcon={<Business className="employer" />}
-        />
-      </FormGroup>
-      <FormGroup>
-        <TextFieldWithIcon type="url" label="Website" name="website" variant="outlined" startIcon={<Language className="website" />} />
-      </FormGroup>
-      <FormGroup className="select">
-        <InputLabel id="role-select-label">{intl.formatMessage({ id: 'application_form_role' })}</InputLabel>
-        <Select labelId="role-select-label" defaultValue="developer" onChange={volunteerRequirements}>
-          <MenuItem value="business development">{intl.formatMessage({ id: 'application_form_business development' })}</MenuItem>
-          <MenuItem value="ceo/founder">{intl.formatMessage({ id: 'application_form_ceo/founder' })}</MenuItem>
-          <MenuItem value="customer insights">{intl.formatMessage({ id: 'application_form_customer insights' })}</MenuItem>
-          <MenuItem value="designer">{intl.formatMessage({ id: 'application_form_designer' })}</MenuItem>
-          <MenuItem value="developer" selected>
-            {intl.formatMessage({ id: 'application_form_developer' })}
-          </MenuItem>
-          <MenuItem value="marketing">{intl.formatMessage({ id: 'application_form_marketing' })}</MenuItem>
-          <MenuItem value="product manager">{intl.formatMessage({ id: 'application_form_product manager' })}</MenuItem>
-          <MenuItem value="other">{intl.formatMessage({ id: 'application_form_other' })}</MenuItem>
-        </Select>
-      </FormGroup>
       <RadioGroup aria-label="availability" name="availability" value={availability} onChange={event => setAvailability(event.target.value as any)}>
         <FormControlLabel value="signup" control={<Radio />} label="Keep me updated" />
         <FormControlLabel value="volunteer" control={<Radio />} label="I'd like to volunteer" />
@@ -124,11 +104,12 @@ export function ApplicationForm(): JSX.Element {
       <div className={availability === 'volunteer' ? '' : 'hide'}>
         <FormGroup className="stretch-row">
           <GithubInput checking={checking} setChecking={setChecking} onChange={volunteerRequirements} />
-          <div className="spaced-vertically-centered-text">
-            <FormattedMessage id="application_form_and_or" />
-          </div>
+
+          {/* need to replace fileupLoadButton with DropzoneArea */}
           <FileUploadButton name="resume" label={intl.formatMessage({ id: 'application_form_resume' })} onNewFileName={() => volunteerRequirements()} />
+          <DropzoneArea showFileNames={true} onDrop={() => volunteerRequirements()} dropzoneText={'Drag and drop your resume'} />
         </FormGroup>
+
         <FormGroup>
           <TextField
             label={intl.formatMessage({ id: 'application_form_why' })}

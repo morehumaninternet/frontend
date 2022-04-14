@@ -6,7 +6,7 @@ export default React.forwardRef(
     return (
       <div className="join-community">
         <div className ="join" ref={ref as any}>
-          <h2 className="mhi-heading human-blue" >Join Our Community</h2>
+          <h1 className="mhi-heading human-blue" >Join Our Community</h1>
           <ApplicationForm />
         </div>
       </div>
