@@ -3,6 +3,7 @@ import { Layout } from '../shared/layout'
 import useHeader from './useHeader'
 
 import GetUpdates from '../shared/get-updates'
+import Announcement from './announcement'
 import Hero from './hero'
 import Leaders from './leaders'
 import Causes from './causes'
@@ -22,7 +23,7 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
       additionalClassNames="new-landing-page"
       header={header}
       announcement={
-        <div style={{ width: '100%', height: '200px', backgroundColor: 'red' }} />
+        <Announcement />
       }
     >
       <SEO />
