@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Hero() {
+function Hero(): JSX.Element {
   return (
     <section className="new-landing-page-hero">
       <div className="new-landing-page-hero__content">
