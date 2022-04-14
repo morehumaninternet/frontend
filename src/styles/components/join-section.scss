@@ -3,5 +3,9 @@
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
-    padding: 25px;
+    .mhi-heading {
+        padding: 4rem 0;
+        margin: 0;
+        font-weight: bold;
+    }
 }
