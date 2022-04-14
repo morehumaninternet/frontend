@@ -14,7 +14,7 @@ import { Link } from 'gatsby'
 import { UAParser } from 'ua-parser-js'
 import Header from './header'
 
-type Section = 'hero' | 'Causes' | 'Contributors' | 'Workshops'
+type Section = 'hero' | 'Causes' | 'Contributors' | 'Workshops' | 'Join'
 
 type SectionRefs = {
   [section in Section]: React.MutableRefObject<any>
@@ -35,6 +35,7 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
     'Causes': React.useRef<any>(),
     'Contributors': React.useRef<any>(),
     'Workshops': React.useRef<any>(),
+    'Join': React.useRef<any>(),
   }
 
   // Refs to each of the links
@@ -43,6 +44,7 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
     'Causes': React.useRef<any>(),
     'Contributors': React.useRef<any>(),
     'Workshops': React.useRef<any>(),
+    'Join': React.useRef<any>(),
   }
 
   const dotsRef = React.useRef<any>()
@@ -140,9 +142,10 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
         ))
         .concat([
           <a
+            key="Join"
             className="mhi-button human-pink-bg btn btn--download"
             rel="noopener noreferrer"
-            href="https://chrome.google.com/webstore/detail/roar/jfcmnmgckhjcflmljjgjjilmjhbgdfkc"
+            onClick={() => internalSectionRefs.Join.current!.scrollIntoView({ block: 'center' })}
           >
             Join
           </a>,

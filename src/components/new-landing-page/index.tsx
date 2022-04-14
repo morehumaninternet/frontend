@@ -7,10 +7,12 @@ import Announcement from './announcement'
 import Hero from './hero'
 import Leaders from './leaders'
 import Causes from './causes'
+import Technologies from './technologies'
 // import Contributors from './contributors'
 import SocialMediaBar from '../shared/social-media-bar'
 import useExplicitHeightOnIPhone from '../../effects/useExplicitHeightOnIPhone'
 import SEO from '../shared/seo'
+import JoinSection from './join-section'
 
 const NewLandingPage = ({ location }: PageProps): JSX.Element => {
   const navigator = typeof window === 'undefined' ? undefined : window.navigator
@@ -18,6 +20,11 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
 
   useExplicitHeightOnIPhone(internalSectionRefs['hero'], internalSectionRefs['Causes']) // tslint:disable-line:no-expression-statement
 
+  /*
+    - Add a header
+    - add max-width
+    - add padding
+  */
   return (
     <Layout
       additionalClassNames="new-landing-page"
@@ -27,12 +34,15 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
       }
     >
       <SEO />
-      <Hero ref={internalSectionRefs['hero']} dotsRef={dotsRef} />
+      <Hero />
       <Leaders />
       <Causes ref={internalSectionRefs['Causes']} />
       {/* <Contributors ref={internalSectionRefs['Contributors']} /> */}
+      <Technologies />
+      <JoinSection ref={internalSectionRefs['Join']} />
       <GetUpdates ref={internalSectionRefs['Workshops']} />
       <SocialMediaBar />
+
     </Layout>
   )
 }

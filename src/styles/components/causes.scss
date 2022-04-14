@@ -1,0 +1,83 @@
+.causes {
+  width: 100%;
+  position: relative;
+  padding: 25px;
+  display: grid;
+  place-items: center;
+}
+
+.cause__image {
+  display: grid;
+  place-items: center;
+
+  img {
+    border-radius: 50%;
+    border: 5px solid;
+  }
+}
+
+@media (max-width: 710px) {
+  .causes__content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    max-width: 450px;
+  }
+
+  .cause__image, .cause__text-content {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .cause__text-content {
+    margin: 15px 0;
+    text-align: center;
+  }
+}
+
+@media (min-width: 710px) {
+  .causes__content {
+    max-width: 925px;
+    display: grid;
+    grid-template-columns: 1fr 25px 1fr;
+    grid-template-rows: 1fr 4fr 1fr 4fr 1fr 4fr 1fr;
+  }
+
+  $numCauses: 10;
+  @for $cause_index from 1 through $numCauses {
+    $cause_image_index: ($cause_index * 2) - 1;
+
+    .cause__image:nth-child(#{$cause_image_index}) {
+      grid-row-start: $cause_image_index;
+      grid-row-end: $cause_image_index + 2;
+
+      + .cause__text-content { grid-row: $cause_image_index + 1; }
+
+      // Alternate between placing the image in column 1 
+      // and the text in column 3 and visa versa
+      @if ($cause_index % 2 == 1) {
+        grid-column: 1;
+        + .cause__text-content { grid-column: 3; }
+      } @else {
+        grid-column: 3;
+        + .cause__text-content { grid-column: 1; }
+      }
+    }
+  }
+
+  .cause__text-content {
+    display: grid;
+    place-items: center;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 710px) and (max-width: 800px) {
+  .cause__text-content {
+    h2 {
+      font-size: 1.4rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+}

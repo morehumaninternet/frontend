@@ -1,0 +1,32 @@
+.technologies {
+    background-color: $human-blue;
+    width: 100%; 
+    height: auto;
+    position: relative;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    place-items: center; 
+}
+
+.technologies__header{
+    max-width: 70vw;
+    text-align: center;
+    color: white;
+}
+
+.technologies__content {
+    max-width: 925px;
+    display: grid; 
+    place-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    grid-template-rows: 1fr;
+    grid-gap: 1em;
+}
+
+@media (max-width: 710px) {
+    .technologies {
+        padding: 1rem 0.25rem;
+    }
+}
