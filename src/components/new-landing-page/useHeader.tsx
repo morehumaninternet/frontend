@@ -9,12 +9,9 @@
 // tslint:disable:no-expression-statement
 import React from 'react'
 import { forEach, kebabCase, map } from 'lodash'
-// @ts-ignore
-import { Link } from 'gatsby'
-import { UAParser } from 'ua-parser-js'
 import Header from './header'
 
-type Section = 'hero' | 'Causes' | 'Contributors' | 'Workshops' | 'Join'
+type Section = 'hero' | 'Causes' | 'Contributors' | 'Join' /* | 'Workshops' */
 
 type SectionRefs = {
   [section in Section]: React.MutableRefObject<any>
@@ -26,15 +23,13 @@ type UseHeaderReturn = {
   dotsRef: React.MutableRefObject<any>
 }
 
-export default function useHeader(location: Location, navigator?: Navigator): UseHeaderReturn {
-  const [downloadButtonText, setDownloadButtonText] = React.useState<string>('Join')
-
+export default function useHeader(location: Location): UseHeaderReturn {
   // Refs to each of the various sections, to be used by the caller
   const internalSectionRefs: SectionRefs = {
     hero: React.useRef<any>(),
     'Causes': React.useRef<any>(),
     'Contributors': React.useRef<any>(),
-    'Workshops': React.useRef<any>(),
+    // 'Workshops': React.useRef<any>(),
     'Join': React.useRef<any>(),
   }
 
@@ -43,7 +38,7 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
     hero: React.useRef<any>(),
     'Causes': React.useRef<any>(),
     'Contributors': React.useRef<any>(),
-    'Workshops': React.useRef<any>(),
+    // 'Workshops': React.useRef<any>(),
     'Join': React.useRef<any>(),
   }
 
@@ -129,7 +124,7 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
     <Header
       headerRef={headerRef}
       heroRef={internalLinkRefs.hero}
-      otherLinks={['Causes', 'Contributors', 'Workshops']
+      otherLinks={['Causes', 'Contributors' /*, 'Workshops' */]
         .map((section: Section) => (
           <a
             key={section}

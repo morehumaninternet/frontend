@@ -1,2 +1,2 @@
-import LandingPage from '../components/landing-page'
+import LandingPage from '../components/new-landing-page'
 export default LandingPage

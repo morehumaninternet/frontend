@@ -13,7 +13,7 @@ const causes: ReadonlyArray<CauseProps> = [
     imgSrc: '/lhkh_hero.png',
     borderColor: '#FA759E',
     heading: 'Stewarding Hawaii Across Generations',
-    description: `Through our partnership with Livable Hawaii Kai Hui, we are aiming to bring 1500 volunteers of all ages to care for and commune with Hawaii’s sacred landscapes.`,
+    description: `Through our partnership with Livable Hawaii Kai Hui, we are aiming to bring 1500 volunteers of all ages to care for Hawaii’s cultural and natural resources.`,
   },
   {
     imgSrc: '/roar_hero.png',
