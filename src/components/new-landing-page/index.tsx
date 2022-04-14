@@ -33,7 +33,7 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
       }
     >
       <SEO />
-      <Hero ref={internalSectionRefs['hero']} dotsRef={dotsRef} />
+      <Hero />
       <Leaders />
       <Causes ref={internalSectionRefs['Causes']} />
       {/* <Contributors ref={internalSectionRefs['Contributors']} /> */}
