@@ -107,7 +107,7 @@ export function ApplicationForm(): JSX.Element {
 
           {/* need to replace fileupLoadButton with DropzoneArea */}
           <FileUploadButton name="resume" label={intl.formatMessage({ id: 'application_form_resume' })} onNewFileName={() => volunteerRequirements()} />
-          <DropzoneArea showFileNames={true} onDrop={() => volunteerRequirements()} dropzoneText={"Drag and drop your resume"} />
+          <DropzoneArea showFileNames={true} onDrop={() => volunteerRequirements()} dropzoneText={'Drag and drop your resume'} />
         </FormGroup>
 
         <FormGroup>
