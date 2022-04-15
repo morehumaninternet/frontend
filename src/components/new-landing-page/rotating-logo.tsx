@@ -46,6 +46,7 @@ const logoAnimationLastDelay = (0.5 + 0.1 * animationWordsCount + 1.25 * (animat
 
 export function MHIRotatingLogo(): JSX.Element {
   return (
+    <>
     <div className="mhi-rotating-logo">
       <svg
         className="mhi-rotating-logo-dots"
@@ -100,5 +101,10 @@ export function MHIRotatingLogo(): JSX.Element {
         ))}
       </div>
     </div>
+    <div className="mhi-rotating-buttons">
+        <button className="mhi-button rotatingButton-adjective" style={{animationDelay: `${logoAnimationLastDelay}`, animationDuration: '1.5s'}} >For Contributors</button>
+        <button className="mhi-button rotatingButton-adjective" style={{animationDelay: `${logoAnimationLastDelay}`, animationDuration: '1.5s'}} >For Causes</button>
+    </div>
+    </>
   )
 }
