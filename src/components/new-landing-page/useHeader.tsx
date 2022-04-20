@@ -130,7 +130,7 @@ export default function useHeader(location: Location): UseHeaderReturn {
             key={section}
             className={`hide-on-mobile internal-link umami--click--nav-bar-${section}`}
             ref={internalLinkRefs[section] as any}
-            onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
+            onClick={() => internalSectionRefs[section].current!.scrollIntoView()}
           >
             {section}
           </a>
@@ -140,7 +140,7 @@ export default function useHeader(location: Location): UseHeaderReturn {
             key="Join"
             className="mhi-button human-pink-bg btn btn--download"
             rel="noopener noreferrer"
-            onClick={() => internalSectionRefs.Join.current!.scrollIntoView({ block: 'center' })}
+            onClick={() => internalSectionRefs.Join.current!.scrollIntoView()}
           >
             Join
           </a>,
