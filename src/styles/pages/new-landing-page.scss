@@ -42,6 +42,21 @@
         color: white;
         text-align: center;
       }
+      .pink-dot-container {
+        position: absolute;
+
+        .pink-dot-text {
+          position: relative;
+          max-width: 40%;
+          color: white; 
+          background-color: $human-pink;
+        }
+  
+        .pink-dot {
+          max-width: 45%;
+          height: auto;
+        }
+      }
 
       // Making the iframe responsive
       > .video {
