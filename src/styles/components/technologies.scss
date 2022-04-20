@@ -23,6 +23,11 @@
     grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
     grid-template-rows: 1fr;
     grid-gap: 1em;
+
+    img {
+        width: 70%; 
+        height: auto;
+    }
 }
 
 @media (max-width: 710px) {
