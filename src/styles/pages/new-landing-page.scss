@@ -44,13 +44,14 @@
       }
       .pink-dot-container {
         position: relative;
+        width: 100%;
 
         .pink-dot-text {
           position: absolute;
           max-width: 30vh;
           height: auto;
-          right: 4vh;
-          top: 8vh;
+          right: 8vh;
+          top: -1vh;
           z-index: 2;
           color: white; 
           background-color: $human-pink;
@@ -58,8 +59,8 @@
   
         .pink-dot {
           position: absolute;
-          right: 0;
-          top: 30%;
+          right: 4vh;
+          top: -10vh;
           z-index: 1;
           max-height: 40vh;
           height: auto;
