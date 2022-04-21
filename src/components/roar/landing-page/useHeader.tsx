@@ -142,7 +142,7 @@ export default function useHeader(location: Location, navigator?: Navigator): Us
         .map((section: Section) => (
           <a
             key={section}
-            className={`hide-on-mobile internal-link umami--click--nav-bar-${section}`}
+            className={`hide-on-mobile link umami--click--nav-bar-${section}`}
             ref={internalLinkRefs[section] as any}
             onClick={() => internalSectionRefs[section].current!.scrollIntoView({ block: 'center' })}
           >
