@@ -43,17 +43,25 @@
         text-align: center;
       }
       .pink-dot-container {
-        position: absolute;
+        position: relative;
 
         .pink-dot-text {
-          position: relative;
-          max-width: 40%;
+          position: absolute;
+          max-width: 30vh;
+          height: auto;
+          right: 4vh;
+          top: 8vh;
+          z-index: 2;
           color: white; 
           background-color: $human-pink;
         }
   
         .pink-dot {
-          max-width: 45%;
+          position: absolute;
+          right: 0;
+          top: 30%;
+          z-index: 1;
+          max-height: 40vh;
           height: auto;
         }
       }
