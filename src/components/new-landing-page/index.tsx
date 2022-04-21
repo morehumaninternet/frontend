@@ -14,8 +14,6 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
   const navigator = typeof window === 'undefined' ? undefined : window.navigator
   const { header, internalSectionRefs, dotsRef } = useHeader(location, navigator)
 
-  useExplicitHeightOnIPhone(internalSectionRefs['hero'], internalSectionRefs['Causes']) // tslint:disable-line:no-expression-statement
-
   return (
     <Layout
       additionalClassNames="new-landing-page"
