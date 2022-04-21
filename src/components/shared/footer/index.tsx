@@ -39,7 +39,7 @@ const Footer = (): JSX.Element => {
         <div className="footer-links__container">
           <SocialLinks links={socialLinkData} />
         </div>
-        <span className="copyright">© More Human Internet Foundation 2020, All rights reserved</span>
+        <span className="copyright">© More Human Internet Foundation 2020—2022, All rights reserved</span>
       </div>
     </footer>
   )
