@@ -4,19 +4,19 @@ type CauseProps = { imgSrc: string, borderColor: string, heading: string, descri
 
 const causes: ReadonlyArray<CauseProps> = [
   {
-    imgSrc: '/dsa_hero.png',
+    imgSrc: '/causes/dsa_hero.png',
     borderColor: '#FADE60',
     heading: 'Developing African Leaders Through Sports',
     description: `More Human Internet helped redesign Dream Sports Africa's website, positioning it as the preeminent organization offering life skills education through sports in Africa`,
   },
   {
-    imgSrc: '/lhkh_hero.png',
+    imgSrc: '/causes/lhkh_hero.png',
     borderColor: '#FA759E',
     heading: 'Stewarding Hawaii Across Generations',
     description: `Through our partnership with Livable Hawaii Kai Hui, we are aiming to bring 1500 volunteers of all ages to care for Hawaii’s cultural and natural resources.`,
   },
   {
-    imgSrc: '/roar_hero.png',
+    imgSrc: '/causes/roar_hero.png',
     borderColor: '#164176',
     heading: 'Bringing attention to problems on the web',
     description: `Roar! by More Human Internet enables users of the web Turn a tweet into a Roar so experts and maintainers see the issue and offer solutions.`,
