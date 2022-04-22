@@ -30,7 +30,7 @@ export const roar = {
   href: '/roar',
 }
 
-export const causes = [
+export const causes: ReadonlyArray<any> = [
   dsa,
   lhkh,
   roar,
@@ -64,7 +64,7 @@ export const Cause = ({ imgSrc, borderColor, heading, description, href }: Cause
 )
 
 export const CausesSection = forwardRef(
-  (props: { causes: CauseProps[] }, ref): JSX.Element => {
+  (props: { causes: readonly CauseProps[] }, ref): JSX.Element => {
     return (
       <section className="causes" ref={ref as any}>
         <div className="causes__content">
@@ -80,7 +80,7 @@ export const CausesSection = forwardRef(
 export default forwardRef(
   (_, ref): JSX.Element => {
     return (
-      <CausesSection 
+      <CausesSection
         ref={ref}
         causes={causes}
       />

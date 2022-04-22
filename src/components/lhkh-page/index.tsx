@@ -11,7 +11,7 @@ const LHKHPage = (): JSX.Element => {
       header={<Header />}
     >
       <SEO />
-      <CausesSection 
+      <CausesSection
         causes={[lhkh]}
       />
     </Layout>

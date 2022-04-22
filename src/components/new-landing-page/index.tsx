@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from '../shared/layout'
-import { useHeader } from '../shared/header'
+import { Header, SectionRefs } from '../shared/header'
 import Hero from './hero'
 import Leaders from './leaders'
 import Causes from '../shared/causes'
@@ -10,13 +10,16 @@ import SEO from '../shared/seo'
 import JoinSection from './join-section'
 
 const NewLandingPage = ({ location }: PageProps): JSX.Element => {
-
-  const { header, internalSectionRefs } = useHeader(location)
+  const internalSectionRefs: SectionRefs = {
+    'Causes': React.useRef<any>(),
+    'Contributors': React.useRef<any>(),
+    'Join': React.useRef<any>(),
+  }
 
   return (
     <Layout
       additionalClassNames="new-landing-page"
-      header={header}
+      header={<Header location={location} internalSectionRefs={internalSectionRefs} />}
     >
       <SEO />
       <Hero />
