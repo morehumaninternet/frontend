@@ -1,18 +1,17 @@
 import React from 'react'
 import { Layout } from '../shared/layout'
-import useHeader from './useHeader'
+import { useHeader } from '../shared/header'
 import Hero from './hero'
 import Leaders from './leaders'
-import Causes from './causes'
+import Causes from '../shared/causes'
 import Technologies from './technologies'
 import SocialMediaBar from '../shared/social-media-bar'
-import useExplicitHeightOnIPhone from '../../effects/useExplicitHeightOnIPhone'
 import SEO from '../shared/seo'
 import JoinSection from './join-section'
 
 const NewLandingPage = ({ location }: PageProps): JSX.Element => {
-  const navigator = typeof window === 'undefined' ? undefined : window.navigator
-  const { header, internalSectionRefs, dotsRef } = useHeader(location, navigator)
+
+  const { header, internalSectionRefs } = useHeader(location)
 
   return (
     <Layout
