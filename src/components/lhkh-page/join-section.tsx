@@ -1,5 +1,5 @@
 import React from 'react'
-import {ApplicationForm} from '../shared/application-form'
+import { ApplicationForm } from '../shared/application-form'
 
 export default React.forwardRef(
   (_, ref): JSX.Element => {
