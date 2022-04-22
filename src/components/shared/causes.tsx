@@ -1,14 +1,15 @@
 import React, { forwardRef } from 'react'
+import { range, repeat } from 'lodash'
 import { Link } from 'gatsby'
 
-type CauseProps = { imgSrc: string, borderColor: string, heading: string, description: string, href: string }
+type CauseProps = { cause: string, imgSrc: string, borderColor: string, heading: string, description: string, href?: string }
 
 export const dsa = {
   cause: 'dsa',
   imgSrc: '/causes/dsa_hero.png',
   borderColor: '#FADE60',
-  heading: 'Developing African Leaders Through Sports',
-  description: `More Human Internet helped redesign Dream Sports Africa's website, positioning it as the preeminent organization offering life skills education through sports in Africa`,
+  heading: 'Dream Sports Africa',
+  description: `More Human Internet helped redesign Dream Sports Africa's website, positioning it as the preeminent organization offering life skills education and leadership development through sports through sports in Africa`,
   href: 'https://dreamsportsafrica.org',
 }
 
@@ -16,8 +17,8 @@ export const lhkh = {
   cause: 'lhkh',
   imgSrc: '/causes/lhkh_hero.png',
   borderColor: '#FA759E',
-  heading: 'Stewarding Hawaii Across Generations',
-  description: `Through our partnership with Livable Hawaii Kai Hui, we are aiming to bring 1500 volunteers of all ages to care for Hawaii’s cultural and natural resources.`,
+  heading: 'Livable Hawaii Kai Hui',
+  description: `We are excited to be advancing an online strategy to bring 1500 volunteers of all ages to steward the irreplaceable cultural and natural resources of East Honolulu`,
   href: '/partnering-with-livable-hawaii-kai-hui',
 }
 
@@ -25,8 +26,8 @@ export const roar = {
   cause: 'roar',
   imgSrc: '/causes/roar_hero.png',
   borderColor: '#164176',
-  heading: 'Bringing attention to problems on the web',
-  description: `Roar! by More Human Internet enables users of the web Turn a tweet into a Roar so experts and maintainers see the issue and offer solutions.`,
+  heading: 'Roar!',
+  description: `Our free, open source browser extension enables users of the web report technical issues to website maintainers.`,
   href: '/roar',
 }
 
@@ -42,12 +43,16 @@ export const CauseImage = ({ src, borderColor }: { src: string, borderColor: str
   </div>
 )
 
-export const CauseTextContent = ({ heading, description, href }: Pick<CauseProps, 'heading' | 'description' | 'href'>) => (
+export const CauseTextContent = ({ heading, description, href }: {
+  heading: string,
+  description: string
+  href?: string
+}) => (
   <div className="cause__text-content">
-    <div>
+    <div style={{}}>
       <h2 className="human-blue">{heading}</h2>
       <p>{description}</p>
-      <Link className="link" to={href}>Learn More</Link>
+      {href && (<Link className="link" to={href}>Learn More</Link>)}
     </div>
   </div>
 )
@@ -67,7 +72,7 @@ export const CausesSection = forwardRef(
   (props: { causes: readonly CauseProps[] }, ref): JSX.Element => {
     return (
       <section className="causes" ref={ref as any}>
-        <div className="causes__content">
+        <div className="causes__content" style={{gridTemplateRows: repeat('1fr 4fr ', props.causes.length) + ' 1fr'}}>
           {props.causes.map((props) => (
             <Cause key={props.heading} {...props} />
           ))}
