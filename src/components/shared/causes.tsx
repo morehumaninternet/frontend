@@ -72,7 +72,7 @@ export const CausesSection = forwardRef(
   (props: { causes: readonly CauseProps[] }, ref): JSX.Element => {
     return (
       <section className="causes" ref={ref as any}>
-        <div className="causes__content" style={{gridTemplateRows: repeat('1fr 4fr ', props.causes.length) + ' 1fr'}}>
+        <div className="causes__content" style={{gridTemplateRows: repeat('1fr 5.5fr ', props.causes.length) + ' 1fr'}}>
           {props.causes.map((props) => (
             <Cause key={props.heading} {...props} />
           ))}

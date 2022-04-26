@@ -47,7 +47,7 @@
 
     .cause__image:nth-child(#{$cause_image_index}) {
       grid-row-start: $cause_image_index;
-      grid-row-end: $cause_image_index + 2;
+      grid-row-end: $cause_image_index + 3;
 
       + .cause__text-content { grid-row: $cause_image_index + 1; }
 
