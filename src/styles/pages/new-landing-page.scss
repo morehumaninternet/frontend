@@ -45,10 +45,11 @@
       .pink-dot-container {
         position: relative;
         width: 100%;
-
+        
         .pink-dot-text {
           position: absolute;
           max-width: 30vh;
+          border-radius: 50%;
           height: auto;
           right: 8vh;
           top: -1vh;
