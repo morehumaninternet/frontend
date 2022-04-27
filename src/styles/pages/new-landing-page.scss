@@ -33,6 +33,7 @@
     place-items: center;
 
     > .leaders__wrapper {
+      position: relative;
       margin: 0 25px;
       min-width: 50%;
       width: 800px;
@@ -42,28 +43,21 @@
         color: white;
         text-align: center;
       }
-      .pink-dot-container {
-        position: relative;
-        width: 100%;
 
+      
+      .pink-dot-container {
+        position: absolute;
+        width: 40vh;
+        height: 40vh;
+        border-radius: 50%;
+        right: 8vh;
+        z-index: 2;
+        background-color: $human-pink;
+        text-align: center;
+        top: 75%;
+        
         .pink-dot-text {
-          position: absolute;
-          max-width: 30vh;
-          height: auto;
-          right: 8vh;
-          top: -1vh;
-          z-index: 2;
           color: white; 
-          background-color: $human-pink;
-        }
-  
-        .pink-dot {
-          position: absolute;
-          right: 4vh;
-          top: -10vh;
-          z-index: 1;
-          max-height: 40vh;
-          height: auto;
         }
       }
 
