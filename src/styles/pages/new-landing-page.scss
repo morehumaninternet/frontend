@@ -27,11 +27,12 @@
     background-color: $human-blue;
     width: 100%;
     padding: 4rem 0;
-
+    // margin-bottom: 30vh solid white;
+    
     display: grid;
     // grid-template-columns: minmax(25px, 1fr) 800px minmax(25px, 1fr);
     place-items: center;
-
+    
     > .leaders__wrapper {
       position: relative;
       margin: 0 25px;
@@ -44,19 +45,20 @@
         text-align: center;
       }
 
-      
-      .pink-dot-container {
+      .pink_dot__wrapper {
         position: absolute;
+        display: flex;
+        align-items: center;
         width: 40vh;
         height: 40vh;
         border-radius: 50%;
         right: 8vh;
-        z-index: 2;
+        // z-index: 2;
         background-color: $human-pink;
         text-align: center;
         top: 75%;
         
-        .pink-dot-text {
+        .pink_dot__text {
           color: white; 
         }
       }
