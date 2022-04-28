@@ -22,9 +22,14 @@ const LHKHPage = (): JSX.Element => {
         }]}
       />
       <BlueSection>
-        <h1>Our leaders join your cause directly, working alongside you to meet your online &amp; offline goals.</h1>
+        <div>
+          <h2><i>A`ohe hana nui ka alu`ia</i></h2>
+          <h3>No task is too big when done together</h3>
+          <p style={{ textAlign: 'right' }}>— Mary Kawena Pukui (`Olelo No`eau)</p>
+        </div>
+
       </BlueSection>
-      <div style={{ display: 'grid', placeItems: 'center' }}>
+      <section style={{ display: 'grid', placeItems: 'center' }}>
         <div style={{
           maxWidth: 600,
           padding: 25
@@ -38,7 +43,7 @@ const LHKHPage = (): JSX.Element => {
             - streamline processes for volunteer signup and paperwork
             (tbd: maybe also a "how we do this" sentence? ie. working closely, 'embedded in the lhkh team', etc.)</p>
         </div>
-      </div>
+      </section>
     </Layout>
   )
 }
