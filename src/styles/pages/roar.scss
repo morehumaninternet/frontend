@@ -15,7 +15,7 @@
     display: grid;
     place-items: center;
 
-    > .dots {
+    >.dots {
       grid-row: 2;
       height: 100%;
       max-width: 90%;
@@ -32,26 +32,27 @@
     // grid-template-columns: minmax(25px, 1fr) 800px minmax(25px, 1fr);
     place-items: center;
 
-    > .how-it-works__wrapper {
+    >.how-it-works__wrapper {
       margin: 0 25px;
       min-width: 50%;
       width: 800px;
       max-width: calc(100vw - 50px);
 
-      > .how-it-works__title {
+      >.how-it-works__title {
         color: white;
         text-align: center;
         margin-bottom: 2rem;
       }
 
       // Making the iframe responsive
-      > .video {
+      >.video {
         position: relative;
         overflow: hidden;
         width: 100%;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        padding-top: 56.25%;
+        /* 16:9 Aspect Ratio */
 
-        > iframe {
+        >iframe {
           margin: 0 auto;
 
           position: absolute;
@@ -70,7 +71,7 @@
     width: 100%;
     position: relative;
 
-    > .big-circle {
+    >.big-circle {
       width: 10%;
       max-width: 200px;
       fill: $human-pink;
@@ -80,7 +81,7 @@
       z-index: -1;
     }
 
-    > .small-circle {
+    >.small-circle {
       width: 6%;
       max-width: 120px;
       fill: $human-blue;
@@ -90,18 +91,18 @@
       z-index: -1;
     }
 
-    > .learn-more__info {
+    >.learn-more__info {
       display: grid;
       grid-template-columns: minmax(20%, 12rem) 55%;
 
       justify-content: center;
       padding: 10rem 15%;
 
-      > h3 {
+      >h3 {
         font-weight: 400;
       }
 
-      > p {
+      >p {
         margin-left: 2.5rem;
       }
     }
@@ -136,6 +137,7 @@
     .social-link {
       height: $social-link-desktop-size;
       margin-bottom: 5px;
+
       svg {
         width: $social-link-desktop-size;
       }
@@ -156,17 +158,21 @@
       justify-content: center;
       margin-bottom: 10px;
 
-      > .social-link {
+      >.social-link {
         margin-top: $social-link-desktop-size - $social-link-mobile-size;
       }
 
-      > button, > .social-link {
+      >button,
+      >.social-link {
         height: $social-link-mobile-size;
         margin-bottom: 0;
+
         svg {
           width: $social-link-mobile-size;
         }
+
         margin-right: 4px;
+
         &:last-child {
           margin-right: 0;
         }
@@ -174,26 +180,26 @@
     }
 
     .learn-more {
-      > .big-circle {
+      >.big-circle {
         width: 20%;
         top: 1.5rem;
         right: -1rem;
       }
 
-      > .small-circle {
+      >.small-circle {
         display: none;
       }
 
-      > .learn-more__info {
+      >.learn-more__info {
         display: flex;
         flex-direction: column;
-        padding: 10rem 25px;
+        padding: 10rem $standard-margin;
 
-        > h3:first-child {
+        >h3:first-child {
           margin-top: 40px;
         }
 
-        > p {
+        >p {
           margin-left: 0;
         }
       }

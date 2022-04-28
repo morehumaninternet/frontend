@@ -1,3 +1,6 @@
+$standard-max-width: 600px;
+$standard-margin: 25px;
+
 $breakpoint-mobile: 600px;
 $breakpoint-header-scrolls: 1300px;
 
@@ -18,4 +21,8 @@ $max-main-page-item-width: 603px;
   @media (min-width: $breakpoint-mobile + 1px) {
     @content;
   }
+}
+
+section {
+  padding: #{2 * $standard-margin} $standard-margin;
 }

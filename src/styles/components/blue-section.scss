@@ -1,13 +1,12 @@
 section.blue-section {
   background-color: $human-blue;
   color: white;
-  padding: $standard-margin;
   width: 100%;
   display: grid;
   place-items: center;
   text-align: center;
 
   >.blue-section__contents {
-    max-width: $standard-max-width;
+    max-width: 800px;
   }
 }

@@ -3,6 +3,7 @@ import { Layout } from '../shared/layout'
 import { Header } from '../shared/header'
 import SEO from '../shared/seo'
 import { Cause, CausesSection } from '../shared/causes'
+import BlueSection from '../shared/blue-section'
 
 const LHKHPage = (): JSX.Element => {
   return (
@@ -20,9 +21,9 @@ const LHKHPage = (): JSX.Element => {
           description: `More Human Internet is excited to be partnering with Livable Hawaii Kai Hui to advance their online strategy, bringing more volunteers to help their mission of stewarding the irreplaceable cultural and natural resources of East Honolulu`,
         }]}
       />
-      <div>
-
-      </div>
+      <BlueSection>
+        <h1>Our leaders join your cause directly, working alongside you to meet your online &amp; offline goals.</h1>
+      </BlueSection>
       <div style={{ display: 'grid', placeItems: 'center' }}>
         <div style={{
           maxWidth: 600,
