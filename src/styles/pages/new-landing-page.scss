@@ -25,13 +25,15 @@
 
   .leaders {
     background-color: $human-blue;
+    position: relative;
     width: 100%;
     padding: 4rem 0;
-
+    margin-bottom: 37.5vh;
+    
     display: grid;
     // grid-template-columns: minmax(25px, 1fr) 800px minmax(25px, 1fr);
     place-items: center;
-
+    
     > .leaders__wrapper {
       margin: 0 25px;
       min-width: 50%;
@@ -43,24 +45,28 @@
         text-align: center;
       }
 
-      // Making the iframe responsive
-      > .video {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
-
-        > iframe {
-          margin: 0 auto;
-
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          width: 100%;
-          height: 100%;
-        }
+    }
+    .pink_dot__wrapper {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      width: 50vh;
+      height: 50vh;
+      border-radius: 50%;
+      padding: 5vh;
+      right: 15vw;
+      background-color: $human-pink;
+      text-align: center;
+      top: 75%;
+      
+      .pink_dot__text {
+        color: white; 
+      }
+    }
+    @media (max-width: 710px) {
+      .pink_dot__wrapper {
+        right: auto; 
+        left: auto;
       }
     }
   }

@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-
+import PinkDot from './pink-dot'
 
 const Leaders = forwardRef(
   (_, ref): JSX.Element => {
@@ -8,6 +8,7 @@ const Leaders = forwardRef(
         <div className="leaders__wrapper">
           <h1 className="leaders__title">Our leaders join your cause directly, working alongside you to meet your online &amp; offline goals.</h1>
         </div>
+          <PinkDot />
       </section>
     )
   }
