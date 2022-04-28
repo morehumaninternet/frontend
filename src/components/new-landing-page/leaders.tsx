@@ -7,8 +7,8 @@ const Leaders = forwardRef(
       <section className="leaders" ref={ref as any}>
         <div className="leaders__wrapper">
           <h1 className="leaders__title">Our leaders join your cause directly, working alongside you to meet your online &amp; offline goals.</h1>
-          <PinkDot />
         </div>
+          <PinkDot />
       </section>
     )
   }

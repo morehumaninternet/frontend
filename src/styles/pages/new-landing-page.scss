@@ -25,6 +25,7 @@
 
   .leaders {
     background-color: $human-blue;
+    position: relative;
     width: 100%;
     padding: 4rem 0;
     // margin-bottom: 30vh solid white;
@@ -34,7 +35,6 @@
     place-items: center;
     
     > .leaders__wrapper {
-      position: relative;
       margin: 0 25px;
       min-width: 50%;
       width: 800px;
@@ -45,42 +45,22 @@
         text-align: center;
       }
 
-      .pink_dot__wrapper {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        width: 40vh;
-        height: 40vh;
-        border-radius: 50%;
-        right: 8vh;
-        // z-index: 2;
-        background-color: $human-pink;
-        text-align: center;
-        top: 75%;
-        
-        .pink_dot__text {
-          color: white; 
-        }
-      }
-
-      // Making the iframe responsive
-      > .video {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
-
-        > iframe {
-          margin: 0 auto;
-
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          width: 100%;
-          height: 100%;
-        }
+    }
+    .pink_dot__wrapper {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      width: 40vh;
+      height: 40vh;
+      border-radius: 50%;
+      right: 8vh;
+      // z-index: 2;
+      background-color: $human-pink;
+      text-align: center;
+      top: 75%;
+      
+      .pink_dot__text {
+        color: white; 
       }
     }
   }
