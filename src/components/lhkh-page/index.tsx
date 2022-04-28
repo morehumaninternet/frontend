@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout } from '../shared/layout'
 import { Header } from '../shared/header'
 import SEO from '../shared/seo'
-import Causes, { Cause, CauseImage, CausesSection, CauseTextContent } from '../shared/causes'
+import { Cause, CauseImage, CausesSection, CauseTextContent } from '../shared/causes'
 import BlueSection from '../shared/blue-section'
 
 const CheckmarkIcon = () => (
