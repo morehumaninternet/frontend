@@ -23,32 +23,6 @@
     }
   }
 
-  .leaders {
-    background-color: $human-blue;
-    width: 100%;
-    padding: 4rem 0;
-
-    display: grid;
-    // grid-template-columns: minmax(25px, 1fr) 800px minmax(25px, 1fr);
-    place-items: center;
-
-    >.leaders__wrapper {
-      margin: 0 25px;
-      min-width: 50%;
-      width: 800px;
-      max-width: calc(100vw - 50px);
-
-      >.leaders__title {
-        color: white;
-        text-align: center;
-      }
-    }
-  }
-
-  .get-updates {
-    margin: 5rem 0;
-  }
-
   $social-link-desktop-size: 47px;
   $social-link-mobile-size: 40px;
 
@@ -114,38 +88,6 @@
           margin-right: 0;
         }
       }
-    }
-
-    .learn-more {
-      >.big-circle {
-        width: 20%;
-        top: 1.5rem;
-        right: -1rem;
-      }
-
-      >.small-circle {
-        display: none;
-      }
-
-      >.learn-more__info {
-        display: flex;
-        flex-direction: column;
-        padding: 10rem 25px;
-
-        >h3:first-child {
-          margin-top: 40px;
-        }
-
-        >p {
-          margin-left: 0;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 800px) {
-    .how-it-works__title {
-      font-size: 4.5vw;
     }
   }
 }
