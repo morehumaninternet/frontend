@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout } from '../shared/layout'
 import { Header } from '../shared/header'
 import SEO from '../shared/seo'
-import { Cause, CausesSection } from '../shared/causes'
+import Causes, { Cause, CauseImage, CausesSection, CauseTextContent } from '../shared/causes'
 import BlueSection from '../shared/blue-section'
 
 const LHKHPage = (): JSX.Element => {
@@ -12,15 +12,17 @@ const LHKHPage = (): JSX.Element => {
       header={<Header />}
     >
       <SEO />
-      <CausesSection
-        causes={[{
-          cause: 'lhkh',
-          imgSrc: '/causes/lhkh_hero.png',
-          borderColor: '#FA759E',
-          heading: 'Livable Hawaii Kai Hui',
-          description: `More Human Internet is excited to be partnering with Livable Hawaii Kai Hui to advance their online strategy, bringing more volunteers to help their mission of stewarding the irreplaceable cultural and natural resources of East Honolulu`,
-        }]}
-      />
+      <section className="causes">
+        <div className="causes__content" style={{ gridTemplateRows: '1fr 5.5fr 1fr' }}>
+          <Cause
+            cause='lhkh'
+            imgSrc='/causes/lhkh_hero.png'
+            borderColor='#FA759E'
+            heading='Livable Hawaii Kai Hui'
+            description={`More Human Internet is excited to be partnering with Livable Hawaii Kai Hui to advance their online strategy, bringing more volunteers to help their mission of stewarding the irreplaceable cultural and natural resources of East Honolulu`}
+          />
+        </div>
+      </section>
       <BlueSection>
         <div>
           <h2><i>A`ohe hana nui ka alu`ia</i></h2>
@@ -29,22 +31,35 @@ const LHKHPage = (): JSX.Element => {
         </div>
 
       </BlueSection>
-      <section style={{ display: 'grid', placeItems: 'center' }}>
-        <div style={{
-          maxWidth: 600,
-          padding: 25
-        }}>
-
-
-          <p>MHI and LHKH are working together!MHI is using its expertise in technology to help LHKH in its mission to steward the natural and cultural resources of Maunalua on the island of Oahu (or maybe say east Honolulu)</p>
-          <p>Section background on LHKH: From its inception 14 years ago, Livable Hawaii Kai Hui has been organizing people to protect, improve and care for the resources of east honolulu in perpetuity. [Include photo of people working on the land]</p>
-          <p>MHI is helping LHKH use technology to communicate with its partners, volunteers and the community and manage its activities:
-            - website redesign (lead by Barbara Prusiewicz)
-            - streamline processes for volunteer signup and paperwork
-            (tbd: maybe also a "how we do this" sentence? ie. working closely, 'embedded in the lhkh team', etc.)</p>
-        </div>
-      </section>
-    </Layout>
+      <CausesSection>
+        <>
+          <CauseImage src="/causes/lhkh_plant.png" borderColor="#FA759E" />
+          <CauseTextContent
+            heading="Protecting Hawaii’s Land"
+            description={"From its inception 14 years ago, Livable Hawaii Kai Hui has been organizing people to protect, improve and care for the resources of east honolulu in perpetuity"}
+          />
+        </>
+        <>
+          <CauseImage src="/causes/lhkh_hero.png" borderColor="#FA759E" />
+          <CauseTextContent
+            heading="Advancing Online Strategy"
+            description={"MHI is helping LHKH use technology to communicate with its partners, volunteers and the community and manage its activities"}
+          />
+        </>
+        <>
+          <CauseImage src="/causes/lhkh_hero.png" borderColor="#FA759E" />
+          <div className="cause__content">
+            <div>
+              <h2 className="human-blue">Working Together</h2>
+              <p>More Human Internet is excited to be partnering with Livable Hawaii Kai Hui to advance their online strategy, bringing more volunteers to help their mission of stewarding the irreplaceable cultural and natural resources of East Honolulu</p>
+              <p>By collaborating empathically, we feel the challenges they are facing intimately and work to address them</p>
+            </div>
+          </div>
+          <div className="cause__text-content">
+          </div>
+        </>
+      </CausesSection>
+    </Layout >
   )
 }
 

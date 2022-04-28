@@ -31,7 +31,7 @@ export const roar = {
   href: '/roar',
 }
 
-export const causes: ReadonlyArray<any> = [
+export const homePageCauses: ReadonlyArray<any> = [
   dsa,
   lhkh,
   roar,
@@ -48,8 +48,8 @@ export const CauseTextContent = ({ heading, description, href }: {
   description: string
   href?: string
 }) => (
-  <div className="cause__text-content">
-    <div style={{}}>
+  <div className="cause__content">
+    <div>
       <h2 className="human-blue">{heading}</h2>
       <p>{description}</p>
       {href && (<Link className="link" to={href}>Learn More</Link>)}
@@ -59,7 +59,7 @@ export const CauseTextContent = ({ heading, description, href }: {
 
 export const Cause = ({ imgSrc, borderColor, heading, description, href }: CauseProps) => (
   <>
-    <CauseImage src={imgSrc} borderColor={borderColor}/>
+    <CauseImage src={imgSrc} borderColor={borderColor} />
     <CauseTextContent
       heading={heading}
       description={description}
@@ -69,26 +69,29 @@ export const Cause = ({ imgSrc, borderColor, heading, description, href }: Cause
 )
 
 export const CausesSection = forwardRef(
-  (props: { causes: readonly CauseProps[] }, ref): JSX.Element => {
+  ({ children }: { children: React.ReactNode }, ref): JSX.Element => {
+    console.log('children', children)
+    const numRows = Array.isArray(children) ? children.length : 1
     return (
       <section className="causes" ref={ref as any}>
-        <div className="causes__content" style={{gridTemplateRows: repeat('1fr 5.5fr ', props.causes.length) + ' 1fr'}}>
-          {props.causes.map((props) => (
-            <Cause key={props.heading} {...props} />
-          ))}
+        <div className="causes__content" style={{ gridTemplateRows: repeat('1fr 5.5fr ', numRows) + ' 1fr' }}>
+          {children}
         </div>
       </section>
     )
   }
 )
 
+
+
 export default forwardRef(
-  (_, ref): JSX.Element => {
+  ({ causes = homePageCauses }: { causes?: ReadonlyArray<CauseProps> } = {}, ref): JSX.Element => {
     return (
-      <CausesSection
-        ref={ref}
-        causes={causes}
-      />
+      <CausesSection ref={ref}>
+        {causes.map((props) => (
+          <Cause key={props.heading} {...props} />
+        ))}
+      </CausesSection>
     )
   }
 )
