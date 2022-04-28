@@ -46,7 +46,7 @@ export const Header = ({ location, internalSectionRefs }: HeaderProps) => {
   }
 
   return (
-    <header className="layout-new-header new-landing-page">
+    <header className="new-landing-page">
       <MHIHomeLink additionalClassNames="home" />
       <div className="other-links">
         {links.map(({ title, isLast }) => (
