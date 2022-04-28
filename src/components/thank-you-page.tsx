@@ -1,5 +1,4 @@
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
 import { Card, CardContent } from '@material-ui/core'
 import Hero from './shared/hero'
 import { Layout } from './shared/layout'
@@ -12,7 +11,7 @@ export default function ThankYouPage({ children }: { children: React.ReactNode }
       <Hero additionalClassNames="thank-you">
         <Card>
           <h2>
-            <FormattedMessage id="thank_you_header" />
+            Thank You
           </h2>
           <CardContent className="thank-you">{children}</CardContent>
         </Card>

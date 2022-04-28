@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 .layout.new-landing-page {
   main {
     position: relative;
@@ -100,7 +102,7 @@
 
   h1 {
     color: $human-blue;
-    font-size: #{(60/18)}em;
+    font-size: #{math.div(60, 18)}em;
   }
 
   h2 {
