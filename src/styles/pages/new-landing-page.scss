@@ -15,7 +15,7 @@
     display: grid;
     place-items: center;
 
-    > .dots {
+    >.dots {
       grid-row: 2;
       height: 100%;
       max-width: 90%;
@@ -32,35 +32,15 @@
     // grid-template-columns: minmax(25px, 1fr) 800px minmax(25px, 1fr);
     place-items: center;
 
-    > .leaders__wrapper {
+    >.leaders__wrapper {
       margin: 0 25px;
       min-width: 50%;
       width: 800px;
       max-width: calc(100vw - 50px);
 
-      > .leaders__title {
+      >.leaders__title {
         color: white;
         text-align: center;
-      }
-
-      // Making the iframe responsive
-      > .video {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
-
-        > iframe {
-          margin: 0 auto;
-
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          width: 100%;
-          height: 100%;
-        }
       }
     }
   }
@@ -94,6 +74,7 @@
     .social-link {
       height: $social-link-desktop-size;
       margin-bottom: 5px;
+
       svg {
         width: $social-link-desktop-size;
       }
@@ -114,18 +95,21 @@
       justify-content: center;
       margin-bottom: 10px;
 
-      > .social-link {
+      >.social-link {
         margin-top: $social-link-desktop-size - $social-link-mobile-size;
       }
 
-      > button,
-      > .social-link {
+      >button,
+      >.social-link {
         height: $social-link-mobile-size;
         margin-bottom: 0;
+
         svg {
           width: $social-link-mobile-size;
         }
+
         margin-right: 4px;
+
         &:last-child {
           margin-right: 0;
         }
@@ -133,26 +117,26 @@
     }
 
     .learn-more {
-      > .big-circle {
+      >.big-circle {
         width: 20%;
         top: 1.5rem;
         right: -1rem;
       }
 
-      > .small-circle {
+      >.small-circle {
         display: none;
       }
 
-      > .learn-more__info {
+      >.learn-more__info {
         display: flex;
         flex-direction: column;
         padding: 10rem 25px;
 
-        > h3:first-child {
+        >h3:first-child {
           margin-top: 40px;
         }
 
-        > p {
+        >p {
           margin-left: 0;
         }
       }
@@ -177,8 +161,8 @@
     font-size: #{(60/18)}em;
   }
 
-  h2 { 
-    color: $human-pink 
+  h2 {
+    color: $human-pink
   }
 
   .new-landing-page-hero__content {
@@ -187,6 +171,7 @@
   }
 
   @media (max-width: 775px) {
+
     // I'm sorry for my sins!
     h1 {
       font-size: 7.4vw;

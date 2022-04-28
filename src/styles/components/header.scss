@@ -35,36 +35,42 @@ header.layout-header {
 // When against a hero, we use the --logo-color-blue-white to fade from white to blue as the user scrolls past the hero
 // Otherwise, against a white background, we just use blue as the non-pink color
 svg.header-logo {
+
   .human,
   .left-head {
     fill: $human-pink;
   }
 
   &.against-hero {
+
     .more,
     .internet,
     .right-head,
     .bodies {
       fill: var(--logo-color-blue-white);
     }
+
     .bodies {
       stroke: var(--logo-color-blue-white);
     }
   }
 
   &.against-white-bg {
+
     .more,
     .internet,
     .right-head,
     .bodies {
       fill: $human-blue;
     }
+
     .bodies {
       stroke: $human-blue;
     }
   }
 
   &:hover {
+
     .more,
     .internet {
       fill: $human-pink;
@@ -88,6 +94,7 @@ svg.header-logo {
 @mixin animate($animation, $duration, $method, $delay, $times, $fill-mode) {
   animation: $animation $duration $method $delay $times $fill-mode;
 }
+
 @mixin keyframes($name) {
   @keyframes #{$name} {
     @content;
@@ -119,7 +126,7 @@ header.layout-new-header {
 
   @include header-width(padding);
 
-  > a.logo {
+  >a.logo {
     display: flex;
     justify-content: center;
 
@@ -131,56 +138,6 @@ header.layout-new-header {
   &.mhi {
     .link__container {
       width: 50px;
-    }
-  }
-}
-
-.layout.landing-page.orig {
-  svg.mhi-with-text-logo {
-    .human,
-    .global,
-    .top-right {
-      fill: $human-pink;
-    }
-
-    &.against-hero {
-      .more,
-      .internet,
-      .join,
-      .community,
-      .bottom-left {
-        fill: var(--logo-color-blue-white);
-      }
-    }
-
-    &.against-white-bg {
-      .more,
-      .internet,
-      .bottom-left {
-        fill: $human-blue;
-      }
-    }
-
-    &:hover {
-      .more,
-      .internet,
-      .bottom-left {
-        fill: $human-pink;
-      }
-
-      &.against-hero {
-        .human,
-        .top-right {
-          fill: var(--logo-color-blue-white);
-        }
-      }
-
-      &.against-white-bg {
-        .human,
-        .top-right {
-          fill: $human-blue;
-        }
-      }
     }
   }
 }
@@ -231,6 +188,7 @@ a.link {
 
   &:not(.home) {
     border-bottom: 2px transparent solid;
+
     &.active,
     &:hover {
       border-color: $human-pink;
@@ -261,6 +219,7 @@ header.new-landing-page {
   .other-links {
     display: flex;
     align-items: center;
+
     :not(:first-child) {
       margin-left: 24px;
     }
