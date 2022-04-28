@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { range, repeat } from 'lodash'
+import { repeat } from 'lodash'
 import { Link } from 'gatsby'
 
 type CauseProps = { cause: string, imgSrc: string, borderColor: string, heading: string, description: string, href?: string }
@@ -70,7 +70,6 @@ export const Cause = ({ imgSrc, borderColor, heading, description, href }: Cause
 
 export const CausesSection = forwardRef(
   ({ children }: { children: React.ReactNode }, ref): JSX.Element => {
-    console.log('children', children)
     const numRows = Array.isArray(children) ? children.length : 1
     return (
       <section className="causes" ref={ref as any}>
