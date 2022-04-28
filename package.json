@@ -11,8 +11,7 @@
     "lint:fix": "tslint --project . --fix",
     "start": "netlify dev",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "mocha -r ts-node/register -r src/types.ts -r src/__tests/setup.ts src/**/*.test.ts*"
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.74",
@@ -36,16 +35,13 @@
     "ua-parser-js": "0.7.24"
   },
   "devDependencies": {
-    "@types/chai": "4.2.12",
     "@types/color": "3.0.1",
-    "@types/mocha": "8.0.3",
     "@types/react-beautiful-dnd": "13.0.0",
     "@types/react-helmet": "6.0.0",
     "@types/rewire": "2.5.28",
     "@types/sinon": "9.0.5",
     "@types/sinon-chai": "3.2.4",
     "@types/ua-parser-js": "0.7.35",
-    "chai": "4.2.0",
     "chalk": "4.1.0",
     "dotenv": "8.2.0",
     "gatsby": "2.23.3",
@@ -57,7 +53,6 @@
     "gatsby-plugin-sitemap": "2.4.11",
     "gatsby-theme-i18n": "1.0.4",
     "gatsby-theme-i18n-react-intl": "1.0.4",
-    "mocha": "8.1.3",
     "netlify-cli": "2.54.0",
     "node-sass": "4.14.1",
     "prettier": "2.0.5",
