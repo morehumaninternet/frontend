@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react'
+import cls from 'classnames'
 import { repeat } from 'lodash'
 import { Link } from 'gatsby'
 
@@ -69,10 +70,10 @@ export const Cause = ({ imgSrc, borderColor, heading, description, href }: Cause
 )
 
 export const CausesSection = forwardRef(
-  ({ children }: { children: React.ReactNode }, ref): JSX.Element => {
+  ({ children, rightToLeft }: { children: React.ReactNode, rightToLeft?: boolean }, ref): JSX.Element => {
     const numRows = Array.isArray(children) ? children.length : 1
     return (
-      <section className="causes" ref={ref as any}>
+      <section className={cls('causes', { rightToLeft })} ref={ref as any}>
         <div className="causes__content" style={{ gridTemplateRows: repeat('1fr 5.5fr ', numRows) + ' 1fr' }}>
           {children}
         </div>
