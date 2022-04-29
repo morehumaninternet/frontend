@@ -1,8 +1,10 @@
 .join-community {
-    max-width: 600px;
+    max-width: $standard-max-width;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
+    text-align: center;
+
     .mhi-heading {
         padding: 4rem 0;
         margin: 0;

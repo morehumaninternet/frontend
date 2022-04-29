@@ -34,13 +34,9 @@
   }
 }
 
-@media (min-width: 710px) {
-  .causes__content {
-    max-width: 925px;
-    display: grid;
-    grid-template-columns: 1fr $standard-margin 1fr;
-  }
-
+// Alternate between placing the image in column 1 
+// and the text in column 3 and visa versa
+@mixin cause_columns($startColumn, $endColumn) {
   $numCauses: 10;
 
   @for $cause_index from 1 through $numCauses {
@@ -54,24 +50,39 @@
         grid-row: $cause_image_index + 1;
       }
 
-      // Alternate between placing the image in column 1 
-      // and the text in column 3 and visa versa
       @if ($cause_index % 2==1) {
-        grid-column: 1;
+        grid-column: $startColumn;
 
         +.cause__content {
-          grid-column: 3;
+          grid-column: $endColumn;
         }
       }
 
       @else {
-        grid-column: 3;
+        grid-column: $endColumn;
 
         +.cause__content {
-          grid-column: 1;
+          grid-column: $startColumn;
         }
       }
     }
+  }
+}
+
+
+@media (min-width: 710px) {
+  $leftColumn: 1;
+  $rightColumn: 3;
+
+  .causes__content {
+    max-width: 925px;
+    display: grid;
+    grid-template-columns: 1fr $standard-margin 1fr;
+    @include cause_columns($leftColumn, $rightColumn);
+  }
+
+  .causes.rightToLeft .causes__content {
+    @include cause_columns($rightColumn, $leftColumn);
   }
 
   .cause__content {
