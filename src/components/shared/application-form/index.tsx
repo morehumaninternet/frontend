@@ -4,23 +4,31 @@ import { Email, Person } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
 import { thankYouHref } from '../../../utils/href'
 
-export function ApplicationForm(): JSX.Element {
+export function ApplicationForm({ formName }: { formName: string }): JSX.Element {
 
   const formReference = React.useRef<HTMLFormElement>()
 
   return (
     <form
-      name="submit-application"
+      name={formName}
       method="POST"
       action={thankYouHref('signup')}
       data-netlify="true"
       netlify-honeypot="bot-field"
       autoComplete="off"
       ref={formReference as any}
+      className="application-form"
     >
       <input type="hidden" name="form-name" value="submit-application" />
-      <p style={{ display: 'none' }}>
-      </p>
+      <FormGroup>
+        <TextFieldWithIcon
+          label="Full Name"
+          name="name"
+          variant="outlined"
+          required
+          startIcon={<Person className="person" />}
+        />
+      </FormGroup>
       <FormGroup>
         <TextFieldWithIcon
           type="email"
@@ -29,15 +37,6 @@ export function ApplicationForm(): JSX.Element {
           variant="outlined"
           required
           startIcon={<Email className="email" />}
-        />
-      </FormGroup>
-      <FormGroup>
-        <TextFieldWithIcon
-          label="Full Name"
-          name="name"
-          variant="outlined"
-          required
-          startIcon={<Person className="person" />}
         />
       </FormGroup>
       <div>
