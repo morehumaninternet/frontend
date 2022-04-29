@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { FormGroup, TextField } from '@material-ui/core'
+import { FormGroup, TextField, FormControlLabel, Checkbox } from '@material-ui/core'
 import { Email, Person } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
 import { thankYouHref } from '../../../utils/href'
@@ -38,6 +38,10 @@ export function ApplicationForm({ formName }: { formName: string }): JSX.Element
           required
           startIcon={<Email className="email" />}
         />
+      </FormGroup>
+      <FormGroup>
+        <FormControlLabel name="inPerson" control={<Checkbox defaultChecked />} label="Let me know about upcoming in person events" />
+        <FormControlLabel name="contribute" control={<Checkbox />} label="I am an expert and want to contribute" />
       </FormGroup>
       <div>
         <FormGroup>
