@@ -28,7 +28,7 @@ export function MHIDotsLogo({ additionalClassNames }: MHIDotsLogoProps): JSX.Ele
 
 export function MHIHomeLink({ additionalClassNames }: MHIDotsLogoProps): JSX.Element {
   return (
-    <a className={cls('home-link', additionalClassNames)} href="https://morehumaninternet.org/">
+    <a className={cls('home-link', additionalClassNames)} href="/">
       <MHIDotsLogo />
     </a>
   )

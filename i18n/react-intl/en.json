@@ -13,7 +13,6 @@
   "index_aboutus5": "We are ",
   "index_aboutus6": "enlisting",
   "index_aboutus7": " like-minded web citizens to help spearhead this effort.",
-
   "index_weneedyou1": "We need you",
   "index_weneedyou2": "We are assembling an inclusive team of motivated and talented volunteers to build this public platform and collaborative community. If you value teamwork and believe in this mission, we would love to work with you.",
   "index_why1": "The internet has lost our trust. Large corporations have taken control of a once open system. They have built powerful and private systems that prioritize clicks over civility and revenue over reason, leading to a polarized climate where even basic facts cannot be agreed upon.",
@@ -48,7 +47,4 @@
   "github_input_could_not_find_2": "Could not find github account {account}, please correct it",
   "footer_get_in_touch": "Get in touch with us",
   "footer_copyright": "© More Human Internet Foundation 2020—2022, All rights reserved",
-  "thank_you_header": "Thank You",
-  "thank_you_card_content1": "We appreciate your interest!",
-  "thank_you_card_content2": "Someone from our team will get in touch with you shortly."
 }

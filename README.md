@@ -121,7 +121,6 @@ A quick look at the top-level files and directories in this project.
     ├── static
 
 - **`/functions`** "Serverless" functions executed by netlify go here.
-- **`/i18n`** Translations go here. Support for Spanish and other languages is planned, but not fully implemented yet.
 - **`/src`** Frontend code goes here
   - **`/src/__tests`** Unit tests run by mocha. Tests both `/src` & `/functions`.
   - **`/src/animations`** Reusable animations requiring javascript.

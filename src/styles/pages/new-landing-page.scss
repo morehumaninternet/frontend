@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 .layout.new-landing-page {
   main {
     position: relative;
@@ -15,58 +17,12 @@
     display: grid;
     place-items: center;
 
-    > .dots {
+    >.dots {
       grid-row: 2;
       height: 100%;
       max-width: 90%;
       max-height: 625px;
     }
-  }
-
-  .leaders {
-    background-color: $human-blue;
-    width: 100%;
-    padding: 4rem 0;
-
-    display: grid;
-    // grid-template-columns: minmax(25px, 1fr) 800px minmax(25px, 1fr);
-    place-items: center;
-
-    > .leaders__wrapper {
-      margin: 0 25px;
-      min-width: 50%;
-      width: 800px;
-      max-width: calc(100vw - 50px);
-
-      > .leaders__title {
-        color: white;
-        text-align: center;
-      }
-
-      // Making the iframe responsive
-      > .video {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
-
-        > iframe {
-          margin: 0 auto;
-
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-  }
-
-  .get-updates {
-    margin: 5rem 0;
   }
 
   $social-link-desktop-size: 47px;
@@ -94,6 +50,7 @@
     .social-link {
       height: $social-link-desktop-size;
       margin-bottom: 5px;
+
       svg {
         width: $social-link-desktop-size;
       }
@@ -114,54 +71,25 @@
       justify-content: center;
       margin-bottom: 10px;
 
-      > .social-link {
+      >.social-link {
         margin-top: $social-link-desktop-size - $social-link-mobile-size;
       }
 
-      > button,
-      > .social-link {
+      >button,
+      >.social-link {
         height: $social-link-mobile-size;
         margin-bottom: 0;
+
         svg {
           width: $social-link-mobile-size;
         }
+
         margin-right: 4px;
+
         &:last-child {
           margin-right: 0;
         }
       }
-    }
-
-    .learn-more {
-      > .big-circle {
-        width: 20%;
-        top: 1.5rem;
-        right: -1rem;
-      }
-
-      > .small-circle {
-        display: none;
-      }
-
-      > .learn-more__info {
-        display: flex;
-        flex-direction: column;
-        padding: 10rem 25px;
-
-        > h3:first-child {
-          margin-top: 40px;
-        }
-
-        > p {
-          margin-left: 0;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 800px) {
-    .how-it-works__title {
-      font-size: 4.5vw;
     }
   }
 }
@@ -174,11 +102,11 @@
 
   h1 {
     color: $human-blue;
-    font-size: #{(60/18)}em;
+    font-size: #{math.div(60, 18)}em;
   }
 
-  h2 { 
-    color: $human-pink 
+  h2 {
+    color: $human-pink
   }
 
   .new-landing-page-hero__content {
@@ -187,16 +115,17 @@
   }
 
   @media (max-width: 775px) {
-    // I'm sorry for my sins!
-    h1 {
-      font-size: 7.4vw;
-    }
 
-    h2 {
-      // The h2 was computed to be 29.2808px in the browser while the h1 was 60px.
-      // Since the h1 has a line break that divides the words into 2 even rows when at 7.4vw, 
-      // we use the same ratio so that the h2 also continues to break at 2 even rows.
-      font-size: #{(29.2808 / 60) * 7.4}vw;
-    }
+    // // I'm sorry for my sins!
+    // h1 {
+    //   font-size: 7.4vw;
+    // }
+
+    // h2 {
+    //   // The h2 was computed to be 29.2808px in the browser while the h1 was 60px.
+    //   // Since the h1 has a line break that divides the words into 2 even rows when at 7.4vw, 
+    //   // we use the same ratio so that the h2 also continues to break at 2 even rows.
+    //   font-size: #{(29.2808 / 60) * 7.4}vw;
+    // }
   }
 }

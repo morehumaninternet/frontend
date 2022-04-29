@@ -35,36 +35,42 @@ header.layout-header {
 // When against a hero, we use the --logo-color-blue-white to fade from white to blue as the user scrolls past the hero
 // Otherwise, against a white background, we just use blue as the non-pink color
 svg.header-logo {
+
   .human,
   .left-head {
     fill: $human-pink;
   }
 
   &.against-hero {
+
     .more,
     .internet,
     .right-head,
     .bodies {
       fill: var(--logo-color-blue-white);
     }
+
     .bodies {
       stroke: var(--logo-color-blue-white);
     }
   }
 
   &.against-white-bg {
+
     .more,
     .internet,
     .right-head,
     .bodies {
       fill: $human-blue;
     }
+
     .bodies {
       stroke: $human-blue;
     }
   }
 
   &:hover {
+
     .more,
     .internet {
       fill: $human-pink;
@@ -88,13 +94,13 @@ svg.header-logo {
 @mixin animate($animation, $duration, $method, $delay, $times, $fill-mode) {
   animation: $animation $duration $method $delay $times $fill-mode;
 }
+
 @mixin keyframes($name) {
   @keyframes #{$name} {
     @content;
   }
 }
 
-header.mhi,
 header.roar {
   position: fixed;
 
@@ -103,7 +109,7 @@ header.roar {
   }
 }
 
-header.layout-new-header {
+header {
   height: $header-height;
 
   top: 0;
@@ -119,7 +125,7 @@ header.layout-new-header {
 
   @include header-width(padding);
 
-  > a.logo {
+  >a.logo {
     display: flex;
     justify-content: center;
 
@@ -135,61 +141,11 @@ header.layout-new-header {
   }
 }
 
-.layout.landing-page.orig {
-  svg.mhi-with-text-logo {
-    .human,
-    .global,
-    .top-right {
-      fill: $human-pink;
-    }
-
-    &.against-hero {
-      .more,
-      .internet,
-      .join,
-      .community,
-      .bottom-left {
-        fill: var(--logo-color-blue-white);
-      }
-    }
-
-    &.against-white-bg {
-      .more,
-      .internet,
-      .bottom-left {
-        fill: $human-blue;
-      }
-    }
-
-    &:hover {
-      .more,
-      .internet,
-      .bottom-left {
-        fill: $human-pink;
-      }
-
-      &.against-hero {
-        .human,
-        .top-right {
-          fill: var(--logo-color-blue-white);
-        }
-      }
-
-      &.against-white-bg {
-        .human,
-        .top-right {
-          fill: $human-blue;
-        }
-      }
-    }
-  }
-}
-
 header.new-landing-page {
   svg.mhi-with-text-logo {
     height: 60px;
     transition: all 0.3s;
-    margin: 25px 0;
+    margin: $standard-margin 0;
   }
 }
 
@@ -197,7 +153,7 @@ header.roar {
   svg.roar-logo {
     height: 60px;
     transition: all 0.3s;
-    margin: 25px 0;
+    margin: $standard-margin 0;
   }
 
   a.roar-home {
@@ -231,6 +187,7 @@ a.link {
 
   &:not(.home) {
     border-bottom: 2px transparent solid;
+
     &.active,
     &:hover {
       border-color: $human-pink;
@@ -250,7 +207,7 @@ header.new-landing-page {
   height: auto;
   background-color: white;
 
-  padding: 0 25px;
+  padding: 0 $standard-margin;
 
   a.link {
     @media (max-width: 800px) {
@@ -261,6 +218,7 @@ header.new-landing-page {
   .other-links {
     display: flex;
     align-items: center;
+
     :not(:first-child) {
       margin-left: 24px;
     }

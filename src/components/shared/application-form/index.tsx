@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
 import { FormGroup, TextField } from '@material-ui/core'
-import { Email, Person, Language } from '@material-ui/icons'
-import { FormattedMessage, useIntl } from 'react-intl'
+import { Email, Person } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
 import { thankYouHref } from '../../../utils/href'
 
 export function ApplicationForm(): JSX.Element {
-  const intl = useIntl()
 
   const formReference = React.useRef<HTMLFormElement>()
 
@@ -22,14 +20,11 @@ export function ApplicationForm(): JSX.Element {
     >
       <input type="hidden" name="form-name" value="submit-application" />
       <p style={{ display: 'none' }}>
-        <label>
-          <FormattedMessage id="application_form_bot" /> <input name="bot-field" />
-        </label>
       </p>
       <FormGroup>
         <TextFieldWithIcon
           type="email"
-          label={intl.formatMessage({ id: 'application_form_email' })}
+          label="Email"
           name="email"
           variant="outlined"
           required
@@ -38,7 +33,7 @@ export function ApplicationForm(): JSX.Element {
       </FormGroup>
       <FormGroup>
         <TextFieldWithIcon
-          label={intl.formatMessage({ id: 'application_form_name' })}
+          label="Full Name"
           name="name"
           variant="outlined"
           required
@@ -48,7 +43,7 @@ export function ApplicationForm(): JSX.Element {
       <div>
         <FormGroup>
           <TextField
-            label={intl.formatMessage({ id: 'application_form_why' })}
+            label="Why?"
             name="whyJoin"
             variant="outlined"
             required
@@ -64,7 +59,7 @@ export function ApplicationForm(): JSX.Element {
       </div>
       <FormGroup>
         <button type="submit" className="mhi-button">
-          <FormattedMessage id="application_form_join" />
+          Join
         </button>
       </FormGroup>
     </form>

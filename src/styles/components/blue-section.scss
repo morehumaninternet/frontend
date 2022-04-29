@@ -1,0 +1,12 @@
+section.blue-section {
+  background-color: $human-blue;
+  color: white;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+
+  >.blue-section__contents {
+    max-width: 800px;
+  }
+}

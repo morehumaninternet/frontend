@@ -1,0 +1,23 @@
+.checkmark-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.checkmark {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+
+  .checkmark-icon {
+    height: 32px;
+  }
+
+  p {
+    margin-left: 1em;
+  }
+}
+
+.centered {
+  display: grid;
+  place-items: center;
+}
