@@ -19,7 +19,7 @@ const Checkmark = ({ note }: { note: string }) => (
 export const CheckmarkList = ({ notes }: { notes: ReadonlyArray<string> }) => (
   <div className="checkmark-list">
     {notes.map(note => (
-      <Checkmark note={note} />
+      <Checkmark key={note} note={note} />
     ))}
   </div>
 )

@@ -12,7 +12,7 @@ export default React.forwardRef(
           <ApplicationForm formName="join-lhkh">
             <FormGroup>
               <FormControlLabel name="inPerson" control={<Checkbox defaultChecked />} label="Let me know about upcoming in person events" />
-              <FormControlLabel name="contribute" control={<Checkbox />} label="I am an expert and want to contribute" />
+              <FormControlLabel name="contribute" control={<Checkbox />} label="I want to contribute my expertise" />
             </FormGroup>
           </ApplicationForm>
         </div>
