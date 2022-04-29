@@ -28,7 +28,8 @@ const LHKHPage = (): JSX.Element => {
             <i>A`ohe hana nui ka alu`ia</i>
           </h2>
           <h3>No task is too big when done together</h3>
-          <p style={{ textAlign: 'right' }}>— Mary Kawena Pukui (`Olelo No`eau)</p>
+          {/* <p style={{ textAlign: 'right' }}>— Mary Kawena Pukui (`Olelo No`eau)</p> */}
+          <p style={{ textAlign: 'right' }}>— Ōlelo No‘eau: Hawaiian Proverbs & Poetical Sayings, © Bishop Museum</p>
         </div>
       </BlueSection>
       <CausesSection rightToLeft>
@@ -37,7 +38,7 @@ const LHKHPage = (): JSX.Element => {
           <CauseTextContent
             heading="Protecting Hawaii’s Land"
             description={
-              'From its inception 14 years ago, Livable Hawaii Kai Hui has been organizing people to protect, improve and care for the resources of Moanalua, on the island of Oahu, in perpetuity.'
+              'From its inception 18 years ago, Livable Hawaii Kai Hui has been organizing people to protect, improve and care for the resources of Maunalua, on the island of Oahu, in perpetuity.'
             }
           />
         </>
@@ -62,9 +63,7 @@ const LHKHPage = (): JSX.Element => {
           <div className="cause__content">
             <div>
               <h2 className="human-blue">Working Together</h2>
-              <p>
-                Our technology experts are integrated with Livable Hawaii Kai Hui as volunteers working collaboratively to advance the cause
-              </p>
+              <p>Our technology experts are integrated with Livable Hawaii Kai Hui as volunteers working collaboratively to advance the cause</p>
               <p>By collaborating empathically, we feel the challenges they are facing intimately and work to address them</p>
             </div>
           </div>
