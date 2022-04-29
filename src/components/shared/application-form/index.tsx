@@ -19,7 +19,7 @@ export function ApplicationForm({ formName, children }: { formName: string, chil
       ref={formReference as any}
       className="application-form"
     >
-      <input type="hidden" name="form-name" value="submit-application" />
+      <input type="hidden" name="form-name" value={formName} />
       <FormGroup>
         <TextFieldWithIcon
           label="Full Name"
