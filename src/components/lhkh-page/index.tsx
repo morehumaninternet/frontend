@@ -49,11 +49,7 @@ const LHKHPage = (): JSX.Element => {
               <p>More Human Internet technical experts are teaming with Livable Hawaii Kai Hui leaders to improve the organization's online presence.</p>
               <CheckmarkList
                 notes={[
-<<<<<<< HEAD
-                  `Modernize website to support timely updates about Livable Hawaii Kai Hui's news and events`,
-=======
                   "Modernize website to support timely updates about Livable Hawaii Kai Hui's news and events",
->>>>>>> ee8c7bb (more fields)
                   'Increase volunteership by streamlining signup process and automating event notifications',
                   'Improve social media followership with consistent branding',
                 ]}

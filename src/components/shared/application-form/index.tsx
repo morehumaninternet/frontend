@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { FormGroup, TextField, FormControlLabel, Checkbox } from '@material-ui/core'
+import React from 'react'
+import { FormGroup, TextField } from '@material-ui/core'
 import { Email, Person } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
 import { thankYouHref } from '../../../utils/href'
 
-export function ApplicationForm({ formName }: { formName: string }): JSX.Element {
+export function ApplicationForm({ formName, children }: { formName: string, children?: React.ReactNode }): JSX.Element {
 
   const formReference = React.useRef<HTMLFormElement>()
 
@@ -39,30 +39,27 @@ export function ApplicationForm({ formName }: { formName: string }): JSX.Element
           startIcon={<Email className="email" />}
         />
       </FormGroup>
-      <FormGroup>
-        <FormControlLabel name="inPerson" control={<Checkbox defaultChecked />} label="Let me know about upcoming in person events" />
-        <FormControlLabel name="contribute" control={<Checkbox />} label="I am an expert and want to contribute" />
-      </FormGroup>
+      {children}
       <div>
         <FormGroup>
           <TextField
-            label="Why?"
-            name="whyJoin"
+            label="Anything else to add?"
+            name="anythingElse"
             variant="outlined"
             required
             multiline
             rows={5}
             InputProps={{
               inputProps: {
-                'aria-label': 'Why do you want to join?',
+                'aria-label': 'Anything else to add?',
               },
             }}
           />
         </FormGroup>
       </div>
       <FormGroup>
-        <button type="submit" className="mhi-button">
-          Join
+        <button type="submit" className="mhi-button human-pink-bg">
+          Send
         </button>
       </FormGroup>
     </form>

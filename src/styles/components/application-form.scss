@@ -65,6 +65,10 @@ form.application-form {
   }
 }
 
+input[type="checkbox"]:checked+svg {
+  color: $human-pink;
+}
+
 .MuiFormLabel-root.Mui-focused {
   color: $human-blue;
 }

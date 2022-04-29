@@ -7,9 +7,7 @@ export default React.forwardRef(
       <section className="join">
         <div className="join__contents" ref={ref as any}>
           <h1 className="mhi-heading human-blue">Join Our Community</h1>
-          <ApplicationForm
-            formName="join-mhi"
-          />
+          <ApplicationForm formName="join-mhi" />
         </div>
       </section>
     )
