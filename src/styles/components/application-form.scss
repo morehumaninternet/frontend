@@ -1,4 +1,4 @@
-form[name="submit-application"] {
+form.application-form {
   margin-bottom: 0;
 
   button[type="submit"] {
@@ -15,10 +15,12 @@ form[name="submit-application"] {
       display: flex;
       flex-direction: row;
       align-items: center;
-      > label {
+
+      >label {
         flex-grow: 0;
       }
-      > .MuiInputBase-root {
+
+      >.MuiInputBase-root {
         margin-left: 10px;
         flex-grow: 1;
       }
@@ -40,7 +42,7 @@ form[name="submit-application"] {
     }
   }
 
-  > .MuiFormControl-root:first-child {
+  >.MuiFormControl-root:first-child {
     flex-grow: 1;
 
     @include ondesktop {
@@ -48,7 +50,7 @@ form[name="submit-application"] {
     }
   }
 
-  > .spaced-vertically-centered-text {
+  >.spaced-vertically-centered-text {
     flex-grow: 0;
     display: flex;
     flex-direction: row;
@@ -63,13 +65,17 @@ form[name="submit-application"] {
   }
 }
 
+input[type="checkbox"]:checked+svg {
+  color: $human-pink;
+}
+
 .MuiFormLabel-root.Mui-focused {
   color: $human-blue;
 }
 
 .MuiOutlinedInput-root.Mui-focused,
 .MuiOutlinedInput-root:hover {
-  > .MuiOutlinedInput-notchedOutline {
+  >.MuiOutlinedInput-notchedOutline {
     border-color: $human-blue;
   }
 }

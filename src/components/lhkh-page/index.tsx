@@ -5,6 +5,7 @@ import SEO from '../shared/seo'
 import { Cause, CauseImage, CausesSection, CauseTextContent } from '../shared/causes'
 import BlueSection from '../shared/blue-section'
 import { CheckmarkList } from './checkmark-list'
+import JoinSection from './join-section'
 
 const LHKHPage = (): JSX.Element => {
   return (
@@ -48,7 +49,7 @@ const LHKHPage = (): JSX.Element => {
               <p>More Human Internet technical experts are teaming with Livable Hawaii Kai Hui leaders to improve the organization's online presence.</p>
               <CheckmarkList
                 notes={[
-                  `Modernize website to support timely updates about Livable Hawaii Kai Hui's news and events`,
+                  "Modernize website to support timely updates about Livable Hawaii Kai Hui's news and events",
                   'Increase volunteership by streamlining signup process and automating event notifications',
                   'Improve social media followership with consistent branding',
                 ]}
@@ -62,14 +63,14 @@ const LHKHPage = (): JSX.Element => {
             <div>
               <h2 className="human-blue">Working Together</h2>
               <p>
-                More Human Internet is excited to be partnering with Livable Hawaii Kai Hui to advance their online strategy, bringing more volunteers to help
-                their mission of stewarding the irreplaceable cultural and natural resources of East Honolulu
+                Our technology experts are integrated with Livable Hawaii Kai Hui as volunteers working collaboratively to advance the cause
               </p>
               <p>By collaborating empathically, we feel the challenges they are facing intimately and work to address them</p>
             </div>
           </div>
         </>
       </CausesSection>
+      <JoinSection />
     </Layout>
   )
 }
