@@ -1,15 +1,15 @@
 section.join {
-    display: grid;
-    place-items: center;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  text-align: center;
+
+  .join__contents {
+    max-width: 600px;
     width: 100%;
-    text-align: center;
+  }
 
-    .join__contents {
-        width: 600px;
-        max-width: 100%;
-    }
-
-    .mhi-heading {
-        font-weight: bold;
-    }
+  .mhi-heading {
+    font-weight: bold;
+  }
 }
