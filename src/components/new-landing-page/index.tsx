@@ -22,7 +22,7 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
       header={<Header location={location} internalSectionRefs={internalSectionRefs} />}
     >
       <SEO
-        meta={[{ property: "og:image", content: "/mhi-og-image.png" }]}
+        meta={[{ property: 'og:image', content: '/mhi-og-image.png' }]}
       />
       <Hero />
       <BlueSection ref={internalSectionRefs['Contributors']}>
