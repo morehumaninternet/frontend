@@ -22,6 +22,12 @@
     max-width: 450px;
   }
 
+  .announcement {
+    .cause__image img {
+      max-width: 275px;
+    }
+  }
+
   .cause__image,
   .cause__content {
     grid-column: 1;
