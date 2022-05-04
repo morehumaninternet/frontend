@@ -21,7 +21,9 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
       additionalClassNames="new-landing-page"
       header={<Header location={location} internalSectionRefs={internalSectionRefs} />}
     >
-      <SEO />
+      <SEO
+        meta={[{ property: "og:image", content: "/mhi-og-image.png" }]}
+      />
       <Hero />
       <BlueSection ref={internalSectionRefs['Contributors']}>
         <h1>Our leaders join your cause directly, working alongside you to meet your online &amp; offline goals.</h1>
