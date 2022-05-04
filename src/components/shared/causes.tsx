@@ -3,7 +3,7 @@ import cls from 'classnames'
 import { repeat } from 'lodash'
 import { Link } from 'gatsby'
 
-type CauseProps = { cause: string, imgSrc: string, borderColor: string, heading: string, description: string, href?: string }
+type CauseProps = { cause: string, imgSrc: string, borderColor: string, heading?: string, description: string, href?: string }
 
 export const dsa = {
   cause: 'dsa',
@@ -44,14 +44,16 @@ export const CauseImage = ({ src, borderColor }: { src: string, borderColor: str
   </div>
 )
 
-export const CauseTextContent = ({ heading, description, href }: {
-  heading: string,
+interface CauseTextContentProps extends React.ComponentProps<any> {
+  heading?: string,
   description: string
   href?: string
-}) => (
-  <div className="cause__content">
+}
+
+export const CauseTextContent = ({ heading, description, href, ...rest }: CauseTextContentProps) => (
+  <div className="cause__content" {...rest}>
     <div>
-      <h2 className="human-blue">{heading}</h2>
+      {heading && (<h2 className="human-blue">{heading}</h2>)}
       <p>{description}</p>
       {href && (<Link className="link" to={href}>Learn More</Link>)}
     </div>

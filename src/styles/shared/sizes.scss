@@ -23,6 +23,14 @@ $max-main-page-item-width: 603px;
   }
 }
 
-section {
-  padding: #{2 * $standard-margin} $standard-margin;
+@include ondesktop {
+  section {
+    padding: #{2 * $standard-margin} $standard-margin;
+  }
+}
+
+@include onmobile {
+  section {
+    padding: $standard-margin;
+  }
 }

@@ -1,13 +1,42 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import { Layout } from '../shared/layout'
 import { Header, SectionRefs } from '../shared/header'
 import Hero from './hero'
-import Causes from '../shared/causes'
+import Causes, { Cause, CauseImage, CauseTextContent } from '../shared/causes'
 import Technologies from './technologies'
 import SocialMediaBar from '../shared/social-media-bar'
 import SEO from '../shared/seo'
 import JoinSection from './join-section'
 import BlueSection from '../shared/blue-section'
+import { lhkh } from '../shared/causes'
+
+
+const Announcement = (): JSX.Element => {
+  return (
+    <section className="causes blue-section announcement" >
+      <div className="causes__content" style={{
+        gridTemplateColumns: '1fr 25px 2fr',
+        gridTemplateRows: '5.5fr',
+      }}>
+        <>
+          <CauseImage
+            src={lhkh.imgSrc}
+            borderColor={lhkh.borderColor}
+          />
+          <CauseTextContent
+            description={`More Human Internet is excited to be partnering with Livable Hawaii Kai Hui to advance their online strategy, bringing more volunteers to help their mission of stewarding the irreplaceable cultural and natural resources of East Honolulu.`}
+            href={lhkh.href}
+            style={{
+              gridRow: '1',
+              textAlign: 'left'
+            }}
+          />
+        </>
+      </div>
+    </section>
+  )
+}
 
 const NewLandingPage = ({ location }: PageProps): JSX.Element => {
   const internalSectionRefs: SectionRefs = {
@@ -19,7 +48,11 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
   return (
     <Layout
       additionalClassNames="new-landing-page"
-      header={<Header location={location} internalSectionRefs={internalSectionRefs} />}
+      header={
+        <>
+          <Announcement />
+          <Header location={location} internalSectionRefs={internalSectionRefs} />
+        </>}
     >
       <SEO />
       <Hero />
