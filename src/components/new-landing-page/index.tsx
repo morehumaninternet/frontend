@@ -23,7 +23,7 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
     >
       <SEO
         meta={[{ property: 'og:image', content: 'https://deploy-preview-200--admiring-carson-42ff06.netlify.app/mhi-og-image.png' },
-        { property: "twitter:image", content: 'https://deploy-preview-200--admiring-carson-42ff06.netlify.app/mhi-og-image.png' }]}
+        { property: 'twitter:image', content: 'https://deploy-preview-200--admiring-carson-42ff06.netlify.app/mhi-og-image.png' }]}
       />
       <Hero />
       <BlueSection ref={internalSectionRefs['Contributors']}>
