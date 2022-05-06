@@ -110,22 +110,7 @@
   }
 
   .new-landing-page-hero__content {
-    margin: 100px 25px;
+    margin: 50px 25px;
     max-width: 750px;
-  }
-
-  @media (max-width: 775px) {
-
-    // // I'm sorry for my sins!
-    // h1 {
-    //   font-size: 7.4vw;
-    // }
-
-    // h2 {
-    //   // The h2 was computed to be 29.2808px in the browser while the h1 was 60px.
-    //   // Since the h1 has a line break that divides the words into 2 even rows when at 7.4vw, 
-    //   // we use the same ratio so that the h2 also continues to break at 2 even rows.
-    //   font-size: #{(29.2808 / 60) * 7.4}vw;
-    // }
   }
 }
