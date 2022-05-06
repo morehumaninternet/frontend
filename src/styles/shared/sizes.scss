@@ -18,7 +18,7 @@ $max-main-page-item-width: 603px;
 }
 
 @mixin ondesktop {
-  @media (min-width: $breakpoint-mobile + 1px) {
+  @media (min-width: ($breakpoint-mobile + 1px)) {
     @content;
   }
 }
@@ -32,5 +32,13 @@ $max-main-page-item-width: 603px;
 @include onmobile {
   section {
     padding: $standard-margin;
+  }
+}
+
+@include onmobile {
+
+  html,
+  body {
+    font-size: 14px;
   }
 }
