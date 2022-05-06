@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // Add padding for an element for the tour without affecting its positioning
 @mixin padding-for-tour($size: 10px) {
   padding: $size;
@@ -5,31 +7,31 @@
 }
 
 .shepherd-content {
-  > header.shepherd-header {
+  >header.shepherd-header {
     padding: 0.25rem 0.75rem 0;
   }
 
-  > .shepherd-text {
+  >.shepherd-text {
     color: $human-blue;
     margin-top: 8px;
     margin-bottom: 16px;
     padding: 24px;
   }
 
-  > footer.shepherd-footer {
+  >footer.shepherd-footer {
     padding: 0;
 
     display: grid;
     grid-gap: 2px;
     grid-template-columns: 1fr 1fr;
 
-    > button {
+    >button {
       color: white;
       border-radius: 0;
       margin: 0;
       font-family: 'Helvetica Neue';
       font-weight: bold;
-      font-size: (16/18) * 1em;
+      font-size: math.div(16, 18) * 1em;
 
       &:first-child {
         border-bottom-left-radius: 5px;
@@ -40,17 +42,18 @@
       }
     }
 
-    > .single-button {
+    >.single-button {
       grid-column: 1 / span 2;
       font-size: 18px;
       border-radius: 5px;
       padding: 20px;
 
-      > span {
+      >span {
         display: flex;
         justify-content: center;
         align-items: center;
-        > svg {
+
+        >svg {
           margin-right: 8px;
         }
       }
@@ -59,7 +62,7 @@
 }
 
 .shepherd-element {
-  > .shepherd-arrow {
+  >.shepherd-arrow {
     border-width: 0;
     height: auto;
     width: auto;
@@ -67,6 +70,7 @@
     &:before {
       content: none;
     }
+
     &:after {
       content: url('/arrow.svg');
       display: inline-block;
@@ -80,8 +84,9 @@
 .shepherd-element[data-popper-placement^="bottom"] {
   margin-top: 16px !important;
 
-  > .shepherd-arrow {
+  >.shepherd-arrow {
     top: -35px !important;
+
     &:after {
       transform: rotate(90deg);
     }
@@ -91,8 +96,9 @@
 .shepherd-element[data-popper-placement^="top"] {
   margin-bottom: 16px !important;
 
-  > .shepherd-arrow {
+  >.shepherd-arrow {
     bottom: -35px !important;
+
     &:after {
       transform: rotate(270deg);
     }
@@ -102,8 +108,9 @@
 .shepherd-element[data-popper-placement^="left"] {
   margin-right: 24px !important;
 
-  > .shepherd-arrow {
+  >.shepherd-arrow {
     right: -35px !important;
+
     &:after {
       transform: rotate(180deg);
     }
@@ -113,8 +120,9 @@
 .shepherd-element[data-popper-placement^="right"] {
   margin-left: 24px !important;
 
-  > .shepherd-arrow {
+  >.shepherd-arrow {
     left: -35px !important;
+
     &:after {
       transform: rotate(0deg);
     }

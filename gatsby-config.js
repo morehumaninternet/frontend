@@ -17,22 +17,6 @@ module.exports = {
         },
       },
     },
-    'gatsby-plugin-sass',
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-react-axe',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
-        start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
-        display: 'minimal-ui',
-        icon: 'static/human-dots.svg', // The app manifest icon for PWA. This path is relative to the root of the site.
-        include_favicon: false,
-      },
-    },
     {
       resolve: `gatsby-theme-i18n`,
       options: {
@@ -46,6 +30,9 @@ module.exports = {
         defaultLocale: `./i18n/react-intl/en.json`,
       },
     },
+    'gatsby-plugin-sass',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-react-axe',
     {
       resolve: `gatsby-plugin-umami`,
       options: {

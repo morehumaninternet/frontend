@@ -1,9 +1,11 @@
+@use 'sass:math';
+
 $sidebar-margin: 50px;
 
 @mixin sidebar-width($size) {
   width: $size;
 
-  + main {
+  +main {
     left: $size;
     max-width: calc(100vw - #{$size});
   }
@@ -14,7 +16,7 @@ $sidebar-margin: 50px;
 }
 
 .layout.has-sidebar {
-  > .sidebar {
+  >.sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -23,7 +25,7 @@ $sidebar-margin: 50px;
     border-top-right-radius: 40px;
     transition: width 0.2s;
 
-    > .sidebar-contents {
+    >.sidebar-contents {
       position: absolute;
       top: 0;
       left: 0;
@@ -36,12 +38,12 @@ $sidebar-margin: 50px;
       align-items: center;
       justify-content: space-between;
 
-      > .sidebar-links {
+      >.sidebar-links {
         display: grid;
         grid-template-rows: 100px 70px 70px 1fr auto;
         height: 100%;
 
-        > a {
+        >a {
           position: relative;
           display: flex;
           justify-content: center;
@@ -57,33 +59,33 @@ $sidebar-margin: 50px;
             left: 90px;
             color: white;
             font-weight: bold;
-            font-size: (16/18) * 1em;
+            font-size: math.div(16, 18) * 1em;
           }
 
           &.home-link {
             position: relative;
             left: 38px;
 
-            > svg > g.text {
+            >svg>g.text {
               transition: opacity 0.3s;
               opacity: 0;
             }
           }
 
           &.inactive {
-            > svg > path {
+            >svg>path {
               opacity: 0.26;
             }
           }
 
           &.active {
-            > svg > path {
+            >svg>path {
               opacity: 1;
             }
           }
 
           &.settings {
-            > .description {
+            >.description {
               top: 2px;
               font-weight: normal;
             }
@@ -92,7 +94,7 @@ $sidebar-margin: 50px;
       }
     }
 
-    + main {
+    +main {
       position: relative;
       transition: all 0.3s;
       padding: 50px;
@@ -103,8 +105,8 @@ $sidebar-margin: 50px;
     &:hover {
       @include sidebar-width(200px);
 
-      > .sidebar-contents > .sidebar-links > a {
-        > svg > g.text {
+      >.sidebar-contents>.sidebar-links>a {
+        >svg>g.text {
           opacity: 1;
         }
 
@@ -126,7 +128,7 @@ $sidebar-margin: 50px;
             opacity: 1;
           }
 
-          > svg > path {
+          >svg>path {
             opacity: 1;
           }
         }

@@ -6,7 +6,7 @@ $margin-around-mac: 2em;
 
   position: relative;
 
-  > .designs-content-container {
+  >.designs-content-container {
     @include header-width(padding);
 
     &.static {
@@ -26,7 +26,7 @@ $margin-around-mac: 2em;
     width: 100%;
     height: 100vh;
 
-    > .designs-content {
+    >.designs-content {
       margin-top: 5%;
       margin-bottom: 5%;
       height: 90%;
@@ -35,7 +35,7 @@ $margin-around-mac: 2em;
       align-items: center;
       justify-content: center;
 
-      > h1 {
+      >h1 {
         color: $human-blue;
         font-size: 2.25em;
         margin-bottom: 1em;
@@ -45,17 +45,19 @@ $margin-around-mac: 2em;
       .explanation {
         opacity: 0;
         transition: opacity 0.2s;
-        > h2 {
+
+        >h2 {
           color: $human-pink;
           text-align: center;
         }
-        > p {
+
+        >p {
           color: $human-blue;
           margin-bottom: 0;
         }
       }
 
-      > .mac-container {
+      >.mac-container {
         position: relative;
         max-height: 65%;
 
@@ -66,22 +68,18 @@ $margin-around-mac: 2em;
         width: 100%;
         margin-bottom: $margin-around-mac;
 
-        > .mac-with-screens > svg {
+        >.mac-with-screens>svg {
           max-width: 100%;
           max-height: 100%;
 
           .screen {
             opacity: 0;
             transition: opacity 0.2s;
-
-            &#0_widget-closed {
-              opacity: 1;
-            }
           }
         }
 
-        > .explanations-container.cards {
-          > .explanation {
+        >.explanations-container.cards {
+          >.explanation {
             display: none;
             position: absolute;
             top: 35%;
@@ -92,9 +90,10 @@ $margin-around-mac: 2em;
             border-radius: 10px;
             background-color: white;
 
-            > h2 {
+            >h2 {
               text-align: left;
               font-size: 1.3rem;
+
               &.report-issues:lang(en) {
                 max-width: 160px;
               }
@@ -103,7 +102,7 @@ $margin-around-mac: 2em;
         }
       }
 
-      > .explanations-container.texts {
+      >.explanations-container.texts {
         position: relative;
         width: 100%;
         display: flex;
@@ -111,18 +110,20 @@ $margin-around-mac: 2em;
         align-items: center;
         justify-content: center;
 
-        > .explanation {
+        >.explanation {
           display: none;
           position: absolute;
           max-width: $max-main-page-item-width;
 
           top: 0;
+
           @include onmobile {
-            > h2 {
+            >h2 {
               font-size: 1.2em;
             }
           }
-          > p {
+
+          >p {
             text-align: center;
           }
         }
@@ -134,30 +135,30 @@ $margin-around-mac: 2em;
     @media (orientation: landscape) {
       margin-bottom: 4em;
 
-      > .designs-content-container {
+      >.designs-content-container {
         padding-left: 0;
         padding-right: 0;
 
-        > .designs-content {
+        >.designs-content {
           flex-direction: row;
 
-          > h1 {
+          >h1 {
             width: 100%;
             text-align: center;
           }
 
-          > .mac-container {
+          >.mac-container {
             display: flex;
             flex-direction: row;
             justify-content: center;
 
-            > svg {
+            >svg {
               height: 90vh;
               max-width: 100%;
             }
           }
 
-          > .explanations-container {
+          >.explanations-container {
             display: none !important;
           }
         }
