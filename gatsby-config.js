@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://morehumaninternet.org',
     title: 'More Human Internet',
-    description: 'A collaborative community creating a public platform for users and maintainers of the web',
+    description: 'An international community of expert contributors working directly with valuable causes',
     author: '@morehumaninter1',
   },
   plugins: [
