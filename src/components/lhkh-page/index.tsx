@@ -10,7 +10,10 @@ import JoinSection from './join-section'
 const LHKHPage = (): JSX.Element => {
   return (
     <Layout additionalClassNames="new-landing-page" header={<Header />}>
-      <SEO pageTitle="WHATEVER" />
+      <SEO
+        pageTitle="Partering with Livable Hawaii Kai Hui"
+        description="More Human Internet is partnering with Livable Hawaii Kai Hui to advance their online strategy"
+      />
       <section className="causes">
         <div className="causes__content" style={{ gridTemplateRows: '1fr 5.5fr 1fr' }}>
           <Cause

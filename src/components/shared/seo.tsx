@@ -9,6 +9,10 @@ type SEOProps = {
   lang?: string
   pageTitle?: string
   links?: Links
+  meta?: ReadonlyArray<{
+    name: string
+    content: string
+  }>
 }
 
 export const defaultLinks: Links = [
@@ -64,7 +68,7 @@ export default function SEO(props: SEOProps): JSX.Element {
         { name: 'twitter:description', content: metaDescription },
         { name: 'msapplication-TileColor', content: '#164176' },
         { name: 'theme-color', content: '#ffffff' },
-      ]}
+      ].concat(props.meta || [])}
       link={links}
     />
   )
