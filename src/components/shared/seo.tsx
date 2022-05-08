@@ -1,6 +1,8 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
+import ReactHelmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
+
+type Links = React.ComponentProps<typeof ReactHelmet>['link']
 
 type SEOProps = {
   author?: string
@@ -8,11 +10,11 @@ type SEOProps = {
   lang?: string
   meta?: readonly any[]
   pageTitle?: string
-  links?: SEOLinks
+  links?: Links
   scripts?: readonly object[]
 }
 
-export const defaultLinks: SEOLinks = [
+export const defaultLinks: Links = [
   { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
   {
     rel: 'icon',
@@ -36,7 +38,7 @@ export default function SEO(props: SEOProps): JSX.Element {
   const meta = props.meta || []
   const pageTitle = props.pageTitle
 
-  const links = props.links || defaultLinks
+  const links: Links = props.links || defaultLinks
 
   const scripts = props.scripts || []
 
@@ -61,7 +63,7 @@ export default function SEO(props: SEOProps): JSX.Element {
   const author = props.author || site.siteMetadata.author
 
   return (
-    <Helmet
+    <ReactHelmet
       htmlAttributes={{
         lang,
       }}
