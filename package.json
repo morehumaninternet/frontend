@@ -27,7 +27,7 @@
     "react-axe": "3.5.3",
     "react-beautiful-dnd": "13.0.0",
     "react-dom": "^18.1.0",
-    "react-helmet": "6.1.0",
+    "react-helmet": "^6.1.0",
     "react-scroll-parallax": "2.3.4",
     "react-share": "^4.4.0",
     "redux": "4.0.5",
