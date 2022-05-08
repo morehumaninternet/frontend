@@ -1,18 +1,17 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+
+export type Links = React.ComponentProps<typeof Helmet>['link']
 
 type SEOProps = {
   author?: string
   description?: string
   lang?: string
-  meta?: readonly any[]
   pageTitle?: string
-  links?: SEOLinks
-  scripts?: readonly object[]
+  links?: Links
 }
 
-export const defaultLinks: SEOLinks = [
+export const defaultLinks: Links = [
   { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
   {
     rel: 'icon',
@@ -31,41 +30,29 @@ export const defaultLinks: SEOLinks = [
 ]
 
 export default function SEO(props: SEOProps): JSX.Element {
+
   const description = props.description || ''
   const lang = props.lang || 'en'
-  const meta = props.meta || []
   const pageTitle = props.pageTitle
 
-  const links = props.links || defaultLinks
+  const links: Links = props.links || defaultLinks
 
-  const scripts = props.scripts || []
+  const site = {
+    siteUrl: 'https://morehumaninternet.org',
+    title: 'More Human Internet',
+    description: 'An international community of expert contributors working directly with valuable causes',
+    author: '@morehumaninter1',
+  }
 
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
+  const title = pageTitle ? `${pageTitle} by ${site.title}` : site.title
 
-  const title = pageTitle ? `${pageTitle} by ${site.siteMetadata.title}` : site.siteMetadata.title
+  const metaDescription = description || site.description
 
-  const metaDescription = description || site.siteMetadata.description
-
-  const author = props.author || site.siteMetadata.author
+  const author = props.author || site.author
 
   return (
     <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
+      htmlAttributes={{ lang }}
       meta={[
         { name: 'description', content: metaDescription },
         { property: 'og:title', content: title },
@@ -77,9 +64,8 @@ export default function SEO(props: SEOProps): JSX.Element {
         { name: 'twitter:description', content: metaDescription },
         { name: 'msapplication-TileColor', content: '#164176' },
         { name: 'theme-color', content: '#ffffff' },
-      ].concat(meta)}
+      ]}
       link={links}
-      script={scripts as any}
     />
   )
 }

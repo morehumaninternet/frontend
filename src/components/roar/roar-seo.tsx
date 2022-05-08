@@ -1,8 +1,7 @@
 import React from 'react'
+import SEO, { Links } from '../shared/seo'
 
-import SEO from '../shared/seo'
-
-export const roarLinks: SEOLinks = [
+export const roarLinks: Links = [
   { rel: 'apple-touch-icon', sizes: '180x180', href: '/roar-apple-touch-icon.png' },
   {
     rel: 'icon',

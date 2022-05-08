@@ -10,7 +10,7 @@ import JoinSection from './join-section'
 const LHKHPage = (): JSX.Element => {
   return (
     <Layout additionalClassNames="new-landing-page" header={<Header />}>
-      <SEO />
+      <SEO pageTitle="WHATEVER" />
       <section className="causes">
         <div className="causes__content" style={{ gridTemplateRows: '1fr 5.5fr 1fr' }}>
           <Cause
