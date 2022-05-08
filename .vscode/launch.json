@@ -22,9 +22,7 @@
       "args": [
         "build"
       ],
-      "runtimeArgs": [
-        "--nolazy"
-      ],
+      "runtimeArgs": [],
       "console": "integratedTerminal"
     }
   ]

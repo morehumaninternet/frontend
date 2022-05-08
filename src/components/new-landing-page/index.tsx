@@ -10,6 +10,7 @@ import SEO from '../shared/seo'
 import JoinSection from './join-section'
 import BlueSection from '../shared/blue-section'
 import { lhkh } from '../shared/causes'
+import { Helmet } from 'react-helmet'
 
 
 const Announcement = (): JSX.Element => {

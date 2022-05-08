@@ -1,17 +1,14 @@
 import React from 'react'
-import ReactHelmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import { Helmet } from 'react-helmet'
 
-type Links = React.ComponentProps<typeof ReactHelmet>['link']
+export type Links = React.ComponentProps<typeof Helmet>['link']
 
 type SEOProps = {
   author?: string
   description?: string
   lang?: string
-  meta?: readonly any[]
   pageTitle?: string
   links?: Links
-  scripts?: readonly object[]
 }
 
 export const defaultLinks: Links = [
@@ -33,41 +30,29 @@ export const defaultLinks: Links = [
 ]
 
 export default function SEO(props: SEOProps): JSX.Element {
+
   const description = props.description || ''
   const lang = props.lang || 'en'
-  const meta = props.meta || []
   const pageTitle = props.pageTitle
 
   const links: Links = props.links || defaultLinks
 
-  const scripts = props.scripts || []
+  const site = {
+    siteUrl: 'https://morehumaninternet.org',
+    title: 'More Human Internet',
+    description: 'An international community of expert contributors working directly with valuable causes',
+    author: '@morehumaninter1',
+  }
 
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
+  const title = pageTitle ? `${pageTitle} by ${site.title}` : site.title
 
-  const title = pageTitle ? `${pageTitle} by ${site.siteMetadata.title}` : site.siteMetadata.title
+  const metaDescription = description || site.description
 
-  const metaDescription = description || site.siteMetadata.description
-
-  const author = props.author || site.siteMetadata.author
+  const author = props.author || site.author
 
   return (
-    <ReactHelmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
+    <Helmet
+      htmlAttributes={{ lang }}
       meta={[
         { name: 'description', content: metaDescription },
         { property: 'og:title', content: title },
@@ -79,9 +64,8 @@ export default function SEO(props: SEOProps): JSX.Element {
         { name: 'twitter:description', content: metaDescription },
         { name: 'msapplication-TileColor', content: '#164176' },
         { name: 'theme-color', content: '#ffffff' },
-      ].concat(meta)}
+      ]}
       link={links}
-      script={scripts as any}
     />
   )
 }

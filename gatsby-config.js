@@ -1,5 +1,3 @@
-const path = require('path')
-
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://morehumaninternet.org',
@@ -11,14 +9,7 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-sass',
     'gatsby-plugin-postcss',
-    {
-      resolve: 'gatsby-plugin-material-ui',
-      options: {
-        stylesProvider: {
-          injectFirst: true,
-        },
-      },
-    },
+    'gatsby-plugin-material-ui',
     {
       resolve: `gatsby-plugin-umami`,
       options: {
@@ -29,5 +20,6 @@ module.exports = {
         respectDoNotTrack: true,
       },
     },
+    'gatsby-plugin-react-helmet',
   ],
 }
