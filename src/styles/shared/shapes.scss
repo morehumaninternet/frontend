@@ -30,10 +30,15 @@
     }
   }
   
-  @media (max-width: 710px) {
+}
+@media (max-width: 710px) {
+  .pink_dot__wrapper {
+    margin-bottom: -5vh;
+
     .pink_dot {
-      right: auto; 
-      left: auto;
+      left: 50%;
+      transform: translate(-50%);
+      top: -5%;
     }
   }
 }
