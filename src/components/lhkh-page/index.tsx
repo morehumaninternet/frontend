@@ -28,9 +28,9 @@ const LHKHPage = (): JSX.Element => {
       <BlueSection>
         <div>
           <h2>
-            <i>A`ohe hana nui ka alu`ia</i>
+            <i>`A`ohe hana nui ke alu `ia</i>
           </h2>
-          <h3>No task is too big when done together</h3>
+          <h3>No task is too big when done together by all</h3>
           {/* <p style={{ textAlign: 'right' }}>— Mary Kawena Pukui (`Olelo No`eau)</p> */}
           <p style={{ textAlign: 'right' }}>— Ōlelo No‘eau: Hawaiian Proverbs & Poetical Sayings, © Bishop Museum</p>
         </div>
