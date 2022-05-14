@@ -7,26 +7,30 @@
 }
 
 .pink_dot__wrapper {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  width: 50vh;
-  height: 50vh;
-  border-radius: 50%;
-  padding: 5vh;
-  right: 15vw;
-  background-color: $human-pink;
-  text-align: center;
-  top: 75%;
-  
-  .pink_dot__text {
-    color: white; 
+  position: relative;
+  .pink_dot {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 50vh;
+    height: 50vh;
+    border-radius: 50%;
+    padding: 5vh;
+    // right: 15vw;
+    background-color: $human-pink;
+    text-align: center;
+    top: -75%;
+    
+    .pink_dot__text {
+      color: white; 
+    }
   }
-}
-@media (max-width: 710px) {
-  .pink_dot__wrapper {
-    right: auto; 
-    left: auto;
+  
+  @media (max-width: 710px) {
+    .pink_dot {
+      right: auto; 
+      left: auto;
+    }
   }
 }
 
