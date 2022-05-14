@@ -8,6 +8,10 @@
 
 .pink_dot__wrapper {
   position: relative;
+  width: 100vw;
+  height: 50vh;
+  margin-bottom: -25vh;
+
   .pink_dot {
     position: absolute;
     display: flex;
@@ -16,10 +20,10 @@
     height: 50vh;
     border-radius: 50%;
     padding: 5vh;
-    // right: 15vw;
+    right: 15vw;
     background-color: $human-pink;
     text-align: center;
-    top: -75%;
+    top: -25%;
     
     .pink_dot__text {
       color: white; 
