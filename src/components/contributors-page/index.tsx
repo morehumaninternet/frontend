@@ -42,10 +42,10 @@ const ContributorsPage = (): JSX.Element => {
               <h2 className="human-blue">How It Works</h2>
               <CheckmarkList
                 notes={[
-                  "You’ll meet one of our technology leaders so we know what skills you’re hoping to bring, what you want to work on, and what causes motivate you",
-                  "You’ll join our awesome international team of volunteers on Slack and over video who will support you throughout the process ",
-                  "You’ll join a cause you care about and work as an embedded team helping them meet their objectives",
-                  "You’ll feel awesome knowing you’re building your skills while helping others",
+                  'You’ll meet one of our technology leaders so we know what skills you’re hoping to bring, what you want to work on, and what causes motivate you',
+                  'You’ll join our awesome international team of volunteers on Slack and over video who will support you throughout the process ',
+                  'You’ll join a cause you care about and work as an embedded team helping them meet their objectives',
+                  'You’ll feel awesome knowing you’re building your skills while helping others',
                 ]}
               />
             </div>
