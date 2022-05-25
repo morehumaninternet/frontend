@@ -40,23 +40,6 @@ export function ApplicationForm({ formName, children }: { formName: string, chil
         />
       </FormGroup>
       {children}
-      <div>
-        <FormGroup>
-          <TextField
-            label="Anything else to add?"
-            name="anythingElse"
-            variant="outlined"
-            required
-            multiline
-            rows={5}
-            InputProps={{
-              inputProps: {
-                'aria-label': 'Anything else to add?',
-              },
-            }}
-          />
-        </FormGroup>
-      </div>
       <FormGroup>
         <button type="submit" className="mhi-button human-pink-bg">
           Send

@@ -20,7 +20,7 @@ const ContributorsPage = (): JSX.Element => {
             cause="lhkh"
             imgSrc="/causes/lhkh_hero.png"
             borderColor="#FA759E"
-            // heading="Livable Hawaii Kai Hui"
+            heading="For Contributors"
             description={`Volunteer your skills to help nonprofits deliver critical services to communities around the world.`}
           />
         </div>
@@ -28,36 +28,49 @@ const ContributorsPage = (): JSX.Element => {
       <BlueSection>
         <div>
           <h2>
-            <i>`A`ohe hana nui ke alu `ia</i>
+            <i>You’ve got the skills, you’ve got the motivation, but you’re wanting more fulfilment in the impact you’re making with your work
+              You need a team
+              You need a cause</i>
           </h2>
-          <h3>No task is too big when done together by all</h3>
-          {/* <p style={{ textAlign: 'right' }}>— Mary Kawena Pukui (`Olelo No`eau)</p> */}
-          <p style={{ textAlign: 'right' }}>— Ōlelo No‘eau: Hawaiian Proverbs & Poetical Sayings, © Bishop Museum</p>
         </div>
       </BlueSection>
       <CausesSection rightToLeft>
         <>
           <CauseImage src="/causes/lhkh_reeds.png" borderColor="#FA759E" />
-          <CauseTextContent
-            heading="Protecting Hawaii’s Land"
-            description={
-              'From its inception 18 years ago, Livable Hawaii Kai Hui has been organizing people to protect, improve and care for the resources of Maunalua, on the island of Oahu, in perpetuity.'
-            }
-          />
+          <div className="cause__content">
+            <div>
+              <h2 className="human-blue">How It Works</h2>
+              <CheckmarkList
+                notes={[
+                  "You’ll meet one of our technology leaders so we know what skills you’re hoping to bring, what you want to work on, and what causes motivate you",
+                  "You’ll join our awesome international team of volunteers on Slack and over video who will support you throughout the process ",
+                  "You’ll join a cause you care about and work as an embedded team helping them meet their objectives",
+                  "You’ll feel awesome knowing you’re building your skills while helping others",
+                ]}
+              />
+            </div>
+          </div>
         </>
         <>
           <CauseImage src="/causes/lhkh_hale_background.png" borderColor="#6FCF97" />
           <div className="cause__content">
             <div>
-              <h2 className="human-blue">Advancing Online Strategy</h2>
-              <p>More Human Internet technical experts are teaming with Livable Hawaii Kai Hui leaders to improve the organization's online presence.</p>
-              <CheckmarkList
-                notes={[
-                  "Modernize website to support timely updates about Livable Hawaii Kai Hui's news and events",
-                  'Increase volunteership by streamlining signup process and automating event notifications',
-                  'Improve social media followership with consistent branding',
-                ]}
-              />
+              <h2 className="human-blue">Our Story</h2>
+              <p>
+                In X 2020, I was
+
+                - knowing our skills could make a difference
+                - frustration with how the web is wasn’t being used to solve the world’s biggest problems
+              </p>
+              <p>
+                After collaborating to build Roar, we realized that a small motivated team could collaborate around the globe and help support one another to advance important causes.
+              </p>
+              Meanwhile, Will was working as Chief Information Officer for DSA and the OGs wanted to contribute to that cause. They helped build out their website putting forward the idea of developing African leaders through sports
+              <p>
+                Barbara and LHKH
+
+                Now we are looking to expand our team and the causes we work with!
+              </p>
             </div>
           </div>
         </>

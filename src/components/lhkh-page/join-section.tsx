@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormGroup, FormControlLabel, Checkbox } from '@material-ui/core'
+import { FormGroup, FormControlLabel, Checkbox, TextField } from '@material-ui/core'
 import { ApplicationForm } from '../shared/application-form'
 
 export default React.forwardRef(
@@ -13,6 +13,21 @@ export default React.forwardRef(
             <FormGroup>
               <FormControlLabel name="inPerson" control={<Checkbox defaultChecked />} label="Let me know about upcoming in person events" />
               <FormControlLabel name="contribute" control={<Checkbox />} label="I want to contribute my expertise" />
+            </FormGroup>
+            <FormGroup>
+              <TextField
+                label="Anything else to add?"
+                name="anythingElse"
+                variant="outlined"
+                required
+                multiline
+                rows={5}
+                InputProps={{
+                  inputProps: {
+                    'aria-label': 'Anything else to add?',
+                  },
+                }}
+              />
             </FormGroup>
           </ApplicationForm>
         </div>
