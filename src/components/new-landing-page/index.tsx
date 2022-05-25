@@ -9,6 +9,7 @@ import SocialMediaBar from '../shared/social-media-bar'
 import SEO from '../shared/seo'
 import JoinSection from './join-section'
 import BlueSection from '../shared/blue-section'
+import PinkDot from '../shared/pink-dot'
 import { lhkh } from '../shared/causes'
 import { Helmet } from 'react-helmet'
 
@@ -60,6 +61,7 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
       <BlueSection ref={internalSectionRefs['Contributors']}>
         <h1>Our leaders join your cause directly, working alongside you to meet your online &amp; offline goals.</h1>
       </BlueSection>
+      <PinkDot />
       <Causes ref={internalSectionRefs['Causes']} />
       <Technologies />
       <JoinSection ref={internalSectionRefs['Join']} />

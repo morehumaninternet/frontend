@@ -1,7 +1,59 @@
+$pink-dot-breakpoint: 710px;
+$pink-dot-size: 300px;
+
 .circle {
   border-radius: 50%;
 }
 
 .square {
   border-radius: 0%;
+}
+
+.pink_dot {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: $pink-dot-breakpoint) {
+  .pink_dot__wrapper {
+    position: relative;
+    width: 100vw;
+    height: $pink-dot-size;
+    margin-bottom: -100px;
+  }
+
+  .pink_dot {
+    position: absolute;
+    width: $pink-dot-size;
+    height: $pink-dot-size;
+    border-radius: 50%;
+    padding: 25px;
+    right: max(15vw, 175px);
+    background-color: $human-pink;
+    top: -40px;
+    transform: translate(50%);
+  }
+
+  .pink_dot__text {
+    color: white;
+  }
+}
+
+@media (max-width: $pink-dot-breakpoint) {
+  .pink_dot__wrapper {
+    margin-bottom: 0px;
+    padding: 25px;
+    padding-top: 50px;
+
+    .pink_dot {
+      border-radius: 0;
+      background-color: white;
+
+      .pink_dot__text {
+        color: $human-blue;
+        font-size: 1.4em;
+      }
+    }
+  }
 }
