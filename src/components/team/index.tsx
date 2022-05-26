@@ -2,7 +2,8 @@ import React from 'react'
 import { members } from './members'
 import Staff from './staff'
 
-type TeamProps = {
+// use union type temporary to allow any props for team section
+type TeamProps = any | {
   makeAndTrackRef: () => React.MutableRefObject<any>
   volunteer(): void
 }

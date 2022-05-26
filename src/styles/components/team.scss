@@ -1,0 +1,121 @@
+.team-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px $standard-margin;
+
+    @include onmobile {
+      padding-top: 0;
+    }
+  }
+
+  .team {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 1000px;
+    width: 100%;
+
+    > .volunteer {
+      margin-bottom: 40px;
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+
+      > h1 {
+        color: $human-blue;
+      }
+
+      > p {
+        color: $human-blue;
+      }
+
+      button {
+        font-weight: bold;
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+    }
+
+    > .staff {
+      display: grid;
+      row-gap: 20px;
+      column-gap: 20px;
+
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      max-width: 680px;
+
+      @include onmobile {
+        column-gap: 10px;
+        grid-template-columns: 1fr 1fr;
+
+        > .staff-card {
+          > .staff-card__name {
+            font-size: 3.7vw;
+          }
+          > .staff-card__title {
+            font-size: 3.5vw;
+          }
+        }
+      }
+
+      > .staff-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        > p {
+          margin: 0;
+          color: $human-blue;
+        }
+
+        > .staff-card__name {
+          font-weight: bold;
+          margin-top: 6px;
+        }
+
+        > .staff-card__image {
+          width: 100%;
+        }
+      }
+    }
+
+    @include onmobile {
+      .volunteer > h1 {
+        font-size: 8vw;
+      }
+    }
+
+    @media (max-width: 881px) {
+      .volunteer {
+        max-width: 680px;
+      }
+      .staff {
+        align-self: center;
+      }
+
+      .volunteer button {
+        align-self: center;
+      }
+    }
+
+    @media (min-width: 880px) {
+      flex-direction: row;
+
+      .volunteer {
+        max-width: 300px;
+        order: 2;
+        margin-bottom: 0;
+        margin-left: 40px;
+        align-self: flex-start;
+        flex: 1.5;
+      }
+
+      .staff {
+        order: 1;
+        flex-grow: 2;
+      }
+    }
+  }
