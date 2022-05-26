@@ -6,7 +6,7 @@ import { Cause, CauseImage, CausesSection, CauseTextContent } from '../shared/ca
 import BlueSection from '../shared/blue-section'
 import { CheckmarkList } from './checkmark-list'
 import JoinSection from './join-section'
-import TeamSection from './team-section'
+import Team from '../team/index'
 
 const ContributorsPage = (): JSX.Element => {
   return (
@@ -86,7 +86,7 @@ const ContributorsPage = (): JSX.Element => {
           </div>
         </>
       </CausesSection>
-      <TeamSection />
+      <Team />
       <JoinSection />
     </Layout>
   )
