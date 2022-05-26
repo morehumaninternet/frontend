@@ -28,4 +28,3 @@ export const members: readonly TeamMember[] = [
       background_shape: 'square',
     },
   ]
-  
