@@ -24,9 +24,9 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
       <SEO
         meta={[
           { property: 'og:image', itemprop: 'image', content: 'https://deploy-preview-200--admiring-carson-42ff06.netlify.app/mhi-og-image.png' },
-          { property: 'og:image:type', content: 'image/png' },
-          { property: 'og:image:height', content: '613' },
-          { property: 'og:image:width', content: '1219' },
+          // { property: 'og:image:type', content: 'image/png' },
+          // { property: 'og:image:height', content: '613' },
+          // { property: 'og:image:width', content: '1219' },
           { property: 'og:url', content: 'https://deploy-preview-200--admiring-carson-42ff06.netlify.app/' },
           { name: 'twitter:image', content: 'https://deploy-preview-200--admiring-carson-42ff06.netlify.app/mhi-og-image.png' }
         ]}
