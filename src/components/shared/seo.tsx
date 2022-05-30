@@ -57,6 +57,7 @@ export default function SEO(props: SEOProps): JSX.Element {
   return (
     <Helmet
       htmlAttributes={{ lang }}
+      title={title}
       meta={[
         { name: 'description', content: metaDescription },
         { property: 'og:title', content: title },
