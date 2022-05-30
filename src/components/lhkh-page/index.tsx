@@ -6,10 +6,12 @@ import { Cause, CauseImage, CausesSection, CauseTextContent } from '../shared/ca
 import BlueSection from '../shared/blue-section'
 import { CheckmarkList } from './checkmark-list'
 import JoinSection from './join-section'
+import { ApplicationForm, EmailField, NameField } from '../shared/application-form'
+import { Checkbox, FormControlLabel, FormGroup, TextField } from '@material-ui/core'
 
 const LHKHPage = (): JSX.Element => {
   return (
-    <Layout additionalClassNames="new-landing-page" header={<Header />}>
+    <Layout additionalClassNames="new-landing-page lhkh" header={<Header />}>
       <SEO
         pageTitle="Partering with Livable Hawaii Kai Hui"
         description="More Human Internet is partnering with Livable Hawaii Kai Hui to advance their online strategy"
@@ -31,7 +33,6 @@ const LHKHPage = (): JSX.Element => {
             <i>`A`ohe hana nui ke alu `ia</i>
           </h2>
           <h3>No task is too big when done together by all</h3>
-          {/* <p style={{ textAlign: 'right' }}>— Mary Kawena Pukui (`Olelo No`eau)</p> */}
           <p style={{ textAlign: 'right' }}>— Ōlelo No‘eau: Hawaiian Proverbs & Poetical Sayings, © Bishop Museum</p>
         </div>
       </BlueSection>
@@ -46,11 +47,11 @@ const LHKHPage = (): JSX.Element => {
           />
         </>
         <>
-          <CauseImage src="/causes/lhkh_hale_background.png" borderColor="#6FCF97" />
+          <CauseImage src="/causes/lhkh_ka_iwi_circle.png" borderColor="#6FCF97" />
           <div className="cause__content">
             <div>
               <h2 className="human-blue">Advancing Online Strategy</h2>
-              <p>More Human Internet technical experts are teaming with Livable Hawaii Kai Hui leaders to improve the organization's online presence.</p>
+              <p>More Human Internet technical experts are teaming with Livable Hawaii Kai Hui leaders to improve the organization's online presence. Our goals are to:</p>
               <CheckmarkList
                 notes={[
                   "Modernize website to support timely updates about Livable Hawaii Kai Hui's news and events",
@@ -73,6 +74,13 @@ const LHKHPage = (): JSX.Element => {
         </>
       </CausesSection>
       <JoinSection />
+      <section className="centered lhkh-donate">
+        <div>
+          <h1 className="mhi-heading human-blue">Donate</h1>
+          <p>Support Livable Hawaii Kai Hui's efforts directly</p>
+          <a href="/lhkh-paypal" className="link">Via Paypal</a>
+        </div>
+      </section>
     </Layout>
   )
 }

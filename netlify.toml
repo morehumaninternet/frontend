@@ -7,3 +7,8 @@
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+
+[[redirects]]
+  from = "/lhkh-paypal"
+  to = "paypal.me/livablehawaiikaihui"
+  status = 200

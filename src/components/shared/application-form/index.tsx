@@ -1,8 +1,37 @@
 import React from 'react'
-import { FormGroup, TextField } from '@material-ui/core'
+import { FormGroup } from '@material-ui/core'
 import { Email, Person } from '@material-ui/icons'
 import TextFieldWithIcon from './text-field-with-icon'
 import { thankYouHref } from '../../../utils/href'
+
+export function NameField(): JSX.Element {
+  return (
+    <FormGroup>
+      <TextFieldWithIcon
+        label="Full Name"
+        name="name"
+        variant="outlined"
+        required
+        startIcon={<Person className="person" />}
+      />
+    </FormGroup>
+  )
+}
+
+export function EmailField(): JSX.Element {
+  return (
+    <FormGroup>
+      <TextFieldWithIcon
+        type="email"
+        label="Email"
+        name="email"
+        variant="outlined"
+        required
+        startIcon={<Email className="email" />}
+      />
+    </FormGroup>
+  )
+}
 
 export function ApplicationForm({ formName, children }: { formName: string, children?: React.ReactNode }): JSX.Element {
 
@@ -20,25 +49,6 @@ export function ApplicationForm({ formName, children }: { formName: string, chil
       className="application-form"
     >
       <input type="hidden" name="form-name" value={formName} />
-      <FormGroup>
-        <TextFieldWithIcon
-          label="Full Name"
-          name="name"
-          variant="outlined"
-          required
-          startIcon={<Person className="person" />}
-        />
-      </FormGroup>
-      <FormGroup>
-        <TextFieldWithIcon
-          type="email"
-          label="Email"
-          name="email"
-          variant="outlined"
-          required
-          startIcon={<Email className="email" />}
-        />
-      </FormGroup>
       {children}
       <FormGroup>
         <button type="submit" className="mhi-button human-pink-bg">
