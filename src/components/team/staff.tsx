@@ -1,8 +1,6 @@
 import React from 'react'
 
-// disable the makeAndTrackRef
 type StaffProps = TeamMember
-// type StaffProps = TeamMember & { makeAndTrackRef: () => React.MutableRefObject<any> }
 
 const Staff: React.FC<StaffProps> = ({ name, title, image_file_name, background_color, background_shape }) => {
   return (
