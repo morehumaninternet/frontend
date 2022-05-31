@@ -15,29 +15,7 @@
     justify-content: center;
     align-items: center;
 
-    max-width: 1000px;
     width: 100%;
-
-    > .volunteer {
-      margin-bottom: 40px;
-      align-self: center;
-      display: flex;
-      flex-direction: column;
-
-      > h1 {
-        color: $human-blue;
-      }
-
-      > p {
-        color: $human-blue;
-      }
-
-      button {
-        font-weight: bold;
-        padding-top: 16px;
-        padding-bottom: 16px;
-      }
-    }
 
     > .staff {
       display: grid;
@@ -93,10 +71,6 @@
         max-width: 680px;
       }
       .staff {
-        align-self: center;
-      }
-
-      .volunteer button {
         align-self: center;
       }
     }

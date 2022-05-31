@@ -2,19 +2,12 @@ import React from 'react'
 import { members } from './members'
 import Staff from './staff'
 
-// use union type temporary to allow any props for team section
-type TeamProps = any | {
-  makeAndTrackRef: () => React.MutableRefObject<any>
-  volunteer(): void
-}
-
-const Team: React.FC<TeamProps> = ({ makeAndTrackRef, volunteer }) => (
+const Team: React.FC = () => (
   <div className="team">
     <div className="staff">
       {members.map(member => (
         <Staff
           key={member.name}
-          makeAndTrackRef={makeAndTrackRef}
           name={member.name}
           title={member.title}
           image_file_name={member.image_file_name}
