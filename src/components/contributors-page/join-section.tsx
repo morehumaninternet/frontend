@@ -25,36 +25,6 @@ export default React.forwardRef(
                 }}
               />
             </FormGroup>
-            <FormGroup>
-              <TextField
-                label="What skills would you hope to bring?"
-                name="skills"
-                variant="outlined"
-                required
-                multiline
-                rows={5}
-                InputProps={{
-                  inputProps: {
-                    'aria-label': 'What skills would you hope to bring?',
-                  },
-                }}
-              />
-            </FormGroup>
-            <FormGroup>
-              <TextField
-                label="What are you hoping to learn?"
-                name="learn"
-                variant="outlined"
-                required
-                multiline
-                rows={5}
-                InputProps={{
-                  inputProps: {
-                    'aria-label': 'What are you hoping to learn?',
-                  },
-                }}
-              />
-            </FormGroup>
           </ApplicationForm>
         </div>
       </section>
