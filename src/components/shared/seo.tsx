@@ -41,7 +41,7 @@ const ogImageMetaTags = (ogImageSrc?: string): any => {
   const fileType = path.match(/\.(\w+)/)![1]
 
   return [
-    { property: 'og:image', itemProp: 'image', content: ogImageSrc },
+    { property: 'og:image', content: ogImageSrc },
     { property: 'og:image:type', content: `image/${fileType}` },
     { property: 'og:image:height', content: '256' },
     { property: 'og:image:width', content: '256' },
