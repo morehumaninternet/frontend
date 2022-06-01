@@ -28,20 +28,6 @@ export default React.forwardRef(
                   },
                 }}
               />
-              <br />
-              <TextField
-                label="Anything else to add?"
-                name="anythingElse"
-                variant="outlined"
-                required
-                multiline
-                rows={5}
-                InputProps={{
-                  inputProps: {
-                    'aria-label': 'Anything else to add?',
-                  },
-                }}
-              />
             </FormGroup>
           </ApplicationForm>
         </div>
