@@ -1,3 +1,4 @@
+import { last } from 'lodash'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
@@ -9,6 +10,7 @@ type SEOProps = {
   lang?: string
   pageTitle?: string
   links?: Links
+  ogImageSrc: string
   meta?: ReadonlyArray<{
     name: string
     content: string
@@ -32,6 +34,19 @@ export const defaultLinks: Links = [
   { rel: 'manifest', href: '/site.webmanifest' },
   { rel: 'mask-icon', color: '#5bbad5', href: '/safari-pinned-tab.svg' },
 ]
+
+const ogImageMetaTags = (ogImageSrc?: string): any => {
+  if (!ogImageSrc) return []
+  const path = last(ogImageSrc.split('/'))!
+  const fileType = path.match(/\.(\w+)/)![1]
+
+  return [
+    { property: 'og:image', itemProp: 'image', content: ogImageSrc },
+    { property: 'og:image:type', content: `image/${fileType}` },
+    { property: 'og:image:height', content: '256' },
+    { property: 'og:image:width', content: '256' },
+  ]
+}
 
 export default function SEO(props: SEOProps): JSX.Element {
 
@@ -69,7 +84,8 @@ export default function SEO(props: SEOProps): JSX.Element {
         { name: 'twitter:description', content: metaDescription },
         { name: 'msapplication-TileColor', content: '#164176' },
         { name: 'theme-color', content: '#ffffff' },
-      ].concat(props.meta || [])}
+      ].concat(ogImageMetaTags(props.ogImageSrc)).concat(props.meta || [])
+      }
       link={links}
     />
   )

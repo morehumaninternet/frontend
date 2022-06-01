@@ -15,6 +15,7 @@ const LHKHPage = (): JSX.Element => {
       <SEO
         pageTitle="Partering with Livable Hawaii Kai Hui"
         description="More Human Internet is partnering with Livable Hawaii Kai Hui to advance their online strategy"
+        ogImageSrc="lhkh_og_image.png"
       />
       <section className="causes">
         <div className="causes__content" style={{ gridTemplateRows: '1fr 5.5fr 1fr' }}>
@@ -54,9 +55,10 @@ const LHKHPage = (): JSX.Element => {
               <p>More Human Internet technical experts are teaming with Livable Hawaii Kai Hui leaders to improve the organization's online presence. Our goals are to:</p>
               <CheckmarkList
                 notes={[
-                  "Modernize website to support timely updates about Livable Hawaii Kai Hui's news and events",
+                  'Modernize website, allowing community members to explore their naitive aina and join local events to protect and learn from the land',
                   'Increase volunteership by streamlining signup process and automating event notifications',
                   'Improve social media followership with consistent branding',
+                  'Look for opportunities where community-centered technology to help the Hui collaborate to deepen its impact',
                 ]}
               />
             </div>
