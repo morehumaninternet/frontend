@@ -43,8 +43,6 @@ const ogImageMetaTags = (ogImageSrc?: string): any => {
   return [
     { property: 'og:image', content: ogImageSrc },
     { property: 'og:image:type', content: `image/${fileType}` },
-    { property: 'og:image:height', content: '256' },
-    { property: 'og:image:width', content: '256' },
   ]
 }
 
