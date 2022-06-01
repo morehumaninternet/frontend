@@ -15,7 +15,7 @@ const LHKHPage = (): JSX.Element => {
       <SEO
         pageTitle="Partering with Livable Hawaii Kai Hui"
         description="More Human Internet is partnering with Livable Hawaii Kai Hui to advance their online strategy"
-        ogImageSrc="https://morehumaninternet.org/lhkh_og_image.png"
+        ogImageSrc="https://morehumaninternet.org/lhkh_og_image_1230.png"
       />
       <section className="causes">
         <div className="causes__content" style={{ gridTemplateRows: '1fr 5.5fr 1fr' }}>
