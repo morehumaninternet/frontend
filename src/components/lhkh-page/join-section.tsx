@@ -1,6 +1,6 @@
 import React from 'react'
 import { FormGroup, FormControlLabel, Checkbox, TextField } from '@material-ui/core'
-import { ApplicationForm } from '../shared/application-form'
+import { ApplicationForm, NameField, EmailField } from '../shared/application-form'
 
 export default React.forwardRef(
   (_, ref): JSX.Element => {
@@ -10,6 +10,8 @@ export default React.forwardRef(
           <h1 className="mhi-heading human-blue">Get Involved</h1>
           <p><i>Join the effort to protect Hawaii's natural resources</i></p>
           <ApplicationForm formName="join-lhkh">
+            <NameField />
+            <EmailField />
             <FormGroup>
               <FormControlLabel name="inPerson" control={<Checkbox defaultChecked />} label="Let me know about upcoming in person events" />
               <FormControlLabel name="contribute" control={<Checkbox />} label="I want to contribute my expertise" />
