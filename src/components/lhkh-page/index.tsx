@@ -13,7 +13,7 @@ const LHKHPage = (): JSX.Element => {
   return (
     <Layout additionalClassNames="new-landing-page lhkh" header={<Header />}>
       <SEO
-        pageTitle="Partering with Livable Hawaii Kai Hui"
+        pageTitle="More Human Internet partners with Livable Hawaii Kai Hui"
         description="More Human Internet is partnering with Livable Hawaii Kai Hui to advance their online strategy"
         ogImageSrc="https://morehumaninternet.org/lhkh_og_image_1230.png"
       />
