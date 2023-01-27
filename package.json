@@ -27,7 +27,7 @@
     "react-dom": "^18.1.0",
     "react-helmet": "^6.1.0",
     "react-share": "^4.4.0",
-    "ua-parser-js": "0.7.24"
+    "ua-parser-js": "0.7.33"
   },
   "devDependencies": {
     "@types/color": "3.0.1",
