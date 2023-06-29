@@ -57,6 +57,9 @@ const NewLandingPage = ({ location }: PageProps): JSX.Element => {
         </>}
     >
       <SEO />
+      <div className='bg-red'>
+        HELLO WORLD
+      </div>
       <Hero />
       <BlueSection ref={internalSectionRefs['Contributors']}>
         <h1>Our leaders join your cause directly, working alongside you to meet your online &amp; offline goals.</h1>

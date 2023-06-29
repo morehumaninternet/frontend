@@ -2,6 +2,9 @@
 @import './animations/_all';
 @import './components/_all';
 @import './pages/_all';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   overflow-x: hidden;
